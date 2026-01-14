@@ -2,7 +2,8 @@
 
 ## Purpose
 
-Automated release coordination and deployment with ruv-swarm orchestration for seamless version management, testing, and deployment across multiple packages.
+Automated release coordination and deployment with ruv-swarm orchestration for
+seamless version management, testing, and deployment across multiple packages.
 
 ## Capabilities
 
@@ -249,10 +250,10 @@ This release is production-ready with comprehensive validation and testing.
 
 ```javascript
 const versionStrategy = {
-  major: "Breaking changes or architecture overhauls",
-  minor: "New features, GitHub integration, swarm enhancements",
-  patch: "Bug fixes, documentation updates, dependency updates",
-  coordination: "Cross-package version alignment",
+  major: 'Breaking changes or architecture overhauls',
+  minor: 'New features, GitHub integration, swarm enhancements',
+  patch: 'Bug fixes, documentation updates, dependency updates',
+  coordination: 'Cross-package version alignment',
 };
 ```
 
@@ -260,12 +261,12 @@ const versionStrategy = {
 
 ```javascript
 const validationStages = [
-  "unit_tests", // Individual package testing
-  "integration_tests", // Cross-package integration
-  "performance_tests", // Performance regression detection
-  "compatibility_tests", // Version compatibility validation
-  "documentation_tests", // Documentation accuracy verification
-  "deployment_tests", // Deployment simulation
+  'unit_tests', // Individual package testing
+  'integration_tests', // Cross-package integration
+  'performance_tests', // Performance regression detection
+  'compatibility_tests', // Version compatibility validation
+  'documentation_tests', // Documentation accuracy verification
+  'deployment_tests', // Deployment simulation
 ];
 ```
 
@@ -273,10 +274,10 @@ const validationStages = [
 
 ```javascript
 const rollbackPlan = {
-  triggers: ["test_failures", "deployment_issues", "critical_bugs"],
-  automatic: ["failed_tests", "build_failures"],
-  manual: ["user_reported_issues", "performance_degradation"],
-  recovery: "Previous stable version restoration",
+  triggers: ['test_failures', 'deployment_issues', 'critical_bugs'],
+  automatic: ['failed_tests', 'build_failures'],
+  manual: ['user_reported_issues', 'performance_degradation'],
+  recovery: 'Previous stable version restoration',
 };
 ```
 
@@ -319,7 +320,7 @@ name: Release Management
 on:
   pull_request:
     branches: [main]
-    paths: ["**/package.json", "CHANGELOG.md"]
+    paths: ['**/package.json', 'CHANGELOG.md']
 
 jobs:
   release-validation:
@@ -329,7 +330,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "20"
+          node-version: '20'
       - name: Install and Test
         run: |
           cd claude-code-flow/claude-code-flow && npm install && npm test

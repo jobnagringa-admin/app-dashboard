@@ -2,7 +2,8 @@
 
 ## Purpose
 
-Intelligent issue management and project coordination with ruv-swarm integration for automated tracking, progress monitoring, and team coordination.
+Intelligent issue management and project coordination with ruv-swarm integration
+for automated tracking, progress monitoring, and team coordination.
 
 ## Capabilities
 

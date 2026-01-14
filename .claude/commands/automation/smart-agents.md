@@ -2,7 +2,8 @@
 
 ## Purpose
 
-Automatically spawn the right agents at the right time without manual intervention.
+Automatically spawn the right agents at the right time without manual
+intervention.
 
 ## Auto-Spawning Triggers
 
@@ -39,13 +40,13 @@ The system monitors workload and spawns additional agents when:
 // Check swarm health
 mcp__claude -
   flow__swarm_status({
-    swarmId: "current",
+    swarmId: 'current',
   });
 
 // Monitor agent performance
 mcp__claude -
   flow__agent_metrics({
-    agentId: "agent-123",
+    agentId: 'agent-123',
   });
 ```
 
@@ -59,17 +60,17 @@ Uses Claude Flow MCP tools for agent coordination:
 // Initialize swarm with appropriate topology
 mcp__claude -
   flow__swarm_init({
-    topology: "mesh",
+    topology: 'mesh',
     maxAgents: 8,
-    strategy: "auto",
+    strategy: 'auto',
   });
 
 // Spawn agents based on file type
 mcp__claude -
   flow__agent_spawn({
-    type: "coder",
-    name: "JavaScript Handler",
-    capabilities: ["javascript", "typescript"],
+    type: 'coder',
+    name: 'JavaScript Handler',
+    capabilities: ['javascript', 'typescript'],
   });
 ```
 

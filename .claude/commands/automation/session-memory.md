@@ -2,7 +2,8 @@
 
 ## Purpose
 
-Maintain context and learnings across Claude Code sessions for continuous improvement.
+Maintain context and learnings across Claude Code sessions for continuous
+improvement.
 
 ## Memory Features
 
@@ -22,15 +23,15 @@ At session end, automatically saves:
 // Using MCP tools for memory operations
 mcp__claude -
   flow__memory_usage({
-    action: "retrieve",
-    key: "session-state",
-    namespace: "sessions",
+    action: 'retrieve',
+    key: 'session-state',
+    namespace: 'sessions',
   });
 
 // Restore swarm state
 mcp__claude -
   flow__context_restore({
-    snapshotId: "sess-123",
+    snapshotId: 'sess-123',
   });
 ```
 
@@ -69,22 +70,22 @@ npx claude-flow hook session-restore --session-id "sess-123"
 // List memory contents
 mcp__claude -
   flow__memory_usage({
-    action: "list",
-    namespace: "sessions",
+    action: 'list',
+    namespace: 'sessions',
   });
 
 // Delete specific memory
 mcp__claude -
   flow__memory_usage({
-    action: "delete",
-    key: "session-123",
-    namespace: "sessions",
+    action: 'delete',
+    key: 'session-123',
+    namespace: 'sessions',
   });
 
 // Backup memory
 mcp__claude -
   flow__memory_backup({
-    path: "./backups/memory-backup.json",
+    path: './backups/memory-backup.json',
   });
 ```
 

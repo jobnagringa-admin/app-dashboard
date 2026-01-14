@@ -2,7 +2,8 @@
 
 ## Purpose
 
-Reduce token consumption while maintaining quality through intelligent coordination.
+Reduce token consumption while maintaining quality through intelligent
+coordination.
 
 ## Optimization Strategies
 

@@ -2,7 +2,8 @@
 
 ## Purpose
 
-Multi-package synchronization and version alignment with ruv-swarm coordination for seamless integration between claude-code-flow and ruv-swarm packages.
+Multi-package synchronization and version alignment with ruv-swarm coordination
+for seamless integration between claude-code-flow and ruv-swarm packages.
 
 ## Capabilities
 
@@ -214,14 +215,14 @@ This integration uses ruv-swarm agents for:
 ```javascript
 // Intelligent version synchronization
 const syncStrategy = {
-  nodeVersion: ">=20.0.0", // Align to highest requirement
+  nodeVersion: '>=20.0.0', // Align to highest requirement
   dependencies: {
-    "better-sqlite3": "^12.2.0", // Use latest stable
-    ws: "^8.14.2", // Maintain compatibility
+    'better-sqlite3': '^12.2.0', // Use latest stable
+    ws: '^8.14.2', // Maintain compatibility
   },
   engines: {
     aligned: true,
-    strategy: "highest_common",
+    strategy: 'highest_common',
   },
 };
 ```
@@ -231,14 +232,14 @@ const syncStrategy = {
 ```javascript
 // Keep documentation consistent across packages
 const docSyncPattern = {
-  sourceOfTruth: "ruv-swarm/docs/CLAUDE.md",
+  sourceOfTruth: 'ruv-swarm/docs/CLAUDE.md',
   targets: [
-    "claude-code-flow/claude-code-flow/CLAUDE.md",
-    "CLAUDE.md", // Root level
+    'claude-code-flow/claude-code-flow/CLAUDE.md',
+    'CLAUDE.md', // Root level
   ],
   customSections: {
-    "claude-code-flow": "GitHub Commands Integration",
-    "ruv-swarm": "MCP Tools Reference",
+    'claude-code-flow': 'GitHub Commands Integration',
+    'ruv-swarm': 'MCP Tools Reference',
   },
 };
 ```
@@ -248,15 +249,15 @@ const docSyncPattern = {
 ```javascript
 // Comprehensive testing across synchronized packages
 const testMatrix = {
-  packages: ["claude-code-flow", "ruv-swarm"],
+  packages: ['claude-code-flow', 'ruv-swarm'],
   tests: [
-    "unit_tests",
-    "integration_tests",
-    "cross_package_tests",
-    "mcp_integration_tests",
-    "github_workflow_tests",
+    'unit_tests',
+    'integration_tests',
+    'cross_package_tests',
+    'mcp_integration_tests',
+    'github_workflow_tests',
   ],
-  validation: "parallel_execution",
+  validation: 'parallel_execution',
 };
 ```
 

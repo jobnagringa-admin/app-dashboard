@@ -7,7 +7,8 @@ description: Show Claude-Flow commands and usage
 
 ## 🌊 Claude-Flow: Agent Orchestration Platform
 
-Claude-Flow is the ultimate multi-terminal orchestration platform that revolutionizes how you work with Claude Code.
+Claude-Flow is the ultimate multi-terminal orchestration platform that
+revolutionizes how you work with Claude Code.
 
 ## Core Commands
 

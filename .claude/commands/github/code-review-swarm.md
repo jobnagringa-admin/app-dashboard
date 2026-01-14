@@ -2,7 +2,8 @@
 
 ## Overview
 
-Deploy specialized AI agents to perform comprehensive, intelligent code reviews that go beyond traditional static analysis.
+Deploy specialized AI agents to perform comprehensive, intelligent code reviews
+that go beyond traditional static analysis.
 
 ## Core Features
 
@@ -357,11 +358,9 @@ done
 
 **Severity**: 🔴 Critical / 🟡 High / 🟢 Low
 
-**Description**:
-[Clear explanation of the security issue]
+**Description**: [Clear explanation of the security issue]
 
-**Impact**:
-[Potential consequences if not addressed]
+**Impact**: [Potential consequences if not addressed]
 
 **Suggested Fix**:
 
@@ -396,9 +395,9 @@ npx ruv-swarm github review-comments \
 protection_rules:
   required_status_checks:
     contexts:
-      - "review-swarm/security"
-      - "review-swarm/performance"
-      - "review-swarm/architecture"
+      - 'review-swarm/security'
+      - 'review-swarm/performance'
+      - 'review-swarm/architecture'
 ```
 
 ### Quality Gates
@@ -470,9 +469,9 @@ class CustomReviewAgent {
     // Custom logic here
     if (await this.checkCustomRule(pr)) {
       issues.push({
-        severity: "warning",
-        message: "Custom rule violation",
-        suggestion: "Fix suggestion",
+        severity: 'warning',
+        message: 'Custom rule violation',
+        suggestion: 'Fix suggestion',
       });
     }
 
@@ -547,4 +546,5 @@ npx ruv-swarm github review-report \
   --email-stakeholders
 ```
 
-See also: [swarm-pr.md](./swarm-pr.md), [workflow-automation.md](./workflow-automation.md)
+See also: [swarm-pr.md](./swarm-pr.md),
+[workflow-automation.md](./workflow-automation.md)

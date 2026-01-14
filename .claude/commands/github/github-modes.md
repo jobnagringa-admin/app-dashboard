@@ -2,7 +2,9 @@
 
 ## Overview
 
-This document describes all GitHub integration modes available in Claude-Flow with ruv-swarm coordination. Each mode is optimized for specific GitHub workflows and includes batch tool integration for maximum efficiency.
+This document describes all GitHub integration modes available in Claude-Flow
+with ruv-swarm coordination. Each mode is optimized for specific GitHub
+workflows and includes batch tool integration for maximum efficiency.
 
 ## GitHub Workflow Modes
 
@@ -24,7 +26,8 @@ This document describes all GitHub integration modes available in Claude-Flow wi
 - **Review Mode**: Automated
 - **Multi-reviewer**: Yes
 - **Conflict Resolution**: Intelligent
-- **Tools**: gh pr create, gh pr view, gh pr review, gh pr merge, TodoWrite, Task
+- **Tools**: gh pr create, gh pr view, gh pr review, gh pr merge, TodoWrite,
+  Task
 - **Usage**: `/github pr-manager <PR management task>`
 - **Best For**: PR reviews, merge coordination, conflict resolution
 
@@ -35,7 +38,8 @@ This document describes all GitHub integration modes available in Claude-Flow wi
 - **Issue Workflow**: Automated
 - **Label Management**: Smart
 - **Progress Tracking**: Real-time
-- **Tools**: gh issue create, gh issue edit, gh issue comment, gh issue list, TodoWrite
+- **Tools**: gh issue create, gh issue edit, gh issue comment, gh issue list,
+  TodoWrite
 - **Usage**: `/github issue-tracker <issue management task>`
 - **Best For**: Project management, issue coordination, progress tracking
 

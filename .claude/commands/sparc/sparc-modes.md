@@ -1,6 +1,8 @@
 # SPARC Modes Overview
 
-SPARC (Specification, Planning, Architecture, Review, Code) is a comprehensive development methodology with 17 specialized modes, all integrated with MCP tools for enhanced coordination and execution.
+SPARC (Specification, Planning, Architecture, Review, Code) is a comprehensive
+development methodology with 17 specialized modes, all integrated with MCP tools
+for enhanced coordination and execution.
 
 ## Available Modes
 

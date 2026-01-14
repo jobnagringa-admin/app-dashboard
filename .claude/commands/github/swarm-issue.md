@@ -2,7 +2,8 @@
 
 ## Overview
 
-Transform GitHub Issues into intelligent swarm tasks, enabling automatic task decomposition and agent coordination.
+Transform GitHub Issues into intelligent swarm tasks, enabling automatic task
+decomposition and agent coordination.
 
 ## Core Features
 
@@ -38,10 +39,7 @@ Execute swarm operations via issue comments:
 ```markdown
 <!-- In issue comment -->
 
-/swarm analyze
-/swarm decompose 5
-/swarm assign @agent-coder
-/swarm estimate
+/swarm analyze /swarm decompose 5 /swarm assign @agent-coder /swarm estimate
 /swarm start
 ```
 
@@ -50,25 +48,14 @@ Execute swarm operations via issue comments:
 ```markdown
 <!-- .github/ISSUE_TEMPLATE/swarm-task.yml -->
 
-name: Swarm Task
-description: Create a task for AI swarm processing
-body:
+name: Swarm Task description: Create a task for AI swarm processing body:
 
-- type: dropdown
-  id: topology
-  attributes:
-  label: Swarm Topology
-  options: - mesh - hierarchical - ring - star
-- type: input
-  id: agents
-  attributes:
-  label: Required Agents
-  placeholder: "coder, tester, analyst"
-- type: textarea
-  id: tasks
-  attributes:
-  label: Task Breakdown
-  placeholder: | 1. Task one description 2. Task two description
+- type: dropdown id: topology attributes: label: Swarm Topology options: -
+  mesh - hierarchical - ring - star
+- type: input id: agents attributes: label: Required Agents placeholder: "coder,
+  tester, analyst"
+- type: textarea id: tasks attributes: label: Task Breakdown placeholder: | 1.
+  Task one description 2. Task two description
 ```
 
 ## Issue Label Automation
@@ -466,7 +453,8 @@ npx ruv-swarm github effectiveness \
 
 ## Security & Permissions
 
-1. **Command Authorization**: Validate user permissions before executing commands
+1. **Command Authorization**: Validate user permissions before executing
+   commands
 2. **Rate Limiting**: Prevent spam and abuse of issue commands
 3. **Audit Logging**: Track all swarm operations on issues
 4. **Data Privacy**: Respect private repository settings
@@ -506,4 +494,5 @@ npx ruv-swarm github issue-init 567 \
   --validate-examples
 ```
 
-See also: [swarm-pr.md](./swarm-pr.md), [project-board-sync.md](./project-board-sync.md)
+See also: [swarm-pr.md](./swarm-pr.md),
+[project-board-sync.md](./project-board-sync.md)

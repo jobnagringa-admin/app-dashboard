@@ -2,7 +2,8 @@
 
 ## Overview
 
-Synchronize AI swarms with GitHub Projects for visual task management, progress tracking, and team coordination.
+Synchronize AI swarms with GitHub Projects for visual task management, progress
+tracking, and team coordination.
 
 ## Core Features
 
@@ -60,43 +61,43 @@ npx ruv-swarm github board-realtime \
 # .github/board-sync.yml
 version: 1
 project:
-  name: "AI Development Board"
+  name: 'AI Development Board'
   number: 1
 
 mapping:
   # Map swarm task status to board columns
   status:
-    pending: "Backlog"
-    assigned: "Ready"
-    in_progress: "In Progress"
-    review: "Review"
-    completed: "Done"
-    blocked: "Blocked"
+    pending: 'Backlog'
+    assigned: 'Ready'
+    in_progress: 'In Progress'
+    review: 'Review'
+    completed: 'Done'
+    blocked: 'Blocked'
 
   # Map agent types to labels
   agents:
-    coder: "🔧 Development"
-    tester: "🧪 Testing"
-    analyst: "📊 Analysis"
-    designer: "🎨 Design"
-    architect: "🏗️ Architecture"
+    coder: '🔧 Development'
+    tester: '🧪 Testing'
+    analyst: '📊 Analysis'
+    designer: '🎨 Design'
+    architect: '🏗️ Architecture'
 
   # Map priority to project fields
   priority:
-    critical: "🔴 Critical"
-    high: "🟡 High"
-    medium: "🟢 Medium"
-    low: "⚪ Low"
+    critical: '🔴 Critical'
+    high: '🟡 High'
+    medium: '🟢 Medium'
+    low: '⚪ Low'
 
   # Custom fields
   fields:
-    - name: "Agent Count"
+    - name: 'Agent Count'
       type: number
       source: task.agents.length
-    - name: "Complexity"
+    - name: 'Complexity'
       type: select
       source: task.complexity
-    - name: "ETA"
+    - name: 'ETA'
       type: date
       source: task.estimatedCompletion
 ```
@@ -503,4 +504,5 @@ npx ruv-swarm github team-metrics \
   --anonymous-option
 ```
 
-See also: [swarm-issue.md](./swarm-issue.md), [multi-repo-swarm.md](./multi-repo-swarm.md)
+See also: [swarm-issue.md](./swarm-issue.md),
+[multi-repo-swarm.md](./multi-repo-swarm.md)

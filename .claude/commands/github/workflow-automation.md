@@ -2,7 +2,8 @@
 
 ## Overview
 
-Integrate AI swarms with GitHub Actions to create intelligent, self-organizing CI/CD pipelines that adapt to your codebase.
+Integrate AI swarms with GitHub Actions to create intelligent, self-organizing
+CI/CD pipelines that adapt to your codebase.
 
 ## Core Features
 
@@ -90,7 +91,7 @@ jobs:
 name: Intelligent Security Scan
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
@@ -231,23 +232,23 @@ jobs:
 
 ```javascript
 // action.yml
-name: "Swarm Custom Action";
-description: "Custom swarm-powered action";
-inputs: task: description: "Task for swarm";
+name: 'Swarm Custom Action';
+description: 'Custom swarm-powered action';
+inputs: task: description: 'Task for swarm';
 required: true;
-runs: using: "node16";
-main: "dist/index.js";
+runs: using: 'node16';
+main: 'dist/index.js';
 
 // index.js
-const { SwarmAction } = require("ruv-swarm");
+const { SwarmAction } = require('ruv-swarm');
 
 async function run() {
   const swarm = new SwarmAction({
-    topology: "mesh",
-    agents: ["analyzer", "optimizer"],
+    topology: 'mesh',
+    agents: ['analyzer', 'optimizer'],
   });
 
-  await swarm.execute(core.getInput("task"));
+  await swarm.execute(core.getInput('task'));
 }
 ```
 
@@ -352,7 +353,7 @@ jobs:
 name: Intelligent Release
 on:
   push:
-    tags: ["v*"]
+    tags: ['v*']
 
 jobs:
   release:
@@ -373,7 +374,7 @@ jobs:
 name: Auto Documentation
 on:
   push:
-    paths: ["src/**"]
+    paths: ['src/**']
 
 jobs:
   docs:

@@ -5,7 +5,8 @@ description: Coordinate multi-agent swarms for complex tasks
 
 # 🐝 Claude-Flow Swarm Coordination
 
-Advanced multi-agent coordination system with timeout-free execution, distributed memory sharing, and intelligent load balancing.
+Advanced multi-agent coordination system with timeout-free execution,
+distributed memory sharing, and intelligent load balancing.
 
 ## Basic Usage
 
@@ -223,4 +224,5 @@ Swarms automatically use distributed memory for collaboration:
 - Resource-aware
 - Adaptive
 
-For detailed documentation, see: https://github.com/ruvnet/claude-code-flow/docs/swarm-system.md
+For detailed documentation, see:
+https://github.com/ruvnet/claude-code-flow/docs/swarm-system.md

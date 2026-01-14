@@ -2,7 +2,8 @@
 
 ## 🎯 Key Principle
 
-**This tool coordinates Claude Code's actions. It does NOT write code or create content.**
+**This tool coordinates Claude Code's actions. It does NOT write code or create
+content.**
 
 ## MCP Tool Usage in Claude Code
 
@@ -35,9 +36,12 @@ Shows:
 **In Claude Code:**
 
 1. Check swarm status: Use tool `mcp__claude-flow__swarm_status`
-2. Monitor in real-time: Use tool `mcp__claude-flow__swarm_monitor` with parameters `{"interval": 1000}`
-3. Get agent metrics: Use tool `mcp__claude-flow__agent_metrics` with parameters `{"agentId": "agent-123"}`
-4. Health check: Use tool `mcp__claude-flow__health_check` with parameters `{"components": ["swarm", "memory", "neural"]}`
+2. Monitor in real-time: Use tool `mcp__claude-flow__swarm_monitor` with
+   parameters `{"interval": 1000}`
+3. Get agent metrics: Use tool `mcp__claude-flow__agent_metrics` with parameters
+   `{"agentId": "agent-123"}`
+4. Health check: Use tool `mcp__claude-flow__health_check` with parameters
+   `{"components": ["swarm", "memory", "neural"]}`
 
 ## Important Reminders
 

@@ -2,7 +2,8 @@
 
 ## Purpose
 
-Automatically select the optimal swarm topology based on task complexity analysis.
+Automatically select the optimal swarm topology based on task complexity
+analysis.
 
 ## How It Works
 

@@ -5,7 +5,8 @@ description: Interact with Claude-Flow memory system
 
 # 🧠 Claude-Flow Memory System
 
-The memory system provides persistent storage for cross-session and cross-agent collaboration with CRDT-based conflict resolution.
+The memory system provides persistent storage for cross-session and cross-agent
+collaboration with CRDT-based conflict resolution.
 
 ## Store Information
 

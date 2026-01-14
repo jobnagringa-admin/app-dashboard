@@ -2,7 +2,8 @@
 
 ## Purpose
 
-Automatically coordinate, format, and learn from Claude Code operations using hooks.
+Automatically coordinate, format, and learn from Claude Code operations using
+hooks.
 
 ## Available Hooks
 

@@ -2,7 +2,8 @@
 
 ## Overview
 
-Orchestrate complex software releases using AI swarms that handle everything from changelog generation to multi-platform deployment.
+Orchestrate complex software releases using AI swarms that handle everything
+from changelog generation to multi-platform deployment.
 
 ## Core Features
 
@@ -82,16 +83,16 @@ version: 1
 release:
   versioning:
     strategy: semantic
-    breaking-keywords: ["BREAKING", "!"]
+    breaking-keywords: ['BREAKING', '!']
 
   changelog:
     sections:
-      - title: "🚀 Features"
-        labels: ["feature", "enhancement"]
-      - title: "🐛 Bug Fixes"
-        labels: ["bug", "fix"]
-      - title: "📚 Documentation"
-        labels: ["docs", "documentation"]
+      - title: '🚀 Features'
+        labels: ['feature', 'enhancement']
+      - title: '🐛 Bug Fixes'
+        labels: ['bug', 'fix']
+      - title: '📚 Documentation'
+        labels: ['docs', 'documentation']
 
   artifacts:
     - name: npm-package
@@ -284,7 +285,7 @@ npx ruv-swarm github hotfix \
 name: Release Workflow
 on:
   push:
-    tags: ["v*"]
+    tags: ['v*']
 
 jobs:
   release-swarm:
@@ -587,4 +588,5 @@ npx ruv-swarm github rollback \
   --notify-users
 ```
 
-See also: [workflow-automation.md](./workflow-automation.md), [multi-repo-swarm.md](./multi-repo-swarm.md)
+See also: [workflow-automation.md](./workflow-automation.md),
+[multi-repo-swarm.md](./multi-repo-swarm.md)

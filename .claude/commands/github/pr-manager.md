@@ -2,7 +2,8 @@
 
 ## Purpose
 
-Comprehensive pull request management with ruv-swarm coordination for automated reviews, testing, and merge workflows.
+Comprehensive pull request management with ruv-swarm coordination for automated
+reviews, testing, and merge workflows.
 
 ## Capabilities
 

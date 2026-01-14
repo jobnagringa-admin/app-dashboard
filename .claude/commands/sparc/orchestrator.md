@@ -2,7 +2,8 @@
 
 ## Purpose
 
-Multi-agent task orchestration with TodoWrite/TodoRead/Task/Memory using MCP tools.
+Multi-agent task orchestration with TodoWrite/TodoRead/Task/Memory using MCP
+tools.
 
 ## Activation
 

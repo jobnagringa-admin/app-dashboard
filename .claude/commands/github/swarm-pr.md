@@ -2,7 +2,8 @@
 
 ## Overview
 
-Create and manage AI swarms directly from GitHub Pull Requests, enabling seamless integration with your development workflow.
+Create and manage AI swarms directly from GitHub Pull Requests, enabling
+seamless integration with your development workflow.
 
 ## Core Features
 
@@ -27,10 +28,8 @@ Execute swarm commands via PR comments:
 ```markdown
 <!-- In PR comment -->
 
-/swarm init mesh 6
-/swarm spawn coder "Implement authentication"
-/swarm spawn tester "Write unit tests"
-/swarm status
+/swarm init mesh 6 /swarm spawn coder "Implement authentication" /swarm spawn
+tester "Write unit tests" /swarm status
 ```
 
 ### 3. Automated PR Workflows
@@ -192,9 +191,9 @@ npx ruv-swarm github pr-fix 123 \
 # Require swarm completion before merge
 required_status_checks:
   contexts:
-    - "swarm/tasks-complete"
-    - "swarm/tests-pass"
-    - "swarm/review-approved"
+    - 'swarm/tasks-complete'
+    - 'swarm/tests-pass'
+    - 'swarm/review-approved'
 ```
 
 ### 3. PR Merge Automation
@@ -221,19 +220,19 @@ fi
 
 ```javascript
 // webhook-handler.js
-const { createServer } = require("http");
-const { execSync } = require("child_process");
+const { createServer } = require('http');
+const { execSync } = require('child_process');
 
 createServer((req, res) => {
-  if (req.url === "/github-webhook") {
+  if (req.url === '/github-webhook') {
     const event = JSON.parse(body);
 
-    if (event.action === "opened" && event.pull_request) {
+    if (event.action === 'opened' && event.pull_request) {
       execSync(`npx ruv-swarm github pr-init ${event.pull_request.number}`);
     }
 
     res.writeHead(200);
-    res.end("OK");
+    res.end('OK');
   }
 }).listen(3000);
 ```
@@ -307,4 +306,5 @@ When using with Claude Code:
 4. Progress updates posted to PR automatically
 5. Final review performed before marking ready
 
-See also: [swarm-issue.md](./swarm-issue.md), [workflow-automation.md](./workflow-automation.md)
+See also: [swarm-issue.md](./swarm-issue.md),
+[workflow-automation.md](./workflow-automation.md)

@@ -2,7 +2,8 @@
 
 ## Overview
 
-Coordinate AI swarms across multiple repositories, enabling organization-wide automation and intelligent cross-project collaboration.
+Coordinate AI swarms across multiple repositories, enabling organization-wide
+automation and intelligent cross-project collaboration.
 
 ## Core Features
 
@@ -236,20 +237,20 @@ npx ruv-swarm github multi-repo-security \
 
 ```javascript
 // webhook-coordinator.js
-const { MultiRepoSwarm } = require("ruv-swarm");
+const { MultiRepoSwarm } = require('ruv-swarm');
 
 const swarm = new MultiRepoSwarm({
   webhook: {
-    url: "https://swarm-coordinator.example.com",
+    url: 'https://swarm-coordinator.example.com',
     secret: process.env.WEBHOOK_SECRET,
   },
 });
 
 // Handle cross-repo events
-swarm.on("repo:update", async (event) => {
+swarm.on('repo:update', async (event) => {
   await swarm.propagate(event, {
     to: event.dependencies,
-    strategy: "eventual-consistency",
+    strategy: 'eventual-consistency',
   });
 });
 ```
@@ -279,7 +280,7 @@ type SwarmStatus {
 ```yaml
 # Kafka configuration for real-time coordination
 kafka:
-  brokers: ["kafka1:9092", "kafka2:9092"]
+  brokers: ['kafka1:9092', 'kafka2:9092']
   topics:
     swarm-events:
       partitions: 10
@@ -551,4 +552,5 @@ npx ruv-swarm github cross-team \
   --track-progress
 ```
 
-See also: [swarm-pr.md](./swarm-pr.md), [project-board-sync.md](./project-board-sync.md)
+See also: [swarm-pr.md](./swarm-pr.md),
+[project-board-sync.md](./project-board-sync.md)
