@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-01-14T11:08:46.895Z",
+  "timestamp": "2026-01-14T12:10:12.147Z",
   "projectRoot": "/home/paulo/sources/jng/legacy",
   "structure": {
-    "hasPackageJson": false,
-    "hasTsConfig": false,
+    "hasPackageJson": true,
+    "hasTsConfig": true,
     "hasClaudeConfig": true,
     "hasClaudeFlow": true
   },
-  "scannedAt": 1768388926895
+  "scannedAt": 1768392612147
 }
