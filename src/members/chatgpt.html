@@ -1,0 +1,453 @@
+<!DOCTYPE html><!--  Last Published: Wed Jan 14 2026 10:55:46 GMT+0000 (Coordinated Universal Time)  -->
+<html data-wf-page="64d13f891a1e197392929c70" data-wf-site="642953c962519376c853ab81" lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>ChatGPT para Carreiras - #JOBNAGRINGA</title>
+  <meta content="ChatGPT para Carreiras - #JOBNAGRINGA" property="og:title">
+  <meta content="ChatGPT para Carreiras - #JOBNAGRINGA" property="twitter:title">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link href="../css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="../css/webflow.css" rel="stylesheet" type="text/css">
+  <link href="../css/jobnagringa.webflow.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">WebFont.load({  google: {    families: ["Inter:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic"]  }});</script>
+  <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
+  <link href="../images/favicon.jpg" rel="shortcut icon" type="image/x-icon">
+  <link href="../images/webclip.jpg" rel="apple-touch-icon">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-DNCKG4JJ77"></script>
+  <script type="text/javascript">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('set', 'developer_id.dZGVlNj', true);gtag('js', new Date());gtag('config', 'G-DNCKG4JJ77');</script><!--  Google Tag Manager  -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                                                      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                            })(window,document,'script','dataLayer','GTM-58XVRQZ');</script>
+  <!--  End Google Tag Manager  -->
+  <style>
+  /* Usada para esconder as mensagens de erro*/
+  .hide{
+    display: none;
+  }
+  /* usada para circular o input validado */ 
+  .error{
+    border: 1px red solid;
+  }
+  /* usada para circular o cupom valido */
+  .success{
+        border: 1px #0acf0a solid;
+  }
+  /* usada na mensagem de erro */
+  .error-message{
+    font-size: 12px;
+    color: red;
+    margin-top: -8px;
+  }
+</style>
+  <!--  CLERK  -->
+  <script async="" crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsuam9ibmFncmluZ2EuY29tLmJyJA" src="https://clerk.jobnagringa.com.br/npm/@clerk/clerk-js@5/dist/clerk.browser.js" type="text/javascript"></script>
+  <script>var COOKIE_NAME="user",LOCAL_KEY="user",COOKIE_TTL=86400;function setCookie(e,n,t,o){var r=[encodeURIComponent(e)+"="+encodeURIComponent(n),"path=/","max-age="+t];o&&o.domain&&r.push("domain="+o.domain),o&&o.secure&&r.push("secure"),o&&o.sameSite&&r.push("samesite="+o.sameSite),document.cookie=r.join("; ")}function persistUserData(e){window.user=e;try{localStorage.setItem(LOCAL_KEY,JSON.stringify(e))}catch(e){}try{var n=null,t=null;e&&e.primaryEmailAddress&&e.primaryEmailAddress.emailAddress?n=e.primaryEmailAddress.emailAddress:e&&e.emailAddresses&&e.emailAddresses.length&&(n=e.emailAddresses[0]&&e.emailAddresses[0].emailAddress||null),e&&e.primaryPhoneNumber&&e.primaryPhoneNumber.phoneNumber?t=e.primaryPhoneNumber.phoneNumber:e&&e.phoneNumbers&&e.phoneNumbers.length&&(t=e.phoneNumbers[0]&&e.phoneNumbers[0].phoneNumber||null);var o={firstName:e&&e.firstName||null,phoneNumber:t,email:n,publicMetadata:e&&e.publicMetadata||{}},r="https:"===window.location.protocol,a=window.location.hostname,i=a.slice(-".jobnagringa.com.br".length)===".jobnagringa.com.br"?".jobnagringa.com.br":void 0;setCookie(COOKIE_NAME,JSON.stringify(o),COOKIE_TTL,{secure:r,sameSite:"Strict",domain:i})}catch(e){}}function getUserFromCookie(){try{for(var e=document.cookie?document.cookie.split(";"):[],n=null,t=0;t<e.length;t++){var o=e[t].replace(/^\s+|\s+$/g,"");if(0===o.indexOf(COOKIE_NAME+"=")){n=o;break}}if(!n)return null;var r="";try{r=decodeURIComponent(n.split("=")[1]||"")}catch(e){r=""}if(!r)return null;var a=null;try{a=window.JSON&&JSON.parse?JSON.parse(r):null}catch(e){a=null}return a}catch(e){return null}}function userShouldBeLoggedIn(){try{var e=getUserFromCookie();if(!e){var n=encodeURIComponent(window.location.href);return void(window.location.href="https://accounts.jobnagringa.com.br/sign-in?redirect_url="+n)}window.console&&console.log&&console.log("Usuário logado com email:",e.email||null)}catch(e){var t=encodeURIComponent(window.location.href);window.location.href="https://accounts.jobnagringa.com.br/sign-in?redirect_url="+t}}function userIsPaidCustomer(){try{var e=getUserFromCookie();return!!(e&&e.publicMetadata&&e.publicMetadata.isPaidCustomer===!0)}catch(e){return!1}}function populateFirstNameFromUser(){try{var e=getUserFromCookie();if(!e)return;var n="";e.firstName&&""!==String(e.firstName).replace(/^\s+|\s+$/g,"")?n=String(e.firstName).replace(/^\s+|\s+$/g,""):e.fullName&&""!==String(e.fullName).replace(/^\s+|\s+$/g,"")?n=String(e.fullName).replace(/^\s+|\s+$/g,"").split(/\s+/)[0]:e.username&&""!==String(e.username).replace(/^\s+|\s+$/g,"")&&(n=String(e.username).replace(/^\s+|\s+$/g,""));if(!n)return;for(var t=document.querySelectorAll?document.querySelectorAll('[data-ms-member="first-name"]'):[],o=0;o<t.length;o++)"value"in t[o]?t[o].value=n:t[o].textContent=n}catch(e){}}function handleCommunityContent(){try{for(var e=userIsPaidCustomer()?'[data-ms-content="!community"]':'[data-ms-content="community"]',n=document.querySelectorAll?document.querySelectorAll(e):[],t=0;t<n.length;t++){var o=n[t];o&&o.parentNode&&o.parentNode.removeChild(o)}}catch(e){}}!function(){function e(){if(!window.Clerk||!Clerk.load)return;var e=null;try{e=Clerk.load()}catch(e){}e&&e.then?e.then(function(){try{var e=Clerk.user;e&&persistUserData(e)}catch(e){}}).catch(function(){}):setTimeout(function(){try{var e=Clerk.user;e&&persistUserData(e)}catch(e){}},1e3)}window.addEventListener?window.addEventListener("load",e):window.attachEvent?window.attachEvent("onload",e):function(e){var n=window.onload;window.onload=function(t){n&&n.call(e,t),e()}}(e)}();function runDomFuncs(){populateFirstNameFromUser(),handleCommunityContent()}document.addEventListener?(document.addEventListener("DOMContentLoaded",runDomFuncs),window.addEventListener&&window.addEventListener("load",runDomFuncs)):document.attachEvent?(document.attachEvent("onreadystatechange",function(){"complete"===document.readyState&&runDomFuncs()}),window.attachEvent&&window.attachEvent("onload",runDomFuncs)):function(e){var n=window.onload;window.onload=function(t){n&&n.call(e,t),runDomFuncs()}}(window);</script>
+  <!--  end CLERK  -->
+  <!--  end 
+<script>var p=["/jng"],h="/";!function(){var e=window.p||[],t=window.h||"/",n=window.location.pathname,r=!1,i=0;for(;i<e.length;i++)if(0===n.indexOf(e[i])){r=!0;break}if(!r)return;var o=document.createElement("style");o.type="text/css";try{o.appendChild(document.createTextNode("html{visibility:hidden!important}"))}catch(e){o.styleSheet&&(o.styleSheet.cssText="html{visibility:hidden!important}")}(document.getElementsByTagName("head")[0]||document.documentElement).appendChild(o);function a(){try{window.location.replace?window.location.replace(t):window.location.href=t}catch(e){window.location.href=t}}for(var c="user",l=document.cookie?document.cookie.split(";"):[],s=null,u=0;u<l.length;u++){var f=l[u].replace(/^\s+|\s+$/g,"");if(0===f.indexOf(c+"=")){s=f;break}}if(!s)return void a();var m="";try{m=decodeURIComponent(s.split("=")[1]||"")}catch(e){m=""}if(!m)return void a();var w=null;try{w=window.JSON&&JSON.parse?JSON.parse(m):null}catch(e){w=null}if(!w||!w.publicMetadata||w.publicMetadata.isPaidCustomer!==!0)return void a();try{document.documentElement.style.visibility="visible",o.parentNode&&o.parentNode.removeChild(o)}catch(e){}}();</script>
+ -->
+  <!--  Versão minificada  -->
+  <script>!function(){function e(){try{for(var e="user",t=document.cookie?document.cookie.split(";"):[],n=null,o=0;o<t.length;o++){var r=t[o].replace(/^\s+|\s+$/g,"");if(0===r.indexOf(e+"=")){n=r;break}}if(!n)return null;var a="";try{a=decodeURIComponent((n.split("=")[1]||""))}catch(e){a=""}if(!a)return null;var c=null;try{c=window.JSON&&JSON.parse?JSON.parse(a):null}catch(e){c=null}return c}catch(e){return null}}function t(){var t=e();return!!(t&&t.publicMetadata&&t.publicMetadata.isPaidCustomer===!0)}function n(e,t){try{for(var n,o=document.getElementsByTagName("*"),r=o.length-1;r>=0;r--)n=o[r],n&&n.getAttribute&&n.getAttribute(e)===t&&n.parentNode&&n.parentNode.removeChild(n)}catch(e){}}function o(){t()?n("data-ms-content","!community"):n("data-ms-content","community")}o(),document.addEventListener?(document.addEventListener("DOMContentLoaded",o),window.addEventListener&&window.addEventListener("load",o)):document.attachEvent?(document.attachEvent("onreadystatechange",function(){"complete"===document.readyState&&o()}),window.attachEvent&&window.attachEvent("onload",o)):(function(e){var t=window.onload;window.onload=function(n){t&&t.call(e,n),o()}})(window)}();</script>
+  <!--  Versão minificada  -->
+  <!--  Memberstack webflow package  -->
+  <!--  <script data-memberstack-domain="https://memberstack-client.jobnagringa.com.br" data-memberstack-app="app_cljhii5il05o50tkz45eb10cm" src="https://static.memberstack.com/scripts/v1/memberstack.js" type="text/javascript"></script>  -->
+  <meta name="robots" content="noindex">
+</head>
+<body>
+  <div class="nav_wrapper">
+    <div data-ms-content="community" class="community_nav">
+      <nav class="navbar--blue--primary">
+        <div class="navbar_wrapper">
+          <div class="navbar_container">
+            <div class="container-medium">
+              <div class="nav_container">
+                <div class="nav_left-col">
+                  <div class="hide-tablet"><img src="../images/Vectors-Wrapper_1.svg" loading="lazy" width="8" height="8" alt="" class="icon-star"></div>
+                  <div class="hide-tablet">
+                    <div class="text--tiny text-style-allcaps">WORKSHOPS</div>
+                  </div>
+                </div>
+                <div class="nav_right-col">
+                  <a href="../jng/member-dashboard.html" class="navbar_link">Dashboard</a>
+                  <a href="../jng/jobs.html" class="navbar_link">Vagas</a>
+                  <a href="#" class="navbar_link is-white w-button">Sair</a>
+                </div>
+                <div class="nav_menu-button">
+                  <div class="icon-1x1-medium w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 24 24">
+                      <path fill="currentColor" d="M4 11h12v2H4zm0-5h16v2H4zm0 12h7.235v-2H4z"></path>
+                    </svg></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="embed-hidden w-embed">
+          <style>
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  -webkit-text-fill-color: #0071ff;
+}
+</style>
+        </div>
+        <div class="logout-code w-embed w-script">
+          <script>
+async function clearCacheStorage() {
+  if (!('caches' in window)) return;
+  const keys = await caches.keys();
+  for (const key of keys) await caches.delete(key);
+}
+async function unregisterServiceWorkers() {
+  if (!('serviceWorker' in navigator)) return;
+  const regs = await navigator.serviceWorker.getRegistrations();
+  for (const reg of regs) await reg.unregister();
+}
+async function clearLocalAndSession() {
+  try {
+    localStorage.clear();
+    sessionStorage.clear();
+  } catch (e) { /* ignore */ }
+}
+function clearCookies() {
+  const cookies = document.cookie.split("; ");
+  for (const cookie of cookies) {
+    const eqPos = cookie.indexOf("=");
+    const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;domain=" + window.location.hostname + ";path=/";
+  }
+}
+async function clearIndexedDB() {
+  if (!('indexedDB' in window)) return;
+  if (indexedDB.databases) {
+    const dbs = await indexedDB.databases();
+    for (const db of dbs) {
+      if (db.name) indexedDB.deleteDatabase(db.name);
+    }
+  }
+}
+async function clearSiteDataAndRedirect() {
+  try {
+    await Promise.all([
+      clearCacheStorage(),
+      unregisterServiceWorkers(),
+      clearLocalAndSession(),
+      clearIndexedDB()
+    ]);
+    clearCookies();
+  } catch (e) {
+    console.warn('Error clearing site data:', e);
+  } finally {
+    window.location.href = "/";
+  }
+}
+// Attach handler to #logout button
+document.addEventListener("DOMContentLoaded", () => {
+  const logoutBtn = document.getElementById("logout");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", async (e) => {
+      e.preventDefault(); // stop normal navigation if it exists
+      await clearSiteDataAndRedirect();
+    });
+  }
+});
+</script>
+        </div>
+        <div data-w-id="7ed6ea69-8ce5-677c-3dcb-160f5da98a7d" class="nav_close-overlay"></div>
+      </nav>
+    </div>
+    <div data-ms-content="!community" class="public_nav">
+      <div class="navbar--blue--primary">
+        <div class="navbar_wrapper">
+          <div class="navbar_container">
+            <a href="../index.html" class="navbar_logo w-inline-block"><img src="../images/Vectors-Wrapper.svg" loading="lazy" width="138.25469970703125" height="19.743812561035156" alt="" class="logo_image hide-tablet"><img src="../images/logo-small_white.svg" loading="lazy" alt="" height="0" class="logo_image hide-desktop"></a>
+            <div class="navbar_link-wrap">
+              <a href="http://accounts.jobnagringa.com.br/sign-in?redirect_url=https://jobnagringa.com.br" class="navbar_link w-inline-block">
+                <div>Vagas</div>
+              </a>
+              <a href="../blog.html" class="navbar_link w-inline-block">
+                <div>Blog</div>
+              </a>
+              <a href="http://accounts.jobnagringa.com.br/sign-in?redirect_url=https://jobnagringa.com.br/redirect/zap-channel" target="_blank" class="navbar_link w-inline-block">
+                <div>Grupo Whats</div>
+              </a>
+              <a href="http://accounts.jobnagringa.com.br/sign-in?redirect_url=https://link.jobnagringa.com.br/discord" target="_blank" class="navbar_link w-inline-block">
+                <div>Discord</div>
+              </a>
+            </div>
+            <div class="navbar_button-wrap">
+              <a href="../assine.html" class="navbar_link w-inline-block">
+                <div>Assine</div>
+              </a>
+              <a href="https://accounts.jobnagringa.com.br/sign-in?redirect_url=https://jobnagringa.com.br/jng/member-dashboard" class="navbar_link is-white w-inline-block">
+                <div>Login</div>
+              </a>
+              <div class="navbar_mobile-menu">
+                <div class="icon-1x1-medium w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewbox="0 0 20 20">
+                    <path fill="currentColor" d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75m0 5A.75.75 0 0 1 2.75 9h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 9.75M2.75 14a.75.75 0 0 0 0 1.5h14.5a.75.75 0 0 0 0-1.5z"></path>
+                  </svg></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-embed">
+          <style>
+.item__arrow{
+	display: none;
+}
+.w--current .item__arrow{
+	display: flex;
+}
+</style>
+        </div>
+        <div class="hide-desktop">
+          <div class="spacer-xlarge"></div>
+        </div>
+      </div>
+    </div>
+    <div class="general_style w-embed">
+      <style>
+/* width */
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+/* Track */
+::-webkit-scrollbar-track {
+	border-radius: 100rem;
+  background: #fff;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+	border-radius: 100rem;
+  background: var(--neutrals--neutral-300); 
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--blues--blue-20); 
+}
+.link-return:hover .button {
+	background: var(--blues--blue-50);
+  color: #fff;
+}
+	/* Updates default Webflow Select */
+select, .input_field.is-select {
+	/* resetting default form style */
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+	/* set new select style */
+  background-image: @img_669fb1af0e428f77b786d70e; 
+  background-position: 100% 50%; 
+  background-size: 1rem 1rem; 
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+}
+/*Style name acronym*/
+[acronym] {
+ 	font-family: monospace;
+  width: 2ch;
+  overflow: hidden;
+  white-space: nowrap;
+}
+</style>
+    </div>
+  </div>
+  <div class="method-section">
+    <div class="container-medium">
+      <div class="content_row">
+        <div id="course-chatgpt" course="chatgpt" class="content_rows">
+          <div class="course-content_wrapper display-hidden">
+            <h2 class="heading-style-h2">Treinamentos e Consultorias</h2>
+            <div class="text-size-medium">Agende sua call com a consultora de carreira ou marque seu treinamento com a Cambly</div>
+            <div class="course-content_rows">
+              <div class="card-content"><img src="../images/teacher.png" loading="lazy" alt="" sizes="100vw" srcset="../images/teacher-p-500.png 500w, ../images/teacher-p-800.png 800w, ../images/teacher.png 814w" class="card_thumbnail">
+                <h3 class="heading-style-h3">Treinamento Cambly</h3>
+                <div>Em parceria com a Cambly você terá acesso a professores Nativos que poderão treinar seu inglês para você chegar afiadíssimo na próxima entrevista.</div>
+                <div class="margin-top margin-small">
+                  <a href="#" class="button w-button">Agende uma Aula</a>
+                </div>
+              </div>
+              <div class="card-content"><img src="../images/hr-consultancy.png" loading="lazy" alt="" sizes="100vw" srcset="../images/hr-consultancy-p-500.png 500w, ../images/hr-consultancy.png 1034w" class="card_thumbnail">
+                <h3 class="heading-style-h3">Consultoria de Carreira</h3>
+                <div>Além de psicólogas, nossas consultoras de carreira tem experiência em recrutamente internacional e vão ajudar você a plenejar o seu próximo passo.</div>
+                <div class="margin-top margin-small">
+                  <a href="#" class="button w-button">Agende um Encontro</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-content is-vertical-small"><img src="../images/Rectangle-40.png" loading="lazy" alt="" class="card_thumbnail is-small">
+            <div class="course-content_body">
+              <h3 class="heading-style-3">ChatGPT para Carreiras</h3>
+              <div class="margin-bottom margin-small">
+                <div>O ChatGPT tem tudo pra ser a ferramenta mais relevante dessa década. Por isso, criamos curso ChatGPT para ajudar você a se preparar para um mercado cada vez mais dominado pela IA.</div>
+              </div>
+              <div class="lesson-card_list-wrapper is-overflow-visible w-dyn-list">
+                <div role="list" class="card-row_list is-bordeles-gap w-dyn-items">
+                  <div role="listitem" class="card-row_wrapper w-dyn-item">
+                    <a href="#" class="lesson-card_row is-bordered w-inline-block">
+                      <div class="lesson-card_content">
+                        <div class="icon-1x1-level is-hidden w-embed"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32">
+                            <path fill="currentColor" d="M30 30h-8V4h8zm-6-2h4V6h-4zm-4 2h-8V12h8zm-10 0H2V18h8z"></path>
+                          </svg></div>
+                        <div class="user-card--sm__title is-horizonta">
+                          <div class="card-row_title w-embed">Aula . </div>
+                        </div>
+                      </div>
+                      <div class="html-embed-7 w-embed">Acesse</div>
+                    </a>
+                  </div>
+                </div>
+                <div class="w-dyn-empty">
+                  <div>No items found.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="navbar-secondary_component">
+    <div class="container-medium">
+      <div class="nav_left-col"><img src="../images/Vectors-Wrapper.svg" loading="lazy" width="138.25469970703125" height="19.743812561035156" alt="" class="logo_image"></div>
+    </div>
+  </footer>
+  <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=642953c962519376c853ab81" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="../js/webflow.js" type="text/javascript"></script><!--  Google Tag Manager (noscript)  -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-58XVRQZ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!--  End Google Tag Manager (noscript)  -->
+  <script>
+//Prod
+const API_URL = "https://jobnagringa.pay.nova.money//api/v1"
+//Staging
+//const API_URL = "https://jobnagringa.staging.pay.nova.money/api/v1"
+</script>
+  <script>
+// Add this JavaScript code to your project
+// Function to handle button click and replace text with "Loading"
+function handleLoadingButton(button) {
+    const originalText = button.innerText;
+    button.innerText = "Carregando...";
+    button.disabled = true; // Optionally, disable the button to prevent multiple clicks
+    setTimeout(() => {
+        // Simulate loading process (remove this setTimeout in a real use case)
+        // After the loading is complete, restore the original text and enable the button
+        button.innerText = originalText;
+        button.disabled = false;
+    }, 2000); // Adjust the delay (in milliseconds) as needed for your loading process
+}
+// Add click event listeners to buttons with loading-feedback attribute
+document.addEventListener("DOMContentLoaded", function () {
+    const loadingButtons = document.querySelectorAll('[loading-feedback="true"]');
+    loadingButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            handleLoadingButton(button);
+        });
+    });
+});
+</script>
+  <!--  ChatWOOT  -->
+  <!-- <script>
+  window.chatwootSettings = {"position":"right","type":"expanded_bubble","launcherTitle":"Dúvidas?"};
+  (function(d,t) {
+    var BASE_URL="https://chatwoot.jobnagringa.com.br";
+    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=BASE_URL+"/packs/js/sdk.js";
+    g.defer = true;
+    g.async = true;
+    s.parentNode.insertBefore(g,s);
+    g.onload=function(){
+      window.chatwootSDK.run({
+        websiteToken: 'm5Ei2dy2xgXmAC4P4VCqoxVv',
+        baseUrl: BASE_URL
+      })
+    }
+  })(document,"script");
+</script>
+ -->
+  <!--  END ChatWOOT  -->
+  <!--  MAUTIC  -->
+  <script data-cfasync="false">
+  (function(w, d, t, u, n, a, m) {
+    w["MauticTrackingObject"] = n;
+    w[n] = w[n] || function() {
+      (w[n].q = w[n].q || []).push(arguments);
+    };
+    a = d.createElement(t);
+    m = d.getElementsByTagName(t)[0];
+    a.async = 1;
+    a.src = u;
+    m.parentNode.insertBefore(a, m);
+  })(window, document, "script", "https://mautic.jobnagringa.com.br/mtc.js", "mt");
+  document.addEventListener("DOMContentLoaded", function() {
+    function sendMauticEmail() {
+      try {
+        var memberMetadata = localStorage.getItem("_ms-mem");
+        if (memberMetadata) {
+          var member = JSON.parse(memberMetadata);
+          if (member && member.id) {
+            var email = member.auth?.email || "";
+            var firstname = member.customFields?.["first-name"] || "";
+            mt("send", "pageview", {
+              email,
+              firstname,
+            });
+            return;
+          }
+        }
+      } catch (error) {
+        console.error("Error reading member metadata:", error);
+      }
+      mt("send", "pageview");
+    }
+    sendMauticEmail();
+    function handleFormSubmit(event) {
+      try {
+        var form = event.target;
+        var emailField = form.querySelector('input[type="email"]');
+        if (emailField && emailField.value) {
+          var email = emailField.value;
+          if (typeof mt === "function") {
+            mt("send", "formsubmit", {
+              email,
+            });
+          }
+        }
+      } catch (error) {
+        console.error("Error handling form submission:", error);
+      }
+    }
+    document.body.addEventListener("submit", function(event) {
+      if (event.target.tagName.toLowerCase() === "form") {
+        handleFormSubmit(event);
+      }
+    });
+  });
+</script>
+  <!--  END MAUTIC  -->
+  <!--  Declare as variáveis de configuração (não minificado)  -->
+  <script>
+var PROTECTED_PATHS = ["/jng"];
+var HOME_REDIRECT_PATH = "/";
+</script>
+  <!-- 
+<script>!function(){var e=window.PROTECTED_PATHS||[],t=window.HOME_REDIRECT_PATH||"/",n=window.location.pathname,r=!1,i=0;for(;i<e.length;i++)if(0===n.indexOf(e[i])){r=!0;break}if(!r)return;var o=document.createElement("style");o.type="text/css";try{o.appendChild(document.createTextNode("html{visibility:hidden!important}"))}catch(e){o.styleSheet&&(o.styleSheet.cssText="html{visibility:hidden!important}")}var d=document.getElementsByTagName("head")[0]||document.documentElement;d.appendChild(o);function a(){try{window.location.replace?window.location.replace(t):window.location.href=t}catch(e){window.location.href=t}}for(var c="user",l=document.cookie?document.cookie.split(";"):[],s=null,u=0;u<l.length;u++){var p=l[u].replace(/^\s+|\s+$/g,"");if(0===p.indexOf(c+"=")){s=p;break}}if(!s)return void a();var f="";try{f=decodeURIComponent(s.split("=")[1]||"")}catch(e){f=""}if(!f)return void a();var m=null;try{m=window.JSON&&JSON.parse?JSON.parse(f):null}catch(e){m=null}if(!m||!m.publicMetadata||m.publicMetadata.isPaidCustomer!==!0)return void a();try{document.documentElement.style.visibility="visible",o.parentNode&&o.parentNode.removeChild(o)}catch(e){}}();</script>
+   -->
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="0IynPqzGcpJ1FaTQBiSG9g" async=""></script>
+  <script>userShouldBeLoggedIn()</script>
+</body>
+</html>
