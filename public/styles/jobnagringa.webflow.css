@@ -1407,8 +1407,7 @@ figure {
 .content_section {
   grid-column-gap: 0.5rem;
   grid-row-gap: 0.5rem;
-  border-radius: 0rem 0rem var(--border-radius--radius-regular)
-    var(--border-radius--radius-regular);
+  border-radius: 0rem 0rem var(--border-radius--radius-regular) var(--border-radius--radius-regular);
   background-color: var(--neutrals--neutral-100-white);
   flex-direction: column;
   justify-content: flex-start;
@@ -1434,8 +1433,7 @@ figure {
 .lp-author_wrapper {
   grid-column-gap: 1rem;
   grid-row-gap: 1rem;
-  border: 1px solid
-    var(--flowui-component-library-gray-200\<deleted\|variable-7bab5fb1\>);
+  border: 1px solid var(--flowui-component-library-gray-200\<deleted\|variable-7bab5fb1\>);
   color: #006bff;
   background-color: #fff;
   border-radius: 1rem;
@@ -1456,9 +1454,7 @@ figure {
 }
 
 .lp-author_wrapper.is--blue:hover {
-  border-color: var(
-    --flowui-component-library-primary-lighter\<deleted\|variable-6bae9366\>
-  );
+  border-color: var(--flowui-component-library-primary-lighter\<deleted\|variable-6bae9366\>);
 }
 
 .author_thumb {
@@ -2094,9 +2090,7 @@ figure {
 }
 
 .checkout_promo-box::placeholder {
-  color: var(
-    --placeholder-text\<deleted\|variable-16e93282-6f32-7fe9-2c75-e36c94a17c27\>
-  );
+  color: var(--placeholder-text\<deleted\|variable-16e93282-6f32-7fe9-2c75-e36c94a17c27\>);
   letter-spacing: 0;
   text-transform: none;
   line-height: 1;
@@ -2236,9 +2230,7 @@ figure {
 }
 
 .input_field::placeholder {
-  color: var(
-    --placeholder-text\<deleted\|variable-16e93282-6f32-7fe9-2c75-e36c94a17c27\>
-  );
+  color: var(--placeholder-text\<deleted\|variable-16e93282-6f32-7fe9-2c75-e36c94a17c27\>);
 }
 
 .input_field.is-block {
@@ -2481,9 +2473,7 @@ figure {
 }
 
 .text-size-tiny.coupon-remove {
-  color: var(
-    --flowui-component-library-error-base\<deleted\|variable-a4285cc4\>
-  );
+  color: var(--flowui-component-library-error-base\<deleted\|variable-a4285cc4\>);
   cursor: pointer;
   text-decoration: underline;
 }
@@ -3471,12 +3461,7 @@ figure {
 
 .button.is-large-special {
   border: 1.5px solid var(--blues--blue-50);
-  background-image: linear-gradient(
-    30deg,
-    #318cff00,
-    var(--blues--blue-50) 50%,
-    #318cff00
-  );
+  background-image: linear-gradient(30deg, #318cff00, var(--blues--blue-50) 50%, #318cff00);
   padding: 1.5rem 2rem;
   font-size: 1.25rem;
   transition: all 0.15s;
@@ -3545,9 +3530,7 @@ figure {
   grid-column-gap: 1rem;
   grid-row-gap: 1rem;
   border: 3px solid var(--ghost-white\<deleted\|variable-f36ac2b3\>);
-  background-color: var(
-    --flowui-component-library-gray-700\<deleted\|variable-87e3868e\>
-  );
+  background-color: var(--flowui-component-library-gray-700\<deleted\|variable-87e3868e\>);
   color: var(--white\<deleted\|variable-b9c0d2ee\>);
   text-align: center;
   border-radius: 1rem;
@@ -3714,9 +3697,7 @@ figure {
   grid-column-gap: 0.25rem;
   grid-row-gap: 0.25rem;
   border: 1px solid var(--borders--border-regular);
-  background-color: var(
-    --flowui-component-library-gray-100\<deleted\|variable-b37e6d8f\>
-  );
+  background-color: var(--flowui-component-library-gray-100\<deleted\|variable-b37e6d8f\>);
   border-radius: 1rem;
   flex-direction: column;
   width: 100%;
@@ -4559,12 +4540,8 @@ figure {
 }
 
 .component_tooltip.is-error-block {
-  border-color: var(
-    --flowui-component-library-error-base\<deleted\|variable-a4285cc4\>
-  );
-  color: var(
-    --flowui-component-library-error-base\<deleted\|variable-a4285cc4\>
-  );
+  border-color: var(--flowui-component-library-error-base\<deleted\|variable-a4285cc4\>);
+  color: var(--flowui-component-library-error-base\<deleted\|variable-a4285cc4\>);
   background-color: #e72b3b1a;
   display: block;
 }
@@ -5833,8 +5810,7 @@ figure {
 
 .sidebar-cta-primary.is-vets.is-blurred {
   background-image:
-    linear-gradient(45deg, var(--blues--blue-90), #00245100 44%),
-    url("../images/vets.png");
+    linear-gradient(45deg, var(--blues--blue-90), #00245100 44%), url("../images/vets.png");
   background-position:
     0 0,
     0 0;
@@ -5843,8 +5819,7 @@ figure {
 
 .sidebar-cta-primary.is-black-friday {
   background-image:
-    url("../images/star_bg.png"),
-    radial-gradient(circle at 100% 0, #0060e7 21%, #2c007500 86%);
+    url("../images/star_bg.png"), radial-gradient(circle at 100% 0, #0060e7 21%, #2c007500 86%);
   background-position:
     0 0,
     0 0;
@@ -5855,9 +5830,7 @@ figure {
 }
 
 .sidebar-cta-primary.is-erika {
-  background-image:
-    linear-gradient(45deg, #001836 13%, #00245100 64%),
-    url("../images/erika.jpg");
+  background-image: linear-gradient(45deg, #001836 13%, #00245100 64%), url("../images/erika.jpg");
   background-position:
     0 0,
     10% 100%;
@@ -5888,8 +5861,7 @@ figure {
 
 .sidebar-cta-primary.is-gabe {
   background-image:
-    linear-gradient(45deg, var(--blues--blue-90) 15%, #00245100 55%),
-    url("../images/gabe.png");
+    linear-gradient(45deg, var(--blues--blue-90) 15%, #00245100 55%), url("../images/gabe.png");
   background-position:
     0 0,
     50%;
@@ -5917,8 +5889,7 @@ figure {
 
 .sidebar-cta-primary.is-gabe.is-blurred {
   background-image:
-    linear-gradient(45deg, var(--blues--blue-90), #00245100 44%),
-    url("../images/vets.png");
+    linear-gradient(45deg, var(--blues--blue-90), #00245100 44%), url("../images/vets.png");
   background-position:
     0 0,
     0 0;
@@ -6766,12 +6737,7 @@ figure {
 .upper_wrap {
   background-color: var(--blues--blue-70);
   color: #fff;
-  background-image: linear-gradient(
-    90deg,
-    #0171fe 5%,
-    #015ed3 50%,
-    #0171fe 95%
-  );
+  background-image: linear-gradient(90deg, #0171fe 5%, #015ed3 50%, #0171fe 95%);
   padding-bottom: 8rem;
   position: relative;
   overflow: hidden;
@@ -6976,8 +6942,7 @@ figure {
   color: var(--borders--border-regular);
   object-position: 100% 100%;
   background-image:
-    linear-gradient(0deg, #000000a1 20%, #0000 47%),
-    url("../images/paulo-gabe.webp");
+    linear-gradient(0deg, #000000a1 20%, #0000 47%), url("../images/paulo-gabe.webp");
   background-position:
     0 0,
     100% 100%;
@@ -8093,11 +8058,7 @@ figure {
 .pricing_container-wrapper {
   border: 4px solid var(--blues--blue-50);
   border-radius: var(--border-radius--radius-medium);
-  background-image: linear-gradient(
-    180deg,
-    var(--blues--blue-60),
-    var(--blues--blue-90)
-  );
+  background-image: linear-gradient(180deg, var(--blues--blue-60), var(--blues--blue-90));
   color: var(--neutrals--neutral-100-white);
   padding: 2rem;
 }
@@ -8269,11 +8230,7 @@ figure {
 .landing-page-icon {
   border: 2px solid var(--blues--blue-50);
   background-color: var(--backgrounds--light-secondary);
-  background-image: linear-gradient(
-    180deg,
-    var(--blues--blue-60),
-    var(--blues--blue-80)
-  );
+  background-image: linear-gradient(180deg, var(--blues--blue-60), var(--blues--blue-80));
   color: var(--blues--blue-10);
   border-radius: 10px;
   justify-content: center;
@@ -8874,9 +8831,7 @@ figure {
   inset: -16px 0 auto 0%;
 }
 
-.tbd_card-badge-container:where(
-  .w-variant-3b3c151a-e01b-58d4-bf63-27b4fde603b1
-) {
+.tbd_card-badge-container:where(.w-variant-3b3c151a-e01b-58d4-bf63-27b4fde603b1) {
   justify-content: center;
   align-items: center;
   height: auto;
@@ -9332,8 +9287,7 @@ figure {
   }
 
   .course_content-description.is-contained {
-    border-bottom: 1px solid
-      var(--light-steel-blue\<deleted\|variable-716a0c2d\>);
+    border-bottom: 1px solid var(--light-steel-blue\<deleted\|variable-716a0c2d\>);
   }
 
   .sidebar__wrapper {
@@ -11045,8 +10999,7 @@ figure {
   }
 
   .sidebar-cta-primary.is-black-friday {
-    border-radius: var(--border-radius--radius-huge)
-      var(--border-radius--radius-huge) 0rem 0rem;
+    border-radius: var(--border-radius--radius-huge) var(--border-radius--radius-huge) 0rem 0rem;
     border-width: 0;
   }
 
@@ -11534,8 +11487,7 @@ figure {
     color: var(--blues--blue-05);
     text-align: center;
     background-image:
-      linear-gradient(0deg, #000000d9, #00245100),
-      url("../images/gabe-paulo-2.webp");
+      linear-gradient(0deg, #000000d9, #00245100), url("../images/gabe-paulo-2.webp");
     background-position:
       0 0,
       50% 100%;

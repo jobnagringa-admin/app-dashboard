@@ -3,20 +3,16 @@
  * Migrated from legacy Webflow site
  */
 
-var COOKIE_NAME = "user";
-var LOCAL_KEY = "user";
+var COOKIE_NAME = 'user';
+var LOCAL_KEY = 'user';
 var COOKIE_TTL = 86400;
 
 function setCookie(e, n, t, o) {
-  var r = [
-    encodeURIComponent(e) + "=" + encodeURIComponent(n),
-    "path=/",
-    "max-age=" + t,
-  ];
-  o && o.domain && r.push("domain=" + o.domain);
-  o && o.secure && r.push("secure");
-  o && o.sameSite && r.push("samesite=" + o.sameSite);
-  document.cookie = r.join("; ");
+  var r = [encodeURIComponent(e) + '=' + encodeURIComponent(n), 'path=/', 'max-age=' + t];
+  o && o.domain && r.push('domain=' + o.domain);
+  o && o.secure && r.push('secure');
+  o && o.sameSite && r.push('samesite=' + o.sameSite);
+  document.cookie = r.join('; ');
 }
 
 function persistUserData(e) {
@@ -45,15 +41,15 @@ function persistUserData(e) {
         email: n,
         publicMetadata: (e && e.publicMetadata) || {},
       },
-      r = "https:" === window.location.protocol,
+      r = 'https:' === window.location.protocol,
       a = window.location.hostname,
       i =
-        a.slice(-".jobnagringa.com.br".length) === ".jobnagringa.com.br"
-          ? ".jobnagringa.com.br"
+        a.slice(-'.jobnagringa.com.br'.length) === '.jobnagringa.com.br'
+          ? '.jobnagringa.com.br'
           : void 0;
     setCookie(COOKIE_NAME, JSON.stringify(o), COOKIE_TTL, {
       secure: r,
-      sameSite: "Strict",
+      sameSite: 'Strict',
       domain: i,
     });
   } catch (e) {}
@@ -62,24 +58,22 @@ function persistUserData(e) {
 function getUserFromCookie() {
   try {
     for (
-      var e = document.cookie ? document.cookie.split(";") : [],
-        n = null,
-        t = 0;
+      var e = document.cookie ? document.cookie.split(';') : [], n = null, t = 0;
       t < e.length;
       t++
     ) {
-      var o = e[t].replace(/^\s+|\s+$/g, "");
-      if (0 === o.indexOf(COOKIE_NAME + "=")) {
+      var o = e[t].replace(/^\s+|\s+$/g, '');
+      if (0 === o.indexOf(COOKIE_NAME + '=')) {
         n = o;
         break;
       }
     }
     if (!n) return null;
-    var r = "";
+    var r = '';
     try {
-      r = decodeURIComponent(n.split("=")[1] || "");
+      r = decodeURIComponent(n.split('=')[1] || '');
     } catch (e) {
-      r = "";
+      r = '';
     }
     if (!r) return null;
     var a = null;
@@ -100,15 +94,12 @@ function userShouldBeLoggedIn() {
     if (!e) {
       var n = encodeURIComponent(window.location.href);
       return void (window.location.href =
-        "https://accounts.jobnagringa.com.br/sign-in?redirect_url=" + n);
+        'https://accounts.jobnagringa.com.br/sign-in?redirect_url=' + n);
     }
-    window.console &&
-      console.log &&
-      console.log("User logged in with email:", e.email || null);
+    window.console && console.log && console.log('User logged in with email:', e.email || null);
   } catch (e) {
     var t = encodeURIComponent(window.location.href);
-    window.location.href =
-      "https://accounts.jobnagringa.com.br/sign-in?redirect_url=" + t;
+    window.location.href = 'https://accounts.jobnagringa.com.br/sign-in?redirect_url=' + t;
   }
 }
 
@@ -125,16 +116,16 @@ function populateFirstNameFromUser() {
   try {
     var e = getUserFromCookie();
     if (!e) return;
-    var n = "";
-    e.firstName && "" !== String(e.firstName).replace(/^\s+|\s+$/g, "")
-      ? (n = String(e.firstName).replace(/^\s+|\s+$/g, ""))
-      : e.fullName && "" !== String(e.fullName).replace(/^\s+|\s+$/g, "")
+    var n = '';
+    e.firstName && '' !== String(e.firstName).replace(/^\s+|\s+$/g, '')
+      ? (n = String(e.firstName).replace(/^\s+|\s+$/g, ''))
+      : e.fullName && '' !== String(e.fullName).replace(/^\s+|\s+$/g, '')
         ? (n = String(e.fullName)
-            .replace(/^\s+|\s+$/g, "")
+            .replace(/^\s+|\s+$/g, '')
             .split(/\s+/)[0])
         : e.username &&
-          "" !== String(e.username).replace(/^\s+|\s+$/g, "") &&
-          (n = String(e.username).replace(/^\s+|\s+$/g, ""));
+          '' !== String(e.username).replace(/^\s+|\s+$/g, '') &&
+          (n = String(e.username).replace(/^\s+|\s+$/g, ''));
     if (!n) return;
     for (
       var t = document.querySelectorAll
@@ -144,7 +135,7 @@ function populateFirstNameFromUser() {
       o < t.length;
       o++
     )
-      "value" in t[o] ? (t[o].value = n) : (t[o].textContent = n);
+      'value' in t[o] ? (t[o].value = n) : (t[o].textContent = n);
   } catch (e) {}
 }
 
@@ -190,9 +181,9 @@ function handleCommunityContent() {
         }, 1e3);
   }
   window.addEventListener
-    ? window.addEventListener("load", e)
+    ? window.addEventListener('load', e)
     : window.attachEvent
-      ? window.attachEvent("onload", e)
+      ? window.attachEvent('onload', e)
       : (function (e) {
           var n = window.onload;
           window.onload = function (t) {
@@ -207,13 +198,13 @@ function runDomFuncs() {
 }
 
 document.addEventListener
-  ? (document.addEventListener("DOMContentLoaded", runDomFuncs),
-    window.addEventListener && window.addEventListener("load", runDomFuncs))
+  ? (document.addEventListener('DOMContentLoaded', runDomFuncs),
+    window.addEventListener && window.addEventListener('load', runDomFuncs))
   : document.attachEvent
-    ? (document.attachEvent("onreadystatechange", function () {
-        "complete" === document.readyState && runDomFuncs();
+    ? (document.attachEvent('onreadystatechange', function () {
+        'complete' === document.readyState && runDomFuncs();
       }),
-      window.attachEvent && window.attachEvent("onload", runDomFuncs))
+      window.attachEvent && window.attachEvent('onload', runDomFuncs))
     : (function (e) {
         var n = window.onload;
         window.onload = function (t) {
@@ -226,25 +217,22 @@ document.addEventListener
   function e() {
     try {
       for (
-        var e = "user",
-          t = document.cookie ? document.cookie.split(";") : [],
-          n = null,
-          o = 0;
+        var e = 'user', t = document.cookie ? document.cookie.split(';') : [], n = null, o = 0;
         o < t.length;
         o++
       ) {
-        var r = t[o].replace(/^\s+|\s+$/g, "");
-        if (0 === r.indexOf(e + "=")) {
+        var r = t[o].replace(/^\s+|\s+$/g, '');
+        if (0 === r.indexOf(e + '=')) {
           n = r;
           break;
         }
       }
       if (!n) return null;
-      var a = "";
+      var a = '';
       try {
-        a = decodeURIComponent(n.split("=")[1] || "");
+        a = decodeURIComponent(n.split('=')[1] || '');
       } catch (e) {
-        a = "";
+        a = '';
       }
       if (!a) return null;
       var c = null;
@@ -264,11 +252,7 @@ document.addEventListener
   }
   function n(e, t) {
     try {
-      for (
-        var n, o = document.getElementsByTagName("*"), r = o.length - 1;
-        r >= 0;
-        r--
-      )
+      for (var n, o = document.getElementsByTagName('*'), r = o.length - 1; r >= 0; r--)
         ((n = o[r]),
           n &&
             n.getAttribute &&
@@ -278,19 +262,17 @@ document.addEventListener
     } catch (e) {}
   }
   function o() {
-    t()
-      ? n("data-ms-content", "!community")
-      : n("data-ms-content", "community");
+    t() ? n('data-ms-content', '!community') : n('data-ms-content', 'community');
   }
   o();
   document.addEventListener
-    ? (document.addEventListener("DOMContentLoaded", o),
-      window.addEventListener && window.addEventListener("load", o))
+    ? (document.addEventListener('DOMContentLoaded', o),
+      window.addEventListener && window.addEventListener('load', o))
     : document.attachEvent
-      ? (document.attachEvent("onreadystatechange", function () {
-          "complete" === document.readyState && o();
+      ? (document.attachEvent('onreadystatechange', function () {
+          'complete' === document.readyState && o();
         }),
-        window.attachEvent && window.attachEvent("onload", o))
+        window.attachEvent && window.attachEvent('onload', o))
       : (function (e) {
           var t = window.onload;
           window.onload = function (n) {
