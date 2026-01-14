@@ -10,6 +10,9 @@
  * @prop {string} class - Additional CSS classes
  * @prop {boolean} isJobSearch - Use job search styling
  * @prop {string} filterField - Finsweet CMS filter field attribute
+ * @prop {string} label - Accessible label for the select (required for a11y)
+ * @prop {string} ariaLabel - ARIA label as alternative to visible label
+ * @prop {boolean} required - Whether the field is required
  */
 
 interface SelectOption {
@@ -26,6 +29,9 @@ interface Props {
   class?: string;
   isJobSearch?: boolean;
   filterField?: string;
+  label?: string;
+  ariaLabel?: string;
+  required?: boolean;
 }
 
 const {
@@ -37,6 +43,9 @@ const {
   class: className = '',
   isJobSearch = false,
   filterField,
+  label,
+  ariaLabel,
+  required = false,
 } = Astro.props;
 
 const selectId = id || name;
@@ -46,13 +55,44 @@ const finalClass = `${baseClass} ${className} w-select`.trim();
 const filterAttr = filterField ? { 'fs-cmsfilter-field': filterField } : {};
 ---
 
-<select id={selectId} name={name} data-name={name} class={finalClass} {...filterAttr}>
-  {placeholder && <option value="">{placeholder}</option>}
-  {
-    options.map((option) => (
-      <option value={option.value} selected={option.value === value}>
-        {option.label}
-      </option>
-    ))
-  }
-</select>
+{label ? (
+  <div class="select-wrapper">
+    <label for={selectId} class="select-label">{label}{required && <span class="required-indicator" aria-hidden="true">*</span>}</label>
+    <select
+      id={selectId}
+      name={name}
+      data-name={name}
+      class={finalClass}
+      aria-required={required ? 'true' : undefined}
+      {...filterAttr}
+    >
+      {placeholder && <option value="">{placeholder}</option>}
+      {
+        options.map((option) => (
+          <option value={option.value} selected={option.value === value}>
+            {option.label}
+          </option>
+        ))
+      }
+    </select>
+  </div>
+) : (
+  <select
+    id={selectId}
+    name={name}
+    data-name={name}
+    class={finalClass}
+    aria-label={ariaLabel || placeholder || name}
+    aria-required={required ? 'true' : undefined}
+    {...filterAttr}
+  >
+    {placeholder && <option value="">{placeholder}</option>}
+    {
+      options.map((option) => (
+        <option value={option.value} selected={option.value === value}>
+          {option.label}
+        </option>
+      ))
+    }
+  </select>
+)}

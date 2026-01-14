@@ -12,6 +12,10 @@
  * @prop {string} class - Additional CSS classes
  * @prop {boolean} isSmall - Use small size variant
  * @prop {string} filterField - Finsweet CMS filter field attribute
+ * @prop {string} label - Accessible label for the input (required for a11y)
+ * @prop {string} ariaLabel - ARIA label as alternative to visible label
+ * @prop {string} ariaDescribedBy - ID of element that describes this input
+ * @prop {boolean} autocomplete - Autocomplete attribute value
  */
 
 interface Props {
@@ -25,6 +29,10 @@ interface Props {
   class?: string;
   isSmall?: boolean;
   filterField?: string;
+  label?: string;
+  ariaLabel?: string;
+  ariaDescribedBy?: string;
+  autocomplete?: string;
 }
 
 const {
@@ -38,6 +46,10 @@ const {
   class: className = '',
   isSmall = false,
   filterField,
+  label,
+  ariaLabel,
+  ariaDescribedBy,
+  autocomplete,
 } = Astro.props;
 
 const inputId = id || name;
@@ -46,17 +58,45 @@ const baseClass = type === 'search' ? 'job-search_input' : sizeClass;
 const finalClass = `${baseClass} ${className} w-input`.trim();
 
 const filterAttr = filterField ? { 'fs-cmsfilter-field': filterField } : {};
+const ariaAttrs = {
+  ...(ariaLabel && { 'aria-label': ariaLabel }),
+  ...(ariaDescribedBy && { 'aria-describedby': ariaDescribedBy }),
+  ...(required && { 'aria-required': 'true' as const }),
+};
 ---
 
-<input
-  class={finalClass}
-  maxlength={maxLength}
-  name={name}
-  data-name={name}
-  placeholder={placeholder}
-  type={type}
-  id={inputId}
-  required={required}
-  value={value}
-  {...filterAttr}
-/>
+{label ? (
+  <div class="input-wrapper">
+    <label for={inputId} class="input-label">{label}{required && <span class="required-indicator" aria-hidden="true">*</span>}</label>
+    <input
+      class={finalClass}
+      maxlength={maxLength}
+      name={name}
+      data-name={name}
+      placeholder={placeholder}
+      type={type}
+      id={inputId}
+      required={required}
+      value={value}
+      autocomplete={autocomplete}
+      {...filterAttr}
+      {...ariaAttrs}
+    />
+  </div>
+) : (
+  <input
+    class={finalClass}
+    maxlength={maxLength}
+    name={name}
+    data-name={name}
+    placeholder={placeholder}
+    type={type}
+    id={inputId}
+    required={required}
+    value={value}
+    autocomplete={autocomplete}
+    aria-label={ariaLabel || placeholder || name}
+    {...filterAttr}
+    {...ariaAttrs}
+  />
+)}
