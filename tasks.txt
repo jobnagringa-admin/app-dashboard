@@ -16,7 +16,7 @@ Finally, show a report of all the tasks that were created.
 
 <TASK>
 
-    Faça a comparação visual das novas telas com as telas antigas para ver se tudo está perfeitamente funcional como antes, e se todo o layout está exatamente igual a antes
+    Corrija todos os erros de lint e erros gerais dos processos de lint e build da aplicação.
 
 <TASK/>
 
