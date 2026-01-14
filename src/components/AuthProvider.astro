@@ -48,8 +48,7 @@ export interface Props {
 const {
   publishableKey = import.meta.env.PUBLIC_CLERK_PUBLISHABLE_KEY ||
     'pk_live_Y2xlcmsuam9ibmFncmluZ2EuY29tLmJyJA',
-  clerkDomain = import.meta.env.PUBLIC_CLERK_DOMAIN ||
-    'https://clerk.jobnagringa.com.br',
+  clerkDomain = import.meta.env.PUBLIC_CLERK_DOMAIN || 'https://clerk.jobnagringa.com.br',
   enforceProtection = true,
 } = Astro.props;
 
@@ -61,8 +60,7 @@ const clerkScriptUrl = `${clerkDomain}/npm/@clerk/clerk-js@5/dist/clerk.browser.
   async
   crossorigin="anonymous"
   data-clerk-publishable-key={publishableKey}
-  src={clerkScriptUrl}
-></script>
+  src={clerkScriptUrl}></script>
 
 <!-- Clerk Initialization -->
 <script define:vars={{ enforceProtection }}>
@@ -186,9 +184,7 @@ const clerkScriptUrl = `${clerkDomain}/npm/@clerk/clerk-js@5/dist/clerk.browser.
   // Community content handling
   function handleCommunityContent() {
     const isPaid = userIsPaidCustomer();
-    const selector = isPaid
-      ? '[data-ms-content="!community"]'
-      : '[data-ms-content="community"]';
+    const selector = isPaid ? '[data-ms-content="!community"]' : '[data-ms-content="community"]';
     const elements = document.querySelectorAll(selector);
     elements.forEach((el) => el.remove());
   }

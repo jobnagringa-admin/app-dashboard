@@ -70,9 +70,10 @@ interface Props {
 const { environment = 'production' } = Astro.props;
 
 // API URLs
-const novaMoneyUrl = environment === 'production'
-  ? import.meta.env.PUBLIC_NOVA_MONEY_API_URL || 'https://jobnagringa.pay.nova.money/api/v1'
-  : 'https://jobnagringa.staging.pay.nova.money/api/v1';
+const novaMoneyUrl =
+  environment === 'production'
+    ? import.meta.env.PUBLIC_NOVA_MONEY_API_URL || 'https://jobnagringa.pay.nova.money/api/v1'
+    : 'https://jobnagringa.staging.pay.nova.money/api/v1';
 
 // Stripe publishable key
 const stripeKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
@@ -84,8 +85,7 @@ const stripeKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
   window.API_URL = novaMoneyUrl;
 </script>
 
-<!-- Stripe.js (optional - uncomment if using direct Stripe integration) -->
-<!--
+<!-- Stripe.js (optional - uncomment if using direct Stripe integration) --><!--
 <script async src="https://js.stripe.com/v3/"></script>
 <script is:inline define:vars={{ stripeKey }}>
   if (typeof Stripe !== 'undefined' && stripeKey) {

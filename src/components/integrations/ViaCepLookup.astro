@@ -64,18 +64,21 @@ const {
   addressSelector = '#endereco',
   neighborhoodSelector = '#bairro',
   citySelector = '#cidade',
-  stateSelector = '#uf'
+  stateSelector = '#uf',
 } = Astro.props;
 ---
 
-<script is:inline define:vars={{
-  cepSelector,
-  addressSelector,
-  neighborhoodSelector,
-  citySelector,
-  stateSelector
-}}>
-  document.addEventListener('DOMContentLoaded', function() {
+<script
+  is:inline
+  define:vars={{
+    cepSelector,
+    addressSelector,
+    neighborhoodSelector,
+    citySelector,
+    stateSelector,
+  }}
+>
+  document.addEventListener('DOMContentLoaded', function () {
     const cepInput = document.querySelector(cepSelector);
 
     if (!cepInput) return;

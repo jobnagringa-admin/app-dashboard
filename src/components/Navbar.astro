@@ -19,7 +19,10 @@ const isCurrent = (path: string) => currentPage === path;
     <div class="navbar--blue--primary">
       <div class="navbar_wrapper">
         <div class="navbar_container">
-          <a href="/" class:list={["navbar_logo", "w-inline-block", { "w--current": isCurrent('/') }]}>
+          <a
+            href="/"
+            class:list={['navbar_logo', 'w-inline-block', { 'w--current': isCurrent('/') }]}
+          >
             <img
               src="/images/Vectors-Wrapper.svg"
               loading="lazy"
@@ -27,20 +30,26 @@ const isCurrent = (path: string) => currentPage === path;
               height="20"
               alt="Job na Gringa"
               class="logo_image hide-tablet"
-            >
+            />
             <img
               src="/images/logo-small_white.svg"
               loading="lazy"
               alt="Job na Gringa"
               class="logo_image hide-desktop"
-            >
+            />
           </a>
 
           <div class="navbar_link-wrap">
-            <a href="https://accounts.jobnagringa.com.br/sign-in?redirect_url=https://jobnagringa.com.br" class="navbar_link w-inline-block">
+            <a
+              href="https://accounts.jobnagringa.com.br/sign-in?redirect_url=https://jobnagringa.com.br"
+              class="navbar_link w-inline-block"
+            >
               <div>Vagas</div>
             </a>
-            <a href="/blog" class:list={["navbar_link", "w-inline-block", { "w--current": isCurrent('/blog') }]}>
+            <a
+              href="/blog"
+              class:list={['navbar_link', 'w-inline-block', { 'w--current': isCurrent('/blog') }]}
+            >
               <div>Blog</div>
             </a>
             <a
@@ -60,7 +69,10 @@ const isCurrent = (path: string) => currentPage === path;
           </div>
 
           <div class="navbar_button-wrap">
-            <a href="/assine" class:list={["navbar_link", "w-inline-block", { "w--current": isCurrent('/assine') }]}>
+            <a
+              href="/assine"
+              class:list={['navbar_link', 'w-inline-block', { 'w--current': isCurrent('/assine') }]}
+            >
               <div>Assine</div>
             </a>
             <a
@@ -74,7 +86,10 @@ const isCurrent = (path: string) => currentPage === path;
             <div class="navbar_mobile-menu">
               <div class="icon-1x1-medium w-embed">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                  <path fill="currentColor" d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75m0 5A.75.75 0 0 1 2.75 9h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 9.75M2.75 14a.75.75 0 0 0 0 1.5h14.5a.75.75 0 0 0 0-1.5z"></path>
+                  <path
+                    fill="currentColor"
+                    d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75m0 5A.75.75 0 0 1 2.75 9h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 9.75M2.75 14a.75.75 0 0 0 0 1.5h14.5a.75.75 0 0 0 0-1.5z"
+                  ></path>
                 </svg>
               </div>
             </div>
@@ -83,8 +98,12 @@ const isCurrent = (path: string) => currentPage === path;
       </div>
 
       <style>
-        .item__arrow { display: none; }
-        .w--current .item__arrow { display: flex; }
+        .item__arrow {
+          display: none;
+        }
+        .w--current .item__arrow {
+          display: flex;
+        }
       </style>
 
       <div class="hide-desktop">

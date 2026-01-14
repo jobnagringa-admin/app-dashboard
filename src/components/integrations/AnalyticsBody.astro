@@ -33,32 +33,29 @@ interface Props {
   enableAhrefs?: boolean;
 }
 
-const {
-  enableGTM = true,
-  enableAhrefs = true
-} = Astro.props;
+const { enableGTM = true, enableAhrefs = true } = Astro.props;
 
 const gtmContainerId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 const ahrefsKey = import.meta.env.PUBLIC_AHREFS_KEY;
 ---
 
 {/* Google Tag Manager (noscript) - Must be at start of body */}
-{enableGTM && gtmContainerId && (
-  <noscript>
-    <iframe
-      src={`https://www.googletagmanager.com/ns.html?id=${gtmContainerId}`}
-      height="0"
-      width="0"
-      style="display:none;visibility:hidden"
-    ></iframe>
-  </noscript>
-)}
+{
+  enableGTM && gtmContainerId && (
+    <noscript>
+      <iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${gtmContainerId}`}
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      />
+    </noscript>
+  )
+}
 
 {/* Ahrefs Analytics */}
-{enableAhrefs && ahrefsKey && (
-  <script
-    async
-    src="https://analytics.ahrefs.com/analytics.js"
-    data-key={ahrefsKey}
-  ></script>
-)}
+{
+  enableAhrefs && ahrefsKey && (
+    <script async src="https://analytics.ahrefs.com/analytics.js" data-key={ahrefsKey} />
+  )
+}

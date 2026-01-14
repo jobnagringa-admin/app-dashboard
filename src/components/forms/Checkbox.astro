@@ -50,10 +50,27 @@ if (isJobSearch) {
 labelClass += ` ${className}`.trim();
 ---
 
-{href ? (
-  <a href={href} class="checkbox_link w-inline-block">
+{
+  href ? (
+    <a href={href} class="checkbox_link w-inline-block">
+      <label class={labelClass} {...filterAttr}>
+        <div class="w-checkbox-input w-checkbox-input--inputType-custom checkbox" />
+        <input
+          type="checkbox"
+          id={checkboxId}
+          name={name}
+          data-name={name}
+          checked={checked}
+          style="opacity:0;position:absolute;z-index:-1"
+        />
+        <span class:list={['w-form-label', { 'checkbox_label hide-tablet': isBrazilianCheck }]}>
+          {label}
+        </span>
+      </label>
+    </a>
+  ) : (
     <label class={labelClass} {...filterAttr}>
-      <div class="w-checkbox-input w-checkbox-input--inputType-custom checkbox"></div>
+      <div class="w-checkbox-input w-checkbox-input--inputType-custom checkbox" />
       <input
         type="checkbox"
         id={checkboxId}
@@ -62,24 +79,7 @@ labelClass += ` ${className}`.trim();
         checked={checked}
         style="opacity:0;position:absolute;z-index:-1"
       />
-      <span class:list={["w-form-label", { "checkbox_label hide-tablet": isBrazilianCheck }]}>
-        {label}
-      </span>
+      <span class="w-form-label">{label}</span>
     </label>
-  </a>
-) : (
-  <label class={labelClass} {...filterAttr}>
-    <div class="w-checkbox-input w-checkbox-input--inputType-custom checkbox"></div>
-    <input
-      type="checkbox"
-      id={checkboxId}
-      name={name}
-      data-name={name}
-      checked={checked}
-      style="opacity:0;position:absolute;z-index:-1"
-    />
-    <span class="w-form-label">
-      {label}
-    </span>
-  </label>
-)}
+  )
+}

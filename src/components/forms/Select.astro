@@ -46,17 +46,13 @@ const finalClass = `${baseClass} ${className} w-select`.trim();
 const filterAttr = filterField ? { 'fs-cmsfilter-field': filterField } : {};
 ---
 
-<select
-  id={selectId}
-  name={name}
-  data-name={name}
-  class={finalClass}
-  {...filterAttr}
->
+<select id={selectId} name={name} data-name={name} class={finalClass} {...filterAttr}>
   {placeholder && <option value="">{placeholder}</option>}
-  {options.map((option) => (
-    <option value={option.value} selected={option.value === value}>
-      {option.label}
-    </option>
-  ))}
+  {
+    options.map((option) => (
+      <option value={option.value} selected={option.value === value}>
+        {option.label}
+      </option>
+    ))
+  }
 </select>

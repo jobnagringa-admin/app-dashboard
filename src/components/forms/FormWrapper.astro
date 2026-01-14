@@ -38,14 +38,7 @@ const wrapperClass = isJobSearch ? 'job-search_form w-form' : 'w-form';
 ---
 
 <div class={wrapperClass}>
-  <form
-    id={id}
-    name={name}
-    data-name={name}
-    method={method}
-    action={action}
-    class={className}
-  >
+  <form id={id} name={name} data-name={name} method={method} action={action} class={className}>
     <slot />
   </form>
   <div class="success-message w-form-done">

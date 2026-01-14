@@ -39,30 +39,29 @@ interface Props {
   trackPageViews?: boolean;
 }
 
-const {
-  mauticUrl,
-  trackForms = true,
-  trackPageViews = true
-} = Astro.props;
+const { mauticUrl, trackForms = true, trackPageViews = true } = Astro.props;
 
-const mauticBaseUrl = mauticUrl || import.meta.env.PUBLIC_MAUTIC_URL || 'https://mautic.jobnagringa.com.br';
+const mauticBaseUrl =
+  mauticUrl || import.meta.env.PUBLIC_MAUTIC_URL || 'https://mautic.jobnagringa.com.br';
 ---
 
 <!-- Mautic Tracking Script -->
 <script data-cfasync="false" is:inline define:vars={{ mauticBaseUrl, trackForms, trackPageViews }}>
-  (function(w, d, t, u, n, a, m) {
-    w["MauticTrackingObject"] = n;
-    w[n] = w[n] || function() {
-      (w[n].q = w[n].q || []).push(arguments);
-    };
+  (function (w, d, t, u, n, a, m) {
+    w['MauticTrackingObject'] = n;
+    w[n] =
+      w[n] ||
+      function () {
+        (w[n].q = w[n].q || []).push(arguments);
+      };
     a = d.createElement(t);
     m = d.getElementsByTagName(t)[0];
     a.async = 1;
     a.src = u;
     m.parentNode.insertBefore(a, m);
-  })(window, document, "script", mauticBaseUrl + "/mtc.js", "mt");
+  })(window, document, 'script', mauticBaseUrl + '/mtc.js', 'mt');
 
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener('DOMContentLoaded', function () {
     /**
      * Get user data from available sources
      * Priority: Clerk cookie > Memberstack localStorage
@@ -70,40 +69,40 @@ const mauticBaseUrl = mauticUrl || import.meta.env.PUBLIC_MAUTIC_URL || 'https:/
     function getUserData() {
       // Try Clerk cookie first (current auth system)
       try {
-        const cookies = document.cookie.split(";");
+        const cookies = document.cookie.split(';');
         for (const cookie of cookies) {
           const trimmed = cookie.trim();
-          if (trimmed.startsWith("user=")) {
-            const value = decodeURIComponent(trimmed.split("=")[1] || "");
+          if (trimmed.startsWith('user=')) {
+            const value = decodeURIComponent(trimmed.split('=')[1] || '');
             if (value) {
               const user = JSON.parse(value);
               if (user?.email) {
                 return {
                   email: user.email,
-                  firstname: user.firstName || ""
+                  firstname: user.firstName || '',
                 };
               }
             }
           }
         }
       } catch (e) {
-        console.warn("Error reading Clerk cookie:", e);
+        console.warn('Error reading Clerk cookie:', e);
       }
 
       // Fallback to Memberstack localStorage (legacy)
       try {
-        const memberMetadata = localStorage.getItem("_ms-mem");
+        const memberMetadata = localStorage.getItem('_ms-mem');
         if (memberMetadata) {
           const member = JSON.parse(memberMetadata);
           if (member?.id) {
             return {
-              email: member.auth?.email || "",
-              firstname: member.customFields?.["first-name"] || ""
+              email: member.auth?.email || '',
+              firstname: member.customFields?.['first-name'] || '',
             };
           }
         }
       } catch (e) {
-        console.warn("Error reading member metadata:", e);
+        console.warn('Error reading member metadata:', e);
       }
 
       return null;
@@ -118,12 +117,12 @@ const mauticBaseUrl = mauticUrl || import.meta.env.PUBLIC_MAUTIC_URL || 'https:/
       const userData = getUserData();
 
       if (userData?.email) {
-        mt("send", "pageview", {
+        mt('send', 'pageview', {
           email: userData.email,
-          firstname: userData.firstname
+          firstname: userData.firstname,
         });
       } else {
-        mt("send", "pageview");
+        mt('send', 'pageview');
       }
     }
 
@@ -135,16 +134,16 @@ const mauticBaseUrl = mauticUrl || import.meta.env.PUBLIC_MAUTIC_URL || 'https:/
 
       try {
         const form = event.target;
-        if (form.tagName.toLowerCase() !== "form") return;
+        if (form.tagName.toLowerCase() !== 'form') return;
 
         const emailField = form.querySelector('input[type="email"]');
         if (emailField?.value) {
-          mt("send", "formsubmit", {
-            email: emailField.value
+          mt('send', 'formsubmit', {
+            email: emailField.value,
           });
         }
       } catch (error) {
-        console.warn("Error handling form submission:", error);
+        console.warn('Error handling form submission:', error);
       }
     }
 
@@ -153,7 +152,7 @@ const mauticBaseUrl = mauticUrl || import.meta.env.PUBLIC_MAUTIC_URL || 'https:/
 
     // Set up form submission tracking
     if (trackForms) {
-      document.body.addEventListener("submit", handleFormSubmit, true);
+      document.body.addEventListener('submit', handleFormSubmit, true);
     }
   });
 </script>

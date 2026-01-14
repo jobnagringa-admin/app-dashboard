@@ -19,7 +19,13 @@
 
 interface Props {
   href?: string;
-  variant?: 'primary' | 'secondary' | 'secondary-light' | 'secondary-light-2' | 'white' | 'large-special';
+  variant?:
+    | 'primary'
+    | 'secondary'
+    | 'secondary-light'
+    | 'secondary-light-2'
+    | 'white'
+    | 'large-special';
   isStretch?: boolean;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
@@ -53,12 +59,14 @@ const finalClass = `${baseClass} ${stretchClass} ${className} w-button`.trim();
 const loadingAttr = loadingFeedback ? { 'loading-feedback': 'true' } : {};
 ---
 
-{href ? (
-  <a href={href} class={finalClass} {...loadingAttr}>
-    <slot />
-  </a>
-) : (
-  <button type={type} class={finalClass} disabled={disabled} {...loadingAttr}>
-    <slot />
-  </button>
-)}
+{
+  href ? (
+    <a href={href} class={finalClass} {...loadingAttr}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class={finalClass} disabled={disabled} {...loadingAttr}>
+      <slot />
+    </button>
+  )
+}

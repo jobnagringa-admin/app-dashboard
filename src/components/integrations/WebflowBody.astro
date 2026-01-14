@@ -38,7 +38,7 @@ interface Props {
 const {
   webflowJsPath = '/js/webflow.js',
   siteId = '642953c962519376c853ab81',
-  includeJquery = true
+  includeJquery = true,
 } = Astro.props;
 
 const jqueryUrl = `https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=${siteId}`;
@@ -46,14 +46,11 @@ const jquerySri = 'sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=';
 ---
 
 {/* jQuery from Cloudflare CDN */}
-{includeJquery && (
-  <script
-    src={jqueryUrl}
-    type="text/javascript"
-    integrity={jquerySri}
-    crossorigin="anonymous"
-  ></script>
-)}
+{
+  includeJquery && (
+    <script src={jqueryUrl} type="text/javascript" integrity={jquerySri} crossorigin="anonymous" />
+  )
+}
 
 {/* Webflow Runtime */}
 <script src={webflowJsPath} type="text/javascript"></script>

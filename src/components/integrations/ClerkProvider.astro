@@ -33,7 +33,8 @@ const { eager = false } = Astro.props;
 
 const clerkPublishableKey = import.meta.env.PUBLIC_CLERK_PUBLISHABLE_KEY;
 const clerkDomain = import.meta.env.PUBLIC_CLERK_DOMAIN || 'clerk.jobnagringa.com.br';
-const clerkAccountsUrl = import.meta.env.PUBLIC_CLERK_ACCOUNTS_URL || 'https://accounts.jobnagringa.com.br';
+const clerkAccountsUrl =
+  import.meta.env.PUBLIC_CLERK_ACCOUNTS_URL || 'https://accounts.jobnagringa.com.br';
 ---
 
 <!-- Clerk SDK -->
@@ -42,14 +43,13 @@ const clerkAccountsUrl = import.meta.env.PUBLIC_CLERK_ACCOUNTS_URL || 'https://a
   crossorigin="anonymous"
   data-clerk-publishable-key={clerkPublishableKey}
   src={`https://${clerkDomain}/npm/@clerk/clerk-js@5/dist/clerk.browser.js`}
-  type="text/javascript"
-></script>
+  type="text/javascript"></script>
 
 <!-- Clerk Session Management -->
 <script is:inline define:vars={{ clerkAccountsUrl }}>
   // Cookie and localStorage configuration
-  const COOKIE_NAME = "user";
-  const LOCAL_KEY = "user";
+  const COOKIE_NAME = 'user';
+  const LOCAL_KEY = 'user';
   const COOKIE_TTL = 86400; // 24 hours
 
   /**
@@ -57,16 +57,16 @@ const clerkAccountsUrl = import.meta.env.PUBLIC_CLERK_ACCOUNTS_URL || 'https://a
    */
   function setCookie(name, value, maxAge, options = {}) {
     const parts = [
-      encodeURIComponent(name) + "=" + encodeURIComponent(value),
-      "path=/",
-      "max-age=" + maxAge
+      encodeURIComponent(name) + '=' + encodeURIComponent(value),
+      'path=/',
+      'max-age=' + maxAge,
     ];
 
-    if (options.domain) parts.push("domain=" + options.domain);
-    if (options.secure) parts.push("secure");
-    if (options.sameSite) parts.push("samesite=" + options.sameSite);
+    if (options.domain) parts.push('domain=' + options.domain);
+    if (options.secure) parts.push('secure');
+    if (options.sameSite) parts.push('samesite=' + options.sameSite);
 
-    document.cookie = parts.join("; ");
+    document.cookie = parts.join('; ');
   }
 
   /**
@@ -105,19 +105,17 @@ const clerkAccountsUrl = import.meta.env.PUBLIC_CLERK_ACCOUNTS_URL || 'https://a
         firstName: user?.firstName || null,
         phoneNumber,
         email,
-        publicMetadata: user?.publicMetadata || {}
+        publicMetadata: user?.publicMetadata || {},
       };
 
-      const isSecure = window.location.protocol === "https:";
+      const isSecure = window.location.protocol === 'https:';
       const hostname = window.location.hostname;
-      const domain = hostname.endsWith(".jobnagringa.com.br")
-        ? ".jobnagringa.com.br"
-        : undefined;
+      const domain = hostname.endsWith('.jobnagringa.com.br') ? '.jobnagringa.com.br' : undefined;
 
       setCookie(COOKIE_NAME, JSON.stringify(userData), COOKIE_TTL, {
         secure: isSecure,
-        sameSite: "Strict",
-        domain
+        sameSite: 'Strict',
+        domain,
       });
     } catch (e) {
       console.warn('Failed to store user in cookie:', e);
@@ -129,12 +127,12 @@ const clerkAccountsUrl = import.meta.env.PUBLIC_CLERK_ACCOUNTS_URL || 'https://a
    */
   function getUserFromCookie() {
     try {
-      const cookies = document.cookie ? document.cookie.split(";") : [];
+      const cookies = document.cookie ? document.cookie.split(';') : [];
       let cookieValue = null;
 
       for (const cookie of cookies) {
         const trimmed = cookie.trim();
-        if (trimmed.startsWith(COOKIE_NAME + "=")) {
+        if (trimmed.startsWith(COOKIE_NAME + '=')) {
           cookieValue = trimmed;
           break;
         }
@@ -142,7 +140,7 @@ const clerkAccountsUrl = import.meta.env.PUBLIC_CLERK_ACCOUNTS_URL || 'https://a
 
       if (!cookieValue) return null;
 
-      const value = decodeURIComponent(cookieValue.split("=")[1] || "");
+      const value = decodeURIComponent(cookieValue.split('=')[1] || '');
       if (!value) return null;
 
       return JSON.parse(value);
@@ -162,7 +160,7 @@ const clerkAccountsUrl = import.meta.env.PUBLIC_CLERK_ACCOUNTS_URL || 'https://a
       window.location.href = `${clerkAccountsUrl}/sign-in?redirect_url=${redirectUrl}`;
       return;
     }
-    console.log("User logged in with email:", user.email || null);
+    console.log('User logged in with email:', user.email || null);
   }
 
   /**
@@ -185,7 +183,7 @@ const clerkAccountsUrl = import.meta.env.PUBLIC_CLERK_ACCOUNTS_URL || 'https://a
       const user = getUserFromCookie();
       if (!user) return;
 
-      let firstName = "";
+      let firstName = '';
       if (user.firstName?.trim()) {
         firstName = user.firstName.trim();
       } else if (user.fullName?.trim()) {
@@ -197,8 +195,8 @@ const clerkAccountsUrl = import.meta.env.PUBLIC_CLERK_ACCOUNTS_URL || 'https://a
       if (!firstName) return;
 
       const elements = document.querySelectorAll('[data-ms-member="first-name"]');
-      elements.forEach(el => {
-        if ("value" in el) {
+      elements.forEach((el) => {
+        if ('value' in el) {
           el.value = firstName;
         } else {
           el.textContent = firstName;
@@ -218,7 +216,7 @@ const clerkAccountsUrl = import.meta.env.PUBLIC_CLERK_ACCOUNTS_URL || 'https://a
         ? '[data-ms-content="!community"]'
         : '[data-ms-content="community"]';
 
-      document.querySelectorAll(selector).forEach(el => {
+      document.querySelectorAll(selector).forEach((el) => {
         el.remove();
       });
     } catch (e) {
@@ -239,7 +237,7 @@ const clerkAccountsUrl = import.meta.env.PUBLIC_CLERK_ACCOUNTS_URL || 'https://a
             persistUserData(Clerk.user);
           }
         })
-        .catch(e => console.warn('Clerk load failed:', e));
+        .catch((e) => console.warn('Clerk load failed:', e));
     } else {
       // Fallback for sync loading
       setTimeout(() => {
@@ -257,9 +255,9 @@ const clerkAccountsUrl = import.meta.env.PUBLIC_CLERK_ACCOUNTS_URL || 'https://a
   }
 
   // Initialize on load
-  window.addEventListener("load", initClerk);
-  document.addEventListener("DOMContentLoaded", runDomFuncs);
-  window.addEventListener("load", runDomFuncs);
+  window.addEventListener('load', initClerk);
+  document.addEventListener('DOMContentLoaded', runDomFuncs);
+  window.addEventListener('load', runDomFuncs);
 
   // Export functions globally
   window.getUserFromCookie = getUserFromCookie;
