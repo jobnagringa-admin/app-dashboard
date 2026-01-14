@@ -55,6 +55,8 @@ import Footer from '@components/Footer.astro';
                     width="1em"
                     height="1em"
                     viewBox="0 0 1024 1024"
+                    aria-hidden="true"
+                    focusable="false"
                   >
                     <path
                       fill="currentColor"
@@ -62,6 +64,7 @@ import Footer from '@components/Footer.astro';
                     ></path>
                   </svg>
                 </div>
+                <label for="job-search-home" class="visually-hidden">Search jobs by area or technology</label>
                 <input
                   class="job-search_input w-input"
                   maxlength="256"
@@ -71,34 +74,39 @@ import Footer from '@components/Footer.astro';
                   placeholder="Filtre area ou tecnologia"
                   type="text"
                   id="job-search-home"
-                  required
+                  aria-label="Search jobs by area or technology"
                 />
                 <div class="job-search_actions">
                   <a href="/br-only" class="checkbox_link w-inline-block">
                     <label
                       fs-cmsfilter-field="location"
                       class="w-checkbox job-search_select is-checkbox is-brazilian-check"
+                      for="brazilian-only-checkbox"
                     >
                       <div
                         class="w-checkbox-input w-checkbox-input--inputType-custom checkbox display-hidden"
+                        aria-hidden="true"
                       >
                       </div>
                       <input
                         type="checkbox"
-                        id="checkbox"
-                        name="checkbox"
-                        data-name="Checkbox"
+                        id="brazilian-only-checkbox"
+                        name="brazilian-only"
+                        data-name="Brazilian Only Filter"
                         style="opacity:0;position:absolute;z-index:-1"
+                        aria-describedby="brazilian-checkbox-label"
                       />
-                      <span class="checkbox_label hide-tablet w-form-label">Brazilians Only</span>
+                      <span id="brazilian-checkbox-label" class="checkbox_label hide-tablet w-form-label">Brazilians Only</span>
                     </label>
                   </a>
+                  <label for="jobselection" class="visually-hidden">Filter by job level</label>
                   <select
                     id="jobselection"
                     name="field-2"
                     data-name="Field 2"
                     fs-cmsfilter-field="level"
                     class="job-search_select input_select w-select"
+                    aria-label="Filter by job level"
                   >
                     <option value="">Niveis</option>
                     <option value="lead">Lead</option>
@@ -151,38 +159,62 @@ import Footer from '@components/Footer.astro';
                 <img
                   src="/images/CAMBLY_MinimalLogo_V2-1.png"
                   loading="lazy"
+                  decoding="async"
+                  width="80"
+                  height="32"
                   alt="Logo Cambly"
                   class="brand_icon is-xsm"
+                  style="aspect-ratio: 80 / 32; object-fit: contain;"
                 />
                 <img
                   src="/images/partner_logo2.svg"
                   loading="lazy"
+                  decoding="async"
+                  width="100"
+                  height="32"
                   alt="Logo Leapfrog"
                   class="brand_icon is-sm"
+                  style="aspect-ratio: 100 / 32; object-fit: contain;"
                 />
                 <img
                   src="/images/partner_logo3.svg"
                   loading="lazy"
+                  decoding="async"
+                  width="100"
+                  height="32"
                   alt="Logo Parker"
                   class="brand_icon is-sm"
+                  style="aspect-ratio: 100 / 32; object-fit: contain;"
                 />
                 <img
                   src="/images/logo-techfx-1.svg"
                   loading="lazy"
+                  decoding="async"
+                  width="100"
+                  height="32"
                   alt="Logo TechFX"
                   class="brand_icon is-sm"
+                  style="aspect-ratio: 100 / 32; object-fit: contain;"
                 />
                 <img
                   src="/images/flatirons.svg"
                   loading="lazy"
+                  decoding="async"
+                  width="80"
+                  height="32"
                   alt="Logo Flatirons"
                   class="brand_icon is-xsm"
+                  style="aspect-ratio: 80 / 32; object-fit: contain;"
                 />
                 <img
                   src="/images/higlobe.png"
                   loading="lazy"
+                  decoding="async"
+                  width="100"
+                  height="32"
                   alt="Logo Higlobe"
                   class="brand_icon is-sm"
+                  style="aspect-ratio: 100 / 32; object-fit: contain;"
                 />
               </div>
               <p class="text-size-small text-color-muted">
@@ -227,6 +259,8 @@ import Footer from '@components/Footer.astro';
                             width="1em"
                             height="1em"
                             viewBox="0 0 16 16"
+                            aria-hidden="true"
+                            focusable="false"
                           >
                             <path
                               fill="currentColor"
@@ -282,5 +316,17 @@ import Footer from '@components/Footer.astro';
   /* Page-specific styles */
   .text-center {
     text-align: center;
+  }
+  /* Visually hidden class for screen reader only labels */
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 </style>

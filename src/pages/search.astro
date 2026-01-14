@@ -62,17 +62,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <script is:inline>
   // Get query from URL and populate input
   document.addEventListener('DOMContentLoaded', function () {
-    var urlParams = new URLSearchParams(window.location.search);
-    var query = urlParams.get('query');
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('query');
 
     if (query) {
-      var input = document.getElementById('search-query');
+      const input = document.getElementById('search-query');
       if (input) {
         input.value = query;
       }
 
       // Show searching message
-      var resultsContainer = document.getElementById('search-results');
+      const resultsContainer = document.getElementById('search-results');
       if (resultsContainer) {
         resultsContainer.innerHTML =
           '<p class="text-color-muted text-align-center">Buscando por: <strong>' +
