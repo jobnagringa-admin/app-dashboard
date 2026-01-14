@@ -57,19 +57,19 @@ const clerkScriptUrl = `${clerkDomain}/npm/@clerk/clerk-js@5/dist/clerk.browser.
 
 <!-- Clerk SDK -->
 <script
+  is:inline
   async
   crossorigin="anonymous"
   data-clerk-publishable-key={publishableKey}
   src={clerkScriptUrl}></script>
 
 <!-- Clerk Initialization -->
-<script define:vars={{ enforceProtection }}>
+<script is:inline define:vars={{ enforceProtection }}>
   // Configuration
   const COOKIE_NAME = 'user';
   const LOCAL_KEY = 'user';
   const COOKIE_TTL = 86400;
   const DOMAIN_SUFFIX = '.jobnagringa.com.br';
-  const ACCOUNTS_URL = 'https://accounts.jobnagringa.com.br';
   const PROTECTED_PATHS = ['/jng'];
   const HOME_PATH = '/';
 

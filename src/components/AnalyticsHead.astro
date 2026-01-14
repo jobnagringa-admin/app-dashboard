@@ -54,8 +54,8 @@ const {
 {!disabled && (
   <>
     <!-- Google Analytics -->
-    <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
-    <script define:vars={{ gaId }}>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+    <script is:inline define:vars={{ gaId }}>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -66,13 +66,13 @@ const {
     </script>
 
     <!-- Google Tag Manager -->
-    <script define:vars={{ gtmId }}>
+    <script is:inline define:vars={{ gtmId }}>
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l=' + l : '';
+        const f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s),
+    dl = l != 'dataLayer' ? '&l=' + l : '';
         j.async = true;
         j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
         f.parentNode.insertBefore(j, f);
@@ -80,6 +80,6 @@ const {
     </script>
 
     <!-- Ahrefs Analytics -->
-    <script async src="https://analytics.ahrefs.com/analytics.js" data-key={ahrefsKey}></script>
+    <script is:inline async src="https://analytics.ahrefs.com/analytics.js" data-key={ahrefsKey}></script>
   </>
 )}

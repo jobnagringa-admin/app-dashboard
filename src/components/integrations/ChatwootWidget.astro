@@ -69,8 +69,8 @@ const shouldRender = enabled && chatwootToken;
     };
 
     (function(d, t) {
-      var g = d.createElement(t),
-        s = d.getElementsByTagName(t)[0];
+      const g = d.createElement(t),
+    s = d.getElementsByTagName(t)[0];
       g.src = chatwootUrl + "/packs/js/sdk.js";
       g.defer = true;
       g.async = true;
