@@ -131,11 +131,7 @@
     "enabled": true
   },
   "permissions": {
-    "allow": [
-      "Bash(npx claude-flow:*)",
-      "Bash(npx @claude-flow/cli:*)",
-      "mcp__claude-flow__:*"
-    ],
+    "allow": ["Bash(npx claude-flow:*)", "Bash(npx @claude-flow/cli:*)", "mcp__claude-flow__:*"],
     "deny": []
   },
   "claudeFlow": {
