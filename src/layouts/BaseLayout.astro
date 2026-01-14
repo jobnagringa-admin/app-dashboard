@@ -34,6 +34,10 @@ import Head from '../components/Head.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 
+// Import CSS through Astro's build system for PostCSS processing
+// This enables PurgeCSS (removes unused CSS) and cssnano (minification) in production
+import '../styles/index.css';
+
 interface Props {
   title: string;
   description?: string;
@@ -108,9 +112,9 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
         (function (w, d, s, l, i) {
           w[l] = w[l] || [];
           w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-          var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s),
-            dl = l != 'dataLayer' ? '&l=' + l : '';
+          const f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s),
+    dl = l != 'dataLayer' ? '&l=' + l : '';
           j.async = true;
           j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
           f.parentNode.insertBefore(j, f);
@@ -121,19 +125,45 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
     </Head>
   </head>
   <body class={bodyClass}>
+    <!-- Skip to main content link for keyboard navigation -->
+    <a href="#main-content" class="skip-to-content">
+      Skip to main content
+    </a>
+
     <!-- Google Tag Manager (noscript) -->
     <noscript>
       <iframe
         src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
         height="0"
         width="0"
-        style="display:none;visibility:hidden"></iframe>
+        style="display:none;visibility:hidden"
+        title="Google Tag Manager"></iframe>
     </noscript>
 
     <div class={pageWrapperClass}>
       <!-- Global styles -->
       <div class="global-styles w-embed">
         <style>
+          /* Skip to content link - visible only on focus for keyboard users */
+          .skip-to-content {
+            position: absolute;
+            top: -100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0071ff;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0 0 0.5rem 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            z-index: 10000;
+            transition: top 0.2s ease;
+          }
+          .skip-to-content:focus {
+            top: 0;
+            outline: 0.125rem solid #fff;
+            outline-offset: 0.125rem;
+          }
           /* Make text look crisper and more legible in all browsers */
           body {
             -webkit-font-smoothing: antialiased;
@@ -144,6 +174,15 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
           /* Focus state style for keyboard navigation for the focusable elements */
           *[tabindex]:focus-visible,
           input[type='file']:focus-visible {
+            outline: 0.125rem solid #4d65ff;
+            outline-offset: 0.125rem;
+          }
+          /* Enhanced focus styles for interactive elements */
+          a:focus-visible,
+          button:focus-visible,
+          input:focus-visible,
+          select:focus-visible,
+          textarea:focus-visible {
             outline: 0.125rem solid #4d65ff;
             outline-offset: 0.125rem;
           }
@@ -174,7 +213,7 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
 
       {includeNavigation && <Navigation isMemberNav={isMemberNav} currentPage={currentPage} />}
 
-      <main>
+      <main id="main-content" tabindex="-1">
         <slot />
       </main>
 
@@ -224,55 +263,41 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
     ></script>
 
     <!--
-    Non-critical Analytics (loaded after page becomes interactive)
-    Using requestIdleCallback for lowest priority loading
-  -->
-    <script is:inline define:vars={{ mauticUrl }}>
-      // Mautic tracking - load during idle time
-      function loadMautic() {
-        (function (w, d, t, u, n, a, m) {
-          w['MauticTrackingObject'] = n;
-          w[n] =
-            w[n] ||
-            function () {
-              (w[n].q = w[n].q || []).push(arguments);
-            };
-          a = d.createElement(t);
-          m = d.getElementsByTagName(t)[0];
-          a.async = 1;
-          a.src = u;
-          m.parentNode.insertBefore(a, m);
-        })(window, document, 'script', mauticUrl + '/mtc.js', 'mt');
-        if (typeof mt === 'function') {
-          mt('send', 'pageview');
-        }
-      }
+    Non-critical Analytics - Loaded via Partytown (off main thread)
+    Strategy: Move third-party analytics to web worker to eliminate TBT impact
 
-      // Ahrefs analytics - load during idle time
-      function loadAhrefs() {
-        var s = document.createElement('script');
+    Benefits of Partytown for analytics:
+    - Zero main thread blocking
+    - Analytics still work correctly
+    - dataLayer.push is forwarded to main thread
+  -->
+    <script type="text/partytown" define:vars={{ mauticUrl }}>
+      // Mautic tracking - runs in web worker via Partytown
+      (function (w, d, t, u, n, a, m) {
+        w['MauticTrackingObject'] = n;
+        w[n] =
+          w[n] ||
+          function () {
+            (w[n].q = w[n].q || []).push(arguments);
+          };
+        a = d.createElement(t);
+        m = d.getElementsByTagName(t)[0];
+        a.async = 1;
+        a.src = u;
+        m.parentNode.insertBefore(a, m);
+      })(window, document, 'script', mauticUrl + '/mtc.js', 'mt');
+      mt('send', 'pageview');
+    </script>
+
+    <script type="text/partytown">
+      // Ahrefs analytics - runs in web worker via Partytown
+      (function() {
+        const s = document.createElement('script');
         s.async = true;
         s.src = 'https://analytics.ahrefs.com/analytics.js';
         s.setAttribute('data-key', '0IynPqzGcpJ1FaTQBiSG9g');
         document.body.appendChild(s);
-      }
-
-      // Load non-critical scripts after page is interactive
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(
-          function () {
-            loadMautic();
-            loadAhrefs();
-          },
-          { timeout: 3000 }
-        );
-      } else {
-        // Fallback for Safari - load after 2 seconds
-        setTimeout(function () {
-          loadMautic();
-          loadAhrefs();
-        }, 2000);
-      }
+      })();
     </script>
 
     <slot name="scripts" />

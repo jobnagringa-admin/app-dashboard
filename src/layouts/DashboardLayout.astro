@@ -12,6 +12,7 @@
  * - noIndex by default (member pages should not be indexed)
  * - Clerk authentication scripts
  * - Member content visibility control
+ * - Optimized script loading with defer/async
  *
  * @prop {string} title - Page title
  * @prop {string} description - Meta description
@@ -40,6 +41,11 @@ const {
   requiresAuth = true,
   requiresPaidMembership = false,
 } = Astro.props;
+
+// Environment variables - consistent with BaseLayout
+const clerkPublishableKey =
+  import.meta.env.PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_live_Y2xlcmsuam9ibmFncmluZ2EuY29tLmJyJA';
+const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-58XVRQZ';
 ---
 
 <!DOCTYPE html>
@@ -51,35 +57,85 @@ const {
     noIndex={true}
     lang="pt-BR"
   >
-    <!-- Clerk Authentication (async - critical for dashboard auth) -->
-    <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsuam9ibmFncmluZ2EuY29tLmJyJA" src="https://clerk.jobnagringa.com.br/npm/@clerk/clerk-js@5/dist/clerk.browser.js"></script>
+    <!--
+      GTM via Partytown (runs in web worker, off main thread)
+      Consistent with BaseLayout for analytics tracking
+    -->
     <script is:inline>
-      var COOKIE_NAME="user",LOCAL_KEY="user",COOKIE_TTL=86400;
-      function setCookie(e,n,t,o){var r=[encodeURIComponent(e)+"="+encodeURIComponent(n),"path=/","max-age="+t];o&&o.domain&&r.push("domain="+o.domain),o&&o.secure&&r.push("secure"),o&&o.sameSite&&r.push("samesite="+o.sameSite),document.cookie=r.join("; ")}
-      function persistUserData(e){window.user=e;try{localStorage.setItem(LOCAL_KEY,JSON.stringify(e))}catch(e){}try{var n=null,t=null;e&&e.primaryEmailAddress&&e.primaryEmailAddress.emailAddress?n=e.primaryEmailAddress.emailAddress:e&&e.emailAddresses&&e.emailAddresses.length&&(n=e.emailAddresses[0]&&e.emailAddresses[0].emailAddress||null),e&&e.primaryPhoneNumber&&e.primaryPhoneNumber.phoneNumber?t=e.primaryPhoneNumber.phoneNumber:e&&e.phoneNumbers&&e.phoneNumbers.length&&(t=e.phoneNumbers[0]&&e.phoneNumbers[0].phoneNumber||null);var o={firstName:e&&e.firstName||null,phoneNumber:t,email:n,publicMetadata:e&&e.publicMetadata||{}},r="https:"===window.location.protocol,a=window.location.hostname,i=a.slice(-".jobnagringa.com.br".length)===".jobnagringa.com.br"?".jobnagringa.com.br":void 0;setCookie(COOKIE_NAME,JSON.stringify(o),COOKIE_TTL,{secure:r,sameSite:"Strict",domain:i})}catch(e){}}
-      function getUserFromCookie(){try{for(var e=document.cookie?document.cookie.split(";"):[],n=null,t=0;t<e.length;t++){var o=e[t].replace(/^\s+|\s+$/g,"");if(0===o.indexOf(COOKIE_NAME+"=")){n=o;break}}if(!n)return null;var r="";try{r=decodeURIComponent(n.split("=")[1]||"")}catch(e){r=""}if(!r)return null;var a=null;try{a=window.JSON&&JSON.parse?JSON.parse(r):null}catch(e){a=null}return a}catch(e){return null}}
-      function userShouldBeLoggedIn(){try{var e=getUserFromCookie();if(!e){var n=encodeURIComponent(window.location.href);return void(window.location.href="https://accounts.jobnagringa.com.br/sign-in?redirect_url="+n)}window.console&&console.log&&console.log("Usuario logado com email:",e.email||null)}catch(e){var t=encodeURIComponent(window.location.href);window.location.href="https://accounts.jobnagringa.com.br/sign-in?redirect_url="+t}}
-      function userIsPaidCustomer(){try{var e=getUserFromCookie();return!!(e&&e.publicMetadata&&e.publicMetadata.isPaidCustomer===!0)}catch(e){return!1}}
-      function populateFirstNameFromUser(){try{var e=getUserFromCookie();if(!e)return;var n="";e.firstName&&""!==String(e.firstName).replace(/^\s+|\s+$/g,"")?n=String(e.firstName).replace(/^\s+|\s+$/g,""):e.fullName&&""!==String(e.fullName).replace(/^\s+|\s+$/g,"")?n=String(e.fullName).replace(/^\s+|\s+$/g,"").split(/\s+/)[0]:e.username&&""!==String(e.username).replace(/^\s+|\s+$/g,"")&&(n=String(e.username).replace(/^\s+|\s+$/g,""));if(!n)return;for(var t=document.querySelectorAll?document.querySelectorAll('[data-ms-member="first-name"]'):[],o=0;o<t.length;o++)"value"in t[o]?t[o].value=n:t[o].textContent=n}catch(e){}}
-      function handleCommunityContent(){try{for(var e=userIsPaidCustomer()?'[data-ms-content="!community"]':'[data-ms-content="community"]',n=document.querySelectorAll?document.querySelectorAll(e):[],t=0;t<n.length;t++){var o=n[t];o&&o.parentNode&&o.parentNode.removeChild(o)}}catch(e){}}
-      !function(){function e(){if(!window.Clerk||!Clerk.load)return;var e=null;try{e=Clerk.load()}catch(e){}e&&e.then?e.then(function(){try{var e=Clerk.user;e&&persistUserData(e)}catch(e){}}).catch(function(){}):setTimeout(function(){try{var e=Clerk.user;e&&persistUserData(e)}catch(e){}},1e3)}window.addEventListener?window.addEventListener("load",e):window.attachEvent?window.attachEvent("onload",e):function(e){var n=window.onload;window.onload=function(t){n&&n.call(e,t),e()}}(e)}();
+      window.dataLayer = window.dataLayer || [];
+    </script>
+    <script type="text/partytown" define:vars={{ gtmId }}>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        const f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s),
+    dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', gtmId);
+    </script>
+
+    <!-- Clerk Authentication (async - critical for dashboard auth) -->
+    <script is:inline async crossorigin="anonymous" data-clerk-publishable-key={clerkPublishableKey} src="https://clerk.jobnagringa.com.br/npm/@clerk/clerk-js@5/dist/clerk.browser.js"></script>
+    <script is:inline>
+      const COOKIE_NAME="user",LOCAL_KEY="user",COOKIE_TTL=86400;
+      function setCookie(e,n,t,o){const r=[encodeURIComponent(e)+"="+encodeURIComponent(n),"path=/","max-age="+t];o&&o.domain&&r.push("domain="+o.domain),o&&o.secure&&r.push("secure"),o&&o.sameSite&&r.push("samesite="+o.sameSite),document.cookie=r.join("; ")}
+      function persistUserData(e){window.user=e;try{localStorage.setItem(LOCAL_KEY,JSON.stringify(e))}catch(e){}try{let n=null,t=null;e&&e.primaryEmailAddress&&e.primaryEmailAddress.emailAddress?n=e.primaryEmailAddress.emailAddress:e&&e.emailAddresses&&e.emailAddresses.length&&(n=e.emailAddresses[0]&&e.emailAddresses[0].emailAddress||null),e&&e.primaryPhoneNumber&&e.primaryPhoneNumber.phoneNumber?t=e.primaryPhoneNumber.phoneNumber:e&&e.phoneNumbers&&e.phoneNumbers.length&&(t=e.phoneNumbers[0]&&e.phoneNumbers[0].phoneNumber||null);const o={firstName:e&&e.firstName||null,phoneNumber:t,email:n,publicMetadata:e&&e.publicMetadata||{}},r="https:"===window.location.protocol,a=window.location.hostname,i=a.slice(-".jobnagringa.com.br".length)===".jobnagringa.com.br"?".jobnagringa.com.br":void 0;setCookie(COOKIE_NAME,JSON.stringify(o),COOKIE_TTL,{secure:r,sameSite:"Strict",domain:i})}catch(e){}}
+      function getUserFromCookie(){try{for(var e=document.cookie?document.cookie.split(";"):[],n=null,t=0;t<e.length;t++){const o=e[t].replace(/^\s+|\s+$/g,"");if(0===o.indexOf(COOKIE_NAME+"=")){n=o;break}}if(!n)return null;let r="";try{r=decodeURIComponent(n.split("=")[1]||"")}catch(e){r=""}if(!r)return null;let a=null;try{a=window.JSON&&JSON.parse?JSON.parse(r):null}catch(e){a=null}return a}catch(e){return null}}
+      function userShouldBeLoggedIn(){try{const e=getUserFromCookie();if(!e){const n=encodeURIComponent(window.location.href);return void(window.location.href="https://accounts.jobnagringa.com.br/sign-in?redirect_url="+n)}window.console&&console.log&&console.log("Usuario logado com email:",e.email||null)}catch(e){const t=encodeURIComponent(window.location.href);window.location.href="https://accounts.jobnagringa.com.br/sign-in?redirect_url="+t}}
+      function userIsPaidCustomer(){try{const e=getUserFromCookie();return!!(e&&e.publicMetadata&&e.publicMetadata.isPaidCustomer===!0)}catch(e){return!1}}
+      function populateFirstNameFromUser(){try{const e=getUserFromCookie();if(!e)return;let n="";e.firstName&&""!==String(e.firstName).replace(/^\s+|\s+$/g,"")?n=String(e.firstName).replace(/^\s+|\s+$/g,""):e.fullName&&""!==String(e.fullName).replace(/^\s+|\s+$/g,"")?n=String(e.fullName).replace(/^\s+|\s+$/g,"").split(/\s+/)[0]:e.username&&""!==String(e.username).replace(/^\s+|\s+$/g,"")&&(n=String(e.username).replace(/^\s+|\s+$/g,""));if(!n)return;for(let t=document.querySelectorAll?document.querySelectorAll('[data-ms-member="first-name"]'):[],o=0;o<t.length;o++)"value"in t[o]?t[o].value=n:t[o].textContent=n}catch(e){}}
+      function handleCommunityContent(){try{for(let e=userIsPaidCustomer()?'[data-ms-content="!community"]':'[data-ms-content="community"]',n=document.querySelectorAll?document.querySelectorAll(e):[],t=0;t<n.length;t++){const o=n[t];o&&o.parentNode&&o.parentNode.removeChild(o)}}catch(e){}}
+      !function(){function e(){if(!window.Clerk||!Clerk.load)return;let e=null;try{e=Clerk.load()}catch(e){}e&&e.then?e.then(function(){try{const e=Clerk.user;e&&persistUserData(e)}catch(e){}}).catch(function(){}):setTimeout(function(){try{const e=Clerk.user;e&&persistUserData(e)}catch(e){}},1e3)}window.addEventListener?window.addEventListener("load",e):window.attachEvent?window.attachEvent("onload",e):function(e){const n=window.onload;window.onload=function(t){n&&n.call(e,t),e()}}(e)}();
       function runDomFuncs(){populateFirstNameFromUser(),handleCommunityContent()}
-      document.addEventListener?(document.addEventListener("DOMContentLoaded",runDomFuncs),window.addEventListener&&window.addEventListener("load",runDomFuncs)):document.attachEvent?(document.attachEvent("onreadystatechange",function(){"complete"===document.readyState&&runDomFuncs()}),window.attachEvent&&window.attachEvent("onload",runDomFuncs)):function(e){var n=window.onload;window.onload=function(t){n&&n.call(e,t),runDomFuncs()}}(window);
+      document.addEventListener?(document.addEventListener("DOMContentLoaded",runDomFuncs),window.addEventListener&&window.addEventListener("load",runDomFuncs)):document.attachEvent?(document.attachEvent("onreadystatechange",function(){"complete"===document.readyState&&runDomFuncs()}),window.attachEvent&&window.attachEvent("onload",runDomFuncs)):function(e){const n=window.onload;window.onload=function(t){n&&n.call(e,t),runDomFuncs()}}(window);
     </script>
 
     <slot name="head" />
   </Head>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
+  <!-- Skip to main content link for accessibility -->
+  <a href="#main-content" class="skip-to-content">
+    Skip to main content
+  </a>
+
+  <!-- Google Tag Manager (noscript fallback) -->
   <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-58XVRQZ" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    <iframe
+      src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+      height="0"
+      width="0"
+      style="display:none;visibility:hidden"
+      title="Google Tag Manager"></iframe>
   </noscript>
 
   <div class="page-wrapper">
     <!-- Global styles -->
     <div class="global-styles w-embed">
       <style>
+        /* Skip to content link - visible only on focus for keyboard users */
+        .skip-to-content {
+          position: absolute;
+          top: -100%;
+          left: 50%;
+          transform: translateX(-50%);
+          background: #0071ff;
+          color: #fff;
+          padding: 0.75rem 1.5rem;
+          border-radius: 0 0 0.5rem 0.5rem;
+          text-decoration: none;
+          font-weight: 600;
+          z-index: 10000;
+          transition: top 0.2s ease;
+        }
+        .skip-to-content:focus {
+          top: 0;
+          outline: 0.125rem solid #fff;
+          outline-offset: 0.125rem;
+        }
         /* Make text look crisper and more legible in all browsers */
         body {
           -webkit-font-smoothing: antialiased;
@@ -90,6 +146,15 @@ const {
         /* Focus state style for keyboard navigation for the focusable elements */
         *[tabindex]:focus-visible,
         input[type="file"]:focus-visible {
+          outline: 0.125rem solid #4d65ff;
+          outline-offset: 0.125rem;
+        }
+        /* Enhanced focus styles for interactive elements */
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible {
           outline: 0.125rem solid #4d65ff;
           outline-offset: 0.125rem;
         }
@@ -115,7 +180,7 @@ const {
 
     <Navigation isMemberNav={true} currentPage={currentPage} />
 
-    <main class="main-wrapper">
+    <main id="main-content" class="main-wrapper" tabindex="-1">
       <slot />
     </main>
 
@@ -134,7 +199,7 @@ const {
   <!-- Paid membership check script -->
   {requiresPaidMembership && (
     <script is:inline>
-      !function(){function e(){try{for(var e="user",t=document.cookie?document.cookie.split(";"):[],n=null,o=0;o<t.length;o++){var r=t[o].replace(/^\s+|\s+$/g,"");if(0===r.indexOf(e+"=")){n=r;break}}if(!n)return null;var a="";try{a=decodeURIComponent((n.split("=")[1]||""))}catch(e){a=""}if(!a)return null;var c=null;try{c=window.JSON&&JSON.parse?JSON.parse(a):null}catch(e){c=null}return c}catch(e){return null}}function t(){var t=e();return!!(t&&t.publicMetadata&&t.publicMetadata.isPaidCustomer===!0)}if(!t()){window.location.href="/"}}();
+      !function(){function e(){try{for(var e="user",t=document.cookie?document.cookie.split(";"):[],n=null,o=0;o<t.length;o++){const r=t[o].replace(/^\s+|\s+$/g,"");if(0===r.indexOf(e+"=")){n=r;break}}if(!n)return null;let a="";try{a=decodeURIComponent((n.split("=")[1]||""))}catch(e){a=""}if(!a)return null;let c=null;try{c=window.JSON&&JSON.parse?JSON.parse(a):null}catch(e){c=null}return c}catch(e){return null}}function t(){const t=e();return!!(t&&t.publicMetadata&&t.publicMetadata.isPaidCustomer===!0)}if(!t()){window.location.href="/"}}();
     </script>
   )}
 
@@ -153,7 +218,7 @@ const {
   <!-- Logout handler (inline - small and critical for UX) -->
   <script is:inline>
     document.addEventListener('DOMContentLoaded', function() {
-      var logoutBtn = document.getElementById('logout');
+      const logoutBtn = document.getElementById('logout');
       if (logoutBtn) {
         logoutBtn.addEventListener('click', function(e) {
           e.preventDefault();
