@@ -1,0 +1,33 @@
+Understand the following prompt and answer and think in English:
+
+<CONTEXT>
+
+Create an extremely structured plan with the information below, don't skimp on tokens.
+
+Add all tasks to the beads backlog. Organize by epics, tasks, and subtasks.
+
+Make it EXTREMELY descriptive, include plenty of context and detailed information about what needs to be done, all file paths, function names, tips on what to do, how to do it, best practices, etc.
+
+Make each task or subtask similar to a PRD (Project Report Document), with plenty of contextualized information about what needs to be done, where, and how.
+
+For this set of activities, create a new, separate epic.
+
+Finally, show a report of all the tasks that were created.
+
+<TASK>
+    Aplique as melhores praticas do astro para que tudo seja extremamente performatico.
+
+    Mas faça com que o layout original seja preservado, nada na UI deve ser alterada, todas as telas e componentes devem manter EXATAMENTE COM PERFEIÇÃO ABSOLUTA o layout antigo.
+
+    Mas aplique as melhores praticas de organização do código, quebre em pequenos componentes e etc, mas faça com que tudo seja verificavel com as paginas antigas para ver se o layout está perfeito mesmo.
+
+    Faça testes de regressão visual para manter a perfeição nas interfaces.
+
+    Tenha cuidado extremo ao refatorar o CSS para manter absolutamente tudo funcionando de maneira perfeita, mas tente fazer com que todas as telas carreguem apenas o estritamente necessario para renderizar e que não fique carregando a toa assets que impactem na performance e etc.
+
+    Aplique todas as melhores praticas possiveis.
+<TASK/>
+
+<CONTEXT/>
+
+DO NOT IMPLEMENT ANYTHING YET, JUST ADD IT TO THE BEADS BACKLOG.
