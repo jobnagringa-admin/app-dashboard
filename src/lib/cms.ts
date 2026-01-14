@@ -318,7 +318,7 @@ export async function getPostBySlug(slug: string): Promise<CollectionEntry<'post
 export async function getPartners(
   pagination?: PaginationOptions
 ): Promise<PaginatedResult<CollectionEntry<'partners'>>> {
-  let partners = await getCollection('partners');
+  const partners = await getCollection('partners');
 
   // Sort featured first
   partners.sort((a, b) => {
@@ -470,7 +470,7 @@ export async function getLessonsByCourse(courseId: string): Promise<CollectionEn
 export async function getVideos(
   pagination?: PaginationOptions
 ): Promise<PaginatedResult<CollectionEntry<'videos'>>> {
-  let videos = await getCollection('videos');
+  const videos = await getCollection('videos');
 
   // Sort by date
   videos.sort((a, b) => {
@@ -492,7 +492,7 @@ export async function getVideos(
 export async function getProducts(
   pagination?: PaginationOptions
 ): Promise<PaginatedResult<CollectionEntry<'products'>>> {
-  let products = await getCollection('products');
+  const products = await getCollection('products');
 
   // Sort featured first, then available
   products.sort((a, b) => {

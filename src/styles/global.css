@@ -248,12 +248,72 @@ a:hover {
   outline: 0;
 }
 
-/* Images */
+/* Images - CLS Prevention and Optimization */
 img {
   max-width: 100%;
   vertical-align: middle;
   display: inline-block;
   border: 0;
+  /* Prevent layout shift by reserving space */
+  height: auto;
+}
+
+/* Images with explicit dimensions get aspect-ratio support */
+img[width][height] {
+  aspect-ratio: attr(width) / attr(height);
+  height: auto;
+}
+
+/* Image container classes for CLS prevention */
+.img-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Aspect ratio containers for dynamic images */
+.img-container--16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+.img-container--4-3 {
+  aspect-ratio: 4 / 3;
+}
+
+.img-container--1-1 {
+  aspect-ratio: 1 / 1;
+}
+
+.img-container--3-2 {
+  aspect-ratio: 3 / 2;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Logo image containers (prevent CLS for nav logos) */
+.logo-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Partner/brand logo optimization */
+.brand_icon,
+.partner_logo img {
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+/* Job card thumbnail container */
+.job-card_info-thumbnail {
+  width: 48px;
+  height: 48px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 /* Blockquotes */

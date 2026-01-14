@@ -208,3 +208,71 @@ Webflow icon font:
 3. **Document exceptions** - Note any components that need Webflow classes
 4. **Consider Tailwind** - For new components, use Tailwind utilities
 5. **Preserve CSS variables** - The design token system is well-structured
+
+---
+
+## CSS Optimization Results (2026-01-14)
+
+### Optimizations Implemented
+
+1. **PurgeCSS Integration**
+   - Configured in `postcss.config.mjs`
+   - Removes unused CSS classes during production build
+   - Preserves all Webflow patterns via safelist (^w-, ^fs-, ^is-, ^has-, etc.)
+
+2. **CSS Minification (cssnano)**
+   - Minifies output CSS
+   - Preserves CSS variables and @font-face rules
+   - Removes duplicate rules and optimizes selectors
+
+3. **Critical CSS Extraction**
+   - Created `src/styles/critical/base.css` with above-the-fold styles
+   - Inlined in HTML head via Astro's raw import
+   - Includes: CSS variables, base reset, navigation, hero, buttons, containers
+
+4. **CSS Code Splitting (Vite)**
+   - Enabled via `cssCodeSplit: true` in astro.config.mjs
+   - Webflow styles bundled into `webflow` chunk
+   - Component styles bundled into `components` chunk
+
+### Size Reduction Results
+
+| Metric           | Before       | After         | Savings      |
+|------------------|--------------|---------------|--------------|
+| Total CSS Source | 297,930 bytes| -             | -            |
+| Built CSS Output | -            | 138,797 bytes | 159,133 bytes|
+| Reduction        | -            | -             | **53.4%**    |
+
+### Configuration Files
+
+- `postcss.config.mjs` - PurgeCSS + cssnano configuration
+- `astro.config.mjs` - Vite CSS code splitting settings
+- `src/styles/critical/base.css` - Critical above-the-fold CSS
+- `src/styles/index.css` - Main CSS entry point (processed by PostCSS)
+
+### How CSS is Loaded
+
+1. **Critical CSS** - Inlined in `<head>` via `Head.astro` component
+2. **Main CSS** - Imported in `BaseLayout.astro` via `import '../styles/index.css'`
+3. **PostCSS** - Processes imports, runs PurgeCSS, minifies with cssnano
+4. **Output** - Single bundled CSS file at `/_assets/css/[name]-[hash].css`
+
+### Safelist Patterns (Classes Preserved)
+
+```javascript
+// Regex patterns that are never removed:
+/^w-/        // All Webflow utility classes
+/^fs-/       // Finsweet attributes
+/^is-/       // Animation/state classes
+/^has-/      // Has-state classes
+/^cl-/       // Clerk auth classes
+/^hide-/     // Visibility utilities
+/^show-/     // Visibility utilities
+```
+
+### Notes
+
+- The `public/styles/` folder contains raw CSS that gets copied to dist without processing
+- The processed CSS is in `dist/client/_assets/css/`
+- Pages reference the processed CSS from _assets, not public/styles
+- Additional optimization possible by tightening safelist rules (test carefully)
