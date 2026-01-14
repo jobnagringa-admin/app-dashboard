@@ -16,55 +16,72 @@ const isCurrent = (path: string) => currentPage === path;
 
 <div class="nav_wrapper">
   <div class="public_nav">
-    <div class="navbar--blue--primary">
+    <nav class="navbar--blue--primary" aria-label="Main navigation">
       <div class="navbar_wrapper">
         <div class="navbar_container">
           <a
             href="/"
             class:list={['navbar_logo', 'w-inline-block', { 'w--current': isCurrent('/') }]}
+            aria-label="Job na Gringa - Go to homepage"
           >
             <img
               src="/images/Vectors-Wrapper.svg"
-              loading="lazy"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
               width="138"
               height="20"
               alt="Job na Gringa"
               class="logo_image hide-tablet"
+              style="aspect-ratio: 138 / 20;"
             />
             <img
               src="/images/logo-small_white.svg"
-              loading="lazy"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+              width="32"
+              height="32"
               alt="Job na Gringa"
               class="logo_image hide-desktop"
+              style="aspect-ratio: 1 / 1;"
             />
           </a>
 
-          <div class="navbar_link-wrap">
+          <div class="navbar_link-wrap" role="menubar">
             <a
               href="https://accounts.jobnagringa.com.br/sign-in?redirect_url=https://jobnagringa.com.br"
               class="navbar_link w-inline-block"
+              role="menuitem"
             >
-              <div>Vagas</div>
+              <span>Vagas</span>
             </a>
             <a
               href="/blog"
               class:list={['navbar_link', 'w-inline-block', { 'w--current': isCurrent('/blog') }]}
+              role="menuitem"
             >
-              <div>Blog</div>
+              <span>Blog</span>
             </a>
             <a
               href="https://accounts.jobnagringa.com.br/sign-in?redirect_url=https://link.jobnagringa.com.br/zap-channel"
               target="_blank"
+              rel="noopener noreferrer"
               class="navbar_link w-inline-block"
+              role="menuitem"
+              aria-label="WhatsApp Group (opens in new tab)"
             >
-              <div>Grupo Whats</div>
+              <span>Grupo Whats</span>
             </a>
             <a
               href="https://accounts.jobnagringa.com.br/sign-in?redirect_url=https://link.jobnagringa.com.br/discord"
               target="_blank"
+              rel="noopener noreferrer"
               class="navbar_link w-inline-block"
+              role="menuitem"
+              aria-label="Discord (opens in new tab)"
             >
-              <div>Discord</div>
+              <span>Discord</span>
             </a>
           </div>
 
@@ -73,26 +90,26 @@ const isCurrent = (path: string) => currentPage === path;
               href="/assine"
               class:list={['navbar_link', 'w-inline-block', { 'w--current': isCurrent('/assine') }]}
             >
-              <div>Assine</div>
+              <span>Assine</span>
             </a>
             <a
               href="https://accounts.jobnagringa.com.br/sign-in?redirect_url=https://jobnagringa.com.br/jng/member-dashboard"
               class="navbar_link is-white w-inline-block"
             >
-              <div>Login</div>
+              <span>Login</span>
             </a>
 
             <!-- Mobile menu button -->
-            <div class="navbar_mobile-menu">
-              <div class="icon-1x1-medium w-embed">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+            <button type="button" class="navbar_mobile-menu" aria-label="Open mobile menu" aria-expanded="false">
+              <div class="icon-1x1-medium w-embed" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
                   <path
                     fill="currentColor"
                     d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75m0 5A.75.75 0 0 1 2.75 9h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 9.75M2.75 14a.75.75 0 0 0 0 1.5h14.5a.75.75 0 0 0 0-1.5z"
                   ></path>
                 </svg>
               </div>
-            </div>
+            </button>
           </div>
         </div>
       </div>
@@ -109,6 +126,6 @@ const isCurrent = (path: string) => currentPage === path;
       <div class="hide-desktop">
         <div class="spacer-xlarge"></div>
       </div>
-    </div>
+    </nav>
   </div>
 </div>
