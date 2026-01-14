@@ -1,0 +1,81 @@
+---
+/**
+ * Product Detail Page
+ * Migrated from: src-legacy/detail_product.html
+ * Webflow Page ID: 643af1a27f0b8b7db9a54bd1
+ *
+ * TODO: Implement CMS/e-commerce data fetching for products
+ * TODO: Replace placeholder content with dynamic product data
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+
+// TODO: Fetch product data from CMS/e-commerce system
+// const product = await fetchProduct(slug);
+// if (!product) return Astro.redirect('/404');
+
+const pageTitle = `Product - ${slug}`;
+---
+
+<BaseLayout title={pageTitle}>
+  <div class="padding-global">
+    <div class="container-large">
+      <div class="padding-section-large">
+        <div class="product-detail-wrapper">
+          <div class="product-layout">
+            <!-- Product Images -->
+            <div class="product-images">
+              <!-- TODO: Product gallery from CMS -->
+              <div class="product-main-image">
+                {/* <img src={product.mainImage} alt={product.name} /> */}
+              </div>
+              <div class="product-thumbnails">
+                {/* product.images.map(img => <img src={img} />) */}
+              </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-info">
+              <h1 class="heading-style-h2">
+                {/* product.name */}
+                Product: {slug}
+              </h1>
+
+              <div class="product-price text-weight-medium">
+                {/* product.price */}
+                <span class="price">R$ 0,00</span>
+              </div>
+
+              <div class="spacer-small"></div>
+
+              <!-- Product Description -->
+              <div class="product-description w-richtext">
+                {/* product.description */}
+                <p>Product description will be loaded from the CMS.</p>
+              </div>
+
+              <div class="spacer-medium"></div>
+
+              <!-- Product Options (if any) -->
+              <div class="product-options">
+                {/* SKU selector, quantity, etc. */}
+              </div>
+
+              <div class="spacer-medium"></div>
+
+              <!-- Add to Cart Button -->
+              <div class="product-actions">
+                <a href="#" class="button w-button">
+                  Add to Cart
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

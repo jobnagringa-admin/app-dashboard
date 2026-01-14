@@ -1,0 +1,435 @@
+/**
+ * Global Styles - JobnaGringa Astro Migration
+ *
+ * This file contains all CSS custom properties (variables), global resets,
+ * and base typography styles extracted from the legacy Webflow project.
+ *
+ * Original source: src-legacy/css/jobnagringa.webflow.css
+ * Migration date: 2026-01-14
+ */
+
+/* ==========================================================================
+   CSS Custom Properties (Design Tokens)
+   ========================================================================== */
+
+:root {
+  /* Brand Colors */
+  --brand--primary: var(--blues--blue-60);
+
+  /* Blue Palette */
+  --blues--blue-05: #fafbff;
+  --blues--blue-10: #f1f7ff;
+  --blues--blue-20: #bedbff;
+  --blues--blue-30: #91c2ff;
+  --blues--blue-40: #61a7ff;
+  --blues--blue-50: #318cff;
+  --blues--blue-60: #0071ff;
+  --blues--blue-70: #0057c4;
+  --blues--blue-80: #003d8a;
+  --blues--blue-90: #002451;
+
+  /* Neutral Palette */
+  --neutrals--neutral-100-white: #fff;
+  --neutrals--neutral-200: #fafafa;
+  --neutrals--neutral-300: #e4e4ed;
+  --neutrals--neutrla-400: #aeaec4;
+  --neutrals--neutral-500: #8c8c9e;
+  --neutrals--neutral-600: #686781;
+  --neutrals--neutral-700: #33334e;
+  --neutrals--neutral-800: #171728;
+
+  /* Background Colors */
+  --backgrounds--light-secondary: var(--blues--blue-10);
+  --backgrounds--dark-blue: #0f172a;
+  --backgrounds--dark-modal: #000b1acc;
+
+  /* Border Colors */
+  --borders--border-light: var(--neutrals--neutral-200);
+  --borders--border-regular: var(--neutrals--neutral-300);
+  --borders--border-primary: var(--brand--primary);
+
+  /* Font Colors */
+  --fonts--text-100: var(--neutrals--neutral-600);
+  --fonts--text-50: var(--neutrals--neutral-500);
+
+  /* Border Radius */
+  --border-radius--radius-small: 0.5rem;
+  --border-radius--radius-regular: 1rem;
+  --border-radius--radius-medium: 1.5rem;
+  --border-radius--radius-large: 2rem;
+  --border-radius--radius-xlarge: 2.5rem;
+  --border-radius--radius-huge: 3rem;
+
+  /* App Theme Colors (Light Mode) */
+  --_apps---colors--background: #f1f7ff;
+  --_apps---colors--foreground: #686781;
+  --_apps---colors--card: #fff;
+  --_apps---colors--card-foreground: #060606;
+  --_apps---colors--popover: #e8e9ea;
+  --_apps---colors--popover-foreground: #060606;
+  --_apps---colors--primary: #0071ff;
+  --_apps---colors--primary-foreground: #080d16;
+  --_apps---colors--secondary: #d1eeff;
+  --_apps---colors--secondary-foreground: #0a0d13;
+  --_apps---colors--muted: #eff0f0;
+  --_apps---colors--muted-foreground: #717376;
+  --_apps---colors--accent: #dcdcdc;
+  --_apps---colors--accent-foreground: #0d0d0d;
+  --_apps---colors--destructive: #dc403d;
+  --_apps---colors--border: #e4e4ed;
+  --_apps---colors--input: #e7e7f0;
+  --_apps---colors--ring: #3678df;
+
+  /* App Theme Colors (Dark Mode) */
+  --_apps---colors--background-dark: #070606;
+  --_apps---colors--foreground-dark: #f8f8f8;
+  --_apps---colors--card-dark: #1a1919;
+  --_apps---colors--card-foreground-dark: #f8f8f8;
+  --_apps---colors--popover-dark: #1a1919;
+  --_apps---colors--popover-foreground-dark: #f8f8f8;
+  --_apps---colors--primary-dark: #187dff;
+  --_apps---colors--primary-foreground-dark: #080d16;
+  --_apps---colors--secondary-dark: #001648;
+  --_apps---colors--secondary-foreground-dark: #f4f9ff;
+  --_apps---colors--muted-dark: #020202;
+  --_apps---colors--muted-foreground-dark: #8d8d8d;
+  --_apps---colors--accent-dark: #2f2f2f;
+  --_apps---colors--accent-foreground-dark: #f8f8f8;
+  --_apps---colors--destructive-dark: #e14541;
+  --_apps---colors--border-dark: #e4e4ed;
+  --_apps---colors--input-dark: #fff;
+  --_apps---colors--ring-dark: #5396ff;
+
+  /* Sidebar Theme */
+  --_apps---sidebar--sidebar: #eff0f0;
+  --_apps---sidebar--sidebar-foreground: #060606;
+  --_apps---sidebar--sidebar-primary: #0071ff;
+  --_apps---sidebar--sidebar-primary-foreground: #080d16;
+  --_apps---sidebar--sidebar-accent: #dcdcdc;
+  --_apps---sidebar--sidebar-accent-foreground: #0d0d0d;
+  --_apps---sidebar--sidebar-border: #e4e4ed;
+  --_apps---sidebar--sidebar-ring: #3678df;
+  --_apps---sidebar--sidebar-dark: #0c0c0c;
+  --_apps---sidebar--sidebar-foreground-dark: #f8f8f8;
+  --_apps---sidebar--sidebar-primary-dark: #187dff;
+  --_apps---sidebar--sidebar-primary-foreground-dark: #080d16;
+  --_apps---sidebar--sidebar-accent-dark: #2f2f2f;
+  --_apps---sidebar--sidebar-accent-foreground-dark: #f8f8f8;
+  --_apps---sidebar--sidebar-border-dark: #fff;
+  --_apps---sidebar--sidebar-ring-dark: #5396ff;
+
+  /* Chart Colors */
+  --_apps---charts--chart-1: #0071ff;
+  --_apps---charts--chart-2: #5a98fb;
+  --_apps---charts--chart-3: #005cfa;
+  --_apps---charts--chart-4: #0056c9;
+  --_apps---charts--chart-5: #0032ad;
+  --_apps---charts--chart-1-dark: #187dff;
+  --_apps---charts--chart-2-dark: #74b4ff;
+  --_apps---charts--chart-3-dark: #0057f5;
+  --_apps---charts--chart-4-dark: #59a2ff;
+  --_apps---charts--chart-5-dark: #004fca;
+
+  /* Typography */
+  --_apps---typography--heading-font: Anton;
+  --_apps---typography--body-font: Inter, sans-serif;
+  --_apps---typography--button-font: Anton;
+
+  /* Sizes */
+  --_apps---sizes--radius: 1rem;
+}
+
+/* ==========================================================================
+   Custom Scrollbar Styles
+   ========================================================================== */
+
+/* Width */
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 100rem;
+  background: #fff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 100rem;
+  background: var(--neutrals--neutral-300);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--blues--blue-20);
+}
+
+/* ==========================================================================
+   Base Element Styles
+   ========================================================================== */
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  background-color: var(--neutrals--neutral-100-white);
+  font-family: var(--_apps---typography--body-font);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--fonts--text-100);
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 38px;
+  line-height: 44px;
+  margin-top: 20px;
+}
+
+h2 {
+  font-size: 32px;
+  line-height: 36px;
+  margin-top: 20px;
+}
+
+h3 {
+  font-size: 24px;
+  line-height: 30px;
+  margin-top: 20px;
+}
+
+h4 {
+  font-size: 18px;
+  line-height: 24px;
+  margin-top: 10px;
+}
+
+h5 {
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 10px;
+}
+
+h6 {
+  font-size: 12px;
+  line-height: 18px;
+  margin-top: 10px;
+}
+
+/* Paragraphs */
+p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+/* Links */
+a {
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:active,
+a:hover {
+  outline: 0;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  vertical-align: middle;
+  display: inline-block;
+  border: 0;
+}
+
+/* Blockquotes */
+blockquote {
+  margin: 0 0 10px 0;
+  padding: 10px 20px;
+  border-left: 5px solid #e2e2e2;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+/* Lists */
+ul,
+ol {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  padding-left: 40px;
+}
+
+/* Figures */
+figure {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+figcaption {
+  margin-top: 5px;
+  text-align: center;
+}
+
+/* ==========================================================================
+   Form Elements
+   ========================================================================== */
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+button {
+  overflow: visible;
+  border: 0;
+  cursor: pointer;
+  -webkit-appearance: button;
+}
+
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+input {
+  line-height: normal;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+input[type="search"] {
+  -webkit-appearance: none;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+textarea {
+  overflow: auto;
+}
+
+/* Custom Select Styling */
+select,
+.input_field.is-select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-position: 100% 50%;
+  background-size: 1rem 1rem;
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+/* Hide elements */
+.hide {
+  display: none;
+}
+
+/* Form validation states */
+.error {
+  border: 1px red solid;
+}
+
+.success {
+  border: 1px #0acf0a solid;
+}
+
+.error-message {
+  font-size: 12px;
+  color: red;
+  margin-top: -8px;
+}
+
+/* Acronym styling */
+[acronym] {
+  font-family: monospace;
+  width: 2ch;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Link hover effects */
+.link-return:hover .button {
+  background: var(--blues--blue-50);
+  color: #fff;
+}
+
+/* Visibility utilities */
+.hide-tablet {
+  display: block;
+}
+
+.hide-desktop {
+  display: none;
+}
+
+@media screen and (max-width: 991px) {
+  .hide-tablet {
+    display: none;
+  }
+
+  .hide-desktop {
+    display: block;
+  }
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}

@@ -1,0 +1,64 @@
+---
+/**
+ * Button Component - Various button styles
+ *
+ * @prop {string} href - Link URL (renders as anchor if provided)
+ * @prop {string} variant - Button style variant
+ *   - 'primary' (default): Blue primary button
+ *   - 'secondary': Secondary outlined style
+ *   - 'secondary-light': Light secondary button
+ *   - 'secondary-light-2': Alternative light secondary
+ *   - 'white': White button for dark backgrounds
+ *   - 'large-special': Large special CTA button
+ * @prop {boolean} isStretch - Stretch to fill container
+ * @prop {boolean} disabled - Disable the button
+ * @prop {string} type - Button type (button, submit, reset) - only for button elements
+ * @prop {boolean} loadingFeedback - Enable loading state on click
+ * @prop {string} class - Additional CSS classes
+ */
+
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'secondary-light' | 'secondary-light-2' | 'white' | 'large-special';
+  isStretch?: boolean;
+  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+  loadingFeedback?: boolean;
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  isStretch = false,
+  disabled = false,
+  type = 'button',
+  loadingFeedback = false,
+  class: className = '',
+} = Astro.props;
+
+const variantClasses: Record<string, string> = {
+  primary: 'button',
+  secondary: 'button is-secondary',
+  'secondary-light': 'button is-secondary-light',
+  'secondary-light-2': 'button is-secondary-light-2',
+  white: 'button is-white',
+  'large-special': 'button is-large-special',
+};
+
+const baseClass = variantClasses[variant] || 'button';
+const stretchClass = isStretch ? 'is-stretch' : '';
+const finalClass = `${baseClass} ${stretchClass} ${className} w-button`.trim();
+
+const loadingAttr = loadingFeedback ? { 'loading-feedback': 'true' } : {};
+---
+
+{href ? (
+  <a href={href} class={finalClass} {...loadingAttr}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class={finalClass} disabled={disabled} {...loadingAttr}>
+    <slot />
+  </button>
+)}

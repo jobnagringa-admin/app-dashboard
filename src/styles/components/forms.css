@@ -1,0 +1,509 @@
+/**
+ * Form Component Styles - JobnaGringa Astro Migration
+ *
+ * All form element styles including inputs, selects, checkboxes, and form layouts.
+ *
+ * Original source: src-legacy/css/jobnagringa.webflow.css
+ * Migration date: 2026-01-14
+ */
+
+/* ==========================================================================
+   Form Container
+   ========================================================================== */
+
+.w-form {
+  margin: 0 0 15px;
+}
+
+.w-form-done {
+  display: none;
+  padding: 20px;
+  text-align: center;
+  background-color: #dddddd;
+}
+
+.w-form-fail {
+  display: none;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #ffdede;
+}
+
+/* ==========================================================================
+   Input Fields
+   ========================================================================== */
+
+.w-input,
+.w-select {
+  display: block;
+  width: 100%;
+  height: 38px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333333;
+  vertical-align: middle;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+}
+
+.w-input::placeholder,
+.w-select::placeholder {
+  color: #999;
+}
+
+.w-input:focus,
+.w-select:focus {
+  border-color: #3898ec;
+  outline: 0;
+}
+
+.w-input[disabled],
+.w-select[disabled],
+.w-input[readonly],
+.w-select[readonly],
+fieldset[disabled] .w-input,
+fieldset[disabled] .w-select {
+  cursor: not-allowed;
+}
+
+.w-input[disabled]:not(.w-input-disabled),
+.w-select[disabled]:not(.w-input-disabled),
+.w-input[readonly],
+.w-select[readonly],
+fieldset[disabled]:not(.w-input-disabled) .w-input,
+fieldset[disabled]:not(.w-input-disabled) .w-select {
+  background-color: #eeeeee;
+}
+
+textarea.w-input,
+textarea.w-select {
+  height: auto;
+}
+
+.w-select {
+  background-color: #f3f3f3;
+}
+
+.w-select[multiple] {
+  height: auto;
+}
+
+/* ==========================================================================
+   Custom Input Field
+   ========================================================================== */
+
+.input_field {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--neutrals--neutral-100-white);
+  border: 1px solid var(--borders--border-regular);
+  border-radius: var(--border-radius--radius-small);
+  width: 100%;
+  height: 2.75rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--fonts--text-100);
+  transition: border-color 0.2s ease;
+}
+
+.input_field::placeholder {
+  color: var(--neutrals--neutral-500);
+}
+
+.input_field:focus {
+  border-color: var(--brand--primary);
+  outline: none;
+}
+
+.input_field.is-error {
+  border-color: var(--_apps---colors--destructive);
+}
+
+.input_field.is-select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-position: 100% 50%;
+  background-size: 1rem 1rem;
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+}
+
+/* ==========================================================================
+   Form Labels
+   ========================================================================== */
+
+.w-form-label {
+  display: inline-block;
+  cursor: pointer;
+  font-weight: normal;
+  margin-bottom: 0px;
+}
+
+.form_label {
+  color: var(--neutrals--neutral-700);
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: block;
+}
+
+.form_label.is-required::after {
+  content: " *";
+  color: var(--_apps---colors--destructive);
+}
+
+/* ==========================================================================
+   Checkbox
+   ========================================================================== */
+
+.w-checkbox {
+  margin-bottom: 5px;
+  padding-left: 20px;
+  display: block;
+}
+
+.w-checkbox:before {
+  content: " ";
+  grid-area: 1 / 1 / 2 / 2;
+  display: table;
+}
+
+.w-checkbox:after {
+  content: " ";
+  clear: both;
+  grid-area: 1 / 1 / 2 / 2;
+  display: table;
+}
+
+.w-checkbox-input {
+  float: left;
+  margin: 4px 0 0 -20px;
+  line-height: normal;
+}
+
+.w-checkbox-input--inputType-custom {
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  width: 12px;
+  height: 12px;
+}
+
+.w-checkbox-input--inputType-custom.w--redirected-checked {
+  background-color: #3898ec;
+  background-image: url("https://d3e54v103j8qbb.cloudfront.net/static/custom-checkbox-checkmark.589d534424.svg");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-color: #3898ec;
+}
+
+.w-checkbox-input--inputType-custom.w--redirected-focus {
+  box-shadow: 0 0 3px 1px #3898ec;
+}
+
+/* ==========================================================================
+   Radio Button
+   ========================================================================== */
+
+.w-radio {
+  display: block;
+  margin-bottom: 5px;
+  padding-left: 20px;
+}
+
+.w-radio:before,
+.w-radio:after {
+  content: " ";
+  display: table;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-column-end: 2;
+  grid-row-end: 2;
+}
+
+.w-radio:after {
+  clear: both;
+}
+
+.w-radio-input {
+  margin: 4px 0 0;
+  line-height: normal;
+  float: left;
+  margin-left: -20px;
+}
+
+.w-radio-input {
+  margin-top: 3px;
+}
+
+/* ==========================================================================
+   File Upload
+   ========================================================================== */
+
+.w-file-upload {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.w-file-upload-input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -100;
+}
+
+.w-file-upload-default,
+.w-file-upload-uploading,
+.w-file-upload-success {
+  display: inline-block;
+  color: #333333;
+}
+
+.w-file-upload-error {
+  display: block;
+  margin-top: 10px;
+}
+
+.w-file-upload-default.w-hidden,
+.w-file-upload-uploading.w-hidden,
+.w-file-upload-error.w-hidden,
+.w-file-upload-success.w-hidden {
+  display: none;
+}
+
+.w-file-upload-uploading-btn {
+  display: flex;
+  font-size: 14px;
+  font-weight: normal;
+  cursor: pointer;
+  margin: 0;
+  padding: 8px 12px;
+  border: 1px solid #cccccc;
+  background-color: #fafafa;
+}
+
+.w-file-upload-file {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  margin: 0;
+  padding: 8px 9px 8px 11px;
+  border: 1px solid #cccccc;
+  background-color: #fafafa;
+}
+
+.w-file-upload-file-name {
+  font-size: 14px;
+  font-weight: normal;
+  display: block;
+}
+
+.w-file-remove-link {
+  margin-top: 3px;
+  margin-left: 10px;
+  width: auto;
+  height: auto;
+  padding: 3px;
+  display: block;
+  cursor: pointer;
+}
+
+.w-file-upload-error-msg {
+  display: inline-block;
+  color: #ea384c;
+  padding: 2px 0;
+}
+
+.w-file-upload-info {
+  display: inline-block;
+  line-height: 38px;
+  padding: 0 12px;
+}
+
+.w-file-upload-label {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: normal;
+  cursor: pointer;
+  margin: 0;
+  padding: 8px 12px;
+  border: 1px solid #cccccc;
+  background-color: #fafafa;
+}
+
+/* ==========================================================================
+   E-commerce Checkout Forms
+   ========================================================================== */
+
+.w-commerce-commercecheckoutformcontainer {
+  background-color: #f5f5f5;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.w-commerce-commercelayoutcontainer {
+  justify-content: center;
+  align-items: flex-start;
+  display: flex;
+}
+
+.w-commerce-commercelayoutmain {
+  flex: 0 800px;
+  margin-right: 20px;
+}
+
+.w-commerce-commercecheckoutblockheader {
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 4px 20px;
+  display: flex;
+}
+
+.w-commerce-commercecheckoutcustomerinfowrapper {
+  margin-bottom: 20px;
+}
+
+.w-commerce-commercecheckoutblockcontent {
+  background-color: #fff;
+  border-bottom: 1px solid #e6e6e6;
+  border-left: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
+  padding: 20px;
+}
+
+.w-commerce-commercecheckoutemailinput,
+.w-commerce-commercecheckoutshippingfullname,
+.w-commerce-commercecheckoutshippingstreetaddress,
+.w-commerce-commercecheckoutshippingstreetaddressoptional,
+.w-commerce-commercecheckoutshippingcity,
+.w-commerce-commercecheckoutshippingstateprovince,
+.w-commerce-commercecheckoutshippingzippostalcode,
+.w-commerce-commercecheckoutshippingcountryselector,
+.w-commerce-commercecheckoutadditionaltextinput,
+.w-commerce-commercecheckoutcardnumber,
+.w-commerce-commercecheckoutcardexpirationdate,
+.w-commerce-commercecheckoutcardsecuritycode {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  width: 100%;
+  height: 38px;
+  margin-bottom: 16px;
+  padding: 8px 12px;
+  line-height: 20px;
+  display: block;
+}
+
+.w-commerce-commercecheckoutemailinput::placeholder,
+.w-commerce-commercecheckoutshippingfullname::placeholder,
+.w-commerce-commercecheckoutshippingstreetaddress::placeholder,
+.w-commerce-commercecheckoutadditionaltextinput::placeholder,
+.w-commerce-commercecheckoutcardnumber::placeholder,
+.w-commerce-commercecheckoutcardexpirationdate::placeholder,
+.w-commerce-commercecheckoutcardsecuritycode::placeholder {
+  color: #999;
+}
+
+.w-commerce-commercecheckoutemailinput:focus,
+.w-commerce-commercecheckoutshippingfullname:focus,
+.w-commerce-commercecheckoutshippingstreetaddress:focus,
+.w-commerce-commercecheckoutadditionaltextinput:focus,
+.w-commerce-commercecheckoutcardnumber:focus,
+.w-commerce-commercecheckoutcardexpirationdate:focus,
+.w-commerce-commercecheckoutcardsecuritycode:focus {
+  border-color: #3898ec;
+  outline-style: none;
+}
+
+.w-commerce-commercecheckoutlabel {
+  margin-bottom: 8px;
+}
+
+.w-commerce-commercecheckoutrow {
+  margin-left: -8px;
+  margin-right: -8px;
+  display: flex;
+}
+
+.w-commerce-commercecheckoutcolumn {
+  flex: 1;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.w-commerce-commercecheckoutadditionaltextarea {
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  width: 100%;
+  height: 76px;
+  margin-bottom: 16px;
+  padding: 8px 12px;
+}
+
+.w-commerce-commercecheckoutadditionaltextarea::placeholder {
+  color: #999;
+}
+
+.w-commerce-commercecheckoutadditionaltextarea:focus {
+  border-color: #3898ec;
+  outline-style: none;
+}
+
+.w-commerce-commercecheckoutadditionalcheckboxwrapper {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+}
+
+.w-commerce-commercecheckoutadditionalcheckbox {
+  margin-right: 8px;
+}
+
+/* ==========================================================================
+   Job Search Form
+   ========================================================================== */
+
+.job-search_select {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--neutrals--neutral-100-white);
+  border: 1px solid var(--borders--border-regular);
+  border-radius: var(--border-radius--radius-small);
+  height: 2.5rem;
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  background-size: 1rem 0.6rem;
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+}
+
+.job-search_select.is-checkbox {
+  cursor: pointer;
+}
+
+.job-search_select.is-checkbox.is-current {
+  border-color: var(--brand--primary);
+  background-color: var(--blues--blue-10);
+}
+
+@media screen and (max-width: 479px) {
+  .job-search_select.input_select,
+  .job-search_select.is-checkbox {
+    background-size: 1.2rem 0.8rem;
+    height: 2rem;
+    padding: 0.2rem 1.2rem 0.2rem 0.5rem;
+    font-size: 0.7rem;
+  }
+}

@@ -1,0 +1,85 @@
+---
+/**
+ * Checkbox Component - Checkbox input with label
+ *
+ * @prop {string} name - Checkbox name attribute
+ * @prop {string} id - Checkbox id attribute (defaults to name)
+ * @prop {string} label - Checkbox label text
+ * @prop {boolean} checked - Whether checkbox is checked
+ * @prop {string} class - Additional CSS classes
+ * @prop {boolean} isJobSearch - Use job search styling
+ * @prop {boolean} isBrazilianCheck - Use Brazilian flag styling
+ * @prop {string} filterField - Finsweet CMS filter field attribute
+ * @prop {string} href - Optional link wrapper URL
+ */
+
+interface Props {
+  name: string;
+  id?: string;
+  label: string;
+  checked?: boolean;
+  class?: string;
+  isJobSearch?: boolean;
+  isBrazilianCheck?: boolean;
+  filterField?: string;
+  href?: string;
+}
+
+const {
+  name,
+  id,
+  label,
+  checked = false,
+  class: className = '',
+  isJobSearch = false,
+  isBrazilianCheck = false,
+  filterField,
+  href,
+} = Astro.props;
+
+const checkboxId = id || name;
+const filterAttr = filterField ? { 'fs-cmsfilter-field': filterField } : {};
+
+let labelClass = 'w-checkbox';
+if (isJobSearch) {
+  labelClass = 'w-checkbox job-search_select is-checkbox';
+  if (isBrazilianCheck) {
+    labelClass += ' is-brazilian-check';
+  }
+}
+labelClass += ` ${className}`.trim();
+---
+
+{href ? (
+  <a href={href} class="checkbox_link w-inline-block">
+    <label class={labelClass} {...filterAttr}>
+      <div class="w-checkbox-input w-checkbox-input--inputType-custom checkbox"></div>
+      <input
+        type="checkbox"
+        id={checkboxId}
+        name={name}
+        data-name={name}
+        checked={checked}
+        style="opacity:0;position:absolute;z-index:-1"
+      />
+      <span class:list={["w-form-label", { "checkbox_label hide-tablet": isBrazilianCheck }]}>
+        {label}
+      </span>
+    </label>
+  </a>
+) : (
+  <label class={labelClass} {...filterAttr}>
+    <div class="w-checkbox-input w-checkbox-input--inputType-custom checkbox"></div>
+    <input
+      type="checkbox"
+      id={checkboxId}
+      name={name}
+      data-name={name}
+      checked={checked}
+      style="opacity:0;position:absolute;z-index:-1"
+    />
+    <span class="w-form-label">
+      {label}
+    </span>
+  </label>
+)}

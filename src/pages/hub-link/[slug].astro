@@ -1,0 +1,59 @@
+---
+/**
+ * Hub Link Detail Page
+ * Migrated from: src-legacy/detail_hub-link.html
+ * Webflow Page ID: 675caede6d9bff87a2cfb824
+ *
+ * TODO: Implement CMS data fetching for hub links
+ * TODO: Replace placeholder content with dynamic link data
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+
+// TODO: Fetch hub link data from CMS
+// const link = await fetchHubLink(slug);
+// if (!link) return Astro.redirect('/404');
+
+const pageTitle = `Hub Link - ${slug}`;
+---
+
+<BaseLayout title={pageTitle}>
+  <div class="padding-global">
+    <div class="container-large">
+      <div class="padding-section-large">
+        <div class="hub-link-detail">
+          <div class="margin-bottom margin-medium">
+            <h1 class="heading-style-h2">
+              {/* link.title */}
+              Hub Link: {slug}
+            </h1>
+          </div>
+
+          <!-- Link Description -->
+          <div class="link-description w-richtext">
+            {/* link.description */}
+            <p>Link description will be loaded from the CMS.</p>
+          </div>
+
+          <div class="spacer-medium"></div>
+
+          <!-- External Link -->
+          <div class="link-action">
+            <a
+              href="#"
+              class="button w-button"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {/* Visit link.url */}
+              Visit Link
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

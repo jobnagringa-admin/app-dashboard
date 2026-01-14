@@ -1,0 +1,333 @@
+/**
+ * Navbar Component Styles - JobnaGringa Astro Migration
+ *
+ * Navigation bar and header component styles.
+ *
+ * Original source: src-legacy/css/jobnagringa.webflow.css
+ * Migration date: 2026-01-14
+ */
+
+/* ==========================================================================
+   Navigation Base
+   ========================================================================== */
+
+.w-nav {
+  position: relative;
+  background: #dddddd;
+  z-index: 1000;
+}
+
+.w-nav:before,
+.w-nav:after {
+  content: " ";
+  display: table;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-column-end: 2;
+  grid-row-end: 2;
+}
+
+.w-nav:after {
+  clear: both;
+}
+
+/* ==========================================================================
+   Navigation Brand/Logo
+   ========================================================================== */
+
+.w-nav-brand {
+  position: relative;
+  float: left;
+  text-decoration: none;
+  color: #333333;
+}
+
+.navbar_logo {
+  grid-column-gap: 0rem;
+  grid-row-gap: 0rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.logo_image {
+  grid-column-gap: 0rem;
+  grid-row-gap: 0rem;
+  justify-content: center;
+  align-items: center;
+  height: 1.6rem;
+}
+
+/* ==========================================================================
+   Navigation Links
+   ========================================================================== */
+
+.w-nav-link {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  text-decoration: none;
+  color: #222222;
+  padding: 20px;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.w-nav-link.w--current {
+  color: #0082f3;
+}
+
+.navbar_link {
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+  color: var(--neutrals--neutral-100-white);
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: flex;
+  transition: opacity 0.2s ease;
+}
+
+.navbar_link:hover {
+  opacity: 0.8;
+}
+
+.navbar_link.is-white {
+  background-color: var(--neutrals--neutral-100-white);
+  color: var(--brand--primary);
+  border-radius: var(--border-radius--radius-small);
+}
+
+.navbar_link.is-white-secondary {
+  border: 1px solid var(--neutrals--neutral-100-white);
+  border-radius: var(--border-radius--radius-small);
+}
+
+/* ==========================================================================
+   Navigation Menu
+   ========================================================================== */
+
+.w-nav-menu {
+  position: relative;
+  float: right;
+}
+
+[data-nav-menu-open] {
+  display: block !important;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #c8c8c8;
+  text-align: center;
+  overflow: visible;
+  min-width: 200px;
+}
+
+.w--nav-link-open {
+  display: block;
+  position: relative;
+}
+
+/* ==========================================================================
+   Navigation Overlay
+   ========================================================================== */
+
+.w-nav-overlay {
+  position: absolute;
+  overflow: hidden;
+  display: none;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+.w-nav-overlay [data-nav-menu-open] {
+  top: 0;
+}
+
+.w-nav[data-animation="over-left"] .w-nav-overlay {
+  width: auto;
+}
+
+.w-nav[data-animation="over-left"] .w-nav-overlay,
+.w-nav[data-animation="over-left"] [data-nav-menu-open] {
+  right: auto;
+  z-index: 1;
+  top: 0;
+}
+
+.w-nav[data-animation="over-right"] .w-nav-overlay {
+  width: auto;
+}
+
+.w-nav[data-animation="over-right"] .w-nav-overlay,
+.w-nav[data-animation="over-right"] [data-nav-menu-open] {
+  left: auto;
+  z-index: 1;
+  top: 0;
+}
+
+/* ==========================================================================
+   Navigation Button (Mobile)
+   ========================================================================== */
+
+.w-nav-button {
+  position: relative;
+  float: right;
+  padding: 18px;
+  font-size: 24px;
+  display: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  tap-highlight-color: rgba(0, 0, 0, 0);
+  user-select: none;
+}
+
+.w-nav-button:focus {
+  outline: 0;
+}
+
+.w-nav-button.w--open {
+  background-color: #c8c8c8;
+  color: white;
+}
+
+.navbar_mobile-menu {
+  display: none;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Blue Primary Navbar (Custom)
+   ========================================================================== */
+
+.navbar--blue--primary {
+  z-index: 1000;
+  grid-column-gap: 0rem;
+  grid-row-gap: 0rem;
+  background-color: var(--brand--primary);
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 4rem;
+  padding: 0.5rem 2rem;
+  display: flex;
+  position: fixed;
+}
+
+.navbar_wrapper {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 80rem;
+  display: flex;
+}
+
+.navbar_container {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+
+.navbar_link-wrap {
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.navbar_button-wrap {
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+}
+
+/* ==========================================================================
+   Responsive Navigation
+   ========================================================================== */
+
+.w-nav[data-collapse="all"] .w-nav-menu {
+  display: none;
+}
+
+.w-nav[data-collapse="all"] .w-nav-button {
+  display: block;
+}
+
+.w--nav-dropdown-open {
+  display: block;
+}
+
+.w--nav-dropdown-toggle-open {
+  display: block;
+}
+
+.w--nav-dropdown-list-open {
+  position: static;
+}
+
+@media screen and (max-width: 991px) {
+  .w-nav[data-collapse="medium"] .w-nav-menu {
+    display: none;
+  }
+
+  .w-nav[data-collapse="medium"] .w-nav-button {
+    display: block;
+  }
+
+  .navbar_link-wrap {
+    display: none;
+  }
+
+  .navbar_mobile-menu {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .w-nav[data-collapse="small"] .w-nav-menu {
+    display: none;
+  }
+
+  .w-nav[data-collapse="small"] .w-nav-button {
+    display: block;
+  }
+
+  .w-nav-brand {
+    padding-left: 10px;
+  }
+
+  .navbar_logo {
+    width: 112px;
+  }
+
+  .navbar_link.is-white,
+  .navbar_link.is-white-secondary {
+    font-size: 0.75rem;
+  }
+
+  .navbar_container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .w-nav[data-collapse="tiny"] .w-nav-menu {
+    display: none;
+  }
+
+  .w-nav[data-collapse="tiny"] .w-nav-button {
+    display: block;
+  }
+}

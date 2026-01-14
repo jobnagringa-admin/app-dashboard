@@ -1,0 +1,64 @@
+---
+/**
+ * AnalyticsBody.astro
+ *
+ * Body-level Analytics Scripts
+ *
+ * Place this component at the beginning of <body> tag.
+ *
+ * Includes:
+ * - Google Tag Manager noscript fallback
+ * - Ahrefs Analytics
+ *
+ * Environment Variables Required:
+ * - PUBLIC_GTM_CONTAINER_ID: Google Tag Manager container ID
+ * - PUBLIC_AHREFS_KEY: Ahrefs analytics key
+ *
+ * Migration Notes:
+ * - GTM noscript iframe required for users with JS disabled
+ * - Ahrefs analytics is optional SEO tracking
+ */
+
+interface Props {
+  /**
+   * Enable Google Tag Manager noscript fallback
+   * @default true
+   */
+  enableGTM?: boolean;
+
+  /**
+   * Enable Ahrefs Analytics
+   * @default true
+   */
+  enableAhrefs?: boolean;
+}
+
+const {
+  enableGTM = true,
+  enableAhrefs = true
+} = Astro.props;
+
+const gtmContainerId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
+const ahrefsKey = import.meta.env.PUBLIC_AHREFS_KEY;
+---
+
+{/* Google Tag Manager (noscript) - Must be at start of body */}
+{enableGTM && gtmContainerId && (
+  <noscript>
+    <iframe
+      src={`https://www.googletagmanager.com/ns.html?id=${gtmContainerId}`}
+      height="0"
+      width="0"
+      style="display:none;visibility:hidden"
+    ></iframe>
+  </noscript>
+)}
+
+{/* Ahrefs Analytics */}
+{enableAhrefs && ahrefsKey && (
+  <script
+    async
+    src="https://analytics.ahrefs.com/analytics.js"
+    data-key={ahrefsKey}
+  ></script>
+)}

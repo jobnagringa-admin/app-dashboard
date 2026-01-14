@@ -1,0 +1,159 @@
+---
+/**
+ * Onboarding Page - New Member Welcome
+ * Protected route requiring authentication
+ */
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+---
+
+<DashboardLayout
+  title="Onboarding"
+  description="Entenda o que e o JNG e comece sua jornada"
+  currentPage="onboarding"
+  requiresAuth={true}
+  requiresPaidMembership={false}
+>
+  <div class="job-hero_section variation1">
+    <div class="container-large">
+      <div class="job-board_heading is-60rem">
+        <div class="hero_preheader">
+          <span class="text-color-primary">1000+ assinantes no #JNG</span>
+        </div>
+        <h1 class="text-color-primary">
+          Chegou a hora de comecar a sua jornada pela sua carreira internacional remota
+        </h1>
+        <div class="max-width-large">
+          <p class="text-style-subhead">
+            Abaixo nos vamos explicar o passo a passo de tudo que voce precisa para dar inicio as suas atividades aqui no #jobnagringa
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="position-relative">
+    <div class="code-embed-8 w-embed">
+      <svg viewBox="0 0 2173 159" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0.845703C251.665 97.0831 644.765 159 1086.5 159H0V0.845703Z" fill="#0057c4"></path>
+        <path d="M2173 159H1086.5C1528.23 159 1921.33 97.0831 2173 0.845703V159Z" fill="#0057c4"></path>
+      </svg>
+    </div>
+    <div class="background-color-white">
+      <div class="position-relative">
+        <div class="padding-global padding-large">
+          <div class="div-block-80">
+            <div>
+              <div class="container-small">
+                <div class="margin-bottom margin-small">
+                  <div class="landing-page_section">
+                    <div class="blog_tag-list is-blog-list">
+                      <div class="badge_wrapper is-blue is-top-fix">#emprego</div>
+                      <div class="badge_wrapper is-blue is-top-fix">#carreira</div>
+                      <div class="badge_wrapper is-blue is-top-fix">#remoto</div>
+                    </div>
+                    <div class="text-align-center">
+                      <div class="text-style-caption text-color-primary">siga os passos abaixo</div>
+                      <h2 class="text-color-primary">Comecando no #JNG</h2>
+                    </div>
+                    <div>
+                      <div class="blog_tag-list is-blog-list">
+                        <div class="badge_wrapper is-blue is-top-fix">#emprego</div>
+                        <div class="badge_wrapper is-blue is-top-fix">#networking</div>
+                        <div class="badge_wrapper is-blue is-top-fix">#ingles</div>
+                      </div>
+                      <div class="benefit-wrapper">
+                        <div class="benefit-row is-numbered">
+                          <div class="benefit-icon">
+                            <div>1</div>
+                          </div>
+                          <div class="benefit-content">
+                            <div class="benefit-name text-size-large text-color-primary">
+                              Acesse a Comunidade VIP do Discord
+                            </div>
+                            <div class="text-style-muted">
+                              Mesmo que voce ja faca parte do nosso Discord, voce agora tera acesso aos nosso canais VIPs. Por isso inscreva-se abaixo para nao ficar de fora dos encontros e dos treinamentos de ingles.
+                            </div>
+                            <div class="spacer-small"></div>
+                            <div>
+                              <a href="https://accounts.jobnagringa.com.br/sign-in?redirect_url=https://link.jobnagringa.com.br/discord" target="_blank" class="button is-small w-button">Acesse a Comunidade no Discord</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="benefit-row is-numbered">
+                          <div class="benefit-icon">
+                            <div>2</div>
+                          </div>
+                          <div class="benefit-content">
+                            <div class="benefit-name text-size-large text-color-primary">
+                              Agende sua Call 1:1 de Onboarding
+                            </div>
+                            <div class="text-style-muted">
+                              E isso mesmo! Um 1:1 com a Veronica para entendermos seus objetivos e darmos um check no seu ingles.
+                            </div>
+                            <div class="spacer-small"></div>
+                            <div>
+                              <a href="https://calendar.app.google/WJMQAahN8LccXP457" class="button is-small w-button">Agendar 1:1 com a Vets</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="benefit-row is-numbered">
+                          <div class="benefit-icon">
+                            <div>3</div>
+                          </div>
+                          <div class="benefit-content">
+                            <div class="benefit-name text-size-large text-color-primary">
+                              Preencha o formulario de entendimento
+                            </div>
+                            <div class="text-style-muted">
+                              Antes de voce fazer a call, precisamos que voce preencha esse formulario para entendermos seu momento atual e no futuro customizarmos nossa experiencia para suas necessidades.
+                            </div>
+                            <div class="spacer-small"></div>
+                            <div>
+                              <a href="https://forms.clickup.com/9013109729/f/8ckj8z1-2553/WG8KDCU87N5ZYOS2FH" class="button is-small w-button">Acessar Form</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="landing-page_section">
+                    <div class="blog_tag-list is-blog-list">
+                      <div class="badge_wrapper is-blue is-top-fix">#boas-vindas</div>
+                      <div class="badge_wrapper is-blue is-top-fix">#introducao</div>
+                    </div>
+                    <div>
+                      <div class="div-block-89">
+                        <div class="benefit-icon">
+                          <div>4</div>
+                        </div>
+                        <div>
+                          <div class="text-style-caption text-color-primary">boas-vindas com a erika</div>
+                          <h2 class="text-color-primary">Tudo que voce precisa saber para comecar sua carreira internacional</h2>
+                        </div>
+                      </div>
+                      <div class="spacer-small"></div>
+                      <div>
+                        <div style="padding-top: 56.17021276595745%" class="video w-video w-embed">
+                          <iframe class="embedly-embed" src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.tella.tv%2Fvideo%2Fcmidpabvq00ag04js10qcfvke%2Fembed%3Ffeature%3Doembed&display_name=tella&url=https%3A%2F%2Fwww.tella.tv%2Fvideo%2Fcmidpabvq00ag04js10qcfvke%2Fview" width="100%" height="100%" scrolling="no" allowfullscreen="" title="Onboarding JNG"></iframe>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-cta">
+    <div class="container-medium">
+      <div class="text-align-center">
+        <h2 class="heading-style-h3">Pronto para comecar?</h2>
+        <p class="text-style-muted">Acesse o dashboard e comece a explorar todas as ferramentas disponiveis.</p>
+        <div class="spacer-medium"></div>
+        <a href="/jng/member-dashboard" class="button is-primary w-button">Ir para o Dashboard</a>
+      </div>
+    </div>
+  </div>
+</DashboardLayout>

@@ -1,0 +1,269 @@
+---
+/**
+ * ClerkProvider.astro
+ *
+ * Clerk Authentication Integration
+ *
+ * Purpose:
+ * - User authentication and session management
+ * - Cookie-based session persistence across subdomains
+ * - User metadata for paid customer verification
+ * - Content gating based on subscription status
+ *
+ * Environment Variables Required:
+ * - PUBLIC_CLERK_PUBLISHABLE_KEY: Clerk publishable key
+ * - PUBLIC_CLERK_DOMAIN: Custom Clerk domain (e.g., clerk.jobnagringa.com.br)
+ * - PUBLIC_CLERK_ACCOUNTS_URL: Clerk accounts URL for sign-in redirects
+ *
+ * Migration Notes:
+ * - Original used self-hosted Clerk proxy at clerk.jobnagringa.com.br
+ * - Cookie domain set to .jobnagringa.com.br for cross-subdomain auth
+ * - Stores user data in both localStorage and cookie for redundancy
+ * - Checks publicMetadata.isPaidCustomer for premium content
+ */
+
+interface Props {
+  /**
+   * Load Clerk SDK immediately vs defer loading
+   */
+  eager?: boolean;
+}
+
+const { eager = false } = Astro.props;
+
+const clerkPublishableKey = import.meta.env.PUBLIC_CLERK_PUBLISHABLE_KEY;
+const clerkDomain = import.meta.env.PUBLIC_CLERK_DOMAIN || 'clerk.jobnagringa.com.br';
+const clerkAccountsUrl = import.meta.env.PUBLIC_CLERK_ACCOUNTS_URL || 'https://accounts.jobnagringa.com.br';
+---
+
+<!-- Clerk SDK -->
+<script
+  async={!eager}
+  crossorigin="anonymous"
+  data-clerk-publishable-key={clerkPublishableKey}
+  src={`https://${clerkDomain}/npm/@clerk/clerk-js@5/dist/clerk.browser.js`}
+  type="text/javascript"
+></script>
+
+<!-- Clerk Session Management -->
+<script is:inline define:vars={{ clerkAccountsUrl }}>
+  // Cookie and localStorage configuration
+  const COOKIE_NAME = "user";
+  const LOCAL_KEY = "user";
+  const COOKIE_TTL = 86400; // 24 hours
+
+  /**
+   * Set a cookie with proper security settings
+   */
+  function setCookie(name, value, maxAge, options = {}) {
+    const parts = [
+      encodeURIComponent(name) + "=" + encodeURIComponent(value),
+      "path=/",
+      "max-age=" + maxAge
+    ];
+
+    if (options.domain) parts.push("domain=" + options.domain);
+    if (options.secure) parts.push("secure");
+    if (options.sameSite) parts.push("samesite=" + options.sameSite);
+
+    document.cookie = parts.join("; ");
+  }
+
+  /**
+   * Persist user data to localStorage and cookie
+   */
+  function persistUserData(user) {
+    window.user = user;
+
+    // Store in localStorage
+    try {
+      localStorage.setItem(LOCAL_KEY, JSON.stringify(user));
+    } catch (e) {
+      console.warn('Failed to store user in localStorage:', e);
+    }
+
+    // Extract and store essential data in cookie
+    try {
+      let email = null;
+      let phoneNumber = null;
+
+      // Get primary email
+      if (user?.primaryEmailAddress?.emailAddress) {
+        email = user.primaryEmailAddress.emailAddress;
+      } else if (user?.emailAddresses?.length) {
+        email = user.emailAddresses[0]?.emailAddress || null;
+      }
+
+      // Get primary phone
+      if (user?.primaryPhoneNumber?.phoneNumber) {
+        phoneNumber = user.primaryPhoneNumber.phoneNumber;
+      } else if (user?.phoneNumbers?.length) {
+        phoneNumber = user.phoneNumbers[0]?.phoneNumber || null;
+      }
+
+      const userData = {
+        firstName: user?.firstName || null,
+        phoneNumber,
+        email,
+        publicMetadata: user?.publicMetadata || {}
+      };
+
+      const isSecure = window.location.protocol === "https:";
+      const hostname = window.location.hostname;
+      const domain = hostname.endsWith(".jobnagringa.com.br")
+        ? ".jobnagringa.com.br"
+        : undefined;
+
+      setCookie(COOKIE_NAME, JSON.stringify(userData), COOKIE_TTL, {
+        secure: isSecure,
+        sameSite: "Strict",
+        domain
+      });
+    } catch (e) {
+      console.warn('Failed to store user in cookie:', e);
+    }
+  }
+
+  /**
+   * Retrieve user data from cookie
+   */
+  function getUserFromCookie() {
+    try {
+      const cookies = document.cookie ? document.cookie.split(";") : [];
+      let cookieValue = null;
+
+      for (const cookie of cookies) {
+        const trimmed = cookie.trim();
+        if (trimmed.startsWith(COOKIE_NAME + "=")) {
+          cookieValue = trimmed;
+          break;
+        }
+      }
+
+      if (!cookieValue) return null;
+
+      const value = decodeURIComponent(cookieValue.split("=")[1] || "");
+      if (!value) return null;
+
+      return JSON.parse(value);
+    } catch (e) {
+      console.warn('Failed to get user from cookie:', e);
+      return null;
+    }
+  }
+
+  /**
+   * Redirect to sign-in if user should be logged in but isn't
+   */
+  function userShouldBeLoggedIn() {
+    const user = getUserFromCookie();
+    if (!user) {
+      const redirectUrl = encodeURIComponent(window.location.href);
+      window.location.href = `${clerkAccountsUrl}/sign-in?redirect_url=${redirectUrl}`;
+      return;
+    }
+    console.log("User logged in with email:", user.email || null);
+  }
+
+  /**
+   * Check if user is a paid customer
+   */
+  function userIsPaidCustomer() {
+    try {
+      const user = getUserFromCookie();
+      return !!(user?.publicMetadata?.isPaidCustomer === true);
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /**
+   * Populate first name from user data
+   */
+  function populateFirstNameFromUser() {
+    try {
+      const user = getUserFromCookie();
+      if (!user) return;
+
+      let firstName = "";
+      if (user.firstName?.trim()) {
+        firstName = user.firstName.trim();
+      } else if (user.fullName?.trim()) {
+        firstName = user.fullName.trim().split(/\s+/)[0];
+      } else if (user.username?.trim()) {
+        firstName = user.username.trim();
+      }
+
+      if (!firstName) return;
+
+      const elements = document.querySelectorAll('[data-ms-member="first-name"]');
+      elements.forEach(el => {
+        if ("value" in el) {
+          el.value = firstName;
+        } else {
+          el.textContent = firstName;
+        }
+      });
+    } catch (e) {
+      console.warn('Failed to populate first name:', e);
+    }
+  }
+
+  /**
+   * Handle community content visibility based on subscription
+   */
+  function handleCommunityContent() {
+    try {
+      const selector = userIsPaidCustomer()
+        ? '[data-ms-content="!community"]'
+        : '[data-ms-content="community"]';
+
+      document.querySelectorAll(selector).forEach(el => {
+        el.remove();
+      });
+    } catch (e) {
+      console.warn('Failed to handle community content:', e);
+    }
+  }
+
+  // Initialize Clerk and persist user data
+  function initClerk() {
+    if (!window.Clerk?.load) return;
+
+    const clerkPromise = Clerk.load();
+
+    if (clerkPromise?.then) {
+      clerkPromise
+        .then(() => {
+          if (Clerk.user) {
+            persistUserData(Clerk.user);
+          }
+        })
+        .catch(e => console.warn('Clerk load failed:', e));
+    } else {
+      // Fallback for sync loading
+      setTimeout(() => {
+        if (Clerk.user) {
+          persistUserData(Clerk.user);
+        }
+      }, 1000);
+    }
+  }
+
+  // Run DOM functions
+  function runDomFuncs() {
+    populateFirstNameFromUser();
+    handleCommunityContent();
+  }
+
+  // Initialize on load
+  window.addEventListener("load", initClerk);
+  document.addEventListener("DOMContentLoaded", runDomFuncs);
+  window.addEventListener("load", runDomFuncs);
+
+  // Export functions globally
+  window.getUserFromCookie = getUserFromCookie;
+  window.userShouldBeLoggedIn = userShouldBeLoggedIn;
+  window.userIsPaidCustomer = userIsPaidCustomer;
+  window.populateFirstNameFromUser = populateFirstNameFromUser;
+</script>

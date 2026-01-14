@@ -1,0 +1,62 @@
+---
+/**
+ * Access Denied Page
+ *
+ * Shown when user tries to access a protected resource without proper permissions.
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Acesso Negado - #JNG"
+  noIndex={true}
+  includeNavigation={true}
+  includeFooter={false}
+  bodyClass=""
+>
+  <div class="utility_section">
+    <div class="utility_container">
+      <h2 class="_404_heading">403</h2>
+      <div class="text-size-large text-weight-semibold">Acesso Negado</div>
+      <div class="spacer-small"></div>
+      <p class="text-color-muted">
+        Voce nao tem permissao para acessar este conteudo.
+      </p>
+      <div class="spacer-medium"></div>
+      <div class="button-group">
+        <a href="/" class="button w-button">Voltar para Home</a>
+        <a href="/assine" class="button is-secondary w-button">Assinar #JNG</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .utility_section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: 2rem;
+  }
+
+  .utility_container {
+    text-align: center;
+    max-width: 500px;
+  }
+
+  ._404_heading {
+    font-size: 6rem;
+    font-weight: 700;
+    color: var(--blues--blue-50, #0071ff);
+    margin-bottom: 1rem;
+  }
+
+  .button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

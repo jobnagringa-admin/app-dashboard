@@ -1,0 +1,79 @@
+---
+/**
+ * Companies Hiring Brazilians / LATAM
+ * Protected route requiring paid membership
+ */
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+---
+
+<DashboardLayout
+  title="Companies Hiring LATAM"
+  description="Empresas que contratam Brasileiros e Latinos para trabalho remoto internacional"
+  currentPage="companies-hiring"
+  requiresAuth={true}
+  requiresPaidMembership={true}
+>
+  <div class="main-tab_section">
+    <div class="main-tab_wrapper">
+      <div class="course_header-copy">
+        <div class="lesson_breadcrumbs is-wrapped-no-margin">
+          <div class="text-size-small text-style-muted">Voce esta em:</div>
+          <a href="/jng/member-dashboard" class="breadcrumb_link w-inline-block">
+            <div class="icon-1x1-small w-embed">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12.74 2.32a1 1 0 0 0-1.48 0l-9 10A1 1 0 0 0 3 14h2v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7h2a1 1 0 0 0 1-1a1 1 0 0 0-.26-.68z"></path>
+              </svg>
+            </div>
+            <div>#JNG Community</div>
+          </a>
+          <div class="text-color-light-gray">/</div>
+          <a href="#" class="breadcrumb_link w-inline-block">
+            <div>Companies Hiring LATAM</div>
+          </a>
+        </div>
+        <div class="dashboard-header_wrapper">
+          <div class="dashboard-header_content">
+            <h1 class="heading-style-h2">Empresas que Contratam BRs</h1>
+            <div class="text-style-muted">
+              Lista de empresas que contratam Brasileiros e Latinos para trabalho remoto internacional
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main-tab_container-content">
+        <div class="card-row_parent-card">
+          <div class="companies-grid w-dyn-list">
+            <div role="list" class="companies-collection-list w-dyn-items">
+              <!-- Companies loaded dynamically via Webflow CMS -->
+              <div role="listitem" class="w-dyn-item">
+                <div class="company-card">
+                  <div class="company-card_logo">
+                    <img loading="lazy" alt="" src="" class="company-logo w-dyn-bind-empty" />
+                  </div>
+                  <div class="company-card_info">
+                    <h3 class="company-name w-dyn-bind-empty"></h3>
+                    <div class="company-description text-style-muted w-dyn-bind-empty"></div>
+                    <div class="company-tags">
+                      <div class="badge_wrapper is-small w-dyn-bind-empty"></div>
+                    </div>
+                  </div>
+                  <a href="#" target="_blank" class="button is-secondary is-small w-button">Ver Vagas</a>
+                </div>
+              </div>
+            </div>
+            <div class="w-dyn-empty">
+              <div class="text-align-center padding-large">
+                <div class="text-weight-medium text-color-muted">Carregando empresas...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <Fragment slot="scripts">
+    <!-- Finsweet CMS Load -->
+    <script async src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsload@1/cmsload.js"></script>
+  </Fragment>
+</DashboardLayout>

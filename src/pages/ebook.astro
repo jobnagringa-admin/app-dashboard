@@ -1,0 +1,147 @@
+---
+/**
+ * Ebook Landing Page
+ *
+ * Free ebook download page for job hunting tips.
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Ebook - Conquiste o Emprego Remoto dos Seus Sonhos"
+  description="Baixe nosso ebook gratuito com dicas para conquistar seu emprego remoto internacional."
+  includeNavigation={true}
+  includeFooter={true}
+  bodyClass=""
+>
+  <div class="job-hero_section margin-bottom is--big">
+    <div class="container-large">
+      <div class="ebook_hero-content">
+        <div class="hero_preheader">
+          <span class="text-color-primary">Ebook Gratuito</span>
+        </div>
+        <h1 class="hero-title text-color-primary">
+          Conquiste o emprego remoto dos seus sonhos
+        </h1>
+        <div class="max-width-large">
+          <p class="text-style-subhead">
+            Aprenda as melhores estrategias para conseguir vagas internacionais que pagam em dolar e euro.
+          </p>
+        </div>
+        <div class="spacer-medium"></div>
+        <a
+          href="https://accounts.jobnagringa.com.br/sign-in?redirect_url=https://jobnagringa.com.br/ebook-download"
+          class="button is-large-special w-button"
+        >
+          Baixe o e-book gratuitamente!
+        </a>
+      </div>
+    </div>
+    <div class="decoration_background-wrapper"></div>
+  </div>
+
+  <div class="section_ebook-content">
+    <div class="container-medium">
+      <div class="ebook_features-grid">
+        <div class="ebook_feature-card">
+          <div class="ebook_feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h3 class="heading-style-h5">Preparacao Completa</h3>
+          <p class="text-color-muted">Aprenda a se preparar para entrevistas em ingles com empresas internacionais.</p>
+        </div>
+        <div class="ebook_feature-card">
+          <div class="ebook_feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+          </div>
+          <h3 class="heading-style-h5">Vagas Internacionais</h3>
+          <p class="text-color-muted">Descubra onde encontrar vagas que contratam brasileiros para trabalho remoto.</p>
+        </div>
+        <div class="ebook_feature-card">
+          <div class="ebook_feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <h3 class="heading-style-h5">Curriculo e LinkedIn</h3>
+          <p class="text-color-muted">Otimize seu curriculo e perfil do LinkedIn para o mercado internacional.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section_ebook-cta">
+    <div class="container-medium">
+      <div class="ebook_cta-card">
+        <h2 class="heading-style-h3">Pronto para comecar sua jornada?</h2>
+        <p class="text-color-muted">Baixe agora o ebook gratuito e de o primeiro passo rumo ao seu emprego dos sonhos.</p>
+        <div class="spacer-small"></div>
+        <a
+          href="https://accounts.jobnagringa.com.br/sign-in?redirect_url=https://jobnagringa.com.br/ebook-download"
+          class="button w-button"
+        >
+          Baixar Ebook Gratuito
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .ebook_hero-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 0;
+  }
+
+  .section_ebook-content {
+    padding: 4rem 0;
+  }
+
+  .ebook_features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .ebook_feature-card {
+    padding: 2rem;
+    background: var(--neutrals--neutral-100, #f5f5f5);
+    border-radius: 0.5rem;
+    text-align: center;
+  }
+
+  .ebook_feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--blues--blue-50, #0071ff);
+    color: white;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+
+  .section_ebook-cta {
+    padding: 4rem 0;
+    background: var(--blues--blue-50, #0071ff);
+  }
+
+  .ebook_cta-card {
+    text-align: center;
+    color: white;
+  }
+
+  .ebook_cta-card .heading-style-h3,
+  .ebook_cta-card p {
+    color: white;
+  }
+</style>

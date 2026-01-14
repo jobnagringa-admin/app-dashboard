@@ -1,0 +1,44 @@
+---
+/**
+ * Category Detail Page
+ * Migrated from: src-legacy/detail_category.html
+ * Webflow Page ID: 6471f2850c9a951836341f90
+ *
+ * TODO: Implement CMS data fetching for category content
+ * TODO: List posts belonging to this category
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+
+// TODO: Fetch category data and related posts from CMS
+// const category = await fetchCategory(slug);
+// const posts = await fetchPostsByCategory(slug);
+
+const pageTitle = `Category - ${slug}`;
+---
+
+<BaseLayout title={pageTitle}>
+  <div class="padding-global">
+    <div class="container-large">
+      <div class="padding-section-large">
+        <div class="margin-bottom margin-medium">
+          <h1 class="heading-style-h2">
+            {/* category.name */}
+            Category: {slug}
+          </h1>
+        </div>
+
+        <!-- TODO: Replace with CMS collection list of posts in this category -->
+        <div class="w-dyn-list">
+          <div role="list" class="collection-list w-dyn-items">
+            <!-- Posts will be rendered here -->
+            <p class="text-style-muted">Posts in this category will be loaded from the CMS.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,84 @@
+---
+/**
+ * Community Page - Live Replays and Community Content
+ * Protected route requiring paid membership
+ */
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+---
+
+<DashboardLayout
+  title="Reprises das Lives"
+  description="Assista as reprises das lives da comunidade #JNG"
+  currentPage="community"
+  requiresAuth={true}
+  requiresPaidMembership={true}
+>
+  <div class="main-tab_section">
+    <div class="main-tab_wrapper">
+      <div class="course_header-copy">
+        <div class="lesson_breadcrumbs is-wrapped-no-margin">
+          <div class="text-size-small text-style-muted">Voce esta em:</div>
+          <a href="/jng/member-dashboard" class="breadcrumb_link w-inline-block">
+            <div class="icon-1x1-small w-embed">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12.74 2.32a1 1 0 0 0-1.48 0l-9 10A1 1 0 0 0 3 14h2v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7h2a1 1 0 0 0 1-1a1 1 0 0 0-.26-.68z"></path>
+              </svg>
+            </div>
+            <div>#JNG Community</div>
+          </a>
+          <div class="text-color-light-gray">/</div>
+          <a href="#" class="breadcrumb_link w-inline-block">
+            <div>Reprises das Lives</div>
+          </a>
+        </div>
+        <div class="dashboard-header_wrapper">
+          <div class="dashboard-header_content">
+            <h1 class="heading-style-h2">Reprises das Lives</h1>
+            <div class="text-style-muted">
+              Assista as reprises das lives da comunidade #JNG com a Erika, Paulo, Gabe e convidados especiais
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main-tab_container-content">
+        <div class="card-row_parent-card">
+          <div class="live-replays_collection-wrapper w-dyn-list">
+            <div role="list" class="live-replays_collection-list w-dyn-items">
+              <!-- Live replays loaded dynamically via Webflow CMS -->
+              <div role="listitem" class="w-dyn-item">
+                <a href="#" class="live-card w-inline-block">
+                  <div class="live-card_thumbnail">
+                    <img loading="lazy" alt="" src="" class="live-thumbnail-img w-dyn-bind-empty" />
+                    <div class="live-card_play-icon">
+                      <div class="icon-1x1-medium w-embed">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                          <path fill="currentColor" d="M8 5.14v14l11-7l-11-7Z"></path>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="live-card_info">
+                    <div class="live-card_title w-dyn-bind-empty"></div>
+                    <div class="live-card_meta">
+                      <div class="text-size-small text-style-muted w-dyn-bind-empty"></div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="w-dyn-empty">
+              <div class="text-align-center padding-large">
+                <div class="text-weight-medium text-color-muted">Carregando lives...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <Fragment slot="scripts">
+    <!-- Finsweet CMS Load -->
+    <script async src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsload@1/cmsload.js"></script>
+  </Fragment>
+</DashboardLayout>

@@ -1,0 +1,48 @@
+---
+/**
+ * Login Page
+ *
+ * Empty page that redirects to Clerk authentication.
+ * The actual login UI is handled by Clerk's hosted sign-in page.
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Acesse o #JNG"
+  noIndex={true}
+  includeNavigation={false}
+  includeFooter={false}
+  bodyClass=""
+>
+  <!-- Login is handled by Clerk redirect - this page shows briefly before redirect -->
+  <div class="utility_section">
+    <div class="utility_container">
+      <div class="text-size-large text-weight-semibold">Redirecionando...</div>
+      <p class="text-color-muted">Aguarde enquanto redirecionamos para o login.</p>
+    </div>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  // Redirect to Clerk sign-in
+  (function() {
+    var redirectUrl = encodeURIComponent(window.location.origin + '/jng/member-dashboard');
+    window.location.href = 'https://accounts.jobnagringa.com.br/sign-in?redirect_url=' + redirectUrl;
+  })();
+</script>
+
+<style>
+  .utility_section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+  }
+
+  .utility_container {
+    text-align: center;
+  }
+</style>

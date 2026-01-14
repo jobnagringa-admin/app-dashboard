@@ -1,0 +1,168 @@
+---
+/**
+ * Init Checkout Page
+ *
+ * Intermediate page that triggers a webhook and redirects to checkout.
+ * Sends user email to tracking webhook before redirecting.
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Redirecionando para Checkout"
+  description="Redirecionando para o checkout do #jobnagringa"
+  includeNavigation={true}
+  includeFooter={false}
+  bodyClass=""
+>
+  <div class="job-hero_section variation1">
+    <div class="container-large">
+      <div class="job-board_heading is-60rem">
+        <h1 class="hero-title text-color-primary">
+          Estamos te redirecionando...
+        </h1>
+        <div class="max-width-large">
+          <p class="text-style-subhead">
+            Vou te mandar para o checkout, espera so um segundo!
+          </p>
+        </div>
+        <div class="spacer-medium"></div>
+        <a
+          href="https://accounts.jobnagringa.com.br/sign-in?redirect_url=https://jobnagringa.com.br/pay"
+          class="button is-large-special w-button"
+        >
+          Se nada acontecer, clique aqui
+        </a>
+      </div>
+      <div class="home-partners_grid">
+        <p class="text-size-small text-color-muted">
+          Obrigado pela confianca!
+        </p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    var PAY_URL = 'https://accounts.jobnagringa.com.br/sign-in?redirect_url=https://jobnagringa.com.br/pay';
+    var ENDPOINT_BASE = 'https://n8nhook.jobnagringa.com.br/webhook/init-checkout?email=';
+
+    function safeGetLocalStorage(key) {
+      try {
+        if (window.localStorage) return window.localStorage.getItem(key);
+      } catch (e) {}
+      return null;
+    }
+
+    function pickEmail(user) {
+      if (!user) return null;
+      if (user.primaryEmailAddress && user.primaryEmailAddress.emailAddress)
+        return user.primaryEmailAddress.emailAddress;
+      var arr = user.emailAddresses;
+      if (arr && typeof arr.length === 'number' && arr.length > 0 && arr[0] && arr[0].emailAddress)
+        return arr[0].emailAddress;
+      return null;
+    }
+
+    function redirect() {
+      try {
+        if (window.location && typeof window.location.replace === 'function') {
+          window.location.replace(PAY_URL);
+          return;
+        }
+      } catch (e) {}
+      try {
+        window.location.href = PAY_URL;
+      } catch (e) {}
+    }
+
+    function sendGet(url, onDone) {
+      var finished = false;
+      function finish() {
+        if (!finished) {
+          finished = true;
+          if (onDone) onDone();
+        }
+      }
+      try {
+        if (typeof window.fetch === 'function') {
+          var p;
+          try {
+            p = window.fetch(url, { method: 'GET', credentials: 'include' });
+          } catch (e1) {
+            try {
+              p = window.fetch(url, { method: 'GET', mode: 'no-cors' });
+            } catch (e2) {}
+          }
+          if (p && typeof p.then === 'function') {
+            if (typeof p.finally === 'function') {
+              p['catch'](function () {}).finally(finish);
+            } else {
+              p.then(function () { finish(); }, function () { finish(); });
+            }
+            setTimeout(finish, 6000);
+            return;
+          }
+        }
+      } catch (e) {}
+
+      try {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) finish();
+        };
+        xhr.onerror = finish;
+        xhr.open('GET', url, true);
+        try {
+          xhr.withCredentials = true;
+        } catch (e) {}
+        xhr.send(null);
+        setTimeout(finish, 6000);
+        return;
+      } catch (e) {}
+
+      finish();
+    }
+
+    var email = null;
+    try {
+      var raw = safeGetLocalStorage('user');
+      if (raw) {
+        try {
+          var user = JSON.parse(raw);
+          email = pickEmail(user);
+        } catch (e) {}
+      }
+    } catch (e) {}
+
+    var endpoint = ENDPOINT_BASE + (email ? encodeURIComponent(email) : '');
+    var redirected = false;
+
+    function doneOnce() {
+      if (!redirected) {
+        redirected = true;
+        redirect();
+      }
+    }
+
+    setTimeout(doneOnce, 1500);
+    sendGet(endpoint, doneOnce);
+  })();
+</script>
+
+<style>
+  .job-hero_section.variation1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    text-align: center;
+  }
+
+  .job-board_heading.is-60rem {
+    max-width: 60rem;
+    margin: 0 auto;
+  }
+</style>

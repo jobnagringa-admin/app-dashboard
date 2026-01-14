@@ -1,0 +1,76 @@
+---
+/**
+ * Lesson (Aula) Detail Page
+ * Migrated from: src-legacy/detail_aulas.html
+ * Webflow Page ID: 654bbd694d9060f18a2138e8
+ *
+ * TODO: Implement CMS data fetching for lesson content
+ * TODO: Replace placeholder content with dynamic lesson data
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+
+// TODO: Fetch lesson data from CMS
+// const lesson = await fetchLesson(slug);
+// if (!lesson) return Astro.redirect('/404');
+
+const pageTitle = `Lesson - ${slug}`;
+---
+
+<BaseLayout title={pageTitle}>
+  <div class="padding-global">
+    <div class="container-large">
+      <div class="padding-section-large">
+        <div class="lesson-detail">
+          <div class="margin-bottom margin-medium">
+            <h1 class="heading-style-h2">
+              {/* lesson.title */}
+              Lesson: {slug}
+            </h1>
+          </div>
+
+          <!-- Lesson Video -->
+          <div class="lesson-video w-video w-embed">
+            {/* lesson.videoEmbed */}
+            <div style="padding:56.25% 0 0 0;position:relative;">
+              <p style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">
+                Video player placeholder for: {slug}
+              </p>
+            </div>
+          </div>
+
+          <div class="spacer-medium"></div>
+
+          <!-- Lesson Description -->
+          <div class="lesson-description w-richtext">
+            {/* lesson.description */}
+            <p>Lesson content and description will be loaded from the CMS.</p>
+          </div>
+
+          <div class="spacer-medium"></div>
+
+          <!-- Lesson Resources -->
+          <div class="lesson-resources">
+            <h3 class="heading-style-h5">Resources</h3>
+            {/* lesson.resources.map(r => <a href={r.url}>{r.name}</a>) */}
+          </div>
+
+          <div class="spacer-large"></div>
+
+          <!-- Navigation to next/previous lessons -->
+          <div class="lesson-navigation">
+            <a href="#" class="button is-secondary w-button">
+              Previous Lesson
+            </a>
+            <a href="#" class="button w-button">
+              Next Lesson
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,62 @@
+---
+/**
+ * Input Component - Text input field
+ *
+ * @prop {string} name - Input name attribute
+ * @prop {string} id - Input id attribute (defaults to name)
+ * @prop {string} type - Input type (text, email, password, etc.)
+ * @prop {string} placeholder - Placeholder text
+ * @prop {boolean} required - Whether the field is required
+ * @prop {number} maxLength - Maximum character length
+ * @prop {string} value - Default value
+ * @prop {string} class - Additional CSS classes
+ * @prop {boolean} isSmall - Use small size variant
+ * @prop {string} filterField - Finsweet CMS filter field attribute
+ */
+
+interface Props {
+  name: string;
+  id?: string;
+  type?: astroHTML.JSX.HTMLInputTypeAttribute;
+  placeholder?: string;
+  required?: boolean;
+  maxLength?: number;
+  value?: string;
+  class?: string;
+  isSmall?: boolean;
+  filterField?: string;
+}
+
+const {
+  name,
+  id,
+  type = 'text',
+  placeholder = '',
+  required = false,
+  maxLength = 256,
+  value = '',
+  class: className = '',
+  isSmall = false,
+  filterField,
+} = Astro.props;
+
+const inputId = id || name;
+const sizeClass = isSmall ? 'input_field is-small' : 'input_field';
+const baseClass = type === 'search' ? 'job-search_input' : sizeClass;
+const finalClass = `${baseClass} ${className} w-input`.trim();
+
+const filterAttr = filterField ? { 'fs-cmsfilter-field': filterField } : {};
+---
+
+<input
+  class={finalClass}
+  maxlength={maxLength}
+  name={name}
+  data-name={name}
+  placeholder={placeholder}
+  type={type}
+  id={inputId}
+  required={required}
+  value={value}
+  {...filterAttr}
+/>

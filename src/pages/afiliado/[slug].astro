@@ -1,0 +1,58 @@
+---
+/**
+ * Affiliate Detail Page
+ * Migrated from: src-legacy/detail_afiliado.html
+ * Webflow Page ID: 64c1fa3f59a58c35f96a8c4b
+ *
+ * TODO: Implement CMS data fetching for affiliate profiles
+ * TODO: Replace placeholder content with dynamic affiliate data
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+
+// TODO: Fetch affiliate data from CMS
+// const affiliate = await fetchAffiliate(slug);
+// if (!affiliate) return Astro.redirect('/404');
+
+const pageTitle = `Affiliate - ${slug}`;
+---
+
+<BaseLayout title={pageTitle}>
+  <div class="padding-global">
+    <div class="container-large">
+      <div class="padding-section-large">
+        <div class="affiliate-profile">
+          <div class="margin-bottom margin-medium">
+            <h1 class="heading-style-h2">
+              {/* affiliate.name */}
+              Affiliate: {slug}
+            </h1>
+          </div>
+
+          <!-- Affiliate Description -->
+          <div class="affiliate-description w-richtext">
+            {/* affiliate.description */}
+            <p>Affiliate information will be loaded from the CMS.</p>
+          </div>
+
+          <div class="spacer-medium"></div>
+
+          <!-- Affiliate Link -->
+          <div class="affiliate-action">
+            <a
+              href="#"
+              class="button w-button"
+              target="_blank"
+            >
+              {/* Visit affiliate.referralUrl */}
+              Access Offer
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

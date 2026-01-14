@@ -1,0 +1,101 @@
+---
+/**
+ * Job Detail Page
+ * Migrated from: src-legacy/detail_jobs.html
+ * Webflow Page ID: 6429541b2ea2db30b6ca4f6a
+ *
+ * TODO: Implement CMS data fetching for job listings
+ * TODO: Replace placeholder content with dynamic job data
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+
+// TODO: Fetch job data from CMS
+// const job = await fetchJob(slug);
+// if (!job) return Astro.redirect('/404');
+
+const pageTitle = `Job - ${slug}`;
+---
+
+<BaseLayout title={pageTitle}>
+  <div class="padding-global">
+    <div class="container-large">
+      <div class="padding-section-large">
+        <div class="job-detail-wrapper">
+          <!-- Job Header -->
+          <div class="job-header">
+            <div class="job-company-logo">
+              {/* <img src={job.companyLogo} alt={job.company} /> */}
+            </div>
+            <div class="job-title-info">
+              <h1 class="heading-style-h2">
+                {/* job.title */}
+                Job: {slug}
+              </h1>
+              <div class="job-company text-weight-medium">
+                {/* job.company */}
+                Company Name
+              </div>
+            </div>
+          </div>
+
+          <div class="spacer-medium"></div>
+
+          <!-- Job Meta Information -->
+          <div class="job-meta">
+            <div class="job-meta-item">
+              <span class="text-weight-medium">Location:</span>
+              {/* job.location || 'Remote' */}
+              <span>Remote</span>
+            </div>
+            <div class="job-meta-item">
+              <span class="text-weight-medium">Type:</span>
+              {/* job.type */}
+              <span>Full-time</span>
+            </div>
+            <div class="job-meta-item">
+              <span class="text-weight-medium">Salary:</span>
+              {/* job.salary */}
+              <span>Competitive</span>
+            </div>
+          </div>
+
+          <div class="spacer-large"></div>
+
+          <!-- Job Description -->
+          <div class="job-description w-richtext">
+            <h3>Job Description</h3>
+            {/* job.description */}
+            <p>Job description will be loaded from the CMS.</p>
+          </div>
+
+          <div class="spacer-medium"></div>
+
+          <!-- Job Requirements -->
+          <div class="job-requirements w-richtext">
+            <h3>Requirements</h3>
+            {/* job.requirements */}
+            <p>Requirements will be loaded from the CMS.</p>
+          </div>
+
+          <div class="spacer-large"></div>
+
+          <!-- Apply Button -->
+          <div class="job-apply-section">
+            <a
+              href="#"
+              class="button w-button"
+              target="_blank"
+            >
+              {/* Apply URL: job.applyUrl */}
+              Apply Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

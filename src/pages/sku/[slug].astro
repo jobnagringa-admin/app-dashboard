@@ -1,0 +1,71 @@
+---
+/**
+ * SKU Detail Page
+ * Migrated from: src-legacy/detail_sku.html
+ * Webflow Page ID: 64c1fa3f59a58c35f96a8c51
+ *
+ * TODO: Implement CMS/e-commerce data fetching for SKUs
+ * TODO: Replace placeholder content with dynamic SKU data
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+
+// TODO: Fetch SKU data from CMS/e-commerce system
+// const sku = await fetchSku(slug);
+// if (!sku) return Astro.redirect('/404');
+
+const pageTitle = `SKU - ${slug}`;
+---
+
+<BaseLayout title={pageTitle}>
+  <div class="padding-global">
+    <div class="container-large">
+      <div class="padding-section-large">
+        <div class="sku-detail-wrapper">
+          <h1 class="heading-style-h2">
+            {/* sku.name */}
+            SKU: {slug}
+          </h1>
+
+          <div class="spacer-medium"></div>
+
+          <div class="sku-info">
+            <div class="sku-meta">
+              <span class="text-weight-medium">SKU ID:</span>
+              {/* sku.id */}
+              <span>{slug}</span>
+            </div>
+            <div class="sku-meta">
+              <span class="text-weight-medium">Price:</span>
+              {/* sku.price */}
+              <span>R$ 0,00</span>
+            </div>
+            <div class="sku-meta">
+              <span class="text-weight-medium">Availability:</span>
+              {/* sku.inStock ? 'In Stock' : 'Out of Stock' */}
+              <span>In Stock</span>
+            </div>
+          </div>
+
+          <div class="spacer-medium"></div>
+
+          <div class="sku-description w-richtext">
+            {/* sku.description */}
+            <p>SKU details will be loaded from the CMS.</p>
+          </div>
+
+          <div class="spacer-large"></div>
+
+          <div class="sku-actions">
+            <a href="#" class="button w-button">
+              Add to Cart
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,139 @@
+---
+/**
+ * My Account Page - User Profile Settings
+ * Protected route requiring authentication
+ */
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+---
+
+<DashboardLayout
+  title="Sua Conta"
+  description="Atualize seus dados cadastrados no JNG"
+  currentPage="my-account"
+  requiresAuth={true}
+  requiresPaidMembership={true}
+>
+  <div class="main-tab_section">
+    <div class="main-tab_wrapper">
+      <div class="main-tab_menu">
+        <div class="div-block-24">
+          <div data-ms-member="first-name" class="text-weight-semibold">User Name</div>
+          <div class="text-size-small text-style-muted">You're JNG Community Member</div>
+        </div>
+        <div class="main-tab_menu-grid">
+          <a href="/jng/member-dashboard" class="main-content-tab_title w-inline-block">
+            <div>Home</div>
+            <div class="main-tab_menu-icon">
+              <div class="icon-1x1-medium w-embed">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20">
+                  <path fill="currentColor" d="M9 7H6v2h3zM3 6a3 3 0 0 1 3-3h6v14H6a3 3 0 0 1-3-3zm2 1v2a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1m.5 4a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zM5 13.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5m8 3.5h1a3 3 0 0 0 3-3v-1h-4zm4-5V8h-4v4zm0-5V6a3 3 0 0 0-3-3h-1v4z"></path>
+                </svg>
+              </div>
+            </div>
+          </a>
+          <a href="/jng/course" class="main-content-tab_title w-inline-block">
+            <div>Workshops JNG</div>
+          </a>
+          <a href="/jng/resume-generator" class="main-content-tab_title w-inline-block">
+            <div>Resume Generator</div>
+          </a>
+          <a href="/jng/jobs" class="main-content-tab_title w-inline-block">
+            <div>Vagas 100% Remotas</div>
+          </a>
+          <a href="/jng/community" class="main-content-tab_title w-inline-block">
+            <div>Reprises das Lives</div>
+          </a>
+        </div>
+      </div>
+      <div class="main-tab_content">
+        <div class="main-tab_pane">
+          <div class="course_header-copy">
+            <div class="lesson_breadcrumbs is-wrapped-no-margin">
+              <div class="text-size-small text-style-muted">Voce esta em:</div>
+              <a href="/jng/member-dashboard" class="breadcrumb_link w-inline-block">
+                <div class="icon-1x1-small w-embed">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M12.74 2.32a1 1 0 0 0-1.48 0l-9 10A1 1 0 0 0 3 14h2v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7h2a1 1 0 0 0 1-1a1 1 0 0 0-.26-.68z"></path>
+                  </svg>
+                </div>
+                <div>#JNG Community</div>
+              </a>
+              <div class="text-color-light-gray">/</div>
+              <a href="#" class="breadcrumb_link w-inline-block">
+                <div>Sua Conta</div>
+              </a>
+            </div>
+            <div class="dashboard-header_wrapper">
+              <div class="dashboard-header_content">
+                <h1 class="heading-style-h2">Sua Conta</h1>
+                <div class="text-style-muted">Atualize seus dados cadastrados no JNG</div>
+              </div>
+            </div>
+          </div>
+          <div class="main-tab_container-content">
+            <div class="card-row_parent-card">
+              <div class="w-form">
+                <form id="email-form" name="email-form" data-name="Email Form" method="get" data-ms-form="profile" class="form-3">
+                  <div class="form_grid">
+                    <div class="input_field-wrapper is-large-gap">
+                      <div class="input_field-wrapper">
+                        <div class="input_label">ID do Usuario</div>
+                        <input class="input_field is-disabled w-input" maxlength="256" name="FNAME-2" data-name="FNAME 2" placeholder="ID" type="text" id="FNAME-2" data-ms-member="id" required="" />
+                      </div>
+                      <div class="input_field-wrapper is-disabled">
+                        <div class="input_label">Email (Contate suporte para atualizar)</div>
+                        <input class="input_field is-disabled w-input" maxlength="256" name="EMAIL-4" data-name="EMAIL 4" placeholder="Ex.: email@email.com" type="email" id="EMAIL-4" data-ms-member="email" required="" />
+                      </div>
+                      <div class="input_field-wrapper">
+                        <div class="input_label">Primeiro Nome</div>
+                        <input class="input_field w-input" maxlength="256" name="FNAME-2" data-name="FNAME 2" placeholder="Ex.: Maria" type="text" id="FNAME-2" data-ms-member="first-name" required="" />
+                      </div>
+                      <div class="input_field-wrapper">
+                        <div class="input_label">Area de Atuacao (Digite em Ingles)</div>
+                        <input class="input_field w-input" maxlength="256" name="PROFESSION" data-name="PROFESSION" placeholder="Product Designer, Full-Stack, etc." type="text" id="autocomplete-input" data-ms-member="profession" required="" />
+                        <div class="autocomplete-wrapper">
+                          <div id="autocomplete-list" class="autocomplete-list"></div>
+                        </div>
+                      </div>
+                      <div class="input_field-wrapper">
+                        <div class="input_label">Telefone</div>
+                        <input ms-code-phone-number="br,us,pt,ca,gb" class="input_field w-input" maxlength="256" name="PHONE-4" data-name="PHONE 4" placeholder="(11) 99999-9999" type="tel" id="PHONE-4" data-ms-member="phone" required="" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="spacer-medium"></div>
+                  <button type="submit" class="button is-primary w-button">Salvar Alteracoes</button>
+                </form>
+                <div class="w-form-done">
+                  <div>Obrigado! Suas alteracoes foram salvas.</div>
+                </div>
+                <div class="w-form-fail">
+                  <div>Oops! Algo deu errado. Tente novamente.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <Fragment slot="scripts">
+    <!-- Phone number input library -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function() {
+        const phoneInputs = document.querySelectorAll('input[ms-code-phone-number]');
+        phoneInputs.forEach(function(input) {
+          const preferredCountries = input.getAttribute('ms-code-phone-number').split(',');
+          window.intlTelInput(input, {
+            preferredCountries: preferredCountries,
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+          });
+        });
+      });
+    </script>
+  </Fragment>
+</DashboardLayout>

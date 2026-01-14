@@ -1,0 +1,61 @@
+---
+/**
+ * People Detail Page
+ * Migrated from: src-legacy/detail_people.html
+ * Webflow Page ID: 673a232d55e14a019cb752ab
+ *
+ * TODO: Implement CMS data fetching for people profiles
+ * TODO: Replace placeholder content with dynamic profile data
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+
+// TODO: Fetch person data from CMS
+// const person = await fetchPerson(slug);
+// if (!person) return Astro.redirect('/404');
+
+const pageTitle = `Profile - ${slug}`;
+---
+
+<BaseLayout title={pageTitle}>
+  <div class="padding-global">
+    <div class="container-large">
+      <div class="padding-section-large">
+        <div class="person-profile">
+          <!-- Person Avatar -->
+          <div class="person-avatar-wrapper">
+            {/* <img src={person.avatar} alt={person.name} class="person-avatar" /> */}
+          </div>
+
+          <div class="margin-bottom margin-medium">
+            <h1 class="heading-style-h2">
+              {/* person.name */}
+              {slug}
+            </h1>
+            <p class="text-weight-medium text-style-muted">
+              {/* person.role */}
+              Role / Title
+            </p>
+          </div>
+
+          <!-- Person Bio -->
+          <div class="person-bio w-richtext">
+            {/* person.bio */}
+            <p>Person biography will be loaded from the CMS.</p>
+          </div>
+
+          <div class="spacer-medium"></div>
+
+          <!-- Social Links -->
+          <div class="person-social">
+            {/* person.linkedin && <a href={person.linkedin}>LinkedIn</a> */}
+            {/* person.twitter && <a href={person.twitter}>Twitter</a> */}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

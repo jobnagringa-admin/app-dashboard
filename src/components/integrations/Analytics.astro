@@ -1,0 +1,99 @@
+---
+/**
+ * Analytics.astro
+ *
+ * Unified Analytics Integration Component
+ *
+ * Includes:
+ * - Google Analytics 4 (GA4)
+ * - Google Tag Manager (GTM)
+ * - Ahrefs Analytics (SEO tracking)
+ *
+ * Environment Variables Required:
+ * - PUBLIC_GA4_MEASUREMENT_ID: Google Analytics 4 ID (e.g., G-DNCKG4JJ77)
+ * - PUBLIC_GTM_CONTAINER_ID: Google Tag Manager container ID (e.g., GTM-58XVRQZ)
+ * - PUBLIC_AHREFS_KEY: Ahrefs analytics key (e.g., 0IynPqzGcpJ1FaTQBiSG9g)
+ *
+ * Migration Notes:
+ * - Original implementation loads GTM both in head and body (noscript fallback)
+ * - GA4 uses Webflow developer ID: dZGVlNj
+ * - Ahrefs analytics loaded async in footer
+ * - All scripts load async to not block rendering
+ */
+
+interface Props {
+  /**
+   * Enable Google Analytics 4
+   * @default true
+   */
+  enableGA4?: boolean;
+
+  /**
+   * Enable Google Tag Manager
+   * @default true
+   */
+  enableGTM?: boolean;
+
+  /**
+   * Enable Ahrefs Analytics
+   * @default true
+   */
+  enableAhrefs?: boolean;
+
+  /**
+   * Custom dataLayer name
+   * @default 'dataLayer'
+   */
+  dataLayerName?: string;
+}
+
+const {
+  enableGA4 = true,
+  enableGTM = true,
+  enableAhrefs = true,
+  dataLayerName = 'dataLayer'
+} = Astro.props;
+
+const ga4MeasurementId = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID;
+const gtmContainerId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
+const ahrefsKey = import.meta.env.PUBLIC_AHREFS_KEY;
+
+// Webflow developer ID for attribution
+const webflowDevId = 'dZGVlNj';
+---
+
+{/* Google Analytics 4 (GA4) - Head Scripts */}
+{enableGA4 && ga4MeasurementId && (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4MeasurementId}`}></script>
+    <script is:inline define:vars={{ ga4MeasurementId, webflowDevId, dataLayerName }}>
+      window[dataLayerName] = window[dataLayerName] || [];
+      function gtag() {
+        window[dataLayerName].push(arguments);
+      }
+      // Set Webflow developer ID for attribution
+      gtag('set', 'developer_id.' + webflowDevId, true);
+      gtag('js', new Date());
+      gtag('config', ga4MeasurementId);
+    </script>
+  </>
+)}
+
+{/* Google Tag Manager - Head Scripts */}
+{enableGTM && gtmContainerId && (
+  <script is:inline define:vars={{ gtmContainerId, dataLayerName }}>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', dataLayerName, gtmContainerId);
+  </script>
+)}

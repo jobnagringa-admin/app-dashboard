@@ -1,0 +1,48 @@
+---
+/**
+ * AnalyticsBody Component
+ *
+ * Contains analytics noscript fallbacks for the <body>.
+ * Should be placed right after opening <body> tag.
+ *
+ * @usage
+ * ```astro
+ * ---
+ * import AnalyticsBody from '../components/AnalyticsBody.astro';
+ * ---
+ * <body>
+ *   <AnalyticsBody />
+ *   ...
+ * </body>
+ * ```
+ */
+
+export interface Props {
+  /**
+   * Google Tag Manager ID
+   */
+  gtmId?: string;
+
+  /**
+   * Disable analytics (useful for development)
+   */
+  disabled?: boolean;
+}
+
+const {
+  gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-58XVRQZ',
+  disabled = import.meta.env.DEV && !import.meta.env.PUBLIC_ENABLE_ANALYTICS,
+} = Astro.props;
+---
+
+{!disabled && (
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe
+      src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+      height="0"
+      width="0"
+      style="display:none;visibility:hidden"
+    ></iframe>
+  </noscript>
+)}

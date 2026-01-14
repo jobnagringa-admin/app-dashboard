@@ -1,0 +1,172 @@
+/**
+ * Footer Component Styles - JobnaGringa Astro Migration
+ *
+ * Footer section and related component styles.
+ *
+ * Original source: src-legacy/css/jobnagringa.webflow.css
+ * Migration date: 2026-01-14
+ */
+
+/* ==========================================================================
+   Footer Section
+   ========================================================================== */
+
+.footer_section {
+  background-color: var(--backgrounds--dark-blue);
+  color: var(--neutrals--neutral-100-white);
+  border-radius: var(--border-radius--radius-large)
+    var(--border-radius--radius-large) 0 0;
+  padding: 3rem 2rem;
+}
+
+.footer_content {
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer_header {
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+}
+
+.footer_grid {
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+  grid-template-columns: repeat(4, 1fr);
+  display: grid;
+}
+
+.footer_link-grid {
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+  flex-direction: column;
+  display: flex;
+}
+
+.footer_link-grid.is-wrapper {
+  flex-flow: row;
+  flex-wrap: wrap;
+}
+
+.footer_link {
+  color: var(--neutrals--neutral-300);
+  font-size: 0.875rem;
+  transition: color 0.2s ease;
+}
+
+.footer_link:hover {
+  color: var(--neutrals--neutral-100-white);
+}
+
+.footer_disclaimer {
+  color: var(--neutrals--neutral-500);
+  font-size: 0.75rem;
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   Social Links Grid
+   ========================================================================== */
+
+.social_grid {
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  display: flex;
+}
+
+.social_link {
+  color: var(--neutrals--neutral-300);
+  transition: color 0.2s ease;
+}
+
+.social_link:hover {
+  color: var(--brand--primary);
+}
+
+/* ==========================================================================
+   Footer Responsive
+   ========================================================================== */
+
+@media screen and (max-width: 991px) {
+  .footer_grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer_header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .footer_grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer_link-grid {
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .footer_section {
+    border-radius: 0;
+    padding-top: 1.5rem;
+    padding-bottom: 60px;
+  }
+
+  .social_grid {
+    margin-top: 1rem;
+  }
+
+  .footer_link-grid {
+    grid-column-gap: 0.2rem;
+    grid-row-gap: 0.2rem;
+  }
+
+  .footer_link-grid.is-wrapper {
+    text-align: left;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .footer_content {
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+    align-items: center;
+  }
+
+  .footer_header {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 16px;
+  }
+
+  .footer_grid {
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    text-align: center;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    justify-items: center;
+  }
+
+  .footer_disclaimer {
+    text-align: center;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}

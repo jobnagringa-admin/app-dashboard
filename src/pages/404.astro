@@ -1,0 +1,57 @@
+---
+/**
+ * 404 Not Found Page
+ *
+ * Shown when a requested page doesn't exist.
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Pagina Nao Encontrada"
+  noIndex={true}
+  includeNavigation={true}
+  includeFooter={false}
+  bodyClass=""
+>
+  <div class="utility_section">
+    <div class="utility_container">
+      <h2 class="_404_heading">404</h2>
+      <div class="spacer-small"></div>
+      <div class="text-size-large text-weight-semibold">
+        Pagina nao encontrada
+      </div>
+      <div class="spacer-small"></div>
+      <p class="text-color-muted">
+        Muita calma nessa hora. Esse conteudo foi removido ou simplesmente nunca existiu.
+      </p>
+      <div class="spacer-medium"></div>
+      <div>
+        <a href="/" class="button w-button">Volte pra Home</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .utility_section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: 2rem;
+  }
+
+  .utility_container {
+    text-align: center;
+    max-width: 500px;
+  }
+
+  ._404_heading {
+    font-size: 8rem;
+    font-weight: 700;
+    color: var(--blues--blue-50, #0071ff);
+    line-height: 1;
+  }
+</style>

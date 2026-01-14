@@ -1,0 +1,459 @@
+/**
+ * Card Component Styles - JobnaGringa Astro Migration
+ *
+ * All card component styles including job cards, dashboard cards, lesson cards.
+ *
+ * Original source: src-legacy/css/jobnagringa.webflow.css
+ * Migration date: 2026-01-14
+ */
+
+/* ==========================================================================
+   Base Card
+   ========================================================================== */
+
+.card {
+  background-color: var(--neutrals--neutral-100-white);
+  border: 1px solid var(--borders--border-regular);
+  border-radius: var(--border-radius--radius-regular);
+  padding: 1.5rem;
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+   Dashboard Cards
+   ========================================================================== */
+
+.dashboard-card {
+  background-color: var(--neutrals--neutral-100-white);
+  border: 1px solid var(--borders--border-regular);
+  border-radius: var(--border-radius--radius-regular);
+  padding: 1.5rem;
+}
+
+.dashboard-card_title {
+  color: var(--neutrals--neutral-800);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-card_title.is-medium {
+  font-size: 0.875rem;
+}
+
+.dashboard-card_title.is-xlarge {
+  font-size: 1.5rem;
+}
+
+.dashboard-card_grid {
+  grid-column-gap: 1.5rem;
+  grid-row-gap: 1.5rem;
+  display: grid;
+}
+
+.dashboard-card_grid.is-3col {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.dashboard-card_grid.is-5col {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.dashboard-card_grid.is-6col {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.dashboard-cards-content {
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  flex-direction: column;
+  display: flex;
+}
+
+.dashboard-cards-content.is-workshops {
+  color: var(--blues--blue-05);
+  text-align: center;
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), transparent);
+  background-position: 0 0;
+  background-size: auto;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 20rem;
+  padding: 2rem;
+}
+
+/* ==========================================================================
+   Dashboard List
+   ========================================================================== */
+
+.dashboard-list_item {
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  border: 1px solid var(--borders--border-regular);
+  border-radius: var(--border-radius--radius-small);
+  background-color: var(--neutrals--neutral-100-white);
+  align-items: center;
+  padding: 1rem;
+  display: flex;
+  transition: border-color 0.2s ease;
+}
+
+.dashboard-list_item:hover {
+  border-color: var(--brand--primary);
+}
+
+.dashboard-list_item.is-company-card {
+  flex-direction: column;
+  text-align: center;
+}
+
+.dashboard-list_content {
+  flex: 1;
+}
+
+.dashboard-list_content.align-right {
+  text-align: right;
+}
+
+.dashboard-list_wrapper {
+  grid-column-gap: 0.75rem;
+  grid-row-gap: 0.75rem;
+  flex-direction: column;
+  display: flex;
+}
+
+.dashboard-list_wrapper.is-stretch {
+  width: 100%;
+}
+
+.dashboard-list_button-group {
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+  display: flex;
+}
+
+.dashboard-list_button-group.is-strech-on-mobile {
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   Lesson Card
+   ========================================================================== */
+
+.lesson-card {
+  background-color: var(--neutrals--neutral-100-white);
+  border: 1px solid var(--borders--border-regular);
+  border-radius: var(--border-radius--radius-regular);
+  padding: 1rem;
+  transition: all 0.2s ease;
+}
+
+.lesson-card:hover {
+  border-color: var(--brand--primary);
+  background-color: var(--blues--blue-05);
+}
+
+.lesson-card.is-dark-on-mobile {
+  /* Styles for dark mode on mobile */
+}
+
+.lesson-card_row {
+  border: 1px solid var(--borders--border-regular);
+  background-color: var(--blues--blue-05);
+  color: var(--fonts--text-100);
+  border-radius: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-right: 0.78rem;
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: flex;
+  transition: all 0.2s ease;
+}
+
+.lesson-card_row.w--current {
+  border-color: var(--brand--primary);
+  background-color: var(--blues--blue-10);
+}
+
+.lesson-card_row.is-underline {
+  border-bottom-style: solid;
+  border-bottom-color: var(--borders--border-regular);
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.lesson-card_row.is-underline:hover {
+  background-color: var(--blues--blue-10);
+  color: var(--brand--primary);
+}
+
+.lesson-card_row.is-underline.w--current {
+  border-top-style: none;
+  border-bottom-style: none;
+  border-left-width: 3px;
+  border-right-style: none;
+  border-left-color: var(--brand--primary);
+  background-color: var(--backgrounds--light-secondary);
+}
+
+.lesson-card_row.is-bordered {
+  border-color: var(--borders--border-regular);
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 1rem;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.lesson-card_row.is-bordered:hover {
+  background-color: var(--neutrals--neutral-100-white);
+  color: var(--fonts--text-100);
+  text-decoration: none;
+}
+
+.lesson-card_row.is-bordered.is-link:hover {
+  border-color: var(--blues--blue-60);
+  background-color: var(--blues--blue-05);
+}
+
+.lesson-card_content {
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  flex: 0 auto;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.lesson-card_content.is-stretch {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.lesson-card_list-wrapper {
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+.lesson-card_list-wrapper.is-overflow-visible {
+  overflow: visible;
+}
+
+/* ==========================================================================
+   Job Card
+   ========================================================================== */
+
+.job-card {
+  background-color: var(--neutrals--neutral-100-white);
+  border: 1px solid var(--borders--border-regular);
+  border-radius: var(--border-radius--radius-regular);
+  padding: 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.job-card:hover {
+  border-color: var(--brand--primary);
+  box-shadow: 0 4px 12px rgba(0, 113, 255, 0.1);
+}
+
+.job-card_br-flag {
+  width: 6rem;
+}
+
+.job_category-card {
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  background-color: var(--neutrals--neutral-100-white);
+  border: 1px solid var(--borders--border-regular);
+  border-radius: var(--border-radius--radius-regular);
+  flex-direction: row;
+  padding: 1rem;
+  display: flex;
+  transition: all 0.2s ease;
+  box-shadow: 0 7px 20px -5px rgba(175, 175, 175, 0.2);
+}
+
+.job_category-card:hover {
+  border-color: var(--brand--primary);
+}
+
+/* ==========================================================================
+   Card Row List
+   ========================================================================== */
+
+.card-row_list {
+  border: 1px solid var(--borders--border-regular);
+  border-radius: 1rem;
+  flex-direction: column;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
+.card-row_list.is-no-border {
+  border-style: none;
+  border-radius: 0;
+}
+
+.card-row_list.is-bordeles-gap {
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+  border-style: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.card-row_title {
+  text-overflow: ellipsis;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   User Card
+   ========================================================================== */
+
+.user-card__thumbnail {
+  object-fit: cover;
+  border-radius: 62.5rem;
+  overflow: hidden;
+}
+
+.user-card__thumbnail.is-small {
+  max-height: 4rem;
+}
+
+.user-card--sm__title {
+  grid-column-gap: 0.25rem;
+  grid-row-gap: 0.25rem;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  display: flex;
+}
+
+.user-card--sm__title.is-horizonta {
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.user-card--sm__title.is-strech {
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ==========================================================================
+   Responsive Card Styles
+   ========================================================================== */
+
+@media screen and (max-width: 991px) {
+  .dashboard-card_grid.is-3col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-card_grid.is-5col,
+  .dashboard-card_grid.is-6col {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .dashboard-card_grid.is-3col,
+  .dashboard-card_grid.is-5col,
+  .dashboard-card_grid.is-6col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .card {
+    padding: 1.5rem;
+  }
+
+  .dashboard-card_title.is-medium {
+    font-size: 0.875rem;
+  }
+
+  .dashboard-card_title.is-xlarge {
+    font-size: 1.2rem;
+  }
+
+  .dashboard-card_grid.is-5col,
+  .dashboard-card_grid.is-6col {
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-card_grid.is-3col {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dashboard-list_item {
+    grid-column-gap: 14px;
+    grid-row-gap: 14px;
+    white-space: nowrap;
+    flex-flow: row;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-columns: 1fr;
+    place-items: center stretch;
+    display: flex;
+  }
+
+  .dashboard-list_item.is-company-card {
+    text-align: center;
+    flex-flow: column;
+  }
+
+  .dashboard-list_button-group.is-strech-on-mobile {
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .job-card_br-flag {
+    width: 5rem;
+  }
+
+  .job_category-card {
+    grid-column-gap: 0.8rem;
+    grid-row-gap: 0.8rem;
+    flex-flow: row;
+    padding: 0.7rem;
+    overflow: hidden;
+    box-shadow: 0 7px 20px -5px rgba(175, 175, 175, 0.2);
+  }
+
+  .dashboard-cards-content.is-workshops {
+    color: var(--blues--blue-05);
+    text-align: center;
+    background-position:
+      0 0,
+      50% 100%;
+    background-size: auto, cover;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    min-height: 27rem;
+    padding: 1.5rem;
+  }
+}

@@ -1,0 +1,151 @@
+---
+/**
+ * Privacy Policy Page (Politicas)
+ *
+ * Privacy policy and terms of service page.
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Politicas de Privacidade - #jobnagringa"
+  description="Politicas de privacidade e termos de uso do #jobnagringa"
+  includeNavigation={true}
+  includeFooter={true}
+  bodyClass=""
+>
+  <div class="politicas_section">
+    <div class="container-medium">
+      <div class="politicas_header">
+        <h1 class="heading-style-h1">Politicas de Privacidade</h1>
+        <p class="text-color-muted">Ultima atualizacao: Janeiro de 2026</p>
+      </div>
+
+      <div class="spacer-xlarge"></div>
+
+      <div class="politicas_content w-richtext">
+        <h2>1. Introducao</h2>
+        <p>
+          A sua privacidade e importante para nos. Esta Politica de Privacidade explica como o #jobnagringa
+          coleta, usa, divulga e protege suas informacoes quando voce visita nosso site ou utiliza nossos servicos.
+        </p>
+
+        <h2>2. Informacoes que Coletamos</h2>
+        <p>Coletamos informacoes que voce nos fornece diretamente, incluindo:</p>
+        <ul>
+          <li>Nome e sobrenome</li>
+          <li>Endereco de e-mail</li>
+          <li>Informacoes de pagamento (processadas de forma segura por nossos parceiros)</li>
+          <li>Informacoes do perfil profissional</li>
+        </ul>
+
+        <h2>3. Como Usamos Suas Informacoes</h2>
+        <p>Utilizamos as informacoes coletadas para:</p>
+        <ul>
+          <li>Fornecer, manter e melhorar nossos servicos</li>
+          <li>Processar transacoes e enviar notificacoes relacionadas</li>
+          <li>Enviar comunicacoes de marketing (com seu consentimento)</li>
+          <li>Responder a seus comentarios, perguntas e solicitacoes</li>
+          <li>Monitorar e analisar tendencias, uso e atividades</li>
+        </ul>
+
+        <h2>4. Compartilhamento de Informacoes</h2>
+        <p>
+          Nao vendemos, alugamos ou compartilhamos suas informacoes pessoais com terceiros para fins de marketing
+          sem seu consentimento explicito. Podemos compartilhar suas informacoes nas seguintes circunstancias:
+        </p>
+        <ul>
+          <li>Com prestadores de servicos que auxiliam em nossas operacoes</li>
+          <li>Para cumprir obrigacoes legais</li>
+          <li>Para proteger nossos direitos e seguranca</li>
+        </ul>
+
+        <h2>5. Seguranca</h2>
+        <p>
+          Implementamos medidas de seguranca tecnicas e organizacionais apropriadas para proteger suas informacoes
+          pessoais contra acesso nao autorizado, alteracao, divulgacao ou destruicao.
+        </p>
+
+        <h2>6. Seus Direitos</h2>
+        <p>De acordo com a LGPD (Lei Geral de Protecao de Dados), voce tem direito a:</p>
+        <ul>
+          <li>Acessar seus dados pessoais</li>
+          <li>Corrigir dados incompletos, inexatos ou desatualizados</li>
+          <li>Solicitar a exclusao de seus dados</li>
+          <li>Revogar consentimento</li>
+          <li>Solicitar a portabilidade dos dados</li>
+        </ul>
+
+        <h2>7. Cookies</h2>
+        <p>
+          Utilizamos cookies e tecnologias similares para melhorar sua experiencia em nosso site, analisar
+          o trafego e personalizar conteudo. Voce pode gerenciar suas preferencias de cookies atraves
+          das configuracoes do seu navegador.
+        </p>
+
+        <h2>8. Alteracoes nesta Politica</h2>
+        <p>
+          Podemos atualizar esta Politica de Privacidade periodicamente. Notificaremos sobre quaisquer
+          alteracoes publicando a nova politica nesta pagina e atualizando a data de "ultima atualizacao".
+        </p>
+
+        <h2>9. Contato</h2>
+        <p>
+          Se voce tiver duvidas sobre esta Politica de Privacidade, entre em contato conosco:
+        </p>
+        <ul>
+          <li>Email: <a href="mailto:suporte@jobnagringa.com.br">suporte@jobnagringa.com.br</a></li>
+        </ul>
+
+        <h2>10. Termos de Uso</h2>
+        <p>
+          Ao utilizar nossos servicos, voce concorda com estes termos. Nossos servicos sao fornecidos
+          "como estao" e nos reservamos o direito de modificar ou descontinuar qualquer parte do servico
+          a qualquer momento.
+        </p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .politicas_section {
+    padding: 4rem 0;
+  }
+
+  .politicas_header {
+    max-width: 800px;
+  }
+
+  .politicas_content {
+    max-width: 800px;
+  }
+
+  .politicas_content h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .politicas_content p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+
+  .politicas_content ul {
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+  }
+
+  .politicas_content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+  }
+
+  .politicas_content a {
+    color: var(--blues--blue-50, #0071ff);
+    text-decoration: underline;
+  }
+</style>

@@ -1,0 +1,311 @@
+---
+/**
+ * Blog Page
+ *
+ * Blog listing page with CMS-powered posts.
+ * Uses Finsweet CMS attributes for filtering and pagination.
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Blog - #jobnagringa"
+  description="Dicas, tutoriais e noticias sobre trabalho remoto internacional para brasileiros."
+  includeNavigation={true}
+  includeFooter={true}
+  bodyClass=""
+>
+  <div class="blog_section">
+    <div class="container-large">
+      <div class="blog_header">
+        <h1 class="heading-style-h1">Blog</h1>
+        <p class="text-size-large text-color-muted">
+          Dicas, tutoriais e noticias sobre trabalho remoto internacional
+        </p>
+      </div>
+
+      <div class="spacer-xlarge"></div>
+
+      <!-- Featured Post -->
+      <div class="blog_featured">
+        <div fs-cmsload-element="list" class="blog_featured-list w-dyn-list">
+          <div role="list" class="blog_featured-items w-dyn-items">
+            <div role="listitem" class="blog_featured-item w-dyn-item">
+              <a href="#" class="blog_featured-link w-inline-block">
+                <div class="blog_featured-image-wrapper">
+                  <img
+                    src="/images/blog-placeholder.jpg"
+                    loading="lazy"
+                    alt=""
+                    class="blog_featured-image"
+                  />
+                </div>
+                <div class="blog_featured-content">
+                  <div class="blog_category-tag">Destaque</div>
+                  <h2 class="heading-style-h3">Carregando posts...</h2>
+                  <p class="text-color-muted">Aguarde enquanto carregamos os ultimos artigos.</p>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="w-dyn-empty">
+            <p class="text-color-muted">Nenhum post encontrado.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="spacer-xlarge"></div>
+
+      <!-- Blog Grid -->
+      <div class="blog_grid-section">
+        <div class="blog_filters">
+          <div fs-cmsfilter-element="filters" class="blog_filter-buttons">
+            <button class="blog_filter-button is-active" fs-cmsfilter-reset="true">
+              Todos
+            </button>
+            <button class="blog_filter-button" fs-cmsfilter-field="category" fs-cmsfilter-value="Carreira">
+              Carreira
+            </button>
+            <button class="blog_filter-button" fs-cmsfilter-field="category" fs-cmsfilter-value="Entrevistas">
+              Entrevistas
+            </button>
+            <button class="blog_filter-button" fs-cmsfilter-field="category" fs-cmsfilter-value="Curriculo">
+              Curriculo
+            </button>
+            <button class="blog_filter-button" fs-cmsfilter-field="category" fs-cmsfilter-value="Ingles">
+              Ingles
+            </button>
+          </div>
+        </div>
+
+        <div class="spacer-medium"></div>
+
+        <div fs-cmsload-element="list" fs-cmsfilter-element="list" class="blog_grid w-dyn-list">
+          <div role="list" class="blog_grid-items w-dyn-items">
+            <div role="listitem" class="blog_grid-item w-dyn-item">
+              <a href="#" class="blog_card w-inline-block">
+                <div class="blog_card-image-wrapper">
+                  <img
+                    src="/images/blog-placeholder.jpg"
+                    loading="lazy"
+                    alt=""
+                    class="blog_card-image"
+                  />
+                </div>
+                <div class="blog_card-content">
+                  <div class="blog_category-tag">Categoria</div>
+                  <h3 class="heading-style-h5">Titulo do Post</h3>
+                  <p class="text-size-small text-color-muted">Descricao breve do post...</p>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div fs-cmsfilter-element="empty" class="blog_empty w-dyn-empty">
+            <p class="text-color-muted">Nenhum post encontrado para esta categoria.</p>
+          </div>
+        </div>
+
+        <div class="spacer-large"></div>
+
+        <!-- Pagination -->
+        <div role="navigation" aria-label="Blog" class="blog_pagination w-pagination-wrapper">
+          <a href="#" aria-label="Previous Page" class="w-pagination-previous button is-secondary">
+            <svg width="12" height="12" viewBox="0 0 12 12">
+              <path fill="none" stroke="currentColor" d="M8 10L4 6l4-4"></path>
+            </svg>
+            <span>Anterior</span>
+          </a>
+          <a href="#" aria-label="Next Page" class="w-pagination-next button is-secondary">
+            <span>Proximo</span>
+            <svg width="12" height="12" viewBox="0 0 12 12">
+              <path fill="none" stroke="currentColor" d="M4 2l4 4-4 4"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Newsletter CTA -->
+  <div class="blog_newsletter-section">
+    <div class="container-medium">
+      <div class="blog_newsletter-card">
+        <h2 class="heading-style-h3">Receba nossas dicas por email</h2>
+        <p class="text-color-muted">Insceva-se para receber as melhores dicas sobre trabalho remoto internacional.</p>
+        <div class="spacer-medium"></div>
+        <div class="blog_newsletter-form w-form">
+          <form id="newsletter-form" name="newsletter-form" class="blog_newsletter-inputs">
+            <input
+              type="email"
+              class="input_field w-input"
+              maxlength="256"
+              name="email"
+              placeholder="Seu melhor email"
+              required
+            />
+            <button type="submit" class="button w-button">Inscrever</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .blog_section {
+    padding: 4rem 0;
+  }
+
+  .blog_header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .blog_featured-link {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    background: var(--neutrals--neutral-100, #f5f5f5);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  @media (max-width: 768px) {
+    .blog_featured-link {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .blog_featured-image-wrapper {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+  }
+
+  .blog_featured-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .blog_featured-content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .blog_category-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--blues--blue-50, #0071ff);
+    color: white;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    width: fit-content;
+  }
+
+  .blog_filters {
+    display: flex;
+    justify-content: center;
+  }
+
+  .blog_filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .blog_filter-button {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--neutrals--neutral-300, #ccc);
+    background: white;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .blog_filter-button:hover,
+  .blog_filter-button.is-active {
+    background: var(--blues--blue-50, #0071ff);
+    border-color: var(--blues--blue-50, #0071ff);
+    color: white;
+  }
+
+  .blog_grid-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .blog_card {
+    display: block;
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid var(--neutrals--neutral-200, #e5e5e5);
+    transition: box-shadow 0.2s;
+  }
+
+  .blog_card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .blog_card-image-wrapper {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+  }
+
+  .blog_card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .blog_card-content {
+    padding: 1.5rem;
+  }
+
+  .blog_pagination {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .blog_newsletter-section {
+    padding: 4rem 0;
+    background: var(--blues--blue-50, #0071ff);
+  }
+
+  .blog_newsletter-card {
+    text-align: center;
+    color: white;
+  }
+
+  .blog_newsletter-card .heading-style-h3,
+  .blog_newsletter-card p {
+    color: white;
+  }
+
+  .blog_newsletter-inputs {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .blog_newsletter-inputs .input_field {
+    flex: 1;
+  }
+
+  @media (max-width: 480px) {
+    .blog_newsletter-inputs {
+      flex-direction: column;
+    }
+  }
+</style>

@@ -1,0 +1,176 @@
+---
+/**
+ * Navigation Component - Site header with public and member navigation variants
+ *
+ * @prop {boolean} isMemberNav - Show member navigation instead of public nav
+ * @prop {string} currentPage - Current page for active state (e.g., 'dashboard', 'jobs', 'blog')
+ * @prop {string} baseUrl - Base URL for assets (defaults to '')
+ */
+
+interface Props {
+  isMemberNav?: boolean;
+  currentPage?: string;
+  baseUrl?: string;
+}
+
+const {
+  isMemberNav = false,
+  currentPage = '',
+  baseUrl = '',
+} = Astro.props;
+
+const isActive = (page: string) => currentPage === page ? 'w--current' : '';
+---
+
+<div class="nav_wrapper">
+  {isMemberNav ? (
+    <!-- Member Navigation -->
+    <div class="community_nav">
+      <nav class="navbar--blue--primary">
+        <div class="navbar_wrapper">
+          <div class="navbar_container">
+            <div class="container-large">
+              <div class="nav_container">
+                <div class="nav_left-col">
+                  <a href={`${baseUrl}/jng/member-dashboard`} class:list={["w-inline-block", isActive('dashboard')]}>
+                    <img width="138.25469970703125" height="19.743812561035156" alt="" src={`${baseUrl}/images/Vectors-Wrapper.svg`} loading="lazy" class="logo_image">
+                  </a>
+                  <div class="hide-tablet">
+                    <img width="8" height="8" alt="" src={`${baseUrl}/images/Vectors-Wrapper_1.svg`} loading="lazy" class="icon-star">
+                  </div>
+                  <div class="hide-tablet">
+                    <div class="text--tiny text-style-allcaps">WORKSHOPS</div>
+                  </div>
+                </div>
+                <div class="nav_right-col">
+                  <a href={`${baseUrl}/jng/jobs`} class:list={["navbar_link", isActive('jobs')]}>Vagas</a>
+                  <a href="#" id="logout" class="navbar_link is-white w-button">Sair</a>
+                </div>
+                <div class="nav_menu-button">
+                  <div class="icon-1x1-medium w-embed">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                      <path fill="currentColor" d="M4 11h12v2H4zm0-5h16v2H4zm0 12h7.235v-2H4z"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="embed-hidden w-embed">
+          <style>
+            input:-webkit-autofill,
+            input:-webkit-autofill:hover,
+            input:-webkit-autofill:focus,
+            textarea:-webkit-autofill,
+            textarea:-webkit-autofill:hover,
+            textarea:-webkit-autofill:focus,
+            select:-webkit-autofill,
+            select:-webkit-autofill:hover,
+            select:-webkit-autofill:focus {
+              -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+              -webkit-text-fill-color: #0071ff;
+            }
+          </style>
+        </div>
+        <div class="nav_close-overlay"></div>
+      </nav>
+    </div>
+  ) : (
+    <!-- Public Navigation -->
+    <div class="public_nav">
+      <div class="navbar--blue--primary">
+        <div class="navbar_wrapper">
+          <div class="navbar_container">
+            <a href={`${baseUrl}/`} class:list={["navbar_logo w-inline-block", isActive('home')]}>
+              <img src={`${baseUrl}/images/Vectors-Wrapper.svg`} loading="lazy" width="138.25469970703125" height="19.743812561035156" alt="" class="logo_image hide-tablet">
+              <img src={`${baseUrl}/images/logo-small_white.svg`} loading="lazy" alt="" height="0" class="logo_image hide-desktop">
+            </a>
+            <div class="navbar_link-wrap">
+              <a href="http://accounts.jobnagringa.com.br/sign-in?redirect_url=https://jobnagringa.com.br" class="navbar_link w-inline-block">
+                <div>Vagas</div>
+              </a>
+              <a href={`${baseUrl}/blog`} class:list={["navbar_link w-inline-block", isActive('blog')]}>
+                <div>Blog</div>
+              </a>
+              <a href="http://accounts.jobnagringa.com.br/sign-in?redirect_url=https://jobnagringa.com.br/redirect/zap-channel" target="_blank" class="navbar_link w-inline-block">
+                <div>Grupo Whats</div>
+              </a>
+              <a href="http://accounts.jobnagringa.com.br/sign-in?redirect_url=https://link.jobnagringa.com.br/discord" target="_blank" class="navbar_link w-inline-block">
+                <div>Discord</div>
+              </a>
+            </div>
+            <div class="navbar_button-wrap">
+              <a href={`${baseUrl}/assine`} class:list={["navbar_link w-inline-block", isActive('assine')]}>
+                <div>Assine</div>
+              </a>
+              <a href="https://accounts.jobnagringa.com.br/sign-in?redirect_url=https://jobnagringa.com.br/jng/member-dashboard" class="navbar_link is-white w-inline-block">
+                <div>Login</div>
+              </a>
+              <div class="navbar_mobile-menu">
+                <div class="icon-1x1-medium w-embed">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                    <path fill="currentColor" d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75m0 5A.75.75 0 0 1 2.75 9h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 9.75M2.75 14a.75.75 0 0 0 0 1.5h14.5a.75.75 0 0 0 0-1.5z"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-embed">
+          <style>
+            .item__arrow {
+              display: none;
+            }
+            .w--current .item__arrow {
+              display: flex;
+            }
+          </style>
+        </div>
+        <div class="hide-desktop">
+          <div class="spacer-xlarge"></div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  <!-- Global scrollbar styles -->
+  <div class="general_style w-embed">
+    <style>
+      ::-webkit-scrollbar {
+        width: 0.5rem;
+        height: 0.5rem;
+      }
+      ::-webkit-scrollbar-track {
+        border-radius: 100rem;
+        background: #fff;
+      }
+      ::-webkit-scrollbar-thumb {
+        border-radius: 100rem;
+        background: var(--neutrals--neutral-300);
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--blues--blue-20);
+      }
+      .link-return:hover .button {
+        background: var(--blues--blue-50);
+        color: #fff;
+      }
+      select, .input_field.is-select {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        background-position: 100% 50%;
+        background-size: 1rem 1rem;
+        background-repeat: no-repeat;
+        background-position: right 0.5rem center;
+      }
+      [acronym] {
+        font-family: monospace;
+        width: 2ch;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    </style>
+  </div>
+</div>

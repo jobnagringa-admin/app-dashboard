@@ -1,0 +1,65 @@
+---
+/**
+ * Resume Review Detail Page
+ * Migrated from: src-legacy/detail_resume-review.html
+ * Webflow Page ID: 6596f1ca44a9b0b5d6ec33a0
+ *
+ * TODO: Implement CMS data fetching for resume reviews
+ * TODO: Replace placeholder content with dynamic review data
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+
+// TODO: Fetch resume review data from CMS
+// const review = await fetchResumeReview(slug);
+// if (!review) return Astro.redirect('/404');
+
+const pageTitle = `Resume Review - ${slug}`;
+---
+
+<BaseLayout title={pageTitle}>
+  <div class="padding-global">
+    <div class="container-large">
+      <div class="padding-section-large">
+        <div class="resume-review-detail">
+          <div class="margin-bottom margin-medium">
+            <h1 class="heading-style-h2">
+              {/* review.title */}
+              Resume Review: {slug}
+            </h1>
+          </div>
+
+          <!-- Review Status -->
+          <div class="review-status">
+            <span class="status-badge">
+              {/* review.status */}
+              Pending
+            </span>
+          </div>
+
+          <div class="spacer-medium"></div>
+
+          <!-- Review Content -->
+          <div class="review-content w-richtext">
+            {/* review.content */}
+            <p>Resume review content will be loaded from the CMS.</p>
+          </div>
+
+          <div class="spacer-medium"></div>
+
+          <!-- Feedback Section -->
+          <div class="review-feedback">
+            <h3 class="heading-style-h5">Expert Feedback</h3>
+            <div class="feedback-content w-richtext">
+              {/* review.feedback */}
+              <p>Expert feedback will be displayed here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

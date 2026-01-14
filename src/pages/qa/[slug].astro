@@ -1,0 +1,67 @@
+---
+/**
+ * Q&A Detail Page
+ * Migrated from: src-legacy/detail_qa.html
+ * Webflow Page ID: 64c1fa3f59a58c35f96a8c55
+ *
+ * TODO: Implement CMS data fetching for Q&A content
+ * TODO: Replace placeholder content with dynamic Q&A data
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+
+// TODO: Fetch Q&A data from CMS
+// const qa = await fetchQA(slug);
+// if (!qa) return Astro.redirect('/404');
+
+const pageTitle = `Q&A - ${slug}`;
+---
+
+<BaseLayout title={pageTitle}>
+  <div class="padding-global">
+    <div class="container-large">
+      <div class="padding-section-large">
+        <div class="qa-detail">
+          <!-- Question -->
+          <div class="qa-question">
+            <h1 class="heading-style-h3">
+              {/* qa.question */}
+              Question: {slug}
+            </h1>
+          </div>
+
+          <div class="spacer-small"></div>
+
+          <!-- Question Meta -->
+          <div class="qa-meta text-style-muted">
+            <span>Asked by: {/* qa.author */}</span>
+            <span> | </span>
+            <span>Date: {/* qa.date */}</span>
+          </div>
+
+          <div class="spacer-medium"></div>
+
+          <!-- Answer -->
+          <div class="qa-answer">
+            <h3 class="heading-style-h5">Answer</h3>
+            <div class="qa-answer-content w-richtext">
+              {/* qa.answer */}
+              <p>Answer content will be loaded from the CMS.</p>
+            </div>
+          </div>
+
+          <div class="spacer-large"></div>
+
+          <!-- Tags -->
+          <div class="qa-tags">
+            <span class="text-weight-medium">Tags:</span>
+            {/* qa.tags.map(tag => <a href={`/qa-tags/${tag.slug}`}>{tag.name}</a>) */}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

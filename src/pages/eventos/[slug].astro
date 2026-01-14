@@ -1,0 +1,87 @@
+---
+/**
+ * Event Detail Page
+ * Migrated from: src-legacy/detail_eventos.html
+ * Webflow Page ID: 686fc38b2e2879f07a10a06f
+ *
+ * TODO: Implement CMS data fetching for events
+ * TODO: Replace placeholder content with dynamic event data
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+
+// TODO: Fetch event data from CMS
+// const event = await fetchEvent(slug);
+// if (!event) return Astro.redirect('/404');
+
+const pageTitle = `Event - ${slug}`;
+---
+
+<BaseLayout title={pageTitle}>
+  <div class="padding-global">
+    <div class="container-large">
+      <div class="padding-section-large">
+        <div class="event-detail">
+          <!-- Event Header -->
+          <div class="event-header">
+            <!-- Event Image -->
+            <div class="event-image-wrapper">
+              {/* <img src={event.image} alt={event.title} class="event-image" /> */}
+            </div>
+
+            <div class="margin-bottom margin-medium">
+              <h1 class="heading-style-h2">
+                {/* event.title */}
+                Event: {slug}
+              </h1>
+            </div>
+          </div>
+
+          <!-- Event Meta -->
+          <div class="event-meta">
+            <div class="event-meta-item">
+              <span class="text-weight-medium">Date:</span>
+              {/* event.date */}
+              <span>TBD</span>
+            </div>
+            <div class="event-meta-item">
+              <span class="text-weight-medium">Time:</span>
+              {/* event.time */}
+              <span>TBD</span>
+            </div>
+            <div class="event-meta-item">
+              <span class="text-weight-medium">Location:</span>
+              {/* event.location || 'Online' */}
+              <span>Online</span>
+            </div>
+          </div>
+
+          <div class="spacer-medium"></div>
+
+          <!-- Event Description -->
+          <div class="event-description w-richtext">
+            {/* event.description */}
+            <p>Event description will be loaded from the CMS.</p>
+          </div>
+
+          <div class="spacer-large"></div>
+
+          <!-- Register Button -->
+          <div class="event-action">
+            <a
+              href="#"
+              class="button w-button"
+              target="_blank"
+            >
+              {/* Register URL: event.registrationUrl */}
+              Register Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
