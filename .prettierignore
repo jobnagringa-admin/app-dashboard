@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+bun.lockb
+
+# Build outputs
+dist/
+.astro/
+
+# Legacy files (being migrated)
+src-legacy/
+
+# Generated files
+*.min.js
+*.min.css
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+
+# Git
+.git/
+
+# Documentation build
+docs/_build/
+
+# Temporary files
+*.tmp
+*.temp

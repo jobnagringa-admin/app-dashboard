@@ -1,0 +1,35 @@
+{
+  "name": "jobnagringa-astro",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Job na Gringa - Remote international jobs for Brazilians",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check",
+    "lint": "eslint . --max-warnings=0",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"**/*.{astro,ts,tsx,js,jsx,json,css,md,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{astro,ts,tsx,js,jsx,json,css,md,yml,yaml}\""
+  },
+  "dependencies": {
+    "@astrojs/node": "^9.5.1",
+    "@clerk/clerk-js": "^5.119.1",
+    "astro": "^5.16.9"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@eslint/js": "^9.17.0",
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-astro": "^1.2.4",
+    "prettier": "^3.4.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.18.0"
+  }
+}
