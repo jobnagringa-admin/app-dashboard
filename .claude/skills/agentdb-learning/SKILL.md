@@ -1,15 +1,24 @@
 ---
-name: "AgentDB Learning Plugins"
-description: "Create and train AI learning plugins with AgentDB's 9 reinforcement learning algorithms. Includes Decision Transformer, Q-Learning, SARSA, Actor-Critic, and more. Use when building self-learning agents, implementing RL, or optimizing agent behavior through experience."
+name: 'AgentDB Learning Plugins'
+description:
+  "Create and train AI learning plugins with AgentDB's 9 reinforcement learning
+  algorithms. Includes Decision Transformer, Q-Learning, SARSA, Actor-Critic,
+  and more. Use when building self-learning agents, implementing RL, or
+  optimizing agent behavior through experience."
 ---
 
 # AgentDB Learning Plugins
 
 ## What This Skill Does
 
-Provides access to 9 reinforcement learning algorithms via AgentDB's plugin system. Create, train, and deploy learning plugins for autonomous agents that improve through experience. Includes offline RL (Decision Transformer), value-based learning (Q-Learning), policy gradients (Actor-Critic), and advanced techniques.
+Provides access to 9 reinforcement learning algorithms via AgentDB's plugin
+system. Create, train, and deploy learning plugins for autonomous agents that
+improve through experience. Includes offline RL (Decision Transformer),
+value-based learning (Q-Learning), policy gradients (Actor-Critic), and advanced
+techniques.
 
-**Performance**: Train models 10-100x faster with WASM-accelerated neural inference.
+**Performance**: Train models 10-100x faster with WASM-accelerated neural
+inference.
 
 ## Prerequisites
 
@@ -68,11 +77,11 @@ npx agentdb@latest plugin-info my-agent
 ## Quick Start with API
 
 ```typescript
-import { createAgentDBAdapter } from "agentic-flow/reasoningbank";
+import { createAgentDBAdapter } from 'agentic-flow/reasoningbank';
 
 // Initialize with learning enabled
 const adapter = await createAgentDBAdapter({
-  dbPath: ".agentdb/learning.db",
+  dbPath: '.agentdb/learning.db',
   enableLearning: true, // Enable learning plugins
   enableReasoning: true,
   cacheSize: 1000,
@@ -80,11 +89,11 @@ const adapter = await createAgentDBAdapter({
 
 // Store training experience
 await adapter.insertPattern({
-  id: "",
-  type: "experience",
-  domain: "game-playing",
+  id: '',
+  type: 'experience',
+  domain: 'game-playing',
   pattern_data: JSON.stringify({
-    embedding: await computeEmbedding("state-action-reward"),
+    embedding: await computeEmbedding('state-action-reward'),
     pattern: {
       state: [0.1, 0.2, 0.3],
       action: 2,
@@ -106,8 +115,8 @@ const metrics = await adapter.train({
   batchSize: 32,
 });
 
-console.log("Training Loss:", metrics.loss);
-console.log("Duration:", metrics.duration, "ms");
+console.log('Training Loss:', metrics.loss);
+console.log('Duration:', metrics.duration, 'ms');
 ```
 
 ---
@@ -116,9 +125,9 @@ console.log("Duration:", metrics.duration, "ms");
 
 ### 1. Decision Transformer (Recommended)
 
-**Type**: Offline Reinforcement Learning
-**Best For**: Learning from logged experiences, imitation learning
-**Strengths**: No online interaction needed, stable training
+**Type**: Offline Reinforcement Learning **Best For**: Learning from logged
+experiences, imitation learning **Strengths**: No online interaction needed,
+stable training
 
 ```bash
 npx agentdb@latest create-plugin -t decision-transformer -n dt-agent
@@ -146,9 +155,9 @@ npx agentdb@latest create-plugin -t decision-transformer -n dt-agent
 
 ### 2. Q-Learning
 
-**Type**: Value-Based RL (Off-Policy)
-**Best For**: Discrete action spaces, sample efficiency
-**Strengths**: Proven, simple, works well for small/medium problems
+**Type**: Value-Based RL (Off-Policy) **Best For**: Discrete action spaces,
+sample efficiency **Strengths**: Proven, simple, works well for small/medium
+problems
 
 ```bash
 npx agentdb@latest create-plugin -t q-learning -n q-agent
@@ -175,9 +184,9 @@ npx agentdb@latest create-plugin -t q-learning -n q-agent
 
 ### 3. SARSA
 
-**Type**: Value-Based RL (On-Policy)
-**Best For**: Safe exploration, risk-sensitive tasks
-**Strengths**: More conservative than Q-Learning, better for safety
+**Type**: Value-Based RL (On-Policy) **Best For**: Safe exploration,
+risk-sensitive tasks **Strengths**: More conservative than Q-Learning, better
+for safety
 
 ```bash
 npx agentdb@latest create-plugin -t sarsa -n sarsa-agent
@@ -202,9 +211,8 @@ npx agentdb@latest create-plugin -t sarsa -n sarsa-agent
 
 ### 4. Actor-Critic
 
-**Type**: Policy Gradient with Value Baseline
-**Best For**: Continuous actions, variance reduction
-**Strengths**: Stable, works for continuous/discrete actions
+**Type**: Policy Gradient with Value Baseline **Best For**: Continuous actions,
+variance reduction **Strengths**: Stable, works for continuous/discrete actions
 
 ```bash
 npx agentdb@latest create-plugin -t actor-critic -n ac-agent
@@ -230,9 +238,9 @@ npx agentdb@latest create-plugin -t actor-critic -n ac-agent
 
 ### 5. Active Learning
 
-**Type**: Query-Based Learning
-**Best For**: Label-efficient learning, human-in-the-loop
-**Strengths**: Minimizes labeling cost, focuses on uncertain samples
+**Type**: Query-Based Learning **Best For**: Label-efficient learning,
+human-in-the-loop **Strengths**: Minimizes labeling cost, focuses on uncertain
+samples
 
 **Use Cases**:
 
@@ -243,9 +251,8 @@ npx agentdb@latest create-plugin -t actor-critic -n ac-agent
 
 ### 6. Adversarial Training
 
-**Type**: Robustness Enhancement
-**Best For**: Safety, robustness to perturbations
-**Strengths**: Improves model robustness, adversarial defense
+**Type**: Robustness Enhancement **Best For**: Safety, robustness to
+perturbations **Strengths**: Improves model robustness, adversarial defense
 
 **Use Cases**:
 
@@ -256,9 +263,8 @@ npx agentdb@latest create-plugin -t actor-critic -n ac-agent
 
 ### 7. Curriculum Learning
 
-**Type**: Progressive Difficulty Training
-**Best For**: Complex tasks, faster convergence
-**Strengths**: Stable learning, faster convergence on hard tasks
+**Type**: Progressive Difficulty Training **Best For**: Complex tasks, faster
+convergence **Strengths**: Stable learning, faster convergence on hard tasks
 
 **Use Cases**:
 
@@ -269,8 +275,7 @@ npx agentdb@latest create-plugin -t actor-critic -n ac-agent
 
 ### 8. Federated Learning
 
-**Type**: Distributed Learning
-**Best For**: Privacy, distributed data
+**Type**: Distributed Learning **Best For**: Privacy, distributed data
 **Strengths**: Privacy-preserving, scalable
 
 **Use Cases**:
@@ -282,8 +287,7 @@ npx agentdb@latest create-plugin -t actor-critic -n ac-agent
 
 ### 9. Multi-Task Learning
 
-**Type**: Transfer Learning
-**Best For**: Related tasks, knowledge sharing
+**Type**: Transfer Learning **Best For**: Related tasks, knowledge sharing
 **Strengths**: Faster learning on new tasks, better generalization
 
 **Use Cases**:
@@ -306,9 +310,9 @@ for (let i = 0; i < numEpisodes; i++) {
 
   for (const step of episode.steps) {
     await adapter.insertPattern({
-      id: "",
-      type: "experience",
-      domain: "task-domain",
+      id: '',
+      type: 'experience',
+      domain: 'task-domain',
       pattern_data: JSON.stringify({
         embedding: await computeEmbedding(JSON.stringify(step)),
         pattern: {
@@ -340,7 +344,7 @@ const trainingMetrics = await adapter.train({
   validationSplit: 0.2,
 });
 
-console.log("Training Metrics:", trainingMetrics);
+console.log('Training Metrics:', trainingMetrics);
 // {
 //   loss: 0.023,
 //   valLoss: 0.028,
@@ -355,7 +359,7 @@ console.log("Training Metrics:", trainingMetrics);
 // Retrieve similar successful experiences
 const testQuery = await computeEmbedding(JSON.stringify(testState));
 const result = await adapter.retrieveWithReasoning(testQuery, {
-  domain: "task-domain",
+  domain: 'task-domain',
   k: 10,
   synthesizeContext: true,
 });
@@ -364,8 +368,8 @@ const result = await adapter.retrieveWithReasoning(testQuery, {
 const suggestedAction = result.memories[0].pattern.action;
 const confidence = result.memories[0].similarity;
 
-console.log("Suggested Action:", suggestedAction);
-console.log("Confidence:", confidence);
+console.log('Suggested Action:', suggestedAction);
+console.log('Confidence:', confidence);
 ```
 
 ---
@@ -401,7 +405,7 @@ await adapter.insertPattern({
 
 // Retrieve high-priority experiences
 const highPriority = await adapter.retrieveWithReasoning(queryEmbedding, {
-  domain: "task-domain",
+  domain: 'task-domain',
   k: 32,
   minConfidence: 0.7, // Only high TD-error experiences
 });
@@ -477,7 +481,7 @@ await adapter.train({ epochs: 50, batchSize: 32 });
 
 // Use reasoning agents for inference
 const result = await adapter.retrieveWithReasoning(queryEmbedding, {
-  domain: "decision-making",
+  domain: 'decision-making',
   k: 10,
   useMMR: true, // Diverse experiences
   synthesizeContext: true, // Rich context
@@ -556,6 +560,5 @@ await adapter.retrieveWithReasoning(queryEmbedding, {
 
 ---
 
-**Category**: Machine Learning / Reinforcement Learning
-**Difficulty**: Intermediate to Advanced
-**Estimated Time**: 30-60 minutes
+**Category**: Machine Learning / Reinforcement Learning **Difficulty**:
+Intermediate to Advanced **Estimated Time**: 30-60 minutes

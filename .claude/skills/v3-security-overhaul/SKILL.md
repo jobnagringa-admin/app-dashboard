@@ -1,13 +1,18 @@
 ---
-name: "V3 Security Overhaul"
-description: "Complete security architecture overhaul for claude-flow v3. Addresses critical CVEs (CVE-1, CVE-2, CVE-3) and implements secure-by-default patterns. Use for security-first v3 implementation."
+name: 'V3 Security Overhaul'
+description:
+  'Complete security architecture overhaul for claude-flow v3. Addresses
+  critical CVEs (CVE-1, CVE-2, CVE-3) and implements secure-by-default patterns.
+  Use for security-first v3 implementation.'
 ---
 
 # V3 Security Overhaul
 
 ## What This Skill Does
 
-Orchestrates comprehensive security overhaul for claude-flow v3, addressing critical vulnerabilities and establishing security-first development practices using specialized v3 security agents.
+Orchestrates comprehensive security overhaul for claude-flow v3, addressing
+critical vulnerabilities and establishing security-first development practices
+using specialized v3 security agents.
 
 ## Quick Start
 
@@ -32,12 +37,12 @@ npm audit --audit-level high
 ```typescript
 // ❌ Old: SHA-256 with hardcoded salt
 const hash = crypto
-  .createHash("sha256")
+  .createHash('sha256')
   .update(password + salt)
-  .digest("hex");
+  .digest('hex');
 
 // ✅ New: bcrypt with 12 rounds
-import bcrypt from "bcrypt";
+import bcrypt from 'bcrypt';
 const hash = await bcrypt.hash(password, 12);
 ```
 
@@ -45,7 +50,7 @@ const hash = await bcrypt.hash(password, 12);
 
 ```typescript
 // ✅ Generate secure random credentials
-const apiKey = crypto.randomBytes(32).toString("hex");
+const apiKey = crypto.randomBytes(32).toString('hex');
 ```
 
 ## Security Patterns
@@ -53,12 +58,12 @@ const apiKey = crypto.randomBytes(32).toString("hex");
 ### Input Validation (Zod)
 
 ```typescript
-import { z } from "zod";
+import { z } from 'zod';
 
 const TaskSchema = z.object({
   taskId: z.string().uuid(),
   content: z.string().max(10000),
-  agentType: z.enum(["security", "core", "integration"]),
+  agentType: z.enum(['security', 'core', 'integration']),
 });
 ```
 
@@ -68,7 +73,7 @@ const TaskSchema = z.object({
 function securePath(userPath: string, allowedPrefix: string): string {
   const resolved = path.resolve(allowedPrefix, userPath);
   if (!resolved.startsWith(path.resolve(allowedPrefix))) {
-    throw new SecurityError("Path traversal detected");
+    throw new SecurityError('Path traversal detected');
   }
   return resolved;
 }
@@ -77,10 +82,10 @@ function securePath(userPath: string, allowedPrefix: string): string {
 ### Safe Command Execution
 
 ```typescript
-import { execFile } from "child_process";
+import { execFile } from 'child_process';
 
 // ✅ Safe: No shell interpretation
-const { stdout } = await execFile("git", [userInput], { shell: false });
+const { stdout } = await execFile('git', [userInput], { shell: false });
 ```
 
 ## Success Metrics

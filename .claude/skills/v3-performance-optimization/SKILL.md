@@ -1,13 +1,18 @@
 ---
-name: "V3 Performance Optimization"
-description: "Achieve aggressive v3 performance targets: 2.49x-7.47x Flash Attention speedup, 150x-12,500x search improvements, 50-75% memory reduction. Comprehensive benchmarking and optimization suite."
+name: 'V3 Performance Optimization'
+description:
+  'Achieve aggressive v3 performance targets: 2.49x-7.47x Flash Attention
+  speedup, 150x-12,500x search improvements, 50-75% memory reduction.
+  Comprehensive benchmarking and optimization suite.'
 ---
 
 # V3 Performance Optimization
 
 ## What This Skill Does
 
-Validates and optimizes claude-flow v3 to achieve industry-leading performance through Flash Attention, AgentDB HNSW indexing, and comprehensive system optimization with continuous benchmarking.
+Validates and optimizes claude-flow v3 to achieve industry-leading performance
+through Flash Attention, AgentDB HNSW indexing, and comprehensive system
+optimization with continuous benchmarking.
 
 ## Quick Start
 
@@ -82,12 +87,12 @@ class MemoryBenchmarks {
 
     // Baseline: Current linear search
     const baselineTime = await this.timeOperation(() =>
-      this.currentMemory.searchAll(queries),
+      this.currentMemory.searchAll(queries)
     );
 
     // Target: HNSW search
     const hnswTime = await this.timeOperation(() =>
-      this.agentDBMemory.hnswSearchAll(queries),
+      this.agentDBMemory.hnswSearchAll(queries)
     );
 
     const improvement = baselineTime / hnswTime;
@@ -133,17 +138,17 @@ class SwarmBenchmarks {
 
     // Coordination latency
     const coordinationTime = await this.timeOperation(() =>
-      this.coordinateSwarmTask(agents),
+      this.coordinateSwarmTask(agents)
     );
 
     // Task decomposition
     const decompositionTime = await this.timeOperation(() =>
-      this.decomposeComplexTask(),
+      this.decomposeComplexTask()
     );
 
     // Consensus achievement
     const consensusTime = await this.timeOperation(() =>
-      this.achieveSwarmConsensus(agents),
+      this.achieveSwarmConsensus(agents)
     );
 
     return {
@@ -184,8 +189,8 @@ class AttentionBenchmarks {
 
     return {
       results,
-      averageSpeedup: this.calculateAverage(results, "speedup"),
-      averageMemoryReduction: this.calculateAverage(results, "memoryReduction"),
+      averageSpeedup: this.calculateAverage(results, 'speedup'),
+      averageMemoryReduction: this.calculateAverage(results, 'memoryReduction'),
     };
   }
 }
@@ -197,10 +202,10 @@ class AttentionBenchmarks {
 class SONABenchmarks {
   async benchmarkAdaptationTime(): Promise<SONABenchmark> {
     const scenarios = [
-      "pattern_recognition",
-      "task_optimization",
-      "error_correction",
-      "performance_tuning",
+      'pattern_recognition',
+      'task_optimization',
+      'error_correction',
+      'performance_tuning',
     ];
 
     const results = [];

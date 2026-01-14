@@ -1,7 +1,9 @@
 ---
 name: github-multi-repo
 version: 1.0.0
-description: Multi-repository coordination, synchronization, and architecture management with AI swarm orchestration
+description:
+  Multi-repository coordination, synchronization, and architecture management
+  with AI swarm orchestration
 category: github-integration
 tags: [multi-repo, synchronization, architecture, coordination, github]
 author: Claude Flow Team
@@ -20,7 +22,10 @@ capabilities:
 
 ## Overview
 
-Advanced multi-repository coordination system that combines swarm intelligence, package synchronization, and repository architecture optimization. This skill enables organization-wide automation, cross-project collaboration, and scalable repository management.
+Advanced multi-repository coordination system that combines swarm intelligence,
+package synchronization, and repository architecture optimization. This skill
+enables organization-wide automation, cross-project collaboration, and scalable
+repository management.
 
 ## Core Capabilities
 
@@ -30,7 +35,8 @@ Cross-repository AI swarm orchestration for distributed development workflows.
 
 ### 📦 Package Synchronization
 
-Intelligent dependency resolution and version alignment across multiple packages.
+Intelligent dependency resolution and version alignment across multiple
+packages.
 
 ### 🏗️ Repository Architecture
 
@@ -100,7 +106,7 @@ const DEPS = Bash(`gh repo list my-organization --json name | \
 // Initialize swarm with discovered repositories
 mcp__claude -
   flow__swarm_init({
-    topology: "hierarchical",
+    topology: 'hierarchical',
     maxAgents: 8,
     metadata: { repos: REPOS, dependencies: DEPS },
   });
@@ -534,19 +540,19 @@ dependencies:
 ### 1. Webhook-Based Coordination
 
 ```javascript
-const { MultiRepoSwarm } = require("ruv-swarm");
+const { MultiRepoSwarm } = require('ruv-swarm');
 
 const swarm = new MultiRepoSwarm({
   webhook: {
-    url: "https://swarm-coordinator.example.com",
+    url: 'https://swarm-coordinator.example.com',
     secret: process.env.WEBHOOK_SECRET,
   },
 });
 
-swarm.on("repo:update", async (event) => {
+swarm.on('repo:update', async (event) => {
   await swarm.propagate(event, {
     to: event.dependencies,
-    strategy: "eventual-consistency",
+    strategy: 'eventual-consistency',
   });
 });
 ```
@@ -556,7 +562,7 @@ swarm.on("repo:update", async (event) => {
 ```yaml
 # Kafka configuration for real-time coordination
 kafka:
-  brokers: ["kafka1:9092", "kafka2:9092"]
+  brokers: ['kafka1:9092', 'kafka2:9092']
   topics:
     swarm-events:
       partitions: 10
@@ -924,6 +930,4 @@ npx claude-flow skill run github-multi-repo cross-team \
 
 ---
 
-**Version:** 1.0.0
-**Last Updated:** 2025-10-19
-**Maintainer:** Claude Flow Team
+**Version:** 1.0.0 **Last Updated:** 2025-10-19 **Maintainer:** Claude Flow Team

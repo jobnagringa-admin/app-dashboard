@@ -1,13 +1,19 @@
 ---
-name: "ReasoningBank Intelligence"
-description: "Implement adaptive learning with ReasoningBank for pattern recognition, strategy optimization, and continuous improvement. Use when building self-learning agents, optimizing workflows, or implementing meta-cognitive systems."
+name: 'ReasoningBank Intelligence'
+description:
+  'Implement adaptive learning with ReasoningBank for pattern recognition,
+  strategy optimization, and continuous improvement. Use when building
+  self-learning agents, optimizing workflows, or implementing meta-cognitive
+  systems.'
 ---
 
 # ReasoningBank Intelligence
 
 ## What This Skill Does
 
-Implements ReasoningBank's adaptive learning system for AI agents to learn from experience, recognize patterns, and optimize strategies over time. Enables meta-cognitive capabilities and continuous improvement.
+Implements ReasoningBank's adaptive learning system for AI agents to learn from
+experience, recognize patterns, and optimize strategies over time. Enables
+meta-cognitive capabilities and continuous improvement.
 
 ## Prerequisites
 
@@ -18,19 +24,19 @@ Implements ReasoningBank's adaptive learning system for AI agents to learn from 
 ## Quick Start
 
 ```typescript
-import { ReasoningBank } from "agentic-flow/reasoningbank";
+import { ReasoningBank } from 'agentic-flow/reasoningbank';
 
 // Initialize ReasoningBank
 const rb = new ReasoningBank({
   persist: true,
   learningRate: 0.1,
-  adapter: "agentdb", // Use AgentDB for storage
+  adapter: 'agentdb', // Use AgentDB for storage
 });
 
 // Record task outcome
 await rb.recordExperience({
-  task: "code_review",
-  approach: "static_analysis_first",
+  task: 'code_review',
+  approach: 'static_analysis_first',
   outcome: {
     success: true,
     metrics: {
@@ -40,15 +46,15 @@ await rb.recordExperience({
     },
   },
   context: {
-    language: "typescript",
-    complexity: "medium",
+    language: 'typescript',
+    complexity: 'medium',
   },
 });
 
 // Get optimal strategy
-const strategy = await rb.recommendStrategy("code_review", {
-  language: "typescript",
-  complexity: "high",
+const strategy = await rb.recommendStrategy('code_review', {
+  language: 'typescript',
+  complexity: 'high',
 });
 ```
 
@@ -59,9 +65,9 @@ const strategy = await rb.recommendStrategy("code_review", {
 ```typescript
 // Learn patterns from data
 await rb.learnPattern({
-  pattern: "api_errors_increase_after_deploy",
-  triggers: ["deployment", "traffic_spike"],
-  actions: ["rollback", "scale_up"],
+  pattern: 'api_errors_increase_after_deploy',
+  triggers: ['deployment', 'traffic_spike'],
+  actions: ['rollback', 'scale_up'],
   confidence: 0.85,
 });
 
@@ -73,10 +79,10 @@ const matches = await rb.matchPatterns(currentSituation);
 
 ```typescript
 // Compare strategies
-const comparison = await rb.compareStrategies("bug_fixing", [
-  "tdd_approach",
-  "debug_first",
-  "reproduce_then_fix",
+const comparison = await rb.compareStrategies('bug_fixing', [
+  'tdd_approach',
+  'debug_first',
+  'reproduce_then_fix',
 ]);
 
 // Get best strategy
@@ -101,11 +107,11 @@ await rb.enableAutoLearning({
 ```typescript
 // Learn about learning
 await rb.metaLearn({
-  observation: "parallel_execution_faster_for_independent_tasks",
+  observation: 'parallel_execution_faster_for_independent_tasks',
   confidence: 0.95,
   applicability: {
-    task_types: ["batch_processing", "data_transformation"],
-    conditions: ["tasks_independent", "io_bound"],
+    task_types: ['batch_processing', 'data_transformation'],
+    conditions: ['tasks_independent', 'io_bound'],
   },
 });
 ```
@@ -115,8 +121,8 @@ await rb.metaLearn({
 ```typescript
 // Apply knowledge from one domain to another
 await rb.transferKnowledge({
-  from: "code_review_javascript",
-  to: "code_review_typescript",
+  from: 'code_review_javascript',
+  to: 'code_review_typescript',
   similarity: 0.8,
 });
 ```
@@ -152,9 +158,9 @@ class AdaptiveAgent {
 // Persist ReasoningBank data
 await rb.configure({
   storage: {
-    type: "agentdb",
+    type: 'agentdb',
     options: {
-      database: "./reasoning-bank.db",
+      database: './reasoning-bank.db',
       enableVectorSearch: true,
     },
   },
@@ -162,9 +168,9 @@ await rb.configure({
 
 // Query learned patterns
 const patterns = await rb.query({
-  category: "optimization",
+  category: 'optimization',
   minConfidence: 0.8,
-  timeRange: { last: "30d" },
+  timeRange: { last: '30d' },
 });
 ```
 

@@ -1,13 +1,18 @@
 ---
-name: "V3 Deep Integration"
-description: "Deep agentic-flow@alpha integration implementing ADR-001. Eliminates 10,000+ duplicate lines by building claude-flow as specialized extension rather than parallel implementation."
+name: 'V3 Deep Integration'
+description:
+  'Deep agentic-flow@alpha integration implementing ADR-001. Eliminates 10,000+
+  duplicate lines by building claude-flow as specialized extension rather than
+  parallel implementation.'
 ---
 
 # V3 Deep Integration
 
 ## What This Skill Does
 
-Transforms claude-flow from parallel implementation to specialized extension of agentic-flow@alpha, eliminating massive code duplication while achieving performance improvements and feature parity.
+Transforms claude-flow from parallel implementation to specialized extension of
+agentic-flow@alpha, eliminating massive code duplication while achieving
+performance improvements and feature parity.
 
 ## Quick Start
 
@@ -46,11 +51,11 @@ TARGET: <5,000 lines (vs 15,000+ currently)
 class SONAIntegration {
   async initializeMode(mode: SONAMode): Promise<void> {
     switch (mode) {
-      case "real-time": // ~0.05ms adaptation
-      case "balanced": // general purpose
-      case "research": // deep exploration
-      case "edge": // resource-constrained
-      case "batch": // high-throughput
+      case 'real-time': // ~0.05ms adaptation
+      case 'balanced': // general purpose
+      case 'research': // deep exploration
+      case 'edge': // resource-constrained
+      case 'batch': // high-throughput
     }
     await this.agenticFlow.sona.setMode(mode);
   }
@@ -63,9 +68,9 @@ class SONAIntegration {
 class FlashAttentionIntegration {
   async optimizeAttention(): Promise<AttentionResult> {
     return this.agenticFlow.attention.flashAttention({
-      speedupTarget: "2.49x-7.47x",
-      memoryReduction: "50-75%",
-      mechanisms: ["multi-head", "linear", "local", "global"],
+      speedupTarget: '2.49x-7.47x',
+      memoryReduction: '50-75%',
+      mechanisms: ['multi-head', 'linear', 'local', 'global'],
     });
   }
 }
@@ -77,8 +82,8 @@ class FlashAttentionIntegration {
 class AgentDBIntegration {
   async setupCrossAgentMemory(): Promise<void> {
     await this.agentdb.enableCrossAgentSharing({
-      indexType: "HNSW",
-      speedupTarget: "150x-12500x",
+      indexType: 'HNSW',
+      speedupTarget: '150x-12500x',
       dimensions: 1536,
     });
   }
@@ -106,7 +111,7 @@ class MCPToolsIntegration {
 ### Phase 1: Adapter Layer
 
 ```typescript
-import { Agent as AgenticFlowAgent } from "agentic-flow@alpha";
+import { Agent as AgenticFlowAgent } from 'agentic-flow@alpha';
 
 export class ClaudeFlowAgent extends AgenticFlowAgent {
   async handleClaudeFlowTask(task: ClaudeTask): Promise<TaskResult> {
@@ -152,9 +157,9 @@ class SystemMigration {
 class CodeCleanup {
   async removeDeprecatedCode(): Promise<void> {
     // Remove massive duplicate implementations
-    await this.removeFile("src/core/SwarmCoordinator.ts"); // 800+ lines
-    await this.removeFile("src/agents/AgentManager.ts"); // 1,736+ lines
-    await this.removeFile("src/task/TaskScheduler.ts"); // 500+ lines
+    await this.removeFile('src/core/SwarmCoordinator.ts'); // 800+ lines
+    await this.removeFile('src/agents/AgentManager.ts'); // 1,736+ lines
+    await this.removeFile('src/task/TaskScheduler.ts'); // 500+ lines
 
     // Total reduction: 10,000+ → <5,000 lines
   }
@@ -166,14 +171,14 @@ class CodeCleanup {
 ```typescript
 class RLIntegration {
   algorithms = [
-    "PPO",
-    "DQN",
-    "A2C",
-    "MCTS",
-    "Q-Learning",
-    "SARSA",
-    "Actor-Critic",
-    "Decision-Transformer",
+    'PPO',
+    'DQN',
+    'A2C',
+    'MCTS',
+    'Q-Learning',
+    'SARSA',
+    'Actor-Critic',
+    'Decision-Transformer',
   ];
 
   async optimizeAgentBehavior(): Promise<void> {
@@ -193,10 +198,10 @@ class RLIntegration {
 
 ```typescript
 const attentionBenchmark = {
-  baseline: "current attention mechanism",
-  target: "2.49x-7.47x improvement",
-  memoryReduction: "50-75%",
-  implementation: "agentic-flow@alpha Flash Attention",
+  baseline: 'current attention mechanism',
+  target: '2.49x-7.47x improvement',
+  memoryReduction: '50-75%',
+  implementation: 'agentic-flow@alpha Flash Attention',
 };
 ```
 
@@ -204,9 +209,9 @@ const attentionBenchmark = {
 
 ```typescript
 const searchBenchmark = {
-  baseline: "linear search in current systems",
-  target: "150x-12,500x via HNSW indexing",
-  implementation: "agentic-flow@alpha AgentDB",
+  baseline: 'linear search in current systems',
+  target: '150x-12,500x via HNSW indexing',
+  implementation: 'agentic-flow@alpha AgentDB',
 };
 ```
 

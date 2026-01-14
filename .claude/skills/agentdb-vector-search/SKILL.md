@@ -1,13 +1,18 @@
 ---
-name: "AgentDB Vector Search"
-description: "Implement semantic vector search with AgentDB for intelligent document retrieval, similarity matching, and context-aware querying. Use when building RAG systems, semantic search engines, or intelligent knowledge bases."
+name: 'AgentDB Vector Search'
+description:
+  'Implement semantic vector search with AgentDB for intelligent document
+  retrieval, similarity matching, and context-aware querying. Use when building
+  RAG systems, semantic search engines, or intelligent knowledge bases.'
 ---
 
 # AgentDB Vector Search
 
 ## What This Skill Does
 
-Implements vector-based semantic search using AgentDB's high-performance vector database with **150x-12,500x faster** operations than traditional solutions. Features HNSW indexing, quantization, and sub-millisecond search (<100µs).
+Implements vector-based semantic search using AgentDB's high-performance vector
+database with **150x-12,500x faster** operations than traditional solutions.
+Features HNSW indexing, quantization, and sub-millisecond search (<100µs).
 
 ## Prerequisites
 
@@ -78,29 +83,29 @@ npx agentdb@latest stats ./vectors.db
 import {
   createAgentDBAdapter,
   computeEmbedding,
-} from "agentic-flow/reasoningbank";
+} from 'agentic-flow/reasoningbank';
 
 // Initialize with vector search optimizations
 const adapter = await createAgentDBAdapter({
-  dbPath: ".agentdb/vectors.db",
+  dbPath: '.agentdb/vectors.db',
   enableLearning: false, // Vector search only
   enableReasoning: true, // Enable semantic matching
-  quantizationType: "binary", // 32x memory reduction
+  quantizationType: 'binary', // 32x memory reduction
   cacheSize: 1000, // Fast retrieval
 });
 
 // Store document with embedding
-const text = "The quantum computer achieved 100 qubits";
+const text = 'The quantum computer achieved 100 qubits';
 const embedding = await computeEmbedding(text);
 
 await adapter.insertPattern({
-  id: "",
-  type: "document",
-  domain: "technology",
+  id: '',
+  type: 'document',
+  domain: 'technology',
   pattern_data: JSON.stringify({
     embedding,
     text,
-    metadata: { category: "quantum", date: "2025-01-15" },
+    metadata: { category: 'quantum', date: '2025-01-15' },
   }),
   confidence: 1.0,
   usage_count: 0,
@@ -110,9 +115,9 @@ await adapter.insertPattern({
 });
 
 // Semantic search with MMR (Maximal Marginal Relevance)
-const queryEmbedding = await computeEmbedding("quantum computing advances");
+const queryEmbedding = await computeEmbedding('quantum computing advances');
 const results = await adapter.retrieveWithReasoning(queryEmbedding, {
-  domain: "technology",
+  domain: 'technology',
   k: 10,
   useMMR: true, // Diverse results
   synthesizeContext: true, // Rich context
@@ -126,8 +131,8 @@ const results = await adapter.retrieveWithReasoning(queryEmbedding, {
 ```typescript
 // Store with automatic embedding
 await db.storeWithEmbedding({
-  content: "Your document text",
-  metadata: { source: "docs", page: 42 },
+  content: 'Your document text',
+  metadata: { source: 'docs', page: 42 },
 });
 ```
 
@@ -135,7 +140,7 @@ await db.storeWithEmbedding({
 
 ```typescript
 // Find similar documents
-const similar = await db.findSimilar("quantum computing", {
+const similar = await db.findSimilar('quantum computing', {
   limit: 5,
   minScore: 0.75,
 });
@@ -146,10 +151,10 @@ const similar = await db.findSimilar("quantum computing", {
 ```typescript
 // Combine vector similarity with metadata filtering
 const results = await db.hybridSearch({
-  query: "machine learning models",
+  query: 'machine learning models',
   filters: {
-    category: "research",
-    date: { $gte: "2024-01-01" },
+    category: 'research',
+    date: { $gte: '2024-01-01' },
   },
   limit: 20,
 });
@@ -169,7 +174,7 @@ async function ragQuery(question: string) {
   });
 
   // 2. Generate answer with context
-  const prompt = `Context: ${context.map((c) => c.text).join("\n")}
+  const prompt = `Context: ${context.map((c) => c.text).join('\n')}
 Question: ${question}`;
 
   return await llm.generate(prompt);
@@ -185,7 +190,7 @@ await db.batchStore(
     text: doc.content,
     embedding: doc.vector,
     metadata: doc.meta,
-  })),
+  }))
 );
 ```
 
@@ -225,7 +230,7 @@ AgentDB provides multiple quantization strategies for memory efficiency:
 
 ```typescript
 const adapter = await createAgentDBAdapter({
-  quantizationType: "binary", // 768-dim → 96 bytes
+  quantizationType: 'binary', // 768-dim → 96 bytes
 });
 ```
 
@@ -233,7 +238,7 @@ const adapter = await createAgentDBAdapter({
 
 ```typescript
 const adapter = await createAgentDBAdapter({
-  quantizationType: "scalar", // 768-dim → 768 bytes
+  quantizationType: 'scalar', // 768-dim → 768 bytes
 });
 ```
 
@@ -241,7 +246,7 @@ const adapter = await createAgentDBAdapter({
 
 ```typescript
 const adapter = await createAgentDBAdapter({
-  quantizationType: "product", // 768-dim → 48-96 bytes
+  quantizationType: 'product', // 768-dim → 48-96 bytes
 });
 ```
 
@@ -281,9 +286,11 @@ npx agentdb@latest query ./db.sqlite "[...]" -m dot
 ## Performance Tips
 
 1. **Enable HNSW indexing**: Automatic with AgentDB, 10-100x faster
-2. **Use quantization**: Binary (32x), Scalar (4x), Product (8-16x) memory reduction
+2. **Use quantization**: Binary (32x), Scalar (4x), Product (8-16x) memory
+   reduction
 3. **Batch operations**: 500x faster for bulk inserts
-4. **Match dimensions**: 1536 (OpenAI), 768 (sentence-transformers), 384 (MiniLM)
+4. **Match dimensions**: 1536 (OpenAI), 768 (sentence-transformers), 384
+   (MiniLM)
 5. **Similarity threshold**: Start at 0.7 for quality, adjust based on use case
 6. **Enable caching**: 1000 pattern cache for frequent queries
 

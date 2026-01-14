@@ -1,13 +1,18 @@
 ---
-name: "V3 MCP Optimization"
-description: "MCP server optimization and transport layer enhancement for claude-flow v3. Implements connection pooling, load balancing, tool registry optimization, and performance monitoring for sub-100ms response times."
+name: 'V3 MCP Optimization'
+description:
+  'MCP server optimization and transport layer enhancement for claude-flow v3.
+  Implements connection pooling, load balancing, tool registry optimization, and
+  performance monitoring for sub-100ms response times.'
 ---
 
 # V3 MCP Optimization
 
 ## What This Skill Does
 
-Optimizes claude-flow v3 MCP (Model Context Protocol) server implementation with advanced transport layer optimizations, connection pooling, load balancing, and comprehensive performance monitoring to achieve sub-100ms response times.
+Optimizes claude-flow v3 MCP (Model Context Protocol) server implementation with
+advanced transport layer optimizations, connection pooling, load balancing, and
+comprehensive performance monitoring to achieve sub-100ms response times.
 
 ## Quick Start
 
@@ -45,8 +50,8 @@ Target Performance:
 
 ```typescript
 // src/core/mcp/mcp-server.ts
-import { Server } from "@modelcontextprotocol/sdk/server/index.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 
 interface OptimizedMCPConfig {
   // Connection pooling
@@ -56,7 +61,7 @@ interface OptimizedMCPConfig {
 
   // Tool registry
   toolCacheEnabled: boolean;
-  toolIndexType: "hash" | "trie";
+  toolIndexType: 'hash' | 'trie';
 
   // Performance
   requestTimeoutMs: number;
@@ -78,8 +83,8 @@ export class OptimizedMCPServer {
   constructor(config: OptimizedMCPConfig) {
     this.server = new Server(
       {
-        name: "claude-flow-v3",
-        version: "3.0.0",
+        name: 'claude-flow-v3',
+        version: '3.0.0',
       },
       {
         capabilities: {
@@ -87,7 +92,7 @@ export class OptimizedMCPServer {
           resources: { subscribe: true, listChanged: true },
           prompts: { listChanged: true },
         },
-      },
+      }
     );
 
     this.connectionPool = new ConnectionPool(config);
@@ -159,7 +164,7 @@ export class ConnectionPool {
       pooled.lastUsed = Date.now();
       pooled.usageCount++;
 
-      this.recordMetric("pool_hit", performance.now() - start);
+      this.recordMetric('pool_hit', performance.now() - start);
       return pooled.connection;
     }
 
@@ -179,7 +184,7 @@ export class ConnectionPool {
     };
 
     this.pool.set(pooledConn.id, pooledConn);
-    this.recordMetric("pool_miss", performance.now() - start);
+    this.recordMetric('pool_miss', performance.now() - start);
 
     return connection;
   }
@@ -199,7 +204,7 @@ export class ConnectionPool {
     const connections: Promise<MCPConnection>[] = [];
 
     for (let i = 0; i < this.config.minConnections; i++) {
-      connections.push(this.createConnection("default"));
+      connections.push(this.createConnection('default'));
     }
 
     await Promise.all(connections);
@@ -256,7 +261,7 @@ export class FastToolRegistry {
   private fuzzyMatcher: FuzzyMatcher;
   private cache: LRUCache<string, ToolIndexEntry>;
 
-  constructor(indexType: "hash" | "trie" = "hash") {
+  constructor(indexType: 'hash' | 'trie' = 'hash') {
     this.fuzzyMatcher = new FuzzyMatcher();
     this.cache = new LRUCache<string, ToolIndexEntry>(1000); // Cache 1000 most used tools
   }
@@ -280,7 +285,7 @@ export class FastToolRegistry {
       this.toolIndex.set(tool.name, entry);
 
       // Build category index
-      const category = tool.metadata.category || "general";
+      const category = tool.metadata.category || 'general';
       if (!this.categoryIndex.has(category)) {
         this.categoryIndex.set(category, []);
       }
@@ -291,7 +296,7 @@ export class FastToolRegistry {
     await this.fuzzyMatcher.buildIndex(tools.map((t) => t.name));
 
     console.log(
-      `Tool index built in ${(performance.now() - start).toFixed(2)}ms for ${tools.length} tools`,
+      `Tool index built in ${(performance.now() - start).toFixed(2)}ms for ${tools.length} tools`
     );
   }
 
@@ -362,7 +367,7 @@ interface ServerInstance {
 
 export class MCPLoadBalancer {
   private servers: Map<string, ServerInstance> = new Map();
-  private routingStrategy: RoutingStrategy = "least-connections";
+  private routingStrategy: RoutingStrategy = 'least-connections';
 
   addServer(server: ServerInstance): void {
     this.servers.set(server.id, server);
@@ -370,22 +375,22 @@ export class MCPLoadBalancer {
 
   selectServer(toolCategory?: string): ServerInstance | null {
     const healthyServers = Array.from(this.servers.values()).filter(
-      (server) => server.isHealthy,
+      (server) => server.isHealthy
     );
 
     if (healthyServers.length === 0) return null;
 
     switch (this.routingStrategy) {
-      case "round-robin":
+      case 'round-robin':
         return this.roundRobinSelection(healthyServers);
 
-      case "least-connections":
+      case 'least-connections':
         return this.leastConnectionsSelection(healthyServers);
 
-      case "response-time":
+      case 'response-time':
         return this.responseTimeSelection(healthyServers);
 
-      case "weighted":
+      case 'weighted':
         return this.weightedSelection(healthyServers, toolCategory);
 
       default:
@@ -395,19 +400,19 @@ export class MCPLoadBalancer {
 
   private leastConnectionsSelection(servers: ServerInstance[]): ServerInstance {
     return servers.reduce((least, current) =>
-      current.currentConnections < least.currentConnections ? current : least,
+      current.currentConnections < least.currentConnections ? current : least
     );
   }
 
   private responseTimeSelection(servers: ServerInstance[]): ServerInstance {
     return servers.reduce((fastest, current) =>
-      current.responseTime < fastest.responseTime ? current : fastest,
+      current.responseTime < fastest.responseTime ? current : fastest
     );
   }
 
   private weightedSelection(
     servers: ServerInstance[],
-    category?: string,
+    category?: string
   ): ServerInstance {
     // Prefer servers with lower load and better response time
     const scored = servers.map((server) => ({
@@ -421,7 +426,7 @@ export class MCPLoadBalancer {
 
   private calculateServerScore(
     server: ServerInstance,
-    category?: string,
+    category?: string
   ): number {
     const loadFactor = 1 - server.currentConnections / server.maxConnections;
     const responseFactor = 1 / (server.responseTime + 1);
@@ -432,7 +437,7 @@ export class MCPLoadBalancer {
 
   updateServerMetrics(
     serverId: string,
-    metrics: Partial<ServerInstance>,
+    metrics: Partial<ServerInstance>
   ): void {
     const server = this.servers.get(serverId);
     if (server) {
@@ -485,7 +490,7 @@ export class OptimizedTransport {
     if (!this.batchTimeout) {
       this.batchTimeout = setTimeout(
         () => this.flushBatch(),
-        this.config.batchTimeoutMs || 10,
+        this.config.batchTimeoutMs || 10
       );
     }
 
@@ -503,7 +508,7 @@ export class OptimizedTransport {
 
     // Send as single batched message
     await this.sendImmediate({
-      type: "batch",
+      type: 'batch',
       messages: batch,
     });
   }
@@ -511,9 +516,9 @@ export class OptimizedTransport {
   private canBatch(message: MCPMessage): boolean {
     // Don't batch urgent messages or responses
     return (
-      message.type !== "response" &&
-      message.priority !== "high" &&
-      message.type !== "error"
+      message.type !== 'response' &&
+      message.priority !== 'high' &&
+      message.type !== 'error'
     );
   }
 
@@ -570,7 +575,7 @@ export class MCPMetricsCollector {
   recordToolLookup(latencyMs: number): void {
     this.metrics.toolLookupTime = this.updateMovingAverage(
       this.metrics.toolLookupTime,
-      latencyMs,
+      latencyMs
     );
   }
 
@@ -605,11 +610,11 @@ export class MCPMetricsCollector {
     }
 
     this.metrics.avgResponseTime = this.calculateAverage(
-      this.responseTimeBuffer,
+      this.responseTimeBuffer
     );
     this.metrics.p95ResponseTime = this.calculatePercentile(
       this.responseTimeBuffer,
-      95,
+      95
     );
   }
 
@@ -621,11 +626,11 @@ export class MCPMetricsCollector {
 
   private determineHealthStatus(
     errorRate: number,
-    poolHitRate: number,
-  ): "healthy" | "warning" | "critical" {
-    if (errorRate > 0.1 || poolHitRate < 0.5) return "critical";
-    if (errorRate > 0.05 || poolHitRate < 0.7) return "warning";
-    return "healthy";
+    poolHitRate: number
+  ): 'healthy' | 'warning' | 'critical' {
+    if (errorRate > 0.1 || poolHitRate < 0.5) return 'critical';
+    if (errorRate > 0.05 || poolHitRate < 0.7) return 'warning';
+    return 'healthy';
   }
 }
 ```
@@ -650,7 +655,7 @@ export class ToolPrecompiler {
       nameIndex.set(tool.name, tool);
 
       // Category index
-      const category = tool.metadata.category || "general";
+      const category = tool.metadata.category || 'general';
       if (!categoryIndex.has(category)) {
         categoryIndex.set(category, []);
       }
@@ -680,8 +685,8 @@ export class ToolPrecompiler {
 
     // Common typos and abbreviations
     variations.push(name.toLowerCase());
-    variations.push(name.replace(/[-_]/g, ""));
-    variations.push(name.replace(/[aeiou]/gi, "")); // Consonants only
+    variations.push(name.replace(/[-_]/g, ''));
+    variations.push(name.replace(/[aeiou]/gi, '')); // Consonants only
 
     // Add more fuzzy matching logic as needed
 
@@ -707,7 +712,7 @@ export class MultiLevelCache {
       ttl: config.l2TTL || 300000, // 5 minutes
     });
 
-    this.l3Cache = new DiskCache(config.l3Path || "./.cache/mcp");
+    this.l3Cache = new DiskCache(config.l3Path || './.cache/mcp');
   }
 
   async get(key: string): Promise<any | null> {
@@ -771,19 +776,19 @@ export class MultiLevelCache {
 ```typescript
 const mcpDashboard = {
   metrics: [
-    "Request latency (p50, p95, p99)",
-    "Error rate by tool category",
-    "Connection pool utilization",
-    "Tool lookup performance",
-    "Memory usage trends",
-    "Cache hit rates (L1, L2, L3)",
+    'Request latency (p50, p95, p99)',
+    'Error rate by tool category',
+    'Connection pool utilization',
+    'Tool lookup performance',
+    'Memory usage trends',
+    'Cache hit rates (L1, L2, L3)',
   ],
 
   alerts: [
-    "Response time >200ms for 5 minutes",
-    "Error rate >5% for 1 minute",
-    "Pool hit rate <70% for 10 minutes",
-    "Memory usage >500MB for 5 minutes",
+    'Response time >200ms for 5 minutes',
+    'Error rate >5% for 1 minute',
+    'Pool hit rate <70% for 10 minutes',
+    'Memory usage >500MB for 5 minutes',
   ],
 };
 ```

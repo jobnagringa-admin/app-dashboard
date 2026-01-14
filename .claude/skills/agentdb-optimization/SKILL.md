@@ -1,15 +1,23 @@
 ---
-name: "AgentDB Performance Optimization"
-description: "Optimize AgentDB performance with quantization (4-32x memory reduction), HNSW indexing (150x faster search), caching, and batch operations. Use when optimizing memory usage, improving search speed, or scaling to millions of vectors."
+name: 'AgentDB Performance Optimization'
+description:
+  'Optimize AgentDB performance with quantization (4-32x memory reduction), HNSW
+  indexing (150x faster search), caching, and batch operations. Use when
+  optimizing memory usage, improving search speed, or scaling to millions of
+  vectors.'
 ---
 
 # AgentDB Performance Optimization
 
 ## What This Skill Does
 
-Provides comprehensive performance optimization techniques for AgentDB vector databases. Achieve 150x-12,500x performance improvements through quantization, HNSW indexing, caching strategies, and batch operations. Reduce memory usage by 4-32x while maintaining accuracy.
+Provides comprehensive performance optimization techniques for AgentDB vector
+databases. Achieve 150x-12,500x performance improvements through quantization,
+HNSW indexing, caching strategies, and batch operations. Reduce memory usage by
+4-32x while maintaining accuracy.
 
-**Performance**: <100µs vector search, <1ms pattern retrieval, 2ms batch insert for 100 vectors.
+**Performance**: <100µs vector search, <1ms pattern retrieval, 2ms batch insert
+for 100 vectors.
 
 ## Prerequisites
 
@@ -37,12 +45,12 @@ npx agentdb@latest benchmark
 ### Enable Optimizations
 
 ```typescript
-import { createAgentDBAdapter } from "agentic-flow/reasoningbank";
+import { createAgentDBAdapter } from 'agentic-flow/reasoningbank';
 
 // Optimized configuration
 const adapter = await createAgentDBAdapter({
-  dbPath: ".agentdb/optimized.db",
-  quantizationType: "binary", // 32x memory reduction
+  dbPath: '.agentdb/optimized.db',
+  quantizationType: 'binary', // 32x memory reduction
   cacheSize: 1000, // In-memory cache
   enableLearning: true,
   enableReasoning: true,
@@ -55,12 +63,13 @@ const adapter = await createAgentDBAdapter({
 
 ### 1. Binary Quantization (32x Reduction)
 
-**Best For**: Large-scale deployments (1M+ vectors), memory-constrained environments
-**Trade-off**: ~2-5% accuracy loss, 32x memory reduction, 10x faster
+**Best For**: Large-scale deployments (1M+ vectors), memory-constrained
+environments **Trade-off**: ~2-5% accuracy loss, 32x memory reduction, 10x
+faster
 
 ```typescript
 const adapter = await createAgentDBAdapter({
-  quantizationType: "binary",
+  quantizationType: 'binary',
   // 768-dim float32 (3072 bytes) → 96 bytes binary
   // 1M vectors: 3GB → 96MB
 });
@@ -80,12 +89,12 @@ const adapter = await createAgentDBAdapter({
 
 ### 2. Scalar Quantization (4x Reduction)
 
-**Best For**: Balanced performance/accuracy, moderate datasets
-**Trade-off**: ~1-2% accuracy loss, 4x memory reduction, 3x faster
+**Best For**: Balanced performance/accuracy, moderate datasets **Trade-off**:
+~1-2% accuracy loss, 4x memory reduction, 3x faster
 
 ```typescript
 const adapter = await createAgentDBAdapter({
-  quantizationType: "scalar",
+  quantizationType: 'scalar',
   // 768-dim float32 (3072 bytes) → 768 bytes (uint8)
   // 1M vectors: 3GB → 768MB
 });
@@ -105,12 +114,12 @@ const adapter = await createAgentDBAdapter({
 
 ### 3. Product Quantization (8-16x Reduction)
 
-**Best For**: High-dimensional vectors, balanced compression
-**Trade-off**: ~3-7% accuracy loss, 8-16x memory reduction, 5x faster
+**Best For**: High-dimensional vectors, balanced compression **Trade-off**:
+~3-7% accuracy loss, 8-16x memory reduction, 5x faster
 
 ```typescript
 const adapter = await createAgentDBAdapter({
-  quantizationType: "product",
+  quantizationType: 'product',
   // 768-dim float32 (3072 bytes) → 48-96 bytes
   // 1M vectors: 3GB → 192MB
 });
@@ -130,12 +139,12 @@ const adapter = await createAgentDBAdapter({
 
 ### 4. No Quantization (Full Precision)
 
-**Best For**: Maximum accuracy, small datasets
-**Trade-off**: No accuracy loss, full memory usage
+**Best For**: Maximum accuracy, small datasets **Trade-off**: No accuracy loss,
+full memory usage
 
 ```typescript
 const adapter = await createAgentDBAdapter({
-  quantizationType: "none",
+  quantizationType: 'none',
   // Full float32 precision
 });
 ```
@@ -152,7 +161,7 @@ AgentDB automatically builds HNSW indices:
 
 ```typescript
 const adapter = await createAgentDBAdapter({
-  dbPath: ".agentdb/vectors.db",
+  dbPath: '.agentdb/vectors.db',
   // HNSW automatically enabled
 });
 
@@ -167,7 +176,7 @@ const results = await adapter.retrieveWithReasoning(queryEmbedding, {
 ```typescript
 // Advanced HNSW configuration
 const adapter = await createAgentDBAdapter({
-  dbPath: ".agentdb/vectors.db",
+  dbPath: '.agentdb/vectors.db',
   hnswM: 16, // Connections per layer (default: 16)
   hnswEfConstruction: 200, // Build quality (default: 200)
   hnswEfSearch: 100, // Search quality (default: 100)
@@ -221,7 +230,7 @@ const result = await adapter.retrieveWithReasoning(queryEmbedding, {
 
 // Monitor cache performance
 const stats = await adapter.getStats();
-console.log("Cache Hit Rate:", stats.cacheHitRate);
+console.log('Cache Hit Rate:', stats.cacheHitRate);
 // Aim for >80% hit rate
 ```
 
@@ -241,9 +250,9 @@ for (const doc of documents) {
 
 // ✅ FAST: Batch insert
 const patterns = documents.map((doc) => ({
-  id: "",
-  type: "document",
-  domain: "knowledge",
+  id: '',
+  type: 'document',
+  domain: 'knowledge',
   pattern_data: JSON.stringify({
     embedding: doc.embedding,
     text: doc.text,
@@ -269,7 +278,7 @@ const queries = [queryEmbedding1, queryEmbedding2, queryEmbedding3];
 
 // Parallel retrieval
 const results = await Promise.all(
-  queries.map((q) => adapter.retrieveWithReasoning(q, { k: 5 })),
+  queries.map((q) => adapter.retrieveWithReasoning(q, { k: 5 }))
 );
 ```
 
@@ -282,12 +291,12 @@ const results = await Promise.all(
 ```typescript
 // Enable automatic pattern consolidation
 const result = await adapter.retrieveWithReasoning(queryEmbedding, {
-  domain: "documents",
+  domain: 'documents',
   optimizeMemory: true, // Consolidate similar patterns
   k: 10,
 });
 
-console.log("Optimizations:", result.optimizations);
+console.log('Optimizations:', result.optimizations);
 // {
 //   consolidated: 15,  // Merged 15 similar patterns
 //   pruned: 3,         // Removed 3 low-quality patterns
@@ -303,8 +312,8 @@ await adapter.optimize();
 
 // Get statistics
 const stats = await adapter.getStats();
-console.log("Before:", stats.totalPatterns);
-console.log("After:", stats.totalPatterns); // Reduced by ~10-30%
+console.log('Before:', stats.totalPatterns);
+console.log('After:', stats.totalPatterns); // Reduced by ~10-30%
 ```
 
 ### Pruning Strategies
@@ -342,13 +351,13 @@ npx agentdb@latest stats .agentdb/vectors.db
 ```typescript
 const stats = await adapter.getStats();
 
-console.log("Performance Metrics:");
-console.log("Total Patterns:", stats.totalPatterns);
-console.log("Database Size:", stats.dbSize);
-console.log("Avg Confidence:", stats.avgConfidence);
-console.log("Cache Hit Rate:", stats.cacheHitRate);
-console.log("Search Latency (avg):", stats.avgSearchLatency);
-console.log("Insert Latency (avg):", stats.avgInsertLatency);
+console.log('Performance Metrics:');
+console.log('Total Patterns:', stats.totalPatterns);
+console.log('Database Size:', stats.dbSize);
+console.log('Avg Confidence:', stats.avgConfidence);
+console.log('Cache Hit Rate:', stats.cacheHitRate);
+console.log('Search Latency (avg):', stats.avgSearchLatency);
+console.log('Insert Latency (avg):', stats.avgInsertLatency);
 ```
 
 ---
@@ -359,7 +368,7 @@ console.log("Insert Latency (avg):", stats.avgInsertLatency);
 
 ```typescript
 const adapter = await createAgentDBAdapter({
-  quantizationType: "binary", // 32x memory reduction
+  quantizationType: 'binary', // 32x memory reduction
   cacheSize: 5000, // Large cache
   hnswM: 8, // Fewer connections = faster
   hnswEfSearch: 50, // Low search quality = faster
@@ -372,7 +381,7 @@ const adapter = await createAgentDBAdapter({
 
 ```typescript
 const adapter = await createAgentDBAdapter({
-  quantizationType: "scalar", // 4x memory reduction
+  quantizationType: 'scalar', // 4x memory reduction
   cacheSize: 1000, // Standard cache
   hnswM: 16, // Balanced connections
   hnswEfSearch: 100, // Balanced quality
@@ -385,7 +394,7 @@ const adapter = await createAgentDBAdapter({
 
 ```typescript
 const adapter = await createAgentDBAdapter({
-  quantizationType: "none", // No quantization
+  quantizationType: 'none', // No quantization
   cacheSize: 2000, // Large cache
   hnswM: 32, // Many connections
   hnswEfSearch: 200, // High search quality
@@ -398,7 +407,7 @@ const adapter = await createAgentDBAdapter({
 
 ```typescript
 const adapter = await createAgentDBAdapter({
-  quantizationType: "binary", // 32x memory reduction
+  quantizationType: 'binary', // 32x memory reduction
   cacheSize: 100, // Small cache
   hnswM: 8, // Minimal connections
 });
@@ -414,7 +423,7 @@ const adapter = await createAgentDBAdapter({
 
 ```typescript
 const adapter = await createAgentDBAdapter({
-  quantizationType: "none", // Full precision
+  quantizationType: 'none', // Full precision
   cacheSize: 500,
   hnswM: 8,
 });
@@ -424,7 +433,7 @@ const adapter = await createAgentDBAdapter({
 
 ```typescript
 const adapter = await createAgentDBAdapter({
-  quantizationType: "scalar", // 4x reduction
+  quantizationType: 'scalar', // 4x reduction
   cacheSize: 1000,
   hnswM: 16,
 });
@@ -434,7 +443,7 @@ const adapter = await createAgentDBAdapter({
 
 ```typescript
 const adapter = await createAgentDBAdapter({
-  quantizationType: "binary", // 32x reduction
+  quantizationType: 'binary', // 32x reduction
   cacheSize: 2000,
   hnswM: 32,
 });
@@ -444,7 +453,7 @@ const adapter = await createAgentDBAdapter({
 
 ```typescript
 const adapter = await createAgentDBAdapter({
-  quantizationType: "product", // 8-16x reduction
+  quantizationType: 'product', // 8-16x reduction
   cacheSize: 5000,
   hnswM: 48,
   hnswEfConstruction: 400,
@@ -484,7 +493,7 @@ const result = await adapter.retrieveWithReasoning(queryEmbedding, {
 ```typescript
 // Disable or use lighter quantization
 const adapter = await createAgentDBAdapter({
-  quantizationType: "scalar", // Instead of 'binary'
+  quantizationType: 'scalar', // Instead of 'binary'
   hnswEfSearch: 200, // Higher search quality
 });
 ```
@@ -514,6 +523,5 @@ const adapter = await createAgentDBAdapter({
 
 ---
 
-**Category**: Performance / Optimization
-**Difficulty**: Intermediate
+**Category**: Performance / Optimization **Difficulty**: Intermediate
 **Estimated Time**: 20-30 minutes

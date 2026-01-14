@@ -1,23 +1,36 @@
 ---
 name: Pair Programming
-description: AI-assisted pair programming with multiple modes (driver/navigator/switch), real-time verification, quality monitoring, and comprehensive testing. Supports TDD, debugging, refactoring, and learning sessions. Features automatic role switching, continuous code review, security scanning, and performance optimization with truth-score verification.
+description:
+  AI-assisted pair programming with multiple modes (driver/navigator/switch),
+  real-time verification, quality monitoring, and comprehensive testing.
+  Supports TDD, debugging, refactoring, and learning sessions. Features
+  automatic role switching, continuous code review, security scanning, and
+  performance optimization with truth-score verification.
 ---
 
 # Pair Programming
 
-Collaborative AI pair programming with intelligent role management, real-time quality monitoring, and comprehensive development workflows.
+Collaborative AI pair programming with intelligent role management, real-time
+quality monitoring, and comprehensive development workflows.
 
 ## What This Skill Does
 
-This skill provides professional pair programming capabilities with AI assistance, supporting multiple collaboration modes, continuous verification, and integrated testing. It manages driver/navigator roles, performs real-time code review, tracks quality metrics, and ensures high standards through truth-score verification.
+This skill provides professional pair programming capabilities with AI
+assistance, supporting multiple collaboration modes, continuous verification,
+and integrated testing. It manages driver/navigator roles, performs real-time
+code review, tracks quality metrics, and ensures high standards through
+truth-score verification.
 
 **Key Capabilities:**
 
 - **Multiple Modes**: Driver, Navigator, Switch, TDD, Review, Mentor, Debug
-- **Real-Time Verification**: Automatic quality scoring with rollback on failures
+- **Real-Time Verification**: Automatic quality scoring with rollback on
+  failures
 - **Role Management**: Seamless switching between driver/navigator roles
-- **Testing Integration**: Auto-generate tests, track coverage, continuous testing
-- **Code Review**: Security scanning, performance analysis, best practice enforcement
+- **Testing Integration**: Auto-generate tests, track coverage, continuous
+  testing
+- **Code Review**: Security scanning, performance analysis, best practice
+  enforcement
 - **Session Persistence**: Auto-save, recovery, export, and sharing
 
 ## Prerequisites

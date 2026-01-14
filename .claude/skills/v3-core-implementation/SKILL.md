@@ -1,13 +1,18 @@
 ---
-name: "V3 Core Implementation"
-description: "Core module implementation for claude-flow v3. Implements DDD domains, clean architecture patterns, dependency injection, and modular TypeScript codebase with comprehensive testing."
+name: 'V3 Core Implementation'
+description:
+  'Core module implementation for claude-flow v3. Implements DDD domains, clean
+  architecture patterns, dependency injection, and modular TypeScript codebase
+  with comprehensive testing.'
 ---
 
 # V3 Core Implementation
 
 ## What This Skill Does
 
-Implements the core TypeScript modules for claude-flow v3 following Domain-Driven Design principles, clean architecture patterns, and modern TypeScript best practices with comprehensive test coverage.
+Implements the core TypeScript modules for claude-flow v3 following
+Domain-Driven Design principles, clean architecture patterns, and modern
+TypeScript best practices with comprehensive test coverage.
 
 ## Quick Start
 
@@ -175,11 +180,11 @@ export abstract class AggregateRoot<T> extends Entity<T> {
 
 ```typescript
 // src/core/domains/task-management/entities/task.entity.ts
-import { AggregateRoot } from "../../../shared/domain/aggregate-root";
-import { TaskId } from "../value-objects/task-id.vo";
-import { TaskStatus } from "../value-objects/task-status.vo";
-import { Priority } from "../value-objects/priority.vo";
-import { TaskAssignedEvent } from "../events/task-assigned.event";
+import { AggregateRoot } from '../../../shared/domain/aggregate-root';
+import { TaskId } from '../value-objects/task-id.vo';
+import { TaskStatus } from '../value-objects/task-status.vo';
+import { Priority } from '../value-objects/priority.vo';
+import { TaskAssignedEvent } from '../events/task-assigned.event';
 
 interface TaskProps {
   id: TaskId;
@@ -218,7 +223,7 @@ export class Task extends AggregateRoot<TaskId> {
 
   public assignTo(agentId: string): void {
     if (this.props.status.equals(TaskStatus.completed())) {
-      throw new Error("Cannot assign completed task");
+      throw new Error('Cannot assign completed task');
     }
 
     this.props.assignedAgentId = agentId;
@@ -226,20 +231,20 @@ export class Task extends AggregateRoot<TaskId> {
     this.props.updatedAt = new Date();
 
     this.applyEvent(
-      new TaskAssignedEvent(this.id.value, agentId, this.props.priority),
+      new TaskAssignedEvent(this.id.value, agentId, this.props.priority)
     );
   }
 
   public complete(result: TaskResult): void {
     if (!this.props.assignedAgentId) {
-      throw new Error("Cannot complete unassigned task");
+      throw new Error('Cannot complete unassigned task');
     }
 
     this.props.status = TaskStatus.completed();
     this.props.updatedAt = new Date();
 
     this.applyEvent(
-      new TaskCompletedEvent(this.id.value, result, this.calculateDuration()),
+      new TaskCompletedEvent(this.id.value, result, this.calculateDuration())
     );
   }
 
@@ -284,7 +289,7 @@ export class TaskId extends ValueObject<string> {
 
   static fromString(id: string): TaskId {
     if (!id || id.length === 0) {
-      throw new Error("TaskId cannot be empty");
+      throw new Error('TaskId cannot be empty');
     }
     return new TaskId(id);
   }
@@ -296,11 +301,11 @@ export class TaskId extends ValueObject<string> {
 
 // src/core/domains/task-management/value-objects/task-status.vo.ts
 type TaskStatusType =
-  | "pending"
-  | "assigned"
-  | "in_progress"
-  | "completed"
-  | "failed";
+  | 'pending'
+  | 'assigned'
+  | 'in_progress'
+  | 'completed'
+  | 'failed';
 
 export class TaskStatus extends ValueObject<TaskStatusType> {
   private constructor(status: TaskStatusType) {
@@ -308,19 +313,19 @@ export class TaskStatus extends ValueObject<TaskStatusType> {
   }
 
   static pending(): TaskStatus {
-    return new TaskStatus("pending");
+    return new TaskStatus('pending');
   }
   static assigned(): TaskStatus {
-    return new TaskStatus("assigned");
+    return new TaskStatus('assigned');
   }
   static inProgress(): TaskStatus {
-    return new TaskStatus("in_progress");
+    return new TaskStatus('in_progress');
   }
   static completed(): TaskStatus {
-    return new TaskStatus("completed");
+    return new TaskStatus('completed');
   }
   static failed(): TaskStatus {
-    return new TaskStatus("failed");
+    return new TaskStatus('failed');
   }
 
   get value(): TaskStatusType {
@@ -328,24 +333,24 @@ export class TaskStatus extends ValueObject<TaskStatusType> {
   }
 
   public isPending(): boolean {
-    return this.value === "pending";
+    return this.value === 'pending';
   }
   public isAssigned(): boolean {
-    return this.value === "assigned";
+    return this.value === 'assigned';
   }
   public isInProgress(): boolean {
-    return this.value === "in_progress";
+    return this.value === 'in_progress';
   }
   public isCompleted(): boolean {
-    return this.value === "completed";
+    return this.value === 'completed';
   }
   public isFailed(): boolean {
-    return this.value === "failed";
+    return this.value === 'failed';
   }
 }
 
 // src/core/domains/task-management/value-objects/priority.vo.ts
-type PriorityLevel = "low" | "medium" | "high" | "critical";
+type PriorityLevel = 'low' | 'medium' | 'high' | 'critical';
 
 export class Priority extends ValueObject<PriorityLevel> {
   private constructor(level: PriorityLevel) {
@@ -353,16 +358,16 @@ export class Priority extends ValueObject<PriorityLevel> {
   }
 
   static low(): Priority {
-    return new Priority("low");
+    return new Priority('low');
   }
   static medium(): Priority {
-    return new Priority("medium");
+    return new Priority('medium');
   }
   static high(): Priority {
-    return new Priority("high");
+    return new Priority('high');
   }
   static critical(): Priority {
-    return new Priority("critical");
+    return new Priority('critical');
   }
 
   get value(): PriorityLevel {
@@ -382,15 +387,15 @@ export class Priority extends ValueObject<PriorityLevel> {
 
 ```typescript
 // src/core/domains/task-management/services/task-scheduling.service.ts
-import { Injectable } from "../../../shared/infrastructure/dependency-container";
-import { Task } from "../entities/task.entity";
-import { Priority } from "../value-objects/priority.vo";
+import { Injectable } from '../../../shared/infrastructure/dependency-container';
+import { Task } from '../entities/task.entity';
+import { Priority } from '../value-objects/priority.vo';
 
 @Injectable()
 export class TaskSchedulingService {
   public prioritizeTasks(tasks: Task[]): Task[] {
     return tasks.sort(
-      (a, b) => b.priority.getNumericValue() - a.priority.getNumericValue(),
+      (a, b) => b.priority.getNumericValue() - a.priority.getNumericValue()
     );
   }
 
@@ -442,8 +447,8 @@ export interface ITaskRepository {
 @Injectable()
 export class SqliteTaskRepository implements ITaskRepository {
   constructor(
-    @Inject("Database") private db: Database,
-    @Inject("Logger") private logger: ILogger,
+    @Inject('Database') private db: Database,
+    @Inject('Logger') private logger: ILogger
   ) {}
 
   async save(task: Task): Promise<void> {
@@ -467,7 +472,7 @@ export class SqliteTaskRepository implements ITaskRepository {
   }
 
   async findById(id: TaskId): Promise<Task | null> {
-    const sql = "SELECT * FROM tasks WHERE id = ?";
+    const sql = 'SELECT * FROM tasks WHERE id = ?';
     const row = await this.db.get(sql, [id.value]);
 
     return row ? this.mapRowToTask(row) : null;
@@ -475,8 +480,8 @@ export class SqliteTaskRepository implements ITaskRepository {
 
   async findPendingTasks(): Promise<Task[]> {
     const sql =
-      "SELECT * FROM tasks WHERE status = ? ORDER BY priority DESC, created_at ASC";
-    const rows = await this.db.all(sql, ["pending"]);
+      'SELECT * FROM tasks WHERE status = ? ORDER BY priority DESC, created_at ASC';
+    const rows = await this.db.all(sql, ['pending']);
 
     return rows.map((row) => this.mapRowToTask(row));
   }
@@ -504,10 +509,10 @@ export class SqliteTaskRepository implements ITaskRepository {
 @Injectable()
 export class AssignTaskUseCase {
   constructor(
-    @Inject("TaskRepository") private taskRepository: ITaskRepository,
-    @Inject("AgentRepository") private agentRepository: IAgentRepository,
-    @Inject("DomainEventBus") private eventBus: DomainEventBus,
-    @Inject("Logger") private logger: ILogger,
+    @Inject('TaskRepository') private taskRepository: ITaskRepository,
+    @Inject('AgentRepository') private agentRepository: IAgentRepository,
+    @Inject('DomainEventBus') private eventBus: DomainEventBus,
+    @Inject('Logger') private logger: ILogger
   ) {}
 
   async execute(command: AssignTaskCommand): Promise<AssignTaskResult> {
@@ -555,7 +560,7 @@ export class AssignTaskUseCase {
 
       // 6. Return result
       this.logger.info(
-        `Task ${command.taskId.value} assigned to agent ${command.agentId}`,
+        `Task ${command.taskId.value} assigned to agent ${command.agentId}`
       );
 
       return AssignTaskResult.success({
@@ -566,7 +571,7 @@ export class AssignTaskUseCase {
     } catch (error) {
       this.logger.error(
         `Failed to assign task ${command.taskId.value}:`,
-        error,
+        error
       );
       return AssignTaskResult.failure(error);
     }
@@ -574,10 +579,10 @@ export class AssignTaskUseCase {
 
   private async validateCommand(command: AssignTaskCommand): Promise<void> {
     if (!command.taskId) {
-      throw new ValidationError("Task ID is required");
+      throw new ValidationError('Task ID is required');
     }
     if (!command.agentId) {
-      throw new ValidationError("Agent ID is required");
+      throw new ValidationError('Agent ID is required');
     }
   }
 }
@@ -589,8 +594,8 @@ export class AssignTaskUseCase {
 
 ```typescript
 // src/core/shared/infrastructure/dependency-container.ts
-import { Container } from "inversify";
-import { TYPES } from "./types";
+import { Container } from 'inversify';
+import { TYPES } from './types';
 
 export class DependencyContainer {
   private container: Container;
@@ -692,31 +697,31 @@ export class DependencyContainer {
 
 ```typescript
 // src/core/domains/task-management/__tests__/entities/task.entity.test.ts
-describe("Task Entity", () => {
+describe('Task Entity', () => {
   let task: Task;
 
   beforeEach(() => {
-    task = Task.create("Test task", Priority.medium());
+    task = Task.create('Test task', Priority.medium());
   });
 
-  describe("creation", () => {
-    it("should create task with pending status", () => {
+  describe('creation', () => {
+    it('should create task with pending status', () => {
       expect(task.status.isPending()).toBe(true);
-      expect(task.description).toBe("Test task");
+      expect(task.description).toBe('Test task');
       expect(task.priority.equals(Priority.medium())).toBe(true);
     });
 
-    it("should generate unique ID", () => {
-      const task1 = Task.create("Task 1", Priority.low());
-      const task2 = Task.create("Task 2", Priority.low());
+    it('should generate unique ID', () => {
+      const task1 = Task.create('Task 1', Priority.low());
+      const task2 = Task.create('Task 2', Priority.low());
 
       expect(task1.id.equals(task2.id)).toBe(false);
     });
   });
 
-  describe("assignment", () => {
-    it("should assign to agent and change status", () => {
-      const agentId = "agent-123";
+  describe('assignment', () => {
+    it('should assign to agent and change status', () => {
+      const agentId = 'agent-123';
 
       task.assignTo(agentId);
 
@@ -724,8 +729,8 @@ describe("Task Entity", () => {
       expect(task.status.isAssigned()).toBe(true);
     });
 
-    it("should emit TaskAssignedEvent when assigned", () => {
-      const agentId = "agent-123";
+    it('should emit TaskAssignedEvent when assigned', () => {
+      const agentId = 'agent-123';
 
       task.assignTo(agentId);
 
@@ -734,12 +739,12 @@ describe("Task Entity", () => {
       expect(events[0]).toBeInstanceOf(TaskAssignedEvent);
     });
 
-    it("should not allow assignment of completed task", () => {
-      task.assignTo("agent-123");
-      task.complete(TaskResult.success("done"));
+    it('should not allow assignment of completed task', () => {
+      task.assignTo('agent-123');
+      task.complete(TaskResult.success('done'));
 
-      expect(() => task.assignTo("agent-456")).toThrow(
-        "Cannot assign completed task",
+      expect(() => task.assignTo('agent-456')).toThrow(
+        'Cannot assign completed task'
       );
     });
   });
@@ -750,12 +755,12 @@ describe("Task Entity", () => {
 
 ```typescript
 // src/core/domains/task-management/__tests__/integration/task-repository.integration.test.ts
-describe("TaskRepository Integration", () => {
+describe('TaskRepository Integration', () => {
   let repository: SqliteTaskRepository;
   let db: Database;
 
   beforeEach(async () => {
-    db = new Database(":memory:");
+    db = new Database(':memory:');
     await setupTasksTable(db);
     repository = new SqliteTaskRepository(db, new ConsoleLogger());
   });
@@ -764,21 +769,21 @@ describe("TaskRepository Integration", () => {
     await db.close();
   });
 
-  it("should save and retrieve task", async () => {
-    const task = Task.create("Test task", Priority.high());
+  it('should save and retrieve task', async () => {
+    const task = Task.create('Test task', Priority.high());
 
     await repository.save(task);
     const retrieved = await repository.findById(task.id);
 
     expect(retrieved).toBeDefined();
     expect(retrieved!.id.equals(task.id)).toBe(true);
-    expect(retrieved!.description).toBe("Test task");
+    expect(retrieved!.description).toBe('Test task');
     expect(retrieved!.priority.equals(Priority.high())).toBe(true);
   });
 
-  it("should find pending tasks ordered by priority", async () => {
-    const lowTask = Task.create("Low priority", Priority.low());
-    const highTask = Task.create("High priority", Priority.high());
+  it('should find pending tasks ordered by priority', async () => {
+    const lowTask = Task.create('Low priority', Priority.low());
+    const highTask = Task.create('High priority', Priority.high());
 
     await repository.save(lowTask);
     await repository.save(highTask);

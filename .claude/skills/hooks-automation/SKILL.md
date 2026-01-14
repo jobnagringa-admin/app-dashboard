@@ -1,19 +1,29 @@
 ---
 name: Hooks Automation
-description: Automated coordination, formatting, and learning from Claude Code operations using intelligent hooks with MCP integration. Includes pre/post task hooks, session management, Git integration, memory coordination, and neural pattern training for enhanced development workflows.
+description:
+  Automated coordination, formatting, and learning from Claude Code operations
+  using intelligent hooks with MCP integration. Includes pre/post task hooks,
+  session management, Git integration, memory coordination, and neural pattern
+  training for enhanced development workflows.
 ---
 
 # Hooks Automation
 
-Intelligent automation system that coordinates, validates, and learns from Claude Code operations through hooks integrated with MCP tools and neural pattern training.
+Intelligent automation system that coordinates, validates, and learns from
+Claude Code operations through hooks integrated with MCP tools and neural
+pattern training.
 
 ## What This Skill Does
 
-This skill provides a comprehensive hook system that automatically manages development operations, coordinates swarm agents, maintains session state, and continuously learns from coding patterns. It enables automated agent assignment, code formatting, performance tracking, and cross-session memory persistence.
+This skill provides a comprehensive hook system that automatically manages
+development operations, coordinates swarm agents, maintains session state, and
+continuously learns from coding patterns. It enables automated agent assignment,
+code formatting, performance tracking, and cross-session memory persistence.
 
 **Key Capabilities:**
 
-- **Pre-Operation Hooks**: Validate, prepare, and auto-assign agents before operations
+- **Pre-Operation Hooks**: Validate, prepare, and auto-assign agents before
+  operations
 - **Post-Operation Hooks**: Format, analyze, and train patterns after operations
 - **Session Management**: Persist state, restore context, generate summaries
 - **Memory Coordination**: Synchronize knowledge across swarm agents
@@ -966,8 +976,8 @@ Create custom hooks for specific workflows:
 // .claude/hooks/custom-quality-check.js
 
 module.exports = {
-  name: "custom-quality-check",
-  type: "pre",
+  name: 'custom-quality-check',
+  type: 'pre',
   matcher: /\.(ts|js)$/,
 
   async execute(context) {
@@ -987,7 +997,7 @@ module.exports = {
     if (complexity > 15 || securityIssues.length > 0) {
       return {
         continue: false,
-        reason: "Quality checks failed",
+        reason: 'Quality checks failed',
         warnings: [
           `Complexity: ${complexity} (max: 15)`,
           `Security issues: ${securityIssues.length}`,
@@ -997,7 +1007,7 @@ module.exports = {
 
     return {
       continue: true,
-      reason: "Quality checks passed",
+      reason: 'Quality checks passed',
       metadata: { complexity, securityIssues: 0 },
     };
   },

@@ -1,24 +1,34 @@
 ---
-name: "Verification & Quality Assurance"
-description: "Comprehensive truth scoring, code quality verification, and automatic rollback system with 0.95 accuracy threshold for ensuring high-quality agent outputs and codebase reliability."
-version: "2.0.0"
-category: "quality-assurance"
+name: 'Verification & Quality Assurance'
+description:
+  'Comprehensive truth scoring, code quality verification, and automatic
+  rollback system with 0.95 accuracy threshold for ensuring high-quality agent
+  outputs and codebase reliability.'
+version: '2.0.0'
+category: 'quality-assurance'
 tags:
-  ["verification", "truth-scoring", "quality", "rollback", "metrics", "ci-cd"]
+  ['verification', 'truth-scoring', 'quality', 'rollback', 'metrics', 'ci-cd']
 ---
 
 # Verification & Quality Assurance Skill
 
 ## What This Skill Does
 
-This skill provides a comprehensive verification and quality assurance system that ensures code quality and correctness through:
+This skill provides a comprehensive verification and quality assurance system
+that ensures code quality and correctness through:
 
-- **Truth Scoring**: Real-time reliability metrics (0.0-1.0 scale) for code, agents, and tasks
-- **Verification Checks**: Automated code correctness, security, and best practices validation
-- **Automatic Rollback**: Instant reversion of changes that fail verification (default threshold: 0.95)
-- **Quality Metrics**: Statistical analysis with trends, confidence intervals, and improvement tracking
-- **CI/CD Integration**: Export capabilities for continuous integration pipelines
-- **Real-time Monitoring**: Live dashboards and watch modes for ongoing verification
+- **Truth Scoring**: Real-time reliability metrics (0.0-1.0 scale) for code,
+  agents, and tasks
+- **Verification Checks**: Automated code correctness, security, and best
+  practices validation
+- **Automatic Rollback**: Instant reversion of changes that fail verification
+  (default threshold: 0.95)
+- **Quality Metrics**: Statistical analysis with trends, confidence intervals,
+  and improvement tracking
+- **CI/CD Integration**: Export capabilities for continuous integration
+  pipelines
+- **Real-time Monitoring**: Live dashboards and watch modes for ongoing
+  verification
 
 ## Prerequisites
 
@@ -50,7 +60,8 @@ npx claude-flow@alpha verify rollback --last-good
 
 #### View Truth Metrics
 
-Display comprehensive quality and reliability metrics for your codebase and agent tasks.
+Display comprehensive quality and reliability metrics for your codebase and
+agent tasks.
 
 **Basic Usage:**
 
@@ -479,7 +490,8 @@ jobs:
 verify:
   stage: test
   script:
-    - npx claude-flow@alpha verify check --threshold 0.95 --json > verification.json
+    - npx claude-flow@alpha verify check --threshold 0.95 --json >
+      verification.json
     - |
       score=$(jq '.overallScore' verification.json)
       if [ $(echo "$score < 0.95" | bc) -eq 1 ]; then
@@ -660,7 +672,8 @@ Verification commands return standard exit codes:
 
 ### Best Practices
 
-1. **Set Appropriate Thresholds**: Use 0.99 for critical code, 0.95 for standard, 0.90 for experimental
+1. **Set Appropriate Thresholds**: Use 0.99 for critical code, 0.95 for
+   standard, 0.90 for experimental
 2. **Enable Auto-rollback**: Prevent bad code from persisting
 3. **Monitor Trends**: Track improvement over time, not just current scores
 4. **Integrate with CI/CD**: Make verification part of your pipeline

@@ -2,7 +2,9 @@
 name: github-workflow-automation
 version: 1.0.0
 category: github
-description: Advanced GitHub Actions workflow automation with AI swarm coordination, intelligent CI/CD pipelines, and comprehensive repository management
+description:
+  Advanced GitHub Actions workflow automation with AI swarm coordination,
+  intelligent CI/CD pipelines, and comprehensive repository management
 tags:
   - github
   - github-actions
@@ -26,7 +28,9 @@ progressive_disclosure: true
 
 ## Overview
 
-This skill provides comprehensive GitHub Actions automation with AI swarm coordination. It integrates intelligent CI/CD pipelines, workflow orchestration, and repository management to create self-organizing, adaptive GitHub workflows.
+This skill provides comprehensive GitHub Actions automation with AI swarm
+coordination. It integrates intelligent CI/CD pipelines, workflow orchestration,
+and repository management to create self-organizing, adaptive GitHub workflows.
 
 ## Quick Start
 
@@ -252,7 +256,7 @@ jobs:
 name: Intelligent Security Scan
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
@@ -373,7 +377,7 @@ jobs:
 name: Intelligent Release
 on:
   push:
-    tags: ["v*"]
+    tags: ['v*']
 
 jobs:
   release:
@@ -537,23 +541,23 @@ npx ruv-swarm actions auto-optimize \
 
 ```javascript
 // action.yml
-name: "Swarm Custom Action";
-description: "Custom swarm-powered action";
-inputs: task: description: "Task for swarm";
+name: 'Swarm Custom Action';
+description: 'Custom swarm-powered action';
+inputs: task: description: 'Task for swarm';
 required: true;
-runs: using: "node16";
-main: "dist/index.js";
+runs: using: 'node16';
+main: 'dist/index.js';
 
 // index.js
-const { SwarmAction } = require("ruv-swarm");
+const { SwarmAction } = require('ruv-swarm');
 
 async function run() {
   const swarm = new SwarmAction({
-    topology: "mesh",
-    agents: ["analyzer", "optimizer"],
+    topology: 'mesh',
+    agents: ['analyzer', 'optimizer'],
   });
 
-  await swarm.execute(core.getInput("task"));
+  await swarm.execute(core.getInput('task'));
 }
 
 run().catch((error) => core.setFailed(error.message));
@@ -1124,6 +1128,5 @@ echo "✅ GitHub workflow automation setup complete"
 
 ---
 
-**Skill Status**: ✅ Production Ready
-**Last Updated**: 2025-01-19
+**Skill Status**: ✅ Production Ready **Last Updated**: 2025-01-19
 **Maintainer**: claude-flow team

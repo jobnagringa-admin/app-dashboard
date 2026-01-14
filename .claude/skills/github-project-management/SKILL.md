@@ -3,7 +3,9 @@ name: github-project-management
 title: GitHub Project Management
 version: 2.0.0
 category: github
-description: Comprehensive GitHub project management with swarm-coordinated issue tracking, project board automation, and sprint planning
+description:
+  Comprehensive GitHub project management with swarm-coordinated issue tracking,
+  project board automation, and sprint planning
 author: Claude Code
 tags:
   - github
@@ -36,7 +38,9 @@ estimated_time: 30-45 minutes
 
 ## Overview
 
-A comprehensive skill for managing GitHub projects using AI swarm coordination. This skill combines intelligent issue management, automated project board synchronization, and swarm-based coordination for efficient project delivery.
+A comprehensive skill for managing GitHub projects using AI swarm coordination.
+This skill combines intelligent issue management, automated project board
+synchronization, and swarm-based coordination for efficient project delivery.
 
 ## Quick Start
 
@@ -170,10 +174,7 @@ Execute swarm operations via issue comments:
 ```markdown
 <!-- In issue comment -->
 
-/swarm analyze
-/swarm decompose 5
-/swarm assign @agent-coder
-/swarm estimate
+/swarm analyze /swarm decompose 5 /swarm assign @agent-coder /swarm estimate
 /swarm start
 ```
 
@@ -386,43 +387,43 @@ gh project field-create $PROJECT_ID --owner @me \
 # .github/board-sync.yml
 version: 1
 project:
-  name: "AI Development Board"
+  name: 'AI Development Board'
   number: 1
 
 mapping:
   # Map swarm task status to board columns
   status:
-    pending: "Backlog"
-    assigned: "Ready"
-    in_progress: "In Progress"
-    review: "Review"
-    completed: "Done"
-    blocked: "Blocked"
+    pending: 'Backlog'
+    assigned: 'Ready'
+    in_progress: 'In Progress'
+    review: 'Review'
+    completed: 'Done'
+    blocked: 'Blocked'
 
   # Map agent types to labels
   agents:
-    coder: "🔧 Development"
-    tester: "🧪 Testing"
-    analyst: "📊 Analysis"
-    designer: "🎨 Design"
-    architect: "🏗️ Architecture"
+    coder: '🔧 Development'
+    tester: '🧪 Testing'
+    analyst: '📊 Analysis'
+    designer: '🎨 Design'
+    architect: '🏗️ Architecture'
 
   # Map priority to project fields
   priority:
-    critical: "🔴 Critical"
-    high: "🟡 High"
-    medium: "🟢 Medium"
-    low: "⚪ Low"
+    critical: '🔴 Critical'
+    high: '🟡 High'
+    medium: '🟢 Medium'
+    low: '⚪ Low'
 
   # Custom fields
   fields:
-    - name: "Agent Count"
+    - name: 'Agent Count'
       type: number
       source: task.agents.length
-    - name: "Complexity"
+    - name: 'Complexity'
       type: select
       source: task.complexity
-    - name: "ETA"
+    - name: 'ETA'
       type: date
       source: task.estimatedCompletion
 ```
@@ -971,25 +972,14 @@ Updates will be posted automatically by swarm agents during implementation.
 ```markdown
 <!-- .github/ISSUE_TEMPLATE/swarm-task.yml -->
 
-name: Swarm Task
-description: Create a task for AI swarm processing
-body:
+name: Swarm Task description: Create a task for AI swarm processing body:
 
-- type: dropdown
-  id: topology
-  attributes:
-  label: Swarm Topology
-  options: - mesh - hierarchical - ring - star
-- type: input
-  id: agents
-  attributes:
-  label: Required Agents
-  placeholder: "coder, tester, analyst"
-- type: textarea
-  id: tasks
-  attributes:
-  label: Task Breakdown
-  placeholder: | 1. Task one description 2. Task two description
+- type: dropdown id: topology attributes: label: Swarm Topology options: -
+  mesh - hierarchical - ring - star
+- type: input id: agents attributes: label: Required Agents placeholder: "coder,
+  tester, analyst"
+- type: textarea id: tasks attributes: label: Task Breakdown placeholder: | 1.
+  Task one description 2. Task two description
 ```
 
 ---
@@ -1197,7 +1187,8 @@ npx ruv-swarm github effectiveness \
 
 ## Security & Permissions
 
-1. **Command Authorization**: Validate user permissions before executing commands
+1. **Command Authorization**: Validate user permissions before executing
+   commands
 2. **Rate Limiting**: Prevent spam and abuse of issue commands
 3. **Audit Logging**: Track all swarm operations on issues and boards
 4. **Data Privacy**: Respect private repository settings
@@ -1303,6 +1294,4 @@ npx ruv-swarm github board-kpis
 
 ---
 
-**Last Updated**: 2025-10-19
-**Version**: 2.0.0
-**Maintainer**: Claude Code
+**Last Updated**: 2025-10-19 **Version**: 2.0.0 **Maintainer**: Claude Code

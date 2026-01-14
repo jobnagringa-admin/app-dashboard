@@ -20,7 +20,9 @@ capabilities:
 
 # GitHub Code Review Skill
 
-> **AI-Powered Code Review**: Deploy specialized review agents to perform comprehensive, intelligent code reviews that go beyond traditional static analysis.
+> **AI-Powered Code Review**: Deploy specialized review agents to perform
+> comprehensive, intelligent code reviews that go beyond traditional static
+> analysis.
 
 ## 🎯 Quick Start
 
@@ -192,11 +194,9 @@ fi
 
 **Severity**: 🔴 Critical / 🟡 High / 🟢 Low
 
-**Description**:
-[Clear explanation of the security issue]
+**Description**: [Clear explanation of the security issue]
 
-**Impact**:
-[Potential consequences if not addressed]
+**Impact**: [Potential consequences if not addressed]
 
 **Suggested Fix**:
 
@@ -387,11 +387,9 @@ Execute swarm commands directly from PR comments:
 ```markdown
 <!-- In PR comment -->
 
-/swarm init mesh 6
-/swarm spawn coder "Implement authentication"
-/swarm spawn tester "Write unit tests"
-/swarm status
-/swarm review --agents security,performance
+/swarm init mesh 6 /swarm spawn coder "Implement authentication" /swarm spawn
+tester "Write unit tests" /swarm status /swarm review --agents
+security,performance
 ```
 
 <details>
@@ -399,26 +397,26 @@ Execute swarm commands directly from PR comments:
 
 ```javascript
 // webhook-handler.js
-const { createServer } = require("http");
-const { execSync } = require("child_process");
+const { createServer } = require('http');
+const { execSync } = require('child_process');
 
 createServer((req, res) => {
-  if (req.url === "/github-webhook") {
+  if (req.url === '/github-webhook') {
     const event = JSON.parse(body);
 
-    if (event.action === "opened" && event.pull_request) {
+    if (event.action === 'opened' && event.pull_request) {
       execSync(`npx ruv-swarm github pr-init ${event.pull_request.number}`);
     }
 
-    if (event.comment && event.comment.body.startsWith("/swarm")) {
+    if (event.comment && event.comment.body.startsWith('/swarm')) {
       const command = event.comment.body;
       execSync(
-        `npx ruv-swarm github handle-comment --pr ${event.issue.number} --command "${command}"`,
+        `npx ruv-swarm github handle-comment --pr ${event.issue.number} --command "${command}"`
       );
     }
 
     res.writeHead(200);
-    res.end("OK");
+    res.end('OK');
   }
 }).listen(3000);
 ```
@@ -617,10 +615,10 @@ protection_rules:
   required_status_checks:
     strict: true
     contexts:
-      - "review-swarm/security"
-      - "review-swarm/performance"
-      - "review-swarm/architecture"
-      - "review-swarm/tests"
+      - 'review-swarm/security'
+      - 'review-swarm/performance'
+      - 'review-swarm/architecture'
+      - 'review-swarm/tests'
 ```
 
 ### Define Quality Gates
@@ -728,22 +726,22 @@ class CustomReviewAgent {
     // Custom logic: Check for TODO comments in production code
     if (await this.checkTodoComments(pr)) {
       issues.push({
-        severity: "warning",
+        severity: 'warning',
         file: pr.file,
         line: pr.line,
-        message: "TODO comment found in production code",
-        suggestion: "Resolve TODO or create issue to track it",
+        message: 'TODO comment found in production code',
+        suggestion: 'Resolve TODO or create issue to track it',
       });
     }
 
     // Custom logic: Verify API versioning
     if (await this.checkApiVersioning(pr)) {
       issues.push({
-        severity: "error",
+        severity: 'error',
         file: pr.file,
         line: pr.line,
-        message: "API endpoint missing versioning",
-        suggestion: "Add /v1/, /v2/ prefix to API routes",
+        message: 'API endpoint missing versioning',
+        suggestion: 'Add /v1/, /v2/ prefix to API routes',
       });
     }
 
@@ -1154,10 +1152,10 @@ npx ruv-swarm github review-init --pr 123 --parallel --cache-results
 
 ## 📄 License
 
-This skill is part of the Claude Code Flow project and is licensed under the MIT License.
+This skill is part of the Claude Code Flow project and is licensed under the MIT
+License.
 
 ---
 
-**Last Updated:** 2025-10-19
-**Version:** 1.0.0
-**Maintainer:** Claude Code Flow Team
+**Last Updated:** 2025-10-19 **Version:** 1.0.0 **Maintainer:** Claude Code Flow
+Team

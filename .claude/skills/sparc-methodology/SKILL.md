@@ -1,6 +1,8 @@
 ---
 name: sparc-methodology
-description: SPARC (Specification, Pseudocode, Architecture, Refinement, Completion) comprehensive development methodology with multi-agent orchestration
+description:
+  SPARC (Specification, Pseudocode, Architecture, Refinement, Completion)
+  comprehensive development methodology with multi-agent orchestration
 version: 2.7.0
 category: development
 tags:
@@ -17,7 +19,10 @@ author: Claude Flow
 
 ## Overview
 
-SPARC (Specification, Pseudocode, Architecture, Refinement, Completion) is a systematic development methodology integrated with Claude Flow's multi-agent orchestration capabilities. It provides 17 specialized modes for comprehensive software development, from initial research through deployment and monitoring.
+SPARC (Specification, Pseudocode, Architecture, Refinement, Completion) is a
+systematic development methodology integrated with Claude Flow's multi-agent
+orchestration capabilities. It provides 17 specialized modes for comprehensive
+software development, from initial research through deployment and monitoring.
 
 ## Table of Contents
 
@@ -39,8 +44,10 @@ SPARC methodology emphasizes:
 
 - **Systematic Approach**: Structured phases from specification to completion
 - **Test-Driven Development**: Tests written before implementation
-- **Parallel Execution**: Concurrent agent coordination for 2.8-4.4x speed improvements
-- **Memory Integration**: Persistent knowledge sharing across agents and sessions
+- **Parallel Execution**: Concurrent agent coordination for 2.8-4.4x speed
+  improvements
+- **Memory Integration**: Persistent knowledge sharing across agents and
+  sessions
 - **Quality First**: Comprehensive reviews, testing, and validation
 - **Modular Design**: Clean separation of concerns with clear interfaces
 
@@ -497,7 +504,8 @@ Knowledge management and context preservation.
 
 ### Method 1: MCP Tools (Preferred in Claude Code)
 
-**Best for**: Integrated Claude Code workflows with full orchestration capabilities
+**Best for**: Integrated Claude Code workflows with full orchestration
+capabilities
 
 ```javascript
 // Basic mode execution

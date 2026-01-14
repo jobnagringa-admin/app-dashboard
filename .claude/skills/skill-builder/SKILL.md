@@ -1,13 +1,20 @@
 ---
-name: "Skill Builder"
-description: "Create new Claude Code Skills with proper YAML frontmatter, progressive disclosure structure, and complete directory organization. Use when you need to build custom skills for specific workflows, generate skill templates, or understand the Claude Skills specification."
+name: 'Skill Builder'
+description:
+  'Create new Claude Code Skills with proper YAML frontmatter, progressive
+  disclosure structure, and complete directory organization. Use when you need
+  to build custom skills for specific workflows, generate skill templates, or
+  understand the Claude Skills specification.'
 ---
 
 # Skill Builder
 
 ## What This Skill Does
 
-Creates production-ready Claude Code Skills with proper YAML frontmatter, progressive disclosure architecture, and complete file/folder structure. This skill guides you through building skills that Claude can autonomously discover and use across all surfaces (Claude.ai, Claude Code, SDK, API).
+Creates production-ready Claude Code Skills with proper YAML frontmatter,
+progressive disclosure architecture, and complete file/folder structure. This
+skill guides you through building skills that Claude can autonomously discover
+and use across all surfaces (Claude.ai, Claude Code, SDK, API).
 
 ## Prerequisites
 
@@ -49,7 +56,8 @@ EOF
 
 ### 📋 YAML Frontmatter (REQUIRED)
 
-Every SKILL.md **must** start with YAML frontmatter containing exactly two required fields:
+Every SKILL.md **must** start with YAML frontmatter containing exactly two
+required fields:
 
 ```yaml
 ---
@@ -73,7 +81,8 @@ and when Claude should use it."       # Include BOTH what & when
   - ✅ "React Component Builder"
   - ✅ "Database Schema Designer"
   - ❌ "skill-1" (not descriptive)
-  - ❌ "This is a very long skill name that exceeds sixty-four characters" (too long)
+  - ❌ "This is a very long skill name that exceeds sixty-four characters" (too
+    long)
 
 **`description`** (REQUIRED):
 
@@ -86,8 +95,10 @@ and when Claude should use it."       # Include BOTH what & when
 - **Usage**: Loaded into Claude's system prompt for autonomous matching
 - **Best Practice**: Front-load key trigger words, be specific about use cases
 - **Examples**:
-  - ✅ "Generate OpenAPI 3.0 documentation from Express.js routes. Use when creating API docs, documenting endpoints, or building API specifications."
-  - ✅ "Create React functional components with TypeScript, hooks, and tests. Use when scaffolding new components or converting class components."
+  - ✅ "Generate OpenAPI 3.0 documentation from Express.js routes. Use when
+    creating API docs, documenting endpoints, or building API specifications."
+  - ✅ "Create React functional components with TypeScript, hooks, and tests.
+    Use when scaffolding new components or converting class components."
   - ❌ "A comprehensive guide to API documentation" (no "when" clause)
   - ❌ "Documentation tool" (too vague)
 
@@ -119,7 +130,8 @@ tags: ["dev", "api"]   # NOT part of spec
 ---
 ```
 
-**Critical**: Only `name` and `description` are used by Claude. Additional fields are ignored.
+**Critical**: Only `name` and `description` are used by Claude. Additional
+fields are ignored.
 
 ---
 
@@ -191,19 +203,19 @@ Claude Code does NOT support nested subdirectories or namespaces!
 
 ### 🎯 Progressive Disclosure Architecture
 
-Claude Code uses a **3-level progressive disclosure system** to scale to 100+ skills without context penalty:
+Claude Code uses a **3-level progressive disclosure system** to scale to 100+
+skills without context penalty:
 
 #### Level 1: Metadata (Name + Description)
 
-**Loaded**: At Claude Code startup, always
-**Size**: ~200 chars per skill
-**Purpose**: Enable autonomous skill matching
-**Context**: Loaded into system prompt for ALL skills
+**Loaded**: At Claude Code startup, always **Size**: ~200 chars per skill
+**Purpose**: Enable autonomous skill matching **Context**: Loaded into system
+prompt for ALL skills
 
 ```yaml
 ---
-name: "API Builder" # 11 chars
-description: "Creates REST APIs..." # ~50 chars
+name: 'API Builder' # 11 chars
+description: 'Creates REST APIs...' # ~50 chars
 ---
 # Total: ~61 chars per skill
 # 100 skills = ~6KB context (minimal!)
@@ -211,10 +223,9 @@ description: "Creates REST APIs..." # ~50 chars
 
 #### Level 2: SKILL.md Body
 
-**Loaded**: When skill is triggered/matched
-**Size**: ~1-10KB typically
-**Purpose**: Main instructions and procedures
-**Context**: Only loaded for ACTIVE skills
+**Loaded**: When skill is triggered/matched **Size**: ~1-10KB typically
+**Purpose**: Main instructions and procedures **Context**: Only loaded for
+ACTIVE skills
 
 ```markdown
 # API Builder
@@ -234,22 +245,22 @@ description: "Creates REST APIs..." # ~50 chars
 
 #### Level 3+: Referenced Files
 
-**Loaded**: On-demand as Claude navigates
-**Size**: Variable (KB to MB)
-**Purpose**: Deep reference, examples, schemas
-**Context**: Loaded only when Claude accesses specific files
+**Loaded**: On-demand as Claude navigates **Size**: Variable (KB to MB)
+**Purpose**: Deep reference, examples, schemas **Context**: Loaded only when
+Claude accesses specific files
 
 ```markdown
 # In SKILL.md
 
-See [Advanced Configuration](docs/ADVANCED.md) for complex scenarios.
-See [API Reference](docs/API_REFERENCE.md) for complete documentation.
-Use template: `resources/templates/api-template.js`
+See [Advanced Configuration](docs/ADVANCED.md) for complex scenarios. See
+[API Reference](docs/API_REFERENCE.md) for complete documentation. Use template:
+`resources/templates/api-template.js`
 
 # Claude will load these files ONLY if needed
 ```
 
-**Benefit**: Install 100+ skills with ~6KB context. Only active skill content (1-10KB) enters context.
+**Benefit**: Install 100+ skills with ~6KB context. Only active skill content
+(1-10KB) enters context.
 
 ---
 
@@ -259,8 +270,8 @@ Use template: `resources/templates/api-template.js`
 
 ````markdown
 ---
-name: "Your Skill Name"
-description: "What it does and when to use it"
+name: 'Your Skill Name'
+description: 'What it does and when to use it'
 ---
 
 # Your Skill Name
@@ -347,9 +358,7 @@ Success message
 
 #### Issue: Common Problem
 
-**Symptoms**: What you see
-**Cause**: Why it happens
-**Solution**: How to fix
+**Symptoms**: What you see **Cause**: Why it happens **Solution**: How to fix
 
 ```bash
 # Fix command
@@ -421,7 +430,8 @@ description: "Build API endpoints with proper validation and testing."
 ```markdown
 ## What This Skill Does
 
-Creates production-ready React components with TypeScript, hooks, and tests in 3 steps.
+Creates production-ready React components with TypeScript, hooks, and tests in 3
+steps.
 ```
 
 **Level 2 for Common Paths** (Quick Start):
@@ -453,7 +463,8 @@ generate-component MyComponent
 ```markdown
 ## Advanced Configuration
 
-For complex scenarios like HOCs, render props, or custom hooks, see [ADVANCED.md](docs/ADVANCED.md).
+For complex scenarios like HOCs, render props, or custom hooks, see
+[ADVANCED.md](docs/ADVANCED.md).
 ```
 
 ---
@@ -462,9 +473,8 @@ For complex scenarios like HOCs, render props, or custom hooks, see [ADVANCED.md
 
 #### Scripts Directory
 
-**Purpose**: Executable scripts that Claude can run
-**Location**: `scripts/` in skill directory
-**Usage**: Referenced from SKILL.md
+**Purpose**: Executable scripts that Claude can run **Location**: `scripts/` in
+skill directory **Usage**: Referenced from SKILL.md
 
 Example:
 
@@ -557,8 +567,8 @@ See [Troubleshooting Guide](docs/TROUBLESHOOTING.md) if you encounter errors.
 #### Relative File Paths
 
 ```markdown
-Use the template located at `resources/templates/api-template.js`
-See examples in `resources/examples/basic-usage/`
+Use the template located at `resources/templates/api-template.js` See examples
+in `resources/examples/basic-usage/`
 ```
 
 #### Inline File Content
@@ -864,8 +874,7 @@ See [CI/CD Guide](docs/CICD.md)
 
 ### Issue: Installation Failed
 
-**Symptoms**: Error during `install.sh`
-**Cause**: Missing dependencies
+**Symptoms**: Error during `install.sh` **Cause**: Missing dependencies
 **Solution**:
 
 ```bash
@@ -876,8 +885,8 @@ npm install -g required-package
 
 ### Issue: Validation Errors
 
-**Symptoms**: Validation script fails
-**Solution**: See [Troubleshooting Guide](docs/TROUBLESHOOTING.md)
+**Symptoms**: Validation script fails **Solution**: See
+[Troubleshooting Guide](docs/TROUBLESHOOTING.md)
 
 ---
 
@@ -898,9 +907,7 @@ Complete API documentation: [API_REFERENCE.md](docs/API_REFERENCE.md)
 
 ---
 
-**Created**: 2025-10-19
-**Category**: Advanced
-**Difficulty**: Intermediate
+**Created**: 2025-10-19 **Category**: Advanced **Difficulty**: Intermediate
 **Estimated Time**: 15-30 minutes
 
 ````

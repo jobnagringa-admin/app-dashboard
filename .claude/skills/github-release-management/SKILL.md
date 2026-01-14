@@ -1,7 +1,9 @@
 ---
 name: github-release-management
 version: 2.0.0
-description: Comprehensive GitHub release orchestration with AI swarm coordination for automated versioning, testing, deployment, and rollback management
+description:
+  Comprehensive GitHub release orchestration with AI swarm coordination for
+  automated versioning, testing, deployment, and rollback management
 category: github
 tags: [release, deployment, versioning, automation, ci-cd, swarm, orchestration]
 author: Claude Flow Team
@@ -23,7 +25,9 @@ related_skills:
 
 # GitHub Release Management Skill
 
-Intelligent release automation and orchestration using AI swarms for comprehensive software releases - from changelog generation to multi-platform deployment with rollback capabilities.
+Intelligent release automation and orchestration using AI swarms for
+comprehensive software releases - from changelog generation to multi-platform
+deployment with rollback capabilities.
 
 ## Quick Start
 
@@ -727,7 +731,7 @@ npx claude-flow github release-compliance \
 name: Intelligent Release Workflow
 on:
   push:
-    tags: ["v*"]
+    tags: ['v*']
 
 jobs:
   release-orchestration:
@@ -746,8 +750,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "20"
-          cache: "npm"
+          node-version: '20'
+          cache: 'npm'
 
       - name: Authenticate GitHub CLI
         run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
@@ -1136,6 +1140,5 @@ npx claude-flow@alpha github version-sync \
 
 ---
 
-**Version**: 2.0.0
-**Last Updated**: 2025-10-19
-**Maintained By**: Claude Flow Team
+**Version**: 2.0.0 **Last Updated**: 2025-10-19 **Maintained By**: Claude Flow
+Team

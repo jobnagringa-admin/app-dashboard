@@ -1,6 +1,8 @@
 ---
 name: swarm-advanced
-description: Advanced swarm orchestration patterns for research, development, testing, and complex distributed workflows
+description:
+  Advanced swarm orchestration patterns for research, development, testing, and
+  complex distributed workflows
 version: 2.0.0
 category: orchestration
 tags:
@@ -10,7 +12,9 @@ author: Claude Flow Team
 
 # Advanced Swarm Orchestration
 
-Master advanced swarm patterns for distributed research, development, and testing workflows. This skill covers comprehensive orchestration strategies using both MCP tools and CLI commands.
+Master advanced swarm patterns for distributed research, development, and
+testing workflows. This skill covers comprehensive orchestration strategies
+using both MCP tools and CLI commands.
 
 ## Quick Start
 
@@ -28,13 +32,13 @@ claude mcp add claude-flow npx claude-flow@alpha mcp start
 
 ```javascript
 // 1. Initialize swarm topology
-mcp__claude - flow__swarm_init({ topology: "mesh", maxAgents: 6 });
+mcp__claude - flow__swarm_init({ topology: 'mesh', maxAgents: 6 });
 
 // 2. Spawn specialized agents
-mcp__claude - flow__agent_spawn({ type: "researcher", name: "Agent 1" });
+mcp__claude - flow__agent_spawn({ type: 'researcher', name: 'Agent 1' });
 
 // 3. Orchestrate tasks
-mcp__claude - flow__task_orchestrate({ task: "...", strategy: "parallel" });
+mcp__claude - flow__task_orchestrate({ task: '...', strategy: 'parallel' });
 ```
 
 ## Core Concepts
@@ -67,10 +71,9 @@ mcp__claude - flow__task_orchestrate({ task: "...", strategy: "parallel" });
 
 ### Agent Strategies
 
-**Adaptive** - Dynamic adjustment based on task complexity
-**Balanced** - Equal distribution of work across agents
-**Specialized** - Task-specific agent assignment
-**Parallel** - Maximum concurrent execution
+**Adaptive** - Dynamic adjustment based on task complexity **Balanced** - Equal
+distribution of work across agents **Specialized** - Task-specific agent
+assignment **Parallel** - Maximum concurrent execution
 
 ## Pattern 1: Research Swarm
 
@@ -84,41 +87,41 @@ Deep research through parallel information gathering, analysis, and synthesis.
 // Initialize research swarm
 mcp__claude -
   flow__swarm_init({
-    topology: "mesh",
+    topology: 'mesh',
     maxAgents: 6,
-    strategy: "adaptive",
+    strategy: 'adaptive',
   });
 
 // Spawn research team
 const researchAgents = [
   {
-    type: "researcher",
-    name: "Web Researcher",
-    capabilities: ["web-search", "content-extraction", "source-validation"],
+    type: 'researcher',
+    name: 'Web Researcher',
+    capabilities: ['web-search', 'content-extraction', 'source-validation'],
   },
   {
-    type: "researcher",
-    name: "Academic Researcher",
-    capabilities: ["paper-analysis", "citation-tracking", "literature-review"],
+    type: 'researcher',
+    name: 'Academic Researcher',
+    capabilities: ['paper-analysis', 'citation-tracking', 'literature-review'],
   },
   {
-    type: "analyst",
-    name: "Data Analyst",
-    capabilities: ["data-processing", "statistical-analysis", "visualization"],
+    type: 'analyst',
+    name: 'Data Analyst',
+    capabilities: ['data-processing', 'statistical-analysis', 'visualization'],
   },
   {
-    type: "analyst",
-    name: "Pattern Analyzer",
+    type: 'analyst',
+    name: 'Pattern Analyzer',
     capabilities: [
-      "trend-detection",
-      "correlation-analysis",
-      "outlier-detection",
+      'trend-detection',
+      'correlation-analysis',
+      'outlier-detection',
     ],
   },
   {
-    type: "documenter",
-    name: "Report Writer",
-    capabilities: ["synthesis", "technical-writing", "formatting"],
+    type: 'documenter',
+    name: 'Report Writer',
+    capabilities: ['synthesis', 'technical-writing', 'formatting'],
   },
 ];
 
@@ -143,20 +146,20 @@ mcp__claude -
   flow__parallel_execute({
     tasks: [
       {
-        id: "web-search",
-        command: "search recent publications and articles",
+        id: 'web-search',
+        command: 'search recent publications and articles',
       },
       {
-        id: "academic-search",
-        command: "search academic databases and papers",
+        id: 'academic-search',
+        command: 'search academic databases and papers',
       },
       {
-        id: "data-collection",
-        command: "gather relevant datasets and statistics",
+        id: 'data-collection',
+        command: 'gather relevant datasets and statistics',
       },
       {
-        id: "expert-search",
-        command: "identify domain experts and thought leaders",
+        id: 'expert-search',
+        command: 'identify domain experts and thought leaders',
       },
     ],
   });
@@ -164,10 +167,10 @@ mcp__claude -
 // Store research findings in memory
 mcp__claude -
   flow__memory_usage({
-    action: "store",
-    key: "research-findings-" + Date.now(),
+    action: 'store',
+    key: 'research-findings-' + Date.now(),
     value: JSON.stringify(findings),
-    namespace: "research",
+    namespace: 'research',
     ttl: 604800, // 7 days
   });
 ```
@@ -179,27 +182,27 @@ mcp__claude -
 mcp__claude -
   flow__pattern_recognize({
     data: researchData,
-    patterns: ["trend", "correlation", "outlier", "emerging-pattern"],
+    patterns: ['trend', 'correlation', 'outlier', 'emerging-pattern'],
   });
 
 // Cognitive analysis
 mcp__claude -
   flow__cognitive_analyze({
-    behavior: "research-synthesis",
+    behavior: 'research-synthesis',
   });
 
 // Quality assessment
 mcp__claude -
   flow__quality_assess({
-    target: "research-sources",
-    criteria: ["credibility", "relevance", "recency", "authority"],
+    target: 'research-sources',
+    criteria: ['credibility', 'relevance', 'recency', 'authority'],
   });
 
 // Cross-reference validation
 mcp__claude -
   flow__neural_patterns({
-    action: "analyze",
-    operation: "fact-checking",
+    action: 'analyze',
+    operation: 'fact-checking',
     metadata: { sources: sourcesArray },
   });
 ```
@@ -210,18 +213,18 @@ mcp__claude -
 // Search existing knowledge base
 mcp__claude -
   flow__memory_search({
-    pattern: "topic X",
-    namespace: "research",
+    pattern: 'topic X',
+    namespace: 'research',
     limit: 20,
   });
 
 // Create knowledge graph connections
 mcp__claude -
   flow__neural_patterns({
-    action: "learn",
-    operation: "knowledge-graph",
+    action: 'learn',
+    operation: 'knowledge-graph',
     metadata: {
-      topic: "X",
+      topic: 'X',
       connections: relatedTopics,
       depth: 3,
     },
@@ -230,10 +233,10 @@ mcp__claude -
 // Store connections for future use
 mcp__claude -
   flow__memory_usage({
-    action: "store",
-    key: "knowledge-graph-X",
+    action: 'store',
+    key: 'knowledge-graph-X',
     value: JSON.stringify(knowledgeGraph),
-    namespace: "research/graphs",
+    namespace: 'research/graphs',
     ttl: 2592000, // 30 days
   });
 ```
@@ -244,32 +247,32 @@ mcp__claude -
 // Orchestrate report generation
 mcp__claude -
   flow__task_orchestrate({
-    task: "generate comprehensive research report",
-    strategy: "sequential",
-    priority: "high",
-    dependencies: ["gather", "analyze", "validate", "synthesize"],
+    task: 'generate comprehensive research report',
+    strategy: 'sequential',
+    priority: 'high',
+    dependencies: ['gather', 'analyze', 'validate', 'synthesize'],
   });
 
 // Monitor research progress
 mcp__claude -
   flow__swarm_status({
-    swarmId: "research-swarm",
+    swarmId: 'research-swarm',
   });
 
 // Generate final report
 mcp__claude -
   flow__workflow_execute({
-    workflowId: "research-report-generation",
+    workflowId: 'research-report-generation',
     params: {
       findings: findings,
-      format: "comprehensive",
+      format: 'comprehensive',
       sections: [
-        "executive-summary",
-        "methodology",
-        "findings",
-        "analysis",
-        "conclusions",
-        "references",
+        'executive-summary',
+        'methodology',
+        'findings',
+        'analysis',
+        'conclusions',
+        'references',
       ],
     },
   });
@@ -299,48 +302,48 @@ Full-stack development through coordinated specialist agents.
 // Initialize development swarm with hierarchy
 mcp__claude -
   flow__swarm_init({
-    topology: "hierarchical",
+    topology: 'hierarchical',
     maxAgents: 8,
-    strategy: "balanced",
+    strategy: 'balanced',
   });
 
 // Spawn development team
 const devTeam = [
-  { type: "architect", name: "System Architect", role: "coordinator" },
+  { type: 'architect', name: 'System Architect', role: 'coordinator' },
   {
-    type: "coder",
-    name: "Backend Developer",
-    capabilities: ["node", "api", "database"],
+    type: 'coder',
+    name: 'Backend Developer',
+    capabilities: ['node', 'api', 'database'],
   },
   {
-    type: "coder",
-    name: "Frontend Developer",
-    capabilities: ["react", "ui", "ux"],
+    type: 'coder',
+    name: 'Frontend Developer',
+    capabilities: ['react', 'ui', 'ux'],
   },
   {
-    type: "coder",
-    name: "Database Engineer",
-    capabilities: ["sql", "nosql", "optimization"],
+    type: 'coder',
+    name: 'Database Engineer',
+    capabilities: ['sql', 'nosql', 'optimization'],
   },
   {
-    type: "tester",
-    name: "QA Engineer",
-    capabilities: ["unit", "integration", "e2e"],
+    type: 'tester',
+    name: 'QA Engineer',
+    capabilities: ['unit', 'integration', 'e2e'],
   },
   {
-    type: "reviewer",
-    name: "Code Reviewer",
-    capabilities: ["security", "performance", "best-practices"],
+    type: 'reviewer',
+    name: 'Code Reviewer',
+    capabilities: ['security', 'performance', 'best-practices'],
   },
   {
-    type: "documenter",
-    name: "Technical Writer",
-    capabilities: ["api-docs", "guides", "tutorials"],
+    type: 'documenter',
+    name: 'Technical Writer',
+    capabilities: ['api-docs', 'guides', 'tutorials'],
   },
   {
-    type: "monitor",
-    name: "DevOps Engineer",
-    capabilities: ["ci-cd", "deployment", "monitoring"],
+    type: 'monitor',
+    name: 'DevOps Engineer',
+    capabilities: ['ci-cd', 'deployment', 'monitoring'],
   },
 ];
 
@@ -351,7 +354,7 @@ devTeam.forEach((member) => {
       type: member.type,
       name: member.name,
       capabilities: member.capabilities,
-      swarmId: "dev-swarm",
+      swarmId: 'dev-swarm',
     });
 });
 ```
@@ -364,19 +367,19 @@ devTeam.forEach((member) => {
 // System architecture design
 mcp__claude -
   flow__task_orchestrate({
-    task: "design system architecture for REST API",
-    strategy: "sequential",
-    priority: "critical",
-    assignTo: "System Architect",
+    task: 'design system architecture for REST API',
+    strategy: 'sequential',
+    priority: 'critical',
+    assignTo: 'System Architect',
   });
 
 // Store architecture decisions
 mcp__claude -
   flow__memory_usage({
-    action: "store",
-    key: "architecture-decisions",
+    action: 'store',
+    key: 'architecture-decisions',
     value: JSON.stringify(architectureDoc),
-    namespace: "development/design",
+    namespace: 'development/design',
   });
 ```
 
@@ -388,24 +391,24 @@ mcp__claude -
   flow__parallel_execute({
     tasks: [
       {
-        id: "backend-api",
-        command: "implement REST API endpoints",
-        assignTo: "Backend Developer",
+        id: 'backend-api',
+        command: 'implement REST API endpoints',
+        assignTo: 'Backend Developer',
       },
       {
-        id: "frontend-ui",
-        command: "build user interface components",
-        assignTo: "Frontend Developer",
+        id: 'frontend-ui',
+        command: 'build user interface components',
+        assignTo: 'Frontend Developer',
       },
       {
-        id: "database-schema",
-        command: "design and implement database schema",
-        assignTo: "Database Engineer",
+        id: 'database-schema',
+        command: 'design and implement database schema',
+        assignTo: 'Database Engineer',
       },
       {
-        id: "api-documentation",
-        command: "create API documentation",
-        assignTo: "Technical Writer",
+        id: 'api-documentation',
+        command: 'create API documentation',
+        assignTo: 'Technical Writer',
       },
     ],
   });
@@ -413,7 +416,7 @@ mcp__claude -
 // Monitor development progress
 mcp__claude -
   flow__swarm_monitor({
-    swarmId: "dev-swarm",
+    swarmId: 'dev-swarm',
     interval: 5000,
   });
 ```
@@ -425,19 +428,19 @@ mcp__claude -
 mcp__claude -
   flow__batch_process({
     items: [
-      { type: "unit", target: "all-modules" },
-      { type: "integration", target: "api-endpoints" },
-      { type: "e2e", target: "user-flows" },
-      { type: "performance", target: "critical-paths" },
+      { type: 'unit', target: 'all-modules' },
+      { type: 'integration', target: 'api-endpoints' },
+      { type: 'e2e', target: 'user-flows' },
+      { type: 'performance', target: 'critical-paths' },
     ],
-    operation: "execute-tests",
+    operation: 'execute-tests',
   });
 
 // Quality assessment
 mcp__claude -
   flow__quality_assess({
-    target: "codebase",
-    criteria: ["coverage", "complexity", "maintainability", "security"],
+    target: 'codebase',
+    criteria: ['coverage', 'complexity', 'maintainability', 'security'],
   });
 ```
 
@@ -447,10 +450,10 @@ mcp__claude -
 // Code review workflow
 mcp__claude -
   flow__workflow_execute({
-    workflowId: "code-review-process",
+    workflowId: 'code-review-process',
     params: {
-      reviewers: ["Code Reviewer"],
-      criteria: ["security", "performance", "best-practices"],
+      reviewers: ['Code Reviewer'],
+      criteria: ['security', 'performance', 'best-practices'],
     },
   });
 
@@ -458,8 +461,8 @@ mcp__claude -
 mcp__claude -
   flow__pipeline_create({
     config: {
-      stages: ["build", "test", "security-scan", "deploy"],
-      environment: "production",
+      stages: ['build', 'test', 'security-scan', 'deploy'],
+      environment: 'production',
     },
   });
 ```
@@ -487,51 +490,51 @@ Comprehensive quality assurance through distributed testing.
 // Initialize testing swarm with star topology
 mcp__claude -
   flow__swarm_init({
-    topology: "star",
+    topology: 'star',
     maxAgents: 7,
-    strategy: "parallel",
+    strategy: 'parallel',
   });
 
 // Spawn testing team
 const testingTeam = [
   {
-    type: "tester",
-    name: "Unit Test Coordinator",
-    capabilities: ["unit-testing", "mocking", "coverage", "tdd"],
+    type: 'tester',
+    name: 'Unit Test Coordinator',
+    capabilities: ['unit-testing', 'mocking', 'coverage', 'tdd'],
   },
   {
-    type: "tester",
-    name: "Integration Tester",
-    capabilities: ["integration", "api-testing", "contract-testing"],
+    type: 'tester',
+    name: 'Integration Tester',
+    capabilities: ['integration', 'api-testing', 'contract-testing'],
   },
   {
-    type: "tester",
-    name: "E2E Tester",
-    capabilities: ["e2e", "ui-testing", "user-flows", "selenium"],
+    type: 'tester',
+    name: 'E2E Tester',
+    capabilities: ['e2e', 'ui-testing', 'user-flows', 'selenium'],
   },
   {
-    type: "tester",
-    name: "Performance Tester",
-    capabilities: ["load-testing", "stress-testing", "benchmarking"],
+    type: 'tester',
+    name: 'Performance Tester',
+    capabilities: ['load-testing', 'stress-testing', 'benchmarking'],
   },
   {
-    type: "monitor",
-    name: "Security Tester",
+    type: 'monitor',
+    name: 'Security Tester',
     capabilities: [
-      "security-testing",
-      "penetration-testing",
-      "vulnerability-scanning",
+      'security-testing',
+      'penetration-testing',
+      'vulnerability-scanning',
     ],
   },
   {
-    type: "analyst",
-    name: "Test Analyst",
-    capabilities: ["coverage-analysis", "test-optimization", "reporting"],
+    type: 'analyst',
+    name: 'Test Analyst',
+    capabilities: ['coverage-analysis', 'test-optimization', 'reporting'],
   },
   {
-    type: "documenter",
-    name: "Test Documenter",
-    capabilities: ["test-documentation", "test-plans", "reports"],
+    type: 'documenter',
+    name: 'Test Documenter',
+    capabilities: ['test-documentation', 'test-plans', 'reports'],
   },
 ];
 
@@ -542,7 +545,7 @@ testingTeam.forEach((tester) => {
       type: tester.type,
       name: tester.name,
       capabilities: tester.capabilities,
-      swarmId: "testing-swarm",
+      swarmId: 'testing-swarm',
     });
 });
 ```
@@ -555,12 +558,12 @@ testingTeam.forEach((tester) => {
 // Analyze test coverage requirements
 mcp__claude -
   flow__quality_assess({
-    target: "test-coverage",
+    target: 'test-coverage',
     criteria: [
-      "line-coverage",
-      "branch-coverage",
-      "function-coverage",
-      "edge-cases",
+      'line-coverage',
+      'branch-coverage',
+      'function-coverage',
+      'edge-cases',
     ],
   });
 
@@ -568,16 +571,16 @@ mcp__claude -
 mcp__claude -
   flow__pattern_recognize({
     data: testScenarios,
-    patterns: ["edge-case", "boundary-condition", "error-path", "happy-path"],
+    patterns: ['edge-case', 'boundary-condition', 'error-path', 'happy-path'],
   });
 
 // Store test plan
 mcp__claude -
   flow__memory_usage({
-    action: "store",
-    key: "test-plan-" + Date.now(),
+    action: 'store',
+    key: 'test-plan-' + Date.now(),
     value: JSON.stringify(testPlan),
-    namespace: "testing/plans",
+    namespace: 'testing/plans',
   });
 ```
 
@@ -589,29 +592,29 @@ mcp__claude -
   flow__parallel_execute({
     tasks: [
       {
-        id: "unit-tests",
-        command: "npm run test:unit",
-        assignTo: "Unit Test Coordinator",
+        id: 'unit-tests',
+        command: 'npm run test:unit',
+        assignTo: 'Unit Test Coordinator',
       },
       {
-        id: "integration-tests",
-        command: "npm run test:integration",
-        assignTo: "Integration Tester",
+        id: 'integration-tests',
+        command: 'npm run test:integration',
+        assignTo: 'Integration Tester',
       },
       {
-        id: "e2e-tests",
-        command: "npm run test:e2e",
-        assignTo: "E2E Tester",
+        id: 'e2e-tests',
+        command: 'npm run test:e2e',
+        assignTo: 'E2E Tester',
       },
       {
-        id: "performance-tests",
-        command: "npm run test:performance",
-        assignTo: "Performance Tester",
+        id: 'performance-tests',
+        command: 'npm run test:performance',
+        assignTo: 'Performance Tester',
       },
       {
-        id: "security-tests",
-        command: "npm run test:security",
-        assignTo: "Security Tester",
+        id: 'security-tests',
+        command: 'npm run test:security',
+        assignTo: 'Security Tester',
       },
     ],
   });
@@ -620,7 +623,7 @@ mcp__claude -
 mcp__claude -
   flow__batch_process({
     items: testSuites,
-    operation: "execute-test-suite",
+    operation: 'execute-test-suite',
   });
 ```
 
@@ -630,21 +633,21 @@ mcp__claude -
 // Run performance benchmarks
 mcp__claude -
   flow__benchmark_run({
-    suite: "comprehensive-performance",
+    suite: 'comprehensive-performance',
   });
 
 // Bottleneck analysis
 mcp__claude -
   flow__bottleneck_analyze({
-    component: "application",
-    metrics: ["response-time", "throughput", "memory", "cpu"],
+    component: 'application',
+    metrics: ['response-time', 'throughput', 'memory', 'cpu'],
   });
 
 // Security scanning
 mcp__claude -
   flow__security_scan({
-    target: "application",
-    depth: "comprehensive",
+    target: 'application',
+    depth: 'comprehensive',
   });
 
 // Vulnerability analysis
@@ -660,28 +663,28 @@ mcp__claude -
 // Real-time test monitoring
 mcp__claude -
   flow__swarm_monitor({
-    swarmId: "testing-swarm",
+    swarmId: 'testing-swarm',
     interval: 2000,
   });
 
 // Generate comprehensive test report
 mcp__claude -
   flow__performance_report({
-    format: "detailed",
-    timeframe: "current-run",
+    format: 'detailed',
+    timeframe: 'current-run',
   });
 
 // Get test results
 mcp__claude -
   flow__task_results({
-    taskId: "test-execution-001",
+    taskId: 'test-execution-001',
   });
 
 // Trend analysis
 mcp__claude -
   flow__trend_analysis({
-    metric: "test-coverage",
-    period: "30d",
+    metric: 'test-coverage',
+    period: '30d',
   });
 ```
 
@@ -708,49 +711,49 @@ Deep code and system analysis through specialized analyzers.
 // Initialize analysis swarm
 mcp__claude -
   flow__swarm_init({
-    topology: "mesh",
+    topology: 'mesh',
     maxAgents: 5,
-    strategy: "adaptive",
+    strategy: 'adaptive',
   });
 
 // Spawn analysis specialists
 const analysisTeam = [
   {
-    type: "analyst",
-    name: "Code Analyzer",
+    type: 'analyst',
+    name: 'Code Analyzer',
     capabilities: [
-      "static-analysis",
-      "complexity-analysis",
-      "dead-code-detection",
+      'static-analysis',
+      'complexity-analysis',
+      'dead-code-detection',
     ],
   },
   {
-    type: "analyst",
-    name: "Security Analyzer",
+    type: 'analyst',
+    name: 'Security Analyzer',
     capabilities: [
-      "security-scan",
-      "vulnerability-detection",
-      "dependency-audit",
+      'security-scan',
+      'vulnerability-detection',
+      'dependency-audit',
     ],
   },
   {
-    type: "analyst",
-    name: "Performance Analyzer",
-    capabilities: ["profiling", "bottleneck-detection", "optimization"],
+    type: 'analyst',
+    name: 'Performance Analyzer',
+    capabilities: ['profiling', 'bottleneck-detection', 'optimization'],
   },
   {
-    type: "analyst",
-    name: "Architecture Analyzer",
+    type: 'analyst',
+    name: 'Architecture Analyzer',
     capabilities: [
-      "dependency-analysis",
-      "coupling-detection",
-      "modularity-assessment",
+      'dependency-analysis',
+      'coupling-detection',
+      'modularity-assessment',
     ],
   },
   {
-    type: "documenter",
-    name: "Analysis Reporter",
-    capabilities: ["reporting", "visualization", "recommendations"],
+    type: 'documenter',
+    name: 'Analysis Reporter',
+    capabilities: ['reporting', 'visualization', 'recommendations'],
   },
 ];
 
@@ -772,27 +775,27 @@ analysisTeam.forEach((analyst) => {
 mcp__claude -
   flow__parallel_execute({
     tasks: [
-      { id: "analyze-code", command: "analyze codebase structure and quality" },
-      { id: "analyze-security", command: "scan for security vulnerabilities" },
+      { id: 'analyze-code', command: 'analyze codebase structure and quality' },
+      { id: 'analyze-security', command: 'scan for security vulnerabilities' },
       {
-        id: "analyze-performance",
-        command: "identify performance bottlenecks",
+        id: 'analyze-performance',
+        command: 'identify performance bottlenecks',
       },
-      { id: "analyze-architecture", command: "assess architectural patterns" },
+      { id: 'analyze-architecture', command: 'assess architectural patterns' },
     ],
   });
 
 // Generate comprehensive analysis report
 mcp__claude -
   flow__performance_report({
-    format: "detailed",
-    timeframe: "current",
+    format: 'detailed',
+    timeframe: 'current',
   });
 
 // Cost analysis
 mcp__claude -
   flow__cost_analysis({
-    timeframe: "30d",
+    timeframe: '30d',
   });
 ```
 
@@ -804,17 +807,17 @@ mcp__claude -
 // Setup fault tolerance for all agents
 mcp__claude -
   flow__daa_fault_tolerance({
-    agentId: "all",
-    strategy: "auto-recovery",
+    agentId: 'all',
+    strategy: 'auto-recovery',
   });
 
 // Error handling pattern
 try {
   (await mcp__claude) -
     flow__task_orchestrate({
-      task: "complex operation",
-      strategy: "parallel",
-      priority: "high",
+      task: 'complex operation',
+      strategy: 'parallel',
+      priority: 'high',
     });
 } catch (error) {
   // Check swarm health
@@ -830,8 +833,8 @@ try {
   if (status.healthy) {
     (await mcp__claude) -
       flow__task_orchestrate({
-        task: "retry failed operation",
-        strategy: "sequential",
+        task: 'retry failed operation',
+        strategy: 'sequential',
       });
   }
 }
@@ -843,32 +846,32 @@ try {
 // Cross-session persistence
 mcp__claude -
   flow__memory_persist({
-    sessionId: "swarm-session-001",
+    sessionId: 'swarm-session-001',
   });
 
 // Namespace management for different swarms
 mcp__claude -
   flow__memory_namespace({
-    namespace: "research-swarm",
-    action: "create",
+    namespace: 'research-swarm',
+    action: 'create',
   });
 
 // Create state snapshot
 mcp__claude -
   flow__state_snapshot({
-    name: "development-checkpoint-1",
+    name: 'development-checkpoint-1',
   });
 
 // Restore from snapshot if needed
 mcp__claude -
   flow__context_restore({
-    snapshotId: "development-checkpoint-1",
+    snapshotId: 'development-checkpoint-1',
   });
 
 // Backup memory stores
 mcp__claude -
   flow__memory_backup({
-    path: "/workspaces/claude-code-flow/backups/swarm-memory.json",
+    path: '/workspaces/claude-code-flow/backups/swarm-memory.json',
   });
 ```
 
@@ -878,7 +881,7 @@ mcp__claude -
 // Train neural patterns from successful workflows
 mcp__claude -
   flow__neural_train({
-    pattern_type: "coordination",
+    pattern_type: 'coordination',
     training_data: JSON.stringify(successfulWorkflows),
     epochs: 50,
   });
@@ -887,7 +890,7 @@ mcp__claude -
 mcp__claude -
   flow__learning_adapt({
     experience: {
-      workflow: "research-to-report",
+      workflow: 'research-to-report',
       success: true,
       duration: 3600,
       quality: 0.95,
@@ -898,7 +901,7 @@ mcp__claude -
 mcp__claude -
   flow__pattern_recognize({
     data: workflowMetrics,
-    patterns: ["bottleneck", "optimization-opportunity", "efficiency-gain"],
+    patterns: ['bottleneck', 'optimization-opportunity', 'efficiency-gain'],
   });
 ```
 
@@ -908,19 +911,19 @@ mcp__claude -
 // Create reusable workflow
 mcp__claude -
   flow__workflow_create({
-    name: "full-stack-development",
+    name: 'full-stack-development',
     steps: [
-      { phase: "design", agents: ["architect"] },
+      { phase: 'design', agents: ['architect'] },
       {
-        phase: "implement",
-        agents: ["backend-dev", "frontend-dev"],
+        phase: 'implement',
+        agents: ['backend-dev', 'frontend-dev'],
         parallel: true,
       },
-      { phase: "test", agents: ["tester", "security-tester"], parallel: true },
-      { phase: "review", agents: ["reviewer"] },
-      { phase: "deploy", agents: ["devops"] },
+      { phase: 'test', agents: ['tester', 'security-tester'], parallel: true },
+      { phase: 'review', agents: ['reviewer'] },
+      { phase: 'deploy', agents: ['devops'] },
     ],
-    triggers: ["on-commit", "scheduled-daily"],
+    triggers: ['on-commit', 'scheduled-daily'],
   });
 
 // Setup automation rules
@@ -928,13 +931,13 @@ mcp__claude -
   flow__automation_setup({
     rules: [
       {
-        trigger: "file-changed",
-        pattern: "*.js",
-        action: "run-tests",
+        trigger: 'file-changed',
+        pattern: '*.js',
+        action: 'run-tests',
       },
       {
-        trigger: "PR-created",
-        action: "code-review-swarm",
+        trigger: 'PR-created',
+        action: 'code-review-swarm',
       },
     ],
   });
@@ -942,8 +945,8 @@ mcp__claude -
 // Event-driven triggers
 mcp__claude -
   flow__trigger_setup({
-    events: ["code-commit", "PR-merge", "deployment"],
-    actions: ["test", "analyze", "document"],
+    events: ['code-commit', 'PR-merge', 'deployment'],
+    actions: ['test', 'analyze', 'document'],
   });
 ```
 
@@ -953,26 +956,26 @@ mcp__claude -
 // Topology optimization
 mcp__claude -
   flow__topology_optimize({
-    swarmId: "current-swarm",
+    swarmId: 'current-swarm',
   });
 
 // Load balancing
 mcp__claude -
   flow__load_balance({
-    swarmId: "development-swarm",
+    swarmId: 'development-swarm',
     tasks: taskQueue,
   });
 
 // Agent coordination sync
 mcp__claude -
   flow__coordination_sync({
-    swarmId: "development-swarm",
+    swarmId: 'development-swarm',
   });
 
 // Auto-scaling
 mcp__claude -
   flow__swarm_scale({
-    swarmId: "development-swarm",
+    swarmId: 'development-swarm',
     targetSize: 12,
   });
 ```
@@ -983,33 +986,33 @@ mcp__claude -
 // Real-time swarm monitoring
 mcp__claude -
   flow__swarm_monitor({
-    swarmId: "active-swarm",
+    swarmId: 'active-swarm',
     interval: 3000,
   });
 
 // Collect comprehensive metrics
 mcp__claude -
   flow__metrics_collect({
-    components: ["agents", "tasks", "memory", "performance"],
+    components: ['agents', 'tasks', 'memory', 'performance'],
   });
 
 // Health monitoring
 mcp__claude -
   flow__health_check({
-    components: ["swarm", "agents", "neural", "memory"],
+    components: ['swarm', 'agents', 'neural', 'memory'],
   });
 
 // Usage statistics
 mcp__claude -
   flow__usage_stats({
-    component: "swarm-orchestration",
+    component: 'swarm-orchestration',
   });
 
 // Trend analysis
 mcp__claude -
   flow__trend_analysis({
-    metric: "agent-performance",
-    period: "7d",
+    metric: 'agent-performance',
+    period: '7d',
   });
 ```
 
@@ -1063,7 +1066,7 @@ mcp__claude -
 
 ```javascript
 // Research AI trends, analyze findings, generate report
-mcp__claude - flow__swarm_init({ topology: "mesh", maxAgents: 6 });
+mcp__claude - flow__swarm_init({ topology: 'mesh', maxAgents: 6 });
 // Spawn: 2 researchers, 2 analysts, 1 synthesizer, 1 documenter
 // Parallel gather → Analyze patterns → Synthesize → Report
 ```
@@ -1072,7 +1075,7 @@ mcp__claude - flow__swarm_init({ topology: "mesh", maxAgents: 6 });
 
 ```javascript
 // Build complete web application with testing
-mcp__claude - flow__swarm_init({ topology: "hierarchical", maxAgents: 8 });
+mcp__claude - flow__swarm_init({ topology: 'hierarchical', maxAgents: 8 });
 // Spawn: 1 architect, 2 devs, 1 db engineer, 2 testers, 1 reviewer, 1 devops
 // Design → Parallel implement → Test → Review → Deploy
 ```
@@ -1081,7 +1084,7 @@ mcp__claude - flow__swarm_init({ topology: "hierarchical", maxAgents: 8 });
 
 ```javascript
 // Comprehensive security analysis
-mcp__claude - flow__swarm_init({ topology: "star", maxAgents: 5 });
+mcp__claude - flow__swarm_init({ topology: 'star', maxAgents: 5 });
 // Spawn: 1 coordinator, 1 code analyzer, 1 security scanner, 1 penetration tester, 1 reporter
 // Parallel scan → Vulnerability analysis → Penetration test → Report
 ```
@@ -1090,7 +1093,7 @@ mcp__claude - flow__swarm_init({ topology: "star", maxAgents: 5 });
 
 ```javascript
 // Identify and fix performance bottlenecks
-mcp__claude - flow__swarm_init({ topology: "mesh", maxAgents: 4 });
+mcp__claude - flow__swarm_init({ topology: 'mesh', maxAgents: 4 });
 // Spawn: 1 profiler, 1 bottleneck analyzer, 1 optimizer, 1 tester
 // Profile → Identify bottlenecks → Optimize → Validate
 ```
@@ -1099,17 +1102,17 @@ mcp__claude - flow__swarm_init({ topology: "mesh", maxAgents: 4 });
 
 ### Common Issues
 
-**Issue**: Swarm agents not coordinating properly
-**Solution**: Check topology selection, verify memory usage, enable monitoring
+**Issue**: Swarm agents not coordinating properly **Solution**: Check topology
+selection, verify memory usage, enable monitoring
 
-**Issue**: Parallel execution failing
-**Solution**: Verify task dependencies, check resource limits, implement error handling
+**Issue**: Parallel execution failing **Solution**: Verify task dependencies,
+check resource limits, implement error handling
 
-**Issue**: Memory persistence not working
-**Solution**: Verify namespaces, check TTL settings, ensure backup configuration
+**Issue**: Memory persistence not working **Solution**: Verify namespaces, check
+TTL settings, ensure backup configuration
 
-**Issue**: Performance degradation
-**Solution**: Optimize topology, reduce agent count, analyze bottlenecks
+**Issue**: Performance degradation **Solution**: Optimize topology, reduce agent
+count, analyze bottlenecks
 
 ## Related Skills
 
@@ -1127,7 +1130,5 @@ mcp__claude - flow__swarm_init({ topology: "mesh", maxAgents: 4 });
 
 ---
 
-**Version**: 2.0.0
-**Last Updated**: 2025-10-19
-**Skill Level**: Advanced
+**Version**: 2.0.0 **Last Updated**: 2025-10-19 **Skill Level**: Advanced
 **Estimated Learning Time**: 2-3 hours

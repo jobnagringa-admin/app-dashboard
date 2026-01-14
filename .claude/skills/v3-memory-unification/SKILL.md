@@ -1,13 +1,18 @@
 ---
-name: "V3 Memory Unification"
-description: "Unify 6+ memory systems into AgentDB with HNSW indexing for 150x-12,500x search improvements. Implements ADR-006 (Unified Memory Service) and ADR-009 (Hybrid Memory Backend)."
+name: 'V3 Memory Unification'
+description:
+  'Unify 6+ memory systems into AgentDB with HNSW indexing for 150x-12,500x
+  search improvements. Implements ADR-006 (Unified Memory Service) and ADR-009
+  (Hybrid Memory Backend).'
 ---
 
 # V3 Memory Unification
 
 ## What This Skill Does
 
-Consolidates disparate memory systems into unified AgentDB backend with HNSW vector search, achieving 150x-12,500x search performance improvements while maintaining backward compatibility.
+Consolidates disparate memory systems into unified AgentDB backend with HNSW
+vector search, achieving 150x-12,500x search performance improvements while
+maintaining backward compatibility.
 
 ## Quick Start
 
@@ -55,7 +60,7 @@ class UnifiedMemoryService implements IMemoryBackend {
   constructor(
     private agentdb: AgentDBAdapter,
     private indexer: HNSWIndexer,
-    private migrator: DataMigrator,
+    private migrator: DataMigrator
   ) {}
 
   async store(entry: MemoryEntry): Promise<void> {
@@ -81,7 +86,7 @@ class HNSWIndexer {
       dimensions,
       efConstruction: 200,
       M: 16,
-      speedupTarget: "150x-12500x",
+      speedupTarget: '150x-12500x',
     });
   }
 
@@ -101,8 +106,8 @@ class HNSWIndexer {
 // AgentDB adapter setup
 const agentdb = new AgentDBAdapter({
   dimensions: 1536,
-  indexType: "HNSW",
-  speedupTarget: "150x-12500x",
+  indexType: 'HNSW',
+  speedupTarget: '150x-12500x',
 });
 ```
 
@@ -120,9 +125,9 @@ const migrateFromSQLite = async () => {
 
 // Markdown → AgentDB
 const migrateFromMarkdown = async () => {
-  const files = await glob("**/*.md");
+  const files = await glob('**/*.md');
   for (const file of files) {
-    const content = await fs.readFile(file, "utf-8");
+    const content = await fs.readFile(file, 'utf-8');
     await agentdb.store({
       id: generateId(),
       content,
@@ -154,9 +159,9 @@ class SONAMemoryIntegration {
 
   async retrieveSimilarPatterns(query: string): Promise<LearningPattern[]> {
     return this.memory.query({
-      type: "semantic",
+      type: 'semantic',
       content: query,
-      filters: { type: "learning_pattern" },
+      filters: { type: 'learning_pattern' },
     });
   }
 }

@@ -1,13 +1,18 @@
 ---
-name: "Swarm Orchestration"
-description: "Orchestrate multi-agent swarms with agentic-flow for parallel task execution, dynamic topology, and intelligent coordination. Use when scaling beyond single agents, implementing complex workflows, or building distributed AI systems."
+name: 'Swarm Orchestration'
+description:
+  'Orchestrate multi-agent swarms with agentic-flow for parallel task execution,
+  dynamic topology, and intelligent coordination. Use when scaling beyond single
+  agents, implementing complex workflows, or building distributed AI systems.'
 ---
 
 # Swarm Orchestration
 
 ## What This Skill Does
 
-Orchestrates multi-agent swarms using agentic-flow's advanced coordination system. Supports mesh, hierarchical, and adaptive topologies with automatic task distribution, load balancing, and fault tolerance.
+Orchestrates multi-agent swarms using agentic-flow's advanced coordination
+system. Supports mesh, hierarchical, and adaptive topologies with automatic task
+distribution, load balancing, and fault tolerance.
 
 ## Prerequisites
 
@@ -39,9 +44,9 @@ npx agentic-flow hooks task-orchestrate \
 ```typescript
 // Equal peers, distributed decision-making
 await swarm.init({
-  topology: "mesh",
-  agents: ["coder", "tester", "reviewer"],
-  communication: "broadcast",
+  topology: 'mesh',
+  agents: ['coder', 'tester', 'reviewer'],
+  communication: 'broadcast',
 });
 ```
 
@@ -50,9 +55,9 @@ await swarm.init({
 ```typescript
 // Centralized coordination, specialized workers
 await swarm.init({
-  topology: "hierarchical",
-  queen: "architect",
-  workers: ["backend-dev", "frontend-dev", "db-designer"],
+  topology: 'hierarchical',
+  queen: 'architect',
+  workers: ['backend-dev', 'frontend-dev', 'db-designer'],
 });
 ```
 
@@ -61,8 +66,8 @@ await swarm.init({
 ```typescript
 // Automatically switches topology based on task
 await swarm.init({
-  topology: "adaptive",
-  optimization: "task-complexity",
+  topology: 'adaptive',
+  optimization: 'task-complexity',
 });
 ```
 
@@ -74,11 +79,11 @@ await swarm.init({
 // Execute tasks concurrently
 const results = await swarm.execute({
   tasks: [
-    { agent: "coder", task: "Implement API endpoints" },
-    { agent: "frontend", task: "Build UI components" },
-    { agent: "tester", task: "Write test suite" },
+    { agent: 'coder', task: 'Implement API endpoints' },
+    { agent: 'frontend', task: 'Build UI components' },
+    { agent: 'tester', task: 'Write test suite' },
   ],
-  mode: "parallel",
+  mode: 'parallel',
   timeout: 300000, // 5 minutes
 });
 ```
@@ -88,10 +93,10 @@ const results = await swarm.execute({
 ```typescript
 // Sequential pipeline with dependencies
 await swarm.pipeline([
-  { stage: "design", agent: "architect" },
-  { stage: "implement", agent: "coder", after: "design" },
-  { stage: "test", agent: "tester", after: "implement" },
-  { stage: "review", agent: "reviewer", after: "test" },
+  { stage: 'design', agent: 'architect' },
+  { stage: 'implement', agent: 'coder', after: 'design' },
+  { stage: 'test', agent: 'tester', after: 'implement' },
+  { stage: 'review', agent: 'reviewer', after: 'test' },
 ]);
 ```
 
@@ -100,11 +105,11 @@ await swarm.pipeline([
 ```typescript
 // Let swarm decide execution strategy
 await swarm.autoOrchestrate({
-  goal: "Build production-ready API",
+  goal: 'Build production-ready API',
   constraints: {
     maxTime: 3600,
     maxAgents: 8,
-    quality: "high",
+    quality: 'high',
   },
 });
 ```
@@ -129,8 +134,8 @@ const schema = await swarm.memory.retrieve('api-schema');
 ```typescript
 // Automatic work distribution
 await swarm.enableLoadBalancing({
-  strategy: "dynamic",
-  metrics: ["cpu", "memory", "task-queue"],
+  strategy: 'dynamic',
+  metrics: ['cpu', 'memory', 'task-queue'],
 });
 ```
 
@@ -139,8 +144,8 @@ await swarm.enableLoadBalancing({
 ```typescript
 // Handle agent failures
 await swarm.setResiliency({
-  retry: { maxAttempts: 3, backoff: "exponential" },
-  fallback: "reassign-task",
+  retry: { maxAttempts: 3, backoff: 'exponential' },
+  fallback: 'reassign-task',
 });
 ```
 
