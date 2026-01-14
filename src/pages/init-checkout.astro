@@ -40,9 +40,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <script is:inline>
   (function () {
-    var PAY_URL =
-      'https://accounts.jobnagringa.com.br/sign-in?redirect_url=https://jobnagringa.com.br/pay';
-    var ENDPOINT_BASE = 'https://n8nhook.jobnagringa.com.br/webhook/init-checkout?email=';
+    const PAY_URL =
+    'https://accounts.jobnagringa.com.br/sign-in?redirect_url=https://jobnagringa.com.br/pay';
+    const ENDPOINT_BASE = 'https://n8nhook.jobnagringa.com.br/webhook/init-checkout?email=';
 
     function safeGetLocalStorage(key) {
       try {
@@ -55,7 +55,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       if (!user) return null;
       if (user.primaryEmailAddress && user.primaryEmailAddress.emailAddress)
         return user.primaryEmailAddress.emailAddress;
-      var arr = user.emailAddresses;
+      const arr = user.emailAddresses;
       if (arr && typeof arr.length === 'number' && arr.length > 0 && arr[0] && arr[0].emailAddress)
         return arr[0].emailAddress;
       return null;
@@ -74,7 +74,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     }
 
     function sendGet(url, onDone) {
-      var finished = false;
+      let finished = false;
       function finish() {
         if (!finished) {
           finished = true;
@@ -83,7 +83,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       }
       try {
         if (typeof window.fetch === 'function') {
-          var p;
+          let p;
           try {
             p = window.fetch(url, { method: 'GET', credentials: 'include' });
           } catch (e1) {
@@ -111,7 +111,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       } catch (e) {}
 
       try {
-        var xhr = new XMLHttpRequest();
+        const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
           if (xhr.readyState === 4) finish();
         };
@@ -128,19 +128,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       finish();
     }
 
-    var email = null;
+    let email = null;
     try {
-      var raw = safeGetLocalStorage('user');
+      const raw = safeGetLocalStorage('user');
       if (raw) {
         try {
-          var user = JSON.parse(raw);
+          const user = JSON.parse(raw);
           email = pickEmail(user);
         } catch (e) {}
       }
     } catch (e) {}
 
-    var endpoint = ENDPOINT_BASE + (email ? encodeURIComponent(email) : '');
-    var redirected = false;
+    const endpoint = ENDPOINT_BASE + (email ? encodeURIComponent(email) : '');
+    let redirected = false;
 
     function doneOnce() {
       if (!redirected) {

@@ -80,24 +80,24 @@ import DashboardLayout from '../layouts/DashboardLayout.astro';
   // Update localStorage with user data from Webflow account fields
   document.addEventListener('DOMContentLoaded', function () {
     try {
-      var elements = document.querySelectorAll('[data-ms-member]');
-      var userData = {};
+      const elements = document.querySelectorAll('[data-ms-member]');
+      const userData = {};
 
       elements.forEach(function (el) {
-        var field = el.getAttribute('data-ms-member');
-        var value = el.textContent || el.value;
+        const field = el.getAttribute('data-ms-member');
+        const value = el.textContent || el.value;
         if (field && value) {
           userData[field] = value;
         }
       });
 
       if (Object.keys(userData).length > 0) {
-        var existing = {};
+        let existing = {};
         try {
           existing = JSON.parse(localStorage.getItem('user') || '{}');
         } catch (e) {}
 
-        var merged = Object.assign({}, existing, userData);
+        const merged = Object.assign({}, existing, userData);
         localStorage.setItem('user', JSON.stringify(merged));
       }
     } catch (e) {

@@ -58,7 +58,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   // Handle password page error display
   (function _handlePasswordPageOnload() {
     if (/[?&]e=1(&|$)/.test(document.location.search)) {
-      var failEl = document.querySelector('.w-password-page.w-form-fail');
+      const failEl = document.querySelector('.w-password-page.w-form-fail');
       if (failEl) {
         failEl.style.display = 'block';
       }
