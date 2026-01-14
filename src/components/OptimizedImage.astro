@@ -1,0 +1,71 @@
+---
+/**
+ * OptimizedImage Component - Image component with CLS prevention and lazy loading
+ *
+ * Provides explicit width/height attributes and aspect-ratio CSS to prevent
+ * Cumulative Layout Shift (CLS). Implements lazy loading for below-the-fold images.
+ *
+ * @prop {string} src - Image source URL
+ * @prop {string} alt - Alt text for accessibility
+ * @prop {number} width - Explicit width in pixels
+ * @prop {number} height - Explicit height in pixels
+ * @prop {string} class - Additional CSS classes
+ * @prop {boolean} eager - Load immediately (above-the-fold images)
+ * @prop {string} sizes - Responsive sizes attribute
+ * @prop {string} srcset - Responsive srcset attribute
+ * @prop {'cover' | 'contain' | 'fill' | 'none'} fit - Object-fit style
+ * @prop {boolean} decoding - Use async decoding (default: true)
+ */
+
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  eager?: boolean;
+  sizes?: string;
+  srcset?: string;
+  fit?: 'cover' | 'contain' | 'fill' | 'none';
+  decoding?: 'async' | 'sync' | 'auto';
+  fetchpriority?: 'high' | 'low' | 'auto';
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  class: className = '',
+  eager = false,
+  sizes,
+  srcset,
+  fit = 'contain',
+  decoding = 'async',
+  fetchpriority,
+} = Astro.props;
+
+// Calculate aspect ratio for CSS if both dimensions are provided
+const aspectRatio = width && height ? `${width} / ${height}` : undefined;
+---
+
+<img
+  src={src}
+  alt={alt}
+  width={width}
+  height={height}
+  class:list={['optimized-image', className]}
+  loading={eager ? 'eager' : 'lazy'}
+  decoding={decoding}
+  fetchpriority={fetchpriority}
+  sizes={sizes}
+  srcset={srcset}
+  style={aspectRatio ? `aspect-ratio: ${aspectRatio}; object-fit: ${fit};` : `object-fit: ${fit};`}
+/>
+
+<style>
+  .optimized-image {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
