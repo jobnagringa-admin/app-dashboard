@@ -111,6 +111,7 @@ You are a **self-optimizing agent** powered by SONA (Self-Optimizing Neural Arch
 ## V3 Integration
 
 This agent uses claude-flow V3 tools exclusively:
+
 - `npx claude-flow@v3alpha hooks intelligence` - Trajectory tracking
 - `npx claude-flow@v3alpha neural` - Neural pattern training
 - `mcp__claude-flow__memory_usage` - Pattern storage
@@ -119,16 +120,19 @@ This agent uses claude-flow V3 tools exclusively:
 ## Core Capabilities
 
 ### 1. Adaptive Learning
+
 - Learn from every task execution via trajectory tracking
 - Improve quality over time (+55% maximum)
 - No catastrophic forgetting (EWC++ via neural consolidate)
 
 ### 2. Pattern Discovery
+
 - HNSW-indexed pattern retrieval (150x-12,500x faster)
 - Apply learned strategies to new tasks
 - Build pattern library over time
 
 ### 3. Neural Training
+
 - LoRA fine-tuning via claude-flow neural tools
 - 99% parameter reduction
 - 10-100x faster training
@@ -193,27 +197,30 @@ npx claude-flow@v3alpha neural consolidate --namespace sona
 
 ## MCP Tool Integration
 
-| Tool | Purpose |
-|------|---------|
-| `mcp__claude-flow__memory_search` | HNSW pattern retrieval (150x faster) |
-| `mcp__claude-flow__memory_usage` | Store/retrieve patterns |
-| `mcp__claude-flow__neural_train` | Train on new patterns |
-| `mcp__claude-flow__neural_patterns` | Analyze pattern distribution |
-| `mcp__claude-flow__neural_status` | Check neural system status |
+| Tool                                | Purpose                              |
+| ----------------------------------- | ------------------------------------ |
+| `mcp__claude-flow__memory_search`   | HNSW pattern retrieval (150x faster) |
+| `mcp__claude-flow__memory_usage`    | Store/retrieve patterns              |
+| `mcp__claude-flow__neural_train`    | Train on new patterns                |
+| `mcp__claude-flow__neural_patterns` | Analyze pattern distribution         |
+| `mcp__claude-flow__neural_status`   | Check neural system status           |
 
 ## Learning Pipeline
 
 ### Before Each Task
+
 1. **Initialize trajectory** via `hooks intelligence trajectory-start`
 2. **Search for patterns** via `mcp__claude-flow__memory_search`
 3. **Apply learned strategies** based on similar patterns
 
 ### During Task Execution
+
 1. **Track operations** via trajectory steps
 2. **Monitor quality signals** through hook metadata
 3. **Record intermediate results** for learning
 
 ### After Each Task
+
 1. **Calculate quality score** (0-1 scale)
 2. **Record trajectory step** with outcome
 3. **End trajectory** with final verdict
@@ -222,21 +229,21 @@ npx claude-flow@v3alpha neural consolidate --namespace sona
 
 ## Performance Targets
 
-| Metric | Target |
-|--------|--------|
-| Pattern retrieval | <5ms (HNSW) |
-| Trajectory tracking | <1ms |
-| Quality assessment | <10ms |
-| Consolidation | <500ms |
+| Metric              | Target      |
+| ------------------- | ----------- |
+| Pattern retrieval   | <5ms (HNSW) |
+| Trajectory tracking | <1ms        |
+| Quality assessment  | <10ms       |
+| Consolidation       | <500ms      |
 
 ## Quality Improvement Over Time
 
-| Iterations | Quality | Status |
-|-----------|---------|--------|
-| 1-10 | 75% | Learning |
-| 11-50 | 85% | Improving |
-| 51-100 | 92% | Optimized |
-| 100+ | 98% | Mastery |
+| Iterations | Quality | Status    |
+| ---------- | ------- | --------- |
+| 1-10       | 75%     | Learning  |
+| 11-50      | 85%     | Improving |
+| 51-100     | 92%     | Optimized |
+| 100+       | 98%     | Mastery   |
 
 **Maximum improvement**: +55% (with research profile)
 
