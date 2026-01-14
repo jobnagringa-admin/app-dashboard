@@ -46,7 +46,7 @@ export {
   initClerk,
   logout,
   initAuth,
-} from "./auth";
+} from './auth';
 
 // Tracking
 export {
@@ -77,7 +77,7 @@ export {
   getStoredUTMParams,
   addUTMToLinks,
   initTracking,
-} from "./tracking";
+} from './tracking';
 
 // API
 export {
@@ -106,7 +106,7 @@ export {
   autoFillAddressFromCEP,
   setupCEPAutoFill,
   initAPI,
-} from "./api";
+} from './api';
 
 // Utilities
 export {
@@ -140,7 +140,7 @@ export {
   setInStorage,
   removeFromStorage,
   initUtils,
-} from "./utils";
+} from './utils';
 
 // ============================================================================
 // Combined Initialization
@@ -152,8 +152,8 @@ export {
  */
 export function initAll(): void {
   // Import and initialize each module
-  import("./utils").then(({ initUtils }) => initUtils());
-  import("./auth").then(({ initAuth }) => initAuth());
-  import("./tracking").then(({ initTracking }) => initTracking());
-  import("./api").then(({ initAPI }) => initAPI());
+  import('./utils').then(({ initUtils }) => initUtils());
+  import('./auth').then(({ initAuth }) => initAuth());
+  import('./tracking').then(({ initTracking }) => initTracking());
+  import('./api').then(({ initAPI }) => initAPI());
 }

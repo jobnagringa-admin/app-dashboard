@@ -23,7 +23,7 @@ export interface LoadingButtonOptions {
 // ============================================================================
 
 /** Default loading button text (Portuguese) */
-export const DEFAULT_LOADING_TEXT = "Carregando...";
+export const DEFAULT_LOADING_TEXT = 'Carregando...';
 
 /** Default loading timeout in milliseconds */
 export const DEFAULT_LOADING_TIMEOUT = 2000;
@@ -38,7 +38,7 @@ export const DEFAULT_LOADING_TIMEOUT = 2000;
  */
 export function handleLoadingButton(
   button: HTMLButtonElement,
-  options: LoadingButtonOptions = {},
+  options: LoadingButtonOptions = {}
 ): void {
   const {
     loadingText = DEFAULT_LOADING_TEXT,
@@ -61,12 +61,10 @@ export function handleLoadingButton(
  * Sets up loading button handlers for all buttons with loading-feedback attribute
  */
 export function setupLoadingButtons(): void {
-  const buttons = document.querySelectorAll<HTMLButtonElement>(
-    '[loading-feedback="true"]',
-  );
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[loading-feedback="true"]');
 
   for (const button of buttons) {
-    button.addEventListener("click", () => {
+    button.addEventListener('click', () => {
       handleLoadingButton(button);
     });
   }
@@ -81,10 +79,10 @@ export function setupLoadingButtons(): void {
  * This is a Webflow compatibility feature
  */
 export function setupPlaceholdersFromPH(): void {
-  const inputs = document.querySelectorAll<HTMLInputElement>("input[ph]");
+  const inputs = document.querySelectorAll<HTMLInputElement>('input[ph]');
 
   for (const input of inputs) {
-    const phValue = input.getAttribute("ph");
+    const phValue = input.getAttribute('ph');
     if (phValue) {
       input.placeholder = phValue;
     }
@@ -103,7 +101,7 @@ export function isValidEmail(email: string): boolean {
  * Validates Brazilian phone number format
  */
 export function isValidBrazilianPhone(phone: string): boolean {
-  const cleanPhone = phone.replace(/\D/g, "");
+  const cleanPhone = phone.replace(/\D/g, '');
   return cleanPhone.length === 10 || cleanPhone.length === 11;
 }
 
@@ -111,7 +109,7 @@ export function isValidBrazilianPhone(phone: string): boolean {
  * Formats phone number to Brazilian format
  */
 export function formatBrazilianPhone(phone: string): string {
-  const cleanPhone = phone.replace(/\D/g, "");
+  const cleanPhone = phone.replace(/\D/g, '');
 
   if (cleanPhone.length === 10) {
     return `(${cleanPhone.slice(0, 2)}) ${cleanPhone.slice(2, 6)}-${cleanPhone.slice(6)}`;
@@ -142,24 +140,20 @@ export function removeElements(selector: string): void {
  * Shows an element by removing display:none
  */
 export function showElement(element: HTMLElement): void {
-  element.style.display = "";
+  element.style.display = '';
 }
 
 /**
  * Hides an element with display:none
  */
 export function hideElement(element: HTMLElement): void {
-  element.style.display = "none";
+  element.style.display = 'none';
 }
 
 /**
  * Toggles a class on an element
  */
-export function toggleClass(
-  element: HTMLElement,
-  className: string,
-  force?: boolean,
-): void {
+export function toggleClass(element: HTMLElement, className: string, force?: boolean): void {
   element.classList.toggle(className, force);
 }
 
@@ -167,14 +161,14 @@ export function toggleClass(
  * Adds error styling to a form field
  */
 export function setFieldError(field: HTMLElement, hasError: boolean): void {
-  toggleClass(field, "error", hasError);
+  toggleClass(field, 'error', hasError);
 }
 
 /**
  * Adds success styling to a form field
  */
 export function setFieldSuccess(field: HTMLElement, hasSuccess: boolean): void {
-  toggleClass(field, "success", hasSuccess);
+  toggleClass(field, 'success', hasSuccess);
 }
 
 // ============================================================================
@@ -190,14 +184,14 @@ export function initWebflowModifiers(): void {
   const html = document.documentElement;
 
   // Add JS modifier
-  html.className += " w-mod-js";
+  html.className += ' w-mod-js';
 
   // Add touch modifier if applicable
   if (
-    "ontouchstart" in window ||
+    'ontouchstart' in window ||
     (window as unknown as { DocumentTouch?: unknown }).DocumentTouch
   ) {
-    html.className += " w-mod-touch";
+    html.className += ' w-mod-touch';
   }
 }
 
@@ -210,14 +204,14 @@ export function initWebflowModifiers(): void {
  */
 export function scrollToElement(element: HTMLElement, offset = 0): void {
   const top = element.getBoundingClientRect().top + window.scrollY - offset;
-  window.scrollTo({ top, behavior: "smooth" });
+  window.scrollTo({ top, behavior: 'smooth' });
 }
 
 /**
  * Scrolls to top of page
  */
 export function scrollToTop(): void {
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ============================================================================
@@ -238,7 +232,7 @@ export function getQueryParam(name: string): string | null {
 export function setQueryParam(name: string, value: string): void {
   const url = new URL(window.location.href);
   url.searchParams.set(name, value);
-  window.history.replaceState({}, "", url.toString());
+  window.history.replaceState({}, '', url.toString());
 }
 
 /**
@@ -247,7 +241,7 @@ export function setQueryParam(name: string, value: string): void {
 export function removeQueryParam(name: string): void {
   const url = new URL(window.location.href);
   url.searchParams.delete(name);
-  window.history.replaceState({}, "", url.toString());
+  window.history.replaceState({}, '', url.toString());
 }
 
 // ============================================================================
@@ -301,7 +295,7 @@ export function initUtils(): void {
   initWebflowModifiers();
 
   // Set up DOM-dependent features when ready
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener('DOMContentLoaded', () => {
     setupLoadingButtons();
     setupPlaceholdersFromPH();
   });

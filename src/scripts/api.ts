@@ -48,14 +48,13 @@ export interface ViaCEPAddress {
 // ============================================================================
 
 /** Production API URL */
-export const API_URL_PROD = "https://jobnagringa.pay.nova.money/api/v1";
+export const API_URL_PROD = 'https://jobnagringa.pay.nova.money/api/v1';
 
 /** Staging API URL */
-export const API_URL_STAGING =
-  "https://jobnagringa.staging.pay.nova.money/api/v1";
+export const API_URL_STAGING = 'https://jobnagringa.staging.pay.nova.money/api/v1';
 
 /** ViaCEP API base URL */
-export const VIACEP_URL = "https://viacep.com.br/ws";
+export const VIACEP_URL = 'https://viacep.com.br/ws';
 
 /** Default request timeout in milliseconds */
 export const DEFAULT_TIMEOUT = 30000;
@@ -74,7 +73,7 @@ export function getAPIUrl(): string {
   }
 
   // Check for staging flag
-  if (import.meta.env.PUBLIC_USE_STAGING === "true") {
+  if (import.meta.env.PUBLIC_USE_STAGING === 'true') {
     return API_URL_STAGING;
   }
 
@@ -87,7 +86,7 @@ export function getAPIUrl(): string {
  */
 export function getAPIEndpoint(path: string): string {
   const baseUrl = getAPIUrl();
-  const cleanPath = path.startsWith("/") ? path : `/${path}`;
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
   return `${baseUrl}${cleanPath}`;
 }
 
@@ -100,12 +99,12 @@ export function getAPIEndpoint(path: string): string {
  */
 export async function apiRequest<T = unknown>(
   endpoint: string,
-  options: RequestInit = {},
+  options: RequestInit = {}
 ): Promise<APIResponse<T>> {
-  const url = endpoint.startsWith("http") ? endpoint : getAPIEndpoint(endpoint);
+  const url = endpoint.startsWith('http') ? endpoint : getAPIEndpoint(endpoint);
 
   const defaultHeaders: Record<string, string> = {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   };
 
   const controller = new AbortController();
@@ -133,13 +132,13 @@ export async function apiRequest<T = unknown>(
   } catch (error) {
     clearTimeout(timeout);
 
-    if (error instanceof Error && error.name === "AbortError") {
-      throw { message: "Request timeout", code: "TIMEOUT" } as APIError;
+    if (error instanceof Error && error.name === 'AbortError') {
+      throw { message: 'Request timeout', code: 'TIMEOUT' } as APIError;
     }
 
     throw {
-      message: error instanceof Error ? error.message : "Unknown error",
-      code: "NETWORK_ERROR",
+      message: error instanceof Error ? error.message : 'Unknown error',
+      code: 'NETWORK_ERROR',
     } as APIError;
   }
 }
@@ -149,9 +148,9 @@ export async function apiRequest<T = unknown>(
  */
 export async function apiGet<T = unknown>(
   endpoint: string,
-  options?: RequestInit,
+  options?: RequestInit
 ): Promise<APIResponse<T>> {
-  return apiRequest<T>(endpoint, { ...options, method: "GET" });
+  return apiRequest<T>(endpoint, { ...options, method: 'GET' });
 }
 
 /**
@@ -160,11 +159,11 @@ export async function apiGet<T = unknown>(
 export async function apiPost<T = unknown>(
   endpoint: string,
   body: unknown,
-  options?: RequestInit,
+  options?: RequestInit
 ): Promise<APIResponse<T>> {
   return apiRequest<T>(endpoint, {
     ...options,
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify(body),
   });
 }
@@ -175,11 +174,11 @@ export async function apiPost<T = unknown>(
 export async function apiPut<T = unknown>(
   endpoint: string,
   body: unknown,
-  options?: RequestInit,
+  options?: RequestInit
 ): Promise<APIResponse<T>> {
   return apiRequest<T>(endpoint, {
     ...options,
-    method: "PUT",
+    method: 'PUT',
     body: JSON.stringify(body),
   });
 }
@@ -189,9 +188,9 @@ export async function apiPut<T = unknown>(
  */
 export async function apiDelete<T = unknown>(
   endpoint: string,
-  options?: RequestInit,
+  options?: RequestInit
 ): Promise<APIResponse<T>> {
-  return apiRequest<T>(endpoint, { ...options, method: "DELETE" });
+  return apiRequest<T>(endpoint, { ...options, method: 'DELETE' });
 }
 
 // ============================================================================
@@ -202,17 +201,15 @@ export async function apiDelete<T = unknown>(
  * Validates Brazilian CEP format
  */
 export function isValidCEP(cep: string): boolean {
-  const cleanCEP = cep.replace(/\D/g, "");
+  const cleanCEP = cep.replace(/\D/g, '');
   return cleanCEP.length === 8;
 }
 
 /**
  * Fetches address data from ViaCEP API
  */
-export async function fetchAddressByCEP(
-  cep: string,
-): Promise<ViaCEPAddress | null> {
-  const cleanCEP = cep.replace(/\D/g, "");
+export async function fetchAddressByCEP(cep: string): Promise<ViaCEPAddress | null> {
+  const cleanCEP = cep.replace(/\D/g, '');
 
   if (!isValidCEP(cleanCEP)) {
     return null;
@@ -264,11 +261,11 @@ export async function autoFillAddressFromCEP(cep: string): Promise<boolean> {
  * Sets up CEP auto-fill on blur event
  */
 export function setupCEPAutoFill(): void {
-  const cepInput = document.getElementById("cep") as HTMLInputElement | null;
+  const cepInput = document.getElementById('cep') as HTMLInputElement | null;
 
   if (!cepInput) return;
 
-  cepInput.addEventListener("blur", async () => {
+  cepInput.addEventListener('blur', async () => {
     await autoFillAddressFromCEP(cepInput.value);
   });
 }
@@ -286,8 +283,8 @@ export function initAPI(): void {
   (window as unknown as { API_URL: string }).API_URL = getAPIUrl();
 
   // Set up CEP auto-fill if we're on a checkout page
-  document.addEventListener("DOMContentLoaded", () => {
-    if (document.getElementById("cep")) {
+  document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('cep')) {
       setupCEPAutoFill();
     }
   });

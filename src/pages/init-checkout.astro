@@ -19,13 +19,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <div class="job-hero_section variation1">
     <div class="container-large">
       <div class="job-board_heading is-60rem">
-        <h1 class="hero-title text-color-primary">
-          Estamos te redirecionando...
-        </h1>
+        <h1 class="hero-title text-color-primary">Estamos te redirecionando...</h1>
         <div class="max-width-large">
-          <p class="text-style-subhead">
-            Vou te mandar para o checkout, espera so um segundo!
-          </p>
+          <p class="text-style-subhead">Vou te mandar para o checkout, espera so um segundo!</p>
         </div>
         <div class="spacer-medium"></div>
         <a
@@ -36,9 +32,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </a>
       </div>
       <div class="home-partners_grid">
-        <p class="text-size-small text-color-muted">
-          Obrigado pela confianca!
-        </p>
+        <p class="text-size-small text-color-muted">Obrigado pela confianca!</p>
       </div>
     </div>
   </div>
@@ -46,7 +40,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <script is:inline>
   (function () {
-    var PAY_URL = 'https://accounts.jobnagringa.com.br/sign-in?redirect_url=https://jobnagringa.com.br/pay';
+    var PAY_URL =
+      'https://accounts.jobnagringa.com.br/sign-in?redirect_url=https://jobnagringa.com.br/pay';
     var ENDPOINT_BASE = 'https://n8nhook.jobnagringa.com.br/webhook/init-checkout?email=';
 
     function safeGetLocalStorage(key) {
@@ -100,7 +95,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             if (typeof p.finally === 'function') {
               p['catch'](function () {}).finally(finish);
             } else {
-              p.then(function () { finish(); }, function () { finish(); });
+              p.then(
+                function () {
+                  finish();
+                },
+                function () {
+                  finish();
+                }
+              );
             }
             setTimeout(finish, 6000);
             return;

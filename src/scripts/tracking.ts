@@ -32,7 +32,7 @@ export interface MemberstackMember {
     email?: string;
   };
   customFields?: {
-    "first-name"?: string;
+    'first-name'?: string;
     [key: string]: string | undefined;
   };
 }
@@ -49,13 +49,13 @@ declare global {
 // Constants
 // ============================================================================
 
-export const GTM_ID = "GTM-58XVRQZ";
-export const GA_ID = "G-DNCKG4JJ77";
-export const MAUTIC_URL = "https://mautic.jobnagringa.com.br/mtc.js";
-export const AHREFS_KEY = "0IynPqzGcpJ1FaTQBiSG9g";
+export const GTM_ID = 'GTM-58XVRQZ';
+export const GA_ID = 'G-DNCKG4JJ77';
+export const MAUTIC_URL = 'https://mautic.jobnagringa.com.br/mtc.js';
+export const AHREFS_KEY = '0IynPqzGcpJ1FaTQBiSG9g';
 
 /** Default UTM source for outbound links */
-export const DEFAULT_UTM_SOURCE = "jobnagringa";
+export const DEFAULT_UTM_SOURCE = 'jobnagringa';
 
 // ============================================================================
 // Google Analytics / GTM
@@ -80,7 +80,7 @@ export function gtag(...args: unknown[]): void {
  * Tracks a page view in GA
  */
 export function trackPageView(pagePath?: string): void {
-  gtag("config", GA_ID, {
+  gtag('config', GA_ID, {
     page_path: pagePath || window.location.pathname,
   });
 }
@@ -88,11 +88,8 @@ export function trackPageView(pagePath?: string): void {
 /**
  * Tracks a custom event in GA
  */
-export function trackEvent(
-  eventName: string,
-  parameters?: Record<string, unknown>,
-): void {
-  gtag("event", eventName, parameters);
+export function trackEvent(eventName: string, parameters?: Record<string, unknown>): void {
+  gtag('event', eventName, parameters);
 }
 
 /**
@@ -111,11 +108,11 @@ export function pushToDataLayer(event: GTMEvent): void {
  * Sends data to Mautic tracking
  */
 export function mauticTrack(
-  action: "pageview" | "formsubmit" | "event",
-  data?: MauticTrackingData,
+  action: 'pageview' | 'formsubmit' | 'event',
+  data?: MauticTrackingData
 ): void {
-  if (typeof window.mt === "function") {
-    window.mt("send", action, data);
+  if (typeof window.mt === 'function') {
+    window.mt('send', action, data);
   }
 }
 
@@ -124,7 +121,7 @@ export function mauticTrack(
  */
 function getMemberstackMember(): MemberstackMember | null {
   try {
-    const memberData = localStorage.getItem("_ms-mem");
+    const memberData = localStorage.getItem('_ms-mem');
     if (!memberData) return null;
     return JSON.parse(memberData) as MemberstackMember;
   } catch {
@@ -140,18 +137,18 @@ export function sendMauticPageview(): void {
     const member = getMemberstackMember();
 
     if (member?.id) {
-      const email = member.auth?.email || "";
-      const firstname = member.customFields?.["first-name"] || "";
+      const email = member.auth?.email || '';
+      const firstname = member.customFields?.['first-name'] || '';
 
-      mauticTrack("pageview", { email, firstname });
+      mauticTrack('pageview', { email, firstname });
       return;
     }
   } catch (error) {
-    console.error("Error reading member metadata:", error);
+    console.error('Error reading member metadata:', error);
   }
 
   // Send anonymous pageview
-  mauticTrack("pageview");
+  mauticTrack('pageview');
 }
 
 /**
@@ -159,15 +156,13 @@ export function sendMauticPageview(): void {
  */
 export function handleFormSubmitTracking(form: HTMLFormElement): void {
   try {
-    const emailField = form.querySelector<HTMLInputElement>(
-      'input[type="email"]',
-    );
+    const emailField = form.querySelector<HTMLInputElement>('input[type="email"]');
 
     if (emailField?.value) {
-      mauticTrack("formsubmit", { email: emailField.value });
+      mauticTrack('formsubmit', { email: emailField.value });
     }
   } catch (error) {
-    console.error("Error handling form submission:", error);
+    console.error('Error handling form submission:', error);
   }
 }
 
@@ -176,7 +171,7 @@ export function handleFormSubmitTracking(form: HTMLFormElement): void {
  */
 export function initMautic(): void {
   // Set up Mautic tracking object
-  window.MauticTrackingObject = "mt";
+  window.MauticTrackingObject = 'mt';
 
   window.mt =
     window.mt ||
@@ -187,19 +182,19 @@ export function initMautic(): void {
     };
 
   // Load Mautic script
-  const script = document.createElement("script");
+  const script = document.createElement('script');
   script.async = true;
   script.src = MAUTIC_URL;
   document.head.appendChild(script);
 
   // Initialize tracking on DOM ready
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener('DOMContentLoaded', () => {
     sendMauticPageview();
 
     // Track form submissions
-    document.body.addEventListener("submit", (event) => {
+    document.body.addEventListener('submit', (event) => {
       const target = event.target as HTMLElement;
-      if (target.tagName.toLowerCase() === "form") {
+      if (target.tagName.toLowerCase() === 'form') {
         handleFormSubmitTracking(target as HTMLFormElement);
       }
     });
@@ -225,11 +220,11 @@ export function getUTMParams(): UTMParams {
   const params = new URLSearchParams(window.location.search);
 
   return {
-    utm_source: params.get("utm_source") || undefined,
-    utm_medium: params.get("utm_medium") || undefined,
-    utm_campaign: params.get("utm_campaign") || undefined,
-    utm_term: params.get("utm_term") || undefined,
-    utm_content: params.get("utm_content") || undefined,
+    utm_source: params.get('utm_source') || undefined,
+    utm_medium: params.get('utm_medium') || undefined,
+    utm_campaign: params.get('utm_campaign') || undefined,
+    utm_term: params.get('utm_term') || undefined,
+    utm_content: params.get('utm_content') || undefined,
   };
 }
 
@@ -242,7 +237,7 @@ export function storeUTMParams(): void {
   // Only store if we have at least one UTM param
   if (Object.values(utmParams).some(Boolean)) {
     try {
-      sessionStorage.setItem("utm_params", JSON.stringify(utmParams));
+      sessionStorage.setItem('utm_params', JSON.stringify(utmParams));
     } catch {
       // Session storage might be unavailable
     }
@@ -254,7 +249,7 @@ export function storeUTMParams(): void {
  */
 export function getStoredUTMParams(): UTMParams | null {
   try {
-    const stored = sessionStorage.getItem("utm_params");
+    const stored = sessionStorage.getItem('utm_params');
     return stored ? JSON.parse(stored) : null;
   } catch {
     return null;
@@ -266,18 +261,18 @@ export function getStoredUTMParams(): UTMParams | null {
  * This ensures outbound job links are tracked
  */
 export function addUTMToLinks(source: string = DEFAULT_UTM_SOURCE): void {
-  const links = document.querySelectorAll<HTMLAnchorElement>("a[utm]");
+  const links = document.querySelectorAll<HTMLAnchorElement>('a[utm]');
 
   for (const link of links) {
-    const href = link.getAttribute("href");
+    const href = link.getAttribute('href');
     if (!href) continue;
 
     try {
       const url = new URL(href, window.location.origin);
 
-      if (!url.searchParams.has("utm_source")) {
-        url.searchParams.set("utm_source", source);
-        link.setAttribute("href", url.toString());
+      if (!url.searchParams.has('utm_source')) {
+        url.searchParams.set('utm_source', source);
+        link.setAttribute('href', url.toString());
       }
     } catch {
       // Invalid URL, skip
@@ -303,7 +298,7 @@ export function initTracking(): void {
   initMautic();
 
   // Add UTM to outbound links on DOM ready
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener('DOMContentLoaded', () => {
     addUTMToLinks();
   });
 }

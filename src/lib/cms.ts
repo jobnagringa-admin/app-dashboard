@@ -70,10 +70,7 @@ export interface PostFilters {
  * Paginate an array of items
  * Replaces: fs-cmsload-mode="pagination"
  */
-export function paginate<T>(
-  items: T[],
-  options: PaginationOptions = {}
-): PaginatedResult<T> {
+export function paginate<T>(items: T[], options: PaginationOptions = {}): PaginatedResult<T> {
   const { page = 1, pageSize = 10 } = options;
   const total = items.length;
   const totalPages = Math.ceil(total / pageSize);
@@ -103,9 +100,7 @@ export function infiniteScroll<T extends { id?: string; slug?: string }>(
   let startIndex = 0;
 
   if (cursor) {
-    const cursorIndex = items.findIndex(
-      (item) => (item.id || item.slug) === cursor
-    );
+    const cursorIndex = items.findIndex((item) => (item.id || item.slug) === cursor);
     startIndex = cursorIndex >= 0 ? cursorIndex + 1 : 0;
   }
 
@@ -120,7 +115,7 @@ export function infiniteScroll<T extends { id?: string; slug?: string }>(
     totalPages: Math.ceil(items.length / pageSize),
     hasNextPage: startIndex + pageSize < items.length,
     hasPrevPage: startIndex > 0,
-    nextCursor: lastItem ? (lastItem.id || lastItem.slug) : undefined,
+    nextCursor: lastItem ? lastItem.id || lastItem.slug : undefined,
   };
 }
 
@@ -183,9 +178,7 @@ export async function getJobs(
   // Apply filters
   if (filters.position) {
     const search = filters.position.toLowerCase();
-    jobs = jobs.filter((job) =>
-      job.data.position.toLowerCase().includes(search)
-    );
+    jobs = jobs.filter((job) => job.data.position.toLowerCase().includes(search));
   }
 
   if (filters.categories?.length) {
@@ -196,9 +189,7 @@ export async function getJobs(
 
   if (filters.location) {
     const search = filters.location.toLowerCase();
-    jobs = jobs.filter((job) =>
-      job.data.location?.toLowerCase().includes(search)
-    );
+    jobs = jobs.filter((job) => job.data.location?.toLowerCase().includes(search));
   }
 
   if (filters.level) {
@@ -206,15 +197,11 @@ export async function getJobs(
   }
 
   if (filters.searchCategory) {
-    jobs = jobs.filter(
-      (job) => job.data.searchCategory === filters.searchCategory
-    );
+    jobs = jobs.filter((job) => job.data.searchCategory === filters.searchCategory);
   }
 
   if (filters.openForBrazilians !== undefined) {
-    jobs = jobs.filter(
-      (job) => job.data.openForBrazilians === filters.openForBrazilians
-    );
+    jobs = jobs.filter((job) => job.data.openForBrazilians === filters.openForBrazilians);
   }
 
   if (filters.sponsorsVisa !== undefined) {
@@ -245,9 +232,7 @@ export async function getJobs(
 /**
  * Get a single job by slug
  */
-export async function getJobBySlug(
-  slug: string
-): Promise<CollectionEntry<'jobs'> | undefined> {
+export async function getJobBySlug(slug: string): Promise<CollectionEntry<'jobs'> | undefined> {
   const jobs = await getCollection('jobs');
   return jobs.find((job) => job.data.slug === slug);
 }
@@ -255,9 +240,7 @@ export async function getJobBySlug(
 /**
  * Get job categories with job counts
  */
-export async function getJobCategories(): Promise<
-  CollectionEntry<'jobCategories'>[]
-> {
+export async function getJobCategories(): Promise<CollectionEntry<'jobCategories'>[]> {
   const categories = await getCollection('jobCategories');
   const jobs = await getCollection('jobs');
 
@@ -266,9 +249,7 @@ export async function getJobCategories(): Promise<
     ...category,
     data: {
       ...category.data,
-      jobCount: jobs.filter((job) =>
-        job.data.categories.includes(category.data.slug)
-      ).length,
+      jobCount: jobs.filter((job) => job.data.categories.includes(category.data.slug)).length,
     },
   }));
 }
@@ -297,9 +278,7 @@ export async function getPosts(
   let posts = await getCollection('posts');
 
   if (filters.tags?.length) {
-    posts = posts.filter((post) =>
-      filters.tags!.some((tag) => post.data.tags.includes(tag))
-    );
+    posts = posts.filter((post) => filters.tags!.some((tag) => post.data.tags.includes(tag)));
   }
 
   if (filters.author) {
@@ -315,22 +294,18 @@ export async function getPosts(
   }
 
   // Sort by date descending
-  posts.sort(
-    (a, b) =>
-      b.data.publishedAt.getTime() - a.data.publishedAt.getTime()
-  );
+  posts.sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
 
   return paginate(posts, pagination);
 }
 
 /**
  * Get a single post by slug
+ * Note: For content collections, slug is derived from the filename (entry.id)
  */
-export async function getPostBySlug(
-  slug: string
-): Promise<CollectionEntry<'posts'> | undefined> {
+export async function getPostBySlug(slug: string): Promise<CollectionEntry<'posts'> | undefined> {
   const posts = await getCollection('posts');
-  return posts.find((post) => post.data.slug === slug);
+  return posts.find((post) => post.id === slug);
 }
 
 // ============================================================================
@@ -357,12 +332,13 @@ export async function getPartners(
 
 /**
  * Get a single partner by slug
+ * Note: For content collections, slug is derived from the filename (entry.id)
  */
 export async function getPartnerBySlug(
   slug: string
 ): Promise<CollectionEntry<'partners'> | undefined> {
   const partners = await getCollection('partners');
-  return partners.find((partner) => partner.data.slug === slug);
+  return partners.find((partner) => partner.id === slug);
 }
 
 // ============================================================================
@@ -387,15 +363,12 @@ export async function getQAItems(
 
   if (filters.title) {
     const search = filters.title.toLowerCase();
-    items = items.filter((item) =>
-      item.data.title.toLowerCase().includes(search)
-    );
+    items = items.filter((item) => item.data.title.toLowerCase().includes(search));
   }
 
   if (filters.tag) {
     items = items.filter(
-      (item) =>
-        item.data.tag === filters.tag || item.data.tags.includes(filters.tag!)
+      (item) => item.data.tag === filters.tag || item.data.tags.includes(filters.tag!)
     );
   }
 
@@ -480,9 +453,7 @@ export async function getCourseWithLessons(courseSlug: string): Promise<{
 /**
  * Get lessons by course ID
  */
-export async function getLessonsByCourse(
-  courseId: string
-): Promise<CollectionEntry<'lessons'>[]> {
+export async function getLessonsByCourse(courseId: string): Promise<CollectionEntry<'lessons'>[]> {
   const lessons = await getCollection('lessons');
   return lessons
     .filter((lesson) => lesson.data.courseId === courseId)
@@ -537,12 +508,13 @@ export async function getProducts(
 
 /**
  * Get a product by slug
+ * Note: For content collections, slug is derived from the filename (entry.id)
  */
 export async function getProductBySlug(
   slug: string
 ): Promise<CollectionEntry<'products'> | undefined> {
   const products = await getCollection('products');
-  return products.find((product) => product.data.slug === slug);
+  return products.find((product) => product.id === slug);
 }
 
 // ============================================================================
@@ -560,9 +532,7 @@ export async function getDashboardCards(
   let cards = await getCollection('dashboardCards');
 
   if (categories?.length) {
-    cards = cards.filter((card) =>
-      categories.some((cat) => card.data.categories.includes(cat))
-    );
+    cards = cards.filter((card) => categories.some((cat) => card.data.categories.includes(cat)));
   }
 
   // Sort by order, then featured
@@ -598,9 +568,7 @@ export function filterByMembership<T extends { data: { memberOnly?: boolean } }>
 /**
  * Check if content requires membership
  */
-export function requiresMembership<T extends { data: { memberOnly?: boolean } }>(
-  item: T
-): boolean {
+export function requiresMembership<T extends { data: { memberOnly?: boolean } }>(item: T): boolean {
   return item.data.memberOnly === true;
 }
 
@@ -608,7 +576,4 @@ export function requiresMembership<T extends { data: { memberOnly?: boolean } }>
 // EXPORT UTILITIES
 // ============================================================================
 
-export {
-  getCollection,
-  type CollectionEntry,
-} from 'astro:content';
+export { getCollection, type CollectionEntry } from 'astro:content';

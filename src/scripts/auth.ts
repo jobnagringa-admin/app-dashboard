@@ -40,24 +40,24 @@ export interface ClerkUser {
 export interface CookieOptions {
   domain?: string;
   secure?: boolean;
-  sameSite?: "Strict" | "Lax" | "None";
+  sameSite?: 'Strict' | 'Lax' | 'None';
 }
 
 // ============================================================================
 // Constants
 // ============================================================================
 
-export const COOKIE_NAME = "user";
-export const LOCAL_STORAGE_KEY = "user";
+export const COOKIE_NAME = 'user';
+export const LOCAL_STORAGE_KEY = 'user';
 export const COOKIE_TTL = 86400; // 24 hours in seconds
-export const DOMAIN_SUFFIX = ".jobnagringa.com.br";
-export const ACCOUNTS_URL = "https://accounts.jobnagringa.com.br";
+export const DOMAIN_SUFFIX = '.jobnagringa.com.br';
+export const ACCOUNTS_URL = 'https://accounts.jobnagringa.com.br';
 
 /** Protected paths that require paid customer status */
-export const PROTECTED_PATHS = ["/jng"];
+export const PROTECTED_PATHS = ['/jng'];
 
 /** Redirect path when user is not authorized */
-export const HOME_REDIRECT_PATH = "/";
+export const HOME_REDIRECT_PATH = '/';
 
 // ============================================================================
 // Cookie Utilities
@@ -70,11 +70,11 @@ export function setCookie(
   name: string,
   value: string,
   maxAge: number,
-  options: CookieOptions = {},
+  options: CookieOptions = {}
 ): void {
   const parts: string[] = [
     `${encodeURIComponent(name)}=${encodeURIComponent(value)}`,
-    "path=/",
+    'path=/',
     `max-age=${maxAge}`,
   ];
 
@@ -82,13 +82,13 @@ export function setCookie(
     parts.push(`domain=${options.domain}`);
   }
   if (options.secure) {
-    parts.push("secure");
+    parts.push('secure');
   }
   if (options.sameSite) {
     parts.push(`samesite=${options.sameSite}`);
   }
 
-  document.cookie = parts.join("; ");
+  document.cookie = parts.join('; ');
 }
 
 /**
@@ -96,7 +96,7 @@ export function setCookie(
  */
 export function getUserFromCookie(): UserData | null {
   try {
-    const cookies = document.cookie ? document.cookie.split(";") : [];
+    const cookies = document.cookie ? document.cookie.split(';') : [];
     let cookieValue: string | null = null;
 
     for (const cookie of cookies) {
@@ -109,7 +109,7 @@ export function getUserFromCookie(): UserData | null {
 
     if (!cookieValue) return null;
 
-    const encodedValue = cookieValue.split("=")[1] || "";
+    const encodedValue = cookieValue.split('=')[1] || '';
     const decodedValue = decodeURIComponent(encodedValue);
 
     if (!decodedValue) return null;
@@ -124,10 +124,10 @@ export function getUserFromCookie(): UserData | null {
  * Clears all authentication cookies
  */
 export function clearAuthCookies(): void {
-  const cookies = document.cookie.split("; ");
+  const cookies = document.cookie.split('; ');
 
   for (const cookie of cookies) {
-    const eqPos = cookie.indexOf("=");
+    const eqPos = cookie.indexOf('=');
     const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
 
     // Clear cookie on current domain
@@ -181,13 +181,13 @@ export function persistUserData(clerkUser: ClerkUser): void {
   };
 
   // Determine cookie options
-  const isSecure = window.location.protocol === "https:";
+  const isSecure = window.location.protocol === 'https:';
   const hostname = window.location.hostname;
   const domain = hostname.endsWith(DOMAIN_SUFFIX) ? DOMAIN_SUFFIX : undefined;
 
   setCookie(COOKIE_NAME, JSON.stringify(userData), COOKIE_TTL, {
     secure: isSecure,
-    sameSite: "Strict",
+    sameSite: 'Strict',
     domain,
   });
 }
@@ -224,9 +224,7 @@ export function userIsPaidCustomer(): boolean {
 /**
  * Checks if current path is protected
  */
-export function isProtectedPath(
-  pathname: string = window.location.pathname,
-): boolean {
+export function isProtectedPath(pathname: string = window.location.pathname): boolean {
   return PROTECTED_PATHS.some((path) => pathname.startsWith(path));
 }
 
@@ -243,7 +241,7 @@ export function requireLogin(): void {
   }
 
   if (import.meta.env.DEV) {
-    console.log("User logged in with email:", user.email);
+    console.log('User logged in with email:', user.email);
   }
 }
 
@@ -258,8 +256,8 @@ export function enforceProtectedPath(): void {
   if (!isProtectedPath(pathname)) return;
 
   // Hide page initially to prevent flash
-  const style = document.createElement("style");
-  style.textContent = "html { visibility: hidden !important; }";
+  const style = document.createElement('style');
+  style.textContent = 'html { visibility: hidden !important; }';
   document.head.appendChild(style);
 
   const redirect = () => {
@@ -273,7 +271,7 @@ export function enforceProtectedPath(): void {
   }
 
   // Authorized - show page
-  document.documentElement.style.visibility = "visible";
+  document.documentElement.style.visibility = 'visible';
   style.remove();
 }
 
@@ -289,7 +287,7 @@ export function populateFirstNameFromUser(): void {
   const user = getUserFromCookie();
   if (!user) return;
 
-  let firstName = "";
+  let firstName = '';
 
   if (user.firstName?.trim()) {
     firstName = user.firstName.trim();
@@ -297,12 +295,10 @@ export function populateFirstNameFromUser(): void {
 
   if (!firstName) return;
 
-  const elements = document.querySelectorAll<HTMLElement>(
-    '[data-ms-member="first-name"]',
-  );
+  const elements = document.querySelectorAll<HTMLElement>('[data-ms-member="first-name"]');
 
   for (const el of elements) {
-    if ("value" in el) {
+    if ('value' in el) {
       (el as HTMLInputElement).value = firstName;
     } else {
       el.textContent = firstName;
@@ -373,13 +369,13 @@ export async function initClerk(): Promise<void> {
  */
 export async function logout(): Promise<void> {
   // Clear cache storage
-  if ("caches" in window) {
+  if ('caches' in window) {
     const keys = await caches.keys();
     await Promise.all(keys.map((key) => caches.delete(key)));
   }
 
   // Unregister service workers
-  if ("serviceWorker" in navigator) {
+  if ('serviceWorker' in navigator) {
     const registrations = await navigator.serviceWorker.getRegistrations();
     await Promise.all(registrations.map((reg) => reg.unregister()));
   }
@@ -396,7 +392,7 @@ export async function logout(): Promise<void> {
   clearAuthCookies();
 
   // Clear IndexedDB
-  if ("indexedDB" in window && indexedDB.databases) {
+  if ('indexedDB' in window && indexedDB.databases) {
     const databases = await indexedDB.databases();
     for (const db of databases) {
       if (db.name) {
@@ -418,7 +414,7 @@ export async function logout(): Promise<void> {
  */
 export function initAuth(): void {
   // Initialize Clerk on window load
-  window.addEventListener("load", initClerk);
+  window.addEventListener('load', initClerk);
 
   // Run DOM functions when ready
   const runDomFunctions = () => {
@@ -426,12 +422,12 @@ export function initAuth(): void {
     handleCommunityContent();
   };
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", runDomFunctions);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runDomFunctions);
   } else {
     runDomFunctions();
   }
 
   // Also run on load for safety
-  window.addEventListener("load", runDomFunctions);
+  window.addEventListener('load', runDomFunctions);
 }

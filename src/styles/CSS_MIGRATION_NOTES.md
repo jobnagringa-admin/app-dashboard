@@ -4,7 +4,8 @@
 
 ## Overview
 
-This document describes the CSS architecture extracted from the legacy Webflow project and the migration approach for Astro.
+This document describes the CSS architecture extracted from the legacy Webflow
+project and the migration approach for Astro.
 
 ## Original CSS Files
 
@@ -24,14 +25,18 @@ The project uses a comprehensive set of CSS variables in `:root`:
 **Color System:**
 
 - Blues palette: `--blues--blue-05` through `--blues--blue-90`
-- Neutrals palette: `--neutrals--neutral-100-white` through `--neutrals--neutral-800`
+- Neutrals palette: `--neutrals--neutral-100-white` through
+  `--neutrals--neutral-800`
 - Brand colors: `--brand--primary` (references `--blues--blue-60`)
-- Background colors: `--backgrounds--light-secondary`, `--backgrounds--dark-blue`, `--backgrounds--dark-modal`
-- Border colors: `--borders--border-light`, `--borders--border-regular`, `--borders--border-primary`
+- Background colors: `--backgrounds--light-secondary`,
+  `--backgrounds--dark-blue`, `--backgrounds--dark-modal`
+- Border colors: `--borders--border-light`, `--borders--border-regular`,
+  `--borders--border-primary`
 
 **Spacing/Sizing:**
 
-- Border radius scale: `--border-radius--radius-small` (0.5rem) through `--border-radius--radius-huge` (3rem)
+- Border radius scale: `--border-radius--radius-small` (0.5rem) through
+  `--border-radius--radius-huge` (3rem)
 
 **Typography:**
 
@@ -112,7 +117,8 @@ The project uses a comprehensive set of CSS variables in `:root`:
 
 ### 4. Inline Styles Found
 
-249 `<style>` tags were found across 64 HTML files. Common inline styles include:
+249 `<style>` tags were found across 64 HTML files. Common inline styles
+include:
 
 - Custom scrollbar styling
 - Form validation states (`.error`, `.success`, `.hide`)

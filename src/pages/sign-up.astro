@@ -27,9 +27,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <script is:inline>
   // Redirect to Clerk sign-up
-  (function() {
+  (function () {
     var redirectUrl = encodeURIComponent(window.location.origin + '/jng/member-dashboard');
-    window.location.href = 'https://accounts.jobnagringa.com.br/sign-up?redirect_url=' + redirectUrl;
+    window.location.href =
+      'https://accounts.jobnagringa.com.br/sign-up?redirect_url=' + redirectUrl;
   })();
 </script>
 

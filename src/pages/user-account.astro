@@ -78,12 +78,12 @@ import DashboardLayout from '../layouts/DashboardLayout.astro';
 
 <script is:inline>
   // Update localStorage with user data from Webflow account fields
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     try {
       var elements = document.querySelectorAll('[data-ms-member]');
       var userData = {};
 
-      elements.forEach(function(el) {
+      elements.forEach(function (el) {
         var field = el.getAttribute('data-ms-member');
         var value = el.textContent || el.value;
         if (field && value) {

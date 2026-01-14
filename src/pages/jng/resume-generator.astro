@@ -27,7 +27,11 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
           <a href="/jng/course" class="main-content-tab_title w-inline-block">
             <div>Workshops JNG</div>
           </a>
-          <a href="/jng/resume-generator" aria-current="page" class="main-content-tab_title w-inline-block w--current">
+          <a
+            href="/jng/resume-generator"
+            aria-current="page"
+            class="main-content-tab_title w-inline-block w--current"
+          >
             <div>Resume Generator</div>
           </a>
           <a href="/jng/jobs" class="main-content-tab_title w-inline-block">
@@ -48,8 +52,16 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
               <div class="text-size-small text-style-muted">Voce esta em:</div>
               <a href="/jng/member-dashboard" class="breadcrumb_link w-inline-block">
                 <div class="icon-1x1-small w-embed">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M12.74 2.32a1 1 0 0 0-1.48 0l-9 10A1 1 0 0 0 3 14h2v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7h2a1 1 0 0 0 1-1a1 1 0 0 0-.26-.68z"></path>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1rem"
+                    height="1rem"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M12.74 2.32a1 1 0 0 0-1.48 0l-9 10A1 1 0 0 0 3 14h2v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7h2a1 1 0 0 0 1-1a1 1 0 0 0-.26-.68z"
+                    ></path>
                   </svg>
                 </div>
                 <div>#JNG Community</div>
@@ -63,16 +75,28 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
               <div class="dashboard-header_content">
                 <h1 class="heading-style-h2">Resume Generator</h1>
                 <div class="text-style-muted">
-                  Uma ferramenta criada para ajudar voce a customizar seu curriculo para a vaga desejada.
+                  Uma ferramenta criada para ajudar voce a customizar seu curriculo para a vaga
+                  desejada.
                 </div>
               </div>
             </div>
           </div>
           <div class="form_card w-form">
-            <form id="resume-form" name="resume-form" data-name="Resume Form" method="get" class="form_grid">
+            <form
+              id="resume-form"
+              name="resume-form"
+              data-name="Resume Form"
+              method="get"
+              class="form_grid"
+            >
               <div class="text-size-small">
-                Este servico usara dados disponiveis publicamente no seu LinkedIn para gerar um curriculo em doc. Por isso, certifique-se que seu LinkedIn esteja atualizado. Assista nosso
-                <a href="/jng/aulas/linkedin-seo-1-4-seja-o-candidato-perfeito-para-headhunters-e-recruiters">Workshop de LinkedIn</a>.
+                Este servico usara dados disponiveis publicamente no seu LinkedIn para gerar um
+                curriculo em doc. Por isso, certifique-se que seu LinkedIn esteja atualizado.
+                Assista nosso
+                <a
+                  href="/jng/aulas/linkedin-seo-1-4-seja-o-candidato-perfeito-para-headhunters-e-recruiters"
+                  >Workshop de LinkedIn</a
+                >.
               </div>
               <div class="input_field-wrapper">
                 <label for="Email-2" class="input_label">Email</label>
@@ -102,18 +126,24 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
                 />
               </div>
               <div class="input_field-wrapper">
-                <label for="field-2" class="input_label">Copy and Paste Job Description, Responsibilities and Requirements</label>
+                <label for="field-2" class="input_label"
+                  >Copy and Paste Job Description, Responsibilities and Requirements</label
+                >
                 <textarea
                   placeholder="Copie e cole aqui o job description da vaga que voce esta se candidatando."
                   maxlength="5000"
                   id="field-2"
                   name="field-2"
                   data-name="Field 2"
-                  class="input_field is-text-area w-input"
-                ></textarea>
+                  class="input_field is-text-area w-input"></textarea>
               </div>
               <div class="spacer-tiny"></div>
-              <input type="submit" data-wait="Enviando..." class="button w-button" value="Gerar Resume" />
+              <input
+                type="submit"
+                data-wait="Enviando..."
+                class="button w-button"
+                value="Gerar Resume"
+              />
             </form>
             <div class="dialog-box is-success w-form-done">
               <div>Voce recebera seu curriculo dentro de instantes no seu email</div>
@@ -129,6 +159,7 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
 
   <Fragment slot="scripts">
     <!-- Finsweet CMS Load -->
-    <script async src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsload@1/cmsload.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsload@1/cmsload.js"
+    ></script>
   </Fragment>
 </DashboardLayout>

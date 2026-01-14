@@ -20,8 +20,16 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
           <div class="text-size-small text-style-muted">Voce esta em:</div>
           <a href="/jng/member-dashboard" class="breadcrumb_link w-inline-block">
             <div class="icon-1x1-small w-embed">
-              <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M12.74 2.32a1 1 0 0 0-1.48 0l-9 10A1 1 0 0 0 3 14h2v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7h2a1 1 0 0 0 1-1a1 1 0 0 0-.26-.68z"></path>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1rem"
+                height="1rem"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M12.74 2.32a1 1 0 0 0-1.48 0l-9 10A1 1 0 0 0 3 14h2v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7h2a1 1 0 0 0 1-1a1 1 0 0 0-.26-.68z"
+                ></path>
               </svg>
             </div>
             <div>#JNG Community</div>
@@ -35,7 +43,8 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
           <div class="dashboard-header_content">
             <h1 class="heading-style-h2">Job Positions (Brazil Only)</h1>
             <div class="text-style-muted">
-              Uma lista de jobs selecionados pelo time #JNG - Ordenados por mais recentes, Filtrados para Brasileiros
+              Uma lista de jobs selecionados pelo time #JNG - Ordenados por mais recentes, Filtrados
+              para Brasileiros
             </div>
           </div>
         </div>
@@ -45,18 +54,48 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
           <div class="category-sidebar_wrapper">
             <div class="text-weight-medium">Filtros</div>
             <div class="form-block-5 w-form">
-              <form id="email-form-3" name="email-form-3" data-name="Email Form 3" method="get" class="form-5">
+              <form
+                id="email-form-3"
+                name="email-form-3"
+                data-name="Email Form 3"
+                method="get"
+                class="form-5"
+              >
                 <a href="/jng/jobs" class="checkbox_link is-full w-inline-block">
-                  <label fs-cmsfilter-field="location" class="w-checkbox job-search_select is-checkbox is-active">
-                    <div class="w-checkbox-input w-checkbox-input--inputType-custom checkbox is-active"></div>
-                    <input type="checkbox" id="checkbox-3" name="checkbox-3" data-name="Checkbox 3" style="opacity: 0; position: absolute; z-index: -1" />
+                  <label
+                    fs-cmsfilter-field="location"
+                    class="w-checkbox job-search_select is-checkbox is-active"
+                  >
+                    <div
+                      class="w-checkbox-input w-checkbox-input--inputType-custom checkbox is-active"
+                    >
+                    </div>
+                    <input
+                      type="checkbox"
+                      id="checkbox-3"
+                      name="checkbox-3"
+                      data-name="Checkbox 3"
+                      style="opacity: 0; position: absolute; z-index: -1"
+                    />
                     <span class="w-form-label">Brazilians Only</span>
                   </label>
                 </a>
-                <a href="/jng/jobs-with-vista-sponsors" class="checkbox_link is-full w-inline-block">
-                  <label fs-cmsfilter-field="location" class="w-checkbox job-search_select is-checkbox">
+                <a
+                  href="/jng/jobs-with-vista-sponsors"
+                  class="checkbox_link is-full w-inline-block"
+                >
+                  <label
+                    fs-cmsfilter-field="location"
+                    class="w-checkbox job-search_select is-checkbox"
+                  >
                     <div class="w-checkbox-input w-checkbox-input--inputType-custom checkbox"></div>
-                    <input type="checkbox" id="checkbox-visa" name="checkbox-visa" data-name="Checkbox Visa" style="opacity: 0; position: absolute; z-index: -1" />
+                    <input
+                      type="checkbox"
+                      id="checkbox-visa"
+                      name="checkbox-visa"
+                      data-name="Checkbox Visa"
+                      style="opacity: 0; position: absolute; z-index: -1"
+                    />
                     <span class="w-form-label">Visa Sponsor</span>
                   </label>
                 </a>
@@ -66,7 +105,16 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
             <div class="text-weight-medium">Categorias</div>
             <div fs-cmsfilter-element="filters-2" class="form-block-4 w-form">
               <form id="email-form-2" name="email-form-2" data-name="Email Form 2" method="get">
-                <input class="input_field is-small w-input" maxlength="256" name="name" fs-cmsfilter-field="search-category" data-name="Name" placeholder="Filtre categorias..." type="text" id="name" />
+                <input
+                  class="input_field is-small w-input"
+                  maxlength="256"
+                  name="name"
+                  fs-cmsfilter-field="search-category"
+                  data-name="Name"
+                  placeholder="Filtre categorias..."
+                  type="text"
+                  id="name"
+                />
               </form>
             </div>
             <div class="category-sidebar_collection-wrapper w-dyn-list">
@@ -77,11 +125,23 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
                       <span fs-cmsfilter-field="search-category">Vagas</span>
                     </div>
                     <div class="icon-1x1-small w-embed">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <path fill="currentColor" d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0"></path>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0"
+                        ></path>
                       </svg>
                     </div>
-                    <div fs-cmsfilter-field="search-category" class="display-hidden w-dyn-bind-empty"></div>
+                    <div
+                      fs-cmsfilter-field="search-category"
+                      class="display-hidden w-dyn-bind-empty"
+                    >
+                    </div>
                   </a>
                 </div>
               </div>
@@ -97,23 +157,59 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
               <div class="margin-bottom margin-medium">
                 <div class="job-search_filters-wrapper">
                   <div class="job-search_icon w-embed">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1024 1024">
-                      <path fill="currentColor" d="m795.904 750.72l124.992 124.928a32 32 0 0 1-45.248 45.248L750.656 795.904a416 416 0 1 1 45.248-45.248zM480 832a352 352 0 1 0 0-704a352 352 0 0 0 0 704"></path>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 1024 1024"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="m795.904 750.72l124.992 124.928a32 32 0 0 1-45.248 45.248L750.656 795.904a416 416 0 1 1 45.248-45.248zM480 832a352 352 0 1 0 0-704a352 352 0 0 0 0 704"
+                      ></path>
                     </svg>
                   </div>
-                  <input class="job-search_input w-input" maxlength="256" name="JOB-SEARCH" fs-cmsfilter-field="position, categories, detail" data-name="JOB SEARCH" placeholder="Filtre area ou tecnologia" type="text" id="job-search-home" required="" />
+                  <input
+                    class="job-search_input w-input"
+                    maxlength="256"
+                    name="JOB-SEARCH"
+                    fs-cmsfilter-field="position, categories, detail"
+                    data-name="JOB SEARCH"
+                    placeholder="Filtre area ou tecnologia"
+                    type="text"
+                    id="job-search-home"
+                    required=""
+                  />
                   <div class="job-search_actions">
                     <a href="/jng/jobs" class="checkbox_link w-inline-block">
-                      <label fs-cmsfilter-field="location" class="w-checkbox job-search_select is-checkbox is-brazilian-check is-current">
+                      <label
+                        fs-cmsfilter-field="location"
+                        class="w-checkbox job-search_select is-checkbox is-brazilian-check is-current"
+                      >
                         <div>
                           <div class="icon-1x1-medium">&#x1F1E7;&#x1F1F7;</div>
                         </div>
-                        <div class="w-checkbox-input w-checkbox-input--inputType-custom checkbox display-hidden"></div>
-                        <input type="checkbox" id="checkbox-br" name="checkbox-br" data-name="Checkbox BR" style="opacity: 0; position: absolute; z-index: -1" />
+                        <div
+                          class="w-checkbox-input w-checkbox-input--inputType-custom checkbox display-hidden"
+                        >
+                        </div>
+                        <input
+                          type="checkbox"
+                          id="checkbox-br"
+                          name="checkbox-br"
+                          data-name="Checkbox BR"
+                          style="opacity: 0; position: absolute; z-index: -1"
+                        />
                         <span class="checkbox_label hide-tablet w-form-label">Brazilians Only</span>
                       </label>
                     </a>
-                    <select id="jobselection" name="field-2" data-name="Field 2" fs-cmsfilter-field="level" class="job-search_select input_select w-select">
+                    <select
+                      id="jobselection"
+                      name="field-2"
+                      data-name="Field 2"
+                      fs-cmsfilter-field="level"
+                      class="job-search_select input_select w-select"
+                    >
                       <option value="">Niveis</option>
                       <option value="lead">Lead</option>
                       <option value="expert">Expert</option>
@@ -127,14 +223,29 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
               </div>
               <div>
                 <div class="job-card_collection-wrapper w-dyn-list">
-                  <div fs-cmsload-mode="pagination" fs-cmsfilter-element="list" fs-cmsload-element="list" role="list" class="job-card_collection-list w-dyn-items">
+                  <div
+                    fs-cmsload-mode="pagination"
+                    fs-cmsfilter-element="list"
+                    fs-cmsload-element="list"
+                    role="list"
+                    class="job-card_collection-list w-dyn-items"
+                  >
                     <!-- Job cards loaded dynamically via Webflow CMS - filtered for Brazilians -->
                     <div role="listitem" class="w-dyn-item">
                       <a href="#" class="job-card_item is-grid w-inline-block">
                         <div class="job-card_info-wrapper is-flex">
-                          <img loading="lazy" src="/images/wells-fargo.svg" alt="" class="job-card_info-thumbnail w-dyn-bind-empty" />
+                          <img
+                            loading="lazy"
+                            src="/images/wells-fargo.svg"
+                            alt=""
+                            class="job-card_info-thumbnail w-dyn-bind-empty"
+                          />
                           <div class="job-card_info-column is-title">
-                            <div fs-cmsfilter-field="position" class="job-card_info-detail is-title w-dyn-bind-empty"></div>
+                            <div
+                              fs-cmsfilter-field="position"
+                              class="job-card_info-detail is-title w-dyn-bind-empty"
+                            >
+                            </div>
                             <div class="job-card_info-detail is-light w-embed">By in</div>
                           </div>
                         </div>
@@ -143,7 +254,11 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
                             <div class="job-card_meta-title">
                               <div class="text-size-small">Field</div>
                             </div>
-                            <div fs-cmsfilter-field="categories" class="job-card_info-detail w-dyn-bind-empty"></div>
+                            <div
+                              fs-cmsfilter-field="categories"
+                              class="job-card_info-detail w-dyn-bind-empty"
+                            >
+                            </div>
                           </div>
                           <div class="job-card_info-column">
                             <div class="job-card_meta-title">
@@ -155,35 +270,97 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
                             <div class="job-card_meta-title">
                               <div class="text-size-small">Level</div>
                             </div>
-                            <div fs-cmsfilter-field="level" class="job-card_info-detail w-dyn-bind-empty"></div>
+                            <div
+                              fs-cmsfilter-field="level"
+                              class="job-card_info-detail w-dyn-bind-empty"
+                            >
+                            </div>
                           </div>
                         </div>
                         <div title="Open for Brazilians" class="job-card_br-flag w-embed">
-                          <svg width="99" height="33" viewBox="0 0 99 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="99" height="11" transform="matrix(1 0 0 -1 0 33)" fill="#96D101"></rect>
-                            <rect width="99" height="11" transform="matrix(1 0 0 -1 0 22)" fill="#EAD600"></rect>
-                            <rect width="99" height="11" transform="matrix(1 0 0 -1 0 11)" fill="#0149D1"></rect>
+                          <svg
+                            width="99"
+                            height="33"
+                            viewBox="0 0 99 33"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <rect
+                              width="99"
+                              height="11"
+                              transform="matrix(1 0 0 -1 0 33)"
+                              fill="#96D101"></rect>
+                            <rect
+                              width="99"
+                              height="11"
+                              transform="matrix(1 0 0 -1 0 22)"
+                              fill="#EAD600"></rect>
+                            <rect
+                              width="99"
+                              height="11"
+                              transform="matrix(1 0 0 -1 0 11)"
+                              fill="#0149D1"></rect>
                           </svg>
                         </div>
                       </a>
-                      <div fs-cmsfilter-field="detail" class="job-card_detail w-dyn-bind-empty w-richtext"></div>
+                      <div
+                        fs-cmsfilter-field="detail"
+                        class="job-card_detail w-dyn-bind-empty w-richtext"
+                      >
+                      </div>
                     </div>
                   </div>
                   <div fs-cmsfilter-element="empty" class="job-search_empty w-dyn-empty">
-                    <div class="text-weight-medium text-color-muted">Nao encontramos o termo buscado</div>
-                    <div class="text-color-muted text-size-small">Esta e a versao beta do nosso buscador. Certifique-se que voce esta buscando pelo termo em ingles.</div>
+                    <div class="text-weight-medium text-color-muted">
+                      Nao encontramos o termo buscado
+                    </div>
+                    <div class="text-color-muted text-size-small">
+                      Esta e a versao beta do nosso buscador. Certifique-se que voce esta buscando
+                      pelo termo em ingles.
+                    </div>
                   </div>
-                  <div role="navigation" aria-label="List" class="w-pagination-wrapper job-board_pagination">
-                    <a href="#" aria-label="Previous Page" class="w-pagination-previous button is-secondary is-stretch">
-                      <svg class="w-pagination-previous-icon" height="12px" width="12px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" transform="translate(0, 1)">
-                        <path fill="none" stroke="currentColor" fill-rule="evenodd" d="M8 10L4 6l4-4"></path>
+                  <div
+                    role="navigation"
+                    aria-label="List"
+                    class="w-pagination-wrapper job-board_pagination"
+                  >
+                    <a
+                      href="#"
+                      aria-label="Previous Page"
+                      class="w-pagination-previous button is-secondary is-stretch"
+                    >
+                      <svg
+                        class="w-pagination-previous-icon"
+                        height="12px"
+                        width="12px"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 12 12"
+                        transform="translate(0, 1)"
+                      >
+                        <path
+                          fill="none"
+                          stroke="currentColor"
+                          fill-rule="evenodd"
+                          d="M8 10L4 6l4-4"></path>
                       </svg>
                       <div class="w-inline-block">Anteriores</div>
                     </a>
-                    <a href="#" aria-label="Next Page" class="w-pagination-next button is-secondary is-stretch">
+                    <a
+                      href="#"
+                      aria-label="Next Page"
+                      class="w-pagination-next button is-secondary is-stretch"
+                    >
                       <div class="w-inline-block">Mais</div>
-                      <svg class="w-pagination-next-icon" height="12px" width="12px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" transform="translate(0, 1)">
-                        <path fill="none" stroke="currentColor" fill-rule="evenodd" d="M4 2l4 4-4 4"></path>
+                      <svg
+                        class="w-pagination-next-icon"
+                        height="12px"
+                        width="12px"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 12 12"
+                        transform="translate(0, 1)"
+                      >
+                        <path fill="none" stroke="currentColor" fill-rule="evenodd" d="M4 2l4 4-4 4"
+                        ></path>
                       </svg>
                     </a>
                   </div>
@@ -191,7 +368,10 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
               </div>
               <div class="margin-top margin-small">
                 <div class="card-alert">
-                  <div>As vagas podem demorar (pra cacete) para carregar. Tenha paciencia. Ou vai na Gupy.</div>
+                  <div>
+                    As vagas podem demorar (pra cacete) para carregar. Tenha paciencia. Ou vai na
+                    Gupy.
+                  </div>
                 </div>
               </div>
             </div>
@@ -203,7 +383,9 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
 
   <Fragment slot="scripts">
     <!-- Finsweet CMS Load & Filter -->
-    <script async src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsload@1/cmsload.js"></script>
-    <script async src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsfilter@1/cmsfilter.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsload@1/cmsload.js"
+    ></script>
+    <script async src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsfilter@1/cmsfilter.js"
+    ></script>
   </Fragment>
 </DashboardLayout>

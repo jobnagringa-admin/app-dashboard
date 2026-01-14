@@ -14,8 +14,7 @@
 .footer_section {
   background-color: var(--backgrounds--dark-blue);
   color: var(--neutrals--neutral-100-white);
-  border-radius: var(--border-radius--radius-large)
-    var(--border-radius--radius-large) 0 0;
+  border-radius: var(--border-radius--radius-large) var(--border-radius--radius-large) 0 0;
   padding: 3rem 2rem;
 }
 

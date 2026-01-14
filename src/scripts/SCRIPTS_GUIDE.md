@@ -2,7 +2,8 @@
 
 ## Overview
 
-This document describes the JavaScript functionality migrated from the legacy Webflow site to TypeScript modules for Astro.
+This document describes the JavaScript functionality migrated from the legacy
+Webflow site to TypeScript modules for Astro.
 
 ## Script Loading Strategy
 
@@ -48,6 +49,7 @@ Handles all Clerk authentication functionality.
 ---
 import { AuthProvider } from '../components/AuthProvider.astro';
 ---
+
 <head>
   <AuthProvider />
 </head>
@@ -71,6 +73,7 @@ Handles analytics and marketing tracking.
 import AnalyticsHead from '../components/AnalyticsHead.astro';
 import MauticTracking from '../components/MauticTracking.astro';
 ---
+
 <head>
   <AnalyticsHead />
 </head>
@@ -207,7 +210,8 @@ Non-paid users are redirected to `/` (home page).
 
 ### Breaking Changes
 
-None - all functionality is preserved. The cookie format is unchanged so existing logged-in users will remain logged in.
+None - all functionality is preserved. The cookie format is unchanged so
+existing logged-in users will remain logged in.
 
 ## Environment Variables
 

@@ -21,9 +21,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="hero_preheader">
           <span class="text-color-primary">Brazilians Only</span>
         </div>
-        <h1 class="hero-title text-color-primary">
-          Vagas que contratam brasileiros
-        </h1>
+        <h1 class="hero-title text-color-primary">Vagas que contratam brasileiros</h1>
         <div class="max-width-large">
           <p class="text-style-subhead">
             Empresas que explicitamente buscam talentos brasileiros para suas equipes remotas.
@@ -44,8 +42,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           >
             <div class="job-search_filters-wrapper">
               <div class="job-search_icon w-embed">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1024 1024">
-                  <path fill="currentColor" d="m795.904 750.72l124.992 124.928a32 32 0 0 1-45.248 45.248L750.656 795.904a416 416 0 1 1 45.248-45.248zM480 832a352 352 0 1 0 0-704a352 352 0 0 0 0 704"></path>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 1024 1024"
+                >
+                  <path
+                    fill="currentColor"
+                    d="m795.904 750.72l124.992 124.928a32 32 0 0 1-45.248 45.248L750.656 795.904a416 416 0 1 1 45.248-45.248zM480 832a352 352 0 1 0 0-704a352 352 0 0 0 0 704"
+                  ></path>
                 </svg>
               </div>
               <input
@@ -64,7 +70,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                   class="w-checkbox job-search_select is-checkbox is-brazilian-check is-current"
                 >
                   <div class="icon-1x1-medium flag-icon">BR</div>
-                  <div class="w-checkbox-input w-checkbox-input--inputType-custom checkbox display-hidden"></div>
+                  <div
+                    class="w-checkbox-input w-checkbox-input--inputType-custom checkbox display-hidden"
+                  >
+                  </div>
                   <input
                     type="checkbox"
                     id="checkbox-3"
@@ -73,9 +82,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     checked
                     style="opacity:0;position:absolute;z-index:-1"
                   />
-                  <span class="checkbox_label hide-tablet w-form-label">
-                    Brazilians Only
-                  </span>
+                  <span class="checkbox_label hide-tablet w-form-label"> Brazilians Only </span>
                 </label>
                 <select
                   id="jobselection"
@@ -136,44 +143,65 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                       <div class="job-card_meta-title">
                         <div class="text-size-small">Area</div>
                       </div>
-                      <div fs-cmsfilter-field="category" class="job-card_info-detail">
-                        -
-                      </div>
+                      <div fs-cmsfilter-field="category" class="job-card_info-detail">-</div>
                     </div>
                     <div class="job-card_info-column">
                       <div class="job-card_meta-title">
                         <div class="text-size-small">Nivel</div>
                       </div>
-                      <div fs-cmsfilter-field="level" class="job-card_info-detail">
-                        -
-                      </div>
+                      <div fs-cmsfilter-field="level" class="job-card_info-detail">-</div>
                     </div>
                   </div>
-                  <div title="Open for Brazilians" class="job-card_br-flag">
-                    BR
-                  </div>
+                  <div title="Open for Brazilians" class="job-card_br-flag">BR</div>
                 </a>
               </div>
             </div>
             <div fs-cmsfilter-element="empty" class="job-search_empty w-dyn-empty">
-              <div class="text-weight-medium text-color-muted">
-                Nao encontramos o termo buscado
-              </div>
+              <div class="text-weight-medium text-color-muted">Nao encontramos o termo buscado</div>
               <div class="text-color-muted text-size-small">
-                Esta e a versao beta do nosso buscador. Certifique-se que voce esta buscando pelo termo em ingles.
+                Esta e a versao beta do nosso buscador. Certifique-se que voce esta buscando pelo
+                termo em ingles.
               </div>
             </div>
-            <div role="navigation" aria-label="List" class="w-pagination-wrapper job-board_pagination">
-              <a href="#" aria-label="Previous Page" class="w-pagination-previous button is-secondary is-stretch">
-                <svg class="w-pagination-previous-icon" height="12px" width="12px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" transform="translate(0, 1)">
-                  <path fill="none" stroke="currentColor" fill-rule="evenodd" d="M8 10L4 6l4-4"></path>
+            <div
+              role="navigation"
+              aria-label="List"
+              class="w-pagination-wrapper job-board_pagination"
+            >
+              <a
+                href="#"
+                aria-label="Previous Page"
+                class="w-pagination-previous button is-secondary is-stretch"
+              >
+                <svg
+                  class="w-pagination-previous-icon"
+                  height="12px"
+                  width="12px"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 12 12"
+                  transform="translate(0, 1)"
+                >
+                  <path fill="none" stroke="currentColor" fill-rule="evenodd" d="M8 10L4 6l4-4"
+                  ></path>
                 </svg>
                 <div class="w-inline-block">Anteriores</div>
               </a>
-              <a href="#" aria-label="Next Page" class="w-pagination-next button is-secondary is-stretch">
+              <a
+                href="#"
+                aria-label="Next Page"
+                class="w-pagination-next button is-secondary is-stretch"
+              >
                 <div class="w-inline-block">Mais</div>
-                <svg class="w-pagination-next-icon" height="12px" width="12px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" transform="translate(0, 1)">
-                  <path fill="none" stroke="currentColor" fill-rule="evenodd" d="M4 2l4 4-4 4"></path>
+                <svg
+                  class="w-pagination-next-icon"
+                  height="12px"
+                  width="12px"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 12 12"
+                  transform="translate(0, 1)"
+                >
+                  <path fill="none" stroke="currentColor" fill-rule="evenodd" d="M4 2l4 4-4 4"
+                  ></path>
                 </svg>
               </a>
             </div>
@@ -204,7 +232,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     align-items: center;
     justify-content: center;
     padding: 0.25rem 0.5rem;
-    background: linear-gradient(180deg, #009c3b 0%, #009c3b 33%, #ffdf00 33%, #ffdf00 66%, #002776 66%, #002776 100%);
+    background: linear-gradient(
+      180deg,
+      #009c3b 0%,
+      #009c3b 33%,
+      #ffdf00 33%,
+      #ffdf00 66%,
+      #002776 66%,
+      #002776 100%
+    );
     color: white;
     font-size: 0.75rem;
     font-weight: 700;
@@ -216,7 +252,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     align-items: center;
     justify-content: center;
     padding: 0.25rem 0.5rem;
-    background: linear-gradient(180deg, #009c3b 0%, #009c3b 33%, #ffdf00 33%, #ffdf00 66%, #002776 66%, #002776 100%);
+    background: linear-gradient(
+      180deg,
+      #009c3b 0%,
+      #009c3b 33%,
+      #ffdf00 33%,
+      #ffdf00 66%,
+      #002776 66%,
+      #002776 100%
+    );
     color: white;
     font-size: 0.75rem;
     font-weight: 700;

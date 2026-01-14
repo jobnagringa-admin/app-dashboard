@@ -36,7 +36,11 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
           <a href="/jng/community" class="main-content-tab_title w-inline-block">
             <div>Reprises das Lives</div>
           </a>
-          <a href="/jng/partners" aria-current="page" class="main-content-tab_title w-inline-block w--current">
+          <a
+            href="/jng/partners"
+            aria-current="page"
+            class="main-content-tab_title w-inline-block w--current"
+          >
             <div>Descontos e Parcerias</div>
           </a>
         </div>
@@ -48,8 +52,16 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
               <div class="text-size-small text-style-muted">Voce esta em:</div>
               <a href="/jng/member-dashboard" class="breadcrumb_link w-inline-block">
                 <div class="icon-1x1-small w-embed">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M12.74 2.32a1 1 0 0 0-1.48 0l-9 10A1 1 0 0 0 3 14h2v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7h2a1 1 0 0 0 1-1a1 1 0 0 0-.26-.68z"></path>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1rem"
+                    height="1rem"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M12.74 2.32a1 1 0 0 0-1.48 0l-9 10A1 1 0 0 0 3 14h2v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7h2a1 1 0 0 0 1-1a1 1 0 0 0-.26-.68z"
+                    ></path>
                   </svg>
                 </div>
                 <div>#JNG Community</div>
@@ -62,7 +74,9 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
             <div class="dashboard-header_wrapper">
               <div class="dashboard-header_content">
                 <h1 class="heading-style-h2">Parcerias e Descontos</h1>
-                <div class="text-style-muted">Descontos exclusivos para membros da comunidade #JNG</div>
+                <div class="text-style-muted">
+                  Descontos exclusivos para membros da comunidade #JNG
+                </div>
               </div>
             </div>
           </div>
@@ -83,7 +97,9 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
                           <div class="badge_wrapper is-green w-dyn-bind-empty"></div>
                         </div>
                       </div>
-                      <a href="#" target="_blank" class="button is-primary is-small w-button">Resgatar Desconto</a>
+                      <a href="#" target="_blank" class="button is-primary is-small w-button"
+                        >Resgatar Desconto</a
+                      >
                     </div>
                   </div>
                 </div>
@@ -102,6 +118,7 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
 
   <Fragment slot="scripts">
     <!-- Finsweet CMS Load -->
-    <script async src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsload@1/cmsload.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsload@1/cmsload.js"
+    ></script>
   </Fragment>
 </DashboardLayout>

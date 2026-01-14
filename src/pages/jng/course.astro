@@ -24,7 +24,11 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
           <a href="/jng/member-dashboard" class="main-content-tab_title w-inline-block">
             <div>Home</div>
           </a>
-          <a href="/jng/course" aria-current="page" class="main-content-tab_title w-inline-block w--current">
+          <a
+            href="/jng/course"
+            aria-current="page"
+            class="main-content-tab_title w-inline-block w--current"
+          >
             <div>Workshops JNG</div>
           </a>
           <a href="/jng/resume-generator" class="main-content-tab_title w-inline-block">
@@ -54,8 +58,16 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
               <div class="text-size-small text-style-muted">Voce esta em:</div>
               <a href="/jng/member-dashboard" class="breadcrumb_link w-inline-block">
                 <div class="icon-1x1-small w-embed">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M12.74 2.32a1 1 0 0 0-1.48 0l-9 10A1 1 0 0 0 3 14h2v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7h2a1 1 0 0 0 1-1a1 1 0 0 0-.26-.68z"></path>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1rem"
+                    height="1rem"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M12.74 2.32a1 1 0 0 0-1.48 0l-9 10A1 1 0 0 0 3 14h2v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7h2a1 1 0 0 0 1-1a1 1 0 0 0-.26-.68z"
+                    ></path>
                   </svg>
                 </div>
                 <div>#JNG Community</div>
@@ -92,8 +104,7 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
                               allowfullscreen="true"
                               width="100%"
                               height="100%"
-                              fetchpriority="high"
-                            ></iframe>
+                              fetchpriority="high"></iframe>
                           </div>
                         </div>
                       </div>
@@ -106,8 +117,16 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
                             <div class="link_group text-color-primary">
                               <div class="text-weight-medium w-embed">Acesse os Capitulos</div>
                               <div class="icon-1x1-small w-embed">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                  <path fill="currentColor" d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0"></path>
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    fill="currentColor"
+                                    d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0"
+                                  ></path>
                                 </svg>
                               </div>
                             </div>
@@ -134,7 +153,9 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
                       <div class="lesson-card_content">
                         <div class="icon-1x1-level is-hidden w-embed">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                            <path fill="currentColor" d="M30 30h-8V4h8zm-6-2h4V6h-4zm-4 2h-8V12h8zm-10 0H2V18h8z"></path>
+                            <path
+                              fill="currentColor"
+                              d="M30 30h-8V4h8zm-6-2h4V6h-4zm-4 2h-8V12h8zm-10 0H2V18h8z"></path>
                           </svg>
                         </div>
                         <div class="user-card--sm__title">
@@ -146,8 +167,16 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
                         </div>
                       </div>
                       <div class="icon-1x1-small w-embed">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                          <path fill="currentColor" d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0"></path>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0"
+                          ></path>
                         </svg>
                       </div>
                     </a>
@@ -166,21 +195,23 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
 
   <Fragment slot="scripts">
     <!-- Finsweet CMS Load -->
-    <script async src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsload@1/cmsload.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsload@1/cmsload.js"
+    ></script>
     <!-- Finsweet CMS Filter -->
-    <script async src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsfilter@1/cmsfilter.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsfilter@1/cmsfilter.js"
+    ></script>
 
     <!-- Module parent-child organization script -->
     <script is:inline>
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function () {
         // Get all parent and child elements
         const parents = document.querySelectorAll('[module-parent]');
         const children = document.querySelectorAll('[module-child]');
 
         // Move children to their matching parents
-        children.forEach(function(child) {
+        children.forEach(function (child) {
           const childSlug = child.getAttribute('module-child');
-          const matchingParent = Array.from(parents).find(function(parent) {
+          const matchingParent = Array.from(parents).find(function (parent) {
             return parent.getAttribute('module-parent') === childSlug;
           });
 
@@ -192,9 +223,9 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
         });
 
         // Sort children within each parent
-        parents.forEach(function(parent) {
+        parents.forEach(function (parent) {
           const childArray = Array.from(parent.querySelectorAll('[module-child]'));
-          childArray.sort(function(a, b) {
+          childArray.sort(function (a, b) {
             const textA = a.textContent.trim();
             const textB = b.textContent.trim();
             const numA = parseInt((textA.match(/A(\d+)/) || [])[1], 10);
@@ -205,7 +236,7 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
             }
             return textA.localeCompare(textB, undefined, { numeric: true, sensitivity: 'base' });
           });
-          childArray.forEach(function(child) {
+          childArray.forEach(function (child) {
             parent.appendChild(child);
           });
         });
