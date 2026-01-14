@@ -10,7 +10,8 @@
 
 ### 🚨 CRITICAL: CLI + Task Tool in SAME Message
 
-**When user says "spawn swarm" or requests complex work, Claude Code MUST in ONE message:**
+**When user says "spawn swarm" or requests complex work, Claude Code MUST in ONE
+message:**
 
 1. Call CLI tools via Bash to initialize coordination
 2. **IMMEDIATELY** call Task tool to spawn REAL working agents
@@ -33,7 +34,8 @@ npx @claude-flow/cli@latest swarm init --topology hierarchical-mesh --max-agents
 **Valid Topologies:**
 
 - `hierarchical` - Queen controls workers directly (anti-drift for small teams)
-- `hierarchical-mesh` - V3 queen + peer communication (recommended for 10+ agents)
+- `hierarchical-mesh` - V3 queen + peer communication (recommended for 10+
+  agents)
 - `mesh` - Fully connected peer network
 - `ring` - Circular communication pattern
 - `star` - Central coordinator with spokes
@@ -50,45 +52,46 @@ npx @claude-flow/cli@latest swarm init --topology hierarchical-mesh --max-agents
 
 ### 🔄 Auto-Start Swarm Protocol (Background Execution)
 
-When the user requests a complex task, **spawn agents in background and WAIT for completion:**
+When the user requests a complex task, **spawn agents in background and WAIT for
+completion:**
 
 ```javascript
 // STEP 1: Initialize swarm coordination (anti-drift config)
 Bash(
-  "npx @claude-flow/cli@latest swarm init --topology hierarchical --max-agents 8 --strategy specialized",
+  'npx @claude-flow/cli@latest swarm init --topology hierarchical --max-agents 8 --strategy specialized'
 );
 
 // STEP 2: Spawn ALL agents IN BACKGROUND in a SINGLE message
 // Use run_in_background: true so agents work concurrently
 Task({
   prompt:
-    "Research requirements, analyze codebase patterns, store findings in memory",
-  subagent_type: "researcher",
-  description: "Research phase",
+    'Research requirements, analyze codebase patterns, store findings in memory',
+  subagent_type: 'researcher',
+  description: 'Research phase',
   run_in_background: true, // ← CRITICAL: Run in background
 });
 Task({
-  prompt: "Design architecture based on research. Document decisions.",
-  subagent_type: "system-architect",
-  description: "Architecture phase",
+  prompt: 'Design architecture based on research. Document decisions.',
+  subagent_type: 'system-architect',
+  description: 'Architecture phase',
   run_in_background: true,
 });
 Task({
-  prompt: "Implement the solution following the design. Write clean code.",
-  subagent_type: "coder",
-  description: "Implementation phase",
+  prompt: 'Implement the solution following the design. Write clean code.',
+  subagent_type: 'coder',
+  description: 'Implementation phase',
   run_in_background: true,
 });
 Task({
-  prompt: "Write comprehensive tests for the implementation.",
-  subagent_type: "tester",
-  description: "Testing phase",
+  prompt: 'Write comprehensive tests for the implementation.',
+  subagent_type: 'tester',
+  description: 'Testing phase',
   run_in_background: true,
 });
 Task({
-  prompt: "Review code quality, security, and best practices.",
-  subagent_type: "reviewer",
-  description: "Review phase",
+  prompt: 'Review code quality, security, and best practices.',
+  subagent_type: 'reviewer',
+  description: 'Review phase',
   run_in_background: true,
 });
 
@@ -231,14 +234,16 @@ Bash("npx @claude-flow/cli@latest hooks worker dispatch --trigger optimize")
 1. ALL operations MUST be concurrent/parallel in a single message
 2. **NEVER save working files, text/mds and tests to the root folder**
 3. ALWAYS organize files in appropriate subdirectories
-4. **USE CLAUDE CODE'S TASK TOOL** for spawning agents concurrently, not just MCP
+4. **USE CLAUDE CODE'S TASK TOOL** for spawning agents concurrently, not just
+   MCP
 
 ### ⚡ GOLDEN RULE: "1 MESSAGE = ALL RELATED OPERATIONS"
 
 **MANDATORY PATTERNS:**
 
 - **TodoWrite**: ALWAYS batch ALL todos in ONE call (5-10+ todos minimum)
-- **Task tool (Claude Code)**: ALWAYS spawn ALL agents in ONE message with full instructions
+- **Task tool (Claude Code)**: ALWAYS spawn ALL agents in ONE message with full
+  instructions
 - **File operations**: ALWAYS batch ALL reads/writes/edits in ONE message
 - **Bash commands**: ALWAYS batch ALL terminal operations in ONE message
 - **Memory operations**: ALWAYS batch ALL memory store/retrieve in ONE message
@@ -336,7 +341,8 @@ npx @claude-flow/cli@latest performance benchmark --suite all
 
 ### V3 Specialized Agents
 
-`security-architect`, `security-auditor`, `memory-specialist`, `performance-engineer`
+`security-architect`, `security-auditor`, `memory-specialist`,
+`performance-engineer`
 
 ### 🔐 @claude-flow/security
 
@@ -348,27 +354,34 @@ CVE remediation, input validation, path security:
 
 ### Swarm Coordination
 
-`hierarchical-coordinator`, `mesh-coordinator`, `adaptive-coordinator`, `collective-intelligence-coordinator`, `swarm-memory-manager`
+`hierarchical-coordinator`, `mesh-coordinator`, `adaptive-coordinator`,
+`collective-intelligence-coordinator`, `swarm-memory-manager`
 
 ### Consensus & Distributed
 
-`byzantine-coordinator`, `raft-manager`, `gossip-coordinator`, `consensus-builder`, `crdt-synchronizer`, `quorum-manager`, `security-manager`
+`byzantine-coordinator`, `raft-manager`, `gossip-coordinator`,
+`consensus-builder`, `crdt-synchronizer`, `quorum-manager`, `security-manager`
 
 ### Performance & Optimization
 
-`perf-analyzer`, `performance-benchmarker`, `task-orchestrator`, `memory-coordinator`, `smart-agent`
+`perf-analyzer`, `performance-benchmarker`, `task-orchestrator`,
+`memory-coordinator`, `smart-agent`
 
 ### GitHub & Repository
 
-`github-modes`, `pr-manager`, `code-review-swarm`, `issue-tracker`, `release-manager`, `workflow-automation`, `project-board-sync`, `repo-architect`, `multi-repo-swarm`
+`github-modes`, `pr-manager`, `code-review-swarm`, `issue-tracker`,
+`release-manager`, `workflow-automation`, `project-board-sync`,
+`repo-architect`, `multi-repo-swarm`
 
 ### SPARC Methodology
 
-`sparc-coord`, `sparc-coder`, `specification`, `pseudocode`, `architecture`, `refinement`
+`sparc-coord`, `sparc-coder`, `specification`, `pseudocode`, `architecture`,
+`refinement`
 
 ### Specialized Development
 
-`backend-dev`, `mobile-dev`, `ml-developer`, `cicd-engineer`, `api-docs`, `system-architect`, `code-analyzer`, `base-template-generator`
+`backend-dev`, `mobile-dev`, `ml-developer`, `cicd-engineer`, `api-docs`,
+`system-architect`, `code-analyzer`, `base-template-generator`
 
 ### Testing & Validation
 
@@ -496,7 +509,8 @@ The 4-step intelligence pipeline:
 
 Features:
 
-- **sql.js**: Cross-platform SQLite persistent cache (WASM, no native compilation)
+- **sql.js**: Cross-platform SQLite persistent cache (WASM, no native
+  compilation)
 - **Document chunking**: Configurable overlap and size
 - **Normalization**: L2, L1, min-max, z-score
 - **Hyperbolic embeddings**: Poincaré ball model for hierarchical data
@@ -636,11 +650,16 @@ npx @claude-flow/cli@latest doctor --fix
 
 - **Swarm init**: `npx @claude-flow/cli@latest swarm init --topology <type>`
 - **Swarm status**: `npx @claude-flow/cli@latest swarm status`
-- **Agent spawn**: `npx @claude-flow/cli@latest agent spawn -t <type> --name <name>`
-- **Memory store**: `npx @claude-flow/cli@latest memory store --key "mykey" --value "myvalue" --namespace patterns`
-- **Memory search**: `npx @claude-flow/cli@latest memory search --query "search terms"`
-- **Memory list**: `npx @claude-flow/cli@latest memory list --namespace patterns`
-- **Memory retrieve**: `npx @claude-flow/cli@latest memory retrieve --key "mykey" --namespace patterns`
+- **Agent spawn**:
+  `npx @claude-flow/cli@latest agent spawn -t <type> --name <name>`
+- **Memory store**:
+  `npx @claude-flow/cli@latest memory store --key "mykey" --value "myvalue" --namespace patterns`
+- **Memory search**:
+  `npx @claude-flow/cli@latest memory search --query "search terms"`
+- **Memory list**:
+  `npx @claude-flow/cli@latest memory list --namespace patterns`
+- **Memory retrieve**:
+  `npx @claude-flow/cli@latest memory retrieve --key "mykey" --namespace patterns`
 - **Hooks**: `npx @claude-flow/cli@latest hooks <hook-name> [options]`
 
 ## 📝 Memory Commands Reference (IMPORTANT)
@@ -686,7 +705,8 @@ npx @claude-flow/cli@latest memory retrieve --key "pattern-auth" --namespace pat
 npx @claude-flow/cli@latest memory init --force --verbose
 ```
 
-**KEY**: CLI coordinates the strategy via Bash, Claude Code's Task tool executes with real agents.
+**KEY**: CLI coordinates the strategy via Bash, Claude Code's Task tool executes
+with real agents.
 
 ## Support
 
@@ -699,20 +719,27 @@ Remember: **Claude Flow CLI coordinates, Claude Code Task tool creates!**
 
 # important-instruction-reminders
 
-Do what has been asked; nothing more, nothing less.
-NEVER create files unless they're absolutely necessary for achieving your goal.
-ALWAYS prefer editing an existing file to creating a new one.
-NEVER proactively create documentation files (\*.md) or README files. Only create documentation files if explicitly requested by the User.
-Never save working files, text/mds and tests to the root folder.
+Do what has been asked; nothing more, nothing less. NEVER create files unless
+they're absolutely necessary for achieving your goal. ALWAYS prefer editing an
+existing file to creating a new one. NEVER proactively create documentation
+files (\*.md) or README files. Only create documentation files if explicitly
+requested by the User. Never save working files, text/mds and tests to the root
+folder.
 
 ## 🚨 SWARM EXECUTION RULES (CRITICAL)
 
-1. **SPAWN IN BACKGROUND**: Use `run_in_background: true` for all agent Task calls
-2. **SPAWN ALL AT ONCE**: Put ALL agent Task calls in ONE message for parallel execution
-3. **TELL USER**: After spawning, list what each agent is doing (use emojis for clarity)
-4. **STOP AND WAIT**: After spawning, STOP - do NOT add more tool calls or check status
-5. **NO POLLING**: Never poll TaskOutput or check swarm status - trust agents to return
-6. **SYNTHESIZE**: When agent results arrive, review ALL results before proceeding
+1. **SPAWN IN BACKGROUND**: Use `run_in_background: true` for all agent Task
+   calls
+2. **SPAWN ALL AT ONCE**: Put ALL agent Task calls in ONE message for parallel
+   execution
+3. **TELL USER**: After spawning, list what each agent is doing (use emojis for
+   clarity)
+4. **STOP AND WAIT**: After spawning, STOP - do NOT add more tool calls or check
+   status
+5. **NO POLLING**: Never poll TaskOutput or check swarm status - trust agents to
+   return
+6. **SYNTHESIZE**: When agent results arrive, review ALL results before
+   proceeding
 7. **NO CONFIRMATION**: Don't ask "should I check?" - just wait for results
 
 Example spawn message:

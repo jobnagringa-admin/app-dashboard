@@ -1,10 +1,14 @@
 # Job na Gringa - Astro Migration
 
-**Job na Gringa** is a platform connecting Brazilian professionals with remote international job opportunities. This project is currently being migrated from a static HTML/CSS/JavaScript stack to a modern Astro framework implementation.
+**Job na Gringa** is a platform connecting Brazilian professionals with remote
+international job opportunities. This project is currently being migrated from a
+static HTML/CSS/JavaScript stack to a modern Astro framework implementation.
 
 ## 🎯 Project Overview
 
-Job na Gringa helps Brazilian professionals find remote work opportunities with international companies. The platform provides job listings, career resources, community features, and member dashboards.
+Job na Gringa helps Brazilian professionals find remote work opportunities with
+international companies. The platform provides job listings, career resources,
+community features, and member dashboards.
 
 **Website**: [jobnagringa.com.br](https://jobnagringa.com.br)
 
@@ -116,7 +120,8 @@ Job na Gringa helps Brazilian professionals find remote work opportunities with 
    cp .env.example .env
    ```
 
-   Edit `.env` with your configuration (see [Environment Variables](#environment-variables))
+   Edit `.env` with your configuration (see
+   [Environment Variables](#environment-variables))
 
 4. **Start development server**
 
@@ -181,7 +186,8 @@ PUBLIC_GTM_ID=GTM-XXXXXXX
 
 ## 🔄 Migration Status
 
-This project is actively being migrated from static HTML/CSS/JavaScript to Astro. The migration plan includes:
+This project is actively being migrated from static HTML/CSS/JavaScript to
+Astro. The migration plan includes:
 
 ### Completed ✅
 
@@ -207,7 +213,8 @@ This project is actively being migrated from static HTML/CSS/JavaScript to Astro
 - Lighthouse score improvements
 - Testing implementation
 
-See `docs/plans/MIGRATION_PLAN.md` and `docs/plans/MIGRATION_TASKS_REPORT.md` for detailed migration tasks.
+See `docs/plans/MIGRATION_PLAN.md` and `docs/plans/MIGRATION_TASKS_REPORT.md`
+for detailed migration tasks.
 
 ## 🏗️ Architecture
 
@@ -294,7 +301,8 @@ i18n: {
 
 ### Issue Tracking
 
-This project uses **bd** (beads) for issue tracking. See `AGENTS.md` for workflow details.
+This project uses **bd** (beads) for issue tracking. See `AGENTS.md` for
+workflow details.
 
 **Quick Reference:**
 
@@ -355,9 +363,12 @@ The production build will be in the `dist/` directory.
 ## 📚 Documentation
 
 - **Migration Plan**: `docs/plans/MIGRATION_PLAN.md` - Detailed migration tasks
-- **Migration Report**: `docs/plans/MIGRATION_TASKS_REPORT.md` - Migration progress
-- **Scripts Guide**: `src/scripts/SCRIPTS_GUIDE.md` - Client-side scripts documentation
-- **CSS Migration Notes**: `src/styles/CSS_MIGRATION_NOTES.md` - CSS migration details
+- **Migration Report**: `docs/plans/MIGRATION_TASKS_REPORT.md` - Migration
+  progress
+- **Scripts Guide**: `src/scripts/SCRIPTS_GUIDE.md` - Client-side scripts
+  documentation
+- **CSS Migration Notes**: `src/styles/CSS_MIGRATION_NOTES.md` - CSS migration
+  details
 - **Agent Instructions**: `AGENTS.md` - Development workflow and issue tracking
 
 ## 🤝 Contributing
@@ -390,4 +401,5 @@ For issues and questions:
 
 ---
 
-**Note**: This project is in active migration. Legacy files are preserved in `src-legacy/` for reference during the migration process.
+**Note**: This project is in active migration. Legacy files are preserved in
+`src-legacy/` for reference during the migration process.
