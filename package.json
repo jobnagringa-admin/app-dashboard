@@ -12,24 +12,29 @@
     "lint": "eslint . --max-warnings=0",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"**/*.{astro,ts,tsx,js,jsx,json,css,md,yml,yaml}\"",
-    "format:check": "prettier --check \"**/*.{astro,ts,tsx,js,jsx,json,css,md,yml,yaml}\""
+    "format:check": "prettier --check \"**/*.{astro,ts,tsx,js,jsx,json,css,md,yml,yaml}\"",
+    "lighthouse": "lhci autorun && node scripts/lighthouse-cleanup.js",
+    "lighthouse:collect": "lhci collect && node scripts/lighthouse-cleanup.js",
+    "lighthouse:cleanup": "node scripts/lighthouse-cleanup.js"
   },
   "dependencies": {
     "@astrojs/node": "^9.5.1",
+    "@astrojs/partytown": "^2.1.4",
     "@clerk/clerk-js": "^5.119.1",
     "astro": "^5.16.9"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
-    "@eslint/js": "^9.17.0",
-    "@typescript-eslint/eslint-plugin": "^8.18.0",
-    "@typescript-eslint/parser": "^8.18.0",
-    "eslint": "^9.17.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-astro": "^1.2.4",
-    "prettier": "^3.4.2",
+    "@eslint/js": "^9.39.2",
+    "@lhci/cli": "^0.15.1",
+    "@typescript-eslint/eslint-plugin": "^8.53.0",
+    "@typescript-eslint/parser": "^8.53.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-astro": "^1.5.0",
+    "prettier": "^3.7.4",
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.18.0"
+    "typescript-eslint": "^8.53.0"
   }
 }

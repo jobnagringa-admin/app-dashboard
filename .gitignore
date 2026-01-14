@@ -30,3 +30,9 @@ bun-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Lighthouse temporary directories and artifacts
+lighthouse.*/
+.lighthouseci/lhr-*.html
+.lighthouseci/lhr-*.json
+.lighthouseci/flags-*.json

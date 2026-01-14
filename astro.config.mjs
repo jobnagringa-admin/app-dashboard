@@ -1,9 +1,23 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import node from "@astrojs/node";
+import partytown from "@astrojs/partytown";
 
 // https://astro.build/config
 export default defineConfig({
+  // Integrations
+  integrations: [
+    partytown({
+      // Configuration for Partytown
+      config: {
+        // Forward GTM dataLayer calls to the main thread
+        forward: ["dataLayer.push"],
+        // Debug mode (disable in production)
+        debug: false,
+      },
+    }),
+  ],
+
   site: "https://jobnagringa.com.br",
 
   // Output mode - server with adapter for SSR pages
