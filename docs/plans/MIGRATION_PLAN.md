@@ -2,7 +2,9 @@
 
 ## Epic: Migrate Project from HTML/CSS/JS to Astro Framework
 
-**Description**: Complete migration of the entire project from static HTML/CSS/JavaScript to Astro framework while maintaining pixel-perfect layout fidelity and all existing functionality.
+**Description**: Complete migration of the entire project from static
+HTML/CSS/JavaScript to Astro framework while maintaining pixel-perfect layout
+fidelity and all existing functionality.
 
 ---
 
@@ -10,7 +12,8 @@
 
 ### Description
 
-Initialize a new Astro project with proper configuration, TypeScript support, and project structure that mirrors the current HTML structure.
+Initialize a new Astro project with proper configuration, TypeScript support,
+and project structure that mirrors the current HTML structure.
 
 ### Detailed Steps
 
@@ -25,7 +28,8 @@ Initialize a new Astro project with proper configuration, TypeScript support, an
    - Configure base URL for production
    - Set site URL
    - Configure build options
-   - Add integrations: `@astrojs/tailwind` (if using Tailwind), `@astrojs/sitemap`
+   - Add integrations: `@astrojs/tailwind` (if using Tailwind),
+     `@astrojs/sitemap`
    - File: `astro.config.mjs`
 
 3. **Set up TypeScript configuration**
@@ -74,7 +78,8 @@ Initialize a new Astro project with proper configuration, TypeScript support, an
 
 ### Description
 
-Migrate all CSS files to Astro-compatible format, maintaining exact styling and organization.
+Migrate all CSS files to Astro-compatible format, maintaining exact styling and
+organization.
 
 ### Detailed Steps
 
@@ -90,7 +95,8 @@ Migrate all CSS files to Astro-compatible format, maintaining exact styling and 
    - File: `src/styles/webflow.css`
 
 3. **Migrate jobnagringa.webflow.css**
-   - Copy `src/css/jobnagringa.webflow.css` to `src/styles/jobnagringa.webflow.css`
+   - Copy `src/css/jobnagringa.webflow.css` to
+     `src/styles/jobnagringa.webflow.css`
    - This is the main custom stylesheet
    - Verify all CSS variables are preserved
    - File: `src/styles/jobnagringa.webflow.css`
@@ -107,7 +113,8 @@ Migrate all CSS files to Astro-compatible format, maintaining exact styling and 
 
 5. **Create global styles entry point**
    - Create `src/styles/global.css` that imports all CSS files
-   - Import order: normalize.css → webflow.css → jobnagringa.webflow.css → inline-extracted.css
+   - Import order: normalize.css → webflow.css → jobnagringa.webflow.css →
+     inline-extracted.css
    - File: `src/styles/global.css`
 
 6. **Set up CSS in Astro layout**
@@ -172,13 +179,16 @@ Identify and extract common HTML patterns into reusable Astro components.
    - Create `src/components/Select.astro`
    - Create `src/components/Checkbox.astro`
    - Handle validation styling
-   - Files: `src/components/Input.astro`, `src/components/Select.astro`, `src/components/Checkbox.astro`
+   - Files: `src/components/Input.astro`, `src/components/Select.astro`,
+     `src/components/Checkbox.astro`
 
 6. **Create Layout Components**
-   - Create `src/layouts/BaseLayout.astro` - Main layout with head, navbar, footer
+   - Create `src/layouts/BaseLayout.astro` - Main layout with head, navbar,
+     footer
    - Create `src/layouts/PageLayout.astro` - For content pages
    - Create `src/layouts/DashboardLayout.astro` - For dashboard pages
-   - Files: `src/layouts/BaseLayout.astro`, `src/layouts/PageLayout.astro`, `src/layouts/DashboardLayout.astro`
+   - Files: `src/layouts/BaseLayout.astro`, `src/layouts/PageLayout.astro`,
+     `src/layouts/DashboardLayout.astro`
 
 7. **Create Head Component**
    - Extract `<head>` section common elements
@@ -214,7 +224,8 @@ Identify and extract common HTML patterns into reusable Astro components.
 
 ### Description
 
-Extract and refactor all JavaScript code into Astro-compatible modules and client-side scripts.
+Extract and refactor all JavaScript code into Astro-compatible modules and
+client-side scripts.
 
 ### Detailed Steps
 
@@ -294,7 +305,8 @@ Extract and refactor all JavaScript code into Astro-compatible modules and clien
 - Use TypeScript for type safety
 - Keep client-side scripts in `<script>` tags with `is:inline` or `client:load`
 - Use Astro's `define:vars` for passing server data to client scripts
-- Organize utilities vs scripts (utils = pure functions, scripts = DOM manipulation)
+- Organize utilities vs scripts (utils = pure functions, scripts = DOM
+  manipulation)
 
 ---
 
@@ -375,7 +387,8 @@ Migrate all third-party scripts and integrations to Astro-compatible format.
 
 ### Description
 
-Migrate all root-level HTML pages to Astro pages, maintaining exact layout and functionality.
+Migrate all root-level HTML pages to Astro pages, maintaining exact layout and
+functionality.
 
 ### Detailed Steps
 
@@ -532,7 +545,8 @@ Migrate all detail pages (detail\_\*.html) to Astro dynamic routes.
 ### Detailed Steps
 
 1. **Migrate detail_post.html**
-   - Create `src/pages/detail/post/[slug].astro` or `src/pages/blog/[slug].astro`
+   - Create `src/pages/detail/post/[slug].astro` or
+     `src/pages/blog/[slug].astro`
    - Dynamic route for blog posts
    - File: `src/pages/blog/[slug].astro`
 
@@ -738,7 +752,8 @@ All files in `src/pages/jng/` directory
 
 ### Description
 
-Migrate pages from `basic/`, `lp/`, `members/`, `payment/`, `products/` directories.
+Migrate pages from `basic/`, `lp/`, `members/`, `payment/`, `products/`
+directories.
 
 ### Detailed Steps
 
@@ -805,7 +820,8 @@ All files in respective `src/pages/` subdirectories
 
 ### Description
 
-Replace Webflow CMS functionality (fs-cmsload, fs-cmsfilter) with Astro data fetching.
+Replace Webflow CMS functionality (fs-cmsload, fs-cmsfilter) with Astro data
+fetching.
 
 ### Detailed Steps
 
@@ -869,7 +885,8 @@ Replace Webflow CMS functionality (fs-cmsload, fs-cmsfilter) with Astro data fet
 
 ### Description
 
-Set up Clerk authentication integration with Astro middleware for protected routes.
+Set up Clerk authentication integration with Astro middleware for protected
+routes.
 
 ### Detailed Steps
 
@@ -929,12 +946,14 @@ Set up Clerk authentication integration with Astro middleware for protected rout
 
 ### Description
 
-Comprehensive testing to ensure pixel-perfect layout fidelity and functionality preservation.
+Comprehensive testing to ensure pixel-perfect layout fidelity and functionality
+preservation.
 
 ### Detailed Steps
 
 1. **Visual Regression Testing Setup**
-   - Set up visual regression testing tool (e.g., Percy, Chromatic, or Playwright)
+   - Set up visual regression testing tool (e.g., Percy, Chromatic, or
+     Playwright)
    - Create baseline screenshots of all pages
    - File: Test configuration files
 
@@ -988,7 +1007,8 @@ Comprehensive testing to ensure pixel-perfect layout fidelity and functionality 
 
 ### Description
 
-Configure Astro build settings, optimizations, and production-ready configuration.
+Configure Astro build settings, optimizations, and production-ready
+configuration.
 
 ### Detailed Steps
 
@@ -1186,4 +1206,6 @@ Each task includes:
 - Best practices
 - Function names and components
 
-The migration should maintain **pixel-perfect fidelity** while modernizing the codebase with Astro's benefits: better performance, type safety, component reusability, and modern tooling.
+The migration should maintain **pixel-perfect fidelity** while modernizing the
+codebase with Astro's benefits: better performance, type safety, component
+reusability, and modern tooling.

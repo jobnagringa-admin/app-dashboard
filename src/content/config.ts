@@ -100,11 +100,13 @@ const postsCollection = defineCollection({
     excerpt: z.string().optional().describe('Short excerpt for listing'),
 
     // Author info
-    author: z.object({
-      name: z.string(),
-      avatar: z.string().optional().describe('author_thumb image URL'),
-      bio: z.string().optional(),
-    }).optional(),
+    author: z
+      .object({
+        name: z.string(),
+        avatar: z.string().optional().describe('author_thumb image URL'),
+        bio: z.string().optional(),
+      })
+      .optional(),
 
     // Categorization
     tags: z.array(z.string()).default([]).describe('Post tags/categories'),
@@ -115,7 +117,7 @@ const postsCollection = defineCollection({
     // Metadata
     publishedAt: z.coerce.date(),
     updatedAt: z.coerce.date().optional(),
-    slug: z.string(),
+    // Note: slug is auto-generated from filename for content collections
 
     // Access control
     memberOnly: z.boolean().default(false).describe('Requires paid membership'),
@@ -140,7 +142,7 @@ const partnersCollection = defineCollection({
 
     // Links
     website: z.string().url().optional(),
-    slug: z.string(),
+    // Note: slug is auto-generated from filename for content collections
 
     // Display
     featured: z.boolean().default(false),
@@ -160,11 +162,13 @@ const coursesCollection = defineCollection({
     description: z.string().optional(),
 
     // Instructor
-    instructor: z.object({
-      name: z.string(),
-      avatar: z.string().optional().describe('user-card__thumbnail'),
-      bio: z.string().optional(),
-    }).optional(),
+    instructor: z
+      .object({
+        name: z.string(),
+        avatar: z.string().optional().describe('user-card__thumbnail'),
+        bio: z.string().optional(),
+      })
+      .optional(),
 
     // Structure
     moduleCount: z.number().default(0),
@@ -193,15 +197,17 @@ const lessonsCollection = defineCollection({
     description: z.string().optional(),
 
     // Course relationship
-    courseId: z.string().describe('Parent course ID'),
+    courseId: z.string().optional().describe('Parent course ID'),
     moduleId: z.string().optional().describe('Parent module ID'),
     order: z.number().default(0).describe('Lesson order in module'),
 
     // Instructor
-    instructor: z.object({
-      name: z.string(),
-      avatar: z.string().optional().describe('user-card__thumbnail'),
-    }).optional(),
+    instructor: z
+      .object({
+        name: z.string(),
+        avatar: z.string().optional().describe('user-card__thumbnail'),
+      })
+      .optional(),
 
     // Media
     videoUrl: z.string().optional().describe('Video URL (course_video)'),
@@ -211,14 +217,17 @@ const lessonsCollection = defineCollection({
     content: z.string().optional().describe('Lesson content (lesson_rich-text)'),
 
     // Next steps
-    nextLesson: z.object({
-      title: z.string(),
-      description: z.string().optional(),
-    }).optional().describe('heading-style-3 + p section'),
+    nextLesson: z
+      .object({
+        title: z.string(),
+        description: z.string().optional(),
+      })
+      .optional()
+      .describe('heading-style-3 + p section'),
 
     // Access
     memberOnly: z.boolean().default(true),
-    slug: z.string(),
+    // Note: slug is auto-generated from filename for content collections
   }),
 });
 
@@ -258,8 +267,8 @@ const qaCollection = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string().describe('Question title (card-title-medium)'),
-    question: z.string().describe('Full question text'),
-    answer: z.string().describe('Answer content (qa_answer-content rich text)'),
+    question: z.string().optional().describe('Full question text'),
+    // Note: answer content comes from markdown body
 
     // Categorization (used for filtering)
     tag: z.string().optional().describe('Primary tag (fs-cmsfilter-field="tag")'),
@@ -268,7 +277,7 @@ const qaCollection = defineCollection({
 
     // Access
     memberOnly: z.boolean().default(true),
-    slug: z.string(),
+    // Note: slug is auto-generated from filename for content collections
   }),
 });
 
@@ -296,7 +305,7 @@ const resumeReviewsCollection = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string().describe('Review title (heading-style-h3)'),
-    content: z.string().describe('Review content (resume_richtext)'),
+    // Note: content comes from markdown body
 
     // Author
     reviewee: z.string().optional().describe('Person whose resume is reviewed'),
@@ -304,7 +313,7 @@ const resumeReviewsCollection = defineCollection({
 
     // Access
     memberOnly: z.boolean().default(true),
-    slug: z.string(),
+    // Note: slug is auto-generated from filename for content collections
 
     publishedAt: z.coerce.date().optional(),
   }),
@@ -321,9 +330,7 @@ const productsCollection = defineCollection({
     title: z.string().describe('Product title (heading-style-h2)'),
     subtitle: z.string().optional(),
     description: z.string().optional(),
-
-    // Content
-    content: z.string().describe('Product details (lesson_rich-text)'),
+    // Note: content comes from markdown body
 
     // Media
     thumbnail: z.string().optional(),
@@ -335,7 +342,7 @@ const productsCollection = defineCollection({
 
     // Links
     purchaseUrl: z.string().url().optional(),
-    slug: z.string(),
+    // Note: slug is auto-generated from filename for content collections
 
     // Status
     featured: z.boolean().default(false),

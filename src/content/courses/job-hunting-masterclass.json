@@ -1,0 +1,15 @@
+{
+  "title": "Job Hunting Masterclass",
+  "description": "Complete course on finding and landing international jobs",
+  "instructor": {
+    "name": "Paulo",
+    "avatar": "/images/instructors/paulo.jpg",
+    "bio": "Career coach with 10+ years of experience"
+  },
+  "moduleCount": 5,
+  "lessonCount": 25,
+  "thumbnail": "/images/courses/job-hunting.jpg",
+  "previewVideo": "https://youtube.com/watch?v=example",
+  "memberOnly": true,
+  "slug": "job-hunting-masterclass"
+}

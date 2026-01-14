@@ -1,0 +1,17 @@
+{
+  "position": "Senior Software Engineer",
+  "company": "Example Tech Co",
+  "companyLogo": "/images/companies/example-tech.png",
+  "categories": ["Engineering", "Backend"],
+  "searchCategory": "tech",
+  "location": "Remote",
+  "workFrom": "remote",
+  "level": "Senior",
+  "detail": "We are looking for an experienced software engineer to join our team...",
+  "openForBrazilians": true,
+  "sponsorsVisa": true,
+  "applyUrl": "https://example.com/apply",
+  "slug": "senior-software-engineer-example-tech",
+  "publishedAt": "2024-01-15",
+  "featured": true
+}

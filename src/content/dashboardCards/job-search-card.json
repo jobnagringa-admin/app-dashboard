@@ -1,0 +1,9 @@
+{
+  "title": "Start Your Job Search",
+  "description": "Access our job board with international opportunities",
+  "thumbnail": "/images/dashboard/job-search.png",
+  "categories": ["getting-started", "jobs"],
+  "href": "/jobs",
+  "order": 1,
+  "featured": true
+}

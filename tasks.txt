@@ -15,17 +15,9 @@ For this set of activities, create a new, separate epic.
 Finally, show a report of all the tasks that were created.
 
 <TASK>
-    Aplique as melhores praticas do astro para que tudo seja extremamente performatico.
 
-    Mas faça com que o layout original seja preservado, nada na UI deve ser alterada, todas as telas e componentes devem manter EXATAMENTE COM PERFEIÇÃO ABSOLUTA o layout antigo.
+    Faça a comparação visual das novas telas com as telas antigas para ver se tudo está perfeitamente funcional como antes, e se todo o layout está exatamente igual a antes
 
-    Mas aplique as melhores praticas de organização do código, quebre em pequenos componentes e etc, mas faça com que tudo seja verificavel com as paginas antigas para ver se o layout está perfeito mesmo.
-
-    Faça testes de regressão visual para manter a perfeição nas interfaces.
-
-    Tenha cuidado extremo ao refatorar o CSS para manter absolutamente tudo funcionando de maneira perfeita, mas tente fazer com que todas as telas carreguem apenas o estritamente necessario para renderizar e que não fique carregando a toa assets que impactem na performance e etc.
-
-    Aplique todas as melhores praticas possiveis.
 <TASK/>
 
 <CONTEXT/>

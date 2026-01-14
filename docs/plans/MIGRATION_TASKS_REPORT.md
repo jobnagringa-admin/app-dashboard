@@ -2,13 +2,16 @@
 
 ## Summary
 
-Successfully created **1 Epic** and **15 Tasks** in the beads backlog for migrating the project from HTML/CSS/JavaScript to Astro framework.
+Successfully created **1 Epic** and **15 Tasks** in the beads backlog for
+migrating the project from HTML/CSS/JavaScript to Astro framework.
 
 ## Epic Created
 
 **EPIC: Migrate Project from HTML/CSS/JS to Astro Framework**
 
-Complete migration of the entire project from static HTML/CSS/JavaScript to Astro framework while maintaining pixel-perfect layout fidelity and all existing functionality.
+Complete migration of the entire project from static HTML/CSS/JavaScript to
+Astro framework while maintaining pixel-perfect layout fidelity and all existing
+functionality.
 
 ## Tasks Created
 
@@ -16,7 +19,8 @@ Complete migration of the entire project from static HTML/CSS/JavaScript to Astr
 
 **Status**: Open | **Priority**: P2
 
-Initialize a new Astro project with proper configuration, TypeScript support, and project structure that mirrors the current HTML structure.
+Initialize a new Astro project with proper configuration, TypeScript support,
+and project structure that mirrors the current HTML structure.
 
 **Includes**:
 
@@ -41,7 +45,8 @@ Initialize a new Astro project with proper configuration, TypeScript support, an
 
 **Status**: Open | **Priority**: P2
 
-Migrate all CSS files to Astro-compatible format, maintaining exact styling and organization.
+Migrate all CSS files to Astro-compatible format, maintaining exact styling and
+organization.
 
 **Includes**:
 
@@ -98,7 +103,8 @@ Identify and extract common HTML patterns into reusable Astro components.
 
 **Status**: Open | **Priority**: P2
 
-Extract and refactor all JavaScript code into Astro-compatible modules and client-side scripts.
+Extract and refactor all JavaScript code into Astro-compatible modules and
+client-side scripts.
 
 **Includes**:
 
@@ -155,7 +161,8 @@ Migrate all third-party scripts and integrations to Astro-compatible format.
 
 **Status**: Open | **Priority**: P2
 
-Migrate all root-level HTML pages to Astro pages, maintaining exact layout and functionality.
+Migrate all root-level HTML pages to Astro pages, maintaining exact layout and
+functionality.
 
 **Pages to Migrate** (21 total):
 
@@ -218,13 +225,15 @@ Migrate all detail pages (detail\_\*.html) to Astro dynamic routes.
 
 **Status**: Open | **Priority**: P2
 
-Migrate all pages from src/jng/ directory to Astro routes under /jng path. All routes are protected and require authentication.
+Migrate all pages from src/jng/ directory to Astro routes under /jng path. All
+routes are protected and require authentication.
 
 **Pages to Migrate** (13 total):
 
 1. jng/jobs.html → `src/pages/jng/jobs.astro`
 2. jng/jobs-brs-only.html → `src/pages/jng/jobs-brs-only.astro`
-3. jng/jobs-with-vista-sponsors.html → `src/pages/jng/jobs-with-vista-sponsors.astro`
+3. jng/jobs-with-vista-sponsors.html →
+   `src/pages/jng/jobs-with-vista-sponsors.astro`
 4. jng/member-dashboard.html → `src/pages/jng/member-dashboard.astro`
 5. jng/my-account.html → `src/pages/jng/my-account.astro`
 6. jng/onboarding.html → `src/pages/jng/onboarding.astro`
@@ -248,12 +257,14 @@ Migrate pages from basic/, lp/, members/, payment/, products/ directories.
 
 1. basic/dashboard.html → `src/pages/basic/dashboard.astro`
 2. lp/assine-basic.html → `src/pages/lp/assine-basic.astro`
-3. lp/workshop-busca-de-vagas.html → `src/pages/lp/workshop-busca-de-vagas.astro`
+3. lp/workshop-busca-de-vagas.html →
+   `src/pages/lp/workshop-busca-de-vagas.astro`
 4. members/chatgpt.html → `src/pages/members/chatgpt.astro`
 5. payment/success.html → `src/pages/payment/success.astro`
 6. products/jobhunting.html → `src/pages/products/jobhunting.astro`
 7. products/networking.html → `src/pages/products/networking.astro`
-8. products/personal-branding.html → `src/pages/products/personal-branding.astro`
+8. products/personal-branding.html →
+   `src/pages/products/personal-branding.astro`
 
 ---
 
@@ -261,7 +272,8 @@ Migrate pages from basic/, lp/, members/, payment/, products/ directories.
 
 **Status**: Open | **Priority**: P2
 
-Replace Webflow CMS functionality (fs-cmsload, fs-cmsfilter) with Astro data fetching.
+Replace Webflow CMS functionality (fs-cmsload, fs-cmsfilter) with Astro data
+fetching.
 
 **Includes**:
 
@@ -287,7 +299,8 @@ Replace Webflow CMS functionality (fs-cmsload, fs-cmsfilter) with Astro data fet
 
 **Status**: Open | **Priority**: P2
 
-Set up Clerk authentication integration with Astro middleware for protected routes.
+Set up Clerk authentication integration with Astro middleware for protected
+routes.
 
 **Includes**:
 
@@ -311,7 +324,8 @@ Set up Clerk authentication integration with Astro middleware for protected rout
 
 **Status**: Open | **Priority**: P2
 
-Comprehensive testing to ensure pixel-perfect layout fidelity and functionality preservation.
+Comprehensive testing to ensure pixel-perfect layout fidelity and functionality
+preservation.
 
 **Includes**:
 
@@ -328,7 +342,8 @@ Comprehensive testing to ensure pixel-perfect layout fidelity and functionality 
 
 **Status**: Open | **Priority**: P2
 
-Configure Astro build settings, optimizations, and production-ready configuration.
+Configure Astro build settings, optimizations, and production-ready
+configuration.
 
 **Includes**:
 
@@ -427,5 +442,5 @@ Create comprehensive documentation for the migrated codebase.
 
 ---
 
-**Generated**: $(date)
-**Migration Plan**: See `MIGRATION_PLAN.md` for complete detailed breakdown
+**Generated**: $(date) **Migration Plan**: See `MIGRATION_PLAN.md` for complete
+detailed breakdown
