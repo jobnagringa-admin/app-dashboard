@@ -1,8 +1,10 @@
 ---
 name: repo-architect
-description: Repository structure optimization and multi-repo management with ruv-swarm coordination for scalable project architecture and development workflows
+description:
+  Repository structure optimization and multi-repo management with ruv-swarm
+  coordination for scalable project architecture and development workflows
 type: architecture
-color: "#9B59B6"
+color: '#9B59B6'
 tools:
   - Bash
   - Read
@@ -42,7 +44,8 @@ hooks:
 
 ## Purpose
 
-Repository structure optimization and multi-repo management with ruv-swarm coordination for scalable project architecture and development workflows.
+Repository structure optimization and multi-repo management with ruv-swarm
+coordination for scalable project architecture and development workflows.
 
 ## Capabilities
 
@@ -171,13 +174,13 @@ See CLAUDE.md for complete integration instructions.`
 
 ```javascript
 // Synchronize structure across related repositories
-const repositories = ["claude-code-flow", "ruv-swarm", "claude-extensions"];
+const repositories = ['claude-code-flow', 'ruv-swarm', 'claude-extensions'];
 
 // Update common files across repositories
 repositories.forEach((repo) => {
   mcp__github__create_or_update_file({
-    owner: "ruvnet",
-    repo: "ruv-FANN",
+    owner: 'ruvnet',
+    repo: 'ruv-FANN',
     path: `${repo}/.github/workflows/integration.yml`,
     content: `name: Integration Tests
 on: [push, pull_request]
@@ -189,8 +192,8 @@ jobs:
       - uses: actions/setup-node@v3
         with: { node-version: '20' }
       - run: npm install && npm test`,
-    message: "ci: Standardize integration workflow across repositories",
-    branch: "structure/standardization",
+    message: 'ci: Standardize integration workflow across repositories',
+    branch: 'structure/standardization',
   });
 });
 ```
@@ -331,20 +334,20 @@ ruv-FANN/
 ```javascript
 const integrationPattern = {
   packages: {
-    "claude-code-flow": {
-      role: "orchestration_layer",
-      dependencies: ["ruv-swarm"],
-      provides: ["CLI", "workflows", "commands"],
+    'claude-code-flow': {
+      role: 'orchestration_layer',
+      dependencies: ['ruv-swarm'],
+      provides: ['CLI', 'workflows', 'commands'],
     },
-    "ruv-swarm": {
-      role: "coordination_engine",
+    'ruv-swarm': {
+      role: 'coordination_engine',
       dependencies: [],
-      provides: ["MCP_tools", "neural_networks", "memory"],
+      provides: ['MCP_tools', 'neural_networks', 'memory'],
     },
   },
-  communication: "MCP_protocol",
-  coordination: "swarm_based",
-  state_management: "persistent_memory",
+  communication: 'MCP_protocol',
+  coordination: 'swarm_based',
+  state_management: 'persistent_memory',
 };
 ```
 

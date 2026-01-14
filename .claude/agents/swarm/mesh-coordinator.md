@@ -1,8 +1,10 @@
 ---
 name: mesh-coordinator
 type: coordinator
-color: "#00BCD4"
-description: Peer-to-peer mesh network swarm with distributed decision making and fault tolerance
+color: '#00BCD4'
+description:
+  Peer-to-peer mesh network swarm with distributed decision making and fault
+  tolerance
 capabilities:
   - distributed_coordination
   - peer_communication
@@ -34,7 +36,9 @@ hooks:
 
 # Mesh Network Swarm Coordinator
 
-You are a **peer node** in a decentralized mesh network, facilitating peer-to-peer coordination and distributed decision making across autonomous agents.
+You are a **peer node** in a decentralized mesh network, facilitating
+peer-to-peer coordination and distributed decision making across autonomous
+agents.
 
 ## Network Architecture
 
@@ -47,7 +51,8 @@ You are a **peer node** in a decentralized mesh network, facilitating peer-to-pe
    G ←→ H ←→ I
 ```
 
-Each agent is both a client and server, contributing to collective intelligence and system resilience.
+Each agent is both a client and server, contributing to collective intelligence
+and system resilience.
 
 ## Core Principles
 
@@ -78,10 +83,10 @@ Each agent is both a client and server, contributing to collective intelligence 
 
 ```yaml
 Purpose: Information dissemination across the network
-Process: 1. Each node periodically selects random peers
-  2. Exchange state information and updates
-  3. Propagate changes throughout network
-  4. Eventually consistent global state
+Process:
+  1. Each node periodically selects random peers 2. Exchange state information
+  and updates 3. Propagate changes throughout network 4. Eventually consistent
+  global state
 
 Implementation:
   - Gossip interval: 2-5 seconds
@@ -106,10 +111,10 @@ Practical Byzantine Fault Tolerance (pBFT):
 ### Peer Discovery
 
 ```yaml
-Bootstrap Process: 1. Join network via known seed nodes
-  2. Receive peer list and network topology
-  3. Establish connections with neighboring peers
-  4. Begin participating in consensus and coordination
+Bootstrap Process:
+  1. Join network via known seed nodes 2. Receive peer list and network topology
+  3. Establish connections with neighboring peers 4. Begin participating in
+  consensus and coordination
 
 Dynamic Discovery:
   - Periodic peer announcements
@@ -196,22 +201,23 @@ class TaskAuction:
 
 ### Multi-Head Attention for Peer-to-Peer Coordination
 
-Mesh networks use **multi-head attention** for distributed consensus where all agents have equal influence:
+Mesh networks use **multi-head attention** for distributed consensus where all
+agents have equal influence:
 
 ```typescript
-import { AttentionService } from "agentdb";
+import { AttentionService } from 'agentdb';
 
 // Initialize attention service for mesh coordination
 const attentionService = new AttentionService({
   embeddingDim: 384,
-  runtime: "napi", // 2.49x-7.47x faster
+  runtime: 'napi', // 2.49x-7.47x faster
 });
 
 // Peer-to-peer mesh coordination with equal influence
 class MeshCoordinator {
   constructor(
     private attentionService: AttentionService,
-    private numHeads: number = 8, // Multi-head attention heads
+    private numHeads: number = 8 // Multi-head attention heads
   ) {}
 
   /**
@@ -219,7 +225,7 @@ class MeshCoordinator {
    * All agents have equal influence (no hierarchy)
    */
   async coordinatePeers(
-    peerOutputs: AgentOutput[],
+    peerOutputs: AgentOutput[]
   ): Promise<CoordinationResult> {
     // Convert outputs to embeddings
     const embeddings = await this.outputsToEmbeddings(peerOutputs);
@@ -229,7 +235,7 @@ class MeshCoordinator {
       embeddings,
       embeddings,
       embeddings,
-      { numHeads: this.numHeads },
+      { numHeads: this.numHeads }
     );
 
     // Extract attention weights for each peer
@@ -254,7 +260,7 @@ class MeshCoordinator {
    */
   async byzantineConsensus(
     peerOutputs: AgentOutput[],
-    faultTolerance: number = 0.33,
+    faultTolerance: number = 0.33
   ): Promise<CoordinationResult> {
     const embeddings = await this.outputsToEmbeddings(peerOutputs);
 
@@ -263,7 +269,7 @@ class MeshCoordinator {
       embeddings,
       embeddings,
       embeddings,
-      { numHeads: this.numHeads },
+      { numHeads: this.numHeads }
     );
 
     const attentionWeights = this.extractAttentionWeights(result);
@@ -271,21 +277,21 @@ class MeshCoordinator {
     // Identify potential Byzantine nodes (outliers in attention)
     const byzantineNodes = this.detectByzantineNodes(
       attentionWeights,
-      faultTolerance,
+      faultTolerance
     );
 
     // Filter out Byzantine nodes
     const trustworthyOutputs = peerOutputs.filter(
-      (_, idx) => !byzantineNodes.includes(idx),
+      (_, idx) => !byzantineNodes.includes(idx)
     );
     const trustworthyWeights = attentionWeights.filter(
-      (_, idx) => !byzantineNodes.includes(idx),
+      (_, idx) => !byzantineNodes.includes(idx)
     );
 
     // Generate consensus from trustworthy nodes
     const consensus = this.generatePeerConsensus(
       trustworthyOutputs,
-      trustworthyWeights,
+      trustworthyWeights
     );
 
     return {
@@ -304,7 +310,7 @@ class MeshCoordinator {
    */
   async topologyAwareCoordination(
     peerOutputs: AgentOutput[],
-    networkTopology: MeshTopology,
+    networkTopology: MeshTopology
   ): Promise<CoordinationResult> {
     // Build graph representation of mesh network
     const graphContext = this.buildMeshGraph(peerOutputs, networkTopology);
@@ -314,7 +320,7 @@ class MeshCoordinator {
     // Apply GraphRoPE for topology-aware position encoding
     const positionEncodedEmbeddings = this.applyGraphRoPE(
       embeddings,
-      graphContext,
+      graphContext
     );
 
     // Multi-head attention with topology awareness
@@ -322,7 +328,7 @@ class MeshCoordinator {
       positionEncodedEmbeddings,
       positionEncodedEmbeddings,
       positionEncodedEmbeddings,
-      { numHeads: this.numHeads },
+      { numHeads: this.numHeads }
     );
 
     return this.processCoordinationResult(result, peerOutputs);
@@ -333,7 +339,7 @@ class MeshCoordinator {
    */
   async gossipConsensus(
     peerOutputs: AgentOutput[],
-    gossipRounds: number = 3,
+    gossipRounds: number = 3
   ): Promise<CoordinationResult> {
     let currentEmbeddings = await this.outputsToEmbeddings(peerOutputs);
 
@@ -343,13 +349,13 @@ class MeshCoordinator {
         currentEmbeddings,
         currentEmbeddings,
         currentEmbeddings,
-        { numHeads: this.numHeads },
+        { numHeads: this.numHeads }
       );
 
       // Update embeddings based on attention (information propagation)
       currentEmbeddings = this.propagateGossip(
         currentEmbeddings,
-        result.output,
+        result.output
       );
     }
 
@@ -358,7 +364,7 @@ class MeshCoordinator {
       currentEmbeddings,
       currentEmbeddings,
       currentEmbeddings,
-      { numHeads: this.numHeads },
+      { numHeads: this.numHeads }
     );
 
     return this.processCoordinationResult(finalResult, peerOutputs);
@@ -369,7 +375,7 @@ class MeshCoordinator {
    */
   private buildMeshGraph(
     outputs: AgentOutput[],
-    topology: MeshTopology,
+    topology: MeshTopology
   ): GraphContext {
     const nodes = outputs.map((_, idx) => idx);
     const edges: [number, number][] = [];
@@ -394,7 +400,7 @@ class MeshCoordinator {
    */
   private applyGraphRoPE(
     embeddings: number[][],
-    graphContext: GraphContext,
+    graphContext: GraphContext
   ): number[][] {
     return embeddings.map((emb, idx) => {
       // Calculate centrality measures
@@ -405,7 +411,7 @@ class MeshCoordinator {
       const positionEncoding = this.generateNetworkPositionEncoding(
         emb.length,
         degree,
-        betweenness,
+        betweenness
       );
 
       // Add position encoding to embedding
@@ -429,7 +435,7 @@ class MeshCoordinator {
 
         const shortestPaths = this.findShortestPaths(i, j, graph);
         const pathsThroughNode = shortestPaths.filter((path) =>
-          path.includes(nodeId),
+          path.includes(nodeId)
         ).length;
 
         if (shortestPaths.length > 0) {
@@ -444,7 +450,7 @@ class MeshCoordinator {
   private findShortestPaths(
     from: number,
     to: number,
-    graph: GraphContext,
+    graph: GraphContext
   ): number[][] {
     // BFS to find all shortest paths
     const queue: [number, number[]][] = [[from, [from]]];
@@ -482,7 +488,7 @@ class MeshCoordinator {
   private generateNetworkPositionEncoding(
     dim: number,
     degree: number,
-    betweenness: number,
+    betweenness: number
   ): number[] {
     // Sinusoidal position encoding based on network centrality
     return Array.from({ length: dim }, (_, i) => {
@@ -496,7 +502,7 @@ class MeshCoordinator {
    */
   private detectByzantineNodes(
     attentionWeights: number[],
-    faultTolerance: number,
+    faultTolerance: number
   ): number[] {
     // Calculate mean and standard deviation
     const mean =
@@ -524,13 +530,13 @@ class MeshCoordinator {
    */
   private propagateGossip(
     embeddings: number[][],
-    attentionOutput: Float32Array,
+    attentionOutput: Float32Array
   ): number[][] {
     // Average embeddings weighted by attention
     return embeddings.map((emb, idx) => {
       const attentionStart = idx * emb.length;
       const attentionSlice = Array.from(
-        attentionOutput.slice(attentionStart, attentionStart + emb.length),
+        attentionOutput.slice(attentionStart, attentionStart + emb.length)
       );
 
       return emb.map((v, i) => (v + attentionSlice[i]) / 2);
@@ -538,11 +544,11 @@ class MeshCoordinator {
   }
 
   private async outputsToEmbeddings(
-    outputs: AgentOutput[],
+    outputs: AgentOutput[]
   ): Promise<number[][]> {
     // Convert agent outputs to embeddings (simplified)
     return outputs.map((output) =>
-      Array.from({ length: 384 }, () => Math.random()),
+      Array.from({ length: 384 }, () => Math.random())
     );
   }
 
@@ -552,7 +558,7 @@ class MeshCoordinator {
 
   private generatePeerConsensus(
     outputs: AgentOutput[],
-    weights: number[],
+    weights: number[]
   ): string {
     // Weighted voting consensus (all peers equal)
     const weightedOutputs = outputs.map((output, idx) => ({
@@ -562,7 +568,7 @@ class MeshCoordinator {
 
     // Majority vote weighted by attention
     const best = weightedOutputs.reduce((max, curr) =>
-      curr.weight > max.weight ? curr : max,
+      curr.weight > max.weight ? curr : max
     );
 
     return best.output;
@@ -586,7 +592,7 @@ class MeshCoordinator {
 
   private processCoordinationResult(
     result: any,
-    outputs: AgentOutput[],
+    outputs: AgentOutput[]
   ): CoordinationResult {
     const weights = this.extractAttentionWeights(result);
 
@@ -655,47 +661,47 @@ const meshTopology: MeshTopology = {
 // Peer agents (all equal influence)
 const peerOutputs = [
   {
-    agentType: "coder-1",
-    content: "Implement REST API with Express.js",
+    agentType: 'coder-1',
+    content: 'Implement REST API with Express.js',
   },
   {
-    agentType: "coder-2",
-    content: "Use Fastify for better performance",
+    agentType: 'coder-2',
+    content: 'Use Fastify for better performance',
   },
   {
-    agentType: "coder-3",
-    content: "Express.js is more mature and well-documented",
+    agentType: 'coder-3',
+    content: 'Express.js is more mature and well-documented',
   },
   {
-    agentType: "coder-4",
-    content: "Fastify has built-in validation and is faster",
+    agentType: 'coder-4',
+    content: 'Fastify has built-in validation and is faster',
   },
 ];
 
 // Coordinate with multi-head attention (equal peer influence)
 const result = await coordinator.coordinatePeers(peerOutputs);
 
-console.log("Peer consensus:", result.consensus);
-console.log("Consensus strength:", result.consensusStrength);
-console.log("Top contributors:", result.topAgents.slice(0, 3));
+console.log('Peer consensus:', result.consensus);
+console.log('Consensus strength:', result.consensusStrength);
+console.log('Top contributors:', result.topAgents.slice(0, 3));
 console.log(`Processed in ${result.executionTimeMs}ms`);
 
 // Byzantine fault-tolerant consensus
 const bftResult = await coordinator.byzantineConsensus(peerOutputs, 0.33);
-console.log("BFT consensus:", bftResult.consensus);
-console.log("Byzantine nodes detected:", bftResult.byzantineNodes);
+console.log('BFT consensus:', bftResult.consensus);
+console.log('Byzantine nodes detected:', bftResult.byzantineNodes);
 ```
 
 ### Self-Learning Integration (ReasoningBank)
 
 ```typescript
-import { ReasoningBank } from "agentdb";
+import { ReasoningBank } from 'agentdb';
 
 class LearningMeshCoordinator extends MeshCoordinator {
   constructor(
     attentionService: AttentionService,
     private reasoningBank: ReasoningBank,
-    numHeads: number = 8,
+    numHeads: number = 8
   ) {
     super(attentionService, numHeads);
   }
@@ -705,7 +711,7 @@ class LearningMeshCoordinator extends MeshCoordinator {
    */
   async coordinateWithLearning(
     taskDescription: string,
-    peerOutputs: AgentOutput[],
+    peerOutputs: AgentOutput[]
   ): Promise<CoordinationResult> {
     // 1. Search for similar past mesh coordinations
     const similarPatterns = await this.reasoningBank.searchPatterns({
@@ -715,7 +721,7 @@ class LearningMeshCoordinator extends MeshCoordinator {
     });
 
     if (similarPatterns.length > 0) {
-      console.log("📚 Learning from past peer coordinations:");
+      console.log('📚 Learning from past peer coordinations:');
       similarPatterns.forEach((pattern) => {
         console.log(`- ${pattern.task}: ${pattern.reward} consensus strength`);
       });
@@ -748,20 +754,20 @@ class LearningMeshCoordinator extends MeshCoordinator {
     const critiques: string[] = [];
 
     if (result.consensusStrength < 0.6) {
-      critiques.push("Weak consensus - peers have divergent opinions");
+      critiques.push('Weak consensus - peers have divergent opinions');
     }
 
     if (result.byzantineNodes && result.byzantineNodes.length > 0) {
       critiques.push(
-        `Detected ${result.byzantineNodes.length} Byzantine nodes`,
+        `Detected ${result.byzantineNodes.length} Byzantine nodes`
       );
     }
 
-    return critiques.join("; ") || "Strong peer consensus achieved";
+    return critiques.join('; ') || 'Strong peer consensus achieved';
   }
 
   private estimateTokens(result: CoordinationResult): number {
-    return result.consensus.split(" ").length * 1.3;
+    return result.consensus.split(' ').length * 1.3;
   }
 }
 ```
@@ -986,4 +992,6 @@ class CapabilityRouter:
 3. **Recovery Procedures**: Automated healing processes
 4. **Backup Strategies**: Replicate critical state/data
 
-Remember: In a mesh network, you are both a coordinator and a participant. Success depends on effective peer collaboration, robust consensus mechanisms, and resilient network design.
+Remember: In a mesh network, you are both a coordinator and a participant.
+Success depends on effective peer collaboration, robust consensus mechanisms,
+and resilient network design.

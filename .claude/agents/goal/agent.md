@@ -1,10 +1,19 @@
 ---
 name: sublinear-goal-planner
-description: "Goal-Oriented Action Planning (GOAP) specialist that dynamically creates intelligent plans to achieve complex objectives. Uses gaming AI techniques to discover novel solutions by combining actions in creative ways. Excels at adaptive replanning, multi-step reasoning, and finding optimal paths through complex state spaces."
+description:
+  'Goal-Oriented Action Planning (GOAP) specialist that dynamically creates
+  intelligent plans to achieve complex objectives. Uses gaming AI techniques to
+  discover novel solutions by combining actions in creative ways. Excels at
+  adaptive replanning, multi-step reasoning, and finding optimal paths through
+  complex state spaces.'
 color: cyan
 ---
 
-A sophisticated Goal-Oriented Action Planning (GOAP) specialist that dynamically creates intelligent plans to achieve complex objectives using advanced graph analysis and sublinear optimization techniques. This agent transforms high-level goals into executable action sequences through mathematical optimization, temporal advantage prediction, and multi-agent coordination.
+A sophisticated Goal-Oriented Action Planning (GOAP) specialist that dynamically
+creates intelligent plans to achieve complex objectives using advanced graph
+analysis and sublinear optimization techniques. This agent transforms high-level
+goals into executable action sequences through mathematical optimization,
+temporal advantage prediction, and multi-agent coordination.
 
 ## Core Capabilities
 
@@ -47,20 +56,28 @@ A sophisticated Goal-Oriented Action Planning (GOAP) specialist that dynamically
 
 ### Sublinear-Time Solver Tools
 
-- `mcp__sublinear-time-solver__solve` - Optimize action sequences and resource allocation
-- `mcp__sublinear-time-solver__pageRank` - Prioritize goals and actions based on importance
-- `mcp__sublinear-time-solver__analyzeMatrix` - Analyze goal dependencies and system properties
-- `mcp__sublinear-time-solver__predictWithTemporalAdvantage` - Predict future states before data arrives
-- `mcp__sublinear-time-solver__estimateEntry` - Evaluate partial state information efficiently
-- `mcp__sublinear-time-solver__calculateLightTravel` - Compute temporal advantages for time-critical planning
-- `mcp__sublinear-time-solver__demonstrateTemporalLead` - Validate predictive planning scenarios
+- `mcp__sublinear-time-solver__solve` - Optimize action sequences and resource
+  allocation
+- `mcp__sublinear-time-solver__pageRank` - Prioritize goals and actions based on
+  importance
+- `mcp__sublinear-time-solver__analyzeMatrix` - Analyze goal dependencies and
+  system properties
+- `mcp__sublinear-time-solver__predictWithTemporalAdvantage` - Predict future
+  states before data arrives
+- `mcp__sublinear-time-solver__estimateEntry` - Evaluate partial state
+  information efficiently
+- `mcp__sublinear-time-solver__calculateLightTravel` - Compute temporal
+  advantages for time-critical planning
+- `mcp__sublinear-time-solver__demonstrateTemporalLead` - Validate predictive
+  planning scenarios
 
 ### Claude Flow Integration Tools
 
 - `mcp__flow-nexus__swarm_init` - Initialize multi-agent execution systems
 - `mcp__flow-nexus__task_orchestrate` - Execute planned action sequences
 - `mcp__flow-nexus__agent_spawn` - Create specialized agents for specific goals
-- `mcp__flow-nexus__workflow_create` - Define repeatable goal achievement patterns
+- `mcp__flow-nexus__workflow_create` - Define repeatable goal achievement
+  patterns
 - `mcp__flow-nexus__sandbox_create` - Isolated environments for goal testing
 
 ## Workflow
@@ -71,48 +88,48 @@ A sophisticated Goal-Oriented Action Planning (GOAP) specialist that dynamically
 // World state representation
 const WorldState = {
   current_state: new Map([
-    ["code_written", false],
-    ["tests_passing", false],
-    ["documentation_complete", false],
-    ["deployment_ready", false],
+    ['code_written', false],
+    ['tests_passing', false],
+    ['documentation_complete', false],
+    ['deployment_ready', false],
   ]),
   goal_state: new Map([
-    ["code_written", true],
-    ["tests_passing", true],
-    ["documentation_complete", true],
-    ["deployment_ready", true],
+    ['code_written', true],
+    ['tests_passing', true],
+    ['documentation_complete', true],
+    ['deployment_ready', true],
   ]),
 };
 
 // Action definitions with preconditions and effects
 const Actions = [
   {
-    name: "write_code",
+    name: 'write_code',
     cost: 5,
     preconditions: new Map(),
-    effects: new Map([["code_written", true]]),
+    effects: new Map([['code_written', true]]),
   },
   {
-    name: "write_tests",
+    name: 'write_tests',
     cost: 3,
-    preconditions: new Map([["code_written", true]]),
-    effects: new Map([["tests_passing", true]]),
+    preconditions: new Map([['code_written', true]]),
+    effects: new Map([['tests_passing', true]]),
   },
   {
-    name: "write_documentation",
+    name: 'write_documentation',
     cost: 2,
-    preconditions: new Map([["code_written", true]]),
-    effects: new Map([["documentation_complete", true]]),
+    preconditions: new Map([['code_written', true]]),
+    effects: new Map([['documentation_complete', true]]),
   },
   {
-    name: "deploy_application",
+    name: 'deploy_application',
     cost: 4,
     preconditions: new Map([
-      ["code_written", true],
-      ["tests_passing", true],
-      ["documentation_complete", true],
+      ['code_written', true],
+      ['tests_passing', true],
+      ['documentation_complete', true],
     ]),
-    effects: new Map([["deployment_ready", true]]),
+    effects: new Map([['deployment_ready', true]]),
   },
 ];
 ```
@@ -141,7 +158,7 @@ async function buildActionGraph(actions, worldState) {
     matrix: {
       rows: n,
       cols: n,
-      format: "dense",
+      format: 'dense',
       data: adjacencyMatrix,
     },
     checkDominance: true,
@@ -162,7 +179,7 @@ async function prioritizeGoals(actionGraph, goals) {
     adjacency: {
       rows: actionGraph.length,
       cols: actionGraph.length,
-      format: "dense",
+      format: 'dense',
       data: actionGraph,
     },
     damping: 0.85,
@@ -276,32 +293,32 @@ async function findOptimalPath(startState, goalState, actions) {
 async function coordinateWithSwarm(complexGoal) {
   // Initialize planning swarm
   const swarm = await mcp__claude_flow__swarm_init({
-    topology: "hierarchical",
+    topology: 'hierarchical',
     maxAgents: 8,
-    strategy: "adaptive",
+    strategy: 'adaptive',
   });
 
   // Spawn specialized planning agents
   const coordinator = await mcp__claude_flow__agent_spawn({
-    type: "coordinator",
-    capabilities: ["goal_decomposition", "plan_synthesis"],
+    type: 'coordinator',
+    capabilities: ['goal_decomposition', 'plan_synthesis'],
   });
 
   const analyst = await mcp__claude_flow__agent_spawn({
-    type: "analyst",
-    capabilities: ["constraint_analysis", "feasibility_assessment"],
+    type: 'analyst',
+    capabilities: ['constraint_analysis', 'feasibility_assessment'],
   });
 
   const optimizer = await mcp__claude_flow__agent_spawn({
-    type: "optimizer",
-    capabilities: ["path_optimization", "resource_allocation"],
+    type: 'optimizer',
+    capabilities: ['path_optimization', 'resource_allocation'],
   });
 
   // Orchestrate distributed planning
   const planningTask = await mcp__claude_flow__task_orchestrate({
     task: `Plan execution for: ${complexGoal}`,
-    strategy: "parallel",
-    priority: "high",
+    strategy: 'parallel',
+    priority: 'high',
   });
 
   return { swarm, planningTask };
@@ -319,7 +336,7 @@ async function achieveConsensus(agents, proposals) {
   const consensus = await mcp__sublinear_time_solver__solve({
     matrix: consensusMatrix,
     vector: generatePreferenceVector(agents),
-    method: "neumann",
+    method: 'neumann',
     epsilon: 1e-6,
   });
 
@@ -343,8 +360,8 @@ async function achieveConsensus(agents, proposals) {
 async function decomposeGoal(complexGoal) {
   // Create sandbox for goal simulation
   const sandbox = await mcp__flow_nexus__sandbox_create({
-    template: "node",
-    name: "goal-decomposition",
+    template: 'node',
+    name: 'goal-decomposition',
     env_vars: {
       GOAL_CONTEXT: complexGoal.context,
       CONSTRAINTS: JSON.stringify(complexGoal.constraints),
@@ -365,7 +382,7 @@ async function decomposeGoal(complexGoal) {
 
   return {
     subgoals: subgoals.sort(
-      (a, b) => executionOrder.ranks[b.id] - executionOrder.ranks[a.id],
+      (a, b) => executionOrder.ranks[b.id] - executionOrder.ranks[a.id]
     ),
     dependencies: dependencyMatrix,
     estimatedCompletion: calculateCompletionTime(subgoals, executionOrder),
@@ -428,7 +445,7 @@ class DynamicPlanner {
     // Use temporal advantage for predictive replanning
     const newPlan = await planWithTemporalAdvantage(
       this.buildCurrentMatrix(),
-      this.getCurrentConstraints(),
+      this.getCurrentConstraints()
     );
 
     if (newPlan && newPlan.confidence > 0.8) {
@@ -436,8 +453,8 @@ class DynamicPlanner {
 
       // Store successful pattern
       await mcp__claude_flow__memory_usage({
-        action: "store",
-        namespace: "goap-patterns",
+        action: 'store',
+        namespace: 'goap-patterns',
         key: `replan_${Date.now()}`,
         value: JSON.stringify({
           trigger: this.lastDeviation,
@@ -466,15 +483,15 @@ class PlanningLearner {
       await mcp__flow_nexus__neural_train({
         config: {
           architecture: {
-            type: "feedforward",
+            type: 'feedforward',
             layers: [
-              { type: "input", size: this.getStateSpaceSize() },
-              { type: "hidden", size: 128, activation: "relu" },
-              { type: "hidden", size: 64, activation: "relu" },
+              { type: 'input', size: this.getStateSpaceSize() },
+              { type: 'hidden', size: 128, activation: 'relu' },
+              { type: 'hidden', size: 64, activation: 'relu' },
               {
-                type: "output",
+                type: 'output',
                 size: this.getActionSpaceSize(),
-                activation: "softmax",
+                activation: 'softmax',
               },
             ],
           },
@@ -484,7 +501,7 @@ class PlanningLearner {
             batch_size: 32,
           },
         },
-        tier: "small",
+        tier: 'small',
       });
     } else {
       // Analyze failure patterns
@@ -496,7 +513,7 @@ class PlanningLearner {
     // Search for similar successful patterns
     const patterns = await mcp__claude_flow__memory_search({
       pattern: `situation:${this.encodeSituation(currentSituation)}`,
-      namespace: "goap-patterns",
+      namespace: 'goap-patterns',
       limit: 10,
     });
 
@@ -507,7 +524,7 @@ class PlanningLearner {
         similarity: this.calculateSimilarity(currentSituation, p.context),
       }))
       .sort(
-        (a, b) => b.similarity * b.successRate - a.similarity * a.successRate,
+        (a, b) => b.similarity * b.successRate - a.similarity * a.successRate
       );
   }
 }
@@ -553,7 +570,7 @@ class GOAPBehaviorTree {
     const solution = await mcp__sublinear_time_solver__solve({
       matrix: planMatrix,
       vector: constraints,
-      method: "random-walk",
+      method: 'random-walk',
       maxIterations: 1000,
     });
 
@@ -587,8 +604,8 @@ class UtilityPlanner {
   async selectOptimalAction(availableActions, currentState, goalState) {
     const utilities = await Promise.all(
       availableActions.map((action) =>
-        this.calculateUtility(action, currentState, goalState),
-      ),
+        this.calculateUtility(action, currentState, goalState)
+      )
     );
 
     // Use sublinear optimization for multi-objective selection
@@ -598,11 +615,11 @@ class UtilityPlanner {
     const optimal = await mcp__sublinear_time_solver__solve({
       matrix: utilityMatrix,
       vector: preferenceVector,
-      method: "neumann",
+      method: 'neumann',
     });
 
     const bestActionIndex = optimal.solution.indexOf(
-      Math.max(...optimal.solution),
+      Math.max(...optimal.solution)
     );
     return availableActions[bestActionIndex];
   }
@@ -614,7 +631,7 @@ class UtilityPlanner {
     const goalUtility = this.calculateGoalAlignment(
       action,
       currentState,
-      goalState,
+      goalState
     );
 
     return {
@@ -640,18 +657,18 @@ class UtilityPlanner {
 ```javascript
 // Goal: Launch a new product feature
 const productLaunchGoal = {
-  objective: "Launch authentication system",
-  constraints: ["2 week deadline", "high security", "user-friendly"],
-  resources: ["3 developers", "1 designer", "$10k budget"],
+  objective: 'Launch authentication system',
+  constraints: ['2 week deadline', 'high security', 'user-friendly'],
+  resources: ['3 developers', '1 designer', '$10k budget'],
 };
 
 // Decompose into actionable sub-goals
 const subGoals = [
-  "Design user interface",
-  "Implement backend authentication",
-  "Create security tests",
-  "Deploy to production",
-  "Monitor system performance",
+  'Design user interface',
+  'Implement backend authentication',
+  'Create security tests',
+  'Deploy to production',
+  'Monitor system performance',
 ];
 
 // Build dependency matrix
@@ -661,7 +678,7 @@ const dependencyMatrix = buildDependencyMatrix(subGoals);
 const optimizedPlan = await mcp__sublinear_time_solver__solve({
   matrix: dependencyMatrix,
   vector: resourceConstraints,
-  method: "neumann",
+  method: 'neumann',
 });
 ```
 
@@ -670,9 +687,9 @@ const optimizedPlan = await mcp__sublinear_time_solver__solve({
 ```javascript
 // Multiple competing objectives
 const objectives = [
-  { name: "reduce_costs", weight: 0.3, urgency: 0.7 },
-  { name: "improve_quality", weight: 0.4, urgency: 0.8 },
-  { name: "increase_speed", weight: 0.3, urgency: 0.9 },
+  { name: 'reduce_costs', weight: 0.3, urgency: 0.7 },
+  { name: 'improve_quality', weight: 0.4, urgency: 0.8 },
+  { name: 'increase_speed', weight: 0.3, urgency: 0.9 },
 ];
 
 // Use PageRank for multi-objective prioritization
@@ -708,31 +725,31 @@ const results = await executeWithTemporalLead(strategicActions);
 ```javascript
 // Initialize coordinated swarm
 const coordinatedSwarm = await mcp__flow_nexus__swarm_init({
-  topology: "mesh",
+  topology: 'mesh',
   maxAgents: 12,
-  strategy: "specialized",
+  strategy: 'specialized',
 });
 
 // Spawn specialized agents for different goal aspects
 const agents = await Promise.all([
   mcp__flow_nexus__agent_spawn({
-    type: "researcher",
-    capabilities: ["data_analysis"],
+    type: 'researcher',
+    capabilities: ['data_analysis'],
   }),
   mcp__flow_nexus__agent_spawn({
-    type: "coder",
-    capabilities: ["implementation"],
+    type: 'coder',
+    capabilities: ['implementation'],
   }),
   mcp__flow_nexus__agent_spawn({
-    type: "optimizer",
-    capabilities: ["performance"],
+    type: 'optimizer',
+    capabilities: ['performance'],
   }),
 ]);
 
 // Coordinate goal achievement
 const coordinatedExecution = await mcp__flow_nexus__task_orchestrate({
-  task: "Build and optimize recommendation system",
-  strategy: "adaptive",
+  task: 'Build and optimize recommendation system',
+  strategy: 'adaptive',
   maxAgents: 3,
 });
 ```
@@ -755,7 +772,7 @@ if (executionStatus.deviation > threshold) {
   const revisedPlan = await mcp__sublinear_time_solver__solve({
     matrix: updatedMatrix,
     vector: updatedObjectives,
-    method: "adaptive",
+    method: 'adaptive',
   });
 
   // Implement revised plan
@@ -767,23 +784,27 @@ if (executionStatus.deviation > threshold) {
 
 ### When to Use GOAP
 
-- **Complex Multi-Step Objectives**: When goals require multiple interconnected actions
-- **Resource Constraints**: When optimization of time, cost, or personnel is critical
+- **Complex Multi-Step Objectives**: When goals require multiple interconnected
+  actions
+- **Resource Constraints**: When optimization of time, cost, or personnel is
+  critical
 - **Dynamic Environments**: When conditions change and plans need adaptation
-- **Predictive Scenarios**: When temporal advantage can provide competitive benefits
-- **Multi-Agent Coordination**: When multiple agents need to work toward shared goals
+- **Predictive Scenarios**: When temporal advantage can provide competitive
+  benefits
+- **Multi-Agent Coordination**: When multiple agents need to work toward shared
+  goals
 
 ### Goal Structure Optimization
 
 ```javascript
 // Well-structured goal definition
 const optimizedGoal = {
-  objective: "Clear and measurable outcome",
-  preconditions: ["List of required starting states"],
-  postconditions: ["List of desired end states"],
-  constraints: ["Time, resource, and quality constraints"],
-  metrics: ["Quantifiable success measures"],
-  dependencies: ["Relationships with other goals"],
+  objective: 'Clear and measurable outcome',
+  preconditions: ['List of required starting states'],
+  postconditions: ['List of desired end states'],
+  constraints: ['Time, resource, and quality constraints'],
+  metrics: ['Quantifiable success measures'],
+  dependencies: ['Relationships with other goals'],
 };
 ```
 
@@ -818,7 +839,8 @@ try {
 ### Monitoring & Adaptation
 
 - **Real-time Progress Tracking**: Monitor action completion and resource usage
-- **Deviation Detection**: Identify when actual progress differs from predictions
+- **Deviation Detection**: Identify when actual progress differs from
+  predictions
 - **Automatic Replanning**: Trigger plan updates when thresholds are exceeded
 - **Learning Integration**: Incorporate execution results into future planning
 
@@ -828,8 +850,8 @@ try {
 
 ```javascript
 const plannerConfig = {
-  searchAlgorithm: "a_star", // a_star, dijkstra, greedy
-  heuristicFunction: "manhattan", // manhattan, euclidean, custom
+  searchAlgorithm: 'a_star', // a_star, dijkstra, greedy
+  heuristicFunction: 'manhattan', // manhattan, euclidean, custom
   maxSearchDepth: 20,
   planningTimeout: 30000, // 30 seconds
   convergenceEpsilon: 1e-6,
@@ -849,11 +871,11 @@ const plannerConfig = {
 class RobustPlanner extends GOAPAgent {
   async handlePlanningFailure(error, context) {
     switch (error.type) {
-      case "MATRIX_SINGULAR":
+      case 'MATRIX_SINGULAR':
         return await this.regularizeMatrix(context.matrix);
-      case "NO_CONVERGENCE":
+      case 'NO_CONVERGENCE':
         return await this.relaxConstraints(context.constraints);
-      case "TIMEOUT":
+      case 'TIMEOUT':
         return await this.useApproximateSolution(context);
       default:
         return await this.fallbackToSimplePlanning(context);
@@ -886,4 +908,6 @@ Leverage light-speed delays for predictive planning:
 - Identify emergent opportunities from goal interactions
 - Optimize for multiple success criteria simultaneously
 
-This goal-planner agent represents the cutting edge of AI-driven objective achievement, combining mathematical rigor with practical execution capabilities through the powerful sublinear-time-solver toolkit and Claude Flow ecosystem.
+This goal-planner agent represents the cutting edge of AI-driven objective
+achievement, combining mathematical rigor with practical execution capabilities
+through the powerful sublinear-time-solver toolkit and Claude Flow ecosystem.

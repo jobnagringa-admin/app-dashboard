@@ -2,7 +2,8 @@
 name: Topology Optimizer
 type: agent
 category: optimization
-description: Dynamic swarm topology reconfiguration and communication pattern optimization
+description:
+  Dynamic swarm topology reconfiguration and communication pattern optimization
 ---
 
 # Topology Optimizer Agent
@@ -11,8 +12,10 @@ description: Dynamic swarm topology reconfiguration and communication pattern op
 
 - **Name**: Topology Optimizer
 - **Type**: Performance Optimization Agent
-- **Specialization**: Dynamic swarm topology reconfiguration and network optimization
-- **Performance Focus**: Communication pattern optimization and adaptive network structures
+- **Specialization**: Dynamic swarm topology reconfiguration and network
+  optimization
+- **Performance Focus**: Communication pattern optimization and adaptive network
+  structures
 
 ## Core Capabilities
 
@@ -44,14 +47,14 @@ class TopologyOptimizer {
     // Generate topology candidates based on workload
     const candidates = await this.generateCandidates(
       workloadProfile,
-      constraints,
+      constraints
     );
 
     // Evaluate each candidate topology
     const evaluations = await Promise.all(
       candidates.map((candidate) =>
-        this.evaluateTopology(candidate, workloadProfile),
-      ),
+        this.evaluateTopology(candidate, workloadProfile)
+      )
     );
 
     // Select optimal topology using multi-objective optimization
@@ -61,7 +64,7 @@ class TopologyOptimizer {
     if (optimal.improvement > constraints.minImprovement || 0.1) {
       const migrationPlan = await this.planMigration(
         swarm.topology,
-        optimal.topology,
+        optimal.topology
       );
       return {
         recommended: optimal.topology,
@@ -72,7 +75,7 @@ class TopologyOptimizer {
       };
     }
 
-    return { recommended: null, reason: "No significant improvement found" };
+    return { recommended: null, reason: 'No significant improvement found' };
   }
 
   // Generate topology candidates
@@ -90,7 +93,7 @@ class TopologyOptimizer {
     // Hybrid topology generation
     const hybrids = await this.generateHybridTopologies(
       workloadProfile,
-      constraints,
+      constraints
     );
     candidates.push(...hybrids);
 
@@ -105,7 +108,7 @@ class TopologyOptimizer {
   async evaluateTopology(topology, workloadProfile) {
     const metrics = await this.calculateTopologyMetrics(
       topology,
-      workloadProfile,
+      workloadProfile
     );
 
     return {
@@ -171,7 +174,7 @@ class NetworkLatencyOptimizer {
       bandwidthOptimization,
       expectedLatencyReduction: this.calculateExpectedReduction(
         distanceOptimization,
-        bandwidthOptimization,
+        bandwidthOptimization
       ),
     };
   }
@@ -184,7 +187,7 @@ class NetworkLatencyOptimizer {
     // Generate optimal routing tables
     const routingTables = await this.generateOptimalRouting(
       network,
-      patternAnalysis,
+      patternAnalysis
     );
 
     // Implement adaptive routing
@@ -228,10 +231,10 @@ class AgentPlacementOptimizer {
         const result = await algorithm.optimize(
           agents,
           constraints,
-          objectives,
+          objectives
         );
         return [name, result];
-      },
+      }
     );
 
     const algorithmResults = await Promise.all(algorithmPromises);
@@ -265,7 +268,7 @@ class AgentPlacementOptimizer {
     // Initialize population with random placements
     const initialPopulation = this.generateInitialPlacements(
       agents,
-      constraints,
+      constraints
     );
 
     // Define fitness function
@@ -287,7 +290,7 @@ class AgentPlacementOptimizer {
   async graphPartitioningPlacement(agents, communicationGraph) {
     // Use METIS-like algorithm for graph partitioning
     const partitioner = new GraphPartitioner({
-      objective: "minimize_cut",
+      objective: 'minimize_cut',
       balanceConstraint: 0.05, // 5% imbalance tolerance
       refinement: true,
     });
@@ -360,12 +363,12 @@ class CommunicationOptimizer {
 
     const evaluations = await Promise.all(
       batchingStrategies.map((strategy) =>
-        this.evaluateBatchingStrategy(strategy, patterns),
-      ),
+        this.evaluateBatchingStrategy(strategy, patterns)
+      )
     );
 
     const optimal = evaluations.reduce((best, current) =>
-      current.score > best.score ? current : best,
+      current.score > best.score ? current : best
     );
 
     return {
@@ -379,11 +382,11 @@ class CommunicationOptimizer {
   // Dynamic protocol selection
   async optimizeProtocols(patterns) {
     const protocols = {
-      tcp: { reliability: 0.99, latency: "medium", overhead: "high" },
-      udp: { reliability: 0.95, latency: "low", overhead: "low" },
-      websocket: { reliability: 0.98, latency: "medium", overhead: "medium" },
-      grpc: { reliability: 0.99, latency: "low", overhead: "medium" },
-      mqtt: { reliability: 0.97, latency: "low", overhead: "low" },
+      tcp: { reliability: 0.99, latency: 'medium', overhead: 'high' },
+      udp: { reliability: 0.95, latency: 'low', overhead: 'low' },
+      websocket: { reliability: 0.98, latency: 'medium', overhead: 'medium' },
+      grpc: { reliability: 0.99, latency: 'low', overhead: 'medium' },
+      mqtt: { reliability: 0.97, latency: 'low', overhead: 'low' },
     };
 
     const recommendations = new Map();
@@ -411,17 +414,17 @@ const topologyIntegration = {
     const swarmStatus = await mcp.swarm_status({ swarmId });
 
     // Analyze current topology performance
-    const performance = await mcp.performance_report({ format: "detailed" });
+    const performance = await mcp.performance_report({ format: 'detailed' });
 
     // Identify bottlenecks in current topology
-    const bottlenecks = await mcp.bottleneck_analyze({ component: "topology" });
+    const bottlenecks = await mcp.bottleneck_analyze({ component: 'topology' });
 
     // Generate optimization recommendations
     const recommendations = await this.generateTopologyRecommendations(
       swarmStatus,
       performance,
       bottlenecks,
-      optimizationConfig,
+      optimizationConfig
     );
 
     // Apply optimization if beneficial
@@ -442,7 +445,7 @@ const topologyIntegration = {
     return {
       applied: false,
       recommendations,
-      reason: "No beneficial optimization found",
+      reason: 'No beneficial optimization found',
     };
   },
 
@@ -454,14 +457,14 @@ const topologyIntegration = {
     // Calculate optimal topology for target size
     const optimalTopology = await this.calculateOptimalTopologyForSize(
       targetSize,
-      workloadProfile,
+      workloadProfile
     );
 
     // Plan scaling strategy
     const scalingPlan = await this.planTopologyAwareScaling(
       currentState,
       targetSize,
-      optimalTopology,
+      optimalTopology
     );
 
     // Execute scaling with topology optimization
@@ -489,13 +492,13 @@ const topologyIntegration = {
 
     // Identify coordination bottlenecks
     const coordinationBottlenecks = await mcp.bottleneck_analyze({
-      component: "coordination",
+      component: 'coordination',
     });
 
     // Optimize coordination patterns
     const optimization = await this.optimizeCoordinationPatterns(
       coordinationMetrics,
-      coordinationBottlenecks,
+      coordinationBottlenecks
     );
 
     return optimization;
@@ -520,15 +523,15 @@ class NeuralTopologyOptimizer {
   async initializeModels() {
     // Load pre-trained models or train new ones
     this.models.topology_predictor = await mcp.model_load({
-      modelPath: "/models/topology_optimizer.model",
+      modelPath: '/models/topology_optimizer.model',
     });
 
     this.models.performance_estimator = await mcp.model_load({
-      modelPath: "/models/performance_estimator.model",
+      modelPath: '/models/performance_estimator.model',
     });
 
     this.models.pattern_recognizer = await mcp.model_load({
-      modelPath: "/models/pattern_recognizer.model",
+      modelPath: '/models/pattern_recognizer.model',
     });
   }
 
@@ -558,7 +561,7 @@ class NeuralTopologyOptimizer {
   // Train topology optimization model
   async trainTopologyModel(trainingData) {
     const trainingConfig = {
-      pattern_type: "optimization",
+      pattern_type: 'optimization',
       training_data: JSON.stringify(trainingData),
       epochs: 100,
     };
@@ -569,7 +572,7 @@ class NeuralTopologyOptimizer {
     if (trainingResult.success) {
       await mcp.model_save({
         modelId: trainingResult.modelId,
-        path: "/models/topology_optimizer.model",
+        path: '/models/topology_optimizer.model',
       });
     }
 
@@ -605,7 +608,7 @@ class GeneticTopologyOptimizer {
     while (generation < this.maxGenerations) {
       // Evaluate fitness for each topology
       const fitness = await Promise.all(
-        population.map((topology) => fitnessFunction(topology, constraints)),
+        population.map((topology) => fitnessFunction(topology, constraints))
       );
 
       // Track best solution
@@ -651,7 +654,7 @@ class GeneticTopologyOptimizer {
       if (Math.random() < this.crossoverRate) {
         const [child1, child2] = await this.crossoverTopologies(
           parents[i],
-          parents[i + 1],
+          parents[i + 1]
         );
         offspring.push(child1, child2);
       } else {
@@ -670,7 +673,7 @@ class GeneticTopologyOptimizer {
           return await this.mutateTopology(topology, constraints);
         }
         return topology;
-      }),
+      })
     );
   }
 }
@@ -708,11 +711,11 @@ class SimulatedAnnealingOptimizer {
       // Generate neighbor topology
       const neighborTopology = await this.generateNeighbor(
         currentTopology,
-        constraints,
+        constraints
       );
       const neighborScore = await objectiveFunction(
         neighborTopology,
-        constraints,
+        constraints
       );
 
       // Accept or reject the neighbor
@@ -858,4 +861,6 @@ const topologyMetrics = {
 };
 ```
 
-This Topology Optimizer agent provides sophisticated swarm topology optimization with AI-powered decision making, advanced algorithms, and comprehensive performance monitoring for optimal swarm coordination.
+This Topology Optimizer agent provides sophisticated swarm topology optimization
+with AI-powered decision making, advanced algorithms, and comprehensive
+performance monitoring for optimal swarm coordination.

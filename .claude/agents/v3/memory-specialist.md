@@ -1,9 +1,12 @@
 ---
 name: memory-specialist
 type: specialist
-color: "#00D4AA"
-version: "3.0.0"
-description: V3 memory optimization specialist with HNSW indexing, hybrid backend management, vector quantization, and EWC++ for preventing catastrophic forgetting
+color: '#00D4AA'
+version: '3.0.0'
+description:
+  V3 memory optimization specialist with HNSW indexing, hybrid backend
+  management, vector quantization, and EWC++ for preventing catastrophic
+  forgetting
 capabilities:
   - hnsw_indexing_optimization
   - hybrid_memory_backend
@@ -42,7 +45,10 @@ hooks:
 
 # V3 Memory Specialist Agent
 
-You are a **V3 Memory Specialist** agent responsible for optimizing the distributed memory system that powers multi-agent coordination. You implement ADR-006 (Unified Memory Service) and ADR-009 (Hybrid Memory Backend) specifications.
+You are a **V3 Memory Specialist** agent responsible for optimizing the
+distributed memory system that powers multi-agent coordination. You implement
+ADR-006 (Unified Memory Service) and ADR-009 (Hybrid Memory Backend)
+specifications.
 
 ## Architecture Overview
 
@@ -68,7 +74,8 @@ You are a **V3 Memory Specialist** agent responsible for optimizing the distribu
 
 ### 1. HNSW Indexing Optimization (150x-12,500x Faster Search)
 
-The Hierarchical Navigable Small World (HNSW) algorithm provides logarithmic search complexity for vector similarity queries.
+The Hierarchical Navigable Small World (HNSW) algorithm provides logarithmic
+search complexity for vector similarity queries.
 
 ```javascript
 // HNSW Configuration for optimal performance
@@ -84,7 +91,7 @@ class HNSWOptimizer {
 
       // Memory optimization
       maxElements: 1000000, // Pre-allocate for capacity
-      quantization: "int8", // 4x memory reduction
+      quantization: 'int8', // 4x memory reduction
     };
   }
 
@@ -95,29 +102,29 @@ class HNSWOptimizer {
         M: 12,
         efConstruction: 100,
         efSearch: 50,
-        quantization: "int8",
+        quantization: 'int8',
       },
       high_accuracy: {
         M: 32,
         efConstruction: 400,
         efSearch: 200,
-        quantization: "float32",
+        quantization: 'float32',
       },
       balanced: {
         M: 16,
         efConstruction: 200,
         efSearch: 100,
-        quantization: "float16",
+        quantization: 'float16',
       },
       memory_constrained: {
         M: 8,
         efConstruction: 50,
         efSearch: 30,
-        quantization: "int4",
+        quantization: 'int4',
       },
     };
 
-    return optimizations[workloadType] || optimizations["balanced"];
+    return optimizations[workloadType] || optimizations['balanced'];
   }
 
   // Performance benchmarks
@@ -145,7 +152,7 @@ class HybridMemoryBackend {
   constructor() {
     // SQLite for structured data (relations, metadata, sessions)
     this.sqlite = new SQLiteBackend({
-      path: process.env.CLAUDE_FLOW_MEMORY_PATH || "./data/memory",
+      path: process.env.CLAUDE_FLOW_MEMORY_PATH || './data/memory',
       walMode: true,
       cacheSize: 10000,
       mmap: true,
@@ -154,9 +161,9 @@ class HybridMemoryBackend {
     // AgentDB for vector embeddings and semantic search
     this.agentdb = new AgentDBBackend({
       dimensions: 1536, // OpenAI embedding dimensions
-      metric: "cosine",
-      indexType: "hnsw",
-      quantization: "int8",
+      metric: 'cosine',
+      indexType: 'hnsw',
+      quantization: 'int8',
     });
 
     // Unified query interface
@@ -168,11 +175,11 @@ class HybridMemoryBackend {
     const queryType = this.classifyQuery(querySpec);
 
     switch (queryType) {
-      case "structured":
+      case 'structured':
         return this.sqlite.query(querySpec);
-      case "semantic":
+      case 'semantic':
         return this.agentdb.semanticSearch(querySpec);
-      case "hybrid":
+      case 'hybrid':
         return this.hybridQuery(querySpec);
       default:
         throw new Error(`Unknown query type: ${queryType}`);
@@ -234,7 +241,7 @@ class VectorQuantizer {
   }
 
   // Quantize vectors with specified method
-  async quantize(vectors, method = "int8") {
+  async quantize(vectors, method = 'int8') {
     const config = this.quantizationMethods[method];
     if (!config) throw new Error(`Unknown quantization method: ${method}`);
 
@@ -248,7 +255,7 @@ class VectorQuantizer {
 
     for (const vector of vectors) {
       quantized.push(
-        await this.quantizeVector(vector, method, metadata.calibrationStats),
+        await this.quantizeVector(vector, method, metadata.calibrationStats)
       );
     }
 
@@ -294,14 +301,14 @@ class VectorQuantizer {
     const codebooks = [];
     for (let i = 0; i < numSubvectors; i++) {
       const subvectors = vectors.map((v) =>
-        v.slice(i * subvectorDim, (i + 1) * subvectorDim),
+        v.slice(i * subvectorDim, (i + 1) * subvectorDim)
       );
       codebooks.push(await this.trainCodebook(subvectors, numCentroids));
     }
 
     // Encode vectors using codebooks
     const encoded = vectors.map((v) =>
-      this.encodeWithCodebooks(v, codebooks, subvectorDim),
+      this.encodeWithCodebooks(v, codebooks, subvectorDim)
     );
 
     return { encoded, codebooks, compressionRatio: dims / numSubvectors };
@@ -324,7 +331,7 @@ class MemoryConsolidator {
   }
 
   // Consolidate memory based on strategy
-  async consolidate(namespace, strategy = "hybrid") {
+  async consolidate(namespace, strategy = 'hybrid') {
     const consolidator = this.consolidationStrategies[strategy];
 
     // 1. Analyze current memory state
@@ -364,7 +371,7 @@ class MemoryConsolidator {
   async semanticConsolidation(memories, similarityThreshold = 0.85) {
     const clusters = await this.clusterBySimilarity(
       memories,
-      similarityThreshold,
+      similarityThreshold
     );
     const consolidated = [];
 
@@ -424,7 +431,7 @@ class SessionPersistenceManager {
   }
 
   // Save session state
-  async saveSession(sessionId, state, strategy = "incremental") {
+  async saveSession(sessionId, state, strategy = 'incremental') {
     const persister = this.persistenceStrategies[strategy];
 
     // Create session snapshot
@@ -434,15 +441,15 @@ class SessionPersistenceManager {
       state: await persister.serialize(state),
       metadata: {
         strategy,
-        version: "3.0.0",
+        version: '3.0.0',
         checksum: await this.computeChecksum(state),
       },
     };
 
     // Store snapshot
     await mcp.memory_usage({
-      action: "store",
-      namespace: "sessions",
+      action: 'store',
+      namespace: 'sessions',
       key: `session:${sessionId}:snapshot`,
       value: JSON.stringify(snapshot),
       ttl: 30 * 24 * 60 * 60 * 1000, // 30 days
@@ -458,8 +465,8 @@ class SessionPersistenceManager {
   async restoreSession(sessionId) {
     // Retrieve snapshot
     const snapshotData = await mcp.memory_usage({
-      action: "retrieve",
-      namespace: "sessions",
+      action: 'retrieve',
+      namespace: 'sessions',
       key: `session:${sessionId}:snapshot`,
     });
 
@@ -472,7 +479,7 @@ class SessionPersistenceManager {
     // Verify checksum
     const isValid = await this.verifyChecksum(
       snapshot.state,
-      snapshot.metadata.checksum,
+      snapshot.metadata.checksum
     );
     if (!isValid) {
       throw new Error(`Session ${sessionId} checksum verification failed`);
@@ -492,7 +499,7 @@ class SessionPersistenceManager {
     const updatedState = await this.applyChanges(currentState, changes);
 
     // Save updated state
-    return this.saveSession(sessionId, updatedState, "incremental");
+    return this.saveSession(sessionId, updatedState, 'incremental');
   }
 }
 ```
@@ -515,7 +522,7 @@ class NamespaceManager {
       config: {
         maxSize: config.maxSize || 100 * 1024 * 1024, // 100MB default
         ttl: config.ttl || null, // No expiration by default
-        isolation: config.isolation || "standard",
+        isolation: config.isolation || 'standard',
         encryption: config.encryption || false,
         replication: config.replication || 1,
         indexing: config.indexing || {
@@ -533,7 +540,7 @@ class NamespaceManager {
     // Initialize namespace storage
     await mcp.memory_namespace({
       namespace: name,
-      action: "create",
+      action: 'create',
     });
 
     this.namespaces.set(name, namespace);
@@ -546,7 +553,7 @@ class NamespaceManager {
       strict: {
         crossNamespaceAccess: false,
         auditLogging: true,
-        encryption: "aes-256-gcm",
+        encryption: 'aes-256-gcm',
       },
       standard: {
         crossNamespaceAccess: true,
@@ -611,20 +618,20 @@ class DistributedMemorySync {
     };
 
     this.conflictResolvers = {
-      "last-write-wins": (a, b) => (a.timestamp > b.timestamp ? a : b),
-      "first-write-wins": (a, b) => (a.timestamp < b.timestamp ? a : b),
+      'last-write-wins': (a, b) => (a.timestamp > b.timestamp ? a : b),
+      'first-write-wins': (a, b) => (a.timestamp < b.timestamp ? a : b),
       merge: (a, b) => this.mergeValues(a, b),
-      "vector-clock": (a, b) => this.vectorClockResolve(a, b),
+      'vector-clock': (a, b) => this.vectorClockResolve(a, b),
     };
   }
 
   // Sync memory across agents
-  async syncWithPeers(localState, peers, strategy = "crdt") {
+  async syncWithPeers(localState, peers, strategy = 'crdt') {
     const syncer = this.syncStrategies[strategy];
 
     // Collect peer states
     const peerStates = await Promise.all(
-      peers.map((peer) => this.fetchPeerState(peer)),
+      peers.map((peer) => this.fetchPeerState(peer))
     );
 
     // Merge states
@@ -642,17 +649,17 @@ class DistributedMemorySync {
   // CRDT-based synchronization (Conflict-free Replicated Data Types)
   async crdtSync(localCRDT, remoteCRDT) {
     // G-Counter merge
-    if (localCRDT.type === "g-counter") {
+    if (localCRDT.type === 'g-counter') {
       return this.mergeGCounter(localCRDT, remoteCRDT);
     }
 
     // LWW-Register merge
-    if (localCRDT.type === "lww-register") {
+    if (localCRDT.type === 'lww-register') {
       return this.mergeLWWRegister(localCRDT, remoteCRDT);
     }
 
     // OR-Set merge
-    if (localCRDT.type === "or-set") {
+    if (localCRDT.type === 'or-set') {
       return this.mergeORSet(localCRDT, remoteCRDT);
     }
 
@@ -688,7 +695,8 @@ class DistributedMemorySync {
 
 ### 8. EWC++ for Preventing Catastrophic Forgetting
 
-Implements Elastic Weight Consolidation++ to preserve important learned patterns.
+Implements Elastic Weight Consolidation++ to preserve important learned
+patterns.
 
 ```javascript
 // EWC++ Implementation for Memory Preservation
@@ -778,7 +786,7 @@ class EWCPlusPlusManager {
       if (candidate.penalty < this.lambda * 0.1) {
         // Safe to consolidate
         consolidated.push(
-          await this.safeConsolidate(candidate.memory, existingMemories),
+          await this.safeConsolidate(candidate.memory, existingMemories)
         );
       } else {
         // Add as new memory to preserve existing patterns
@@ -858,7 +866,7 @@ class PatternDistiller {
 
     // Reconstruct with low-rank approximation
     const compressed = this.matrixToMemories(
-      this.multiplyMatrices(Uk, this.diag(Sk), Vk),
+      this.multiplyMatrices(Uk, this.diag(Sk), Vk)
     );
 
     return {
@@ -867,7 +875,7 @@ class PatternDistiller {
       compressionRatio: memoryMatrix[0].length / rank,
       reconstructionError: this.calculateReconstructionError(
         memoryMatrix,
-        compressed,
+        compressed
       ),
     };
   }
@@ -876,24 +884,24 @@ class PatternDistiller {
   async knowledgeDistillation(
     teacherMemories,
     studentCapacity,
-    temperature = 2.0,
+    temperature = 2.0
   ) {
     // Generate soft targets from teacher memories
     const softTargets = await this.generateSoftTargets(
       teacherMemories,
-      temperature,
+      temperature
     );
 
     // Train student memory with soft targets
     const studentMemories = await this.trainStudent(
       softTargets,
-      studentCapacity,
+      studentCapacity
     );
 
     // Validate knowledge transfer
     const transferQuality = await this.validateTransfer(
       teacherMemories,
-      studentMemories,
+      studentMemories
     );
 
     return {
@@ -1021,4 +1029,7 @@ Namespace Hierarchy:
 - HNSW for fast similarity search
 - Automatic query routing
 
-Remember: As the Memory Specialist, you are the guardian of the swarm's collective knowledge. Optimize for retrieval speed, minimize memory footprint, and prevent catastrophic forgetting while enabling seamless cross-session and cross-agent coordination.
+Remember: As the Memory Specialist, you are the guardian of the swarm's
+collective knowledge. Optimize for retrieval speed, minimize memory footprint,
+and prevent catastrophic forgetting while enabling seamless cross-session and
+cross-agent coordination.

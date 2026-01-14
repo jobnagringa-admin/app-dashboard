@@ -1,8 +1,11 @@
 ---
 name: swarm-issue
-description: GitHub issue-based swarm coordination agent that transforms issues into intelligent multi-agent tasks with automatic decomposition and progress tracking
+description:
+  GitHub issue-based swarm coordination agent that transforms issues into
+  intelligent multi-agent tasks with automatic decomposition and progress
+  tracking
 type: coordination
-color: "#FF6B35"
+color: '#FF6B35'
 tools:
   - mcp__github__get_issue
   - mcp__github__create_issue
@@ -21,20 +24,21 @@ tools:
   - Write
 hooks:
   pre:
-    - "Initialize swarm coordination system for GitHub issue management"
-    - "Analyze issue context and determine optimal swarm topology"
-    - "Store issue metadata in swarm memory for cross-agent access"
+    - 'Initialize swarm coordination system for GitHub issue management'
+    - 'Analyze issue context and determine optimal swarm topology'
+    - 'Store issue metadata in swarm memory for cross-agent access'
   post:
-    - "Update issue with swarm progress and agent assignments"
-    - "Create follow-up tasks based on swarm analysis results"
-    - "Generate comprehensive swarm coordination report"
+    - 'Update issue with swarm progress and agent assignments'
+    - 'Create follow-up tasks based on swarm analysis results'
+    - 'Generate comprehensive swarm coordination report'
 ---
 
 # Swarm Issue - Issue-Based Swarm Coordination
 
 ## Overview
 
-Transform GitHub Issues into intelligent swarm tasks, enabling automatic task decomposition and agent coordination with advanced multi-agent orchestration.
+Transform GitHub Issues into intelligent swarm tasks, enabling automatic task
+decomposition and agent coordination with advanced multi-agent orchestration.
 
 ## Core Features
 
@@ -70,10 +74,7 @@ Execute swarm operations via issue comments:
 ```markdown
 <!-- In issue comment -->
 
-/swarm analyze
-/swarm decompose 5
-/swarm assign @agent-coder
-/swarm estimate
+/swarm analyze /swarm decompose 5 /swarm assign @agent-coder /swarm estimate
 /swarm start
 ```
 
@@ -82,25 +83,14 @@ Execute swarm operations via issue comments:
 ```markdown
 <!-- .github/ISSUE_TEMPLATE/swarm-task.yml -->
 
-name: Swarm Task
-description: Create a task for AI swarm processing
-body:
+name: Swarm Task description: Create a task for AI swarm processing body:
 
-- type: dropdown
-  id: topology
-  attributes:
-  label: Swarm Topology
-  options: - mesh - hierarchical - ring - star
-- type: input
-  id: agents
-  attributes:
-  label: Required Agents
-  placeholder: "coder, tester, analyst"
-- type: textarea
-  id: tasks
-  attributes:
-  label: Task Breakdown
-  placeholder: | 1. Task one description 2. Task two description
+- type: dropdown id: topology attributes: label: Swarm Topology options: -
+  mesh - hierarchical - ring - star
+- type: input id: agents attributes: label: Required Agents placeholder: "coder,
+  tester, analyst"
+- type: textarea id: tasks attributes: label: Task Breakdown placeholder: | 1.
+  Task one description 2. Task two description
 ```
 
 ## Issue Label Automation
@@ -498,7 +488,8 @@ npx claude-flow@v3alpha github effectiveness \
 
 ## Security & Permissions
 
-1. **Command Authorization**: Validate user permissions before executing commands
+1. **Command Authorization**: Validate user permissions before executing
+   commands
 2. **Rate Limiting**: Prevent spam and abuse of issue commands
 3. **Audit Logging**: Track all swarm operations on issues
 4. **Data Privacy**: Respect private repository settings
@@ -576,7 +567,7 @@ const preHook = async (issue) => {
 
   // Store issue context for swarm agents
   await mcp__claude_flow__memory_usage({
-    action: "store",
+    action: 'store',
     key: `issue/${issue.number}/metadata`,
     value: { issue, analysis: await analyzeIssue(issue) },
   });
@@ -592,11 +583,13 @@ const postHook = async (results) => {
 
   // Store completion metrics
   await mcp__claude_flow__memory_usage({
-    action: "store",
+    action: 'store',
     key: `issue/${issue.number}/completion`,
     value: { metrics: results.metrics, timestamp: Date.now() },
   });
 };
 ```
 
-See also: [swarm-pr.md](./swarm-pr.md), [sync-coordinator.md](./sync-coordinator.md), [workflow-automation.md](./workflow-automation.md)
+See also: [swarm-pr.md](./swarm-pr.md),
+[sync-coordinator.md](./sync-coordinator.md),
+[workflow-automation.md](./workflow-automation.md)

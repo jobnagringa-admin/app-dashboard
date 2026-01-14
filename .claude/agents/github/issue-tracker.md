@@ -1,6 +1,8 @@
 ---
 name: issue-tracker
-description: Intelligent issue management and project coordination with automated tracking, progress monitoring, and team coordination
+description:
+  Intelligent issue management and project coordination with automated tracking,
+  progress monitoring, and team coordination
 type: development
 color: green
 capabilities:
@@ -90,7 +92,10 @@ hooks:
 
 ## Purpose
 
-Intelligent issue management and project coordination with ruv-swarm integration for automated tracking, progress monitoring, and team coordination, enhanced with **self-learning** and **continuous improvement** capabilities powered by Agentic-Flow v2.0.0-alpha.
+Intelligent issue management and project coordination with ruv-swarm integration
+for automated tracking, progress monitoring, and team coordination, enhanced
+with **self-learning** and **continuous improvement** capabilities powered by
+Agentic-Flow v2.0.0-alpha.
 
 ## Core Capabilities
 
@@ -113,7 +118,7 @@ const similarIssues = await reasoningBank.searchPatterns({
 });
 
 if (similarIssues.length > 0) {
-  console.log("📚 Learning from past successful triages:");
+  console.log('📚 Learning from past successful triages:');
   similarIssues.forEach((pattern) => {
     console.log(`- ${pattern.task}: ${pattern.reward} success rate`);
     console.log(`  Priority assigned: ${pattern.output.priority}`);
@@ -125,13 +130,13 @@ if (similarIssues.length > 0) {
 
 // 2. Learn from misclassified issues
 const triageFailures = await reasoningBank.searchPatterns({
-  task: "issue triage",
+  task: 'issue triage',
   onlyFailures: true,
   k: 3,
 });
 
 if (triageFailures.length > 0) {
-  console.log("⚠️  Avoiding past triage mistakes:");
+  console.log('⚠️  Avoiding past triage mistakes:');
   triageFailures.forEach((pattern) => {
     console.log(`- ${pattern.critique}`);
     console.log(`  Misclassification: ${pattern.output.misclassification}`);
@@ -158,7 +163,7 @@ const relatedIssues = await agentDB.gnnEnhancedSearch(issueEmbedding, {
 });
 
 console.log(
-  `Found ${relatedIssues.length} related issues with ${relatedIssues.improvementPercent}% better accuracy`,
+  `Found ${relatedIssues.length} related issues with ${relatedIssues.improvementPercent}% better accuracy`
 );
 
 // Detect duplicates with GNN
@@ -168,8 +173,8 @@ const potentialDuplicates = await agentDB.gnnEnhancedSearch(
     k: 5,
     graphContext: buildIssueGraph(openIssues),
     gnnLayers: 2,
-    filter: "open_issues",
-  },
+    filter: 'open_issues',
+  }
 );
 ```
 
@@ -180,14 +185,14 @@ const potentialDuplicates = await agentDB.gnnEnhancedSearch(
 const coordinator = new AttentionCoordinator(attentionService);
 
 const priorityAssessments = [
-  { agent: "security-analyst", priority: "critical", confidence: 0.95 },
-  { agent: "product-manager", priority: "high", confidence: 0.88 },
-  { agent: "tech-lead", priority: "medium", confidence: 0.82 },
+  { agent: 'security-analyst', priority: 'critical', confidence: 0.95 },
+  { agent: 'product-manager', priority: 'high', confidence: 0.88 },
+  { agent: 'tech-lead', priority: 'medium', confidence: 0.82 },
 ];
 
 const consensus = await coordinator.coordinateAgents(
   priorityAssessments,
-  "flash", // Fast consensus
+  'flash' // Fast consensus
 );
 
 console.log(`Priority consensus: ${consensus.consensus}`);
@@ -243,7 +248,7 @@ await reasoningBank.storePattern({
 ```typescript
 // Learn classification patterns from historical data
 const classificationHistory = await reasoningBank.searchPatterns({
-  task: "issue classification",
+  task: 'issue classification',
   k: 100,
   minReward: 0.85,
 });
@@ -253,7 +258,7 @@ const classifier = trainClassifier(classificationHistory);
 // Apply learned classification
 const classification = await classifier.classify(newIssue);
 console.log(
-  `Classified as: ${classification.type} with ${classification.confidence}% confidence`,
+  `Classified as: ${classification.type} with ${classification.confidence}% confidence`
 );
 ```
 
@@ -264,16 +269,16 @@ console.log(
 const priorityScores = await agentDB.flashAttention(
   issueEmbeddings,
   urgencyFactorEmbeddings,
-  urgencyFactorEmbeddings,
+  urgencyFactorEmbeddings
 );
 
 // Sort by attention-weighted priority
 const prioritizedBacklog = issues.sort(
-  (a, b) => priorityScores[b.id] - priorityScores[a.id],
+  (a, b) => priorityScores[b.id] - priorityScores[a.id]
 );
 
 console.log(
-  `Prioritized ${issues.length} issues in ${processingTime}ms (2.49x-7.47x faster)`,
+  `Prioritized ${issues.length} issues in ${processingTime}ms (2.49x-7.47x faster)`
 );
 ```
 
@@ -298,7 +303,7 @@ const duplicates = await agentDB.gnnEnhancedSearch(newIssueEmbedding, {
 
 if (duplicates.length > 0) {
   console.log(
-    `Potential duplicates found: ${duplicates.map((d) => `#${d.number}`)}`,
+    `Potential duplicates found: ${duplicates.map((d) => `#${d.number}`)}`
   );
 }
 ```

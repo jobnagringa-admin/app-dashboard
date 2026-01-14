@@ -1,8 +1,11 @@
 ---
 name: sync-coordinator
-description: Multi-repository synchronization coordinator that manages version alignment, dependency synchronization, and cross-package integration with intelligent swarm orchestration
+description:
+  Multi-repository synchronization coordinator that manages version alignment,
+  dependency synchronization, and cross-package integration with intelligent
+  swarm orchestration
 type: coordination
-color: "#9B59B6"
+color: '#9B59B6'
 tools:
   - mcp__github__push_files
   - mcp__github__create_or_update_file
@@ -25,20 +28,24 @@ tools:
   - MultiEdit
 hooks:
   pre:
-    - "Initialize multi-repository synchronization swarm with hierarchical coordination"
-    - "Analyze package dependencies and version compatibility across all repositories"
-    - "Store synchronization state and conflict detection in swarm memory"
+    - 'Initialize multi-repository synchronization swarm with hierarchical
+      coordination'
+    - 'Analyze package dependencies and version compatibility across all
+      repositories'
+    - 'Store synchronization state and conflict detection in swarm memory'
   post:
-    - "Validate synchronization success across all coordinated repositories"
-    - "Update package documentation with synchronization status and metrics"
-    - "Generate comprehensive synchronization report with recommendations"
+    - 'Validate synchronization success across all coordinated repositories'
+    - 'Update package documentation with synchronization status and metrics'
+    - 'Generate comprehensive synchronization report with recommendations'
 ---
 
 # GitHub Sync Coordinator
 
 ## Purpose
 
-Multi-package synchronization and version alignment with ruv-swarm coordination for seamless integration between claude-code-flow and ruv-swarm packages through intelligent multi-agent orchestration.
+Multi-package synchronization and version alignment with ruv-swarm coordination
+for seamless integration between claude-code-flow and ruv-swarm packages through
+intelligent multi-agent orchestration.
 
 ## Capabilities
 
@@ -250,14 +257,14 @@ This integration uses ruv-swarm agents for:
 ```javascript
 // Intelligent version synchronization
 const syncStrategy = {
-  nodeVersion: ">=20.0.0", // Align to highest requirement
+  nodeVersion: '>=20.0.0', // Align to highest requirement
   dependencies: {
-    "better-sqlite3": "^12.2.0", // Use latest stable
-    ws: "^8.14.2", // Maintain compatibility
+    'better-sqlite3': '^12.2.0', // Use latest stable
+    ws: '^8.14.2', // Maintain compatibility
   },
   engines: {
     aligned: true,
-    strategy: "highest_common",
+    strategy: 'highest_common',
   },
 };
 ```
@@ -267,14 +274,14 @@ const syncStrategy = {
 ```javascript
 // Keep documentation consistent across packages
 const docSyncPattern = {
-  sourceOfTruth: "ruv-swarm/docs/CLAUDE.md",
+  sourceOfTruth: 'ruv-swarm/docs/CLAUDE.md',
   targets: [
-    "claude-code-flow/claude-code-flow/CLAUDE.md",
-    "CLAUDE.md", // Root level
+    'claude-code-flow/claude-code-flow/CLAUDE.md',
+    'CLAUDE.md', // Root level
   ],
   customSections: {
-    "claude-code-flow": "GitHub Commands Integration",
-    "ruv-swarm": "MCP Tools Reference",
+    'claude-code-flow': 'GitHub Commands Integration',
+    'ruv-swarm': 'MCP Tools Reference',
   },
 };
 ```
@@ -284,15 +291,15 @@ const docSyncPattern = {
 ```javascript
 // Comprehensive testing across synchronized packages
 const testMatrix = {
-  packages: ["claude-code-flow", "ruv-swarm"],
+  packages: ['claude-code-flow', 'ruv-swarm'],
   tests: [
-    "unit_tests",
-    "integration_tests",
-    "cross_package_tests",
-    "mcp_integration_tests",
-    "github_workflow_tests",
+    'unit_tests',
+    'integration_tests',
+    'cross_package_tests',
+    'mcp_integration_tests',
+    'github_workflow_tests',
   ],
-  validation: "parallel_execution",
+  validation: 'parallel_execution',
 };
 ```
 
@@ -378,38 +385,38 @@ mcp__claude-flow__load_balance {
 // Advanced conflict detection and resolution
 const syncConflictResolver = async (conflicts) => {
   // Initialize conflict resolution swarm
-  await mcp__claude_flow__swarm_init({ topology: "mesh", maxAgents: 6 });
+  await mcp__claude_flow__swarm_init({ topology: 'mesh', maxAgents: 6 });
 
   // Spawn specialized conflict resolution agents
   await mcp__claude_flow__agent_spawn({
-    type: "analyst",
-    name: "Conflict Analyzer",
+    type: 'analyst',
+    name: 'Conflict Analyzer',
   });
   await mcp__claude_flow__agent_spawn({
-    type: "coder",
-    name: "Resolution Developer",
+    type: 'coder',
+    name: 'Resolution Developer',
   });
   await mcp__claude_flow__agent_spawn({
-    type: "reviewer",
-    name: "Solution Validator",
+    type: 'reviewer',
+    name: 'Solution Validator',
   });
 
   // Store conflict context in swarm memory
   await mcp__claude_flow__memory_usage({
-    action: "store",
-    key: "sync/conflicts/current",
+    action: 'store',
+    key: 'sync/conflicts/current',
     value: {
       conflicts,
-      resolution_strategy: "automated_with_validation",
+      resolution_strategy: 'automated_with_validation',
       priority_order: conflicts.sort((a, b) => b.impact - a.impact),
     },
   });
 
   // Coordinate conflict resolution workflow
   return await mcp__claude_flow__task_orchestrate({
-    task: "Resolve synchronization conflicts with multi-agent validation",
-    strategy: "sequential",
-    priority: "high",
+    task: 'Resolve synchronization conflicts with multi-agent validation',
+    strategy: 'sequential',
+    priority: 'high',
   });
 };
 ```

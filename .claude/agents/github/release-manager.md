@@ -1,8 +1,10 @@
 ---
 name: release-manager
-description: Automated release coordination and deployment with ruv-swarm orchestration for seamless version management, testing, and deployment across multiple packages
+description:
+  Automated release coordination and deployment with ruv-swarm orchestration for
+  seamless version management, testing, and deployment across multiple packages
 type: development
-color: "#FF6B35"
+color: '#FF6B35'
 capabilities:
   - self_learning # ReasoningBank pattern storage
   - context_enhancement # GNN-enhanced search
@@ -83,7 +85,10 @@ hooks:
 
 ## Purpose
 
-Automated release coordination and deployment with ruv-swarm orchestration for seamless version management, testing, and deployment across multiple packages, enhanced with **self-learning** and **continuous improvement** capabilities powered by Agentic-Flow v2.0.0-alpha.
+Automated release coordination and deployment with ruv-swarm orchestration for
+seamless version management, testing, and deployment across multiple packages,
+enhanced with **self-learning** and **continuous improvement** capabilities
+powered by Agentic-Flow v2.0.0-alpha.
 
 ## Core Capabilities
 
@@ -106,7 +111,7 @@ const similarReleases = await reasoningBank.searchPatterns({
 });
 
 if (similarReleases.length > 0) {
-  console.log("📚 Learning from past successful releases:");
+  console.log('📚 Learning from past successful releases:');
   similarReleases.forEach((pattern) => {
     console.log(`- ${pattern.task}: ${pattern.reward} success rate`);
     console.log(`  Deployment strategy: ${pattern.output.deploymentStrategy}`);
@@ -117,13 +122,13 @@ if (similarReleases.length > 0) {
 
 // 2. Learn from failed releases
 const failedReleases = await reasoningBank.searchPatterns({
-  task: "release management",
+  task: 'release management',
   onlyFailures: true,
   k: 3,
 });
 
 if (failedReleases.length > 0) {
-  console.log("⚠️  Avoiding past release failures:");
+  console.log('⚠️  Avoiding past release failures:');
   failedReleases.forEach((pattern) => {
     console.log(`- ${pattern.critique}`);
     console.log(`  Failure cause: ${pattern.output.failureCause}`);
@@ -150,7 +155,7 @@ const riskAnalysis = await agentDB.gnnEnhancedSearch(releaseEmbedding, {
 });
 
 console.log(
-  `Dependency risk analysis: ${riskAnalysis.improvementPercent}% more accurate`,
+  `Dependency risk analysis: ${riskAnalysis.improvementPercent}% more accurate`
 );
 
 // Detect potential breaking changes with GNN
@@ -158,7 +163,7 @@ const breakingChanges = await agentDB.gnnEnhancedSearch(changesetEmbedding, {
   k: 5,
   graphContext: buildAPIGraph(),
   gnnLayers: 2,
-  filter: "api_changes",
+  filter: 'api_changes',
 });
 ```
 
@@ -170,35 +175,35 @@ const coordinator = new AttentionCoordinator(attentionService);
 
 const releaseDecisions = [
   {
-    agent: "qa-lead",
-    decision: "go",
+    agent: 'qa-lead',
+    decision: 'go',
     confidence: 0.95,
-    rationale: "all tests pass",
+    rationale: 'all tests pass',
   },
   {
-    agent: "security-team",
-    decision: "go",
+    agent: 'security-team',
+    decision: 'go',
     confidence: 0.92,
-    rationale: "no vulnerabilities",
+    rationale: 'no vulnerabilities',
   },
   {
-    agent: "product-manager",
-    decision: "no-go",
+    agent: 'product-manager',
+    decision: 'no-go',
     confidence: 0.85,
-    rationale: "missing feature",
+    rationale: 'missing feature',
   },
   {
-    agent: "tech-lead",
-    decision: "go",
+    agent: 'tech-lead',
+    decision: 'go',
     confidence: 0.88,
-    rationale: "acceptable trade-offs",
+    rationale: 'acceptable trade-offs',
   },
 ];
 
 const consensus = await coordinator.coordinateAgents(
   releaseDecisions,
-  "hyperbolic", // Hierarchical decision-making
-  -1.0, // Curvature for hierarchy
+  'hyperbolic', // Hierarchical decision-making
+  -1.0 // Curvature for hierarchy
 );
 
 console.log(`Release decision: ${consensus.consensus}`);
@@ -206,7 +211,7 @@ console.log(`Confidence: ${consensus.confidence}`);
 console.log(`Key concerns: ${consensus.aggregatedRationale}`);
 
 // Make final decision based on weighted consensus
-if (consensus.consensus === "go" && consensus.confidence > 0.9) {
+if (consensus.consensus === 'go' && consensus.confidence > 0.9) {
   await proceedWithRelease();
 } else {
   await delayRelease(consensus.aggregatedRationale);
@@ -253,7 +258,7 @@ await reasoningBank.storePattern({
 ```typescript
 // Learn optimal deployment strategies from history
 const deploymentHistory = await reasoningBank.searchPatterns({
-  task: "deployment strategy",
+  task: 'deployment strategy',
   k: 20,
   minReward: 0.85,
 });
@@ -269,16 +274,16 @@ const strategy = selectDeploymentStrategy(deploymentHistory, currentRelease);
 const riskScores = await agentDB.flashAttention(
   changeEmbeddings,
   riskFactorEmbeddings,
-  riskFactorEmbeddings,
+  riskFactorEmbeddings
 );
 
 // Prioritize validation based on risk
 const validationPlan = changes.sort(
-  (a, b) => riskScores[b.id] - riskScores[a.id],
+  (a, b) => riskScores[b.id] - riskScores[a.id]
 );
 
 console.log(
-  `Risk assessment completed in ${processingTime}ms (2.49x-7.47x faster)`,
+  `Risk assessment completed in ${processingTime}ms (2.49x-7.47x faster)`
 );
 ```
 
@@ -301,7 +306,7 @@ const impactedAreas = await agentDB.gnnEnhancedSearch(changesEmbedding, {
 });
 
 console.log(
-  `Found ${impactedAreas.length} impacted areas with +12.4% better coverage`,
+  `Found ${impactedAreas.length} impacted areas with +12.4% better coverage`
 );
 ```
 
@@ -532,10 +537,10 @@ This release is production-ready with comprehensive validation and testing.
 
 ```javascript
 const versionStrategy = {
-  major: "Breaking changes or architecture overhauls",
-  minor: "New features, GitHub integration, swarm enhancements",
-  patch: "Bug fixes, documentation updates, dependency updates",
-  coordination: "Cross-package version alignment",
+  major: 'Breaking changes or architecture overhauls',
+  minor: 'New features, GitHub integration, swarm enhancements',
+  patch: 'Bug fixes, documentation updates, dependency updates',
+  coordination: 'Cross-package version alignment',
 };
 ```
 
@@ -543,12 +548,12 @@ const versionStrategy = {
 
 ```javascript
 const validationStages = [
-  "unit_tests", // Individual package testing
-  "integration_tests", // Cross-package integration
-  "performance_tests", // Performance regression detection
-  "compatibility_tests", // Version compatibility validation
-  "documentation_tests", // Documentation accuracy verification
-  "deployment_tests", // Deployment simulation
+  'unit_tests', // Individual package testing
+  'integration_tests', // Cross-package integration
+  'performance_tests', // Performance regression detection
+  'compatibility_tests', // Version compatibility validation
+  'documentation_tests', // Documentation accuracy verification
+  'deployment_tests', // Deployment simulation
 ];
 ```
 
@@ -556,10 +561,10 @@ const validationStages = [
 
 ```javascript
 const rollbackPlan = {
-  triggers: ["test_failures", "deployment_issues", "critical_bugs"],
-  automatic: ["failed_tests", "build_failures"],
-  manual: ["user_reported_issues", "performance_degradation"],
-  recovery: "Previous stable version restoration",
+  triggers: ['test_failures', 'deployment_issues', 'critical_bugs'],
+  automatic: ['failed_tests', 'build_failures'],
+  manual: ['user_reported_issues', 'performance_degradation'],
+  recovery: 'Previous stable version restoration',
 };
 ```
 
@@ -602,7 +607,7 @@ name: Release Management
 on:
   pull_request:
     branches: [main]
-    paths: ["**/package.json", "CHANGELOG.md"]
+    paths: ['**/package.json', 'CHANGELOG.md']
 
 jobs:
   release-validation:
@@ -612,7 +617,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "20"
+          node-version: '20'
       - name: Install and Test
         run: |
           cd claude-code-flow/claude-code-flow && npm install && npm test

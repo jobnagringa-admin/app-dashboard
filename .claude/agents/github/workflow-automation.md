@@ -1,8 +1,11 @@
 ---
 name: workflow-automation
-description: GitHub Actions workflow automation agent that creates intelligent, self-organizing CI/CD pipelines with adaptive multi-agent coordination and automated optimization
+description:
+  GitHub Actions workflow automation agent that creates intelligent,
+  self-organizing CI/CD pipelines with adaptive multi-agent coordination and
+  automated optimization
 type: automation
-color: "#E74C3C"
+color: '#E74C3C'
 capabilities:
   - self_learning # ReasoningBank pattern storage
   - context_enhancement # GNN-enhanced search
@@ -94,7 +97,10 @@ hooks:
 
 ## Overview
 
-Integrate AI swarms with GitHub Actions to create intelligent, self-organizing CI/CD pipelines that adapt to your codebase through advanced multi-agent coordination and automation, enhanced with **self-learning** and **continuous improvement** capabilities powered by Agentic-Flow v2.0.0-alpha.
+Integrate AI swarms with GitHub Actions to create intelligent, self-organizing
+CI/CD pipelines that adapt to your codebase through advanced multi-agent
+coordination and automation, enhanced with **self-learning** and **continuous
+improvement** capabilities powered by Agentic-Flow v2.0.0-alpha.
 
 ## 🧠 Self-Learning Protocol (v2.0.0-alpha)
 
@@ -109,7 +115,7 @@ const similarWorkflows = await reasoningBank.searchPatterns({
 });
 
 if (similarWorkflows.length > 0) {
-  console.log("📚 Learning from past successful workflows:");
+  console.log('📚 Learning from past successful workflows:');
   similarWorkflows.forEach((pattern) => {
     console.log(`- ${pattern.task}: ${pattern.reward} success rate`);
     console.log(`  Workflow strategy: ${pattern.output.strategy}`);
@@ -120,13 +126,13 @@ if (similarWorkflows.length > 0) {
 
 // 2. Learn from workflow failures
 const failedWorkflows = await reasoningBank.searchPatterns({
-  task: "CI/CD workflow",
+  task: 'CI/CD workflow',
   onlyFailures: true,
   k: 3,
 });
 
 if (failedWorkflows.length > 0) {
-  console.log("⚠️  Avoiding past workflow mistakes:");
+  console.log('⚠️  Avoiding past workflow mistakes:');
   failedWorkflows.forEach((pattern) => {
     console.log(`- ${pattern.critique}`);
     console.log(`  Common failures: ${pattern.output.commonFailures}`);
@@ -153,7 +159,7 @@ const optimizations = await agentDB.gnnEnhancedSearch(workflowEmbedding, {
 });
 
 console.log(
-  `Found ${optimizations.length} optimization opportunities with +12.4% better accuracy`,
+  `Found ${optimizations.length} optimization opportunities with +12.4% better accuracy`
 );
 
 // Detect bottlenecks with GNN
@@ -161,7 +167,7 @@ const bottlenecks = await agentDB.gnnEnhancedSearch(performanceEmbedding, {
   k: 5,
   graphContext: buildPerformanceGraph(),
   gnnLayers: 2,
-  filter: "slow_jobs",
+  filter: 'slow_jobs',
 });
 ```
 
@@ -173,18 +179,18 @@ const coordinator = new AttentionCoordinator(attentionService);
 
 const optimizationProposals = [
   {
-    agent: "cache-optimizer",
-    proposal: "add-dependency-caching",
+    agent: 'cache-optimizer',
+    proposal: 'add-dependency-caching',
     impact: 0.45,
   },
-  { agent: "parallel-optimizer", proposal: "parallelize-tests", impact: 0.6 },
-  { agent: "resource-optimizer", proposal: "upgrade-runners", impact: 0.3 },
-  { agent: "security-optimizer", proposal: "add-security-scan", impact: 0.85 },
+  { agent: 'parallel-optimizer', proposal: 'parallelize-tests', impact: 0.6 },
+  { agent: 'resource-optimizer', proposal: 'upgrade-runners', impact: 0.3 },
+  { agent: 'security-optimizer', proposal: 'add-security-scan', impact: 0.85 },
 ];
 
 const consensus = await coordinator.coordinateAgents(
   optimizationProposals,
-  "moe", // Mixture of Experts routing
+  'moe' // Mixture of Experts routing
 );
 
 console.log(`Optimization consensus: ${consensus.topOptimizations}`);
@@ -236,19 +242,19 @@ await reasoningBank.storePattern({
 ```typescript
 // Learn optimal workflow patterns from history
 const workflowPatterns = await reasoningBank.searchPatterns({
-  task: "workflow generation",
+  task: 'workflow generation',
   k: 50,
   minReward: 0.85,
 });
 
 const optimalWorkflow = generateWorkflowFromPatterns(
   workflowPatterns,
-  repoContext,
+  repoContext
 );
 
 // Returns optimized YAML based on learned patterns
 console.log(
-  `Generated workflow with ${optimalWorkflow.optimizationScore}% efficiency`,
+  `Generated workflow with ${optimalWorkflow.optimizationScore}% efficiency`
 );
 ```
 
@@ -259,16 +265,16 @@ console.log(
 const jobPriorities = await agentDB.flashAttention(
   jobEmbeddings,
   criticalityEmbeddings,
-  criticalityEmbeddings,
+  criticalityEmbeddings
 );
 
 // Reorder workflow for optimal execution
 const optimizedJobOrder = jobs.sort(
-  (a, b) => jobPriorities[b.id] - jobPriorities[a.id],
+  (a, b) => jobPriorities[b.id] - jobPriorities[a.id]
 );
 
 console.log(
-  `Job prioritization completed in ${processingTime}ms (2.49x-7.47x faster)`,
+  `Job prioritization completed in ${processingTime}ms (2.49x-7.47x faster)`
 );
 ```
 
@@ -288,11 +294,11 @@ const riskAnalysis = await agentDB.gnnEnhancedSearch(currentWorkflowEmbedding, {
   k: 10,
   graphContext: failureGraph,
   gnnLayers: 3,
-  filter: "failed_runs",
+  filter: 'failed_runs',
 });
 
 console.log(
-  `Predicted failure risks: ${riskAnalysis.map((r) => r.riskFactor)}`,
+  `Predicted failure risks: ${riskAnalysis.map((r) => r.riskFactor)}`
 );
 ```
 
@@ -301,12 +307,12 @@ console.log(
 ```typescript
 // Continuous learning from workflow executions
 const performanceTrends = await reasoningBank.getPatternStats({
-  task: "workflow execution",
+  task: 'workflow execution',
   k: 100,
 });
 
 console.log(
-  `Performance improvement over time: ${performanceTrends.improvementPercent}%`,
+  `Performance improvement over time: ${performanceTrends.improvementPercent}%`
 );
 console.log(`Common optimizations: ${performanceTrends.commonPatterns}`);
 console.log(`Best practices emerged: ${performanceTrends.bestPractices}`);
@@ -403,7 +409,7 @@ jobs:
 name: Intelligent Security Scan
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
@@ -544,23 +550,23 @@ jobs:
 
 ```javascript
 // action.yml
-name: "Swarm Custom Action";
-description: "Custom swarm-powered action";
-inputs: task: description: "Task for swarm";
+name: 'Swarm Custom Action';
+description: 'Custom swarm-powered action';
+inputs: task: description: 'Task for swarm';
 required: true;
-runs: using: "node16";
-main: "dist/index.js";
+runs: using: 'node16';
+main: 'dist/index.js';
 
 // index.js
-const { SwarmAction } = require("ruv-swarm");
+const { SwarmAction } = require('ruv-swarm');
 
 async function run() {
   const swarm = new SwarmAction({
-    topology: "mesh",
-    agents: ["analyzer", "optimizer"],
+    topology: 'mesh',
+    agents: ['analyzer', 'optimizer'],
   });
 
-  await swarm.execute(core.getInput("task"));
+  await swarm.execute(core.getInput('task'));
 }
 ```
 
@@ -665,7 +671,7 @@ jobs:
 name: Intelligent Release
 on:
   push:
-    tags: ["v*"]
+    tags: ['v*']
 
 jobs:
   release:
@@ -686,7 +692,7 @@ jobs:
 name: Auto Documentation
 on:
   push:
-    paths: ["src/**"]
+    paths: ['src/**']
 
 jobs:
   docs:
@@ -853,61 +859,61 @@ mcp__claude-flow__memory_usage {
 const createIntelligentWorkflow = async (repoContext) => {
   // Initialize workflow generation swarm
   await mcp__claude_flow__swarm_init({
-    topology: "hierarchical",
+    topology: 'hierarchical',
     maxAgents: 8,
   });
 
   // Spawn specialized workflow agents
   await mcp__claude_flow__agent_spawn({
-    type: "architect",
-    name: "Workflow Architect",
+    type: 'architect',
+    name: 'Workflow Architect',
   });
   await mcp__claude_flow__agent_spawn({
-    type: "coder",
-    name: "YAML Generator",
+    type: 'coder',
+    name: 'YAML Generator',
   });
   await mcp__claude_flow__agent_spawn({
-    type: "optimizer",
-    name: "Performance Optimizer",
+    type: 'optimizer',
+    name: 'Performance Optimizer',
   });
   await mcp__claude_flow__agent_spawn({
-    type: "tester",
-    name: "Workflow Validator",
+    type: 'tester',
+    name: 'Workflow Validator',
   });
 
   // Create adaptive workflow based on repository analysis
   const workflow = await mcp__claude_flow__workflow_create({
-    name: "Intelligent CI/CD Pipeline",
+    name: 'Intelligent CI/CD Pipeline',
     steps: [
       {
-        name: "Smart Code Analysis",
-        agents: ["analyzer", "security_scanner"],
+        name: 'Smart Code Analysis',
+        agents: ['analyzer', 'security_scanner'],
         parallel: true,
       },
       {
-        name: "Adaptive Testing",
-        agents: ["unit_tester", "integration_tester", "e2e_tester"],
-        strategy: "based_on_changes",
+        name: 'Adaptive Testing',
+        agents: ['unit_tester', 'integration_tester', 'e2e_tester'],
+        strategy: 'based_on_changes',
       },
       {
-        name: "Intelligent Deployment",
-        agents: ["deployment_manager", "rollback_coordinator"],
-        conditions: ["all_tests_pass", "security_approved"],
+        name: 'Intelligent Deployment',
+        agents: ['deployment_manager', 'rollback_coordinator'],
+        conditions: ['all_tests_pass', 'security_approved'],
       },
     ],
-    triggers: ["pull_request", "push_to_main", "scheduled_optimization"],
+    triggers: ['pull_request', 'push_to_main', 'scheduled_optimization'],
   });
 
   // Store workflow configuration in memory
   await mcp__claude_flow__memory_usage({
-    action: "store",
+    action: 'store',
     key: `workflow/${repoContext.name}/config`,
     value: {
       workflow,
       generated_at: Date.now(),
-      optimization_level: "high",
-      estimated_performance_gain: "40%",
-      cost_reduction: "25%",
+      optimization_level: 'high',
+      estimated_performance_gain: '40%',
+      cost_reduction: '25%',
     },
   });
 
@@ -949,4 +955,5 @@ mcp__claude-flow__task_orchestrate {
 }
 ```
 
-See also: [swarm-pr.md](./swarm-pr.md), [swarm-issue.md](./swarm-issue.md), [sync-coordinator.md](./sync-coordinator.md)
+See also: [swarm-pr.md](./swarm-pr.md), [swarm-issue.md](./swarm-issue.md),
+[sync-coordinator.md](./sync-coordinator.md)

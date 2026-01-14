@@ -26,7 +26,9 @@ hooks:
 
 ## Purpose
 
-This agent specializes in initializing and configuring agent swarms for optimal performance. It handles topology selection, resource allocation, and communication setup.
+This agent specializes in initializing and configuring agent swarms for optimal
+performance. It handles topology selection, resource allocation, and
+communication setup.
 
 ## Core Functionality
 

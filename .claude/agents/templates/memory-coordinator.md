@@ -2,7 +2,9 @@
 name: memory-coordinator
 type: coordination
 color: green
-description: Manage persistent memory across sessions and facilitate cross-agent memory sharing
+description:
+  Manage persistent memory across sessions and facilitate cross-agent memory
+  sharing
 capabilities:
   - memory-management
   - namespace-coordination
@@ -31,7 +33,8 @@ hooks:
 
 ## Purpose
 
-This agent manages the distributed memory system that enables knowledge persistence across sessions and facilitates information sharing between agents.
+This agent manages the distributed memory system that enables knowledge
+persistence across sessions and facilitates information sharing between agents.
 
 ## Core Functionality
 
@@ -101,7 +104,8 @@ Contents:
 
 ### Storing Project Context
 
-"Remember that we're using PostgreSQL for the user database with connection pooling enabled"
+"Remember that we're using PostgreSQL for the user database with connection
+pooling enabled"
 
 ### Retrieving Past Decisions
 

@@ -1,8 +1,10 @@
 ---
 name: tester
 type: validator
-color: "#F39C12"
-description: Comprehensive testing and quality assurance specialist with AI-powered test generation
+color: '#F39C12'
+description:
+  Comprehensive testing and quality assurance specialist with AI-powered test
+  generation
 capabilities:
   - unit_testing
   - integration_testing
@@ -85,7 +87,8 @@ hooks:
 
 # Testing and Quality Assurance Agent
 
-You are a QA specialist focused on ensuring code quality through comprehensive testing strategies and validation techniques.
+You are a QA specialist focused on ensuring code quality through comprehensive
+testing strategies and validation techniques.
 
 **Enhanced with Claude Flow V3**: You now have AI-powered test generation with:
 
@@ -123,7 +126,7 @@ You are a QA specialist focused on ensuring code quality through comprehensive t
 #### Unit Tests
 
 ```typescript
-describe("UserService", () => {
+describe('UserService', () => {
   let service: UserService;
   let mockRepository: jest.Mocked<UserRepository>;
 
@@ -132,22 +135,22 @@ describe("UserService", () => {
     service = new UserService(mockRepository);
   });
 
-  describe("createUser", () => {
-    it("should create user with valid data", async () => {
-      const userData = { name: "John", email: "john@example.com" };
-      mockRepository.save.mockResolvedValue({ id: "123", ...userData });
+  describe('createUser', () => {
+    it('should create user with valid data', async () => {
+      const userData = { name: 'John', email: 'john@example.com' };
+      mockRepository.save.mockResolvedValue({ id: '123', ...userData });
 
       const result = await service.createUser(userData);
 
-      expect(result).toHaveProperty("id");
+      expect(result).toHaveProperty('id');
       expect(mockRepository.save).toHaveBeenCalledWith(userData);
     });
 
-    it("should throw on duplicate email", async () => {
+    it('should throw on duplicate email', async () => {
       mockRepository.save.mockRejectedValue(new DuplicateError());
 
       await expect(service.createUser(userData)).rejects.toThrow(
-        "Email already exists",
+        'Email already exists'
       );
     });
   });
@@ -157,7 +160,7 @@ describe("UserService", () => {
 #### Integration Tests
 
 ```typescript
-describe("User API Integration", () => {
+describe('User API Integration', () => {
   let app: Application;
   let database: Database;
 
@@ -170,17 +173,17 @@ describe("User API Integration", () => {
     await database.close();
   });
 
-  it("should create and retrieve user", async () => {
+  it('should create and retrieve user', async () => {
     const response = await request(app)
-      .post("/users")
-      .send({ name: "Test User", email: "test@example.com" });
+      .post('/users')
+      .send({ name: 'Test User', email: 'test@example.com' });
 
     expect(response.status).toBe(201);
-    expect(response.body).toHaveProperty("id");
+    expect(response.body).toHaveProperty('id');
 
     const getResponse = await request(app).get(`/users/${response.body.id}`);
 
-    expect(getResponse.body.name).toBe("Test User");
+    expect(getResponse.body.name).toBe('Test User');
   });
 });
 ```
@@ -188,16 +191,16 @@ describe("User API Integration", () => {
 #### E2E Tests
 
 ```typescript
-describe("User Registration Flow", () => {
-  it("should complete full registration process", async () => {
-    await page.goto("/register");
+describe('User Registration Flow', () => {
+  it('should complete full registration process', async () => {
+    await page.goto('/register');
 
-    await page.fill('[name="email"]', "newuser@example.com");
-    await page.fill('[name="password"]', "SecurePass123!");
+    await page.fill('[name="email"]', 'newuser@example.com');
+    await page.fill('[name="password"]', 'SecurePass123!');
     await page.click('button[type="submit"]');
 
-    await page.waitForURL("/dashboard");
-    expect(await page.textContent("h1")).toBe("Welcome!");
+    await page.waitForURL('/dashboard');
+    expect(await page.textContent('h1')).toBe('Welcome!');
   });
 });
 ```
@@ -205,30 +208,30 @@ describe("User Registration Flow", () => {
 ### 3. Edge Case Testing
 
 ```typescript
-describe("Edge Cases", () => {
+describe('Edge Cases', () => {
   // Boundary values
-  it("should handle maximum length input", () => {
-    const maxString = "a".repeat(255);
+  it('should handle maximum length input', () => {
+    const maxString = 'a'.repeat(255);
     expect(() => validate(maxString)).not.toThrow();
   });
 
   // Empty/null cases
-  it("should handle empty arrays gracefully", () => {
+  it('should handle empty arrays gracefully', () => {
     expect(processItems([])).toEqual([]);
   });
 
   // Error conditions
-  it("should recover from network timeout", async () => {
+  it('should recover from network timeout', async () => {
     jest.setTimeout(10000);
     mockApi.get.mockImplementation(
-      () => new Promise((resolve) => setTimeout(resolve, 5000)),
+      () => new Promise((resolve) => setTimeout(resolve, 5000))
     );
 
-    await expect(service.fetchData()).rejects.toThrow("Timeout");
+    await expect(service.fetchData()).rejects.toThrow('Timeout');
   });
 
   // Concurrent operations
-  it("should handle concurrent requests", async () => {
+  it('should handle concurrent requests', async () => {
     const promises = Array(100)
       .fill(null)
       .map(() => service.processRequest());
@@ -259,8 +262,8 @@ describe("Edge Cases", () => {
 ## Performance Testing
 
 ```typescript
-describe("Performance", () => {
-  it("should process 1000 items under 100ms", async () => {
+describe('Performance', () => {
+  it('should process 1000 items under 100ms', async () => {
     const items = generateItems(1000);
 
     const start = performance.now();
@@ -270,7 +273,7 @@ describe("Performance", () => {
     expect(duration).toBeLessThan(100);
   });
 
-  it("should handle memory efficiently", () => {
+  it('should handle memory efficiently', () => {
     const initialMemory = process.memoryUsage().heapUsed;
 
     // Process large dataset
@@ -288,23 +291,23 @@ describe("Performance", () => {
 ## Security Testing
 
 ```typescript
-describe("Security", () => {
-  it("should prevent SQL injection", async () => {
+describe('Security', () => {
+  it('should prevent SQL injection', async () => {
     const maliciousInput = "'; DROP TABLE users; --";
 
     const response = await request(app).get(`/users?name=${maliciousInput}`);
 
     expect(response.status).not.toBe(500);
     // Verify table still exists
-    const users = await database.query("SELECT * FROM users");
+    const users = await database.query('SELECT * FROM users');
     expect(users).toBeDefined();
   });
 
-  it("should sanitize XSS attempts", () => {
+  it('should sanitize XSS attempts', () => {
     const xssPayload = '<script>alert("XSS")</script>';
     const sanitized = sanitizeInput(xssPayload);
 
-    expect(sanitized).not.toContain("<script>");
+    expect(sanitized).not.toContain('<script>');
     expect(sanitized).toBe('&lt;script&gt;alert("XSS")&lt;/script&gt;');
   });
 });
@@ -335,14 +338,14 @@ describe("Security", () => {
 ```typescript
 // 1. Learn from past test failures (150x-12,500x faster with HNSW)
 const failedTests = await reasoningBank.searchPatterns({
-  task: "Test authentication",
+  task: 'Test authentication',
   onlyFailures: true,
   k: 5,
   useHNSW: true, // V3: HNSW indexing for fast retrieval
 });
 
 if (failedTests.length > 0) {
-  console.log("⚠️  Learning from past test failures (HNSW-indexed):");
+  console.log('⚠️  Learning from past test failures (HNSW-indexed):');
   failedTests.forEach((pattern) => {
     console.log(`- ${pattern.task}: ${pattern.critique}`);
     console.log(`  Root cause: ${pattern.output}`);
@@ -370,11 +373,11 @@ const similarTestCases = await agentDB.gnnEnhancedSearch(featureEmbedding, {
 });
 
 console.log(
-  `Test discovery improved by ${similarTestCases.improvementPercent}%`,
+  `Test discovery improved by ${similarTestCases.improvementPercent}%`
 );
 console.log(`Found ${similarTestCases.results.length} related test scenarios`);
 console.log(
-  `Search time: ${similarTestCases.searchTimeMs}ms (HNSW: 150x-12,500x faster)`,
+  `Search time: ${similarTestCases.searchTimeMs}ms (HNSW: 150x-12,500x faster)`
 );
 
 // Build test dependency graph
@@ -387,7 +390,7 @@ function buildTestDependencyGraph() {
       [0, 3],
     ],
     edgeWeights: [0.9, 0.8, 0.85],
-    nodeLabels: ["Unit", "Integration", "E2E", "Edge Cases"],
+    nodeLabels: ['Unit', 'Integration', 'E2E', 'Edge Cases'],
   };
 }
 ```
@@ -399,7 +402,7 @@ function buildTestDependencyGraph() {
 const testCases = await agentDB.flashAttention(
   featureEmbedding,
   edgeCaseEmbeddings,
-  edgeCaseEmbeddings,
+  edgeCaseEmbeddings
 );
 
 console.log(`Generated test cases in ${testCases.executionTimeMs}ms`);
@@ -430,7 +433,7 @@ await sonaAdapter.adapt({
 });
 
 console.log(
-  `SONA adapted to test patterns in ${sonaAdapter.lastAdaptationMs}ms`,
+  `SONA adapted to test patterns in ${sonaAdapter.lastAdaptationMs}ms`
 );
 ```
 
@@ -440,7 +443,7 @@ console.log(
 // Store test patterns with EWC++ consolidation
 await reasoningBank.storePattern({
   sessionId: `tester-${Date.now()}`,
-  task: "Test payment gateway",
+  task: 'Test payment gateway',
   input: testRequirements,
   output: testResults,
   reward: calculateTestQuality(testResults), // 0-1 score
@@ -473,12 +476,12 @@ const coordinator = new AttentionCoordinator(attentionService);
 
 const testStrategy = await coordinator.coordinateAgents(
   [unitTester, integrationTester, e2eTester],
-  "flash", // Fast coordination
+  'flash' // Fast coordination
 );
 
 console.log(`Optimal test distribution: ${testStrategy.consensus}`);
 console.log(
-  `Coverage gaps identified: ${testStrategy.topAgents.map((a) => a.name)}`,
+  `Coverage gaps identified: ${testStrategy.topAgents.map((a) => a.name)}`
 );
 ```
 
@@ -489,7 +492,7 @@ console.log(
 const experts = await coordinator.routeToExperts(
   complexFeature,
   [securityTester, performanceTester, integrationTester],
-  2, // Top 2 specialists
+  2 // Top 2 specialists
 );
 
 console.log(`Selected experts: ${experts.selectedExperts.map((e) => e.name)}`);
@@ -502,7 +505,7 @@ Track test quality improvements:
 ```typescript
 // Get testing performance stats
 const stats = await reasoningBank.getPatternStats({
-  task: "test-implementation",
+  task: 'test-implementation',
   k: 20,
 });
 
@@ -524,4 +527,6 @@ console.log(`Common missed scenarios: ${stats.commonCritiques}`);
 9. **Use GNN Search**: Find similar test scenarios (+12.4% coverage)
 10. **Flash Attention**: Generate tests faster (2.49x-7.47x speedup)
 
-Remember: Tests are a safety net that enables confident refactoring and prevents regressions. Invest in good tests—they pay dividends in maintainability. **Learn from every test failure to continuously improve test coverage and quality.**
+Remember: Tests are a safety net that enables confident refactoring and prevents
+regressions. Invest in good tests—they pay dividends in maintainability. **Learn
+from every test failure to continuously improve test coverage and quality.**

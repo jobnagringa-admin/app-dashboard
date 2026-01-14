@@ -2,7 +2,9 @@
 name: sparc-coord
 type: coordination
 color: orange
-description: SPARC methodology orchestrator with hierarchical coordination and self-learning
+description:
+  SPARC methodology orchestrator with hierarchical coordination and
+  self-learning
 capabilities:
   - sparc_coordination
   - phase_management
@@ -99,7 +101,10 @@ hooks:
 
 ## Purpose
 
-This agent orchestrates the complete SPARC (Specification, Pseudocode, Architecture, Refinement, Completion) methodology with **hierarchical coordination**, **MoE routing**, and **self-learning** capabilities powered by Agentic-Flow v2.0.0-alpha.
+This agent orchestrates the complete SPARC (Specification, Pseudocode,
+Architecture, Refinement, Completion) methodology with **hierarchical
+coordination**, **MoE routing**, and **self-learning** capabilities powered by
+Agentic-Flow v2.0.0-alpha.
 
 ## 🧠 Self-Learning Protocol for SPARC Coordination
 
@@ -108,13 +113,13 @@ This agent orchestrates the complete SPARC (Specification, Pseudocode, Architect
 ```typescript
 // 1. Search for similar SPARC cycles
 const similarCycles = await reasoningBank.searchPatterns({
-  task: "sparc-cycle: " + currentProject.description,
+  task: 'sparc-cycle: ' + currentProject.description,
   k: 5,
   minReward: 0.85,
 });
 
 if (similarCycles.length > 0) {
-  console.log("📚 Learning from past SPARC methodology cycles:");
+  console.log('📚 Learning from past SPARC methodology cycles:');
   similarCycles.forEach((pattern) => {
     console.log(`- ${pattern.task}: ${pattern.reward} cycle success rate`);
     console.log(`  Key insights: ${pattern.critique}`);
@@ -126,13 +131,13 @@ if (similarCycles.length > 0) {
 
 // 2. Learn from incomplete or failed SPARC cycles
 const failedCycles = await reasoningBank.searchPatterns({
-  task: "sparc-cycle: " + currentProject.description,
+  task: 'sparc-cycle: ' + currentProject.description,
   onlyFailures: true,
   k: 3,
 });
 
 if (failedCycles.length > 0) {
-  console.log("⚠️  Avoiding past SPARC methodology mistakes:");
+  console.log('⚠️  Avoiding past SPARC methodology mistakes:');
   failedCycles.forEach((pattern) => {
     console.log(`- ${pattern.critique}`);
     // Prevent phase skipping
@@ -152,16 +157,16 @@ const coordinator = new AttentionCoordinator(attentionService);
 // Phase Specialists = Workers (execution details)
 const phaseCoordination = await coordinator.hierarchicalCoordination(
   [
-    { phase: "strategic_requirements", importance: 1.0 },
-    { phase: "overall_architecture", importance: 0.9 },
+    { phase: 'strategic_requirements', importance: 1.0 },
+    { phase: 'overall_architecture', importance: 0.9 },
   ], // Queen decisions
   [
-    { agent: "specification", output: specOutput },
-    { agent: "pseudocode", output: pseudoOutput },
-    { agent: "architecture", output: archOutput },
-    { agent: "refinement", output: refineOutput },
+    { agent: 'specification', output: specOutput },
+    { agent: 'pseudocode', output: pseudoOutput },
+    { agent: 'architecture', output: archOutput },
+    { agent: 'refinement', output: refineOutput },
   ], // Worker outputs
-  -1.0, // Hyperbolic curvature for natural hierarchy
+  -1.0 // Hyperbolic curvature for natural hierarchy
 );
 
 console.log(`Hierarchical coordination score: ${phaseCoordination.consensus}`);
@@ -175,16 +180,16 @@ console.log(`Queens have 1.5x influence on decisions`);
 const taskRouting = await coordinator.routeToExperts(
   currentTask,
   [
-    { agent: "specification", expertise: ["requirements", "constraints"] },
-    { agent: "pseudocode", expertise: ["algorithms", "complexity"] },
-    { agent: "architecture", expertise: ["system-design", "scalability"] },
-    { agent: "refinement", expertise: ["testing", "optimization"] },
+    { agent: 'specification', expertise: ['requirements', 'constraints'] },
+    { agent: 'pseudocode', expertise: ['algorithms', 'complexity'] },
+    { agent: 'architecture', expertise: ['system-design', 'scalability'] },
+    { agent: 'refinement', expertise: ['testing', 'optimization'] },
   ],
-  2, // Top 2 most relevant specialists
+  2 // Top 2 most relevant specialists
 );
 
 console.log(
-  `Selected specialists: ${taskRouting.selectedExperts.map((e) => e.agent)}`,
+  `Selected specialists: ${taskRouting.selectedExperts.map((e) => e.agent)}`
 );
 console.log(`Routing confidence: ${taskRouting.routingScores}`);
 ```
@@ -194,10 +199,10 @@ console.log(`Routing confidence: ${taskRouting.routingScores}`);
 ```typescript
 // Collect metrics from all SPARC phases
 const cycleMetrics = {
-  specificationQuality: getPhaseMetric("specification"),
-  algorithmEfficiency: getPhaseMetric("pseudocode"),
-  architectureScalability: getPhaseMetric("architecture"),
-  refinementCoverage: getPhaseMetric("refinement"),
+  specificationQuality: getPhaseMetric('specification'),
+  algorithmEfficiency: getPhaseMetric('pseudocode'),
+  architectureScalability: getPhaseMetric('architecture'),
+  refinementCoverage: getPhaseMetric('refinement'),
   phasesCompleted: countCompletedPhases(),
   totalDuration: measureCycleDuration(),
 };
@@ -212,7 +217,7 @@ const cycleReward =
 // Store complete SPARC cycle pattern
 await reasoningBank.storePattern({
   sessionId: `sparc-cycle-${Date.now()}`,
-  task: "sparc-coordination: " + projectDescription,
+  task: 'sparc-coordination: ' + projectDescription,
   input: initialRequirements,
   output: completedProject,
   reward: cycleReward, // 0-1 based on all phase metrics
@@ -230,17 +235,17 @@ await reasoningBank.storePattern({
 ```typescript
 // SPARC Coordinator acts as queen
 const queenDecisions = [
-  "overall_project_direction",
-  "quality_gate_criteria",
-  "phase_transition_approval",
-  "methodology_compliance",
+  'overall_project_direction',
+  'quality_gate_criteria',
+  'phase_transition_approval',
+  'methodology_compliance',
 ];
 
 // Queens have 1.5x influence weight
 const strategicDecisions = await coordinator.hierarchicalCoordination(
   queenDecisions,
   workerPhaseOutputs,
-  -1.0, // Hyperbolic space for hierarchy
+  -1.0 // Hyperbolic space for hierarchy
 );
 ```
 
@@ -249,16 +254,16 @@ const strategicDecisions = await coordinator.hierarchicalCoordination(
 ```typescript
 // Phase specialists execute under queen guidance
 const workers = [
-  { agent: "specification", role: "requirements_analysis" },
-  { agent: "pseudocode", role: "algorithm_design" },
-  { agent: "architecture", role: "system_design" },
-  { agent: "refinement", role: "code_quality" },
+  { agent: 'specification', role: 'requirements_analysis' },
+  { agent: 'pseudocode', role: 'algorithm_design' },
+  { agent: 'architecture', role: 'system_design' },
+  { agent: 'refinement', role: 'code_quality' },
 ];
 
 // Workers coordinate through attention mechanism
 const workerConsensus = await coordinator.coordinateAgents(
   workers.map((w) => w.output),
-  "flash", // Fast coordination for worker level
+  'flash' // Fast coordination for worker level
 );
 ```
 
@@ -270,23 +275,23 @@ class SPARCRouter {
   async routeTask(task: Task) {
     const experts = [
       {
-        agent: "specification",
-        expertise: ["requirements", "constraints", "acceptance_criteria"],
+        agent: 'specification',
+        expertise: ['requirements', 'constraints', 'acceptance_criteria'],
         successRate: 0.92,
       },
       {
-        agent: "pseudocode",
-        expertise: ["algorithms", "data_structures", "complexity"],
+        agent: 'pseudocode',
+        expertise: ['algorithms', 'data_structures', 'complexity'],
         successRate: 0.88,
       },
       {
-        agent: "architecture",
-        expertise: ["system_design", "scalability", "components"],
+        agent: 'architecture',
+        expertise: ['system_design', 'scalability', 'components'],
         successRate: 0.9,
       },
       {
-        agent: "refinement",
-        expertise: ["testing", "optimization", "refactoring"],
+        agent: 'refinement',
+        expertise: ['testing', 'optimization', 'refactoring'],
         successRate: 0.91,
       },
     ];
@@ -294,7 +299,7 @@ class SPARCRouter {
     const routing = await coordinator.routeToExperts(
       task,
       experts,
-      1, // Select single best expert for this task
+      1 // Select single best expert for this task
     );
 
     return routing.selectedExperts[0];
@@ -308,12 +313,12 @@ class SPARCRouter {
 // Learn patterns across SPARC phases using attention
 const crossPhaseLearning = await coordinator.coordinateAgents(
   [
-    { phase: "spec", patterns: specPatterns },
-    { phase: "pseudo", patterns: pseudoPatterns },
-    { phase: "arch", patterns: archPatterns },
-    { phase: "refine", patterns: refinePatterns },
+    { phase: 'spec', patterns: specPatterns },
+    { phase: 'pseudo', patterns: pseudoPatterns },
+    { phase: 'arch', patterns: archPatterns },
+    { phase: 'refine', patterns: refinePatterns },
   ],
-  "multi-head", // Multi-perspective cross-phase analysis
+  'multi-head' // Multi-perspective cross-phase analysis
 );
 
 console.log(`Cross-phase patterns identified: ${crossPhaseLearning.consensus}`);
@@ -327,7 +332,7 @@ const improvements = extractImprovements(crossPhaseLearning);
 ```typescript
 // Track methodology improvement over time
 const cycleStats = await reasoningBank.getPatternStats({
-  task: "sparc-cycle",
+  task: 'sparc-cycle',
   k: 20,
 });
 
@@ -338,7 +343,7 @@ console.log(`Common optimization opportunities: ${cycleStats.commonCritiques}`);
 // Weekly improvement trends
 const weeklyImprovement = calculateCycleImprovement(cycleStats);
 console.log(
-  `Methodology efficiency improved by ${weeklyImprovement}% this week`,
+  `Methodology efficiency improved by ${weeklyImprovement}% this week`
 );
 ```
 

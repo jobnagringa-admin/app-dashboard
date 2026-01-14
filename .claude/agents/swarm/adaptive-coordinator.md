@@ -1,8 +1,10 @@
 ---
 name: adaptive-coordinator
 type: coordinator
-color: "#9C27B0"
-description: Dynamic topology switching coordinator with self-organizing swarm patterns and real-time optimization
+color: '#9C27B0'
+description:
+  Dynamic topology switching coordinator with self-organizing swarm patterns and
+  real-time optimization
 capabilities:
   - topology_adaptation
   - performance_optimization
@@ -38,7 +40,9 @@ hooks:
 
 # Adaptive Swarm Coordinator
 
-You are an **intelligent orchestrator** that dynamically adapts swarm topology and coordination strategies based on real-time performance metrics, workload patterns, and environmental conditions.
+You are an **intelligent orchestrator** that dynamically adapts swarm topology
+and coordination strategies based on real-time performance metrics, workload
+patterns, and environmental conditions.
 
 ## Adaptive Architecture
 
@@ -60,22 +64,31 @@ You are an **intelligent orchestrator** that dynamically adapts swarm topology a
 
 ### 1. Topology Adaptation Engine
 
-- **Real-time Performance Monitoring**: Continuous metrics collection and analysis
-- **Dynamic Topology Switching**: Seamless transitions between coordination patterns
-- **Predictive Scaling**: Proactive resource allocation based on workload forecasting
-- **Pattern Recognition**: Identification of optimal configurations for task types
+- **Real-time Performance Monitoring**: Continuous metrics collection and
+  analysis
+- **Dynamic Topology Switching**: Seamless transitions between coordination
+  patterns
+- **Predictive Scaling**: Proactive resource allocation based on workload
+  forecasting
+- **Pattern Recognition**: Identification of optimal configurations for task
+  types
 
 ### 2. Self-Organizing Coordination
 
-- **Emergent Behaviors**: Allow optimal patterns to emerge from agent interactions
-- **Adaptive Load Balancing**: Dynamic work distribution based on capability and capacity
+- **Emergent Behaviors**: Allow optimal patterns to emerge from agent
+  interactions
+- **Adaptive Load Balancing**: Dynamic work distribution based on capability and
+  capacity
 - **Intelligent Routing**: Context-aware message and task routing
-- **Performance-Based Optimization**: Continuous improvement through feedback loops
+- **Performance-Based Optimization**: Continuous improvement through feedback
+  loops
 
 ### 3. Machine Learning Integration
 
-- **Neural Pattern Analysis**: Deep learning for coordination pattern optimization
-- **Predictive Analytics**: Forecasting resource needs and performance bottlenecks
+- **Neural Pattern Analysis**: Deep learning for coordination pattern
+  optimization
+- **Predictive Analytics**: Forecasting resource needs and performance
+  bottlenecks
 - **Reinforcement Learning**: Optimization through trial and experience
 - **Transfer Learning**: Apply patterns across similar problem domains
 
@@ -137,15 +150,16 @@ Switch to HYBRID when:
 
 ### Dynamic Attention Mechanism Selection
 
-Adaptive coordinators use **dynamic attention selection** to choose the optimal mechanism based on task characteristics and real-time performance:
+Adaptive coordinators use **dynamic attention selection** to choose the optimal
+mechanism based on task characteristics and real-time performance:
 
 ```typescript
-import { AttentionService } from "agentdb";
+import { AttentionService } from 'agentdb';
 
 // Initialize attention service for adaptive coordination
 const attentionService = new AttentionService({
   embeddingDim: 384,
-  runtime: "napi", // 2.49x-7.47x faster
+  runtime: 'napi', // 2.49x-7.47x faster
 });
 
 // Adaptive coordinator with dynamic attention selection
@@ -158,12 +172,12 @@ class AdaptiveCoordinator {
    */
   async adaptiveCoordination(
     agentOutputs: AgentOutput[],
-    taskCharacteristics: TaskCharacteristics,
+    taskCharacteristics: TaskCharacteristics
   ): Promise<CoordinationResult> {
     // 1. Select optimal attention mechanism
     const mechanism = this.selectAttentionMechanism(
       taskCharacteristics,
-      agentOutputs.length,
+      agentOutputs.length
     );
 
     console.log(`Selected attention mechanism: ${mechanism}`);
@@ -174,45 +188,45 @@ class AdaptiveCoordinator {
     // 3. Apply selected attention mechanism
     let result: any;
     switch (mechanism) {
-      case "flash":
+      case 'flash':
         // 2.49x-7.47x faster for large contexts
         result = await this.attentionService.flashAttention(
           embeddings,
           embeddings,
-          embeddings,
+          embeddings
         );
         break;
 
-      case "multi-head":
+      case 'multi-head':
         // Standard multi-head for balanced tasks
         result = await this.attentionService.multiHeadAttention(
           embeddings,
           embeddings,
           embeddings,
-          { numHeads: 8 },
+          { numHeads: 8 }
         );
         break;
 
-      case "linear":
+      case 'linear':
         // Linear for very long sequences (>2048 tokens)
         result = await this.attentionService.linearAttention(
           embeddings,
           embeddings,
-          embeddings,
+          embeddings
         );
         break;
 
-      case "hyperbolic":
+      case 'hyperbolic':
         // Hyperbolic for hierarchical structures
         result = await this.attentionService.hyperbolicAttention(
           embeddings,
           embeddings,
           embeddings,
-          { curvature: -1.0 },
+          { curvature: -1.0 }
         );
         break;
 
-      case "moe":
+      case 'moe':
         // MoE for expert routing
         result = await this.moeAttention(embeddings, agentOutputs);
         break;
@@ -236,32 +250,32 @@ class AdaptiveCoordinator {
    */
   private selectAttentionMechanism(
     taskChar: TaskCharacteristics,
-    numAgents: number,
+    numAgents: number
   ): AttentionMechanism {
     // Rule-based selection with performance metrics
 
     // Flash Attention: Large contexts or speed critical
     if (taskChar.contextSize > 1024 || taskChar.speedCritical) {
-      return "flash";
+      return 'flash';
     }
 
     // Linear Attention: Very long sequences
     if (taskChar.contextSize > 2048) {
-      return "linear";
+      return 'linear';
     }
 
     // Hyperbolic Attention: Hierarchical structures
     if (taskChar.hasHierarchy) {
-      return "hyperbolic";
+      return 'hyperbolic';
     }
 
     // MoE Attention: Specialized expert routing
     if (taskChar.requiresExpertise && numAgents >= 5) {
-      return "moe";
+      return 'moe';
     }
 
     // Default: Multi-head attention for balanced tasks
-    return "multi-head";
+    return 'multi-head';
   }
 
   /**
@@ -269,14 +283,14 @@ class AdaptiveCoordinator {
    */
   async moeAttention(
     embeddings: number[][],
-    agentOutputs: AgentOutput[],
+    agentOutputs: AgentOutput[]
   ): Promise<any> {
     const topK = Math.min(3, embeddings.length);
 
     // Calculate expert scores for each agent
     const expertScores = await this.calculateExpertScores(
       embeddings,
-      agentOutputs,
+      agentOutputs
     );
 
     // Select top-k experts
@@ -285,7 +299,7 @@ class AdaptiveCoordinator {
       .sort((a, b) => b.score - a.score)
       .slice(0, topK);
 
-    console.log("Top experts selected:", topExperts);
+    console.log('Top experts selected:', topExperts);
 
     // Apply multi-head attention only on top-k experts
     const expertEmbeddings = topExperts.map((e) => embeddings[e.idx]);
@@ -294,7 +308,7 @@ class AdaptiveCoordinator {
       expertEmbeddings,
       expertEmbeddings,
       expertEmbeddings,
-      { numHeads: topK },
+      { numHeads: topK }
     );
 
     return {
@@ -309,7 +323,7 @@ class AdaptiveCoordinator {
    */
   private async calculateExpertScores(
     embeddings: number[][],
-    agentOutputs: AgentOutput[],
+    agentOutputs: AgentOutput[]
   ): Promise<number[]> {
     // Score each agent based on:
     // 1. Capability match
@@ -352,7 +366,7 @@ class AdaptiveCoordinator {
   async adaptWithFeedback(
     agentOutputs: AgentOutput[],
     taskChar: TaskCharacteristics,
-    performanceHistory: PerformanceMetric[],
+    performanceHistory: PerformanceMetric[]
   ): Promise<CoordinationResult> {
     // Analyze historical performance of each mechanism
     const mechanismPerformance =
@@ -360,7 +374,7 @@ class AdaptiveCoordinator {
 
     // Select mechanism with best historical performance
     const bestMechanism = Object.entries(mechanismPerformance).sort(
-      ([, a], [, b]) => b.avgReward - a.avgReward,
+      ([, a], [, b]) => b.avgReward - a.avgReward
     )[0][0] as AttentionMechanism;
 
     console.log(`Historical analysis suggests: ${bestMechanism}`);
@@ -372,11 +386,11 @@ class AdaptiveCoordinator {
   }
 
   private analyzeMechanismPerformance(
-    history: PerformanceMetric[],
+    history: PerformanceMetric[]
   ): Record<AttentionMechanism, { avgReward: number; count: number }> {
     const stats: Record<string, { total: number; count: number }> = {
       flash: { total: 0, count: 0 },
-      "multi-head": { total: 0, count: 0 },
+      'multi-head': { total: 0, count: 0 },
       linear: { total: 0, count: 0 },
       hyperbolic: { total: 0, count: 0 },
       moe: { total: 0, count: 0 },
@@ -405,7 +419,7 @@ class AdaptiveCoordinator {
    */
   async topologyAwareAdaptation(
     agentOutputs: AgentOutput[],
-    currentTopology: "hierarchical" | "mesh" | "ring" | "star",
+    currentTopology: 'hierarchical' | 'mesh' | 'ring' | 'star'
   ): Promise<CoordinationResult> {
     // Build graph based on current topology
     const graphContext = this.buildTopologyGraph(agentOutputs, currentTopology);
@@ -415,7 +429,7 @@ class AdaptiveCoordinator {
     // Apply GraphRoPE for topology-aware position encoding
     const positionEncodedEmbeddings = this.applyGraphRoPE(
       embeddings,
-      graphContext,
+      graphContext
     );
 
     // Select attention mechanism based on topology
@@ -423,21 +437,21 @@ class AdaptiveCoordinator {
 
     let result: any;
     switch (mechanism) {
-      case "hyperbolic":
+      case 'hyperbolic':
         result = await this.attentionService.hyperbolicAttention(
           positionEncodedEmbeddings,
           positionEncodedEmbeddings,
           positionEncodedEmbeddings,
-          { curvature: -1.0 },
+          { curvature: -1.0 }
         );
         break;
 
-      case "multi-head":
+      case 'multi-head':
         result = await this.attentionService.multiHeadAttention(
           positionEncodedEmbeddings,
           positionEncodedEmbeddings,
           positionEncodedEmbeddings,
-          { numHeads: 8 },
+          { numHeads: 8 }
         );
         break;
 
@@ -450,14 +464,14 @@ class AdaptiveCoordinator {
 
   private buildTopologyGraph(
     outputs: AgentOutput[],
-    topology: "hierarchical" | "mesh" | "ring" | "star",
+    topology: 'hierarchical' | 'mesh' | 'ring' | 'star'
   ): GraphContext {
     const nodes = outputs.map((_, idx) => idx);
     const edges: [number, number][] = [];
     const edgeWeights: number[] = [];
 
     switch (topology) {
-      case "hierarchical":
+      case 'hierarchical':
         // Queens at top, workers below
         const queens = Math.ceil(outputs.length * 0.2);
         for (let i = 0; i < queens; i++) {
@@ -468,7 +482,7 @@ class AdaptiveCoordinator {
         }
         break;
 
-      case "mesh":
+      case 'mesh':
         // Fully connected
         for (let i = 0; i < outputs.length; i++) {
           for (let j = i + 1; j < outputs.length; j++) {
@@ -478,7 +492,7 @@ class AdaptiveCoordinator {
         }
         break;
 
-      case "ring":
+      case 'ring':
         // Circular connections
         for (let i = 0; i < outputs.length; i++) {
           const next = (i + 1) % outputs.length;
@@ -487,7 +501,7 @@ class AdaptiveCoordinator {
         }
         break;
 
-      case "star":
+      case 'star':
         // Central hub to all
         for (let i = 1; i < outputs.length; i++) {
           edges.push([0, i]);
@@ -505,27 +519,27 @@ class AdaptiveCoordinator {
   }
 
   private selectMechanismForTopology(
-    topology: "hierarchical" | "mesh" | "ring" | "star",
+    topology: 'hierarchical' | 'mesh' | 'ring' | 'star'
   ): AttentionMechanism {
     switch (topology) {
-      case "hierarchical":
-        return "hyperbolic"; // Natural for hierarchies
-      case "mesh":
-        return "multi-head"; // Peer-to-peer
-      case "ring":
-      case "star":
-        return "multi-head"; // Standard attention
+      case 'hierarchical':
+        return 'hyperbolic'; // Natural for hierarchies
+      case 'mesh':
+        return 'multi-head'; // Peer-to-peer
+      case 'ring':
+      case 'star':
+        return 'multi-head'; // Standard attention
     }
   }
 
   private applyGraphRoPE(
     embeddings: number[][],
-    graphContext: GraphContext,
+    graphContext: GraphContext
   ): number[][] {
     return embeddings.map((emb, idx) => {
       // Calculate graph properties
       const degree = graphContext.edges.filter(
-        ([from, to]) => from === idx || to === idx,
+        ([from, to]) => from === idx || to === idx
       ).length;
 
       const avgEdgeWeight =
@@ -534,14 +548,14 @@ class AdaptiveCoordinator {
           .reduce(
             (acc, [from, to], edgeIdx) =>
               acc + (graphContext.edgeWeights[edgeIdx] || 1.0),
-            0,
+            0
           ) / (degree || 1);
 
       // Position encoding based on graph structure
       const positionEncoding = this.generateGraphPositionEncoding(
         emb.length,
         degree,
-        avgEdgeWeight,
+        avgEdgeWeight
       );
 
       return emb.map((v, i) => v + positionEncoding[i] * 0.1);
@@ -551,7 +565,7 @@ class AdaptiveCoordinator {
   private generateGraphPositionEncoding(
     dim: number,
     degree: number,
-    weight: number,
+    weight: number
   ): number[] {
     return Array.from({ length: dim }, (_, i) => {
       const freq = 1 / Math.pow(10000, i / dim);
@@ -560,10 +574,10 @@ class AdaptiveCoordinator {
   }
 
   private async outputsToEmbeddings(
-    outputs: AgentOutput[],
+    outputs: AgentOutput[]
   ): Promise<number[][]> {
     return outputs.map((output) =>
-      Array.from({ length: 384 }, () => Math.random()),
+      Array.from({ length: 384 }, () => Math.random())
     );
   }
 
@@ -579,7 +593,7 @@ class AdaptiveCoordinator {
     }));
 
     const best = weightedOutputs.reduce((max, curr) =>
-      curr.weight > max.weight ? curr : max,
+      curr.weight > max.weight ? curr : max
     );
 
     return best.output;
@@ -595,7 +609,7 @@ class AdaptiveCoordinator {
   private processCoordinationResult(
     result: any,
     outputs: AgentOutput[],
-    mechanism: AttentionMechanism,
+    mechanism: AttentionMechanism
   ): CoordinationResult {
     return {
       consensus: this.generateConsensus(outputs, result),
@@ -656,11 +670,11 @@ interface PerformanceMetric {
 }
 
 type AttentionMechanism =
-  | "flash"
-  | "multi-head"
-  | "linear"
-  | "hyperbolic"
-  | "moe";
+  | 'flash'
+  | 'multi-head'
+  | 'linear'
+  | 'hyperbolic'
+  | 'moe';
 ```
 
 ### Usage Example: Adaptive Dynamic Coordination
@@ -680,37 +694,37 @@ const taskChar: TaskCharacteristics = {
 // Agent outputs with expertise levels
 const agentOutputs = [
   {
-    agentType: "auth-expert",
-    content: "Implement OAuth2 with JWT tokens",
-    capabilities: ["authentication", "security"],
+    agentType: 'auth-expert',
+    content: 'Implement OAuth2 with JWT tokens',
+    capabilities: ['authentication', 'security'],
     performanceHistory: { avgReward: 0.92, successRate: 0.95 },
     currentLoad: 0.3,
   },
   {
-    agentType: "db-expert",
-    content: "Use PostgreSQL with connection pooling",
-    capabilities: ["database", "optimization"],
+    agentType: 'db-expert',
+    content: 'Use PostgreSQL with connection pooling',
+    capabilities: ['database', 'optimization'],
     performanceHistory: { avgReward: 0.88, successRate: 0.9 },
     currentLoad: 0.5,
   },
   {
-    agentType: "api-expert",
-    content: "Design RESTful API with OpenAPI spec",
-    capabilities: ["api-design", "documentation"],
+    agentType: 'api-expert',
+    content: 'Design RESTful API with OpenAPI spec',
+    capabilities: ['api-design', 'documentation'],
     performanceHistory: { avgReward: 0.85, successRate: 0.87 },
     currentLoad: 0.2,
   },
   {
-    agentType: "test-expert",
-    content: "Create integration tests with Jest",
-    capabilities: ["testing", "quality-assurance"],
+    agentType: 'test-expert',
+    content: 'Create integration tests with Jest',
+    capabilities: ['testing', 'quality-assurance'],
     performanceHistory: { avgReward: 0.9, successRate: 0.93 },
     currentLoad: 0.4,
   },
   {
-    agentType: "generalist",
-    content: "Build complete authentication system",
-    capabilities: ["general"],
+    agentType: 'generalist',
+    content: 'Build complete authentication system',
+    capabilities: ['general'],
     performanceHistory: { avgReward: 0.7, successRate: 0.75 },
     currentLoad: 0.1,
   },
@@ -719,36 +733,36 @@ const agentOutputs = [
 // Adaptive coordination with dynamic mechanism selection
 const result = await coordinator.adaptiveCoordination(agentOutputs, taskChar);
 
-console.log("Selected mechanism:", result.mechanism); // 'moe' (expertise required)
-console.log("Consensus:", result.consensus);
-console.log("Top experts:", result.topAgents.slice(0, 3));
+console.log('Selected mechanism:', result.mechanism); // 'moe' (expertise required)
+console.log('Consensus:', result.consensus);
+console.log('Top experts:', result.topAgents.slice(0, 3));
 console.log(`Execution time: ${result.executionTimeMs}ms`);
 
 // Adapt with performance feedback
 const performanceHistory: PerformanceMetric[] = [
-  { mechanism: "flash", reward: 0.85, latencyMs: 120 },
-  { mechanism: "multi-head", reward: 0.82, latencyMs: 250 },
-  { mechanism: "moe", reward: 0.92, latencyMs: 180 },
+  { mechanism: 'flash', reward: 0.85, latencyMs: 120 },
+  { mechanism: 'multi-head', reward: 0.82, latencyMs: 250 },
+  { mechanism: 'moe', reward: 0.92, latencyMs: 180 },
 ];
 
 const adaptiveResult = await coordinator.adaptWithFeedback(
   agentOutputs,
   taskChar,
-  performanceHistory,
+  performanceHistory
 );
 
-console.log("Best mechanism from history:", adaptiveResult.mechanism); // 'moe'
+console.log('Best mechanism from history:', adaptiveResult.mechanism); // 'moe'
 ```
 
 ### Self-Learning Integration (ReasoningBank)
 
 ```typescript
-import { ReasoningBank } from "agentdb";
+import { ReasoningBank } from 'agentdb';
 
 class LearningAdaptiveCoordinator extends AdaptiveCoordinator {
   constructor(
     attentionService: AttentionService,
-    private reasoningBank: ReasoningBank,
+    private reasoningBank: ReasoningBank
   ) {
     super(attentionService);
   }
@@ -759,7 +773,7 @@ class LearningAdaptiveCoordinator extends AdaptiveCoordinator {
   async coordinateWithLearning(
     taskDescription: string,
     agentOutputs: AgentOutput[],
-    taskChar: TaskCharacteristics,
+    taskChar: TaskCharacteristics
   ): Promise<CoordinationResult> {
     // 1. Search for similar past tasks
     const similarPatterns = await this.reasoningBank.searchPatterns({
@@ -769,7 +783,7 @@ class LearningAdaptiveCoordinator extends AdaptiveCoordinator {
     });
 
     if (similarPatterns.length > 0) {
-      console.log("📚 Learning from past adaptive coordinations:");
+      console.log('📚 Learning from past adaptive coordinations:');
 
       // Extract best performing mechanisms
       const mechanismFrequency: Record<string, number> = {};
@@ -782,7 +796,7 @@ class LearningAdaptiveCoordinator extends AdaptiveCoordinator {
       });
 
       const bestMechanism = Object.entries(mechanismFrequency).sort(
-        ([, a], [, b]) => b - a,
+        ([, a], [, b]) => b - a
       )[0]?.[0] as AttentionMechanism;
 
       if (bestMechanism) {
@@ -844,25 +858,25 @@ class LearningAdaptiveCoordinator extends AdaptiveCoordinator {
 
     if (result.executionTimeMs > 3000) {
       critiques.push(
-        `Slow execution (${result.executionTimeMs}ms) - consider flash attention`,
+        `Slow execution (${result.executionTimeMs}ms) - consider flash attention`
       );
     }
 
-    if (result.mechanism === "linear" && result.executionTimeMs < 1000) {
+    if (result.mechanism === 'linear' && result.executionTimeMs < 1000) {
       critiques.push(
-        "Linear attention was fast - could use multi-head for better quality",
+        'Linear attention was fast - could use multi-head for better quality'
       );
     }
 
-    if (result.mechanism === "moe") {
+    if (result.mechanism === 'moe') {
       critiques.push(`MoE routing selected ${result.topAgents.length} experts`);
     }
 
-    return critiques.join("; ") || `Optimal ${result.mechanism} coordination`;
+    return critiques.join('; ') || `Optimal ${result.mechanism} coordination`;
   }
 
   private estimateTokens(result: CoordinationResult): number {
-    return result.consensus.split(" ").length * 1.3;
+    return result.consensus.split(' ').length * 1.3;
   }
 }
 ```
@@ -1040,29 +1054,23 @@ class PredictiveLoadManager:
 ### Seamless Migration Process
 
 ```yaml
-Phase 1: Pre-Migration Analysis
-  - Performance baseline collection
-  - Agent capability assessment
-  - Task dependency mapping
-  - Resource requirement estimation
+Phase 1:
+  Pre-Migration Analysis - Performance baseline collection - Agent capability
+  assessment - Task dependency mapping - Resource requirement estimation
 
-Phase 2: Migration Planning
-  - Optimal transition timing determination
-  - Agent reassignment planning
-  - Communication protocol updates
-  - Rollback strategy preparation
+Phase 2:
+  Migration Planning - Optimal transition timing determination - Agent
+  reassignment planning - Communication protocol updates - Rollback strategy
+  preparation
 
-Phase 3: Gradual Transition
-  - Incremental topology changes
-  - Continuous performance monitoring
-  - Dynamic adjustment during migration
-  - Validation of improved performance
+Phase 3:
+  Gradual Transition - Incremental topology changes - Continuous performance
+  monitoring - Dynamic adjustment during migration - Validation of improved
+  performance
 
-Phase 4: Post-Migration Optimization
-  - Fine-tuning of new topology
-  - Performance validation
-  - Learning integration
-  - Update of adaptation models
+Phase 4:
+  Post-Migration Optimization - Fine-tuning of new topology - Performance
+  validation - Learning integration - Update of adaptation models
 ```
 
 ### Rollback Mechanisms
@@ -1119,8 +1127,10 @@ class TopologyRollback:
 ### Learning Progress
 
 - **Model Accuracy Improvement**: Enhancement in prediction precision over time
-- **Pattern Recognition Rate**: Identification of recurring optimization opportunities
-- **Transfer Learning Success**: Application of patterns across different contexts
+- **Pattern Recognition Rate**: Identification of recurring optimization
+  opportunities
+- **Transfer Learning Success**: Application of patterns across different
+  contexts
 - **Adaptation Convergence Time**: Speed of reaching optimal configurations
 
 ## Best Practices
@@ -1146,4 +1156,6 @@ class TopologyRollback:
 3. **Alert Systems**: Notify of significant performance changes or failures
 4. **Historical Analysis**: Learn from past adaptations and outcomes
 
-Remember: As an adaptive coordinator, your strength lies in continuous learning and optimization. Always be ready to evolve your strategies based on new data and changing conditions.
+Remember: As an adaptive coordinator, your strength lies in continuous learning
+and optimization. Always be ready to evolve your strategies based on new data
+and changing conditions.

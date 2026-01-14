@@ -2,7 +2,9 @@
 name: Performance Monitor
 type: agent
 category: optimization
-description: Real-time metrics collection, bottleneck analysis, SLA monitoring and anomaly detection
+description:
+  Real-time metrics collection, bottleneck analysis, SLA monitoring and anomaly
+  detection
 ---
 
 # Performance Monitor Agent
@@ -12,7 +14,8 @@ description: Real-time metrics collection, bottleneck analysis, SLA monitoring a
 - **Name**: Performance Monitor
 - **Type**: Performance Optimization Agent
 - **Specialization**: Real-time metrics collection and bottleneck analysis
-- **Performance Focus**: SLA monitoring, resource tracking, and anomaly detection
+- **Performance Focus**: SLA monitoring, resource tracking, and anomaly
+  detection
 
 ## Core Capabilities
 
@@ -126,7 +129,7 @@ class BottleneckAnalyzer {
 
     // Parallel detection across all layers
     const detectionPromises = this.detectors.map((detector) =>
-      detector.detect(metrics),
+      detector.detect(metrics)
     );
 
     const results = await Promise.all(detectionPromises);
@@ -240,13 +243,13 @@ class SLAMonitor {
     // Availability check
     if (metrics.availability < sla.availability) {
       evaluation.violations.push({
-        metric: "availability",
+        metric: 'availability',
         expected: sla.availability,
         actual: metrics.availability,
         severity: this.calculateSeverity(
           metrics.availability,
           sla.availability,
-          sla.alertThresholds,
+          sla.alertThresholds
         ),
       });
       evaluation.violated = true;
@@ -255,13 +258,13 @@ class SLAMonitor {
     // Response time check
     if (metrics.responseTime > sla.responseTime) {
       evaluation.violations.push({
-        metric: "responseTime",
+        metric: 'responseTime',
         expected: sla.responseTime,
         actual: metrics.responseTime,
         severity: this.calculateSeverity(
           metrics.responseTime,
           sla.responseTime,
-          sla.alertThresholds,
+          sla.alertThresholds
         ),
       });
       evaluation.violated = true;
@@ -299,7 +302,7 @@ class ResourceTracker {
 
     // Parallel resource collection
     const trackingPromises = Object.entries(this.trackers).map(
-      async ([type, tracker]) => [type, await tracker.collect()],
+      async ([type, tracker]) => [type, await tracker.collect()]
     );
 
     const results = await Promise.all(trackingPromises);
@@ -384,7 +387,7 @@ const performanceIntegration = {
   // Swarm health monitoring
   async monitorSwarmHealth() {
     const healthMetrics = await mcp.health_check({
-      components: ["swarm", "coordination", "communication"],
+      components: ['swarm', 'coordination', 'communication'],
     });
 
     return {
@@ -403,8 +406,8 @@ const performanceIntegration = {
     for (const agent of agents) {
       const metrics = await mcp.agent_metrics({ agentId: agent.id });
       const performance = await mcp.performance_report({
-        format: "detailed",
-        timeframe: "24h",
+        format: 'detailed',
+        timeframe: '24h',
       });
 
       performanceData.set(agent.id, {
@@ -462,7 +465,7 @@ class AnomalyDetector {
       async ([modelType, model]) => {
         const detected = await model.detect(metrics);
         return { modelType, detected };
-      },
+      }
     );
 
     const results = await Promise.all(detectionPromises);
@@ -488,7 +491,7 @@ class AnomalyDetector {
       .filter((point) => Math.abs(point - mean) > threshold)
       .map((point) => ({
         value: point,
-        type: "statistical",
+        type: 'statistical',
         deviation: Math.abs(point - mean) / stdDev,
         probability: this.calculateProbability(point, mean, stdDev),
       }));
@@ -511,7 +514,7 @@ class AnomalyDetector {
           actual: timeSeries[i],
           predicted: predictions[i],
           error: error,
-          type: "time_series",
+          type: 'time_series',
         });
       }
     }
@@ -588,7 +591,7 @@ class DashboardProvider {
       try {
         callback(data);
       } catch (error) {
-        console.error("Dashboard subscriber error:", error);
+        console.error('Dashboard subscriber error:', error);
       }
     });
   }
@@ -681,7 +684,7 @@ const analytics = {
   },
 
   // Trend analysis
-  analyzeTrends(historicalData, timeWindow = "7d") {
+  analyzeTrends(historicalData, timeWindow = '7d') {
     return {
       performance: this.calculatePerformanceTrend(historicalData, timeWindow),
       efficiency: this.calculateEfficiencyTrend(historicalData, timeWindow),
@@ -692,4 +695,6 @@ const analytics = {
 };
 ```
 
-This Performance Monitor agent provides comprehensive real-time monitoring, bottleneck detection, SLA compliance tracking, and advanced analytics for optimal swarm performance management.
+This Performance Monitor agent provides comprehensive real-time monitoring,
+bottleneck detection, SLA compliance tracking, and advanced analytics for
+optimal swarm performance management.

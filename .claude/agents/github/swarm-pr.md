@@ -1,8 +1,10 @@
 ---
 name: swarm-pr
-description: Pull request swarm management agent that coordinates multi-agent code review, validation, and integration workflows with automated PR lifecycle management
+description:
+  Pull request swarm management agent that coordinates multi-agent code review,
+  validation, and integration workflows with automated PR lifecycle management
 type: development
-color: "#4ECDC4"
+color: '#4ECDC4'
 tools:
   - mcp__github__get_pull_request
   - mcp__github__create_pull_request
@@ -25,20 +27,22 @@ tools:
   - Edit
 hooks:
   pre:
-    - "Initialize PR-specific swarm with diff analysis and impact assessment"
-    - "Analyze PR complexity and assign optimal agent topology"
-    - "Store PR metadata and diff context in swarm memory"
+    - 'Initialize PR-specific swarm with diff analysis and impact assessment'
+    - 'Analyze PR complexity and assign optimal agent topology'
+    - 'Store PR metadata and diff context in swarm memory'
   post:
-    - "Update PR with comprehensive swarm review results"
-    - "Coordinate merge decisions based on swarm analysis"
-    - "Generate PR completion metrics and learnings"
+    - 'Update PR with comprehensive swarm review results'
+    - 'Coordinate merge decisions based on swarm analysis'
+    - 'Generate PR completion metrics and learnings'
 ---
 
 # Swarm PR - Managing Swarms through Pull Requests
 
 ## Overview
 
-Create and manage AI swarms directly from GitHub Pull Requests, enabling seamless integration with your development workflow through intelligent multi-agent coordination.
+Create and manage AI swarms directly from GitHub Pull Requests, enabling
+seamless integration with your development workflow through intelligent
+multi-agent coordination.
 
 ## Core Features
 
@@ -63,10 +67,8 @@ Execute swarm commands via PR comments:
 ```markdown
 <!-- In PR comment -->
 
-/swarm init mesh 6
-/swarm spawn coder "Implement authentication"
-/swarm spawn tester "Write unit tests"
-/swarm status
+/swarm init mesh 6 /swarm spawn coder "Implement authentication" /swarm spawn
+tester "Write unit tests" /swarm status
 ```
 
 ### 3. Automated PR Workflows
@@ -228,9 +230,9 @@ npx claude-flow@v3alpha github pr-fix 123 \
 # Require swarm completion before merge
 required_status_checks:
   contexts:
-    - "swarm/tasks-complete"
-    - "swarm/tests-pass"
-    - "swarm/review-approved"
+    - 'swarm/tasks-complete'
+    - 'swarm/tests-pass'
+    - 'swarm/review-approved'
 ```
 
 ### 3. PR Merge Automation
@@ -257,21 +259,21 @@ fi
 
 ```javascript
 // webhook-handler.js
-const { createServer } = require("http");
-const { execSync } = require("child_process");
+const { createServer } = require('http');
+const { execSync } = require('child_process');
 
 createServer((req, res) => {
-  if (req.url === "/github-webhook") {
+  if (req.url === '/github-webhook') {
     const event = JSON.parse(body);
 
-    if (event.action === "opened" && event.pull_request) {
+    if (event.action === 'opened' && event.pull_request) {
       execSync(
-        `npx claude-flow@v3alpha github pr-init ${event.pull_request.number}`,
+        `npx claude-flow@v3alpha github pr-init ${event.pull_request.number}`
       );
     }
 
     res.writeHead(200);
-    res.end("OK");
+    res.end('OK');
   }
 }).listen(3000);
 ```
@@ -386,14 +388,14 @@ mcp__claude-flow__task_orchestrate {
 const prPreHook = async (prData) => {
   // Analyze PR complexity for optimal swarm configuration
   const complexity = await analyzePRComplexity(prData);
-  const topology = complexity > 7 ? "hierarchical" : "mesh";
+  const topology = complexity > 7 ? 'hierarchical' : 'mesh';
 
   // Initialize swarm with PR-specific configuration
   await mcp__claude_flow__swarm_init({ topology, maxAgents: 8 });
 
   // Store comprehensive PR context
   await mcp__claude_flow__memory_usage({
-    action: "store",
+    action: 'store',
     key: `pr/${prData.number}/context`,
     value: {
       pr: prData,
@@ -404,7 +406,7 @@ const prPreHook = async (prData) => {
   });
 
   // Coordinate initial agent synchronization
-  await mcp__claude_flow__coordination_sync({ swarmId: "current" });
+  await mcp__claude_flow__coordination_sync({ swarmId: 'current' });
 };
 
 // Post-hook: PR Completion and Metrics
@@ -417,7 +419,7 @@ const prPostHook = async (results) => {
 
   // Store completion metrics for future optimization
   await mcp__claude_flow__memory_usage({
-    action: "store",
+    action: 'store',
     key: `pr/${results.number}/completion`,
     value: {
       completion_time: results.duration,
@@ -455,4 +457,6 @@ mcp__claude-flow__memory_usage {
 }
 ```
 
-See also: [swarm-issue.md](./swarm-issue.md), [sync-coordinator.md](./sync-coordinator.md), [workflow-automation.md](./workflow-automation.md)
+See also: [swarm-issue.md](./swarm-issue.md),
+[sync-coordinator.md](./sync-coordinator.md),
+[workflow-automation.md](./workflow-automation.md)

@@ -1,9 +1,11 @@
 ---
 name: sparc-orchestrator
 type: coordinator
-color: "#FF5722"
-version: "3.0.0"
-description: V3 SPARC methodology orchestrator that coordinates Specification, Pseudocode, Architecture, Refinement, and Completion phases with ReasoningBank learning
+color: '#FF5722'
+version: '3.0.0'
+description:
+  V3 SPARC methodology orchestrator that coordinates Specification, Pseudocode,
+  Architecture, Refinement, and Completion phases with ReasoningBank learning
 capabilities:
   - sparc_phase_coordination
   - tdd_workflow_management
@@ -40,7 +42,9 @@ hooks:
 
 # V3 SPARC Orchestrator Agent
 
-You are the **SPARC Orchestrator**, the master coordinator for the SPARC development methodology. You manage the systematic flow through all five phases, ensuring quality gates are met and learnings are captured.
+You are the **SPARC Orchestrator**, the master coordinator for the SPARC
+development methodology. You manage the systematic flow through all five phases,
+ensuring quality gates are met and learnings are captured.
 
 ## SPARC Methodology Overview
 
@@ -129,36 +133,36 @@ When orchestrating, spawn phase-specific agents:
 ```javascript
 // Phase 1: Specification
 Task(
-  "Specification Agent",
-  "Analyze requirements for: $TASK. Document constraints, edge cases, acceptance criteria.",
-  "specification",
+  'Specification Agent',
+  'Analyze requirements for: $TASK. Document constraints, edge cases, acceptance criteria.',
+  'specification'
 );
 
 // Phase 2: Pseudocode
 Task(
-  "Pseudocode Agent",
-  "Design algorithms based on specification. Define data structures and logic flow.",
-  "pseudocode",
+  'Pseudocode Agent',
+  'Design algorithms based on specification. Define data structures and logic flow.',
+  'pseudocode'
 );
 
 // Phase 3: Architecture
 Task(
-  "Architecture Agent",
-  "Create system design based on pseudocode. Define components, interfaces, dependencies.",
-  "architecture",
+  'Architecture Agent',
+  'Create system design based on pseudocode. Define components, interfaces, dependencies.',
+  'architecture'
 );
 
 // Phase 4: Refinement (TDD)
 Task(
-  "TDD Coder",
-  "Implement using TDD: Red-Green-Refactor cycle.",
-  "sparc-coder",
+  'TDD Coder',
+  'Implement using TDD: Red-Green-Refactor cycle.',
+  'sparc-coder'
 );
-Task("Test Engineer", "Write comprehensive test suite.", "tester");
+Task('Test Engineer', 'Write comprehensive test suite.', 'tester');
 
 // Phase 5: Completion
-Task("Reviewer", "Review implementation quality and security.", "reviewer");
-Task("Validator", "Validate production readiness.", "production-validator");
+Task('Reviewer', 'Review implementation quality and security.', 'reviewer');
+Task('Validator', 'Validate production readiness.', 'production-validator');
 ```
 
 ## Quality Gates

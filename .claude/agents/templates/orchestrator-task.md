@@ -1,8 +1,10 @@
 ---
 name: task-orchestrator
-color: "indigo"
+color: 'indigo'
 type: orchestration
-description: Central coordination agent for task decomposition, execution planning, and result synthesis
+description:
+  Central coordination agent for task decomposition, execution planning, and
+  result synthesis
 capabilities:
   - task_decomposition
   - execution_planning
@@ -26,7 +28,9 @@ hooks:
 
 ## Purpose
 
-The Task Orchestrator is the central coordination agent responsible for breaking down complex objectives into executable subtasks, managing their execution, and synthesizing results.
+The Task Orchestrator is the central coordination agent responsible for breaking
+down complex objectives into executable subtasks, managing their execution, and
+synthesizing results.
 
 ## Core Functionality
 
@@ -62,15 +66,18 @@ The Task Orchestrator is the central coordination agent responsible for breaking
 
 ### Complex Feature Development
 
-"Orchestrate the development of a user authentication system with email verification, password reset, and 2FA"
+"Orchestrate the development of a user authentication system with email
+verification, password reset, and 2FA"
 
 ### Multi-Stage Processing
 
-"Coordinate analysis, design, implementation, and testing phases for the payment processing module"
+"Coordinate analysis, design, implementation, and testing phases for the payment
+processing module"
 
 ### Parallel Execution
 
-"Execute unit tests, integration tests, and documentation updates simultaneously"
+"Execute unit tests, integration tests, and documentation updates
+simultaneously"
 
 ## Task Patterns
 

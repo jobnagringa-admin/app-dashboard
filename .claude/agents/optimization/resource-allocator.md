@@ -2,7 +2,9 @@
 name: Resource Allocator
 type: agent
 category: optimization
-description: Adaptive resource allocation, predictive scaling and intelligent capacity planning
+description:
+  Adaptive resource allocation, predictive scaling and intelligent capacity
+  planning
 ---
 
 # Resource Allocator Agent
@@ -43,7 +45,7 @@ class AdaptiveResourceAllocator {
     // Predict future resource needs
     const predictions = await this.predictor.predict(
       workloadProfile,
-      currentUsage,
+      currentUsage
     );
 
     // Calculate optimal allocation
@@ -64,7 +66,7 @@ class AdaptiveResourceAllocator {
   }
 
   // Workload pattern analysis
-  async analyzeWorkloadPatterns(historicalData, timeWindow = "7d") {
+  async analyzeWorkloadPatterns(historicalData, timeWindow = '7d') {
     const patterns = {
       // Temporal patterns
       temporal: {
@@ -177,7 +179,7 @@ class PredictiveScaler {
   // LSTM-based time series prediction
   async trainTimeSeriesModel(data, config = {}) {
     const model = await mcp.neural_train({
-      pattern_type: "prediction",
+      pattern_type: 'prediction',
       training_data: JSON.stringify({
         sequences: data.sequences,
         targets: data.targets,
@@ -192,7 +194,7 @@ class PredictiveScaler {
     if (validation.accuracy > 0.85) {
       await mcp.model_save({
         modelId: model.modelId,
-        path: "/models/scaling_predictor.model",
+        path: '/models/scaling_predictor.model',
       });
 
       return {
@@ -206,7 +208,7 @@ class PredictiveScaler {
       model: null,
       validation,
       ready: false,
-      reason: "Model accuracy below threshold",
+      reason: 'Model accuracy below threshold',
     };
   }
 
@@ -257,7 +259,7 @@ class PredictiveScaler {
       // Log progress
       if (episode % 100 === 0) {
         console.log(
-          `Episode ${episode}: Reward ${totalReward}, Epsilon ${agent.epsilon}`,
+          `Episode ${episode}: Reward ${totalReward}, Epsilon ${agent.epsilon}`
         );
       }
     }
@@ -281,7 +283,7 @@ class AdaptiveCircuitBreaker {
     this.recoveryTimeout = config.recoveryTimeout || 60000;
     this.successThreshold = config.successThreshold || 3;
 
-    this.state = "CLOSED"; // CLOSED, OPEN, HALF_OPEN
+    this.state = 'CLOSED'; // CLOSED, OPEN, HALF_OPEN
     this.failureCount = 0;
     this.successCount = 0;
     this.lastFailureTime = null;
@@ -306,9 +308,9 @@ class AdaptiveCircuitBreaker {
     this.metrics.totalRequests++;
 
     // Check circuit state
-    if (this.state === "OPEN") {
+    if (this.state === 'OPEN') {
       if (this.shouldAttemptReset()) {
-        this.state = "HALF_OPEN";
+        this.state = 'HALF_OPEN';
         this.successCount = 0;
         this.metrics.circuitHalfOpenEvents++;
       } else {
@@ -344,12 +346,12 @@ class AdaptiveCircuitBreaker {
     if (analysis.recommendAdjustment) {
       this.failureThreshold = Math.max(
         1,
-        Math.round(this.failureThreshold * analysis.thresholdMultiplier),
+        Math.round(this.failureThreshold * analysis.thresholdMultiplier)
       );
 
       this.recoveryTimeout = Math.max(
         1000,
-        Math.round(this.recoveryTimeout * analysis.timeoutMultiplier),
+        Math.round(this.recoveryTimeout * analysis.timeoutMultiplier)
       );
     }
   }
@@ -400,7 +402,7 @@ class PerformanceProfiler {
       async ([type, profiler]) => {
         const profile = await profiler.profile(duration);
         return [type, profile];
-      },
+      }
     );
 
     const profiles = await Promise.all(profilingTasks);
@@ -509,11 +511,11 @@ const resourceIntegration = {
   async allocateResources(swarmId, requirements) {
     // Analyze current resource usage
     const currentUsage = await mcp.metrics_collect({
-      components: ["cpu", "memory", "network", "agents"],
+      components: ['cpu', 'memory', 'network', 'agents'],
     });
 
     // Get performance metrics
-    const performance = await mcp.performance_report({ format: "detailed" });
+    const performance = await mcp.performance_report({ format: 'detailed' });
 
     // Identify bottlenecks
     const bottlenecks = await mcp.bottleneck_analyze({});
@@ -523,7 +525,7 @@ const resourceIntegration = {
       currentUsage,
       performance,
       bottlenecks,
-      requirements,
+      requirements
     );
 
     // Apply resource allocation
@@ -568,7 +570,7 @@ const resourceIntegration = {
 
     return {
       scaled: false,
-      reason: "No scaling required",
+      reason: 'No scaling required',
       plan: scalingPlan,
     };
   },
@@ -577,10 +579,10 @@ const resourceIntegration = {
   async optimizePerformance(swarmId) {
     // Collect comprehensive metrics
     const metrics = await Promise.all([
-      mcp.performance_report({ format: "json" }),
+      mcp.performance_report({ format: 'json' }),
       mcp.bottleneck_analyze({}),
       mcp.agent_metrics({}),
-      mcp.metrics_collect({ components: ["system", "agents", "coordination"] }),
+      mcp.metrics_collect({ components: ['system', 'agents', 'coordination'] }),
     ]);
 
     const [performance, bottlenecks, agentMetrics, systemMetrics] = metrics;
@@ -646,7 +648,8 @@ npx claude-flow bottleneck-analyze --component swarm-coordination
 
 ### With Other Optimization Agents
 
-- **Load Balancer**: Provides resource allocation data for load balancing decisions
+- **Load Balancer**: Provides resource allocation data for load balancing
+  decisions
 - **Performance Monitor**: Shares performance metrics and bottleneck analysis
 - **Topology Optimizer**: Coordinates resource allocation with topology changes
 
@@ -686,4 +689,6 @@ const allocationMetrics = {
 };
 ```
 
-This Resource Allocator agent provides comprehensive adaptive resource allocation with ML-powered predictive scaling, fault tolerance patterns, and advanced performance optimization for efficient swarm resource management.
+This Resource Allocator agent provides comprehensive adaptive resource
+allocation with ML-powered predictive scaling, fault tolerance patterns, and
+advanced performance optimization for efficient swarm resource management.

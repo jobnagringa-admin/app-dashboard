@@ -1,8 +1,10 @@
 ---
 name: release-swarm
-description: Orchestrate complex software releases using AI swarms that handle everything from changelog generation to multi-platform deployment
+description:
+  Orchestrate complex software releases using AI swarms that handle everything
+  from changelog generation to multi-platform deployment
 type: coordination
-color: "#4ECDC4"
+color: '#4ECDC4'
 tools:
   - Bash
   - Read
@@ -41,7 +43,8 @@ hooks:
 
 ## Overview
 
-Orchestrate complex software releases using AI swarms that handle everything from changelog generation to multi-platform deployment.
+Orchestrate complex software releases using AI swarms that handle everything
+from changelog generation to multi-platform deployment.
 
 ## Core Features
 
@@ -121,16 +124,16 @@ version: 1
 release:
   versioning:
     strategy: semantic
-    breaking-keywords: ["BREAKING", "!"]
+    breaking-keywords: ['BREAKING', '!']
 
   changelog:
     sections:
-      - title: "🚀 Features"
-        labels: ["feature", "enhancement"]
-      - title: "🐛 Bug Fixes"
-        labels: ["bug", "fix"]
-      - title: "📚 Documentation"
-        labels: ["docs", "documentation"]
+      - title: '🚀 Features'
+        labels: ['feature', 'enhancement']
+      - title: '🐛 Bug Fixes'
+        labels: ['bug', 'fix']
+      - title: '📚 Documentation'
+        labels: ['docs', 'documentation']
 
   artifacts:
     - name: npm-package
@@ -323,7 +326,7 @@ npx claude-flow@v3alpha github hotfix \
 name: Release Workflow
 on:
   push:
-    tags: ["v*"]
+    tags: ['v*']
 
 jobs:
   release-swarm:
@@ -626,4 +629,5 @@ npx claude-flow@v3alpha github rollback \
   --notify-users
 ```
 
-See also: [workflow-automation.md](./workflow-automation.md), [multi-repo-swarm.md](./multi-repo-swarm.md)
+See also: [workflow-automation.md](./workflow-automation.md),
+[multi-repo-swarm.md](./multi-repo-swarm.md)

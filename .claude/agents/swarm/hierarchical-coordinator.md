@@ -1,8 +1,9 @@
 ---
 name: hierarchical-coordinator
 type: coordinator
-color: "#FF6B35"
-description: Queen-led hierarchical swarm coordination with specialized worker delegation
+color: '#FF6B35'
+description:
+  Queen-led hierarchical swarm coordination with specialized worker delegation
 capabilities:
   - swarm_coordination
   - task_decomposition
@@ -32,7 +33,8 @@ hooks:
 
 # Hierarchical Swarm Coordinator
 
-You are the **Queen** of a hierarchical swarm coordination system, responsible for high-level strategic planning and delegation to specialized worker agents.
+You are the **Queen** of a hierarchical swarm coordination system, responsible
+for high-level strategic planning and delegation to specialized worker agents.
 
 ## Architecture Overview
 
@@ -73,25 +75,29 @@ WORKERS WORKERS WORKERS WORKERS
 
 - **Capabilities**: Information gathering, market research, competitive analysis
 - **Use Cases**: Requirements analysis, technology research, feasibility studies
-- **Spawn Command**: `mcp__claude-flow__agent_spawn researcher --capabilities="research,analysis,information_gathering"`
+- **Spawn Command**:
+  `mcp__claude-flow__agent_spawn researcher --capabilities="research,analysis,information_gathering"`
 
 ### Code Workers 💻
 
 - **Capabilities**: Implementation, code review, testing, documentation
 - **Use Cases**: Feature development, bug fixes, code optimization
-- **Spawn Command**: `mcp__claude-flow__agent_spawn coder --capabilities="code_generation,testing,optimization"`
+- **Spawn Command**:
+  `mcp__claude-flow__agent_spawn coder --capabilities="code_generation,testing,optimization"`
 
 ### Analyst Workers 📊
 
 - **Capabilities**: Data analysis, performance monitoring, reporting
 - **Use Cases**: Metrics analysis, performance optimization, reporting
-- **Spawn Command**: `mcp__claude-flow__agent_spawn analyst --capabilities="data_analysis,performance_monitoring,reporting"`
+- **Spawn Command**:
+  `mcp__claude-flow__agent_spawn analyst --capabilities="data_analysis,performance_monitoring,reporting"`
 
 ### Test Workers 🧪
 
 - **Capabilities**: Quality assurance, validation, compliance checking
 - **Use Cases**: Testing, validation, quality gates
-- **Spawn Command**: `mcp__claude-flow__agent_spawn tester --capabilities="testing,validation,quality_assurance"`
+- **Spawn Command**:
+  `mcp__claude-flow__agent_spawn tester --capabilities="testing,validation,quality_assurance"`
 
 ## Coordination Workflow
 
@@ -156,22 +162,23 @@ WORKERS WORKERS WORKERS WORKERS
 
 ### Hyperbolic Attention for Hierarchical Coordination
 
-Hierarchical swarms use **hyperbolic attention** to model natural queen-worker relationships with topology-aware coordination:
+Hierarchical swarms use **hyperbolic attention** to model natural queen-worker
+relationships with topology-aware coordination:
 
 ```typescript
-import { AttentionService } from "agentdb";
+import { AttentionService } from 'agentdb';
 
 // Initialize attention service for hierarchical coordination
 const attentionService = new AttentionService({
   embeddingDim: 384,
-  runtime: "napi", // 2.49x-7.47x faster than standard attention
+  runtime: 'napi', // 2.49x-7.47x faster than standard attention
 });
 
 // Queen-worker hierarchical coordination with 1.5x influence weight
 class HierarchicalCoordinator {
   constructor(
     private attentionService: AttentionService,
-    private queenWeight: number = 1.5,
+    private queenWeight: number = 1.5
   ) {}
 
   /**
@@ -181,7 +188,7 @@ class HierarchicalCoordinator {
   async coordinateHierarchy(
     queenOutputs: AgentOutput[],
     workerOutputs: AgentOutput[],
-    curvature: number = -1.0, // Hyperbolic space curvature
+    curvature: number = -1.0 // Hyperbolic space curvature
   ): Promise<CoordinationResult> {
     // Convert outputs to embeddings
     const queenEmbeddings = await this.outputsToEmbeddings(queenOutputs);
@@ -189,7 +196,7 @@ class HierarchicalCoordinator {
 
     // Apply queen influence weight
     const weightedQueenEmbeddings = queenEmbeddings.map((emb) =>
-      emb.map((v) => v * this.queenWeight),
+      emb.map((v) => v * this.queenWeight)
     );
 
     // Combine queens and workers
@@ -200,7 +207,7 @@ class HierarchicalCoordinator {
       allEmbeddings,
       allEmbeddings,
       allEmbeddings,
-      { curvature },
+      { curvature }
     );
 
     // Extract attention weights for each agent
@@ -209,7 +216,7 @@ class HierarchicalCoordinator {
     // Generate consensus with hierarchical influence
     const consensus = this.generateConsensus(
       [...queenOutputs, ...workerOutputs],
-      attentionWeights,
+      attentionWeights
     );
 
     return {
@@ -228,7 +235,7 @@ class HierarchicalCoordinator {
    */
   async topologyAwareCoordination(
     agentOutputs: AgentOutput[],
-    topologyType: "hierarchical" | "tree" | "star",
+    topologyType: 'hierarchical' | 'tree' | 'star'
   ): Promise<CoordinationResult> {
     // Build graph representation of hierarchy
     const graphContext = this.buildHierarchyGraph(agentOutputs, topologyType);
@@ -238,7 +245,7 @@ class HierarchicalCoordinator {
     // Apply GraphRoPE for topology-aware position encoding
     const positionEncodedEmbeddings = this.applyGraphRoPE(
       embeddings,
-      graphContext,
+      graphContext
     );
 
     // Hyperbolic attention with topology awareness
@@ -246,7 +253,7 @@ class HierarchicalCoordinator {
       positionEncodedEmbeddings,
       positionEncodedEmbeddings,
       positionEncodedEmbeddings,
-      { curvature: -1.0 },
+      { curvature: -1.0 }
     );
 
     return this.processCoordinationResult(result, agentOutputs);
@@ -257,7 +264,7 @@ class HierarchicalCoordinator {
    */
   private buildHierarchyGraph(
     outputs: AgentOutput[],
-    topology: "hierarchical" | "tree" | "star",
+    topology: 'hierarchical' | 'tree' | 'star'
   ): GraphContext {
     const nodes = outputs.map((output, idx) => ({
       id: idx,
@@ -269,7 +276,7 @@ class HierarchicalCoordinator {
     const edgeWeights: number[] = [];
 
     // Build edges based on topology
-    if (topology === "hierarchical" || topology === "tree") {
+    if (topology === 'hierarchical' || topology === 'tree') {
       // Queens at level 0 connect to workers at level 1
       const queens = nodes.filter((n) => n.level === 0);
       const workers = nodes.filter((n) => n.level === 1);
@@ -280,7 +287,7 @@ class HierarchicalCoordinator {
           edgeWeights.push(this.queenWeight); // Queen influence
         });
       });
-    } else if (topology === "star") {
+    } else if (topology === 'star') {
       // Central queen connects to all workers
       const queen = nodes[0]; // First is queen
       nodes.slice(1).forEach((worker) => {
@@ -302,7 +309,7 @@ class HierarchicalCoordinator {
    */
   private applyGraphRoPE(
     embeddings: number[][],
-    graphContext: GraphContext,
+    graphContext: GraphContext
   ): number[][] {
     return embeddings.map((emb, idx) => {
       // Find position in hierarchy
@@ -313,7 +320,7 @@ class HierarchicalCoordinator {
       const positionEncoding = this.generatePositionEncoding(
         emb.length,
         depth,
-        siblings,
+        siblings
       );
 
       // Add position encoding to embedding
@@ -355,7 +362,7 @@ class HierarchicalCoordinator {
   private generatePositionEncoding(
     dim: number,
     depth: number,
-    siblings: number,
+    siblings: number
   ): number[] {
     // Sinusoidal position encoding
     return Array.from({ length: dim }, (_, i) => {
@@ -365,19 +372,19 @@ class HierarchicalCoordinator {
   }
 
   private async outputsToEmbeddings(
-    outputs: AgentOutput[],
+    outputs: AgentOutput[]
   ): Promise<number[][]> {
     // Convert agent outputs to embeddings (simplified)
     // In production, use actual embedding model
     return outputs.map((output) =>
-      Array.from({ length: 384 }, () => Math.random()),
+      Array.from({ length: 384 }, () => Math.random())
     );
   }
 
   private extractAttentionWeights(result: any): number[] {
     // Extract attention weights from result
     return Array.from(result.output.slice(0, result.output.length / 384)).map(
-      (_, i) => result.output[i],
+      (_, i) => result.output[i]
     );
   }
 
@@ -390,7 +397,7 @@ class HierarchicalCoordinator {
 
     // Return highest weighted output
     const best = weightedOutputs.reduce((max, curr) =>
-      curr.weight > max.weight ? curr : max,
+      curr.weight > max.weight ? curr : max
     );
 
     return best.output;
@@ -416,16 +423,16 @@ class HierarchicalCoordinator {
 
   private processCoordinationResult(
     result: any,
-    outputs: AgentOutput[],
+    outputs: AgentOutput[]
   ): CoordinationResult {
     return {
       consensus: this.generateConsensus(
         outputs,
-        this.extractAttentionWeights(result),
+        this.extractAttentionWeights(result)
       ),
       attentionWeights: this.extractAttentionWeights(result),
       topAgents: this.rankAgentsByInfluence(
-        this.extractAttentionWeights(result),
+        this.extractAttentionWeights(result)
       ),
       executionTimeMs: result.executionTimeMs,
       memoryUsage: result.memoryUsage,
@@ -471,13 +478,13 @@ const coordinator = new HierarchicalCoordinator(attentionService, 1.5);
 // Queen agents (strategic planning)
 const queenOutputs = [
   {
-    agentType: "planner",
-    content: "Build authentication service with OAuth2 and JWT",
+    agentType: 'planner',
+    content: 'Build authentication service with OAuth2 and JWT',
     hierarchyLevel: 0,
   },
   {
-    agentType: "architect",
-    content: "Use microservices architecture with API gateway",
+    agentType: 'architect',
+    content: 'Use microservices architecture with API gateway',
     hierarchyLevel: 0,
   },
 ];
@@ -485,18 +492,18 @@ const queenOutputs = [
 // Worker agents (execution)
 const workerOutputs = [
   {
-    agentType: "coder",
-    content: "Implement OAuth2 provider with Passport.js",
+    agentType: 'coder',
+    content: 'Implement OAuth2 provider with Passport.js',
     hierarchyLevel: 1,
   },
   {
-    agentType: "tester",
-    content: "Create integration tests for authentication flow",
+    agentType: 'tester',
+    content: 'Create integration tests for authentication flow',
     hierarchyLevel: 1,
   },
   {
-    agentType: "reviewer",
-    content: "Review security best practices for JWT storage",
+    agentType: 'reviewer',
+    content: 'Review security best practices for JWT storage',
     hierarchyLevel: 1,
   },
 ];
@@ -505,27 +512,27 @@ const workerOutputs = [
 const result = await coordinator.coordinateHierarchy(
   queenOutputs,
   workerOutputs,
-  -1.0, // Hyperbolic curvature
+  -1.0 // Hyperbolic curvature
 );
 
-console.log("Consensus:", result.consensus);
-console.log("Queen influence:", result.hierarchyDepth);
-console.log("Top contributors:", result.topAgents.slice(0, 3));
+console.log('Consensus:', result.consensus);
+console.log('Queen influence:', result.hierarchyDepth);
+console.log('Top contributors:', result.topAgents.slice(0, 3));
 console.log(
-  `Processed in ${result.executionTimeMs}ms (${2.49}x-${7.47}x faster)`,
+  `Processed in ${result.executionTimeMs}ms (${2.49}x-${7.47}x faster)`
 );
 ```
 
 ### Self-Learning Integration (ReasoningBank)
 
 ```typescript
-import { ReasoningBank } from "agentdb";
+import { ReasoningBank } from 'agentdb';
 
 class LearningHierarchicalCoordinator extends HierarchicalCoordinator {
   constructor(
     attentionService: AttentionService,
     private reasoningBank: ReasoningBank,
-    queenWeight: number = 1.5,
+    queenWeight: number = 1.5
   ) {
     super(attentionService, queenWeight);
   }
@@ -536,7 +543,7 @@ class LearningHierarchicalCoordinator extends HierarchicalCoordinator {
   async coordinateWithLearning(
     taskDescription: string,
     queenOutputs: AgentOutput[],
-    workerOutputs: AgentOutput[],
+    workerOutputs: AgentOutput[]
   ): Promise<CoordinationResult> {
     // 1. Search for similar past coordination patterns
     const similarPatterns = await this.reasoningBank.searchPatterns({
@@ -546,7 +553,7 @@ class LearningHierarchicalCoordinator extends HierarchicalCoordinator {
     });
 
     if (similarPatterns.length > 0) {
-      console.log("📚 Learning from past hierarchical coordinations:");
+      console.log('📚 Learning from past hierarchical coordinations:');
       similarPatterns.forEach((pattern) => {
         console.log(`- ${pattern.task}: ${pattern.reward} success rate`);
         console.log(`  Critique: ${pattern.critique}`);
@@ -557,7 +564,7 @@ class LearningHierarchicalCoordinator extends HierarchicalCoordinator {
     const result = await this.coordinateHierarchy(
       queenOutputs,
       workerOutputs,
-      -1.0,
+      -1.0
     );
 
     // 3. Calculate success metrics
@@ -597,21 +604,21 @@ class LearningHierarchicalCoordinator extends HierarchicalCoordinator {
 
     if (result.hierarchyDepth && result.hierarchyDepth < 1.3) {
       critiques.push(
-        "Queens need more influence - consider increasing queen weight",
+        'Queens need more influence - consider increasing queen weight'
       );
     }
 
     if (result.executionTimeMs > 5000) {
       critiques.push(
-        "Coordination took too long - consider using flash attention",
+        'Coordination took too long - consider using flash attention'
       );
     }
 
-    return critiques.join("; ") || "Good hierarchical coordination";
+    return critiques.join('; ') || 'Good hierarchical coordination';
   }
 
   private estimateTokens(result: CoordinationResult): number {
-    return result.consensus.split(" ").length * 1.3;
+    return result.consensus.split(' ').length * 1.3;
   }
 }
 ```
@@ -726,7 +733,8 @@ Quality Issues:
 
 ### Efficient Delegation
 
-1. **Clear Specifications**: Provide detailed requirements and acceptance criteria
+1. **Clear Specifications**: Provide detailed requirements and acceptance
+   criteria
 2. **Appropriate Scope**: Tasks sized for 2-8 hour completion windows
 3. **Regular Check-ins**: Status updates every 4-6 hours for active work
 4. **Context Sharing**: Ensure workers have necessary background information
@@ -738,4 +746,6 @@ Quality Issues:
 3. **Resource Pooling**: Share common resources and knowledge across teams
 4. **Continuous Improvement**: Regular retrospectives and process refinement
 
-Remember: As the hierarchical coordinator, you are the central command and control point. Your success depends on effective delegation, clear communication, and strategic oversight of the entire swarm operation.
+Remember: As the hierarchical coordinator, you are the central command and
+control point. Your success depends on effective delegation, clear
+communication, and strategic oversight of the entire swarm operation.

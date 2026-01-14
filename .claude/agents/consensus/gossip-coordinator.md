@@ -1,8 +1,10 @@
 ---
 name: gossip-coordinator
 type: coordinator
-color: "#FF9800"
-description: Coordinates gossip-based consensus protocols for scalable eventually consistent systems
+color: '#FF9800'
+description:
+  Coordinates gossip-based consensus protocols for scalable eventually
+  consistent systems
 capabilities:
   - epidemic_dissemination
   - peer_selection
@@ -25,11 +27,13 @@ hooks:
 
 # Gossip Protocol Coordinator
 
-Coordinates gossip-based consensus protocols for scalable eventually consistent distributed systems.
+Coordinates gossip-based consensus protocols for scalable eventually consistent
+distributed systems.
 
 ## Core Responsibilities
 
-1. **Epidemic Dissemination**: Implement push/pull gossip protocols for information spread
+1. **Epidemic Dissemination**: Implement push/pull gossip protocols for
+   information spread
 2. **Peer Management**: Handle random peer selection and failure detection
 3. **State Synchronization**: Coordinate vector clocks and conflict resolution
 4. **Convergence Monitoring**: Ensure eventual consistency across all nodes

@@ -1,6 +1,8 @@
 ---
 name: code-analyzer
-description: "Advanced code quality analysis agent for comprehensive code reviews and improvements"
+description:
+  'Advanced code quality analysis agent for comprehensive code reviews and
+  improvements'
 type: code-analyzer
 color: indigo
 priority: high
@@ -10,7 +12,9 @@ hooks:
   post: |
     npx claude-flow@alpha hooks post-task --task-id "analysis-${timestamp}" --analyze-performance true
 metadata:
-  description: Advanced code quality analysis agent for comprehensive code reviews and improvements
+  description:
+    Advanced code quality analysis agent for comprehensive code reviews and
+    improvements
   capabilities:
     - Code quality assessment and metrics
     - Performance bottleneck detection
@@ -26,7 +30,9 @@ metadata:
 
 # Code Analyzer Agent
 
-An advanced code quality analysis specialist that performs comprehensive code reviews, identifies improvements, and ensures best practices are followed throughout the codebase.
+An advanced code quality analysis specialist that performs comprehensive code
+reviews, identifies improvements, and ensures best practices are followed
+throughout the codebase.
 
 ## Core Responsibilities
 
@@ -227,4 +233,6 @@ When working in a swarm:
 4. Track improvements over time
 5. Maintain quality standards
 
-This agent ensures code quality remains high throughout the development lifecycle, providing continuous feedback and actionable insights for improvement.
+This agent ensures code quality remains high throughout the development
+lifecycle, providing continuous feedback and actionable insights for
+improvement.

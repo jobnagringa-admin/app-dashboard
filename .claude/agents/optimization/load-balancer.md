@@ -2,7 +2,9 @@
 name: Load Balancing Coordinator
 type: agent
 category: optimization
-description: Dynamic task distribution, work-stealing algorithms and adaptive load balancing
+description:
+  Dynamic task distribution, work-stealing algorithms and adaptive load
+  balancing
 ---
 
 # Load Balancing Coordinator Agent
@@ -45,7 +47,7 @@ const workStealingScheduler = {
     return Array.from(this.localQueues.entries())
       .filter(
         ([agentId, queue]) =>
-          agentId !== requestingAgent && queue.size() > this.stealThreshold,
+          agentId !== requestingAgent && queue.size() > this.stealThreshold
       )
       .sort((a, b) => b[1].size() - a[1].size()) // Heaviest first
       .map(([agentId]) => agentId);
@@ -80,7 +82,7 @@ const loadBalancer = {
         await this.migrateTasks(
           candidateTasks,
           overloadedAgent.id,
-          targetAgent.id,
+          targetAgent.id
         );
       }
     }
@@ -178,7 +180,7 @@ const resourceAllocator = {
 
     for (let generation = 0; generation < this.maxGenerations; generation++) {
       const fitness = population.map((individual) =>
-        this.evaluateMultiObjectiveFitness(individual, objectives),
+        this.evaluateMultiObjectiveFitness(individual, objectives)
       );
 
       const selected = this.selectParents(population, fitness);
@@ -204,7 +206,7 @@ const resourceAllocator = {
 
     // Objective: maximize utilization while respecting constraints
     const objective = this.createUtilizationObjective(allocation);
-    solver.setObjective(objective, "maximize");
+    solver.setObjective(objective, 'maximize');
 
     return await solver.solve();
   },
@@ -220,7 +222,7 @@ const resourceAllocator = {
 const mcpIntegration = {
   // Real-time metrics collection
   async collectMetrics() {
-    const metrics = await mcp.performance_report({ format: "json" });
+    const metrics = await mcp.performance_report({ format: 'json' });
     const bottlenecks = await mcp.bottleneck_analyze({});
     const tokenUsage = await mcp.token_usage({});
 
@@ -281,7 +283,7 @@ class EDFScheduler {
   admissionControl(newTask, existingTasks) {
     const totalUtilization = [...existingTasks, newTask].reduce(
       (sum, task) => sum + task.executionTime / task.period,
-      0,
+      0
     );
 
     return totalUtilization <= 1.0; // Liu & Layland bound
@@ -327,15 +329,15 @@ class CircuitBreaker {
     this.timeout = timeout;
     this.failureCount = 0;
     this.lastFailureTime = null;
-    this.state = "CLOSED"; // CLOSED, OPEN, HALF_OPEN
+    this.state = 'CLOSED'; // CLOSED, OPEN, HALF_OPEN
   }
 
   async execute(operation) {
-    if (this.state === "OPEN") {
+    if (this.state === 'OPEN') {
       if (Date.now() - this.lastFailureTime > this.timeout) {
-        this.state = "HALF_OPEN";
+        this.state = 'HALF_OPEN';
       } else {
-        throw new Error("Circuit breaker is OPEN");
+        throw new Error('Circuit breaker is OPEN');
       }
     }
 
@@ -351,7 +353,7 @@ class CircuitBreaker {
 
   onSuccess() {
     this.failureCount = 0;
-    this.state = "CLOSED";
+    this.state = 'CLOSED';
   }
 
   onFailure() {
@@ -359,7 +361,7 @@ class CircuitBreaker {
     this.lastFailureTime = Date.now();
 
     if (this.failureCount >= this.failureThreshold) {
-      this.state = "OPEN";
+      this.state = 'OPEN';
     }
   }
 }
@@ -400,7 +402,8 @@ npx claude-flow metrics-collect --components ["load-balancer", "task-queue"]
 
 ### With Other Optimization Agents
 
-- **Performance Monitor**: Provides real-time metrics for load balancing decisions
+- **Performance Monitor**: Provides real-time metrics for load balancing
+  decisions
 - **Topology Optimizer**: Coordinates topology changes based on load patterns
 - **Resource Allocator**: Optimizes resource distribution across the swarm
 
@@ -443,7 +446,7 @@ const benchmarks = {
     const variance =
       distribution.reduce(
         (sum, load) => sum + Math.pow(load - idealLoad, 2),
-        0,
+        0
       ) / agents.length;
 
     return {
@@ -454,4 +457,6 @@ const benchmarks = {
 };
 ```
 
-This Load Balancing Coordinator agent provides comprehensive task distribution optimization with advanced algorithms, real-time monitoring, and adaptive resource allocation capabilities for high-performance swarm coordination.
+This Load Balancing Coordinator agent provides comprehensive task distribution
+optimization with advanced algorithms, real-time monitoring, and adaptive
+resource allocation capabilities for high-performance swarm coordination.

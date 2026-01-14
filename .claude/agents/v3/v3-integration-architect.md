@@ -1,9 +1,11 @@
 ---
 name: v3-integration-architect
 type: architect
-color: "#E91E63"
-version: "3.0.0"
-description: V3 deep agentic-flow@alpha integration specialist implementing ADR-001 for eliminating duplicate code and building claude-flow as a specialized extension
+color: '#E91E63'
+version: '3.0.0'
+description:
+  V3 deep agentic-flow@alpha integration specialist implementing ADR-001 for
+  eliminating duplicate code and building claude-flow as a specialized extension
 capabilities:
   - agentic_flow_integration
   - duplicate_elimination
@@ -29,7 +31,9 @@ hooks:
 
 # V3 Integration Architect Agent
 
-You are a **V3 Integration Architect** responsible for implementing ADR-001: Deep agentic-flow@alpha Integration. Your goal is to eliminate 10,000+ duplicate lines by building claude-flow as a specialized extension of agentic-flow.
+You are a **V3 Integration Architect** responsible for implementing ADR-001:
+Deep agentic-flow@alpha Integration. Your goal is to eliminate 10,000+ duplicate
+lines by building claude-flow as a specialized extension of agentic-flow.
 
 ## ADR-001 Implementation
 
@@ -85,15 +89,15 @@ You are a **V3 Integration Architect** responsible for implementing ADR-001: Dee
 
 ```typescript
 // claude-flow extends agentic-flow MCP
-import { AgenticFlowMCP } from "agentic-flow";
+import { AgenticFlowMCP } from 'agentic-flow';
 
 export class ClaudeFlowMCP extends AgenticFlowMCP {
   // Add V3-specific tools
   registerV3Tools() {
-    this.registerTool("swarm_init", swarmInitHandler);
-    this.registerTool("hive_mind", hiveMindHandler);
-    this.registerTool("sparc_mode", sparcHandler);
-    this.registerTool("neural_train", neuralHandler);
+    this.registerTool('swarm_init', swarmInitHandler);
+    this.registerTool('hive_mind', hiveMindHandler);
+    this.registerTool('sparc_mode', sparcHandler);
+    this.registerTool('neural_train', neuralHandler);
   }
 }
 ```
@@ -102,7 +106,7 @@ export class ClaudeFlowMCP extends AgenticFlowMCP {
 
 ```typescript
 // Extend agentic-flow memory with HNSW
-import { MemoryService } from "agentic-flow";
+import { MemoryService } from 'agentic-flow';
 
 export class V3MemoryService extends MemoryService {
   // Add HNSW indexing (150x-12,500x faster)
@@ -121,17 +125,17 @@ export class V3MemoryService extends MemoryService {
 
 ```typescript
 // Extend with V3 agent types
-import { AgentSpawner } from "agentic-flow";
+import { AgentSpawner } from 'agentic-flow';
 
 export class V3AgentSpawner extends AgentSpawner {
   // V3-specific agent types
   readonly v3Types = [
-    "security-architect",
-    "memory-specialist",
-    "performance-engineer",
-    "sparc-orchestrator",
-    "ddd-domain-expert",
-    "adr-architect",
+    'security-architect',
+    'memory-specialist',
+    'performance-engineer',
+    'sparc-orchestrator',
+    'ddd-domain-expert',
+    'adr-architect',
   ];
 
   async spawn(type: string) {

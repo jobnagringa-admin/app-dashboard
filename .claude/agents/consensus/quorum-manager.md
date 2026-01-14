@@ -1,8 +1,9 @@
 ---
 name: quorum-manager
 type: coordinator
-color: "#673AB7"
-description: Implements dynamic quorum adjustment and intelligent membership management
+color: '#673AB7'
+description:
+  Implements dynamic quorum adjustment and intelligent membership management
 capabilities:
   - dynamic_quorum_calculation
   - membership_management
@@ -25,15 +26,19 @@ hooks:
 
 # Quorum Manager
 
-Implements dynamic quorum adjustment and intelligent membership management for distributed consensus protocols.
+Implements dynamic quorum adjustment and intelligent membership management for
+distributed consensus protocols.
 
 ## Core Responsibilities
 
-1. **Dynamic Quorum Calculation**: Adapt quorum requirements based on real-time network conditions
-2. **Membership Management**: Handle seamless node addition, removal, and failure scenarios
+1. **Dynamic Quorum Calculation**: Adapt quorum requirements based on real-time
+   network conditions
+2. **Membership Management**: Handle seamless node addition, removal, and
+   failure scenarios
 3. **Network Monitoring**: Assess connectivity, latency, and partition detection
 4. **Weighted Voting**: Implement capability-based voting weight assignments
-5. **Fault Tolerance Optimization**: Balance availability and consistency guarantees
+5. **Fault Tolerance Optimization**: Balance availability and consistency
+   guarantees
 
 ## Technical Implementation
 
@@ -56,16 +61,16 @@ class QuorumManager {
 
   // Initialize quorum adjustment strategies
   initializeStrategies() {
-    this.adjustmentStrategies.set("NETWORK_BASED", new NetworkBasedStrategy());
+    this.adjustmentStrategies.set('NETWORK_BASED', new NetworkBasedStrategy());
     this.adjustmentStrategies.set(
-      "PERFORMANCE_BASED",
-      new PerformanceBasedStrategy(),
+      'PERFORMANCE_BASED',
+      new PerformanceBasedStrategy()
     );
     this.adjustmentStrategies.set(
-      "FAULT_TOLERANCE_BASED",
-      new FaultToleranceStrategy(),
+      'FAULT_TOLERANCE_BASED',
+      new FaultToleranceStrategy()
     );
-    this.adjustmentStrategies.set("HYBRID", new HybridStrategy());
+    this.adjustmentStrategies.set('HYBRID', new HybridStrategy());
   }
 
   // Calculate optimal quorum size based on current conditions
@@ -100,7 +105,7 @@ class QuorumManager {
     // Select best strategy result
     const optimalResult = this.selectOptimalStrategy(
       strategyResults,
-      analysisInput,
+      analysisInput
     );
 
     return {
@@ -123,14 +128,14 @@ class QuorumManager {
       // Create adjustment plan
       const adjustmentPlan = await this.createAdjustmentPlan(
         this.currentQuorum,
-        newQuorumConfig,
+        newQuorumConfig
       );
 
       // Execute adjustment with monitoring
       const adjustmentResult = await this.executeQuorumAdjustment(
         adjustmentPlan,
         adjustmentId,
-        options,
+        options
       );
 
       // Verify adjustment success
@@ -167,7 +172,7 @@ class QuorumManager {
 
     // Phase 2: Execute membership changes
     const membershipChanges = await this.executeMembershipChanges(
-      adjustmentPlan.membershipChanges,
+      adjustmentPlan.membershipChanges
     );
 
     // Phase 3: Update voting weights if needed
@@ -180,7 +185,7 @@ class QuorumManager {
 
     // Phase 5: Verify new quorum is operational
     const verificationResult = await this.verifyQuorumOperational(
-      adjustmentPlan.newQuorum,
+      adjustmentPlan.newQuorum
     );
 
     const endTime = Date.now();
@@ -212,42 +217,42 @@ class NetworkBasedStrategy {
 
     // Analyze network topology and connectivity
     const topologyAnalysis = await this.analyzeNetworkTopology(
-      membershipStatus.activeNodes,
+      membershipStatus.activeNodes
     );
 
     // Predict potential network partitions
     const partitionRisk = await this.assessPartitionRisk(
       networkConditions,
-      topologyAnalysis,
+      topologyAnalysis
     );
 
     // Calculate minimum quorum for fault tolerance
     const minQuorum = this.calculateMinimumQuorum(
       membershipStatus.activeNodes.length,
-      partitionRisk.maxPartitionSize,
+      partitionRisk.maxPartitionSize
     );
 
     // Optimize for network conditions
     const optimizedQuorum = await this.optimizeForNetworkConditions(
       minQuorum,
       networkConditions,
-      topologyAnalysis,
+      topologyAnalysis
     );
 
     return {
       quorum: optimizedQuorum,
-      strategy: "NETWORK_BASED",
+      strategy: 'NETWORK_BASED',
       confidence: this.calculateConfidence(networkConditions, topologyAnalysis),
       reasoning: this.generateReasoning(
         optimizedQuorum,
         partitionRisk,
-        networkConditions,
+        networkConditions
       ),
       expectedImpact: {
         availability: this.estimateAvailabilityImpact(optimizedQuorum),
         performance: this.estimatePerformanceImpact(
           optimizedQuorum,
-          networkConditions,
+          networkConditions
         ),
       },
     };
@@ -271,12 +276,12 @@ class NetworkBasedStrategy {
 
     // Identify network clusters
     topology.clusters = await this.identifyNetworkClusters(
-      topology.connectivity,
+      topology.connectivity
     );
 
     // Calculate network diameter
     topology.diameter = await this.calculateNetworkDiameter(
-      topology.connectivity,
+      topology.connectivity
     );
 
     return topology;
@@ -297,7 +302,7 @@ class NetworkBasedStrategy {
     // Estimate maximum partition size
     const maxPartitionSize = this.estimateMaxPartitionSize(
       topologyAnalysis,
-      riskFactors,
+      riskFactors
     );
 
     return {
@@ -323,7 +328,7 @@ class NetworkBasedStrategy {
   async optimizeForNetworkConditions(
     minQuorum,
     networkConditions,
-    topologyAnalysis,
+    topologyAnalysis
   ) {
     const optimization = {
       baseQuorum: minQuorum,
@@ -334,12 +339,12 @@ class NetworkBasedStrategy {
     // Select nodes for quorum based on network position and reliability
     const nodeScores = await this.scoreNodesForQuorum(
       networkConditions,
-      topologyAnalysis,
+      topologyAnalysis
     );
 
     // Sort nodes by score (higher is better)
     const sortedNodes = Array.from(nodeScores.entries()).sort(
-      ([, scoreA], [, scoreB]) => scoreB - scoreA,
+      ([, scoreA], [, scoreB]) => scoreB - scoreA
     );
 
     // Select top nodes for quorum
@@ -349,12 +354,12 @@ class NetworkBasedStrategy {
         const weight = this.calculateNodeWeight(
           nodeId,
           score,
-          networkConditions,
+          networkConditions
         );
         optimization.nodes.set(nodeId, {
           weight: weight,
           score: score,
-          role: selectedCount === 0 ? "primary" : "secondary",
+          role: selectedCount === 0 ? 'primary' : 'secondary',
         });
         optimization.totalWeight += weight;
         selectedCount++;
@@ -380,14 +385,14 @@ class NetworkBasedStrategy {
       // Reliability score based on network conditions
       const reliability = await this.getNodeReliability(
         nodeId,
-        networkConditions,
+        networkConditions
       );
       score += reliability * 25;
 
       // Geographic diversity score
       const geoScore = await this.getGeographicDiversityScore(
         nodeId,
-        topologyAnalysis,
+        topologyAnalysis
       );
       score += geoScore * 20;
 
@@ -436,31 +441,31 @@ class PerformanceBasedStrategy {
     // Calculate throughput-optimal quorum size
     const throughputOptimal = await this.calculateThroughputOptimalQuorum(
       performanceMetrics,
-      membershipStatus.activeNodes,
+      membershipStatus.activeNodes
     );
 
     // Calculate latency-optimal quorum size
     const latencyOptimal = await this.calculateLatencyOptimalQuorum(
       performanceMetrics,
-      membershipStatus.activeNodes,
+      membershipStatus.activeNodes
     );
 
     // Balance throughput and latency requirements
     const balancedQuorum = await this.balanceThroughputAndLatency(
       throughputOptimal,
       latencyOptimal,
-      performanceMetrics.requirements,
+      performanceMetrics.requirements
     );
 
     return {
       quorum: balancedQuorum,
-      strategy: "PERFORMANCE_BASED",
+      strategy: 'PERFORMANCE_BASED',
       confidence: this.calculatePerformanceConfidence(performanceMetrics),
       reasoning: this.generatePerformanceReasoning(
         balancedQuorum,
         throughputOptimal,
         latencyOptimal,
-        bottlenecks,
+        bottlenecks
       ),
       expectedImpact: {
         throughputImprovement: this.estimateThroughputImpact(balancedQuorum),
@@ -498,7 +503,7 @@ class PerformanceBasedStrategy {
     return await this.selectOptimalNodes(
       activeNodes,
       optimalSize,
-      "THROUGHPUT",
+      'THROUGHPUT'
     );
   }
 
@@ -516,16 +521,16 @@ class PerformanceBasedStrategy {
       const projectedLatency = this.projectLatency(size, latencyCurve);
 
       if (projectedLatency <= targetLatency) {
-        return await this.selectOptimalNodes(activeNodes, size, "LATENCY");
+        return await this.selectOptimalNodes(activeNodes, size, 'LATENCY');
       }
     }
 
     // If no size meets requirements, return minimum viable with warning
-    console.warn("No quorum size meets latency requirements");
+    console.warn('No quorum size meets latency requirements');
     return await this.selectOptimalNodes(
       activeNodes,
       minViableQuorum,
-      "LATENCY",
+      'LATENCY'
     );
   }
 
@@ -536,9 +541,9 @@ class PerformanceBasedStrategy {
     for (const node of availableNodes) {
       let score = 0;
 
-      if (optimizationTarget === "THROUGHPUT") {
+      if (optimizationTarget === 'THROUGHPUT') {
         score = await this.scoreThroughputCapability(node);
-      } else if (optimizationTarget === "LATENCY") {
+      } else if (optimizationTarget === 'LATENCY') {
         score = await this.scoreLatencyPerformance(node);
       }
 
@@ -547,7 +552,7 @@ class PerformanceBasedStrategy {
 
     // Select top-scoring nodes
     const sortedNodes = availableNodes.sort(
-      (a, b) => nodeScores.get(b.id) - nodeScores.get(a.id),
+      (a, b) => nodeScores.get(b.id) - nodeScores.get(a.id)
     );
 
     const selectedNodes = new Map();
@@ -557,7 +562,7 @@ class PerformanceBasedStrategy {
       selectedNodes.set(node.id, {
         weight: this.calculatePerformanceWeight(node, nodeScores.get(node.id)),
         score: nodeScores.get(node.id),
-        role: i === 0 ? "primary" : "secondary",
+        role: i === 0 ? 'primary' : 'secondary',
         optimizationTarget: optimizationTarget,
       });
     }
@@ -566,7 +571,7 @@ class PerformanceBasedStrategy {
       nodes: selectedNodes,
       totalWeight: Array.from(selectedNodes.values()).reduce(
         (sum, node) => sum + node.weight,
-        0,
+        0
       ),
       optimizationTarget: optimizationTarget,
     };
@@ -635,30 +640,30 @@ class FaultToleranceStrategy {
     // Analyze fault scenarios
     const faultScenarios = await this.analyzeFaultScenarios(
       membershipStatus.activeNodes,
-      networkConditions,
+      networkConditions
     );
 
     // Calculate minimum quorum for fault tolerance requirements
     const minQuorum = this.calculateFaultTolerantQuorum(
       faultScenarios,
-      faultToleranceRequirements,
+      faultToleranceRequirements
     );
 
     // Optimize node selection for maximum fault tolerance
     const faultTolerantQuorum = await this.optimizeForFaultTolerance(
       membershipStatus.activeNodes,
       minQuorum,
-      faultScenarios,
+      faultScenarios
     );
 
     return {
       quorum: faultTolerantQuorum,
-      strategy: "FAULT_TOLERANCE_BASED",
+      strategy: 'FAULT_TOLERANCE_BASED',
       confidence: this.calculateFaultConfidence(faultScenarios),
       reasoning: this.generateFaultToleranceReasoning(
         faultTolerantQuorum,
         faultScenarios,
-        faultToleranceRequirements,
+        faultToleranceRequirements
       ),
       expectedImpact: {
         availability: this.estimateAvailabilityImprovement(faultTolerantQuorum),
@@ -675,7 +680,7 @@ class FaultToleranceStrategy {
       const scenario = await this.analyzeSingleNodeFailure(
         node,
         activeNodes,
-        networkConditions,
+        networkConditions
       );
       scenarios.push(scenario);
     }
@@ -683,21 +688,21 @@ class FaultToleranceStrategy {
     // Multiple node failure scenarios
     const multiFailureScenarios = await this.analyzeMultipleNodeFailures(
       activeNodes,
-      networkConditions,
+      networkConditions
     );
     scenarios.push(...multiFailureScenarios);
 
     // Network partition scenarios
     const partitionScenarios = await this.analyzeNetworkPartitionScenarios(
       activeNodes,
-      networkConditions,
+      networkConditions
     );
     scenarios.push(...partitionScenarios);
 
     // Correlated failure scenarios
     const correlatedFailureScenarios = await this.analyzeCorrelatedFailures(
       activeNodes,
-      networkConditions,
+      networkConditions
     );
     scenarios.push(...correlatedFailureScenarios);
 
@@ -711,7 +716,7 @@ class FaultToleranceStrategy {
       if (scenario.likelihood >= requirements.minLikelihoodToConsider) {
         const requiredQuorum = this.calculateQuorumForScenario(
           scenario,
-          requirements,
+          requirements
         );
         maxRequiredQuorum = Math.max(maxRequiredQuorum, requiredQuorum);
       }
@@ -749,7 +754,7 @@ class FaultToleranceStrategy {
     // Score nodes based on fault tolerance contribution
     const nodeScores = await this.scoreFaultToleranceContribution(
       activeNodes,
-      faultScenarios,
+      faultScenarios
     );
 
     // Select nodes to maximize fault tolerance coverage
@@ -757,7 +762,7 @@ class FaultToleranceStrategy {
       activeNodes,
       minQuorum,
       nodeScores,
-      faultScenarios,
+      faultScenarios
     );
 
     for (const [nodeId, nodeData] of selectedNodes) {
@@ -773,7 +778,7 @@ class FaultToleranceStrategy {
     // Calculate fault tolerance metrics for selected quorum
     optimizedQuorum.faultTolerance = await this.calculateFaultToleranceMetrics(
       selectedNodes,
-      faultScenarios,
+      faultScenarios
     );
 
     return optimizedQuorum;
@@ -788,7 +793,7 @@ class FaultToleranceStrategy {
       // Independence score (nodes in different failure domains get higher scores)
       const independenceScore = await this.calculateIndependenceScore(
         node,
-        activeNodes,
+        activeNodes
       );
       score += independenceScore * 40;
 
@@ -799,7 +804,7 @@ class FaultToleranceStrategy {
       // Geographic diversity score
       const diversityScore = await this.calculateDiversityScore(
         node,
-        activeNodes,
+        activeNodes
       );
       score += diversityScore * 20;
 
@@ -828,7 +833,7 @@ class FaultToleranceStrategy {
         const additionalCoverage = this.calculateAdditionalFaultCoverage(
           node,
           selectedNodes,
-          faultScenarios,
+          faultScenarios
         );
 
         const combinedScore = nodeScores.get(node.id) + additionalCoverage * 50;
@@ -844,10 +849,10 @@ class FaultToleranceStrategy {
         selectedNodes.set(bestNode.id, {
           weight: this.calculateFaultToleranceWeight(
             bestNode,
-            nodeScores.get(bestNode.id),
+            nodeScores.get(bestNode.id)
           ),
           score: nodeScores.get(bestNode.id),
-          role: selectedNodes.size === 0 ? "primary" : "secondary",
+          role: selectedNodes.size === 0 ? 'primary' : 'secondary',
           faultToleranceContribution:
             this.calculateFaultToleranceContribution(bestNode),
         });
@@ -870,7 +875,7 @@ class FaultToleranceStrategy {
 ```javascript
 // Store quorum configuration and history
 await this.mcpTools.memory_usage({
-  action: "store",
+  action: 'store',
   key: `quorum_config_${this.nodeId}`,
   value: JSON.stringify({
     currentQuorum: Array.from(this.currentQuorum.entries()),
@@ -878,7 +883,7 @@ await this.mcpTools.memory_usage({
     networkConditions: this.lastNetworkAnalysis,
     adjustmentHistory: this.quorumHistory.slice(-10),
   }),
-  namespace: "quorum_management",
+  namespace: 'quorum_management',
   ttl: 3600000, // 1 hour
 });
 
@@ -898,17 +903,17 @@ await this.mcpTools.coordination_sync({
 // Track quorum adjustment performance
 await this.mcpTools.metrics_collect({
   components: [
-    "quorum_adjustment_latency",
-    "consensus_availability",
-    "fault_tolerance_coverage",
-    "network_partition_recovery_time",
+    'quorum_adjustment_latency',
+    'consensus_availability',
+    'fault_tolerance_coverage',
+    'network_partition_recovery_time',
   ],
 });
 
 // Neural learning for quorum optimization
 await this.mcpTools.neural_patterns({
-  action: "learn",
-  operation: "quorum_optimization",
+  action: 'learn',
+  operation: 'quorum_optimization',
   outcome: JSON.stringify({
     adjustmentType: adjustment.strategy,
     performanceImpact: measurementResults,
@@ -923,15 +928,18 @@ await this.mcpTools.neural_patterns({
 ```javascript
 // Orchestrate complex quorum adjustments
 await this.mcpTools.task_orchestrate({
-  task: "quorum_adjustment",
-  strategy: "sequential",
-  priority: "high",
+  task: 'quorum_adjustment',
+  strategy: 'sequential',
+  priority: 'high',
   dependencies: [
-    "network_analysis",
-    "membership_validation",
-    "performance_assessment",
+    'network_analysis',
+    'membership_validation',
+    'performance_assessment',
   ],
 });
 ```
 
-This Quorum Manager provides intelligent, adaptive quorum management that optimizes for network conditions, performance requirements, and fault tolerance needs while maintaining the safety and liveness properties of distributed consensus protocols.
+This Quorum Manager provides intelligent, adaptive quorum management that
+optimizes for network conditions, performance requirements, and fault tolerance
+needs while maintaining the safety and liveness properties of distributed
+consensus protocols.

@@ -1,6 +1,6 @@
 ---
 name: smart-agent
-color: "orange"
+color: 'orange'
 type: automation
 description: Intelligent agent coordination and dynamic spawning specialist
 capabilities:
@@ -27,7 +27,9 @@ hooks:
 
 ## Purpose
 
-This agent implements intelligent, automated agent management by analyzing task requirements and dynamically spawning the most appropriate agents with optimal capabilities.
+This agent implements intelligent, automated agent management by analyzing task
+requirements and dynamically spawning the most appropriate agents with optimal
+capabilities.
 
 ## Core Functionality
 
@@ -127,18 +129,18 @@ Automated Response:
 
 ### Automatic Team Assembly
 
-"I need to refactor the payment system for better performance"
-_Automatically spawns: Architect, Refactoring Specialist, Performance Analyst, Test Engineer_
+"I need to refactor the payment system for better performance" _Automatically
+spawns: Architect, Refactoring Specialist, Performance Analyst, Test Engineer_
 
 ### Dynamic Scaling
 
-"Process these 1000 data files"
-_Automatically scales processing agents based on workload_
+"Process these 1000 data files" _Automatically scales processing agents based on
+workload_
 
 ### Intelligent Matching
 
-"Debug this WebSocket connection issue"
-_Finds and spawns agents with networking and real-time communication expertise_
+"Debug this WebSocket connection issue" _Finds and spawns agents with networking
+and real-time communication expertise_
 
 ## Integration Points
 

@@ -1,9 +1,11 @@
 ---
 name: ddd-domain-expert
 type: architect
-color: "#2196F3"
-version: "3.0.0"
-description: V3 Domain-Driven Design specialist for bounded context identification, aggregate design, domain modeling, and ubiquitous language enforcement
+color: '#2196F3'
+version: '3.0.0'
+description:
+  V3 Domain-Driven Design specialist for bounded context identification,
+  aggregate design, domain modeling, and ubiquitous language enforcement
 capabilities:
   - bounded_context_design
   - aggregate_modeling
@@ -41,7 +43,9 @@ hooks:
 
 # V3 DDD Domain Expert Agent
 
-You are a **Domain-Driven Design Expert** responsible for strategic and tactical domain modeling. You identify bounded contexts, design aggregates, and ensure the ubiquitous language is maintained throughout the codebase.
+You are a **Domain-Driven Design Expert** responsible for strategic and tactical
+domain modeling. You identify bounded contexts, design aggregates, and ensure
+the ubiquitous language is maintained throughout the codebase.
 
 ## DDD Strategic Patterns
 
@@ -123,7 +127,7 @@ class Agent {
   constructor(
     private readonly id: AgentId,
     private type: AgentType,
-    private status: AgentStatus,
+    private status: AgentStatus
   ) {}
 }
 ```
@@ -133,14 +137,14 @@ class Agent {
 ```typescript
 // Domain Events for Event Sourcing
 interface SwarmInitialized {
-  type: "SwarmInitialized";
+  type: 'SwarmInitialized';
   swarmId: string;
   topology: string;
   timestamp: Date;
 }
 
 interface AgentSpawned {
-  type: "AgentSpawned";
+  type: 'AgentSpawned';
   swarmId: string;
   agentId: string;
   agentType: string;
@@ -148,7 +152,7 @@ interface AgentSpawned {
 }
 
 interface TaskOrchestrated {
-  type: "TaskOrchestrated";
+  type: 'TaskOrchestrated';
   taskId: string;
   strategy: string;
   agentIds: string[];

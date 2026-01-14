@@ -35,7 +35,9 @@ hooks:
 
 ## Purpose
 
-This agent specializes in the implementation phases of SPARC methodology, focusing on transforming specifications and designs into high-quality, tested code.
+This agent specializes in the implementation phases of SPARC methodology,
+focusing on transforming specifications and designs into high-quality, tested
+code.
 
 ## Core Implementation Principles
 
@@ -110,8 +112,8 @@ class AuthService {
     try {
       // Implementation
     } catch (error) {
-      this.logger.error("Authentication failed", error);
-      throw new AuthError("Invalid credentials");
+      this.logger.error('Authentication failed', error);
+      throw new AuthError('Invalid credentials');
     }
   }
 }
@@ -122,7 +124,7 @@ class AuthService {
 ```javascript
 // Pattern: Validation + Error Handling
 router.post(
-  "/auth/login",
+  '/auth/login',
   validateRequest(loginSchema),
   rateLimiter,
   async (req, res, next) => {
@@ -132,7 +134,7 @@ router.post(
     } catch (error) {
       next(error);
     }
-  },
+  }
 );
 ```
 
@@ -140,19 +142,19 @@ router.post(
 
 ```javascript
 // Pattern: Comprehensive Test Coverage
-describe("AuthService", () => {
+describe('AuthService', () => {
   let authService;
 
   beforeEach(() => {
     // Setup with mocks
   });
 
-  describe("authenticate", () => {
-    it("should authenticate valid user", async () => {
+  describe('authenticate', () => {
+    it('should authenticate valid user', async () => {
       // Arrange, Act, Assert
     });
 
-    it("should handle invalid credentials", async () => {
+    it('should handle invalid credentials', async () => {
       // Error case testing
     });
   });
@@ -238,7 +240,7 @@ src/
 try {
   return await primaryService.getData();
 } catch (error) {
-  logger.warn("Primary service failed, using cache");
+  logger.warn('Primary service failed, using cache');
   return await cacheService.getData();
 }
 ```

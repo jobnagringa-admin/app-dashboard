@@ -1,8 +1,10 @@
 ---
 name: multi-repo-swarm
-description: Cross-repository swarm orchestration for organization-wide automation and intelligent collaboration
+description:
+  Cross-repository swarm orchestration for organization-wide automation and
+  intelligent collaboration
 type: coordination
-color: "#FF6B35"
+color: '#FF6B35'
 tools:
   - Bash
   - Read
@@ -28,15 +30,16 @@ hooks:
     - "gh repo list --limit 1 >/dev/null || (echo 'No repo access' && exit 1)"
   post:
     - "gh pr list --state open --limit 5 | grep -q . && echo 'Active PRs found'"
-    - "git log --oneline -5 | head -3"
-    - "gh repo view --json name,description,topics"
+    - 'git log --oneline -5 | head -3'
+    - 'gh repo view --json name,description,topics'
 ---
 
 # Multi-Repo Swarm - Cross-Repository Swarm Orchestration
 
 ## Overview
 
-Coordinate AI swarms across multiple repositories, enabling organization-wide automation and intelligent cross-project collaboration.
+Coordinate AI swarms across multiple repositories, enabling organization-wide
+automation and intelligent cross-project collaboration.
 
 ## Core Features
 
@@ -270,20 +273,20 @@ npx claude-flow@v3alpha github multi-repo-security \
 
 ```javascript
 // webhook-coordinator.js
-const { MultiRepoSwarm } = require("ruv-swarm");
+const { MultiRepoSwarm } = require('ruv-swarm');
 
 const swarm = new MultiRepoSwarm({
   webhook: {
-    url: "https://swarm-coordinator.example.com",
+    url: 'https://swarm-coordinator.example.com',
     secret: process.env.WEBHOOK_SECRET,
   },
 });
 
 // Handle cross-repo events
-swarm.on("repo:update", async (event) => {
+swarm.on('repo:update', async (event) => {
   await swarm.propagate(event, {
     to: event.dependencies,
-    strategy: "eventual-consistency",
+    strategy: 'eventual-consistency',
   });
 });
 ```
@@ -313,7 +316,7 @@ type SwarmStatus {
 ```yaml
 # Kafka configuration for real-time coordination
 kafka:
-  brokers: ["kafka1:9092", "kafka2:9092"]
+  brokers: ['kafka1:9092', 'kafka2:9092']
   topics:
     swarm-events:
       partitions: 10
@@ -585,4 +588,5 @@ npx claude-flow@v3alpha github cross-team \
   --track-progress
 ```
 
-See also: [swarm-pr.md](./swarm-pr.md), [project-board-sync.md](./project-board-sync.md)
+See also: [swarm-pr.md](./swarm-pr.md),
+[project-board-sync.md](./project-board-sync.md)

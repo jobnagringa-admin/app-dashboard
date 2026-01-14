@@ -1,9 +1,12 @@
 ---
 name: sona-learning-optimizer
 type: adaptive-learning
-color: "#9C27B0"
-version: "3.0.0"
-description: V3 SONA-powered self-optimizing agent using claude-flow neural tools for adaptive learning, pattern discovery, and continuous quality improvement with sub-millisecond overhead
+color: '#9C27B0'
+version: '3.0.0'
+description:
+  V3 SONA-powered self-optimizing agent using claude-flow neural tools for
+  adaptive learning, pattern discovery, and continuous quality improvement with
+  sub-millisecond overhead
 capabilities:
   - sona_adaptive_learning
   - neural_pattern_training
@@ -106,7 +109,9 @@ hooks:
 
 # SONA Learning Optimizer
 
-You are a **self-optimizing agent** powered by SONA (Self-Optimizing Neural Architecture) that uses claude-flow V3 neural tools for continuous learning and improvement.
+You are a **self-optimizing agent** powered by SONA (Self-Optimizing Neural
+Architecture) that uses claude-flow V3 neural tools for continuous learning and
+improvement.
 
 ## V3 Integration
 

@@ -1,8 +1,10 @@
 ---
 name: pr-manager
-description: Comprehensive pull request management with swarm coordination for automated reviews, testing, and merge workflows
+description:
+  Comprehensive pull request management with swarm coordination for automated
+  reviews, testing, and merge workflows
 type: development
-color: "#4ECDC4"
+color: '#4ECDC4'
 capabilities:
   - self_learning # ReasoningBank pattern storage
   - context_enhancement # GNN-enhanced search
@@ -94,7 +96,9 @@ hooks:
 
 ## Purpose
 
-Comprehensive pull request management with swarm coordination for automated reviews, testing, and merge workflows, enhanced with **self-learning** and **continuous improvement** capabilities powered by Agentic-Flow v2.0.0-alpha.
+Comprehensive pull request management with swarm coordination for automated
+reviews, testing, and merge workflows, enhanced with **self-learning** and
+**continuous improvement** capabilities powered by Agentic-Flow v2.0.0-alpha.
 
 ## Core Capabilities
 
@@ -117,7 +121,7 @@ const similarPRs = await reasoningBank.searchPatterns({
 });
 
 if (similarPRs.length > 0) {
-  console.log("📚 Learning from past successful PRs:");
+  console.log('📚 Learning from past successful PRs:');
   similarPRs.forEach((pattern) => {
     console.log(`- ${pattern.task}: ${pattern.reward} success rate`);
     console.log(`  Merge strategy: ${pattern.output.mergeStrategy}`);
@@ -133,13 +137,13 @@ if (similarPRs.length > 0) {
 
 // 2. Learn from past PR failures
 const failedPRs = await reasoningBank.searchPatterns({
-  task: "PR management",
+  task: 'PR management',
   onlyFailures: true,
   k: 3,
 });
 
 if (failedPRs.length > 0) {
-  console.log("⚠️  Avoiding past PR mistakes:");
+  console.log('⚠️  Avoiding past PR mistakes:');
   failedPRs.forEach((pattern) => {
     console.log(`- ${pattern.critique}`);
     console.log(`  Failure reason: ${pattern.output.failureReason}`);
@@ -165,7 +169,7 @@ const relatedChanges = await agentDB.gnnEnhancedSearch(prEmbedding, {
 });
 
 console.log(
-  `Found related code with ${relatedChanges.improvementPercent}% better accuracy`,
+  `Found related code with ${relatedChanges.improvementPercent}% better accuracy`
 );
 
 // Smart conflict detection with GNN
@@ -175,7 +179,7 @@ const potentialConflicts = await agentDB.gnnEnhancedSearch(
     k: 5,
     graphContext: buildConflictGraph(),
     gnnLayers: 2,
-  },
+  }
 );
 ```
 
@@ -186,18 +190,18 @@ const potentialConflicts = await agentDB.gnnEnhancedSearch(
 const coordinator = new AttentionCoordinator(attentionService);
 
 const reviewDecisions = [
-  { agent: "security-reviewer", decision: "approve", confidence: 0.95 },
+  { agent: 'security-reviewer', decision: 'approve', confidence: 0.95 },
   {
-    agent: "code-quality-reviewer",
-    decision: "request-changes",
+    agent: 'code-quality-reviewer',
+    decision: 'request-changes',
     confidence: 0.85,
   },
-  { agent: "performance-reviewer", decision: "approve", confidence: 0.9 },
+  { agent: 'performance-reviewer', decision: 'approve', confidence: 0.9 },
 ];
 
 const consensus = await coordinator.coordinateAgents(
   reviewDecisions,
-  "flash", // 2.49x-7.47x faster
+  'flash' // 2.49x-7.47x faster
 );
 
 console.log(`Review consensus: ${consensus.consensus}`);
@@ -205,7 +209,7 @@ console.log(`Confidence: ${consensus.confidence}`);
 console.log(`Agent influence: ${consensus.attentionWeights}`);
 
 // Intelligent merge decision based on attention consensus
-if (consensus.consensus === "approve" && consensus.confidence > 0.85) {
+if (consensus.consensus === 'approve' && consensus.confidence > 0.85) {
   await mergePR(pr, consensus.suggestedStrategy);
 }
 ```
@@ -254,7 +258,7 @@ await reasoningBank.storePattern({
 ```typescript
 // Learn optimal merge strategies from past PRs
 const mergeHistory = await reasoningBank.searchPatterns({
-  task: "PR merge strategy",
+  task: 'PR merge strategy',
   k: 20,
   minReward: 0.85,
 });
@@ -270,12 +274,12 @@ const strategy = analyzeMergePatterns(mergeHistory, currentPR);
 const conflictPriorities = await agentDB.flashAttention(
   conflictEmbeddings,
   codeContextEmbeddings,
-  codeContextEmbeddings,
+  codeContextEmbeddings
 );
 
 // Resolve conflicts in order of attention scores
 const sortedConflicts = conflicts.sort(
-  (a, b) => conflictPriorities[b.id] - conflictPriorities[a.id],
+  (a, b) => conflictPriorities[b.id] - conflictPriorities[a.id]
 );
 ```
 

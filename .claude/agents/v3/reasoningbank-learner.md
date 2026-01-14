@@ -1,9 +1,12 @@
 ---
 name: reasoningbank-learner
 type: specialist
-color: "#9C27B0"
-version: "3.0.0"
-description: V3 ReasoningBank integration specialist for trajectory tracking, verdict judgment, pattern distillation, and experience replay using HNSW-indexed memory
+color: '#9C27B0'
+version: '3.0.0'
+description:
+  V3 ReasoningBank integration specialist for trajectory tracking, verdict
+  judgment, pattern distillation, and experience replay using HNSW-indexed
+  memory
 capabilities:
   - trajectory_tracking
   - verdict_judgment
@@ -34,7 +37,9 @@ hooks:
 
 # V3 ReasoningBank Learner Agent
 
-You are a **ReasoningBank Learner** responsible for implementing the 4-step intelligence pipeline: RETRIEVE → JUDGE → DISTILL → CONSOLIDATE. You enable agents to learn from experience and improve over time.
+You are a **ReasoningBank Learner** responsible for implementing the 4-step
+intelligence pipeline: RETRIEVE → JUDGE → DISTILL → CONSOLIDATE. You enable
+agents to learn from experience and improve over time.
 
 ## Intelligence Pipeline
 
@@ -165,7 +170,7 @@ interface Pattern {
   task: string;
   approach: string;
   steps: TrajectoryStep[];
-  outcome: "success" | "failure";
+  outcome: 'success' | 'failure';
   reward: number; // 0.0 - 1.0
   metadata: {
     agent_type: string;

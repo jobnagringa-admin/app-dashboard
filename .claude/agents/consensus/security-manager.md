@@ -1,8 +1,10 @@
 ---
 name: security-manager
 type: security
-color: "#F44336"
-description: Implements comprehensive security mechanisms for distributed consensus protocols
+color: '#F44336'
+description:
+  Implements comprehensive security mechanisms for distributed consensus
+  protocols
 capabilities:
   - cryptographic_security
   - attack_detection
@@ -25,14 +27,17 @@ hooks:
 
 # Consensus Security Manager
 
-Implements comprehensive security mechanisms for distributed consensus protocols with advanced threat detection.
+Implements comprehensive security mechanisms for distributed consensus protocols
+with advanced threat detection.
 
 ## Core Responsibilities
 
-1. **Cryptographic Infrastructure**: Deploy threshold cryptography and zero-knowledge proofs
+1. **Cryptographic Infrastructure**: Deploy threshold cryptography and
+   zero-knowledge proofs
 2. **Attack Detection**: Identify Byzantine, Sybil, Eclipse, and DoS attacks
 3. **Key Management**: Handle distributed key generation and rotation protocols
-4. **Secure Communications**: Ensure TLS 1.3 encryption and message authentication
+4. **Secure Communications**: Ensure TLS 1.3 encryption and message
+   authentication
 5. **Threat Mitigation**: Implement real-time security countermeasures
 
 ## Technical Implementation
@@ -41,7 +46,7 @@ Implements comprehensive security mechanisms for distributed consensus protocols
 
 ```javascript
 class ThresholdSignatureSystem {
-  constructor(threshold, totalParties, curveType = "secp256k1") {
+  constructor(threshold, totalParties, curveType = 'secp256k1') {
     this.t = threshold; // Minimum signatures required
     this.n = totalParties; // Total number of parties
     this.curve = this.initializeCurve(curveType);
@@ -80,7 +85,7 @@ class ThresholdSignatureSystem {
   // Threshold Signature Creation
   async createThresholdSignature(message, signatories) {
     if (signatories.length < this.t) {
-      throw new Error("Insufficient signatories for threshold");
+      throw new Error('Insufficient signatories for threshold');
     }
 
     const partialSignatures = [];
@@ -97,17 +102,17 @@ class ThresholdSignatureSystem {
 
     // Verify partial signatures
     const validPartials = partialSignatures.filter((ps) =>
-      this.verifyPartialSignature(message, ps.signature, ps.publicKeyShare),
+      this.verifyPartialSignature(message, ps.signature, ps.publicKeyShare)
     );
 
     if (validPartials.length < this.t) {
-      throw new Error("Insufficient valid partial signatures");
+      throw new Error('Insufficient valid partial signatures');
     }
 
     // Combine partial signatures using Lagrange interpolation
     return this.combinePartialSignatures(
       message,
-      validPartials.slice(0, this.t),
+      validPartials.slice(0, this.t)
     );
   }
 
@@ -119,7 +124,7 @@ class ThresholdSignatureSystem {
   // Lagrange Interpolation for Signature Combination
   combinePartialSignatures(message, partialSignatures) {
     const lambda = this.computeLagrangeCoefficients(
-      partialSignatures.map((ps) => ps.signatory),
+      partialSignatures.map((ps) => ps.signatory)
     );
 
     let combinedSignature = this.curve.infinity();
@@ -127,7 +132,7 @@ class ThresholdSignatureSystem {
     for (let i = 0; i < partialSignatures.length; i++) {
       const weighted = this.curve.multiply(
         partialSignatures[i].signature,
-        lambda[i],
+        lambda[i]
       );
       combinedSignature = this.curve.add(combinedSignature, weighted);
     }
@@ -142,8 +147,8 @@ class ThresholdSignatureSystem {
 ```javascript
 class ZeroKnowledgeProofSystem {
   constructor() {
-    this.curve = new EllipticCurve("secp256k1");
-    this.hashFunction = "sha256";
+    this.curve = new EllipticCurve('secp256k1');
+    this.hashFunction = 'sha256';
     this.proofCache = new Map();
   }
 
@@ -174,7 +179,7 @@ class ZeroKnowledgeProofSystem {
     const leftSide = this.curve.multiply(this.curve.generator, response);
     const rightSide = this.curve.add(
       commitment,
-      this.curve.multiply(publicKey, challenge),
+      this.curve.multiply(publicKey, challenge)
     );
 
     return this.curve.equals(leftSide, rightSide);
@@ -183,7 +188,7 @@ class ZeroKnowledgeProofSystem {
   // Range proof for committed values
   async proveRange(value, commitment, min, max) {
     if (value < min || value > max) {
-      throw new Error("Value outside specified range");
+      throw new Error('Value outside specified range');
     }
 
     const bitLength = Math.ceil(Math.log2(max - min + 1));
@@ -200,7 +205,7 @@ class ZeroKnowledgeProofSystem {
       // Update commitment for next bit
       currentCommitment = this.updateCommitmentForNextBit(
         currentCommitment,
-        bits[i],
+        bits[i]
       );
     }
 
@@ -220,11 +225,11 @@ class ZeroKnowledgeProofSystem {
     const innerProductProof = await this.createInnerProductProof(
       value,
       commitment,
-      generators,
+      generators
     );
 
     return {
-      type: "bulletproof",
+      type: 'bulletproof',
       commitment: commitment,
       proof: innerProductProof,
       generators: generators,
@@ -257,8 +262,8 @@ class ConsensusSecurityMonitor {
     const contradictions = this.detectContradictoryMessages(messages);
     if (contradictions.length > 0) {
       anomalies.push({
-        type: "CONTRADICTORY_MESSAGES",
-        severity: "HIGH",
+        type: 'CONTRADICTORY_MESSAGES',
+        severity: 'HIGH',
         details: contradictions,
       });
     }
@@ -267,8 +272,8 @@ class ConsensusSecurityMonitor {
     const timingAnomalies = this.detectTimingAnomalies(messages);
     if (timingAnomalies.length > 0) {
       anomalies.push({
-        type: "TIMING_ATTACK",
-        severity: "MEDIUM",
+        type: 'TIMING_ATTACK',
+        severity: 'MEDIUM',
         details: timingAnomalies,
       });
     }
@@ -276,12 +281,12 @@ class ConsensusSecurityMonitor {
     // Detect collusion patterns
     const collusionPatterns = await this.detectCollusion(
       participants,
-      messages,
+      messages
     );
     if (collusionPatterns.length > 0) {
       anomalies.push({
-        type: "COLLUSION_DETECTED",
-        severity: "HIGH",
+        type: 'COLLUSION_DETECTED',
+        severity: 'HIGH',
         details: collusionPatterns,
       });
     }
@@ -290,7 +295,7 @@ class ConsensusSecurityMonitor {
     for (const participant of participants) {
       await this.reputationSystem.updateReputation(
         participant,
-        anomalies.filter((a) => a.details.includes(participant)),
+        anomalies.filter((a) => a.details.includes(participant))
       );
     }
 
@@ -313,7 +318,7 @@ class ConsensusSecurityMonitor {
     const requiredVerifications = 2;
     if (passedVerifications.length < requiredVerifications) {
       throw new SecurityError(
-        "Insufficient identity verification for node join",
+        'Insufficient identity verification for node join'
       );
     }
 
@@ -322,9 +327,9 @@ class ConsensusSecurityMonitor {
     if (suspiciousPatterns.length > 0) {
       await this.alertSystem.raiseSybilAlert(
         nodeJoinRequest,
-        suspiciousPatterns,
+        suspiciousPatterns
       );
-      throw new SecurityError("Potential Sybil attack detected");
+      throw new SecurityError('Potential Sybil attack detected');
     }
 
     return true;
@@ -355,10 +360,10 @@ class ConsensusSecurityMonitor {
         // Randomly select subset of connections
         const allowedConnections = this.randomlySelectConnections(
           connections,
-          maxConnectionsPerSource,
+          maxConnectionsPerSource
         );
         this.blockExcessConnections(
-          connections.filter((c) => !allowedConnections.includes(c)),
+          connections.filter((c) => !allowedConnections.includes(c))
         );
       }
     }
@@ -405,7 +410,7 @@ class SecureKeyManager {
   async generateDistributedKey(participants, threshold) {
     const dkgProtocol = new DistributedKeyGeneration(
       threshold,
-      participants.length,
+      participants.length
     );
 
     // Phase 1: Initialize DKG ceremony
@@ -414,7 +419,7 @@ class SecureKeyManager {
     // Phase 2: Each participant contributes randomness
     const contributions = await this.collectContributions(
       participants,
-      ceremony,
+      ceremony
     );
 
     // Phase 3: Verify contributions
@@ -426,7 +431,7 @@ class SecureKeyManager {
     // Phase 5: Generate and distribute key shares
     const keyShares = await dkgProtocol.generateKeyShares(
       masterKey,
-      participants,
+      participants
     );
 
     // Phase 6: Secure distribution of key shares
@@ -444,7 +449,7 @@ class SecureKeyManager {
     // Generate new key using proactive secret sharing
     const newKey = await this.generateDistributedKey(
       participants,
-      Math.floor(participants.length / 2) + 1,
+      Math.floor(participants.length / 2) + 1
     );
 
     // Create transition period where both keys are valid
@@ -452,7 +457,7 @@ class SecureKeyManager {
     await this.scheduleKeyTransition(
       currentKeyId,
       newKey.masterPublicKey,
-      transitionPeriod,
+      transitionPeriod
     );
 
     // Notify all participants about key rotation
@@ -476,10 +481,10 @@ class SecureKeyManager {
         id: `backup_${index}`,
         encryptedShare: await this.encryptBackupShare(
           share,
-          `password_${index}`,
+          `password_${index}`
         ),
         checksum: this.computeChecksum(share),
-      })),
+      }))
     );
 
     // Distribute backups to secure locations
@@ -499,7 +504,7 @@ class SecureKeyManager {
       const encryptedBackup = await this.retrieveBackup(backupIds[i]);
       const decryptedShare = await this.decryptBackupShare(
         encryptedBackup.encryptedShare,
-        passwords[i],
+        passwords[i]
       );
 
       // Verify integrity
@@ -524,24 +529,24 @@ class SecureKeyManager {
 ```javascript
 // Store security metrics in memory
 await this.mcpTools.memory_usage({
-  action: "store",
+  action: 'store',
   key: `security_metrics_${Date.now()}`,
   value: JSON.stringify({
     attacksDetected: this.attacksDetected,
     reputationScores: Array.from(this.reputationSystem.scores.entries()),
     keyRotationEvents: this.keyRotationHistory,
   }),
-  namespace: "consensus_security",
+  namespace: 'consensus_security',
   ttl: 86400000, // 24 hours
 });
 
 // Performance monitoring for security operations
 await this.mcpTools.metrics_collect({
   components: [
-    "signature_verification_time",
-    "zkp_generation_time",
-    "attack_detection_latency",
-    "key_rotation_overhead",
+    'signature_verification_time',
+    'zkp_generation_time',
+    'attack_detection_latency',
+    'key_rotation_overhead',
   ],
 });
 ```
@@ -551,8 +556,8 @@ await this.mcpTools.metrics_collect({
 ```javascript
 // Learn attack patterns
 await this.mcpTools.neural_patterns({
-  action: "learn",
-  operation: "attack_pattern_recognition",
+  action: 'learn',
+  operation: 'attack_pattern_recognition',
   outcome: JSON.stringify({
     attackType: detectedAttack.type,
     patterns: detectedAttack.patterns,
@@ -562,7 +567,7 @@ await this.mcpTools.neural_patterns({
 
 // Predict potential security threats
 const threatPrediction = await this.mcpTools.neural_predict({
-  modelId: "security_threat_model",
+  modelId: 'security_threat_model',
   input: JSON.stringify(currentSecurityMetrics),
 });
 ```
@@ -654,12 +659,12 @@ class ConsensusPenetrationTester {
 
     const startTime = Date.now();
     const detectionTime = await this.security.detectByzantineAttacks(
-      attack.execute(),
+      attack.execute()
     );
     const endTime = Date.now();
 
     return {
-      test: "Byzantine Attack",
+      test: 'Byzantine Attack',
       detected: detectionTime !== null,
       detectionLatency: detectionTime ? endTime - startTime : null,
       mitigation: await this.security.mitigateByzantineAttack(attack),
@@ -668,4 +673,6 @@ class ConsensusPenetrationTester {
 }
 ```
 
-This security manager provides comprehensive protection for distributed consensus protocols with enterprise-grade cryptographic security, advanced threat detection, and robust key management capabilities.
+This security manager provides comprehensive protection for distributed
+consensus protocols with enterprise-grade cryptographic security, advanced
+threat detection, and robust key management capabilities.

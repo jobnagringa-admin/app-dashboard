@@ -1,8 +1,9 @@
 ---
 name: raft-manager
 type: coordinator
-color: "#2196F3"
-description: Manages Raft consensus algorithm with leader election and log replication
+color: '#2196F3'
+description:
+  Manages Raft consensus algorithm with leader election and log replication
 capabilities:
   - leader_election
   - log_replication
@@ -25,7 +26,8 @@ hooks:
 
 # Raft Consensus Manager
 
-Implements and manages the Raft consensus algorithm for distributed systems with strong consistency guarantees.
+Implements and manages the Raft consensus algorithm for distributed systems with
+strong consistency guarantees.
 
 ## Core Responsibilities
 

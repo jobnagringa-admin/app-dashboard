@@ -2,7 +2,9 @@
 name: Benchmark Suite
 type: agent
 category: optimization
-description: Comprehensive performance benchmarking, regression detection and performance validation
+description:
+  Comprehensive performance benchmarking, regression detection and performance
+  validation
 ---
 
 # Benchmark Suite Agent
@@ -12,7 +14,8 @@ description: Comprehensive performance benchmarking, regression detection and pe
 - **Name**: Benchmark Suite
 - **Type**: Performance Optimization Agent
 - **Specialization**: Comprehensive performance benchmarking and testing
-- **Performance Focus**: Automated benchmarking, regression detection, and performance validation
+- **Performance Focus**: Automated benchmarking, regression detection, and
+  performance validation
 
 ## Core Capabilities
 
@@ -79,7 +82,7 @@ class ComprehensiveBenchmarkSuite {
     if (suiteConfig.baseline) {
       results.baseline_comparison = await this.compareWithBaseline(
         results.detailed,
-        suiteConfig.baseline,
+        suiteConfig.baseline
       );
     }
 
@@ -98,7 +101,7 @@ class ComprehensiveBenchmarkSuite {
       async ([name, benchmark]) => {
         const result = await this.executeBenchmark(benchmark, name, config);
         return [name, result];
-      },
+      }
     );
 
     const results = await Promise.all(benchmarkPromises);
@@ -143,7 +146,7 @@ class RegressionDetector {
   async detectRegressions(currentResults, historicalData, config = {}) {
     const regressions = {
       detected: [],
-      severity: "none",
+      severity: 'none',
       confidence: 0,
       analysis: {},
     };
@@ -154,10 +157,10 @@ class RegressionDetector {
         const detection = await detector.detect(
           currentResults,
           historicalData,
-          config,
+          config
         );
         return [method, detection];
-      },
+      }
     );
 
     const detectionResults = await Promise.all(detectionPromises);
@@ -175,7 +178,7 @@ class RegressionDetector {
     // Calculate overall confidence and severity
     if (regressions.detected.length > 0) {
       regressions.confidence = this.calculateAggregateConfidence(
-        regressions.detected,
+        regressions.detected
       );
       regressions.severity = this.calculateSeverity(regressions.detected);
       regressions.analysis = await this.analyzer.analyze(regressions.detected);
@@ -188,7 +191,7 @@ class RegressionDetector {
   async detectStatisticalRegression(
     metric,
     historicalData,
-    sensitivity = 0.95,
+    sensitivity = 0.95
   ) {
     // Use CUSUM (Cumulative Sum) algorithm for change point detection
     const cusum = this.calculateCUSUM(metric, historicalData);
@@ -224,7 +227,7 @@ class RegressionDetector {
     // Identify regressions based on anomaly scores
     const threshold = this.calculateDynamicThreshold(anomalyScores);
     const regressions = anomalyScores.filter(
-      (score) => score.anomaly > threshold,
+      (score) => score.anomaly > threshold
     );
 
     return {
@@ -272,7 +275,7 @@ class AutomatedPerformanceTester {
     // Schedule test execution
     const schedule = await this.scheduler.schedule(
       config.tests,
-      config.constraints,
+      config.constraints
     );
 
     // Execute tests according to schedule
@@ -285,7 +288,7 @@ class AutomatedPerformanceTester {
       const validation = await this.validator.validate(testResult);
       if (!validation.valid) {
         campaign.summary = {
-          status: "failed",
+          status: 'failed',
           reason: validation.reason,
           failedAt: scheduledTest.name,
         };
@@ -307,7 +310,7 @@ class AutomatedPerformanceTester {
   // Load testing with gradual ramp-up
   async executeLoadTest(config) {
     const loadTest = {
-      type: "load",
+      type: 'load',
       config,
       phases: [],
       metrics: new Map(),
@@ -316,15 +319,15 @@ class AutomatedPerformanceTester {
 
     // Ramp-up phase
     const rampUpResult = await this.executeRampUp(config.rampUp);
-    loadTest.phases.push({ phase: "ramp-up", result: rampUpResult });
+    loadTest.phases.push({ phase: 'ramp-up', result: rampUpResult });
 
     // Sustained load phase
     const sustainedResult = await this.executeSustainedLoad(config.sustained);
-    loadTest.phases.push({ phase: "sustained", result: sustainedResult });
+    loadTest.phases.push({ phase: 'sustained', result: sustainedResult });
 
     // Ramp-down phase
     const rampDownResult = await this.executeRampDown(config.rampDown);
-    loadTest.phases.push({ phase: "ramp-down", result: rampDownResult });
+    loadTest.phases.push({ phase: 'ramp-down', result: rampDownResult });
 
     // Analyze results
     loadTest.results = await this.analyzeLoadTestResults(loadTest.phases);
@@ -335,7 +338,7 @@ class AutomatedPerformanceTester {
   // Stress testing to find breaking points
   async executeStressTest(config) {
     const stressTest = {
-      type: "stress",
+      type: 'stress',
       config,
       breakingPoint: null,
       degradationCurve: [],
@@ -410,7 +413,7 @@ class PerformanceValidator {
       async ([type, validator]) => {
         const result = await validator.validate(results, criteria[type]);
         return [type, result];
-      },
+      }
     );
 
     const validationResults = await Promise.all(validationPromises);
@@ -430,7 +433,7 @@ class PerformanceValidator {
     // Normalize overall score
     const totalWeight = Object.values(criteria).reduce(
       (sum, c) => sum + (c.weight || 1),
-      0,
+      0
     );
     validation.overall.score /= totalWeight;
 
@@ -469,12 +472,12 @@ class PerformanceValidator {
           metric,
           actual: actualValue,
           expected: threshold.value,
-          severity: threshold.severity || "medium",
+          severity: threshold.severity || 'medium',
         });
 
         // Reduce score based on violation severity
         const severityMultiplier = this.getSeverityMultiplier(
-          threshold.severity,
+          threshold.severity
         );
         slaValidation.score -= validation.deviation * severityMultiplier;
       }
@@ -504,7 +507,7 @@ class PerformanceValidator {
       ) {
         scalabilityValidation.passed = false;
         scalabilityValidation.violations.push({
-          type: "linearity",
+          type: 'linearity',
           actual: linearityAnalysis.coefficient,
           expected: scalabilityConfig.linear.minCoefficient,
         });
@@ -521,7 +524,7 @@ class PerformanceValidator {
       ) {
         scalabilityValidation.passed = false;
         scalabilityValidation.violations.push({
-          type: "efficiency_retention",
+          type: 'efficiency_retention',
           actual: efficiencyAnalysis.retention,
           expected: scalabilityConfig.efficiency.minRetention,
         });
@@ -544,23 +547,23 @@ const benchmarkIntegration = {
   async runBenchmarks(config = {}) {
     // Run benchmark suite
     const benchmarkResult = await mcp.benchmark_run({
-      suite: config.suite || "comprehensive",
+      suite: config.suite || 'comprehensive',
     });
 
     // Collect detailed metrics during benchmarking
     const metrics = await mcp.metrics_collect({
-      components: ["system", "agents", "coordination", "memory"],
+      components: ['system', 'agents', 'coordination', 'memory'],
     });
 
     // Analyze performance trends
     const trends = await mcp.trend_analysis({
-      metric: "performance",
-      period: "24h",
+      metric: 'performance',
+      period: '24h',
     });
 
     // Cost analysis
     const costAnalysis = await mcp.cost_analysis({
-      timeframe: "24h",
+      timeframe: '24h',
     });
 
     return {
@@ -575,13 +578,13 @@ const benchmarkIntegration = {
   // Quality assessment
   async assessQuality(criteria) {
     const qualityAssessment = await mcp.quality_assess({
-      target: "swarm-performance",
+      target: 'swarm-performance',
       criteria: criteria || [
-        "throughput",
-        "latency",
-        "reliability",
-        "scalability",
-        "efficiency",
+        'throughput',
+        'latency',
+        'reliability',
+        'scalability',
+        'efficiency',
       ],
     });
 
@@ -647,7 +650,8 @@ npx claude-flow error-analysis --logs <log-files>
 
 ### With CI/CD Pipeline
 
-- **Automated Testing**: Integrates with CI/CD for continuous performance validation
+- **Automated Testing**: Integrates with CI/CD for continuous performance
+  validation
 - **Quality Gates**: Provides pass/fail criteria for deployment decisions
 - **Regression Prevention**: Catches performance regressions before production
 
@@ -660,8 +664,8 @@ npx claude-flow error-analysis --logs <log-files>
 const standardBenchmarks = {
   // Throughput benchmarks
   throughput: {
-    name: "Throughput Benchmark",
-    metrics: ["requests_per_second", "tasks_per_second", "messages_per_second"],
+    name: 'Throughput Benchmark',
+    metrics: ['requests_per_second', 'tasks_per_second', 'messages_per_second'],
     duration: 300000, // 5 minutes
     warmup: 30000, // 30 seconds
     targets: {
@@ -673,8 +677,8 @@ const standardBenchmarks = {
 
   // Latency benchmarks
   latency: {
-    name: "Latency Benchmark",
-    metrics: ["p50", "p90", "p95", "p99", "max"],
+    name: 'Latency Benchmark',
+    metrics: ['p50', 'p90', 'p95', 'p99', 'max'],
     duration: 300000,
     targets: {
       p50: { max: 100 }, // 100ms
@@ -687,8 +691,8 @@ const standardBenchmarks = {
 
   // Scalability benchmarks
   scalability: {
-    name: "Scalability Benchmark",
-    metrics: ["linear_coefficient", "efficiency_retention"],
+    name: 'Scalability Benchmark',
+    metrics: ['linear_coefficient', 'efficiency_retention'],
     load_points: [1, 2, 4, 8, 16, 32, 64],
     targets: {
       linear_coefficient: { min: 0.8 },
@@ -698,4 +702,6 @@ const standardBenchmarks = {
 };
 ```
 
-This Benchmark Suite agent provides comprehensive automated performance testing, regression detection, and validation capabilities to ensure optimal swarm performance and prevent performance degradation.
+This Benchmark Suite agent provides comprehensive automated performance testing,
+regression detection, and validation capabilities to ensure optimal swarm
+performance and prevent performance degradation.

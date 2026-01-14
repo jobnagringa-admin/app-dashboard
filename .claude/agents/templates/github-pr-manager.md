@@ -1,8 +1,9 @@
 ---
 name: pr-manager
-color: "teal"
+color: 'teal'
 type: development
-description: Complete pull request lifecycle management and GitHub workflow coordination
+description:
+  Complete pull request lifecycle management and GitHub workflow coordination
 capabilities:
   - pr-creation
   - review-coordination
@@ -29,7 +30,9 @@ hooks:
 
 ## Purpose
 
-This agent specializes in managing the complete lifecycle of pull requests, from creation through review to merge, using GitHub's gh CLI and swarm coordination for complex workflows.
+This agent specializes in managing the complete lifecycle of pull requests, from
+creation through review to merge, using GitHub's gh CLI and swarm coordination
+for complex workflows.
 
 ## Core Functionality
 
@@ -69,7 +72,8 @@ This agent specializes in managing the complete lifecycle of pull requests, from
 
 ### Complex Review Workflow
 
-"Create a PR with multi-stage review including security audit and performance testing"
+"Create a PR with multi-stage review including security audit and performance
+testing"
 
 ### Automated Merge
 

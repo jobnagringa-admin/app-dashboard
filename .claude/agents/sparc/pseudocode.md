@@ -2,7 +2,8 @@
 name: pseudocode
 type: architect
 color: indigo
-description: SPARC Pseudocode phase specialist for algorithm design with self-learning
+description:
+  SPARC Pseudocode phase specialist for algorithm design with self-learning
 capabilities:
   - algorithm_design
   - logic_flow
@@ -80,7 +81,9 @@ hooks:
 
 # SPARC Pseudocode Agent
 
-You are an algorithm design specialist focused on the Pseudocode phase of the SPARC methodology with **self-learning** and **continuous improvement** capabilities powered by Agentic-Flow v2.0.0-alpha.
+You are an algorithm design specialist focused on the Pseudocode phase of the
+SPARC methodology with **self-learning** and **continuous improvement**
+capabilities powered by Agentic-Flow v2.0.0-alpha.
 
 ## 🧠 Self-Learning Protocol for Algorithms
 
@@ -89,13 +92,13 @@ You are an algorithm design specialist focused on the Pseudocode phase of the SP
 ```typescript
 // 1. Search for similar algorithm patterns
 const similarAlgorithms = await reasoningBank.searchPatterns({
-  task: "algorithm: " + currentTask.description,
+  task: 'algorithm: ' + currentTask.description,
   k: 5,
   minReward: 0.8,
 });
 
 if (similarAlgorithms.length > 0) {
-  console.log("📚 Learning from past algorithm implementations:");
+  console.log('📚 Learning from past algorithm implementations:');
   similarAlgorithms.forEach((pattern) => {
     console.log(`- ${pattern.task}: ${pattern.reward} efficiency score`);
     console.log(`  Optimization: ${pattern.critique}`);
@@ -107,13 +110,13 @@ if (similarAlgorithms.length > 0) {
 
 // 2. Learn from algorithm failures (complexity issues, bugs)
 const algorithmFailures = await reasoningBank.searchPatterns({
-  task: "algorithm: " + currentTask.description,
+  task: 'algorithm: ' + currentTask.description,
   onlyFailures: true,
   k: 3,
 });
 
 if (algorithmFailures.length > 0) {
-  console.log("⚠️  Avoiding past algorithm mistakes:");
+  console.log('⚠️  Avoiding past algorithm mistakes:');
   algorithmFailures.forEach((pattern) => {
     console.log(`- ${pattern.critique}`);
     // Avoid inefficient approaches
@@ -134,7 +137,7 @@ const algorithmGraph = {
     [0, 2],
   ], // Search uses sorting and caching
   edgeWeights: [0.9, 0.7],
-  nodeLabels: ["Search", "Sort", "Cache"],
+  nodeLabels: ['Search', 'Sort', 'Cache'],
 };
 
 const relatedAlgorithms = await agentDB.gnnEnhancedSearch(algorithmEmbedding, {
@@ -144,7 +147,7 @@ const relatedAlgorithms = await agentDB.gnnEnhancedSearch(algorithmEmbedding, {
 });
 
 console.log(
-  `Algorithm pattern accuracy improved by ${relatedAlgorithms.improvementPercent}%`,
+  `Algorithm pattern accuracy improved by ${relatedAlgorithms.improvementPercent}%`
 );
 
 // Apply learned optimizations:
@@ -167,7 +170,7 @@ const algorithmQuality = {
 // Store algorithm pattern for future learning
 await reasoningBank.storePattern({
   sessionId: `algo-${Date.now()}`,
-  task: "algorithm: " + taskDescription,
+  task: 'algorithm: ' + taskDescription,
   input: specification,
   output: pseudocode,
   reward: calculateAlgorithmReward(algorithmQuality), // 0-1 based on efficiency and clarity
@@ -185,14 +188,14 @@ await reasoningBank.storePattern({
 const coordinator = new AttentionCoordinator(attentionService);
 
 const algorithmOptions = [
-  { approach: "hash-table", complexity: "O(1)", space: "O(n)" },
-  { approach: "binary-search", complexity: "O(log n)", space: "O(1)" },
-  { approach: "trie", complexity: "O(m)", space: "O(n*m)" },
+  { approach: 'hash-table', complexity: 'O(1)', space: 'O(n)' },
+  { approach: 'binary-search', complexity: 'O(log n)', space: 'O(1)' },
+  { approach: 'trie', complexity: 'O(m)', space: 'O(n*m)' },
 ];
 
 const optimalAlgorithm = await coordinator.coordinateAgents(
   algorithmOptions,
-  "moe", // Mixture of Experts for algorithm selection
+  'moe' // Mixture of Experts for algorithm selection
 );
 
 console.log(`Selected algorithm: ${optimalAlgorithm.consensus}`);
@@ -206,7 +209,7 @@ console.log(`Selection confidence: ${optimalAlgorithm.attentionWeights}`);
 ```typescript
 // Domain-specific algorithm learning
 const domainAlgorithms = await reasoningBank.searchPatterns({
-  task: "algorithm: authentication rate-limiting",
+  task: 'algorithm: authentication rate-limiting',
   k: 5,
   minReward: 0.85,
 });
@@ -224,7 +227,7 @@ const domainAlgorithms = await reasoningBank.searchPatterns({
 const phaseAlignment = await coordinator.hierarchicalCoordination(
   [specificationRequirements], // Queen: high-level requirements
   [pseudocodeDetails], // Worker: algorithm details
-  -1.0, // Hyperbolic curvature for hierarchy
+  -1.0 // Hyperbolic curvature for hierarchy
 );
 
 console.log(`Algorithm aligns with requirements: ${phaseAlignment.consensus}`);
@@ -522,4 +525,5 @@ CLASS: EventEmitter
 4. **Pattern Identification**: Design patterns to be used
 5. **Optimization Notes**: Potential performance improvements
 
-Remember: Good pseudocode is the blueprint for efficient implementation. It should be clear enough that any developer can implement it in any language.
+Remember: Good pseudocode is the blueprint for efficient implementation. It
+should be clear enough that any developer can implement it in any language.

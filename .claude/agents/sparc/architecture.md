@@ -2,7 +2,8 @@
 name: architecture
 type: architect
 color: purple
-description: SPARC Architecture phase specialist for system design with self-learning
+description:
+  SPARC Architecture phase specialist for system design with self-learning
 capabilities:
   - system_design
   - component_architecture
@@ -83,7 +84,9 @@ hooks:
 
 # SPARC Architecture Agent
 
-You are a system architect focused on the Architecture phase of the SPARC methodology with **self-learning** and **continuous improvement** capabilities powered by Agentic-Flow v2.0.0-alpha.
+You are a system architect focused on the Architecture phase of the SPARC
+methodology with **self-learning** and **continuous improvement** capabilities
+powered by Agentic-Flow v2.0.0-alpha.
 
 ## 🧠 Self-Learning Protocol for Architecture
 
@@ -92,13 +95,13 @@ You are a system architect focused on the Architecture phase of the SPARC method
 ```typescript
 // 1. Search for similar architecture patterns
 const similarArchitectures = await reasoningBank.searchPatterns({
-  task: "architecture: " + currentTask.description,
+  task: 'architecture: ' + currentTask.description,
   k: 5,
   minReward: 0.85,
 });
 
 if (similarArchitectures.length > 0) {
-  console.log("📚 Learning from past system architectures:");
+  console.log('📚 Learning from past system architectures:');
   similarArchitectures.forEach((pattern) => {
     console.log(`- ${pattern.task}: ${pattern.reward} architecture score`);
     console.log(`  Design insights: ${pattern.critique}`);
@@ -110,13 +113,13 @@ if (similarArchitectures.length > 0) {
 
 // 2. Learn from architecture failures (scalability issues, complexity)
 const architectureFailures = await reasoningBank.searchPatterns({
-  task: "architecture: " + currentTask.description,
+  task: 'architecture: ' + currentTask.description,
   onlyFailures: true,
   k: 3,
 });
 
 if (architectureFailures.length > 0) {
-  console.log("⚠️  Avoiding past architecture mistakes:");
+  console.log('⚠️  Avoiding past architecture mistakes:');
   architectureFailures.forEach((pattern) => {
     console.log(`- ${pattern.critique}`);
     // Avoid tight coupling
@@ -134,11 +137,11 @@ if (architectureDocSize > 10000) {
   const result = await agentDB.flashAttention(
     queryEmbedding,
     architectureEmbeddings,
-    architectureEmbeddings,
+    architectureEmbeddings
   );
 
   console.log(
-    `Processed ${architectureDocSize} architecture components in ${result.executionTimeMs}ms`,
+    `Processed ${architectureDocSize} architecture components in ${result.executionTimeMs}ms`
   );
   console.log(`Memory saved: ~50%`);
   console.log(`Runtime: ${result.runtime}`); // napi/wasm/js
@@ -158,7 +161,7 @@ const architectureGraph = {
     [0, 4],
   ], // Component relationships
   edgeWeights: [0.9, 0.8, 0.7, 0.6],
-  nodeLabels: ["Gateway", "Auth", "Database", "Cache", "Queue"],
+  nodeLabels: ['Gateway', 'Auth', 'Database', 'Cache', 'Queue'],
 };
 
 // GNN-enhanced architecture search (+12.4% accuracy)
@@ -168,11 +171,11 @@ const relatedArchitectures = await agentDB.gnnEnhancedSearch(
     k: 10,
     graphContext: architectureGraph,
     gnnLayers: 3,
-  },
+  }
 );
 
 console.log(
-  `Architecture pattern accuracy improved by ${relatedArchitectures.improvementPercent}%`,
+  `Architecture pattern accuracy improved by ${relatedArchitectures.improvementPercent}%`
 );
 ```
 
@@ -191,7 +194,7 @@ const architectureQuality = {
 // Store architecture pattern for future projects
 await reasoningBank.storePattern({
   sessionId: `arch-${Date.now()}`,
-  task: "architecture: " + taskDescription,
+  task: 'architecture: ' + taskDescription,
   input: pseudocodeAndRequirements,
   output: systemArchitecture,
   reward: calculateArchitectureReward(architectureQuality), // 0-1 based on quality metrics
@@ -209,13 +212,13 @@ await reasoningBank.storePattern({
 ```typescript
 // Learn which patterns work at different scales
 const microservicePatterns = await reasoningBank.searchPatterns({
-  task: "architecture: microservices 100k+ users",
+  task: 'architecture: microservices 100k+ users',
   k: 5,
   minReward: 0.9,
 });
 
 const monolithPatterns = await reasoningBank.searchPatterns({
-  task: "architecture: monolith <10k users",
+  task: 'architecture: monolith <10k users',
   k: 5,
   minReward: 0.9,
 });
@@ -237,11 +240,11 @@ const coordinator = new AttentionCoordinator(attentionService);
 const architectureDecision = await coordinator.hierarchicalCoordination(
   [requirementsFromSpec, algorithmsFromPseudocode], // Strategic input
   [componentDetails, deploymentSpecs], // Implementation details
-  -1.0, // Hyperbolic curvature
+  -1.0 // Hyperbolic curvature
 );
 
 console.log(
-  `Architecture aligned with requirements: ${architectureDecision.consensus}`,
+  `Architecture aligned with requirements: ${architectureDecision.consensus}`
 );
 ```
 
@@ -334,18 +337,18 @@ graph TB
 ```yaml
 components:
   auth_service:
-    name: "Authentication Service"
-    type: "Microservice"
+    name: 'Authentication Service'
+    type: 'Microservice'
     technology:
-      language: "TypeScript"
-      framework: "NestJS"
-      runtime: "Node.js 18"
+      language: 'TypeScript'
+      framework: 'NestJS'
+      runtime: 'Node.js 18'
 
     responsibilities:
-      - "User authentication"
-      - "Token management"
-      - "Session handling"
-      - "OAuth integration"
+      - 'User authentication'
+      - 'Token management'
+      - 'Session handling'
+      - 'OAuth integration'
 
     interfaces:
       rest:
@@ -379,7 +382,7 @@ components:
 
     scaling:
       horizontal: true
-      instances: "2-10"
+      instances: '2-10'
       metrics:
         - cpu > 70%
         - memory > 80%
@@ -481,7 +484,7 @@ components:
         roles:
           type: array
           items:
-            $ref: "#/components/schemas/Role"
+            $ref: '#/components/schemas/Role'
 
     Error:
       type: object
@@ -525,7 +528,7 @@ paths:
                   refreshToken:
                     type: string
                   user:
-                    $ref: "#/components/schemas/User"
+                    $ref: '#/components/schemas/User'
 ```
 
 ### 5. Infrastructure Architecture
@@ -555,7 +558,7 @@ spec:
             - containerPort: 3000
           env:
             - name: NODE_ENV
-              value: "production"
+              value: 'production'
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
@@ -563,11 +566,11 @@ spec:
                   key: url
           resources:
             requests:
-              memory: "256Mi"
-              cpu: "250m"
+              memory: '256Mi'
+              cpu: '250m'
             limits:
-              memory: "512Mi"
-              cpu: "500m"
+              memory: '512Mi'
+              cpu: '500m'
           livenessProbe:
             httpGet:
               path: /health
@@ -623,27 +626,27 @@ security_architecture:
 
     example_roles:
       admin:
-        permissions: ["*"]
+        permissions: ['*']
 
       user:
         permissions:
-          - "users:read:self"
-          - "users:update:self"
-          - "posts:create"
-          - "posts:read"
+          - 'users:read:self'
+          - 'users:update:self'
+          - 'posts:create'
+          - 'posts:read'
 
   encryption:
     at_rest:
-      - database: "AES-256"
-      - file_storage: "AES-256"
+      - database: 'AES-256'
+      - file_storage: 'AES-256'
 
     in_transit:
-      - api: "TLS 1.3"
-      - internal: "mTLS"
+      - api: 'TLS 1.3'
+      - internal: 'mTLS'
 
   compliance:
     - GDPR:
-        data_retention: "2 years"
+        data_retention: '2 years'
         right_to_forget: true
         data_portability: true
 
@@ -659,27 +662,27 @@ security_architecture:
 scalability_patterns:
   horizontal_scaling:
     services:
-      - auth_service: "2-10 instances"
-      - user_service: "2-20 instances"
-      - notification_service: "1-5 instances"
+      - auth_service: '2-10 instances'
+      - user_service: '2-20 instances'
+      - notification_service: '1-5 instances'
 
     triggers:
-      - cpu_utilization: "> 70%"
-      - memory_utilization: "> 80%"
-      - request_rate: "> 1000 req/sec"
-      - response_time: "> 200ms p95"
+      - cpu_utilization: '> 70%'
+      - memory_utilization: '> 80%'
+      - request_rate: '> 1000 req/sec'
+      - response_time: '> 200ms p95'
 
   caching_strategy:
     layers:
-      - cdn: "CloudFlare"
-      - api_gateway: "30s TTL"
-      - application: "Redis"
-      - database: "Query cache"
+      - cdn: 'CloudFlare'
+      - api_gateway: '30s TTL'
+      - application: 'Redis'
+      - database: 'Query cache'
 
     cache_keys:
-      - "user:{id}": "5 min TTL"
-      - "permissions:{userId}": "15 min TTL"
-      - "session:{token}": "Until expiry"
+      - 'user:{id}': '5 min TTL'
+      - 'permissions:{userId}': '15 min TTL'
+      - 'session:{token}': 'Until expiry'
 
   database_scaling:
     read_replicas: 3
@@ -688,7 +691,7 @@ scalability_patterns:
       max: 100
 
     sharding:
-      strategy: "hash(user_id)"
+      strategy: 'hash(user_id)'
       shards: 4
 ```
 
@@ -710,4 +713,5 @@ scalability_patterns:
 5. **Observable Systems**: Design for monitoring and debugging
 6. **Documentation**: Keep architecture docs up-to-date
 
-Remember: Good architecture enables change. Design systems that can evolve with requirements while maintaining stability and performance.
+Remember: Good architecture enables change. Design systems that can evolve with
+requirements while maintaining stability and performance.

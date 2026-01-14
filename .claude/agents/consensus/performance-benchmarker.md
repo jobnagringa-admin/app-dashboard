@@ -1,8 +1,10 @@
 ---
 name: performance-benchmarker
 type: analyst
-color: "#607D8B"
-description: Implements comprehensive performance benchmarking for distributed consensus protocols
+color: '#607D8B'
+description:
+  Implements comprehensive performance benchmarking for distributed consensus
+  protocols
 capabilities:
   - throughput_measurement
   - latency_analysis
@@ -25,15 +27,21 @@ hooks:
 
 # Performance Benchmarker
 
-Implements comprehensive performance benchmarking and optimization analysis for distributed consensus protocols.
+Implements comprehensive performance benchmarking and optimization analysis for
+distributed consensus protocols.
 
 ## Core Responsibilities
 
-1. **Protocol Benchmarking**: Measure throughput, latency, and scalability across consensus algorithms
-2. **Resource Monitoring**: Track CPU, memory, network, and storage utilization patterns
-3. **Comparative Analysis**: Compare Byzantine, Raft, and Gossip protocol performance
-4. **Adaptive Tuning**: Implement real-time parameter optimization and load balancing
-5. **Performance Reporting**: Generate actionable insights and optimization recommendations
+1. **Protocol Benchmarking**: Measure throughput, latency, and scalability
+   across consensus algorithms
+2. **Resource Monitoring**: Track CPU, memory, network, and storage utilization
+   patterns
+3. **Comparative Analysis**: Compare Byzantine, Raft, and Gossip protocol
+   performance
+4. **Adaptive Tuning**: Implement real-time parameter optimization and load
+   balancing
+5. **Performance Reporting**: Generate actionable insights and optimization
+   recommendations
 
 ## Technical Implementation
 
@@ -70,7 +78,7 @@ class ConsensusPerformanceBenchmarker {
 
         const benchmarkResult = await this.executeBenchmarkScenario(
           protocol,
-          scenario,
+          scenario
         );
 
         protocolResults.set(scenario.name, benchmarkResult);
@@ -154,11 +162,11 @@ class ThroughputBenchmark {
     await this.loadGenerator.initialize({
       requestRate: scenario.initialRate || 10,
       rampUp: scenario.rampUp || false,
-      pattern: scenario.pattern || "constant",
+      pattern: scenario.pattern || 'constant',
     });
 
     // Start metrics collection
-    this.metrics.startCollection(["transactions_per_second", "success_rate"]);
+    this.metrics.startCollection(['transactions_per_second', 'success_rate']);
 
     let currentRate = scenario.initialRate || 10;
     const rateIncrement = scenario.rateIncrement || 5;
@@ -170,13 +178,13 @@ class ThroughputBenchmark {
       // Generate load for this interval
       const transactions = await this.generateTransactionLoad(
         currentRate,
-        measurementInterval,
+        measurementInterval
       );
 
       // Measure throughput for this interval
       const intervalMetrics = await this.measureIntervalThroughput(
         transactions,
-        measurementInterval,
+        measurementInterval
       );
 
       measurements.push({
@@ -257,7 +265,7 @@ class ThroughputBenchmark {
       measurements.reduce((sum, m) => sum + m.actualThroughput, 0) /
       totalMeasurements;
     const maxThroughput = Math.max(
-      ...measurements.map((m) => m.actualThroughput),
+      ...measurements.map((m) => m.actualThroughput)
     );
     const avgSuccessRate =
       measurements.reduce((sum, m) => sum + m.successRate, 0) /
@@ -309,7 +317,7 @@ class LatencyBenchmark {
     const warmupSize = scenario.warmupSize || 1000;
 
     console.log(
-      `Measuring latency with ${sampleSize} samples (${warmupSize} warmup)`,
+      `Measuring latency with ${sampleSize} samples (${warmupSize} warmup)`
     );
 
     // Warmup phase
@@ -333,7 +341,7 @@ class LatencyBenchmark {
   async measureSingleTransactionLatency() {
     const transaction = {
       id: `latency_tx_${Date.now()}_${Math.random()}`,
-      type: "benchmark",
+      type: 'benchmark',
       data: { value: Math.random() },
       phases: {},
     };
@@ -375,13 +383,13 @@ class LatencyBenchmark {
     const latencies = successfulMeasurements.map((m) => m.totalLatency);
 
     if (latencies.length === 0) {
-      throw new Error("No successful latency measurements");
+      throw new Error('No successful latency measurements');
     }
 
     // Calculate percentiles
     const percentiles = this.percentileCalculator.calculate(
       latencies,
-      [50, 75, 90, 95, 99, 99.9, 99.99],
+      [50, 75, 90, 95, 99, 99.9, 99.99]
     );
 
     // Phase-specific analysis
@@ -403,7 +411,7 @@ class LatencyBenchmark {
   }
 
   analyzePhaseLatencies(measurements) {
-    const phases = ["submission", "consensus", "application"];
+    const phases = ['submission', 'consensus', 'application'];
     const phaseAnalysis = {};
 
     for (const phase of phases) {
@@ -444,7 +452,7 @@ class ResourceUsageMonitor {
   }
 
   async measureResourceUsage(protocol, scenario) {
-    console.log("Starting resource usage monitoring");
+    console.log('Starting resource usage monitoring');
 
     this.monitoringActive = true;
     this.measurements = [];
@@ -456,7 +464,7 @@ class ResourceUsageMonitor {
       // Execute the benchmark scenario
       const benchmarkResult = await this.executeBenchmarkWithMonitoring(
         protocol,
-        scenario,
+        scenario
       );
 
       // Stop monitoring
@@ -605,8 +613,8 @@ class ResourceUsageMonitor {
       this.measurements.length;
     if (avgCPU > 80) {
       bottlenecks.push({
-        type: "CPU",
-        severity: "HIGH",
+        type: 'CPU',
+        severity: 'HIGH',
         description: `High CPU usage (${avgCPU.toFixed(1)}%)`,
       });
     }
@@ -616,8 +624,8 @@ class ResourceUsageMonitor {
     if (memoryGrowth.rate > 1024 * 1024) {
       // 1MB/s growth
       bottlenecks.push({
-        type: "MEMORY",
-        severity: "MEDIUM",
+        type: 'MEMORY',
+        severity: 'MEDIUM',
         description: `High memory growth rate (${(memoryGrowth.rate / 1024 / 1024).toFixed(2)} MB/s)`,
       });
     }
@@ -629,8 +637,8 @@ class ResourceUsageMonitor {
     if (avgNetworkOut > 100 * 1024 * 1024) {
       // 100 MB/s
       bottlenecks.push({
-        type: "NETWORK",
-        severity: "MEDIUM",
+        type: 'NETWORK',
+        severity: 'MEDIUM',
         description: `High network output (${(avgNetworkOut / 1024 / 1024).toFixed(2)} MB/s)`,
       });
     }
@@ -657,7 +665,7 @@ class AdaptiveOptimizer {
     for (const [protocol, results] of benchmarkResults) {
       const protocolOptimizations = await this.optimizeProtocol(
         protocol,
-        results,
+        results
       );
       optimizations.push(...protocolOptimizations);
     }
@@ -677,7 +685,7 @@ class AdaptiveOptimizer {
     for (const bottleneck of bottlenecks) {
       const optimization = await this.generateOptimization(
         protocol,
-        bottleneck,
+        bottleneck
       );
       if (optimization) {
         optimizations.push(optimization);
@@ -702,9 +710,9 @@ class AdaptiveOptimizer {
           result.throughput.maxThroughput * 0.8
       ) {
         bottlenecks.push({
-          type: "THROUGHPUT_DEGRADATION",
+          type: 'THROUGHPUT_DEGRADATION',
           scenario: scenario,
-          severity: "HIGH",
+          severity: 'HIGH',
           impact:
             (result.throughput.maxThroughput -
               result.throughput.optimalThroughput) /
@@ -716,9 +724,9 @@ class AdaptiveOptimizer {
       // Latency bottlenecks
       if (result.latency && result.latency.p99 > result.latency.p50 * 10) {
         bottlenecks.push({
-          type: "LATENCY_TAIL",
+          type: 'LATENCY_TAIL',
           scenario: scenario,
-          severity: "MEDIUM",
+          severity: 'MEDIUM',
           impact: result.latency.p99 / result.latency.p50,
           details: result.latency,
         });
@@ -727,9 +735,9 @@ class AdaptiveOptimizer {
       // Resource bottlenecks
       if (result.resourceUsage && result.resourceUsage.bottlenecks.length > 0) {
         bottlenecks.push({
-          type: "RESOURCE_CONSTRAINT",
+          type: 'RESOURCE_CONSTRAINT',
           scenario: scenario,
-          severity: "HIGH",
+          severity: 'HIGH',
           details: result.resourceUsage.bottlenecks,
         });
       }
@@ -740,11 +748,11 @@ class AdaptiveOptimizer {
 
   async generateOptimization(protocol, bottleneck) {
     switch (bottleneck.type) {
-      case "THROUGHPUT_DEGRADATION":
+      case 'THROUGHPUT_DEGRADATION':
         return await this.optimizeThroughput(protocol, bottleneck);
-      case "LATENCY_TAIL":
+      case 'LATENCY_TAIL':
         return await this.optimizeLatency(protocol, bottleneck);
-      case "RESOURCE_CONSTRAINT":
+      case 'RESOURCE_CONSTRAINT':
         return await this.optimizeResourceUsage(protocol, bottleneck);
       default:
         return null;
@@ -755,27 +763,27 @@ class AdaptiveOptimizer {
     const optimizations = [];
 
     // Batch size optimization
-    if (protocol === "raft") {
+    if (protocol === 'raft') {
       optimizations.push({
-        type: "PARAMETER_ADJUSTMENT",
-        parameter: "max_batch_size",
+        type: 'PARAMETER_ADJUSTMENT',
+        parameter: 'max_batch_size',
         currentValue: await this.getCurrentParameter(
           protocol,
-          "max_batch_size",
+          'max_batch_size'
         ),
         recommendedValue: this.calculateOptimalBatchSize(bottleneck.details),
-        expectedImprovement: "15-25% throughput increase",
+        expectedImprovement: '15-25% throughput increase',
         confidence: 0.8,
       });
     }
 
     // Pipelining optimization
-    if (protocol === "byzantine") {
+    if (protocol === 'byzantine') {
       optimizations.push({
-        type: "FEATURE_ENABLE",
-        feature: "request_pipelining",
-        description: "Enable request pipelining to improve throughput",
-        expectedImprovement: "20-30% throughput increase",
+        type: 'FEATURE_ENABLE',
+        feature: 'request_pipelining',
+        description: 'Enable request pipelining to improve throughput',
+        expectedImprovement: '20-30% throughput increase',
         confidence: 0.7,
       });
     }
@@ -789,13 +797,13 @@ class AdaptiveOptimizer {
     // Use machine learning model to suggest parameter values
     const parameterSuggestions = await this.performanceModel.suggestParameters(
       protocol,
-      results,
+      results
     );
 
     for (const suggestion of parameterSuggestions) {
       if (suggestion.confidence > 0.6) {
         optimizations.push({
-          type: "PARAMETER_TUNING",
+          type: 'PARAMETER_TUNING',
           parameter: suggestion.parameter,
           currentValue: suggestion.currentValue,
           recommendedValue: suggestion.recommendedValue,
@@ -814,7 +822,7 @@ class AdaptiveOptimizer {
     const sortedOptimizations = optimizations.sort(
       (a, b) =>
         b.confidence * parseFloat(b.expectedImprovement) -
-        a.confidence * parseFloat(a.expectedImprovement),
+        a.confidence * parseFloat(a.expectedImprovement)
     );
 
     // Apply optimizations gradually
@@ -849,7 +857,7 @@ class AdaptiveOptimizer {
 ```javascript
 // Store comprehensive benchmark results
 await this.mcpTools.memory_usage({
-  action: "store",
+  action: 'store',
   key: `benchmark_results_${protocol}_${Date.now()}`,
   value: JSON.stringify({
     protocol: protocol,
@@ -859,18 +867,18 @@ await this.mcpTools.memory_usage({
     resourceUsage: resourceResults,
     optimizations: appliedOptimizations,
   }),
-  namespace: "performance_benchmarks",
+  namespace: 'performance_benchmarks',
   ttl: 604800000, // 7 days
 });
 
 // Real-time performance monitoring
 await this.mcpTools.metrics_collect({
   components: [
-    "consensus_throughput",
-    "consensus_latency_p99",
-    "cpu_utilization",
-    "memory_usage",
-    "network_io_rate",
+    'consensus_throughput',
+    'consensus_latency_p99',
+    'cpu_utilization',
+    'memory_usage',
+    'network_io_rate',
   ],
 });
 ```
@@ -880,8 +888,8 @@ await this.mcpTools.metrics_collect({
 ```javascript
 // Learn performance optimization patterns
 await this.mcpTools.neural_patterns({
-  action: "learn",
-  operation: "performance_optimization",
+  action: 'learn',
+  operation: 'performance_optimization',
   outcome: JSON.stringify({
     optimizationType: optimization.type,
     performanceGain: measurementResults.improvement,
@@ -892,7 +900,7 @@ await this.mcpTools.neural_patterns({
 
 // Predict optimal configurations
 const configPrediction = await this.mcpTools.neural_predict({
-  modelId: "consensus_performance_model",
+  modelId: 'consensus_performance_model',
   input: JSON.stringify({
     workloadPattern: currentWorkload,
     networkTopology: networkState,
@@ -901,4 +909,6 @@ const configPrediction = await this.mcpTools.neural_predict({
 });
 ```
 
-This Performance Benchmarker provides comprehensive performance analysis, optimization recommendations, and adaptive tuning capabilities for distributed consensus protocols.
+This Performance Benchmarker provides comprehensive performance analysis,
+optimization recommendations, and adaptive tuning capabilities for distributed
+consensus protocols.

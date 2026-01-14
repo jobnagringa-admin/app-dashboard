@@ -1,6 +1,8 @@
 ---
 name: code-review-swarm
-description: Deploy specialized AI agents to perform comprehensive, intelligent code reviews that go beyond traditional static analysis
+description:
+  Deploy specialized AI agents to perform comprehensive, intelligent code
+  reviews that go beyond traditional static analysis
 type: development
 color: blue
 capabilities:
@@ -86,7 +88,9 @@ hooks:
 
 ## Overview
 
-Deploy specialized AI agents to perform comprehensive, intelligent code reviews that go beyond traditional static analysis, enhanced with **self-learning** and **continuous improvement** capabilities powered by Agentic-Flow v2.0.0-alpha.
+Deploy specialized AI agents to perform comprehensive, intelligent code reviews
+that go beyond traditional static analysis, enhanced with **self-learning** and
+**continuous improvement** capabilities powered by Agentic-Flow v2.0.0-alpha.
 
 ## 🧠 Self-Learning Protocol (v2.0.0-alpha)
 
@@ -101,7 +105,7 @@ const similarReviews = await reasoningBank.searchPatterns({
 });
 
 if (similarReviews.length > 0) {
-  console.log("📚 Learning from past successful reviews:");
+  console.log('📚 Learning from past successful reviews:');
   similarReviews.forEach((pattern) => {
     console.log(`- ${pattern.task}: ${pattern.reward} quality score`);
     console.log(`  Issues found: ${pattern.output.issuesFound}`);
@@ -117,13 +121,13 @@ if (similarReviews.length > 0) {
 
 // 2. Learn from past review failures (reduce false positives)
 const failedReviews = await reasoningBank.searchPatterns({
-  task: "code review",
+  task: 'code review',
   onlyFailures: true,
   k: 3,
 });
 
 if (failedReviews.length > 0) {
-  console.log("⚠️  Avoiding past review mistakes:");
+  console.log('⚠️  Avoiding past review mistakes:');
   failedReviews.forEach((pattern) => {
     console.log(`- ${pattern.critique}`);
     console.log(`  False positive rate: ${pattern.output.falsePositiveRate}`);
@@ -150,7 +154,7 @@ const relatedCode = await agentDB.gnnEnhancedSearch(fileEmbedding, {
 });
 
 console.log(
-  `Found related code with ${relatedCode.improvementPercent}% better accuracy`,
+  `Found related code with ${relatedCode.improvementPercent}% better accuracy`
 );
 
 // Use GNN to find similar bug patterns
@@ -161,7 +165,7 @@ const bugPatterns = await agentDB.gnnEnhancedSearch(codePatternEmbedding, {
 });
 
 console.log(
-  `Detected ${bugPatterns.length} potential issues based on learned patterns`,
+  `Detected ${bugPatterns.length} potential issues based on learned patterns`
 );
 ```
 
@@ -172,15 +176,15 @@ console.log(
 const coordinator = new AttentionCoordinator(attentionService);
 
 const reviewerFindings = [
-  { agent: "security-reviewer", findings: securityIssues, confidence: 0.95 },
-  { agent: "performance-reviewer", findings: perfIssues, confidence: 0.88 },
-  { agent: "style-reviewer", findings: styleIssues, confidence: 0.92 },
-  { agent: "architecture-reviewer", findings: archIssues, confidence: 0.85 },
+  { agent: 'security-reviewer', findings: securityIssues, confidence: 0.95 },
+  { agent: 'performance-reviewer', findings: perfIssues, confidence: 0.88 },
+  { agent: 'style-reviewer', findings: styleIssues, confidence: 0.92 },
+  { agent: 'architecture-reviewer', findings: archIssues, confidence: 0.85 },
 ];
 
 const consensus = await coordinator.coordinateAgents(
   reviewerFindings,
-  "multi-head", // Multi-perspective analysis
+  'multi-head' // Multi-perspective analysis
 );
 
 console.log(`Review consensus: ${consensus.consensus}`);
@@ -189,7 +193,7 @@ console.log(`Agent influence: ${consensus.attentionWeights}`);
 
 // Prioritize issues based on attention scores
 const prioritizedIssues = consensus.aggregatedFindings.sort(
-  (a, b) => b.attentionScore - a.attentionScore,
+  (a, b) => b.attentionScore - a.attentionScore
 );
 ```
 
@@ -235,7 +239,7 @@ await reasoningBank.storePattern({
 ```typescript
 // Learn from historical bug patterns
 const bugHistory = await reasoningBank.searchPatterns({
-  task: "security vulnerability detection",
+  task: 'security vulnerability detection',
   k: 50,
   minReward: 0.9,
 });
@@ -258,14 +262,14 @@ const similarCodeWithIssues = await agentDB.gnnEnhancedSearch(
     k: 10,
     graphContext: buildHistoricalIssueGraph(),
     gnnLayers: 3,
-    filter: "has_issues",
-  },
+    filter: 'has_issues',
+  }
 );
 
 // Proactively flag potential issues
 similarCodeWithIssues.forEach((match) => {
   console.log(
-    `Warning: Similar code had ${match.historicalIssues.length} issues`,
+    `Warning: Similar code had ${match.historicalIssues.length} issues`
   );
   match.historicalIssues.forEach((issue) => {
     console.log(`  - ${issue.type}: ${issue.description}`);
@@ -280,16 +284,16 @@ similarCodeWithIssues.forEach((match) => {
 const reviewPriorities = await agentDB.flashAttention(
   fileEmbeddings,
   riskFactorEmbeddings,
-  riskFactorEmbeddings,
+  riskFactorEmbeddings
 );
 
 // Focus review effort on high-priority files
 const prioritizedFiles = files.sort(
-  (a, b) => reviewPriorities[b.id] - reviewPriorities[a.id],
+  (a, b) => reviewPriorities[b.id] - reviewPriorities[a.id]
 );
 
 console.log(
-  `Prioritized review order based on risk: ${prioritizedFiles.map((f) => f.path)}`,
+  `Prioritized review order based on risk: ${prioritizedFiles.map((f) => f.path)}`
 );
 ```
 
@@ -360,7 +364,7 @@ fi
 ```typescript
 // Before review: Learn from past security reviews
 const pastSecurityReviews = await reasoningBank.searchPatterns({
-  task: "security vulnerability review",
+  task: 'security vulnerability review',
   k: 10,
   minReward: 0.9,
 });
@@ -374,7 +378,7 @@ const securityIssues = await reviewSecurityWithGNN(code, knownVulnerabilities);
 // Store new security patterns
 if (securityIssues.length > 0) {
   await reasoningBank.storePattern({
-    task: "security vulnerability detected",
+    task: 'security vulnerability detected',
     output: JSON.stringify(securityIssues),
     reward: calculateSecurityReviewQuality(securityIssues),
     success: true,
@@ -382,4 +386,5 @@ if (securityIssues.length > 0) {
 }
 ```
 
-See also: [swarm-pr.md](./swarm-pr.md), [workflow-automation.md](./workflow-automation.md)
+See also: [swarm-pr.md](./swarm-pr.md),
+[workflow-automation.md](./workflow-automation.md)

@@ -1,8 +1,10 @@
 ---
 name: crdt-synchronizer
 type: synchronizer
-color: "#4CAF50"
-description: Implements Conflict-free Replicated Data Types for eventually consistent state synchronization
+color: '#4CAF50'
+description:
+  Implements Conflict-free Replicated Data Types for eventually consistent state
+  synchronization
 capabilities:
   - state_based_crdts
   - operation_based_crdts
@@ -25,15 +27,19 @@ hooks:
 
 # CRDT Synchronizer
 
-Implements Conflict-free Replicated Data Types for eventually consistent distributed state synchronization.
+Implements Conflict-free Replicated Data Types for eventually consistent
+distributed state synchronization.
 
 ## Core Responsibilities
 
-1. **CRDT Implementation**: Deploy state-based and operation-based conflict-free data types
-2. **Data Structure Management**: Handle counters, sets, registers, and composite structures
+1. **CRDT Implementation**: Deploy state-based and operation-based conflict-free
+   data types
+2. **Data Structure Management**: Handle counters, sets, registers, and
+   composite structures
 3. **Delta Synchronization**: Implement efficient incremental state updates
 4. **Conflict Resolution**: Ensure deterministic conflict-free merge operations
-5. **Causal Consistency**: Maintain proper ordering of causally related operations
+5. **Causal Consistency**: Maintain proper ordering of causally related
+   operations
 
 ## Technical Implementation
 
@@ -67,17 +73,17 @@ class CRDTSynchronizer {
   // Create specific CRDT instance
   createCRDTInstance(type, initialState) {
     switch (type) {
-      case "G_COUNTER":
+      case 'G_COUNTER':
         return new GCounter(this.nodeId, this.replicationGroup, initialState);
-      case "PN_COUNTER":
+      case 'PN_COUNTER':
         return new PNCounter(this.nodeId, this.replicationGroup, initialState);
-      case "OR_SET":
+      case 'OR_SET':
         return new ORSet(this.nodeId, initialState);
-      case "LWW_REGISTER":
+      case 'LWW_REGISTER':
         return new LWWRegister(this.nodeId, initialState);
-      case "OR_MAP":
+      case 'OR_MAP':
         return new ORMap(this.nodeId, this.replicationGroup, initialState);
-      case "RGA":
+      case 'RGA':
         return new RGA(this.nodeId, initialState);
       default:
         throw new Error(`Unknown CRDT type: ${type}`);
@@ -102,7 +108,7 @@ class CRDTSynchronizer {
 
     // Send sync request
     const syncRequest = {
-      type: "CRDT_SYNC_REQUEST",
+      type: 'CRDT_SYNC_REQUEST',
       sender: this.nodeId,
       vectorClock: this.vectorClock.clone(),
       state: localState,
@@ -143,7 +149,7 @@ class GCounter {
   // Increment operation (can only be performed by owner node)
   increment(amount = 1) {
     if (amount < 0) {
-      throw new Error("G-Counter only supports positive increments");
+      throw new Error('G-Counter only supports positive increments');
     }
 
     const oldValue = this.payload.get(this.nodeId) || 0;
@@ -152,7 +158,7 @@ class GCounter {
 
     // Notify observers
     this.notifyUpdate({
-      type: "INCREMENT",
+      type: 'INCREMENT',
       node: this.nodeId,
       oldValue: oldValue,
       newValue: newValue,
@@ -181,7 +187,7 @@ class GCounter {
 
     if (changed) {
       this.notifyUpdate({
-        type: "MERGE",
+        type: 'MERGE',
         mergedFrom: otherState,
       });
     }
@@ -192,12 +198,12 @@ class GCounter {
     for (const [node, otherValue] of otherState.payload) {
       const currentValue = this.payload.get(node) || 0;
       if (currentValue < otherValue) {
-        return "LESS_THAN";
+        return 'LESS_THAN';
       } else if (currentValue > otherValue) {
-        return "GREATER_THAN";
+        return 'GREATER_THAN';
       }
     }
-    return "EQUAL";
+    return 'EQUAL';
   }
 
   // Clone current state
@@ -245,7 +251,7 @@ class ORSet {
     this.elements.get(element).add(tag);
 
     this.notifyUpdate({
-      type: "ADD",
+      type: 'ADD',
       element: element,
       tag: tag,
     });
@@ -269,7 +275,7 @@ class ORSet {
     }
 
     this.notifyUpdate({
-      type: "REMOVE",
+      type: 'REMOVE',
       element: element,
       removedTags: removedTags,
     });
@@ -342,7 +348,7 @@ class ORSet {
 
     if (changed) {
       this.notifyUpdate({
-        type: "MERGE",
+        type: 'MERGE',
         mergedFrom: otherState,
       });
     }
@@ -388,7 +394,7 @@ class LWWRegister {
       this.vectorClock.increment();
 
       this.notifyUpdate({
-        type: "SET",
+        type: 'SET',
         oldValue: oldValue,
         newValue: newValue,
         timestamp: ts,
@@ -413,7 +419,7 @@ class LWWRegister {
       this.timestamp = otherRegister.timestamp;
 
       this.notifyUpdate({
-        type: "MERGE",
+        type: 'MERGE',
         oldValue: oldValue,
         newValue: this.value,
         mergedFrom: otherRegister,
@@ -467,7 +473,7 @@ class RGA {
     this.sequence.splice(insertionIndex, 0, vertex);
 
     this.notifyUpdate({
-      type: "INSERT",
+      type: 'INSERT',
       position: insertionIndex,
       element: element,
       vertex: vertex,
@@ -479,7 +485,7 @@ class RGA {
   // Remove element at position
   remove(position) {
     if (position < 0 || position >= this.visibleLength()) {
-      throw new Error("Position out of bounds");
+      throw new Error('Position out of bounds');
     }
 
     const visibleVertex = this.getVisibleVertex(position);
@@ -487,7 +493,7 @@ class RGA {
       this.tombstones.add(visibleVertex.id);
 
       this.notifyUpdate({
-        type: "REMOVE",
+        type: 'REMOVE',
         position: position,
         vertex: visibleVertex,
       });
@@ -518,7 +524,7 @@ class RGA {
     // Merge sequences
     const mergedSequence = this.mergeSequences(
       this.sequence,
-      otherRGA.sequence,
+      otherRGA.sequence
     );
     if (mergedSequence.length !== this.sequence.length) {
       this.sequence = mergedSequence;
@@ -535,7 +541,7 @@ class RGA {
 
     if (changed) {
       this.notifyUpdate({
-        type: "MERGE",
+        type: 'MERGE',
         mergedFrom: otherRGA,
       });
     }
@@ -654,7 +660,7 @@ class DeltaStateCRDT {
     const lastSync = this.lastSyncVector.get(peerNode) || new VectorClock();
 
     return this.deltaBuffer.filter((deltaEntry) =>
-      deltaEntry.vectorClock.isAfter(lastSync),
+      deltaEntry.vectorClock.isAfter(lastSync)
     );
   }
 
@@ -672,7 +678,7 @@ class DeltaStateCRDT {
     // Implementation depends on specific CRDT type
     // This is a simplified version
     return {
-      type: "STATE_DELTA",
+      type: 'STATE_DELTA',
       changes: this.compareStates(oldState, newState),
     };
   }
@@ -691,7 +697,7 @@ class DeltaStateCRDT {
     const cutoffTime = Date.now() - 24 * 60 * 60 * 1000; // 24 hours
 
     this.deltaBuffer = this.deltaBuffer.filter(
-      (deltaEntry) => deltaEntry.timestamp > cutoffTime,
+      (deltaEntry) => deltaEntry.timestamp > cutoffTime
     );
   }
 }
@@ -704,7 +710,7 @@ class DeltaStateCRDT {
 ```javascript
 // Store CRDT state persistently
 await this.mcpTools.memory_usage({
-  action: "store",
+  action: 'store',
   key: `crdt_state_${this.crdtName}`,
   value: JSON.stringify({
     type: this.crdtType,
@@ -712,16 +718,16 @@ await this.mcpTools.memory_usage({
     vectorClock: Array.from(this.vectorClock.entries()),
     lastSync: Array.from(this.lastSyncVector.entries()),
   }),
-  namespace: "crdt_synchronization",
+  namespace: 'crdt_synchronization',
   ttl: 0, // Persistent
 });
 
 // Coordinate delta synchronization
 await this.mcpTools.memory_usage({
-  action: "store",
+  action: 'store',
   key: `deltas_${this.nodeId}_${Date.now()}`,
   value: JSON.stringify(this.getDeltasSince(null)),
-  namespace: "crdt_deltas",
+  namespace: 'crdt_deltas',
   ttl: 86400000, // 24 hours
 });
 ```
@@ -732,17 +738,17 @@ await this.mcpTools.memory_usage({
 // Track CRDT synchronization metrics
 await this.mcpTools.metrics_collect({
   components: [
-    "crdt_merge_time",
-    "delta_generation_time",
-    "sync_convergence_time",
-    "memory_usage_per_crdt",
+    'crdt_merge_time',
+    'delta_generation_time',
+    'sync_convergence_time',
+    'memory_usage_per_crdt',
   ],
 });
 
 // Neural pattern learning for sync optimization
 await this.mcpTools.neural_patterns({
-  action: "learn",
-  operation: "crdt_sync_optimization",
+  action: 'learn',
+  operation: 'crdt_sync_optimization',
   outcome: JSON.stringify({
     syncPattern: this.lastSyncPattern,
     convergenceTime: this.lastConvergenceTime,
@@ -858,7 +864,7 @@ class CRDTComposer {
       const fieldCRDT = this.createFieldCRDT(
         fieldSpec,
         nodeId,
-        replicationGroup,
+        replicationGroup
       );
       composite.addField(fieldName, fieldCRDT);
     }
@@ -868,17 +874,17 @@ class CRDTComposer {
 
   createFieldCRDT(fieldSpec, nodeId, replicationGroup) {
     switch (fieldSpec.type) {
-      case "counter":
+      case 'counter':
         return fieldSpec.decrements
           ? new PNCounter(nodeId, replicationGroup)
           : new GCounter(nodeId, replicationGroup);
-      case "set":
+      case 'set':
         return new ORSet(nodeId);
-      case "register":
+      case 'register':
         return new LWWRegister(nodeId);
-      case "map":
+      case 'map':
         return new ORMap(nodeId, replicationGroup, fieldSpec.valueType);
-      case "sequence":
+      case 'sequence':
         return new RGA(nodeId);
       default:
         throw new Error(`Unknown CRDT field type: ${fieldSpec.type}`);
@@ -900,7 +906,7 @@ class CompositeCRDT {
     // Subscribe to field updates
     crdt.onUpdate((delta) => {
       this.notifyUpdate({
-        type: "FIELD_UPDATE",
+        type: 'FIELD_UPDATE',
         field: name,
         delta: delta,
       });
@@ -928,7 +934,7 @@ class CompositeCRDT {
 
     if (changed) {
       this.notifyUpdate({
-        type: "COMPOSITE_MERGE",
+        type: 'COMPOSITE_MERGE',
         mergedFrom: otherComposite,
       });
     }
@@ -970,7 +976,7 @@ class CRDTConsensusIntegrator {
   async hybridUpdate(operation) {
     // Step 1: Achieve consensus on operation ordering
     const consensusResult = await this.consensus.propose({
-      type: "CRDT_OPERATION",
+      type: 'CRDT_OPERATION',
       operation: operation,
       timestamp: Date.now(),
     });
@@ -992,7 +998,7 @@ class CRDTConsensusIntegrator {
       };
     }
 
-    return { success: false, reason: "Consensus failed" };
+    return { success: false, reason: 'Consensus failed' };
   }
 
   // Optimized read operations using CRDT without consensus
@@ -1017,4 +1023,7 @@ class CRDTConsensusIntegrator {
 }
 ```
 
-This CRDT Synchronizer provides comprehensive support for conflict-free replicated data types, enabling eventually consistent distributed state management that complements consensus protocols for different consistency requirements.
+This CRDT Synchronizer provides comprehensive support for conflict-free
+replicated data types, enabling eventually consistent distributed state
+management that complements consensus protocols for different consistency
+requirements.
