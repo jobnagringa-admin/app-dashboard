@@ -41,10 +41,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
 
   // Reporter configuration
-  reporter: [
-    ['html', { outputFolder: './tests/__reports__' }],
-    ['list'],
-  ],
+  reporter: [['html', { outputFolder: './tests/__reports__' }], ['list']],
 
   // Global settings
   use: {

@@ -45,6 +45,7 @@ const cacheHeaders = {
   // HTML - short cache, must revalidate
   html: "public, max-age=0, must-revalidate",
 };
+void cacheHeaders;
 
 // https://astro.build/config
 export default defineConfig({
@@ -184,16 +185,20 @@ export default defineConfig({
           },
           // Asset file naming for cache busting
           assetFileNames: (assetInfo) => {
+            const assetName =
+              assetInfo.name ||
+              assetInfo.originalFileName ||
+              "";
             // CSS files get content hash for cache busting
-            if (assetInfo.name?.endsWith(".css")) {
+            if (assetName.endsWith(".css")) {
               return "_assets/css/[name]-[hash][extname]";
             }
             // Fonts get their own folder with immutable cache
-            if (/\.(woff2?|ttf|eot|otf)$/.test(assetInfo.name || "")) {
+            if (/\.(woff2?|ttf|eot|otf)$/.test(assetName)) {
               return "_assets/fonts/[name]-[hash][extname]";
             }
             // Images get their own folder
-            if (/\.(png|jpe?g|gif|svg|webp|avif|ico)$/i.test(assetInfo.name || "")) {
+            if (/\.(png|jpe?g|gif|svg|webp|avif|ico)$/i.test(assetName)) {
               return "_assets/images/[name]-[hash][extname]";
             }
             return "_assets/[name]-[hash][extname]";
@@ -210,7 +215,7 @@ export default defineConfig({
     },
     // Optimize dependencies pre-bundling
     optimizeDeps: {
-      include: ['jquery'], // Pre-bundle jQuery for faster HMR
+      // No dependencies to pre-bundle currently
     },
   },
 
@@ -235,7 +240,5 @@ export default defineConfig({
   },
 
   // Redirects for legacy URLs if needed
-  redirects: {
-    '/': '/member-dashboard',
-  },
+  redirects: {},
 });

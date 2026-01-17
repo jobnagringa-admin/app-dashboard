@@ -3,12 +3,12 @@ import tseslint from 'typescript-eslint';
 import astro from 'eslint-plugin-astro';
 import prettier from 'eslint-config-prettier';
 
-export default tseslint.config(
+export default [
   // Base configs
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
   ...astro.configs.recommended,
-  
+
   // Global ignores
   {
     ignores: [
@@ -31,7 +31,7 @@ export default tseslint.config(
       'bun.lockb',
     ],
   },
-  
+
   // Global rules for all files - relaxed for Webflow legacy code
   {
     rules: {
@@ -67,7 +67,7 @@ export default tseslint.config(
       '@typescript-eslint/explicit-module-boundary-types': 'off',
     },
   },
-  
+
   // Astro files
   {
     files: ['**/*.astro'],
@@ -90,7 +90,7 @@ export default tseslint.config(
       '@typescript-eslint/no-unused-expressions': 'off',
     },
   },
-  
+
   // Prettier integration (must be last)
   prettier,
-);
+];

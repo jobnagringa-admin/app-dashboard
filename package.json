@@ -5,7 +5,7 @@
   "description": "Job na Gringa - Remote international jobs for Brazilians",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro check && astro build",
+    "build": "NODE_OPTIONS=--max-old-space-size=8192 astro check && NODE_OPTIONS=--max-old-space-size=8192 astro build",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
@@ -43,10 +43,10 @@
     "visual:baseline": "playwright test tests/visual --update-snapshots --reporter=list"
   },
   "dependencies": {
-    "@astrojs/node": "^9.5.1",
+    "@astrojs/node": "^9.5.2",
     "@astrojs/partytown": "^2.1.4",
-    "@astrojs/sitemap": "^3.6.1",
-    "astro": "^5.16.9",
+    "@astrojs/sitemap": "^3.7.0",
+    "astro": "^5.16.11",
     "astro-compressor": "^1.2.0"
   },
   "devDependencies": {
@@ -62,7 +62,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^1.5.0",
     "postcss": "^8.5.6",
-    "prettier": "^3.7.4",
+    "prettier": "^3.8.0",
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.53.0"
