@@ -12,7 +12,7 @@ const cspDirectives = [
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
   "img-src 'self' data: blob: https: http:",
-  "connect-src 'self' https://www.googletagmanager.com https://mautic.jobnagringa.com.br https://analytics.ahrefs.com https://*.google-analytics.com",
+  "connect-src 'self' https://www.googletagmanager.com https://mautic.jobnagringa.com.br https://analytics.ahrefs.com https://*.google-analytics.com http://localhost:1337",
   "frame-src 'self' https://www.googletagmanager.com https://accounts.jobnagringa.com.br",
   "object-src 'none'",
   "base-uri 'self'",

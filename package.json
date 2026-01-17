@@ -46,6 +46,7 @@
     "@astrojs/node": "^9.5.2",
     "@astrojs/partytown": "^2.1.4",
     "@astrojs/sitemap": "^3.7.0",
+    "@strapi/client": "^1.6.0",
     "astro": "^5.16.11",
     "astro-compressor": "^1.2.0"
   },

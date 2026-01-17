@@ -131,7 +131,11 @@
     "enabled": true
   },
   "permissions": {
-    "allow": ["Bash(npx claude-flow:*)", "Bash(npx @claude-flow/cli:*)", "mcp__claude-flow__:*"],
+    "allow": [
+      "Bash(npx claude-flow:*)",
+      "Bash(npx @claude-flow/cli:*)",
+      "mcp__claude-flow__:*"
+    ],
     "deny": []
   },
   "claudeFlow": {
@@ -182,12 +186,17 @@
         "document": {
           "interval": "1h",
           "priority": "normal",
-          "triggers": ["adr-update", "api-change"]
+          "triggers": [
+            "adr-update",
+            "api-change"
+          ]
         },
         "deepdive": {
           "interval": "4h",
           "priority": "normal",
-          "triggers": ["complex-change"]
+          "triggers": [
+            "complex-change"
+          ]
         },
         "ultralearn": {
           "interval": "1h",
@@ -198,7 +207,11 @@
     "learning": {
       "enabled": true,
       "autoTrain": true,
-      "patterns": ["coordination", "optimization", "prediction"],
+      "patterns": [
+        "coordination",
+        "optimization",
+        "prediction"
+      ],
       "retention": {
         "shortTerm": "24h",
         "longTerm": "30d"

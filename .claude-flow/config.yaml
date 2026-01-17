@@ -1,7 +1,7 @@
 # Claude Flow V3 Runtime Configuration
-# Generated: 2026-01-14T11:07:51.290Z
+# Generated: 2026-01-17T10:01:30.177Z
 
-version: '3.0.0'
+version: "3.0.0"
 
 swarm:
   topology: hierarchical-mesh
