@@ -1,0 +1,13 @@
+{
+  "total_references": 130,
+  "found": 126,
+  "missing": 4,
+  "found_in_legacy": 0,
+  "still_missing": [
+    "672fc19009fe44d516aa709c_Langate%20Software.webp",
+    "672fc19ed6a57ed106f0f7c2_Planner%205D.webp",
+    "6749be6b7eebd8034561b8fb_Very%20Good%20Ventures.webp",
+    "images/graphics/graphic-cc7bfa75-833f-4829-a81e-d979d0a828fa.webp"
+  ],
+  "files_processed": 0
+}
