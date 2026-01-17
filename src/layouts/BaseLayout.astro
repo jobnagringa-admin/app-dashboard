@@ -1,0 +1,241 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
+  robots?: string;
+  wfPage?: string;
+  wfSite?: string;
+  wfDomain?: string;
+  lang?: string;
+}
+
+const {
+  title,
+  description,
+  ogImage,
+  ogTitle,
+  ogDescription,
+  twitterTitle,
+  twitterDescription,
+  twitterImage,
+  robots,
+  wfPage = "67fa3010efbb81d725f2360e",
+  wfSite = "642953c962519376c853ab81",
+  wfDomain = "www.jobnagringa.com.br",
+  lang = "pt-BR",
+} = Astro.props;
+
+const finalOgImage = ogImage || "/cdn-assets/66fa20663b706c601554155b_og-image-jng.jpg";
+const finalOgTitle = ogTitle || title;
+const finalOgDescription = ogDescription || description || "";
+const finalTwitterTitle = twitterTitle || title;
+const finalTwitterDescription = twitterDescription || description || "";
+const finalTwitterImage = twitterImage || finalOgImage;
+---
+
+<!DOCTYPE html>
+<html
+  data-wf-domain={wfDomain}
+  data-wf-page={wfPage}
+  data-wf-site={wfSite}
+  lang={lang}
+>
+  <head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <meta property="og:title" content={finalOgTitle} />
+    {finalOgDescription && (
+      <meta property="og:description" content={finalOgDescription} />
+    )}
+    <meta property="og:image" content={finalOgImage} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:title" content={finalTwitterTitle} />
+    {finalTwitterDescription && (
+      <meta name="twitter:description" content={finalTwitterDescription} />
+    )}
+    <meta name="twitter:image" content={finalTwitterImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {robots && <meta name="robots" content={robots} />}
+
+    <!-- Webflow CSS -->
+    <link
+      href="/cdn-assets/jobnagringa.webflow.shared.aca489c6b.min.css"
+      rel="stylesheet"
+      type="text/css"
+      integrity="sha384-rKSJxrkhUZhRinnJ0Pe3XTS85veQJuzsIINpQet9uIDqzEehJxkntL8bL6UC4Uj8"
+      crossorigin="anonymous"
+    />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link
+      href="https://fonts.gstatic.com"
+      rel="preconnect"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
+      type="text/javascript"
+    ></script>
+    <script type="text/javascript" is:inline>
+      WebFont.load({
+        google: {
+          families: [
+            "Inter:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic",
+          ],
+        },
+      });
+    </script>
+    <script type="text/javascript" is:inline>
+      !(function (o, c) {
+        var n = c.documentElement,
+          t = " w-mod-";
+        n.className += t + "js",
+          ("ontouchstart" in o ||
+            (o.DocumentTouch && c instanceof DocumentTouch)) &&
+            (n.className += t + "touch");
+      })(window, document);
+    </script>
+
+    <!-- Favicon -->
+    <link
+      href="/cdn-assets/642aa9b6129f71848c627af5_favicon.jpg"
+      rel="shortcut icon"
+      type="image/x-icon"
+    />
+    <link
+      href="/cdn-assets/642aa9ba69d01ce76135f2d0_retina.jpg"
+      rel="apple-touch-icon"
+    />
+
+
+    <!-- Global Styles -->
+    <style>
+      /* Form validation styles */
+      .hide {
+        display: none;
+      }
+
+      .error {
+        border: 1px red solid;
+      }
+
+      .success {
+        border: 1px #0acf0a solid;
+      }
+
+      .error-message {
+        font-size: 12px;
+        color: red;
+        margin-top: -8px;
+      }
+    </style>
+
+
+
+
+    <!-- Webflow Currency Settings -->
+    <script type="text/javascript" is:inline>
+      window.__WEBFLOW_CURRENCY_SETTINGS = {
+        currencyCode: "BRL",
+        symbol: "R$",
+        decimal: ",",
+        fractionDigits: 2,
+        group: ".",
+        template:
+          '{{wf {"path":"symbol","type":"PlainText"} }} {{wf {"path":"amount","type":"CommercePrice"} }} {{wf {"path":"currencyCode","type":"PlainText"} }}',
+        hideDecimalForWholeNumbers: false,
+      };
+    </script>
+
+    <!-- Protected Paths Configuration -->
+    <script type="text/javascript" is:inline>
+      var PROTECTED_PATHS = ["/jng"];
+      var HOME_REDIRECT_PATH = "/";
+    </script>
+
+    <!-- Global Styles -->
+    <style>
+      /* Import global styles */
+    </style>
+  </head>
+  <body>
+
+    <div class="page_wrapper">
+      <!-- Global Styles -->
+      <div class="general_style w-embed">
+        <style>
+          /* Scrollbar styles */
+          ::-webkit-scrollbar {
+            width: 0.5rem;
+            height: 0.5rem;
+          }
+
+          ::-webkit-scrollbar-track {
+            border-radius: 100rem;
+            background: #fff;
+          }
+
+          ::-webkit-scrollbar-thumb {
+            border-radius: 100rem;
+            background: var(--neutrals--neutral-300);
+          }
+
+          ::-webkit-scrollbar-thumb:hover {
+            background: var(--blues--blue-20);
+          }
+
+          .link-return:hover .button {
+            background: var(--blues--blue-50);
+            color: #fff;
+          }
+
+          /* Webflow Select styles */
+          select,
+          .input_field.is-select {
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            appearance: none;
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1rem 1rem;
+          }
+
+          /* Name acronym style */
+          [acronym] {
+            font-family: monospace;
+            width: 2ch;
+            overflow: hidden;
+            white-space: nowrap;
+          }
+        </style>
+      </div>
+
+      <slot />
+    </div>
+
+
+
+    <!-- Webflow Scripts -->
+    <script
+      src="/cdn-assets/webflow.d94da6a8.ea62f8e5992eb517.js"
+      type="text/javascript"
+    ></script>
+    <script
+      src="/cdn-assets/webflow.schunk.59c6248219f37ae8.js"
+      type="text/javascript"
+    ></script>
+    <script
+      src="/cdn-assets/webflow.schunk.85d4c368d7c8f770.js"
+      type="text/javascript"
+    ></script>
+  </body>
+</html>

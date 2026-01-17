@@ -1,0 +1,74 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PublicNavbar from "../../components/PublicNavbar.astro";
+import CommunityNavbar from "../../components/CommunityNavbar.astro";
+---
+
+<BaseLayout
+  title={"Afinal, O que é o #jobnagringa?"}
+  description={""}
+  ogImage={"/cdn-assets/66fa20663b706c601554155b_og-image-jng.jpg"}
+  robots={""}
+  wfPage={"67fa3010efbb81d725f2360e"}
+>
+  <div class="nav_wrapper">
+    <CommunityNavbar />
+    <PublicNavbar />
+  </div>
+  
+<div class="general_style w-embed"><style>
+
+/* width */
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	border-radius: 100rem;
+  background: #fff;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+	border-radius: 100rem;
+  background: var(--neutrals--neutral-300); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--blues--blue-20); 
+}
+
+.link-return:hover .button {
+	background: var(--blues--blue-50);
+  color: #fff;
+}
+
+	/* Updates default Webflow Select */
+
+select, .input_field.is-select {
+	/* resetting default form style */
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+	/* set new select style */
+  background-image: @img_669fb1af0e428f77b786d70e; 
+  background-position: 100% 50%; 
+  background-size: 1rem 1rem; 
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+}
+
+/*Style name acronym*/
+[acronym] {
+ 	font-family: monospace;
+  width: 2ch;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+</style>
+
+</BaseLayout>
