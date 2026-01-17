@@ -19,9 +19,9 @@ const pages = [
 async function takeScreenshot(page: Page, url: string, filename: string) {
   await page.goto(url, { waitUntil: 'networkidle' });
   await page.waitForTimeout(2000); // Wait for animations
-  await page.screenshot({ 
+  await page.screenshot({
     path: filename,
-    fullPage: true 
+    fullPage: true,
   });
 }
 
@@ -41,7 +41,7 @@ async function comparePages() {
 
   for (const pageInfo of pages) {
     console.log(`Comparing ${pageInfo.name}...`);
-    
+
     const legacyFile = path.join(outputDir, `${pageInfo.name}-legacy.png`);
     const astroFile = path.join(outputDir, `${pageInfo.name}-astro.png`);
     const diffFile = path.join(outputDir, `${pageInfo.name}-diff.png`);

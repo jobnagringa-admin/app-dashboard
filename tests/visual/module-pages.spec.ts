@@ -21,7 +21,7 @@ test.describe('Module Pages Visual Regression', () => {
     test(`${page.name} - desktop`, async ({ page: testPage }) => {
       await testPage.goto(`http://localhost:4321${page.path}`);
       await testPage.waitForLoadState('networkidle');
-      
+
       await expect(testPage).toHaveScreenshot(`${page.name}-desktop.png`, {
         fullPage: true,
       });
@@ -31,7 +31,7 @@ test.describe('Module Pages Visual Regression', () => {
       testPage.setViewportSize({ width: 375, height: 667 });
       await testPage.goto(`http://localhost:4321${page.path}`);
       await testPage.waitForLoadState('networkidle');
-      
+
       await expect(testPage).toHaveScreenshot(`${page.name}-mobile.png`, {
         fullPage: true,
       });

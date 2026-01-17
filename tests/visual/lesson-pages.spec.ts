@@ -21,7 +21,7 @@ test.describe('Lesson Pages Visual Regression', () => {
     test(`${lesson} - desktop`, async ({ page: testPage }) => {
       await testPage.goto(`http://localhost:4321/jng/aulas/${lesson}`);
       await testPage.waitForLoadState('networkidle');
-      
+
       await expect(testPage).toHaveScreenshot(`lesson-${lesson}-desktop.png`, {
         fullPage: true,
       });
@@ -31,7 +31,7 @@ test.describe('Lesson Pages Visual Regression', () => {
       testPage.setViewportSize({ width: 375, height: 667 });
       await testPage.goto(`http://localhost:4321/jng/aulas/${lesson}`);
       await testPage.waitForLoadState('networkidle');
-      
+
       await expect(testPage).toHaveScreenshot(`lesson-${lesson}-mobile.png`, {
         fullPage: true,
       });

@@ -25,7 +25,7 @@ test.describe('Main Pages Visual Regression', () => {
       // Navigate to Astro version
       await testPage.goto(`http://localhost:4321${page.path}`);
       await testPage.waitForLoadState('networkidle');
-      
+
       // Take screenshot
       await expect(testPage).toHaveScreenshot(`${page.name}-desktop.png`, {
         fullPage: true,
@@ -36,7 +36,7 @@ test.describe('Main Pages Visual Regression', () => {
       testPage.setViewportSize({ width: 375, height: 667 });
       await testPage.goto(`http://localhost:4321${page.path}`);
       await testPage.waitForLoadState('networkidle');
-      
+
       await expect(testPage).toHaveScreenshot(`${page.name}-mobile.png`, {
         fullPage: true,
       });
