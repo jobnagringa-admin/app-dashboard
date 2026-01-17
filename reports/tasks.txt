@@ -1,0 +1,51 @@
+Understand the following prompt and answer and think in English:
+
+<CONTEXT>
+
+Create an extremely structured plan with the information below, don't skimp on tokens.
+
+Add all tasks to the beads backlog. Organize by epics, tasks, and subtasks.
+
+Make it EXTREMELY descriptive, include plenty of context and detailed information about what needs to be done, all file paths, function names, tips on what to do, how to do it, best practices, etc.
+
+Make each task or subtask similar to a PRD (Project Report Document), with plenty of contextualized information about what needs to be done, where, and how.
+
+For this set of activities, create a new, separate epic.
+
+Finally, show a report of all the tasks that were created.
+
+<TASK>
+    Crie uma task para verificar o site original e comparar o design atual de cada uma das paginas, e se tiver alguma coisa para corrigir que ele corrija para deixar 100% identico ao original.
+
+    Para isso, suba o site original da pasta src-legacy com algum servidor de arquiovos estaticos, abra com playwright tanto essa pagina quanto a pagina do sistema novo, compare as duas telas, aplique as correções.
+
+    Faça isso para cada uma das telas do sistema, deixe absolutamente perfeito e identico ao original, mas aplicando todas as boas praticas ja estabelecidas no codigo do astro.
+
+    No beads, Faça uma task diferente para cada uma das telas 
+<TASK/>
+
+<CONTEXT/>
+
+DO NOT IMPLEMENT ANYTHING YET, JUST ADD IT TO THE BEADS BACKLOG.
+
+
+
+
+
+
+
+
+
+
+
+
+
+STRAPI_URL=http://localhost:1337
+STRAPI_TOKEN=0b2769bd5bf5343b5b1f8100505ec9939b47b224710b02e4d603312e54f709d5e1a6bc5775114d97dddfdc46d0f6c0be5bfb654b8f096c25eff56c4a725d4b60dcd73f1d6d66991d93d2628289800e27577bb3128d4dba6d25c99f7050728b490f5ee682971734229476bedb34c290cf2237982cea071a51c674a573ea5a5bd3
+
+
+
+Strapi: 
+
+
+

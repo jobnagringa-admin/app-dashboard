@@ -49,3 +49,54 @@ Strapi:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+❯ bun run build
+$ NODE_OPTIONS=--max-old-space-size=18192 astro check && NODE_OPTIONS=--max-old-space-size=18192 astro build
+06:52:17 [@astrojs/node] Enabling sessions with filesystem storage
+06:52:17 [content] Syncing content
+06:52:17 [content] Synced content
+06:52:17 [types] Generated 230ms
+06:52:17 [check] Getting diagnostics for Astro files in /home/paulo/sources/jng/legacy...
+astro.config.mjs:190:25 - warning ts(6385): 'originalFileName' is deprecated.
+
+190               assetInfo.originalFileName ||
+                            ~~~~~~~~~~~~~~~~
+astro.config.mjs:189:25 - warning ts(6385): 'name' is deprecated.
+
+189               assetInfo.name ||
+                            ~~~~
+
+
+<--- Last few GCs --->
+
+[192558:0x3876f000]   126987 ms: Mark-Compact 17898.5 (18224.2) -> 17895.6 (18238.5) MB, pooled: 0 MB, 1801.79 / 0.00 ms  (average mu = 0.515, current mu = 0.335) allocation failure; scavenge might not succeed
+[192558:0x3876f000]   131081 ms: Mark-Compact 17911.3 (18238.5) -> 17906.6 (18250.2) MB, pooled: 0 MB, 4074.76 / 0.00 ms  (average mu = 0.330, current mu = 0.005) allocation failure; scavenge might not succeed
+
+
+<--- JS stacktrace --->
+
+FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
+----- Native stack trace -----
+
+ 1: 0xe1603a node::OOMErrorHandler(char const*, v8::OOMDetails const&) [node]
+ 2: 0x11e3540 v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, v8::OOMDetails const&) [node]
+ 3: 0x11e3817 v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, v8::OOMDetails const&) [node]
+ 4: 0x14110f5  [node]
+ 5: 0x142a989 v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [node]
+ 6: 0x13ff038 v8::internal::HeapAllocator::AllocateRawWithLightRetrySlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [node]
+ 7: 0x13fff65 v8::internal::HeapAllocator::AllocateRawWithRetryOrFailSlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [node]
+ 8: 0x13d8c3e v8::internal::Factory::NewFillerObject(int, v8::internal::AllocationAlignment, v8::internal::AllocationType, v8::internal::AllocationOrigin) [node]
+ 9: 0x183a25c v8::internal::Runtime_AllocateInYoungGeneration(int, unsigned long*, v8::internal::Isolate*) [node]
+10: 0x7b6e3766c476 
+/usr/bin/bash: line 1: 192558 Aborted                 (core dumped) NODE_OPTIONS=--max-old-space-size=18192 astro check
+error: script "build" exited with code 134
