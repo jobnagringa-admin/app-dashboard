@@ -165,49 +165,6 @@ export default defineConfig({
           drop_debugger: true,
         },
       },
-      // Rollup options for better code splitting
-      rollupOptions: {
-        output: {
-          // Manual chunks for better caching
-          manualChunks: (id) => {
-            // Split Webflow CSS into its own chunk
-            if (id.includes("webflow")) {
-              return "webflow";
-            }
-            // Split component CSS
-            if (id.includes("/components/")) {
-              return "components";
-            }
-            // Vendor chunks for third-party code
-            if (id.includes("node_modules")) {
-              return "vendor";
-            }
-          },
-          // Asset file naming for cache busting
-          assetFileNames: (assetInfo) => {
-            const assetName =
-              assetInfo.names?.[0] ||
-              assetInfo.originalFileNames?.[0] ||
-              "";
-            // CSS files get content hash for cache busting
-            if (assetName.endsWith(".css")) {
-              return "_assets/css/[name]-[hash][extname]";
-            }
-            // Fonts get their own folder with immutable cache
-            if (/\.(woff2?|ttf|eot|otf)$/.test(assetName)) {
-              return "_assets/fonts/[name]-[hash][extname]";
-            }
-            // Images get their own folder
-            if (/\.(png|jpe?g|gif|svg|webp|avif|ico)$/i.test(assetName)) {
-              return "_assets/images/[name]-[hash][extname]";
-            }
-            return "_assets/[name]-[hash][extname]";
-          },
-          // JS file naming for better caching
-          chunkFileNames: "_assets/js/[name]-[hash].js",
-          entryFileNames: "_assets/js/[name]-[hash].js",
-        },
-      },
     },
     server: {
       // Security headers for Vite dev server
