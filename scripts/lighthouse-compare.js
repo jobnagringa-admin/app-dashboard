@@ -48,19 +48,19 @@ function parseArgs() {
  */
 function loadCurrentReports() {
   const files = existsSync(lhciDir)
-    ? readdirSync(lhciDir).filter(f => f.match(/^lhr-\d+\.json$/))
+    ? readdirSync(lhciDir).filter((f) => f.match(/^lhr-\d+\.json$/))
     : [];
 
   // If lhr files exist, parse them
   if (files.length > 0) {
-    const reports = files.map(file => {
+    const reports = files.map((file) => {
       const content = readFileSync(join(lhciDir, file), 'utf8');
       return JSON.parse(content);
     });
 
     // Aggregate by URL
     const byUrl = {};
-    reports.forEach(report => {
+    reports.forEach((report) => {
       const url = new URL(report.finalUrl || report.requestedUrl).pathname;
       if (!byUrl[url]) {
         byUrl[url] = {
@@ -106,14 +106,11 @@ function loadCurrentReports() {
       };
 
       Object.entries(data.categories).forEach(([key, values]) => {
-        result[url].categories[key] = Math.round(
-          values.reduce((a, b) => a + b, 0) / values.length
-        );
+        result[url].categories[key] = Math.round(values.reduce((a, b) => a + b, 0) / values.length);
       });
 
       Object.entries(data.vitals).forEach(([key, values]) => {
-        result[url].vitals[key] =
-          values.reduce((a, b) => a + b, 0) / values.length;
+        result[url].vitals[key] = values.reduce((a, b) => a + b, 0) / values.length;
       });
     });
 
@@ -231,7 +228,7 @@ function compare(current, reference, threshold) {
 
   const allUrls = new Set([...Object.keys(current), ...Object.keys(reference)]);
 
-  allUrls.forEach(url => {
+  allUrls.forEach((url) => {
     const curr = current[url];
     const ref = reference[url];
 
@@ -250,8 +247,7 @@ function compare(current, reference, threshold) {
       if (refVal === undefined) return;
 
       const diff = currVal - refVal;
-      const status =
-        diff < -threshold ? 'regressed' : diff > threshold ? 'improved' : 'unchanged';
+      const status = diff < -threshold ? 'regressed' : diff > threshold ? 'improved' : 'unchanged';
 
       results.pages[url].categories[key] = {
         current: currVal,
@@ -301,8 +297,7 @@ function compare(current, reference, threshold) {
       const th = vitalThresholds[key] || threshold;
       const diff = currVal - refVal;
       // For vitals, higher is worse
-      const status =
-        diff > th ? 'regressed' : diff < -th ? 'improved' : 'unchanged';
+      const status = diff > th ? 'regressed' : diff < -th ? 'improved' : 'unchanged';
 
       results.pages[url].vitals[key] = {
         current: currVal,
@@ -362,7 +357,7 @@ function formatResults(results, args) {
   if (results.regressions.length > 0) {
     console.log('REGRESSIONS (requires attention):');
     console.log('---------------------------------');
-    results.regressions.forEach(r => {
+    results.regressions.forEach((r) => {
       const formatValue = (v, type, metric) => {
         if (type === 'category') return `${v}%`;
         if (metric === 'cls') return v.toFixed(3);
@@ -371,7 +366,8 @@ function formatResults(results, args) {
 
       const curr = formatValue(r.current, r.type, r.metric);
       const ref = formatValue(r.reference, r.type, r.metric);
-      const diff = r.type === 'category' ? `${r.diff}%` : formatValue(Math.abs(r.diff), r.type, r.metric);
+      const diff =
+        r.type === 'category' ? `${r.diff}%` : formatValue(Math.abs(r.diff), r.type, r.metric);
 
       console.log(`  [${r.url}] ${r.metric}: ${ref} -> ${curr} (${r.diff > 0 ? '+' : ''}${diff})`);
     });
@@ -382,7 +378,7 @@ function formatResults(results, args) {
   if (results.improvements.length > 0) {
     console.log('IMPROVEMENTS:');
     console.log('-------------');
-    results.improvements.forEach(r => {
+    results.improvements.forEach((r) => {
       const formatValue = (v, type, metric) => {
         if (type === 'category') return `${v}%`;
         if (metric === 'cls') return v.toFixed(3);
@@ -414,7 +410,7 @@ function formatResults(results, args) {
     console.log('  Vitals:');
     Object.entries(data.vitals).forEach(([key, val]) => {
       const icon = val.status === 'improved' ? '+' : val.status === 'regressed' ? '-' : '=';
-      const format = v => (key === 'cls' ? v.toFixed(3) : `${Math.round(v)}ms`);
+      const format = (v) => (key === 'cls' ? v.toFixed(3) : `${Math.round(v)}ms`);
       console.log(`    [${icon}] ${key.toUpperCase().padEnd(5)} ${format(val.current)}`);
     });
   });

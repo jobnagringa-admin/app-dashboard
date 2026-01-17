@@ -33,7 +33,7 @@ function parseReports() {
     process.exit(1);
   }
 
-  const files = readdirSync(lhciDir).filter(f => f.match(/^lhr-\d+\.json$/));
+  const files = readdirSync(lhciDir).filter((f) => f.match(/^lhr-\d+\.json$/));
 
   if (files.length === 0) {
     console.error('Error: No Lighthouse report files found.');
@@ -41,7 +41,7 @@ function parseReports() {
     process.exit(1);
   }
 
-  const reports = files.map(file => {
+  const reports = files.map((file) => {
     const content = readFileSync(join(lhciDir, file), 'utf8');
     return JSON.parse(content);
   });
@@ -55,7 +55,7 @@ function parseReports() {
 function extractCategoryScores(reports) {
   const scoresByUrl = {};
 
-  reports.forEach(report => {
+  reports.forEach((report) => {
     const url = report.finalUrl || report.requestedUrl;
     const urlPath = new URL(url).pathname;
 
@@ -84,7 +84,7 @@ function extractCategoryScores(reports) {
 function extractCoreWebVitals(reports) {
   const vitalsByUrl = {};
 
-  reports.forEach(report => {
+  reports.forEach((report) => {
     const url = report.finalUrl || report.requestedUrl;
     const urlPath = new URL(url).pathname;
 
@@ -200,7 +200,9 @@ function generateBaseline() {
       };
 
       const status = avg >= 90 ? 'PASS' : avg >= 50 ? 'WARN' : 'FAIL';
-      console.log(`  ${category.padEnd(15)} ${avg.toString().padStart(3)}% (${min}-${max}) [${status}]`);
+      console.log(
+        `  ${category.padEnd(15)} ${avg.toString().padStart(3)}% (${min}-${max}) [${status}]`
+      );
     });
   });
 
@@ -241,25 +243,25 @@ function generateBaseline() {
   const assertionPath = join(lhciDir, 'assertion-results.json');
   if (existsSync(assertionPath)) {
     const assertions = JSON.parse(readFileSync(assertionPath, 'utf8'));
-    const warnings = assertions.filter(a => !a.passed && a.level === 'warn');
-    const errors = assertions.filter(a => !a.passed && a.level === 'error');
+    const warnings = assertions.filter((a) => !a.passed && a.level === 'warn');
+    const errors = assertions.filter((a) => !a.passed && a.level === 'error');
 
     console.log('\n\nAssertion Summary');
     console.log('-----------------');
-    console.log(`  Passed:   ${assertions.filter(a => a.passed).length}`);
+    console.log(`  Passed:   ${assertions.filter((a) => a.passed).length}`);
     console.log(`  Warnings: ${warnings.length}`);
     console.log(`  Errors:   ${errors.length}`);
 
     if (warnings.length > 0) {
       console.log('\n  Top Warnings:');
-      warnings.slice(0, 10).forEach(w => {
+      warnings.slice(0, 10).forEach((w) => {
         const title = w.auditTitle || w.auditId;
         console.log(`    - ${title}: expected ${w.expected}, got ${w.actual}`);
       });
     }
 
     baseline.assertions = {
-      passed: assertions.filter(a => a.passed).length,
+      passed: assertions.filter((a) => a.passed).length,
       warnings: warnings.length,
       errors: errors.length,
     };
@@ -274,10 +276,10 @@ function generateBaseline() {
   console.log('\n\nPerformance Summary');
   console.log('===================');
 
-  const allPerf = Object.values(categoryScores).flatMap(s => s.performance);
-  const allAccess = Object.values(categoryScores).flatMap(s => s.accessibility);
-  const allBp = Object.values(categoryScores).flatMap(s => s['best-practices']);
-  const allSeo = Object.values(categoryScores).flatMap(s => s.seo);
+  const allPerf = Object.values(categoryScores).flatMap((s) => s.performance);
+  const allAccess = Object.values(categoryScores).flatMap((s) => s.accessibility);
+  const allBp = Object.values(categoryScores).flatMap((s) => s['best-practices']);
+  const allSeo = Object.values(categoryScores).flatMap((s) => s.seo);
 
   console.log(`\n  Overall Averages (${reports.length} reports):`);
   console.log(`    Performance:    ${Math.round(average(allPerf))}%`);
@@ -285,9 +287,9 @@ function generateBaseline() {
   console.log(`    Best Practices: ${Math.round(average(allBp))}%`);
   console.log(`    SEO:            ${Math.round(average(allSeo))}%`);
 
-  const allLcp = Object.values(coreWebVitals).flatMap(v => v.lcp);
-  const allCls = Object.values(coreWebVitals).flatMap(v => v.cls);
-  const allTbt = Object.values(coreWebVitals).flatMap(v => v.tbt);
+  const allLcp = Object.values(coreWebVitals).flatMap((v) => v.lcp);
+  const allCls = Object.values(coreWebVitals).flatMap((v) => v.cls);
+  const allTbt = Object.values(coreWebVitals).flatMap((v) => v.tbt);
 
   console.log(`\n  Core Web Vitals (averages):`);
   console.log(`    LCP: ${formatMs(average(allLcp))} [${getRating('lcp', average(allLcp))}]`);

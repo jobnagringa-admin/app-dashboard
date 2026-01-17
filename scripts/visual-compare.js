@@ -38,7 +38,7 @@ async function comparePage(pageInfo, viewport = { width: 1280, height: 800 }) {
       timeout: 30000,
     });
     await page.waitForTimeout(2000); // Wait for animations
-    
+
     const legacyFile = path.join(outputDir, `${pageInfo.name}-legacy-${viewport.width}.png`);
     await page.screenshot({ path: legacyFile, fullPage: true });
     console.log(`  ✓ Legacy screenshot: ${legacyFile}`);
@@ -50,7 +50,7 @@ async function comparePage(pageInfo, viewport = { width: 1280, height: 800 }) {
       timeout: 30000,
     });
     await page.waitForTimeout(2000); // Wait for animations
-    
+
     const astroFile = path.join(outputDir, `${pageInfo.name}-astro-${viewport.width}.png`);
     await page.screenshot({ path: astroFile, fullPage: true });
     console.log(`  ✓ Astro screenshot: ${astroFile}`);
@@ -58,13 +58,12 @@ async function comparePage(pageInfo, viewport = { width: 1280, height: 800 }) {
     // Compare visually (basic check)
     const legacyBuffer = fs.readFileSync(legacyFile);
     const astroBuffer = fs.readFileSync(astroFile);
-    
+
     if (legacyBuffer.equals(astroBuffer)) {
       console.log(`  ✅ Perfect match!`);
     } else {
       console.log(`  ⚠️  Differences detected - check screenshots`);
     }
-
   } catch (error) {
     console.error(`  ❌ Error comparing ${pageInfo.name}:`, error.message);
   }
@@ -74,12 +73,12 @@ async function comparePage(pageInfo, viewport = { width: 1280, height: 800 }) {
 
 async function main() {
   const pageName = process.argv[2];
-  const pagesToCompare = pageName 
-    ? pages.filter(p => p.name === pageName)
-    : pages;
+  const pagesToCompare = pageName ? pages.filter((p) => p.name === pageName) : pages;
 
   if (pagesToCompare.length === 0) {
-    console.error(`Page "${pageName}" not found. Available pages: ${pages.map(p => p.name).join(', ')}`);
+    console.error(
+      `Page "${pageName}" not found. Available pages: ${pages.map((p) => p.name).join(', ')}`
+    );
     process.exit(1);
   }
 

@@ -115,10 +115,10 @@ function addToHistory() {
   });
 
   const pageCount = pages.length;
-  Object.keys(avgScores).forEach(key => {
+  Object.keys(avgScores).forEach((key) => {
     avgScores[key] = Math.round(avgScores[key] / pageCount);
   });
-  Object.keys(avgVitals).forEach(key => {
+  Object.keys(avgVitals).forEach((key) => {
     avgVitals[key] = avgVitals[key] / pageCount;
   });
 
@@ -138,9 +138,7 @@ function addToHistory() {
 
   // Trim old entries
   const cutoff = Date.now() - history.config.retentionDays * 24 * 60 * 60 * 1000;
-  history.entries = history.entries
-    .filter(e => e.id > cutoff)
-    .slice(-history.config.maxEntries);
+  history.entries = history.entries.filter((e) => e.id > cutoff).slice(-history.config.maxEntries);
 
   saveHistory(history);
   console.log(`Added entry ${entry.id} to history.`);
@@ -157,7 +155,9 @@ function showTrends() {
 
   if (history.entries.length === 0) {
     console.log('No history entries found.');
-    console.log('Run "bun run lighthouse && bun run scripts/lighthouse-history.js --add" to add entries.');
+    console.log(
+      'Run "bun run lighthouse && bun run scripts/lighthouse-history.js --add" to add entries.'
+    );
     return;
   }
 
@@ -205,7 +205,7 @@ function showTrends() {
     console.log('------------------------------');
 
     Object.entries(latest.averages.categories).forEach(([key, _]) => {
-      const values = entries.map(e => e.averages.categories[key]);
+      const values = entries.map((e) => e.averages.categories[key]);
       const first = values[0];
       const last = values[values.length - 1];
       const trend = last - first;
@@ -216,17 +216,26 @@ function showTrends() {
       else if (trend < -2) trendIcon = 'DOWN';
       else trendIcon = 'STABLE';
 
-      console.log(`  ${key.padEnd(16)} ${trendIcon.padEnd(8)} (avg: ${avg}%, range: ${Math.min(...values)}-${Math.max(...values)}%)`);
+      console.log(
+        `  ${key.padEnd(16)} ${trendIcon.padEnd(8)} (avg: ${avg}%, range: ${Math.min(...values)}-${Math.max(...values)}%)`
+      );
     });
   }
 
   // History table
   console.log('\nRecent History:');
   console.log('---------------');
-  console.log('Date'.padEnd(12) + 'Perf'.padStart(6) + 'A11y'.padStart(6) + 'BP'.padStart(6) + 'SEO'.padStart(6) + '  Commit');
+  console.log(
+    'Date'.padEnd(12) +
+      'Perf'.padStart(6) +
+      'A11y'.padStart(6) +
+      'BP'.padStart(6) +
+      'SEO'.padStart(6) +
+      '  Commit'
+  );
   console.log('-'.repeat(60));
 
-  entries.forEach(entry => {
+  entries.forEach((entry) => {
     const date = new Date(entry.timestamp).toISOString().split('T')[0];
     const cats = entry.averages.categories;
     const commit = entry.git?.commit || 'unknown';
@@ -273,7 +282,7 @@ function exportToCsv() {
     'errors',
   ];
 
-  const rows = history.entries.map(entry => [
+  const rows = history.entries.map((entry) => [
     entry.timestamp,
     entry.git?.commit || '',
     entry.git?.branch || '',
@@ -290,7 +299,7 @@ function exportToCsv() {
     entry.assertions?.errors || 0,
   ]);
 
-  const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+  const csv = [headers.join(','), ...rows.map((r) => r.join(','))].join('\n');
 
   writeFileSync(csvPath, csv);
   console.log(`Exported ${history.entries.length} entries to ${csvPath}`);

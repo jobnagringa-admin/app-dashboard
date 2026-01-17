@@ -34,28 +34,28 @@ const mimeTypes = {
 const server = http.createServer((req, res) => {
   // Remove query string and normalize path
   let filePath = req.url.split('?')[0];
-  
+
   // Handle root and /jng paths
   if (filePath === '/' || filePath === '/jng' || filePath === '/jng/') {
     filePath = '/jng/index.html';
   } else if (!filePath.startsWith('/jng/')) {
     filePath = '/jng' + filePath;
   }
-  
+
   // Map /jng paths to src-legacy/jng/
   if (filePath.startsWith('/jng/')) {
     filePath = filePath.replace('/jng/', 'jng/');
   }
-  
+
   // Map /cdn-assets to src-legacy/cdn-assets
   if (filePath.startsWith('cdn-assets/')) {
     filePath = 'cdn-assets/' + filePath.replace('cdn-assets/', '');
   } else if (filePath.startsWith('/cdn-assets/')) {
     filePath = filePath.replace('/cdn-assets/', 'cdn-assets/');
   }
-  
+
   const fullPath = path.join(LEGACY_DIR, filePath);
-  
+
   // Check if file exists
   fs.access(fullPath, fs.constants.F_OK, (err) => {
     if (err) {
@@ -63,7 +63,7 @@ const server = http.createServer((req, res) => {
       res.end('File not found: ' + filePath);
       return;
     }
-    
+
     // Read and serve file
     fs.readFile(fullPath, (err, data) => {
       if (err) {
@@ -71,10 +71,10 @@ const server = http.createServer((req, res) => {
         res.end('Error reading file');
         return;
       }
-      
+
       const ext = path.extname(fullPath);
       const contentType = mimeTypes[ext] || 'application/octet-stream';
-      
+
       res.writeHead(200, { 'Content-Type': contentType });
       res.end(data);
     });
