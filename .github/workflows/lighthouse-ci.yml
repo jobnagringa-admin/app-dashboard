@@ -1,0 +1,222 @@
+name: Lighthouse CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+  # Allow manual triggering
+  workflow_dispatch:
+
+# Cancel in-progress runs for the same branch
+concurrency:
+  group: lighthouse-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lighthouse:
+    name: Performance Audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Cache Bun dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build
+        run: bun run build
+
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: './lighthouserc.cjs'
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      - name: Upload Lighthouse reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-reports-${{ github.run_number }}
+          path: .lighthouseci/
+          retention-days: 30
+
+      - name: Generate baseline and track history
+        if: always()
+        run: |
+          if [ -f "scripts/lighthouse-baseline.js" ]; then
+            bun run lighthouse:baseline || true
+          fi
+          if [ -f "scripts/lighthouse-history.js" ]; then
+            bun run lighthouse:history:add || true
+          fi
+
+      - name: Compare against baseline
+        if: always()
+        id: compare
+        run: |
+          if [ -f "scripts/lighthouse-compare.js" ]; then
+            bun run lighthouse:compare:baseline || true
+          fi
+
+      - name: Check for regressions (CI mode)
+        if: github.event_name == 'pull_request'
+        run: |
+          if [ -f "scripts/lighthouse-compare.js" ]; then
+            # Using threshold of 5% for PR checks, warn but don't fail
+            bun run lighthouse:compare -- --ci --threshold 5 || echo "::warning::Performance regressions detected. Check Lighthouse reports."
+          fi
+
+      - name: Comment PR with results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const assertionPath = '.lighthouseci/assertion-results.json';
+            const linksPath = '.lighthouseci/links.json';
+
+            let body = '## Lighthouse CI Performance Report\n\n';
+
+            // Add report links if available
+            if (fs.existsSync(linksPath)) {
+              const links = JSON.parse(fs.readFileSync(linksPath, 'utf8'));
+              body += '### Report Links\n\n';
+              Object.entries(links).forEach(([url, reportUrl]) => {
+                const pageName = new URL(url).pathname || '/';
+                body += `- [${pageName}](${reportUrl})\n`;
+              });
+              body += '\n';
+            }
+
+            if (!fs.existsSync(assertionPath)) {
+              body += '_No assertion results found._\n';
+              return;
+            }
+
+            const results = JSON.parse(fs.readFileSync(assertionPath, 'utf8'));
+            const passed = results.filter(r => r.passed);
+            const warnings = results.filter(r => !r.passed && r.level === 'warn');
+            const errors = results.filter(r => !r.passed && r.level === 'error');
+
+            // Summary table
+            body += '### Summary\n\n';
+            body += '| Status | Count |\n';
+            body += '|--------|-------|\n';
+            body += `| Passed | ${passed.length} |\n`;
+            body += `| Warnings | ${warnings.length} |\n`;
+            body += `| Errors | ${errors.length} |\n\n`;
+
+            if (errors.length > 0) {
+              body += '### Errors (Blocking)\n\n';
+              errors.slice(0, 10).forEach(e => {
+                const url = new URL(e.url).pathname;
+                body += `- **${url}** - ${e.auditTitle || e.auditId}: Expected ${e.expected}, got ${e.actual}\n`;
+              });
+              if (errors.length > 10) {
+                body += `\n_...and ${errors.length - 10} more errors_\n`;
+              }
+              body += '\n';
+            }
+
+            if (warnings.length > 0) {
+              body += '### Top Warnings\n\n';
+
+              // Group by URL
+              const byUrl = {};
+              warnings.forEach(w => {
+                const url = new URL(w.url).pathname;
+                if (!byUrl[url]) byUrl[url] = [];
+                byUrl[url].push(w);
+              });
+
+              Object.entries(byUrl).slice(0, 5).forEach(([url, items]) => {
+                body += `**${url}** (${items.length} warnings)\n`;
+                items.slice(0, 3).forEach(w => {
+                  body += `  - ${w.auditTitle || w.auditId}\n`;
+                });
+                if (items.length > 3) {
+                  body += `  - _...and ${items.length - 3} more_\n`;
+                }
+                body += '\n';
+              });
+            }
+
+            // Add comparison data if available
+            const comparisonPath = '.lighthouseci/comparison-report.json';
+            if (fs.existsSync(comparisonPath)) {
+              const comparison = JSON.parse(fs.readFileSync(comparisonPath, 'utf8'));
+
+              if (comparison.regressions && comparison.regressions.length > 0) {
+                body += '### Performance Regressions\n\n';
+                body += '| Page | Metric | Before | After | Change |\n';
+                body += '|------|--------|--------|-------|--------|\n';
+                comparison.regressions.slice(0, 5).forEach(r => {
+                  const format = (v, type, metric) => {
+                    if (type === 'category') return `${v}%`;
+                    if (metric === 'cls') return v.toFixed(3);
+                    return `${Math.round(v)}ms`;
+                  };
+                  body += `| ${r.url} | ${r.metric} | ${format(r.reference, r.type, r.metric)} | ${format(r.current, r.type, r.metric)} | ${r.diff > 0 ? '+' : ''}${r.type === 'category' ? r.diff + '%' : Math.round(r.diff) + 'ms'} |\n`;
+                });
+                if (comparison.regressions.length > 5) {
+                  body += `\n_...and ${comparison.regressions.length - 5} more regressions_\n`;
+                }
+                body += '\n';
+              }
+
+              if (comparison.improvements && comparison.improvements.length > 0) {
+                body += '### Performance Improvements\n\n';
+                comparison.improvements.slice(0, 3).forEach(r => {
+                  body += `- **${r.url}** ${r.metric}: improved\n`;
+                });
+                body += '\n';
+              }
+            }
+
+            body += '\n---\n_Generated by Lighthouse CI_\n';
+
+            // Find existing comment
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(c =>
+              c.user.type === 'Bot' && c.body.includes('Lighthouse CI Performance Report')
+            );
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body
+              });
+            }
