@@ -68,7 +68,7 @@ export default defineConfig({
     sitemap({
       filter: (page) => {
         // Exclude member-only pages
-        if (page.includes('/jng/')) return false;
+        // Note: Pages previously under /jng/ are now at root level
         // Exclude checkout/payment pages
         if (page.includes('/checkout')) return false;
         if (page.includes('/paypal-checkout')) return false;
@@ -236,7 +236,6 @@ export default defineConfig({
 
   // Redirects for legacy URLs if needed
   redirects: {
-    // Add redirects here as needed
-    // '/old-path': '/new-path',
+    '/': '/member-dashboard',
   },
 });
