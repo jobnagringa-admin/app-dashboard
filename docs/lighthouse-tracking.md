@@ -77,17 +77,17 @@ bun run lighthouse:compare:ci
 
 ## Key Files
 
-| File                                  | Purpose                                   |
-| ------------------------------------- | ----------------------------------------- |
-| `lighthouserc.cjs`                    | Lighthouse CI configuration               |
-| `budget.json`                         | Current baseline scores                   |
-| `.lighthouseci/history.json`          | Score history over time                   |
-| `.lighthouseci/assertion-results.json`| Latest assertion results                  |
-| `.lighthouseci/comparison-report.json`| Latest comparison report                  |
-| `.lighthouseci/links.json`            | Links to hosted reports                   |
-| `scripts/lighthouse-baseline.js`      | Baseline generator script                 |
-| `scripts/lighthouse-history.js`       | History tracking script                   |
-| `scripts/lighthouse-compare.js`       | Comparison tool                           |
+| File                                   | Purpose                     |
+| -------------------------------------- | --------------------------- |
+| `lighthouserc.cjs`                     | Lighthouse CI configuration |
+| `budget.json`                          | Current baseline scores     |
+| `.lighthouseci/history.json`           | Score history over time     |
+| `.lighthouseci/assertion-results.json` | Latest assertion results    |
+| `.lighthouseci/comparison-report.json` | Latest comparison report    |
+| `.lighthouseci/links.json`             | Links to hosted reports     |
+| `scripts/lighthouse-baseline.js`       | Baseline generator script   |
+| `scripts/lighthouse-history.js`        | History tracking script     |
+| `scripts/lighthouse-compare.js`        | Comparison tool             |
 
 ## Configuration
 
@@ -113,15 +113,15 @@ assertions: {
 ```javascript
 budgets: [
   {
-    path: "/*",
+    path: '/*',
     resourceSizes: [
-      { resourceType: "script", budget: 100 },      // 100 KB JS
-      { resourceType: "stylesheet", budget: 50 },   // 50 KB CSS
-      { resourceType: "image", budget: 500 },       // 500 KB images
-      { resourceType: "total", budget: 1000 },      // 1 MB total
+      { resourceType: 'script', budget: 100 }, // 100 KB JS
+      { resourceType: 'stylesheet', budget: 50 }, // 50 KB CSS
+      { resourceType: 'image', budget: 500 }, // 500 KB images
+      { resourceType: 'total', budget: 1000 }, // 1 MB total
     ],
   },
-]
+];
 ```
 
 ## CI/CD Integration
@@ -235,14 +235,14 @@ requestIdleCallback(() => {
 });
 
 // Defer non-critical scripts
-<script defer src="analytics.js"></script>
+<script defer src="analytics.js"></script>;
 ```
 
 ### Missing Text Compression
 
 ```javascript
 // In astro.config.mjs, enable compression
-import compress from "astro-compressor";
+import compress from 'astro-compressor';
 export default defineConfig({
   integrations: [compress()],
 });

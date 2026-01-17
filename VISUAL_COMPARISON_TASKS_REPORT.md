@@ -2,7 +2,9 @@
 
 ## Summary
 
-Successfully created a comprehensive epic with **62 detailed tasks** for visual design comparison and pixel-perfect correction across all pages of the application.
+Successfully created a comprehensive epic with **62 detailed tasks** for visual
+design comparison and pixel-perfect correction across all pages of the
+application.
 
 ## Epic Information
 
@@ -17,6 +19,7 @@ Successfully created a comprehensive epic with **62 detailed tasks** for visual 
 ### Total: 62 Tasks
 
 #### 1. Root Level Pages: 20 tasks
+
 - `legacy-nko.1` - Visual Comparison: Homepage (index)
 - `legacy-nko.2` - Visual Comparison: Blog Listing Page
 - `legacy-nko.3` - Visual Comparison: Login Page
@@ -40,6 +43,7 @@ Successfully created a comprehensive epic with **62 detailed tasks** for visual 
 - `legacy-nko.21` - Visual Comparison: Hotmart Affiliate Page
 
 #### 2. Detail Pages (Dynamic Routes): 20 tasks
+
 - `legacy-nko.22` - Visual Comparison: Blog Post Detail Page
 - `legacy-nko.23` - Visual Comparison: Job Detail Page
 - `legacy-nko.24` - Visual Comparison: Job Category Detail Page
@@ -62,6 +66,7 @@ Successfully created a comprehensive epic with **62 detailed tasks** for visual 
 - `legacy-nko.41` - Visual Comparison: Hub Link Detail Page
 
 #### 3. JNG Pages: 13 tasks
+
 - `legacy-nko.42` - Visual Comparison: JNG Community Page
 - `legacy-nko.43` - Visual Comparison: JNG Companies Hiring Page
 - `legacy-nko.44` - Visual Comparison: JNG Course Page
@@ -77,6 +82,7 @@ Successfully created a comprehensive epic with **62 detailed tasks** for visual 
 - `legacy-nko.54` - Visual Comparison: JNG Resume Generator Page
 
 #### 4. Other Subdirectory Pages: 9 tasks
+
 - `legacy-nko.55` - Visual Comparison: Basic Dashboard Page
 - `legacy-nko.56` - Visual Comparison: Landing Page - Assine Basic
 - `legacy-nko.57` - Visual Comparison: Landing Page - Workshop Busca de Vagas
@@ -91,21 +97,27 @@ Successfully created a comprehensive epic with **62 detailed tasks** for visual 
 Each task includes a comprehensive PRD-style description with:
 
 ### Overview Section
+
 - Clear description of what needs to be compared and corrected
 
 ### File Locations
+
 - Legacy page location (`src-legacy/`)
 - New Astro page location (`src/pages/`)
 
 ### Task Objectives (6-step process)
+
 1. **Setup Static Server** - Instructions for serving legacy site
 2. **Setup New Site** - Instructions for running Astro dev server
-3. **Visual Comparison Setup** - Playwright configuration for side-by-side comparison
+3. **Visual Comparison Setup** - Playwright configuration for side-by-side
+   comparison
 4. **Visual Comparison Process** - Step-by-step comparison workflow
-5. **Correction Process** - How to apply fixes while maintaining Astro best practices
+5. **Correction Process** - How to apply fixes while maintaining Astro best
+   practices
 6. **Verification** - Testing and validation checklist
 
 ### Key Files to Review
+
 - Legacy HTML files
 - New Astro pages
 - Related components
@@ -114,6 +126,7 @@ Each task includes a comprehensive PRD-style description with:
 - Playwright configuration
 
 ### Best Practices to Maintain
+
 - Component reusability
 - Performance optimization
 - Accessibility (WCAG 2.1 AA)
@@ -124,9 +137,11 @@ Each task includes a comprehensive PRD-style description with:
 - CSS architecture
 
 ### Testing Checklist
+
 - 10-point verification checklist for each page
 
 ### Notes
+
 - Guidance on maintaining pixel-perfect accuracy
 - Webflow CMS considerations
 - Dynamic content handling
@@ -135,7 +150,8 @@ Each task includes a comprehensive PRD-style description with:
 
 ## Workflow for Each Task
 
-1. **Setup**: Start static server for legacy site and Astro dev server for new site
+1. **Setup**: Start static server for legacy site and Astro dev server for new
+   site
 2. **Compare**: Use Playwright to capture screenshots at multiple viewport sizes
 3. **Document**: Record all visual discrepancies found
 4. **Correct**: Apply fixes while maintaining Astro best practices
@@ -144,22 +160,26 @@ Each task includes a comprehensive PRD-style description with:
 
 ## Next Steps
 
-1. **Verify tasks are synced**: 
+1. **Verify tasks are synced**:
+
    ```bash
    bd sync
    ```
 
 2. **View the epic**:
+
    ```bash
    bd show legacy-nko
    ```
 
 3. **List all tasks**:
+
    ```bash
    bd list --parent legacy-nko
    ```
 
 4. **Start working on tasks**:
+
    ```bash
    bd ready  # Shows available tasks
    bd update <task-id> --status in_progress  # Claim a task
@@ -176,10 +196,12 @@ Each task includes a comprehensive PRD-style description with:
 - All tasks are **Open** and ready to be worked on
 - Tasks are organized hierarchically under the epic `legacy-nko`
 - Each task is extremely detailed with PRD-level documentation
-- Tasks include file paths, function names, best practices, and testing checklists
-- The script used to create these tasks is saved at `create-visual-comparison-tasks.sh` for reference
+- Tasks include file paths, function names, best practices, and testing
+  checklists
+- The script used to create these tasks is saved at
+  `create-visual-comparison-tasks.sh` for reference
 
 ---
 
-**Report Generated**: 2026-01-14
-**Total Items Created**: 1 Epic + 62 Tasks = 63 Total Items
+**Report Generated**: 2026-01-14 **Total Items Created**: 1 Epic + 62 Tasks = 63
+Total Items
