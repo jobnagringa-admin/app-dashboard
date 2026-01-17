@@ -85,3 +85,49 @@ select:-webkit-autofill:focus {
 .w--current .item__arrow {
   display: flex;
 }
+
+/* Screen reader only - visually hidden but accessible to assistive technologies */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Touch target sizes - ensure minimum 48x48px for accessibility */
+/* Mobile menu buttons - ensure sufficient touch target */
+.navbar_mobile-menu, .nav_menu-button {
+  min-width: 48px;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure interactive elements have sufficient touch targets */
+button:not(.navbar_mobile-menu):not(.nav_menu-button),
+a.button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  min-height: 48px;
+  min-width: 48px;
+}
+
+/* Navbar links already have sufficient padding, ensure they meet touch target requirements */
+.navbar_link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.navbar_logo {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
