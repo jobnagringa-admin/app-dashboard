@@ -167,34 +167,127 @@ th {
 }
 
 /* Global table styling - applies to all tables in the system */
-table {
+table,
+table[class],
+table[id],
+body table,
+div table,
+section table,
+article table {
   border-collapse: collapse !important;
   border-spacing: 0 !important;
   width: 100% !important;
-  margin-top: 1rem !important;
-  margin-bottom: 1rem !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
   border: 1px solid #e4e4ed !important;
+  border-radius: 0.5rem !important;
+  overflow: hidden !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  background-color: #ffffff !important;
+  font-size: 0.9375rem !important;
+  line-height: 1.5 !important;
+  display: table !important;
 }
 
 table td,
-table th {
-  padding: 0.5rem 0.75rem !important;
+table th,
+table tbody td,
+table tbody th,
+table thead td,
+table thead th,
+table tfoot td,
+table tfoot th,
+body table td,
+body table th,
+div table td,
+div table th {
+  padding: 0.875rem 1rem !important;
   border: 1px solid #e4e4ed !important;
   text-align: left !important;
+  vertical-align: middle !important;
 }
 
-table th {
+table th,
+table thead th,
+table thead td,
+body table th,
+div table th {
   background-color: #f1f6ff !important;
   font-weight: 600 !important;
   color: #006bff !important;
+  font-size: 0.875rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.025em !important;
+  padding: 1rem 1rem !important;
+  border-bottom: 2px solid #006bff !important;
 }
 
-table tr:nth-child(even) {
+table tbody tr,
+body table tbody tr,
+div table tbody tr {
+  transition: background-color 0.15s ease-in-out !important;
+}
+
+table tbody tr:nth-child(even),
+body table tbody tr:nth-child(even),
+div table tbody tr:nth-child(even) {
   background-color: #fafafa !important;
 }
 
-table tr:hover {
+table tbody tr:hover,
+body table tbody tr:hover,
+div table tbody tr:hover {
   background-color: #e6f0ff !important;
+}
+
+table tbody tr:last-child td,
+body table tbody tr:last-child td,
+div table tbody tr:last-child td {
+  border-bottom: none !important;
+}
+
+table td:first-child,
+table th:first-child,
+body table td:first-child,
+body table th:first-child,
+div table td:first-child,
+div table th:first-child {
+  padding-left: 1.25rem !important;
+}
+
+table td:last-child,
+table th:last-child,
+body table td:last-child,
+body table th:last-child,
+div table td:last-child,
+div table th:last-child {
+  padding-right: 1.25rem !important;
+}
+
+/* Responsive table behavior */
+@media (max-width: 767px) {
+  table,
+  table[class],
+  table[id],
+  body table,
+  div table {
+    font-size: 0.875rem !important;
+  }
+  
+  table td,
+  table th,
+  body table td,
+  body table th,
+  div table td,
+  div table th {
+    padding: 0.75rem 0.875rem !important;
+  }
+  
+  table th,
+  body table th,
+  div table th {
+    font-size: 0.8125rem !important;
+  }
 }
 @font-face {
   font-family: webflow-icons;
@@ -4928,41 +5021,193 @@ figure {
 }
 /* Table styling for w-embed and w-richtext */
 .w-embed table,
+.w-embed table[class],
+.w-embed table[id],
 .w-richtext table,
-.lesson_rich-text table {
+.w-richtext table[class],
+.w-richtext table[id],
+.lesson_rich-text table,
+.lesson_rich-text table[class],
+.lesson_rich-text table[id],
+div.w-embed table,
+div.w-richtext table,
+div.lesson_rich-text table,
+body .w-embed table,
+body .w-richtext table,
+body .lesson_rich-text table {
   border-collapse: collapse !important;
   border-spacing: 0 !important;
   width: 100% !important;
-  margin-top: 1rem !important;
-  margin-bottom: 1rem !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
   border: 1px solid #e4e4ed !important;
+  border-radius: 0.5rem !important;
+  overflow: hidden !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  background-color: #ffffff !important;
+  font-size: 0.9375rem !important;
+  line-height: 1.5 !important;
+  display: table !important;
 }
+
 .w-embed table td,
 .w-embed table th,
+.w-embed table tbody td,
+.w-embed table tbody th,
+.w-embed table thead td,
+.w-embed table thead th,
 .w-richtext table td,
 .w-richtext table th,
+.w-richtext table tbody td,
+.w-richtext table tbody th,
+.w-richtext table thead td,
+.w-richtext table thead th,
 .lesson_rich-text table td,
-.lesson_rich-text table th {
-  padding: 0.5rem 0.75rem !important;
+.lesson_rich-text table th,
+.lesson_rich-text table tbody td,
+.lesson_rich-text table tbody th,
+.lesson_rich-text table thead td,
+.lesson_rich-text table thead th,
+div.w-embed table td,
+div.w-embed table th,
+div.w-richtext table td,
+div.w-richtext table th,
+div.lesson_rich-text table td,
+div.lesson_rich-text table th {
+  padding: 0.875rem 1rem !important;
   border: 1px solid #e4e4ed !important;
   text-align: left !important;
+  vertical-align: middle !important;
 }
+
 .w-embed table th,
+.w-embed table thead th,
+.w-embed table thead td,
 .w-richtext table th,
-.lesson_rich-text table th {
+.w-richtext table thead th,
+.w-richtext table thead td,
+.lesson_rich-text table th,
+.lesson_rich-text table thead th,
+.lesson_rich-text table thead td,
+div.w-embed table th,
+div.w-richtext table th,
+div.lesson_rich-text table th {
   background-color: #f1f6ff !important;
   font-weight: 600 !important;
   color: #006bff !important;
+  font-size: 0.875rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.025em !important;
+  padding: 1rem 1rem !important;
+  border-bottom: 2px solid #006bff !important;
 }
-.w-embed table tr:nth-child(even),
-.w-richtext table tr:nth-child(even),
-.lesson_rich-text table tr:nth-child(even) {
+
+.w-embed table tbody tr,
+.w-richtext table tbody tr,
+.lesson_rich-text table tbody tr,
+div.w-embed table tbody tr,
+div.w-richtext table tbody tr,
+div.lesson_rich-text table tbody tr {
+  transition: background-color 0.15s ease-in-out !important;
+}
+
+.w-embed table tbody tr:nth-child(even),
+.w-richtext table tbody tr:nth-child(even),
+.lesson_rich-text table tbody tr:nth-child(even),
+div.w-embed table tbody tr:nth-child(even),
+div.w-richtext table tbody tr:nth-child(even),
+div.lesson_rich-text table tbody tr:nth-child(even) {
   background-color: #fafafa !important;
 }
-.w-embed table tr:hover,
-.w-richtext table tr:hover,
-.lesson_rich-text table tr:hover {
+
+.w-embed table tbody tr:hover,
+.w-richtext table tbody tr:hover,
+.lesson_rich-text table tbody tr:hover,
+div.w-embed table tbody tr:hover,
+div.w-richtext table tbody tr:hover,
+div.lesson_rich-text table tbody tr:hover {
   background-color: #e6f0ff !important;
+}
+
+.w-embed table tbody tr:last-child td,
+.w-richtext table tbody tr:last-child td,
+.lesson_rich-text table tbody tr:last-child td,
+div.w-embed table tbody tr:last-child td,
+div.w-richtext table tbody tr:last-child td,
+div.lesson_rich-text table tbody tr:last-child td {
+  border-bottom: none !important;
+}
+
+.w-embed table td:first-child,
+.w-embed table th:first-child,
+.w-richtext table td:first-child,
+.w-richtext table th:first-child,
+.lesson_rich-text table td:first-child,
+.lesson_rich-text table th:first-child,
+div.w-embed table td:first-child,
+div.w-embed table th:first-child,
+div.w-richtext table td:first-child,
+div.w-richtext table th:first-child,
+div.lesson_rich-text table td:first-child,
+div.lesson_rich-text table th:first-child {
+  padding-left: 1.25rem !important;
+}
+
+.w-embed table td:last-child,
+.w-embed table th:last-child,
+.w-richtext table td:last-child,
+.w-richtext table th:last-child,
+.lesson_rich-text table td:last-child,
+.lesson_rich-text table th:last-child,
+div.w-embed table td:last-child,
+div.w-embed table th:last-child,
+div.w-richtext table td:last-child,
+div.w-richtext table th:last-child,
+div.lesson_rich-text table td:last-child,
+div.lesson_rich-text table th:last-child {
+  padding-right: 1.25rem !important;
+}
+
+/* Responsive table behavior for w-embed and w-richtext */
+@media (max-width: 767px) {
+  .w-embed table,
+  .w-embed table[class],
+  .w-embed table[id],
+  .w-richtext table,
+  .w-richtext table[class],
+  .w-richtext table[id],
+  .lesson_rich-text table,
+  .lesson_rich-text table[class],
+  .lesson_rich-text table[id],
+  div.w-embed table,
+  div.w-richtext table,
+  div.lesson_rich-text table {
+    font-size: 0.875rem !important;
+  }
+  
+  .w-embed table td,
+  .w-embed table th,
+  .w-richtext table td,
+  .w-richtext table th,
+  .lesson_rich-text table td,
+  .lesson_rich-text table th,
+  div.w-embed table td,
+  div.w-embed table th,
+  div.w-richtext table td,
+  div.w-richtext table th,
+  div.lesson_rich-text table td,
+  div.lesson_rich-text table th {
+    padding: 0.75rem 0.875rem !important;
+  }
+  
+  .w-embed table th,
+  .w-richtext table th,
+  .lesson_rich-text table th,
+  div.w-embed table th,
+  div.w-richtext table th,
+  div.lesson_rich-text table th {
+    font-size: 0.8125rem !important;
+  }
 }
 .link-block {
   grid-column-gap: 0.5rem;
