@@ -37,6 +37,10 @@ const finalOgDescription = ogDescription || description || '';
 const finalTwitterTitle = twitterTitle || title;
 const finalTwitterDescription = twitterDescription || description || '';
 const finalTwitterImage = twitterImage || finalOgImage;
+
+// Import global styles
+import '../styles/webflow.css';
+import '../styles/global.css';
 ---
 
 <!doctype html>
@@ -145,7 +149,7 @@ const finalTwitterImage = twitterImage || finalOgImage;
 
     <!-- Global Styles -->
     <style>
-      /* Import global styles */
+      /* Global styles imported via Astro imports */
     </style>
   </head>
   <body>
