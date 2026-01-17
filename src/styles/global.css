@@ -101,7 +101,8 @@ select:-webkit-autofill:focus {
 
 /* Touch target sizes - ensure minimum 48x48px for accessibility */
 /* Mobile menu buttons - ensure sufficient touch target */
-.navbar_mobile-menu, .nav_menu-button {
+.navbar_mobile-menu,
+.nav_menu-button {
   min-width: 48px;
   min-height: 48px;
   display: inline-flex;
