@@ -1,34 +1,23 @@
 ---
-name: 'Verification & Quality Assurance'
-description:
-  'Comprehensive truth scoring, code quality verification, and automatic
-  rollback system with 0.95 accuracy threshold for ensuring high-quality agent
-  outputs and codebase reliability.'
-version: '2.0.0'
-category: 'quality-assurance'
-tags:
-  ['verification', 'truth-scoring', 'quality', 'rollback', 'metrics', 'ci-cd']
+name: "Verification & Quality Assurance"
+description: "Comprehensive truth scoring, code quality verification, and automatic rollback system with 0.95 accuracy threshold for ensuring high-quality agent outputs and codebase reliability."
+version: "2.0.0"
+category: "quality-assurance"
+tags: ["verification", "truth-scoring", "quality", "rollback", "metrics", "ci-cd"]
 ---
 
 # Verification & Quality Assurance Skill
 
 ## What This Skill Does
 
-This skill provides a comprehensive verification and quality assurance system
-that ensures code quality and correctness through:
+This skill provides a comprehensive verification and quality assurance system that ensures code quality and correctness through:
 
-- **Truth Scoring**: Real-time reliability metrics (0.0-1.0 scale) for code,
-  agents, and tasks
-- **Verification Checks**: Automated code correctness, security, and best
-  practices validation
-- **Automatic Rollback**: Instant reversion of changes that fail verification
-  (default threshold: 0.95)
-- **Quality Metrics**: Statistical analysis with trends, confidence intervals,
-  and improvement tracking
-- **CI/CD Integration**: Export capabilities for continuous integration
-  pipelines
-- **Real-time Monitoring**: Live dashboards and watch modes for ongoing
-  verification
+- **Truth Scoring**: Real-time reliability metrics (0.0-1.0 scale) for code, agents, and tasks
+- **Verification Checks**: Automated code correctness, security, and best practices validation
+- **Automatic Rollback**: Instant reversion of changes that fail verification (default threshold: 0.95)
+- **Quality Metrics**: Statistical analysis with trends, confidence intervals, and improvement tracking
+- **CI/CD Integration**: Export capabilities for continuous integration pipelines
+- **Real-time Monitoring**: Live dashboards and watch modes for ongoing verification
 
 ## Prerequisites
 
@@ -60,11 +49,9 @@ npx claude-flow@alpha verify rollback --last-good
 
 #### View Truth Metrics
 
-Display comprehensive quality and reliability metrics for your codebase and
-agent tasks.
+Display comprehensive quality and reliability metrics for your codebase and agent tasks.
 
 **Basic Usage:**
-
 ```bash
 # View current truth scores (default: table format)
 npx claude-flow@alpha truth
@@ -80,7 +67,6 @@ npx claude-flow@alpha truth --threshold 0.8
 ```
 
 **Output Formats:**
-
 ```bash
 # Table format (default)
 npx claude-flow@alpha truth --format table
@@ -96,7 +82,6 @@ npx claude-flow@alpha truth --format html --export report.html
 ```
 
 **Real-time Monitoring:**
-
 ```bash
 # Watch mode with live updates
 npx claude-flow@alpha truth --watch
@@ -108,7 +93,6 @@ npx claude-flow@alpha truth --export .claude-flow/metrics/truth-$(date +%Y%m%d).
 #### Truth Score Dashboard
 
 Example dashboard output:
-
 ```
 📊 Truth Metrics Dashboard
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -134,20 +118,17 @@ Recent Tasks:
 #### Metrics Explained
 
 **Truth Scores (0.0-1.0):**
-
 - `1.0-0.95`: Excellent ⭐ (production-ready)
 - `0.94-0.85`: Good ✅ (acceptable quality)
 - `0.84-0.75`: Warning ⚠️ (needs attention)
 - `<0.75`: Critical ❌ (requires immediate action)
 
 **Trend Indicators:**
-
 - ↗️ Improving (positive trend)
 - → Stable (consistent performance)
 - ↘️ Declining (quality regression detected)
 
 **Statistics:**
-
 - **Mean Score**: Average truth score across all measurements
 - **Median Score**: Middle value (less affected by outliers)
 - **Standard Deviation**: Consistency of scores (lower = more consistent)
@@ -160,7 +141,6 @@ Recent Tasks:
 Execute comprehensive verification checks on code, tasks, or agent outputs.
 
 **File Verification:**
-
 ```bash
 # Verify single file
 npx claude-flow@alpha verify check --file src/app.js
@@ -176,7 +156,6 @@ npx claude-flow@alpha verify check
 ```
 
 **Task Verification:**
-
 ```bash
 # Verify specific task output
 npx claude-flow@alpha verify check --task task-123
@@ -189,7 +168,6 @@ npx claude-flow@alpha verify check --task task-789 --verbose
 ```
 
 **Batch Verification:**
-
 ```bash
 # Verify multiple files in parallel
 npx claude-flow@alpha verify batch --files "*.js" --parallel
@@ -269,7 +247,6 @@ npx claude-flow@alpha verify check --json > verification.json
 Automatically revert changes that fail verification checks.
 
 **Basic Rollback:**
-
 ```bash
 # Rollback to last known good state
 npx claude-flow@alpha verify rollback --last-good
@@ -282,7 +259,6 @@ npx claude-flow@alpha verify rollback --interactive
 ```
 
 **Smart Rollback:**
-
 ```bash
 # Rollback only failed files (preserve good changes)
 npx claude-flow@alpha verify rollback --selective
@@ -295,7 +271,6 @@ npx claude-flow@alpha verify rollback --dry-run
 ```
 
 **Rollback Performance:**
-
 - Git-based rollback: <1 second
 - Selective file rollback: <500ms
 - Backup creation: Automatic before rollback
@@ -307,7 +282,6 @@ npx claude-flow@alpha verify rollback --dry-run
 Create detailed verification reports with metrics and visualizations.
 
 **Report Formats:**
-
 ```bash
 # JSON report
 npx claude-flow@alpha verify report --format json
@@ -323,7 +297,6 @@ npx claude-flow@alpha verify report --format markdown
 ```
 
 **Time-based Reports:**
-
 ```bash
 # Last 24 hours
 npx claude-flow@alpha verify report --period 24h
@@ -339,7 +312,6 @@ npx claude-flow@alpha verify report --from 2025-01-01 --to 2025-01-31
 ```
 
 **Report Content:**
-
 - Overall truth scores
 - Per-agent performance metrics
 - Task completion quality
@@ -369,7 +341,6 @@ npx claude-flow@alpha verify dashboard --refresh 5s
 ```
 
 **Dashboard Features:**
-
 - Real-time truth score updates (WebSocket)
 - Interactive charts and graphs
 - Agent performance comparison
@@ -419,7 +390,6 @@ Set verification preferences in `.claude-flow/config.json`:
 #### Threshold Configuration
 
 **Adjust verification strictness:**
-
 ```bash
 # Strict mode (99% accuracy required)
 npx claude-flow@alpha verify check --threshold 0.99
@@ -432,14 +402,13 @@ npx claude-flow@alpha config set verification.threshold 0.98
 ```
 
 **Per-environment thresholds:**
-
 ```json
 {
   "verification": {
     "thresholds": {
       "production": 0.99,
       "staging": 0.95,
-      "development": 0.9
+      "development": 0.90
     }
   }
 }
@@ -450,7 +419,6 @@ npx claude-flow@alpha config set verification.threshold 0.98
 #### CI/CD Integration
 
 **GitHub Actions:**
-
 ```yaml
 name: Quality Verification
 
@@ -485,13 +453,11 @@ jobs:
 ```
 
 **GitLab CI:**
-
 ```yaml
 verify:
   stage: test
   script:
-    - npx claude-flow@alpha verify check --threshold 0.95 --json >
-      verification.json
+    - npx claude-flow@alpha verify check --threshold 0.95 --json > verification.json
     - |
       score=$(jq '.overallScore' verification.json)
       if [ $(echo "$score < 0.95" | bc) -eq 1 ]; then
@@ -597,20 +563,17 @@ echo "✅ Verification passed with score: $score"
 ### Performance Metrics
 
 **Verification Speed:**
-
 - Single file check: <100ms
 - Directory scan: <500ms (per 100 files)
 - Full codebase analysis: <5s (typical project)
 - Truth score calculation: <50ms
 
 **Rollback Speed:**
-
 - Git-based rollback: <1s
 - Selective file rollback: <500ms
 - Backup creation: <2s
 
 **Dashboard Performance:**
-
 - Initial load: <1s
 - Real-time updates: <100ms latency (WebSocket)
 - Chart rendering: 60 FPS
@@ -620,7 +583,6 @@ echo "✅ Verification passed with score: $score"
 #### Common Issues
 
 **Low Truth Scores:**
-
 ```bash
 # Get detailed breakdown
 npx claude-flow@alpha truth --verbose --threshold 0.0
@@ -633,7 +595,6 @@ npx claude-flow@alpha truth --agent <agent-name> --format json
 ```
 
 **Rollback Failures:**
-
 ```bash
 # Check git status
 git status
@@ -646,7 +607,6 @@ git reset --hard HEAD~1
 ```
 
 **Verification Timeouts:**
-
 ```bash
 # Increase timeout
 npx claude-flow@alpha verify check --timeout 60s
@@ -672,8 +632,7 @@ Verification commands return standard exit codes:
 
 ### Best Practices
 
-1. **Set Appropriate Thresholds**: Use 0.99 for critical code, 0.95 for
-   standard, 0.90 for experimental
+1. **Set Appropriate Thresholds**: Use 0.99 for critical code, 0.95 for standard, 0.90 for experimental
 2. **Enable Auto-rollback**: Prevent bad code from persisting
 3. **Monitor Trends**: Track improvement over time, not just current scores
 4. **Integrate with CI/CD**: Make verification part of your pipeline

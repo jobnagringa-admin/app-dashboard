@@ -1,18 +1,13 @@
 ---
-name: 'V3 Memory Unification'
-description:
-  'Unify 6+ memory systems into AgentDB with HNSW indexing for 150x-12,500x
-  search improvements. Implements ADR-006 (Unified Memory Service) and ADR-009
-  (Hybrid Memory Backend).'
+name: "V3 Memory Unification"
+description: "Unify 6+ memory systems into AgentDB with HNSW indexing for 150x-12,500x search improvements. Implements ADR-006 (Unified Memory Service) and ADR-009 (Hybrid Memory Backend)."
 ---
 
 # V3 Memory Unification
 
 ## What This Skill Does
 
-Consolidates disparate memory systems into unified AgentDB backend with HNSW
-vector search, achieving 150x-12,500x search performance improvements while
-maintaining backward compatibility.
+Consolidates disparate memory systems into unified AgentDB backend with HNSW vector search, achieving 150x-12,500x search performance improvements while maintaining backward compatibility.
 
 ## Quick Start
 
@@ -30,7 +25,6 @@ Task("Memory migration", "Migrate SQLite/Markdown to AgentDB", "v3-memory-specia
 ## Systems to Unify
 
 ### Legacy Systems → AgentDB
-
 ```
 ┌─────────────────────────────────────────┐
 │  • MemoryManager (basic operations)     │
@@ -54,7 +48,6 @@ Task("Memory migration", "Migrate SQLite/Markdown to AgentDB", "v3-memory-specia
 ## Implementation Architecture
 
 ### Unified Memory Service
-
 ```typescript
 class UnifiedMemoryService implements IMemoryBackend {
   constructor(
@@ -78,7 +71,6 @@ class UnifiedMemoryService implements IMemoryBackend {
 ```
 
 ### HNSW Vector Search
-
 ```typescript
 class HNSWIndexer {
   constructor(dimensions: number = 1536) {
@@ -86,7 +78,7 @@ class HNSWIndexer {
       dimensions,
       efConstruction: 200,
       M: 16,
-      speedupTarget: '150x-12500x',
+      speedupTarget: '150x-12500x'
     });
   }
 
@@ -101,18 +93,16 @@ class HNSWIndexer {
 ## Migration Strategy
 
 ### Phase 1: Foundation
-
 ```typescript
 // AgentDB adapter setup
 const agentdb = new AgentDBAdapter({
   dimensions: 1536,
   indexType: 'HNSW',
-  speedupTarget: '150x-12500x',
+  speedupTarget: '150x-12500x'
 });
 ```
 
 ### Phase 2: Data Migration
-
 ```typescript
 // SQLite → AgentDB
 const migrateFromSQLite = async () => {
@@ -132,7 +122,7 @@ const migrateFromMarkdown = async () => {
       id: generateId(),
       content,
       embedding: await generateEmbedding(content),
-      metadata: { originalFile: file },
+      metadata: { originalFile: file }
     });
   }
 };
@@ -141,7 +131,6 @@ const migrateFromMarkdown = async () => {
 ## SONA Integration
 
 ### Learning Pattern Storage
-
 ```typescript
 class SONAMemoryIntegration {
   async storePattern(pattern: LearningPattern): Promise<void> {
@@ -151,9 +140,9 @@ class SONAMemoryIntegration {
       metadata: {
         sonaMode: pattern.mode,
         reward: pattern.reward,
-        adaptationTime: pattern.adaptationTime,
+        adaptationTime: pattern.adaptationTime
       },
-      embedding: await this.generateEmbedding(pattern.data),
+      embedding: await this.generateEmbedding(pattern.data)
     });
   }
 
@@ -161,7 +150,7 @@ class SONAMemoryIntegration {
     return this.memory.query({
       type: 'semantic',
       content: query,
-      filters: { type: 'learning_pattern' },
+      filters: { type: 'learning_pattern' }
     });
   }
 }
