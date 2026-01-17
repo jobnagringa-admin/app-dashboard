@@ -1,28 +1,12 @@
 [
   {
     "name": "minScore",
-    "expected": 0.9,
-    "actual": 0.83,
-    "values": [
-      0.83,
-      0.76,
-      0.82
-    ],
-    "operator": ">=",
-    "passed": false,
-    "auditProperty": "performance",
-    "auditId": "categories",
-    "level": "warn",
-    "url": "http://localhost:4321/"
-  },
-  {
-    "name": "minScore",
     "expected": 1,
-    "actual": 0.77,
+    "actual": 0.88,
     "values": [
-      0.77,
-      0.77,
-      0.77
+      0.88,
+      0.88,
+      0.88
     ],
     "operator": ">=",
     "passed": false,
@@ -48,37 +32,55 @@
     "url": "http://localhost:4321/"
   },
   {
-    "name": "minScore",
-    "expected": 1,
-    "actual": 0.92,
-    "values": [
-      0.92,
-      0.92,
-      0.92
-    ],
-    "operator": ">=",
-    "passed": false,
-    "auditProperty": "seo",
-    "auditId": "categories",
-    "level": "warn",
-    "url": "http://localhost:4321/"
-  },
-  {
     "name": "maxNumericValue",
-    "expected": 0.1,
-    "actual": 0.2954423824152394,
+    "expected": 102400,
+    "actual": 154030,
     "values": [
-      0.2954423824152394,
-      0.5348294413337716,
-      0.2954423824152394
+      154034,
+      154572,
+      154030
     ],
     "operator": "<=",
     "passed": false,
-    "auditId": "cumulative-layout-shift",
+    "auditProperty": "script.size",
+    "auditId": "resource-summary",
     "level": "warn",
     "url": "http://localhost:4321/",
-    "auditTitle": "Cumulative Layout Shift",
-    "auditDocumentationLink": "https://web.dev/articles/cls"
+    "auditTitle": "Resources Summary"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 51200,
+    "actual": 55928,
+    "values": [
+      55928,
+      55928,
+      55928
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditProperty": "document.size",
+    "auditId": "resource-summary",
+    "level": "warn",
+    "url": "http://localhost:4321/",
+    "auditTitle": "Resources Summary"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.5,
+    "values": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "uses-responsive-images",
+    "level": "warn",
+    "url": "http://localhost:4321/",
+    "auditTitle": "Properly size images",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/uses-responsive-images/"
   },
   {
     "name": "minScore",
@@ -98,8 +100,8 @@
     "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/uses-text-compression/"
   },
   {
-    "name": "minScore",
-    "expected": 0.9,
+    "name": "auditRan",
+    "expected": 1,
     "actual": 0,
     "values": [
       0,
@@ -108,11 +110,10 @@
     ],
     "operator": ">=",
     "passed": false,
-    "auditId": "render-blocking-resources",
+    "message": "\"uses-rel-preload\" is not a known audit.",
+    "auditId": "uses-rel-preload",
     "level": "warn",
-    "url": "http://localhost:4321/",
-    "auditTitle": "Eliminate render-blocking resources",
-    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/render-blocking-resources/"
+    "url": "http://localhost:4321/"
   },
   {
     "name": "minScore",
@@ -130,40 +131,6 @@
     "url": "http://localhost:4321/",
     "auditTitle": "Elements with an ARIA `[role]` that require children to contain a specific `[role]` are missing some or all of those required children.",
     "auditDocumentationLink": "https://dequeuniversity.com/rules/axe/4.10/aria-required-children"
-  },
-  {
-    "name": "minScore",
-    "expected": 0.9,
-    "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
-    "operator": ">=",
-    "passed": false,
-    "auditId": "link-name",
-    "level": "warn",
-    "url": "http://localhost:4321/",
-    "auditTitle": "Links do not have a discernible name",
-    "auditDocumentationLink": "https://dequeuniversity.com/rules/axe/4.10/link-name"
-  },
-  {
-    "name": "minScore",
-    "expected": 0.9,
-    "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
-    "operator": ">=",
-    "passed": false,
-    "auditId": "select-name",
-    "level": "warn",
-    "url": "http://localhost:4321/",
-    "auditTitle": "Select elements do not have associated label elements.",
-    "auditDocumentationLink": "https://dequeuniversity.com/rules/axe/4.10/select-name"
   },
   {
     "name": "minScore",
@@ -235,11 +202,11 @@
   {
     "name": "minScore",
     "expected": 0.9,
-    "actual": 0,
+    "actual": 0.5,
     "values": [
-      0,
-      0,
-      0
+      0.5,
+      0.5,
+      0.5
     ],
     "operator": ">=",
     "passed": false,
@@ -252,23 +219,6 @@
   {
     "name": "minScore",
     "expected": 0.9,
-    "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
-    "operator": ">=",
-    "passed": false,
-    "auditId": "unused-javascript",
-    "level": "warn",
-    "url": "http://localhost:4321/",
-    "auditTitle": "Reduce unused JavaScript",
-    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/"
-  },
-  {
-    "name": "minScore",
-    "expected": 0.9,
     "actual": 0.5,
     "values": [
       0.5,
@@ -277,62 +227,11 @@
     ],
     "operator": ">=",
     "passed": false,
-    "auditId": "unsized-images",
+    "auditId": "unused-javascript",
     "level": "warn",
     "url": "http://localhost:4321/",
-    "auditTitle": "Image elements do not have explicit `width` and `height`",
-    "auditDocumentationLink": "https://web.dev/articles/optimize-cls#images_without_dimensions"
-  },
-  {
-    "name": "minScore",
-    "expected": 0.9,
-    "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
-    "operator": ">=",
-    "passed": false,
-    "auditId": "lcp-lazy-loaded",
-    "level": "warn",
-    "url": "http://localhost:4321/",
-    "auditTitle": "Largest Contentful Paint image was lazily loaded",
-    "auditDocumentationLink": "https://web.dev/articles/lcp-lazy-loading"
-  },
-  {
-    "name": "minScore",
-    "expected": 0.9,
-    "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
-    "operator": ">=",
-    "passed": false,
-    "auditId": "lcp-discovery-insight",
-    "level": "warn",
-    "url": "http://localhost:4321/",
-    "auditTitle": "LCP request discovery",
-    "auditDocumentationLink": "https://web.dev/articles/optimize-lcp#1_eliminate_resource_load_delay"
-  },
-  {
-    "name": "minScore",
-    "expected": 0.9,
-    "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
-    "operator": ">=",
-    "passed": false,
-    "auditId": "cls-culprits-insight",
-    "level": "warn",
-    "url": "http://localhost:4321/",
-    "auditTitle": "Layout shift culprits",
-    "auditDocumentationLink": "https://web.dev/articles/optimize-cls"
+    "auditTitle": "Reduce unused JavaScript",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/"
   },
   {
     "name": "minScore",
@@ -364,6 +263,1035 @@
     "auditId": "network-dependency-tree-insight",
     "level": "warn",
     "url": "http://localhost:4321/",
+    "auditTitle": "Network dependency tree",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/critical-request-chains"
+  },
+  {
+    "name": "minScore",
+    "expected": 1,
+    "actual": 0.93,
+    "values": [
+      0.93,
+      0.93,
+      0.93
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "accessibility",
+    "auditId": "categories",
+    "level": "warn",
+    "url": "http://localhost:4321/blog"
+  },
+  {
+    "name": "minScore",
+    "expected": 1,
+    "actual": 0.56,
+    "values": [
+      0.56,
+      0.56,
+      0.56
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "best-practices",
+    "auditId": "categories",
+    "level": "warn",
+    "url": "http://localhost:4321/blog"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 102400,
+    "actual": 154057,
+    "values": [
+      154111,
+      154057,
+      154567
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditProperty": "script.size",
+    "auditId": "resource-summary",
+    "level": "warn",
+    "url": "http://localhost:4321/blog",
+    "auditTitle": "Resources Summary"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "uses-text-compression",
+    "level": "warn",
+    "url": "http://localhost:4321/blog",
+    "auditTitle": "Enable text compression",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/uses-text-compression/"
+  },
+  {
+    "name": "auditRan",
+    "expected": 1,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "message": "\"uses-rel-preload\" is not a known audit.",
+    "auditId": "uses-rel-preload",
+    "level": "warn",
+    "url": "http://localhost:4321/blog"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "target-size",
+    "level": "warn",
+    "url": "http://localhost:4321/blog",
+    "auditTitle": "Touch targets do not have sufficient size or spacing.",
+    "auditDocumentationLink": "https://dequeuniversity.com/rules/axe/4.10/target-size"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "errors-in-console",
+    "level": "warn",
+    "url": "http://localhost:4321/blog",
+    "auditTitle": "Browser errors were logged to the console",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/best-practices/errors-in-console/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "inspector-issues",
+    "level": "warn",
+    "url": "http://localhost:4321/blog",
+    "auditTitle": "Issues were logged in the `Issues` panel in Chrome Devtools"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "third-party-cookies",
+    "level": "warn",
+    "url": "http://localhost:4321/blog",
+    "auditTitle": "Uses third-party cookies",
+    "auditDocumentationLink": "https://privacysandbox.google.com/cookies/prepare/overview"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.5,
+    "values": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "unminified-javascript",
+    "level": "warn",
+    "url": "http://localhost:4321/blog",
+    "auditTitle": "Minify JavaScript",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/unminified-javascript/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.5,
+    "values": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "unused-javascript",
+    "level": "warn",
+    "url": "http://localhost:4321/blog",
+    "auditTitle": "Reduce unused JavaScript",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.5,
+    "values": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "document-latency-insight",
+    "level": "warn",
+    "url": "http://localhost:4321/blog",
+    "auditTitle": "Document request latency"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "network-dependency-tree-insight",
+    "level": "warn",
+    "url": "http://localhost:4321/blog",
+    "auditTitle": "Network dependency tree",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/critical-request-chains"
+  },
+  {
+    "name": "minScore",
+    "expected": 1,
+    "actual": 0.93,
+    "values": [
+      0.93,
+      0.93,
+      0.93
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "accessibility",
+    "auditId": "categories",
+    "level": "warn",
+    "url": "http://localhost:4321/assine"
+  },
+  {
+    "name": "minScore",
+    "expected": 1,
+    "actual": 0.56,
+    "values": [
+      0.56,
+      0.56,
+      0.56
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "best-practices",
+    "auditId": "categories",
+    "level": "warn",
+    "url": "http://localhost:4321/assine"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 102400,
+    "actual": 154029,
+    "values": [
+      154029,
+      154033,
+      154030
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditProperty": "script.size",
+    "auditId": "resource-summary",
+    "level": "warn",
+    "url": "http://localhost:4321/assine",
+    "auditTitle": "Resources Summary"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "uses-text-compression",
+    "level": "warn",
+    "url": "http://localhost:4321/assine",
+    "auditTitle": "Enable text compression",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/uses-text-compression/"
+  },
+  {
+    "name": "auditRan",
+    "expected": 1,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "message": "\"uses-rel-preload\" is not a known audit.",
+    "auditId": "uses-rel-preload",
+    "level": "warn",
+    "url": "http://localhost:4321/assine"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "target-size",
+    "level": "warn",
+    "url": "http://localhost:4321/assine",
+    "auditTitle": "Touch targets do not have sufficient size or spacing.",
+    "auditDocumentationLink": "https://dequeuniversity.com/rules/axe/4.10/target-size"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "errors-in-console",
+    "level": "warn",
+    "url": "http://localhost:4321/assine",
+    "auditTitle": "Browser errors were logged to the console",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/best-practices/errors-in-console/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "inspector-issues",
+    "level": "warn",
+    "url": "http://localhost:4321/assine",
+    "auditTitle": "Issues were logged in the `Issues` panel in Chrome Devtools"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "third-party-cookies",
+    "level": "warn",
+    "url": "http://localhost:4321/assine",
+    "auditTitle": "Uses third-party cookies",
+    "auditDocumentationLink": "https://privacysandbox.google.com/cookies/prepare/overview"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.5,
+    "values": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "unminified-javascript",
+    "level": "warn",
+    "url": "http://localhost:4321/assine",
+    "auditTitle": "Minify JavaScript",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/unminified-javascript/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.5,
+    "values": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "unused-javascript",
+    "level": "warn",
+    "url": "http://localhost:4321/assine",
+    "auditTitle": "Reduce unused JavaScript",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.5,
+    "values": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "document-latency-insight",
+    "level": "warn",
+    "url": "http://localhost:4321/assine",
+    "auditTitle": "Document request latency"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "network-dependency-tree-insight",
+    "level": "warn",
+    "url": "http://localhost:4321/assine",
+    "auditTitle": "Network dependency tree",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/critical-request-chains"
+  },
+  {
+    "name": "minScore",
+    "expected": 1,
+    "actual": 0.93,
+    "values": [
+      0.93,
+      0.93,
+      0.93
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "accessibility",
+    "auditId": "categories",
+    "level": "warn",
+    "url": "http://localhost:4321/parcerias"
+  },
+  {
+    "name": "minScore",
+    "expected": 1,
+    "actual": 0.56,
+    "values": [
+      0.56,
+      0.56,
+      0.56
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "best-practices",
+    "auditId": "categories",
+    "level": "warn",
+    "url": "http://localhost:4321/parcerias"
+  },
+  {
+    "name": "maxNumericValue",
+    "expected": 102400,
+    "actual": 154030,
+    "values": [
+      154040,
+      154550,
+      154030
+    ],
+    "operator": "<=",
+    "passed": false,
+    "auditProperty": "script.size",
+    "auditId": "resource-summary",
+    "level": "warn",
+    "url": "http://localhost:4321/parcerias",
+    "auditTitle": "Resources Summary"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.5,
+    "values": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "uses-responsive-images",
+    "level": "warn",
+    "url": "http://localhost:4321/parcerias",
+    "auditTitle": "Properly size images",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/uses-responsive-images/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "uses-text-compression",
+    "level": "warn",
+    "url": "http://localhost:4321/parcerias",
+    "auditTitle": "Enable text compression",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/uses-text-compression/"
+  },
+  {
+    "name": "auditRan",
+    "expected": 1,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "message": "\"uses-rel-preload\" is not a known audit.",
+    "auditId": "uses-rel-preload",
+    "level": "warn",
+    "url": "http://localhost:4321/parcerias"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "target-size",
+    "level": "warn",
+    "url": "http://localhost:4321/parcerias",
+    "auditTitle": "Touch targets do not have sufficient size or spacing.",
+    "auditDocumentationLink": "https://dequeuniversity.com/rules/axe/4.10/target-size"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "errors-in-console",
+    "level": "warn",
+    "url": "http://localhost:4321/parcerias",
+    "auditTitle": "Browser errors were logged to the console",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/best-practices/errors-in-console/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "inspector-issues",
+    "level": "warn",
+    "url": "http://localhost:4321/parcerias",
+    "auditTitle": "Issues were logged in the `Issues` panel in Chrome Devtools"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "third-party-cookies",
+    "level": "warn",
+    "url": "http://localhost:4321/parcerias",
+    "auditTitle": "Uses third-party cookies",
+    "auditDocumentationLink": "https://privacysandbox.google.com/cookies/prepare/overview"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.5,
+    "values": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "unminified-javascript",
+    "level": "warn",
+    "url": "http://localhost:4321/parcerias",
+    "auditTitle": "Minify JavaScript",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/unminified-javascript/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.5,
+    "values": [
+      0,
+      0.5,
+      0.5
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "unused-javascript",
+    "level": "warn",
+    "url": "http://localhost:4321/parcerias",
+    "auditTitle": "Reduce unused JavaScript",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.5,
+    "values": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "document-latency-insight",
+    "level": "warn",
+    "url": "http://localhost:4321/parcerias",
+    "auditTitle": "Document request latency"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "network-dependency-tree-insight",
+    "level": "warn",
+    "url": "http://localhost:4321/parcerias",
+    "auditTitle": "Network dependency tree",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/critical-request-chains"
+  },
+  {
+    "name": "minScore",
+    "expected": 1,
+    "actual": 0.91,
+    "values": [
+      0.91,
+      0.91,
+      0.91
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "accessibility",
+    "auditId": "categories",
+    "level": "warn",
+    "url": "http://localhost:4321/ebook"
+  },
+  {
+    "name": "minScore",
+    "expected": 1,
+    "actual": 0.56,
+    "values": [
+      0.56,
+      0.56,
+      0.56
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "best-practices",
+    "auditId": "categories",
+    "level": "warn",
+    "url": "http://localhost:4321/ebook"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "uses-text-compression",
+    "level": "warn",
+    "url": "http://localhost:4321/ebook",
+    "auditTitle": "Enable text compression",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/uses-text-compression/"
+  },
+  {
+    "name": "auditRan",
+    "expected": 1,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "message": "\"uses-rel-preload\" is not a known audit.",
+    "auditId": "uses-rel-preload",
+    "level": "warn",
+    "url": "http://localhost:4321/ebook"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "target-size",
+    "level": "warn",
+    "url": "http://localhost:4321/ebook",
+    "auditTitle": "Touch targets do not have sufficient size or spacing.",
+    "auditDocumentationLink": "https://dequeuniversity.com/rules/axe/4.10/target-size"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "errors-in-console",
+    "level": "warn",
+    "url": "http://localhost:4321/ebook",
+    "auditTitle": "Browser errors were logged to the console",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/best-practices/errors-in-console/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "inspector-issues",
+    "level": "warn",
+    "url": "http://localhost:4321/ebook",
+    "auditTitle": "Issues were logged in the `Issues` panel in Chrome Devtools"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "third-party-cookies",
+    "level": "warn",
+    "url": "http://localhost:4321/ebook",
+    "auditTitle": "Uses third-party cookies",
+    "auditDocumentationLink": "https://privacysandbox.google.com/cookies/prepare/overview"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.5,
+    "values": [
+      0,
+      0.5,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "unused-javascript",
+    "level": "warn",
+    "url": "http://localhost:4321/ebook",
+    "auditTitle": "Reduce unused JavaScript",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.5,
+    "values": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "document-latency-insight",
+    "level": "warn",
+    "url": "http://localhost:4321/ebook",
+    "auditTitle": "Document request latency"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "network-dependency-tree-insight",
+    "level": "warn",
+    "url": "http://localhost:4321/ebook",
+    "auditTitle": "Network dependency tree",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/critical-request-chains"
+  },
+  {
+    "name": "minScore",
+    "expected": 1,
+    "actual": 0.93,
+    "values": [
+      0.93,
+      0.93,
+      0.93
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "accessibility",
+    "auditId": "categories",
+    "level": "warn",
+    "url": "http://localhost:4321/politicas"
+  },
+  {
+    "name": "minScore",
+    "expected": 1,
+    "actual": 0.56,
+    "values": [
+      0.56,
+      0.56,
+      0.56
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "best-practices",
+    "auditId": "categories",
+    "level": "warn",
+    "url": "http://localhost:4321/politicas"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "uses-text-compression",
+    "level": "warn",
+    "url": "http://localhost:4321/politicas",
+    "auditTitle": "Enable text compression",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/uses-text-compression/"
+  },
+  {
+    "name": "auditRan",
+    "expected": 1,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "message": "\"uses-rel-preload\" is not a known audit.",
+    "auditId": "uses-rel-preload",
+    "level": "warn",
+    "url": "http://localhost:4321/politicas"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "target-size",
+    "level": "warn",
+    "url": "http://localhost:4321/politicas",
+    "auditTitle": "Touch targets do not have sufficient size or spacing.",
+    "auditDocumentationLink": "https://dequeuniversity.com/rules/axe/4.10/target-size"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "errors-in-console",
+    "level": "warn",
+    "url": "http://localhost:4321/politicas",
+    "auditTitle": "Browser errors were logged to the console",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/best-practices/errors-in-console/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "inspector-issues",
+    "level": "warn",
+    "url": "http://localhost:4321/politicas",
+    "auditTitle": "Issues were logged in the `Issues` panel in Chrome Devtools"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "third-party-cookies",
+    "level": "warn",
+    "url": "http://localhost:4321/politicas",
+    "auditTitle": "Uses third-party cookies",
+    "auditDocumentationLink": "https://privacysandbox.google.com/cookies/prepare/overview"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.5,
+    "values": [
+      0,
+      0.5,
+      0.5
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "unused-javascript",
+    "level": "warn",
+    "url": "http://localhost:4321/politicas",
+    "auditTitle": "Reduce unused JavaScript",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.5,
+    "values": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "document-latency-insight",
+    "level": "warn",
+    "url": "http://localhost:4321/politicas",
+    "auditTitle": "Document request latency"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "network-dependency-tree-insight",
+    "level": "warn",
+    "url": "http://localhost:4321/politicas",
     "auditTitle": "Network dependency tree",
     "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/critical-request-chains"
   }

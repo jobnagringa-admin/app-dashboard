@@ -1,3 +1,8 @@
 {
-  "http://localhost:4321/": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1768395071681-29747.report.html"
+  "http://localhost:4321/": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1768413761189-12474.report.html",
+  "http://localhost:4321/blog": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1768413762587-22109.report.html",
+  "http://localhost:4321/assine": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1768413764036-30917.report.html",
+  "http://localhost:4321/parcerias": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1768413765484-82945.report.html",
+  "http://localhost:4321/ebook": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1768413766177-86717.report.html",
+  "http://localhost:4321/politicas": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1768413766787-49390.report.html"
 }

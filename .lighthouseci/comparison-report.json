@@ -1,0 +1,372 @@
+{
+  "timestamp": "2026-01-14T19:54:37.241Z",
+  "summary": {
+    "improved": 0,
+    "regressed": 0,
+    "unchanged": 24
+  },
+  "regressions": [],
+  "improvements": [],
+  "pages": {
+    "/": {
+      "categories": {
+        "performance": {
+          "current": 100,
+          "reference": 100,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "accessibility": {
+          "current": 88,
+          "reference": 88,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "best-practices": {
+          "current": 56,
+          "reference": 56,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "seo": {
+          "current": 100,
+          "reference": 100,
+          "diff": 0,
+          "status": "unchanged"
+        }
+      },
+      "vitals": {
+        "fcp": {
+          "current": 407.59625000000005,
+          "reference": 407.59625000000005,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "lcp": {
+          "current": 596.5812833333333,
+          "reference": 596.5812833333333,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "cls": {
+          "current": 0.0004362558321939793,
+          "reference": 0.0004362558321939793,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "tbt": {
+          "current": 0,
+          "reference": 0,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "si": {
+          "current": 422.76973052786815,
+          "reference": 422.76973052786815,
+          "diff": 0,
+          "status": "unchanged"
+        }
+      }
+    },
+    "/blog": {
+      "categories": {
+        "performance": {
+          "current": 100,
+          "reference": 100,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "accessibility": {
+          "current": 93,
+          "reference": 93,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "best-practices": {
+          "current": 56,
+          "reference": 56,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "seo": {
+          "current": 100,
+          "reference": 100,
+          "diff": 0,
+          "status": "unchanged"
+        }
+      },
+      "vitals": {
+        "fcp": {
+          "current": 286.04794999999996,
+          "reference": 286.04794999999996,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "lcp": {
+          "current": 526.0582583333334,
+          "reference": 526.0582583333334,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "cls": {
+          "current": 0,
+          "reference": 0,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "tbt": {
+          "current": 0,
+          "reference": 0,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "si": {
+          "current": 345.4557904386299,
+          "reference": 345.4557904386299,
+          "diff": 0,
+          "status": "unchanged"
+        }
+      }
+    },
+    "/assine": {
+      "categories": {
+        "performance": {
+          "current": 100,
+          "reference": 100,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "accessibility": {
+          "current": 93,
+          "reference": 93,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "best-practices": {
+          "current": 56,
+          "reference": 56,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "seo": {
+          "current": 100,
+          "reference": 100,
+          "diff": 0,
+          "status": "unchanged"
+        }
+      },
+      "vitals": {
+        "fcp": {
+          "current": 286.4405166666667,
+          "reference": 286.4405166666667,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "lcp": {
+          "current": 526.5785666666666,
+          "reference": 526.5785666666666,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "cls": {
+          "current": 0,
+          "reference": 0,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "tbt": {
+          "current": 0,
+          "reference": 0,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "si": {
+          "current": 325.39479519436077,
+          "reference": 325.39479519436077,
+          "diff": 0,
+          "status": "unchanged"
+        }
+      }
+    },
+    "/parcerias": {
+      "categories": {
+        "performance": {
+          "current": 100,
+          "reference": 100,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "accessibility": {
+          "current": 93,
+          "reference": 93,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "best-practices": {
+          "current": 56,
+          "reference": 56,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "seo": {
+          "current": 100,
+          "reference": 100,
+          "diff": 0,
+          "status": "unchanged"
+        }
+      },
+      "vitals": {
+        "fcp": {
+          "current": 326.64113333333336,
+          "reference": 326.64113333333336,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "lcp": {
+          "current": 566.105225,
+          "reference": 566.105225,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "cls": {
+          "current": 0,
+          "reference": 0,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "tbt": {
+          "current": 0,
+          "reference": 0,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "si": {
+          "current": 342.1963988887446,
+          "reference": 342.1963988887446,
+          "diff": 0,
+          "status": "unchanged"
+        }
+      }
+    },
+    "/ebook": {
+      "categories": {
+        "performance": {
+          "current": 100,
+          "reference": 100,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "accessibility": {
+          "current": 91,
+          "reference": 91,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "best-practices": {
+          "current": 56,
+          "reference": 56,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "seo": {
+          "current": 100,
+          "reference": 100,
+          "diff": 0,
+          "status": "unchanged"
+        }
+      },
+      "vitals": {
+        "fcp": {
+          "current": 287.0071833333334,
+          "reference": 287.0071833333334,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "lcp": {
+          "current": 517.0324,
+          "reference": 517.0324,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "cls": {
+          "current": 0.00004918741007162037,
+          "reference": 0.00004918741007162037,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "tbt": {
+          "current": 0,
+          "reference": 0,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "si": {
+          "current": 327.1900838055354,
+          "reference": 327.1900838055354,
+          "diff": 0,
+          "status": "unchanged"
+        }
+      }
+    },
+    "/politicas": {
+      "categories": {
+        "performance": {
+          "current": 100,
+          "reference": 100,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "accessibility": {
+          "current": 93,
+          "reference": 93,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "best-practices": {
+          "current": 56,
+          "reference": 56,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "seo": {
+          "current": 100,
+          "reference": 100,
+          "diff": 0,
+          "status": "unchanged"
+        }
+      },
+      "vitals": {
+        "fcp": {
+          "current": 285.73803333333336,
+          "reference": 285.73803333333336,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "lcp": {
+          "current": 513.9141333333333,
+          "reference": 513.9141333333333,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "cls": {
+          "current": 0,
+          "reference": 0,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "tbt": {
+          "current": 0,
+          "reference": 0,
+          "diff": 0,
+          "status": "unchanged"
+        },
+        "si": {
+          "current": 305.7175663887939,
+          "reference": 305.7175663887939,
+          "diff": 0,
+          "status": "unchanged"
+        }
+      }
+    }
+  }
+}
