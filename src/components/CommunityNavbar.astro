@@ -9,7 +9,7 @@
         <div class="container-medium">
           <div class="nav_container">
             <div class="nav_left-col">
-              <a href="https://www.jobnagringa.com.br/" class="w-inline-block">
+              <a href="https://www.jobnagringa.com.br/" class="w-inline-block" aria-label="Job na Gringa - Página inicial">
                 <img
                   src="/cdn-assets/64823ad1f11f6a5ee085b6c1_Vectors-Wrapper.svg"
                   loading="lazy"
@@ -34,17 +34,18 @@
               </div>
             </div>
             <div class="nav_right-col">
-              <a href="/jng/member-dashboard" class="navbar_link">Dashboard</a>
-              <a href="/jng/jobs" class="navbar_link">Vagas</a>
-              <a href="/jng/index#" id="logout" class="navbar_link is-white w-button">Sair</a>
+              <a href="/member-dashboard" class="navbar_link">Dashboard</a>
+              <a href="/jobs" class="navbar_link">Vagas</a>
+              <a href="/index#" id="logout" class="navbar_link is-white w-button">Sair</a>
             </div>
-            <div class="nav_menu-button">
+            <button type="button" class="nav_menu-button" aria-label="Abrir menu de navegação" aria-expanded="false">
               <div class="icon-1x1-medium w-embed">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="1em"
                   height="1em"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path
                     fill="currentColor"
@@ -52,7 +53,7 @@
                   />
                 </svg>
               </div>
-            </div>
+            </button>
           </div>
         </div>
       </div>
@@ -124,7 +125,10 @@
                 ]);
                 clearCookies();
               } catch (e) {
-                console.warn('Error clearing site data:', e);
+                // Silently handle errors during logout cleanup
+                if (process.env.NODE_ENV === 'development') {
+                  console.warn('Error clearing site data:', e);
+                }
               } finally {
                 window.location.href = '/';
               }
