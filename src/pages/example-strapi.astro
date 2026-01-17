@@ -1,0 +1,243 @@
+---
+/**
+ * Example Strapi Integration Page
+ * 
+ * This page demonstrates how to fetch and display Strapi content
+ * in an Astro page. This is a reference implementation.
+ * 
+ * To use this page:
+ * 1. Ensure your Strapi instance is running
+ * 2. Create a content type (e.g., 'posts', 'pages')
+ * 3. Update the contentType variable below
+ * 4. Visit /example-strapi in your browser
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { fetchStrapiCollection, fetchStrapiSingle } from '../utils/strapi-server';
+import { getStrapiImageURL } from '../utils/strapi';
+
+// Example: Fetch a collection
+// Replace 'posts' with your actual content type
+const contentType = 'posts';
+
+let collectionData = null;
+let singleData = null;
+let error = null;
+
+try {
+  // Fetch collection example
+  const collection = await fetchStrapiCollection(contentType, {
+    populate: '*',
+    sort: ['createdAt:desc'],
+    pagination: {
+      page: 1,
+      pageSize: 5,
+    },
+  });
+  collectionData = collection;
+
+  // Fetch single entry example (if collection has items)
+  if (collection.data.length > 0) {
+    const firstItem = collection.data[0];
+    const single = await fetchStrapiSingle(contentType, firstItem.id, {
+      populate: '*',
+    });
+    singleData = single;
+  }
+} catch (err) {
+  error = err instanceof Error ? err.message : 'Unknown error occurred';
+  console.error('Strapi fetch error:', err);
+}
+---
+
+<BaseLayout
+  title="Strapi Integration Example"
+  description="Example page demonstrating Strapi CMS integration"
+>
+  <div class="page-wrapper">
+    <div class="container">
+      <h1>Strapi CMS Integration Example</h1>
+
+      {error ? (
+        <div class="error-message">
+          <h2>Error</h2>
+          <p>{error}</p>
+          <p>
+            Make sure your Strapi instance is running and the content type
+            '{contentType}' exists.
+          </p>
+        </div>
+      ) : (
+        <>
+          {/* Collection Example */}
+          <section>
+            <h2>Collection Example</h2>
+            {collectionData && collectionData.data.length > 0 ? (
+              <>
+                <p>
+                  Found {collectionData.data.length} items (Total:{' '}
+                  {collectionData.meta?.pagination?.total || 0})
+                </p>
+                <div class="collection-grid">
+                  {collectionData.data.map((item) => (
+                    <article class="item-card">
+                      <h3>{item.title || item.name || `Item ${item.id}`}</h3>
+                      {item.image && (
+                        <img
+                          src={getStrapiImageURL(item.image)}
+                          alt={item.image.alternativeText || ''}
+                          loading="lazy"
+                        />
+                      )}
+                      {item.excerpt && <p>{item.excerpt}</p>}
+                      {item.createdAt && (
+                        <time datetime={item.createdAt}>
+                          {new Date(item.createdAt).toLocaleDateString()}
+                        </time>
+                      )}
+                    </article>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <p>No items found in '{contentType}' content type.</p>
+            )}
+          </section>
+
+          {/* Single Entry Example */}
+          {singleData && (
+            <section>
+              <h2>Single Entry Example</h2>
+              <article class="single-item">
+                <h3>{singleData.title || singleData.name || `Item ${singleData.id}`}</h3>
+                {singleData.image && (
+                  <img
+                    src={getStrapiImageURL(singleData.image)}
+                    alt={singleData.image.alternativeText || ''}
+                  />
+                )}
+                {singleData.content && (
+                  <div set:html={singleData.content} />
+                )}
+                {singleData.createdAt && (
+                  <p>
+                    <strong>Created:</strong>{' '}
+                    {new Date(singleData.createdAt).toLocaleString()}
+                  </p>
+                )}
+                {singleData.updatedAt && (
+                  <p>
+                    <strong>Updated:</strong>{' '}
+                    {new Date(singleData.updatedAt).toLocaleString()}
+                  </p>
+                )}
+              </article>
+            </section>
+          )}
+
+          {/* API Info */}
+          <section>
+            <h2>API Information</h2>
+            <dl>
+              <dt>Content Type</dt>
+              <dd>{contentType}</dd>
+              <dt>Strapi URL</dt>
+              <dd>{import.meta.env.STRAPI_URL || 'Not configured'}</dd>
+              <dt>API Prefix</dt>
+              <dd>{import.meta.env.STRAPI_API_PREFIX || '/api'}</dd>
+            </dl>
+          </section>
+        </>
+      )}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-wrapper {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  h1 {
+    margin-bottom: 2rem;
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  h2 {
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 0.5rem;
+  }
+
+  .error-message {
+    background-color: #fee;
+    border: 1px solid #fcc;
+    border-radius: 4px;
+    padding: 1rem;
+    color: #c00;
+  }
+
+  .collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .item-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1rem;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .item-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 1rem 0;
+  }
+
+  .item-card h3 {
+    margin-top: 0;
+  }
+
+  .single-item {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 2rem;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .single-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 1rem 0;
+  }
+
+  dl {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 0.5rem 1rem;
+  }
+
+  dt {
+    font-weight: bold;
+  }
+
+  dd {
+    margin: 0;
+  }
+</style>
