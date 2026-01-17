@@ -20,6 +20,8 @@ Finally, show a report of all the tasks that were created.
     Para isso, suba o site original da pasta src-legacy com algum servidor de arquiovos estaticos, abra com playwright tanto essa pagina quanto a pagina do sistema novo, compare as duas telas, aplique as correções.
 
     Faça isso para cada uma das telas do sistema, deixe absolutamente perfeito e identico ao original, mas aplicando todas as boas praticas ja estabelecidas no codigo do astro.
+
+    No beads, Faça uma task diferente para cada uma das telas 
 <TASK/>
 
 <CONTEXT/>
