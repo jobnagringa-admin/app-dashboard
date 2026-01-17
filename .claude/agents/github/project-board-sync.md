@@ -1,10 +1,8 @@
 ---
 name: project-board-sync
-description:
-  Synchronize AI swarms with GitHub Projects for visual task management,
-  progress tracking, and team coordination
+description: Synchronize AI swarms with GitHub Projects for visual task management, progress tracking, and team coordination
 type: coordination
-color: '#A8E6CF'
+color: "#A8E6CF"
 tools:
   - Bash
   - Read
@@ -28,28 +26,24 @@ tools:
 hooks:
   pre:
     - "gh auth status || (echo 'GitHub CLI not authenticated' && exit 1)"
-    - "gh project list --owner @me --limit 1 >/dev/null || echo 'No projects
-      accessible'"
+    - "gh project list --owner @me --limit 1 >/dev/null || echo 'No projects accessible'"
     - "git status --porcelain || echo 'Not in git repository'"
     - "gh api user | jq -r '.login' || echo 'API access check'"
   post:
-    - 'gh project list --owner @me --limit 3 | head -5'
-    - 'gh issue list --limit 3 --json number,title,state'
+    - "gh project list --owner @me --limit 3 | head -5"
+    - "gh issue list --limit 3 --json number,title,state"
     - "git branch --show-current || echo 'Not on a branch'"
-    - 'gh repo view --json name,description'
+    - "gh repo view --json name,description"
 ---
 
 # Project Board Sync - GitHub Projects Integration
 
 ## Overview
-
-Synchronize AI swarms with GitHub Projects for visual task management, progress
-tracking, and team coordination.
+Synchronize AI swarms with GitHub Projects for visual task management, progress tracking, and team coordination.
 
 ## Core Features
 
 ### 1. Board Initialization
-
 ```bash
 # Connect swarm to GitHub Project using gh CLI
 # Get project details
@@ -57,7 +51,7 @@ PROJECT_ID=$(gh project list --owner @me --format json | \
   jq -r '.projects[] | select(.title == "Development Board") | .id')
 
 # Initialize swarm with project
-npx claude-flow@v3alpha github board-init \
+npx ruv-swarm github board-init \
   --project-id "$PROJECT_ID" \
   --sync-mode "bidirectional" \
   --create-views "swarm-status,agent-workload,priority"
@@ -70,10 +64,9 @@ gh project field-create $PROJECT_ID --owner @me \
 ```
 
 ### 2. Task Synchronization
-
 ```bash
 # Sync swarm tasks with project cards
-npx claude-flow@v3alpha github board-sync \
+npx ruv-swarm github board-sync \
   --map-status '{
     "todo": "To Do",
     "in_progress": "In Progress",
@@ -85,10 +78,9 @@ npx claude-flow@v3alpha github board-sync \
 ```
 
 ### 3. Real-time Updates
-
 ```bash
 # Enable real-time board updates
-npx claude-flow@v3alpha github board-realtime \
+npx ruv-swarm github board-realtime \
   --webhook-endpoint "https://api.example.com/github-sync" \
   --update-frequency "immediate" \
   --batch-updates false
@@ -97,54 +89,52 @@ npx claude-flow@v3alpha github board-realtime \
 ## Configuration
 
 ### Board Mapping Configuration
-
 ```yaml
 # .github/board-sync.yml
 version: 1
 project:
-  name: 'AI Development Board'
+  name: "AI Development Board"
   number: 1
-
+  
 mapping:
   # Map swarm task status to board columns
   status:
-    pending: 'Backlog'
-    assigned: 'Ready'
-    in_progress: 'In Progress'
-    review: 'Review'
-    completed: 'Done'
-    blocked: 'Blocked'
-
+    pending: "Backlog"
+    assigned: "Ready"
+    in_progress: "In Progress"
+    review: "Review"
+    completed: "Done"
+    blocked: "Blocked"
+    
   # Map agent types to labels
   agents:
-    coder: '🔧 Development'
-    tester: '🧪 Testing'
-    analyst: '📊 Analysis'
-    designer: '🎨 Design'
-    architect: '🏗️ Architecture'
-
+    coder: "🔧 Development"
+    tester: "🧪 Testing"
+    analyst: "📊 Analysis"
+    designer: "🎨 Design"
+    architect: "🏗️ Architecture"
+    
   # Map priority to project fields
   priority:
-    critical: '🔴 Critical'
-    high: '🟡 High'
-    medium: '🟢 Medium'
-    low: '⚪ Low'
-
+    critical: "🔴 Critical"
+    high: "🟡 High"
+    medium: "🟢 Medium"
+    low: "⚪ Low"
+    
   # Custom fields
   fields:
-    - name: 'Agent Count'
+    - name: "Agent Count"
       type: number
       source: task.agents.length
-    - name: 'Complexity'
+    - name: "Complexity"
       type: select
       source: task.complexity
-    - name: 'ETA'
+    - name: "ETA"
       type: date
       source: task.estimatedCompletion
 ```
 
 ### View Configuration
-
 ```javascript
 // Custom board views
 {
@@ -176,30 +166,27 @@ mapping:
 ## Automation Features
 
 ### 1. Auto-Assignment
-
 ```bash
 # Automatically assign cards to agents
-npx claude-flow@v3alpha github board-auto-assign \
+npx ruv-swarm github board-auto-assign \
   --strategy "load-balanced" \
   --consider "expertise,workload,availability" \
   --update-cards
 ```
 
 ### 2. Progress Tracking
-
 ```bash
 # Track and visualize progress
-npx claude-flow@v3alpha github board-progress \
+npx ruv-swarm github board-progress \
   --show "burndown,velocity,cycle-time" \
   --time-period "sprint" \
   --export-metrics
 ```
 
 ### 3. Smart Card Movement
-
 ```bash
 # Intelligent card state transitions
-npx claude-flow@v3alpha github board-smart-move \
+npx ruv-swarm github board-smart-move \
   --rules '{
     "auto-progress": "when:all-subtasks-done",
     "auto-review": "when:tests-pass",
@@ -210,7 +197,6 @@ npx claude-flow@v3alpha github board-smart-move \
 ## Board Commands
 
 ### Create Cards from Issues
-
 ```bash
 # Convert issues to project cards using gh CLI
 # List issues with label
@@ -222,7 +208,7 @@ echo "$ISSUES" | jq -r '.[].number' | while read -r issue; do
 done
 
 # Process with swarm
-npx claude-flow@v3alpha github board-import-issues \
+npx ruv-swarm github board-import-issues \
   --issues "$ISSUES" \
   --add-to-column "Backlog" \
   --parse-checklist \
@@ -230,20 +216,18 @@ npx claude-flow@v3alpha github board-import-issues \
 ```
 
 ### Bulk Operations
-
 ```bash
 # Bulk card operations
-npx claude-flow@v3alpha github board-bulk \
+npx ruv-swarm github board-bulk \
   --filter "status:blocked" \
   --action "add-label:needs-attention" \
   --notify-assignees
 ```
 
 ### Card Templates
-
 ```bash
 # Create cards from templates
-npx claude-flow@v3alpha github board-template \
+npx ruv-swarm github board-template \
   --template "feature-development" \
   --variables '{
     "feature": "User Authentication",
@@ -256,10 +240,9 @@ npx claude-flow@v3alpha github board-template \
 ## Advanced Synchronization
 
 ### 1. Multi-Board Sync
-
 ```bash
 # Sync across multiple boards
-npx claude-flow@v3alpha github multi-board-sync \
+npx ruv-swarm github multi-board-sync \
   --boards "Development,QA,Release" \
   --sync-rules '{
     "Development->QA": "when:ready-for-test",
@@ -268,10 +251,9 @@ npx claude-flow@v3alpha github multi-board-sync \
 ```
 
 ### 2. Cross-Organization Sync
-
 ```bash
 # Sync boards across organizations
-npx claude-flow@v3alpha github cross-org-sync \
+npx ruv-swarm github cross-org-sync \
   --source "org1/Project-A" \
   --target "org2/Project-B" \
   --field-mapping "custom" \
@@ -279,10 +261,9 @@ npx claude-flow@v3alpha github cross-org-sync \
 ```
 
 ### 3. External Tool Integration
-
 ```bash
 # Sync with external tools
-npx claude-flow@v3alpha github board-integrate \
+npx ruv-swarm github board-integrate \
   --tool "jira" \
   --mapping "bidirectional" \
   --sync-frequency "5m" \
@@ -292,7 +273,6 @@ npx claude-flow@v3alpha github board-integrate \
 ## Visualization & Reporting
 
 ### Board Analytics
-
 ```bash
 # Generate board analytics using gh CLI data
 # Fetch project data
@@ -306,7 +286,7 @@ ISSUE_METRICS=$(echo "$PROJECT_DATA" | jq -r '.items[] | select(.content.type ==
   done)
 
 # Generate analytics with swarm
-npx claude-flow@v3alpha github board-analytics \
+npx ruv-swarm github board-analytics \
   --project-data "$PROJECT_DATA" \
   --issue-metrics "$ISSUE_METRICS" \
   --metrics "throughput,cycle-time,wip" \
@@ -316,7 +296,6 @@ npx claude-flow@v3alpha github board-analytics \
 ```
 
 ### Custom Dashboards
-
 ```javascript
 // Dashboard configuration
 {
@@ -345,10 +324,9 @@ npx claude-flow@v3alpha github board-analytics \
 ```
 
 ### Reports
-
 ```bash
 # Generate reports
-npx claude-flow@v3alpha github board-report \
+npx ruv-swarm github board-report \
   --type "sprint-summary" \
   --format "markdown" \
   --include "velocity,burndown,blockers" \
@@ -358,10 +336,9 @@ npx claude-flow@v3alpha github board-report \
 ## Workflow Integration
 
 ### Sprint Management
-
 ```bash
 # Manage sprints with swarms
-npx claude-flow@v3alpha github sprint-manage \
+npx ruv-swarm github sprint-manage \
   --sprint "Sprint 23" \
   --auto-populate \
   --capacity-planning \
@@ -369,10 +346,9 @@ npx claude-flow@v3alpha github sprint-manage \
 ```
 
 ### Milestone Tracking
-
 ```bash
 # Track milestone progress
-npx claude-flow@v3alpha github milestone-track \
+npx ruv-swarm github milestone-track \
   --milestone "v2.0 Release" \
   --update-board \
   --show-dependencies \
@@ -380,10 +356,9 @@ npx claude-flow@v3alpha github milestone-track \
 ```
 
 ### Release Planning
-
 ```bash
 # Plan releases using board data
-npx claude-flow@v3alpha github release-plan-board \
+npx ruv-swarm github release-plan-board \
   --analyze-velocity \
   --estimate-completion \
   --identify-risks \
@@ -393,10 +368,9 @@ npx claude-flow@v3alpha github release-plan-board \
 ## Team Collaboration
 
 ### Work Distribution
-
 ```bash
 # Distribute work among team
-npx claude-flow@v3alpha github board-distribute \
+npx ruv-swarm github board-distribute \
   --strategy "skills-based" \
   --balance-workload \
   --respect-preferences \
@@ -404,10 +378,9 @@ npx claude-flow@v3alpha github board-distribute \
 ```
 
 ### Standup Automation
-
 ```bash
 # Generate standup reports
-npx claude-flow@v3alpha github standup-report \
+npx ruv-swarm github standup-report \
   --team "frontend" \
   --include "yesterday,today,blockers" \
   --format "slack" \
@@ -415,10 +388,9 @@ npx claude-flow@v3alpha github standup-report \
 ```
 
 ### Review Coordination
-
 ```bash
 # Coordinate reviews via board
-npx claude-flow@v3alpha github review-coordinate \
+npx ruv-swarm github review-coordinate \
   --board "Code Review" \
   --assign-reviewers \
   --track-feedback \
@@ -428,21 +400,18 @@ npx claude-flow@v3alpha github review-coordinate \
 ## Best Practices
 
 ### 1. Board Organization
-
 - Clear column definitions
 - Consistent labeling system
 - Regular board grooming
 - Automation rules
 
 ### 2. Data Integrity
-
 - Bidirectional sync validation
 - Conflict resolution strategies
 - Audit trails
 - Regular backups
 
 ### 3. Team Adoption
-
 - Training materials
 - Clear workflows
 - Regular reviews
@@ -451,20 +420,18 @@ npx claude-flow@v3alpha github review-coordinate \
 ## Troubleshooting
 
 ### Sync Issues
-
 ```bash
 # Diagnose sync problems
-npx claude-flow@v3alpha github board-diagnose \
+npx ruv-swarm github board-diagnose \
   --check "permissions,webhooks,rate-limits" \
   --test-sync \
   --show-conflicts
 ```
 
 ### Performance
-
 ```bash
 # Optimize board performance
-npx claude-flow@v3alpha github board-optimize \
+npx ruv-swarm github board-optimize \
   --analyze-size \
   --archive-completed \
   --index-fields \
@@ -472,10 +439,9 @@ npx claude-flow@v3alpha github board-optimize \
 ```
 
 ### Data Recovery
-
 ```bash
 # Recover board data
-npx claude-flow@v3alpha github board-recover \
+npx ruv-swarm github board-recover \
   --backup-id "2024-01-15" \
   --restore-cards \
   --preserve-current \
@@ -485,10 +451,9 @@ npx claude-flow@v3alpha github board-recover \
 ## Examples
 
 ### Agile Development Board
-
 ```bash
 # Setup agile board
-npx claude-flow@v3alpha github agile-board \
+npx ruv-swarm github agile-board \
   --methodology "scrum" \
   --sprint-length "2w" \
   --ceremonies "planning,review,retro" \
@@ -496,10 +461,9 @@ npx claude-flow@v3alpha github agile-board \
 ```
 
 ### Kanban Flow Board
-
 ```bash
 # Setup kanban board
-npx claude-flow@v3alpha github kanban-board \
+npx ruv-swarm github kanban-board \
   --wip-limits '{
     "In Progress": 5,
     "Review": 3
@@ -509,10 +473,9 @@ npx claude-flow@v3alpha github kanban-board \
 ```
 
 ### Research Project Board
-
 ```bash
 # Setup research board
-npx claude-flow@v3alpha github research-board \
+npx ruv-swarm github research-board \
   --phases "ideation,research,experiment,analysis,publish" \
   --track-citations \
   --collaborate-external
@@ -521,10 +484,9 @@ npx claude-flow@v3alpha github research-board \
 ## Metrics & KPIs
 
 ### Performance Metrics
-
 ```bash
 # Track board performance
-npx claude-flow@v3alpha github board-kpis \
+npx ruv-swarm github board-kpis \
   --metrics '[
     "average-cycle-time",
     "throughput-per-sprint",
@@ -535,15 +497,13 @@ npx claude-flow@v3alpha github board-kpis \
 ```
 
 ### Team Metrics
-
 ```bash
 # Track team performance
-npx claude-flow@v3alpha github team-metrics \
+npx ruv-swarm github team-metrics \
   --board "Development" \
   --per-member \
   --include "velocity,quality,collaboration" \
   --anonymous-option
 ```
 
-See also: [swarm-issue.md](./swarm-issue.md),
-[multi-repo-swarm.md](./multi-repo-swarm.md)
+See also: [swarm-issue.md](./swarm-issue.md), [multi-repo-swarm.md](./multi-repo-swarm.md)

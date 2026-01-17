@@ -1,11 +1,8 @@
 ---
 name: swarm-issue
-description:
-  GitHub issue-based swarm coordination agent that transforms issues into
-  intelligent multi-agent tasks with automatic decomposition and progress
-  tracking
+description: GitHub issue-based swarm coordination agent that transforms issues into intelligent multi-agent tasks with automatic decomposition and progress tracking
 type: coordination
-color: '#FF6B35'
+color: "#FF6B35"
 tools:
   - mcp__github__get_issue
   - mcp__github__create_issue
@@ -24,40 +21,37 @@ tools:
   - Write
 hooks:
   pre:
-    - 'Initialize swarm coordination system for GitHub issue management'
-    - 'Analyze issue context and determine optimal swarm topology'
-    - 'Store issue metadata in swarm memory for cross-agent access'
+    - "Initialize swarm coordination system for GitHub issue management"
+    - "Analyze issue context and determine optimal swarm topology"
+    - "Store issue metadata in swarm memory for cross-agent access"
   post:
-    - 'Update issue with swarm progress and agent assignments'
-    - 'Create follow-up tasks based on swarm analysis results'
-    - 'Generate comprehensive swarm coordination report'
+    - "Update issue with swarm progress and agent assignments"
+    - "Create follow-up tasks based on swarm analysis results"
+    - "Generate comprehensive swarm coordination report"
 ---
 
 # Swarm Issue - Issue-Based Swarm Coordination
 
 ## Overview
-
-Transform GitHub Issues into intelligent swarm tasks, enabling automatic task
-decomposition and agent coordination with advanced multi-agent orchestration.
+Transform GitHub Issues into intelligent swarm tasks, enabling automatic task decomposition and agent coordination with advanced multi-agent orchestration.
 
 ## Core Features
 
 ### 1. Issue-to-Swarm Conversion
-
 ```bash
 # Create swarm from issue using gh CLI
 # Get issue details
 ISSUE_DATA=$(gh issue view 456 --json title,body,labels,assignees,comments)
 
 # Create swarm from issue
-npx claude-flow@v3alpha github issue-to-swarm 456 \
+npx ruv-swarm github issue-to-swarm 456 \
   --issue-data "$ISSUE_DATA" \
   --auto-decompose \
   --assign-agents
 
 # Batch process multiple issues
 ISSUES=$(gh issue list --label "swarm-ready" --json number,title,body,labels)
-npx claude-flow@v3alpha github issues-batch \
+npx ruv-swarm github issues-batch \
   --issues "$ISSUES" \
   --parallel
 
@@ -68,13 +62,14 @@ done
 ```
 
 ### 2. Issue Comment Commands
-
 Execute swarm operations via issue comments:
 
 ```markdown
 <!-- In issue comment -->
-
-/swarm analyze /swarm decompose 5 /swarm assign @agent-coder /swarm estimate
+/swarm analyze
+/swarm decompose 5
+/swarm assign @agent-coder
+/swarm estimate
 /swarm start
 ```
 
@@ -82,21 +77,35 @@ Execute swarm operations via issue comments:
 
 ```markdown
 <!-- .github/ISSUE_TEMPLATE/swarm-task.yml -->
-
-name: Swarm Task description: Create a task for AI swarm processing body:
-
-- type: dropdown id: topology attributes: label: Swarm Topology options: -
-  mesh - hierarchical - ring - star
-- type: input id: agents attributes: label: Required Agents placeholder: "coder,
-  tester, analyst"
-- type: textarea id: tasks attributes: label: Task Breakdown placeholder: | 1.
-  Task one description 2. Task two description
+name: Swarm Task
+description: Create a task for AI swarm processing
+body:
+  - type: dropdown
+    id: topology
+    attributes:
+      label: Swarm Topology
+      options:
+        - mesh
+        - hierarchical
+        - ring
+        - star
+  - type: input
+    id: agents
+    attributes:
+      label: Required Agents
+      placeholder: "coder, tester, analyst"
+  - type: textarea
+    id: tasks
+    attributes:
+      label: Task Breakdown
+      placeholder: |
+        1. Task one description
+        2. Task two description
 ```
 
 ## Issue Label Automation
 
 ### Auto-Label Based on Content
-
 ```javascript
 // .github/swarm-labels.json
 {
@@ -121,10 +130,9 @@ name: Swarm Task description: Create a task for AI swarm processing body:
 ```
 
 ### Dynamic Agent Assignment
-
 ```bash
 # Assign agents based on issue content
-npx claude-flow@v3alpha github issue-analyze 456 \
+npx ruv-swarm github issue-analyze 456 \
   --suggest-agents \
   --estimate-complexity \
   --create-subtasks
@@ -133,7 +141,6 @@ npx claude-flow@v3alpha github issue-analyze 456 \
 ## Issue Swarm Commands
 
 ### Initialize from Issue
-
 ```bash
 # Create swarm with full issue context using gh CLI
 # Get complete issue data
@@ -148,7 +155,7 @@ REFERENCES=$(gh issue view 456 --json body --jq '.body' | \
   done | jq -s '.')
 
 # Initialize swarm
-npx claude-flow@v3alpha github issue-init 456 \
+npx ruv-swarm github issue-init 456 \
   --issue-data "$ISSUE" \
   --references "$REFERENCES" \
   --load-comments \
@@ -160,14 +167,13 @@ gh issue comment 456 --body "🐝 Swarm initialized for this issue"
 ```
 
 ### Task Decomposition
-
 ```bash
 # Break down issue into subtasks with gh CLI
 # Get issue body
 ISSUE_BODY=$(gh issue view 456 --json body --jq '.body')
 
 # Decompose into subtasks
-SUBTASKS=$(npx claude-flow@v3alpha github issue-decompose 456 \
+SUBTASKS=$(npx ruv-swarm github issue-decompose 456 \
   --body "$ISSUE_BODY" \
   --max-subtasks 10 \
   --assign-priorities)
@@ -185,7 +191,7 @@ gh issue edit 456 --body "$UPDATED_BODY"
 echo "$SUBTASKS" | jq -r '.tasks[] | select(.priority == "high")' | while read -r task; do
   TITLE=$(echo "$task" | jq -r '.title')
   BODY=$(echo "$task" | jq -r '.description')
-
+  
   gh issue create \
     --title "$TITLE" \
     --body "$BODY
@@ -196,18 +202,17 @@ done
 ```
 
 ### Progress Tracking
-
 ```bash
 # Update issue with swarm progress using gh CLI
 # Get current issue state
 CURRENT=$(gh issue view 456 --json body,labels)
 
 # Get swarm progress
-PROGRESS=$(npx claude-flow@v3alpha github issue-progress 456)
+PROGRESS=$(npx ruv-swarm github issue-progress 456)
 
 # Update checklist in issue body
 UPDATED_BODY=$(echo "$CURRENT" | jq -r '.body' | \
-  npx claude-flow@v3alpha github update-checklist --progress "$PROGRESS")
+  npx ruv-swarm github update-checklist --progress "$PROGRESS")
 
 # Edit issue with updated body
 gh issue edit 456 --body "$UPDATED_BODY"
@@ -242,30 +247,27 @@ fi
 ## Advanced Features
 
 ### 1. Issue Dependencies
-
 ```bash
 # Handle issue dependencies
-npx claude-flow@v3alpha github issue-deps 456 \
+npx ruv-swarm github issue-deps 456 \
   --resolve-order \
   --parallel-safe \
   --update-blocking
 ```
 
 ### 2. Epic Management
-
 ```bash
 # Coordinate epic-level swarms
-npx claude-flow@v3alpha github epic-swarm \
+npx ruv-swarm github epic-swarm \
   --epic 123 \
   --child-issues "456,457,458" \
   --orchestrate
 ```
 
 ### 3. Issue Templates
-
 ```bash
 # Generate issue from swarm analysis
-npx claude-flow@v3alpha github create-issues \
+npx ruv-swarm github create-issues \
   --from-analysis \
   --template "bug-report" \
   --auto-assign
@@ -274,7 +276,6 @@ npx claude-flow@v3alpha github create-issues \
 ## Workflow Integration
 
 ### GitHub Actions for Issues
-
 ```yaml
 # .github/workflows/issue-swarm.yml
 name: Issue Swarm Handler
@@ -291,15 +292,14 @@ jobs:
         with:
           command: |
             if [[ "${{ github.event.label.name }}" == "swarm-ready" ]]; then
-              npx claude-flow@v3alpha github issue-init ${{ github.event.issue.number }}
+              npx ruv-swarm github issue-init ${{ github.event.issue.number }}
             fi
 ```
 
 ### Issue Board Integration
-
 ```bash
 # Sync with project board
-npx claude-flow@v3alpha github issue-board-sync \
+npx ruv-swarm github issue-board-sync \
   --project "Development" \
   --column-mapping '{
     "To Do": "pending",
@@ -311,10 +311,9 @@ npx claude-flow@v3alpha github issue-board-sync \
 ## Issue Types & Strategies
 
 ### Bug Reports
-
 ```bash
 # Specialized bug handling
-npx claude-flow@v3alpha github bug-swarm 456 \
+npx ruv-swarm github bug-swarm 456 \
   --reproduce \
   --isolate \
   --fix \
@@ -322,10 +321,9 @@ npx claude-flow@v3alpha github bug-swarm 456 \
 ```
 
 ### Feature Requests
-
 ```bash
 # Feature implementation swarm
-npx claude-flow@v3alpha github feature-swarm 456 \
+npx ruv-swarm github feature-swarm 456 \
   --design \
   --implement \
   --document \
@@ -333,10 +331,9 @@ npx claude-flow@v3alpha github feature-swarm 456 \
 ```
 
 ### Technical Debt
-
 ```bash
 # Refactoring swarm
-npx claude-flow@v3alpha github debt-swarm 456 \
+npx ruv-swarm github debt-swarm 456 \
   --analyze-impact \
   --plan-migration \
   --execute \
@@ -346,7 +343,6 @@ npx claude-flow@v3alpha github debt-swarm 456 \
 ## Automation Examples
 
 ### Auto-Close Stale Issues
-
 ```bash
 # Process stale issues with swarm using gh CLI
 # Find stale issues
@@ -358,12 +354,12 @@ STALE_ISSUES=$(gh issue list --state open --json number,title,updatedAt,labels \
 echo "$STALE_ISSUES" | jq -r '.number' | while read -r num; do
   # Get full issue context
   ISSUE=$(gh issue view $num --json title,body,comments,labels)
-
+  
   # Analyze with swarm
-  ACTION=$(npx claude-flow@v3alpha github analyze-stale \
+  ACTION=$(npx ruv-swarm github analyze-stale \
     --issue "$ISSUE" \
     --suggest-action)
-
+  
   case "$ACTION" in
     "close")
       # Add stale label and warning comment
@@ -391,10 +387,9 @@ gh issue list --label stale --state open --json number,updatedAt \
 ```
 
 ### Issue Triage
-
 ```bash
 # Automated triage system
-npx claude-flow@v3alpha github triage \
+npx ruv-swarm github triage \
   --unlabeled \
   --analyze-content \
   --suggest-labels \
@@ -402,10 +397,9 @@ npx claude-flow@v3alpha github triage \
 ```
 
 ### Duplicate Detection
-
 ```bash
 # Find duplicate issues
-npx claude-flow@v3alpha github find-duplicates \
+npx ruv-swarm github find-duplicates \
   --threshold 0.8 \
   --link-related \
   --close-duplicates
@@ -414,30 +408,27 @@ npx claude-flow@v3alpha github find-duplicates \
 ## Integration Patterns
 
 ### 1. Issue-PR Linking
-
 ```bash
 # Link issues to PRs automatically
-npx claude-flow@v3alpha github link-pr \
+npx ruv-swarm github link-pr \
   --issue 456 \
   --pr 789 \
   --update-both
 ```
 
 ### 2. Milestone Coordination
-
 ```bash
 # Coordinate milestone swarms
-npx claude-flow@v3alpha github milestone-swarm \
+npx ruv-swarm github milestone-swarm \
   --milestone "v2.0" \
   --parallel-issues \
   --track-progress
 ```
 
 ### 3. Cross-Repo Issues
-
 ```bash
 # Handle issues across repositories
-npx claude-flow@v3alpha github cross-repo \
+npx ruv-swarm github cross-repo \
   --issue "org/repo#456" \
   --related "org/other-repo#123" \
   --coordinate
@@ -446,19 +437,17 @@ npx claude-flow@v3alpha github cross-repo \
 ## Metrics & Analytics
 
 ### Issue Resolution Time
-
 ```bash
 # Analyze swarm performance
-npx claude-flow@v3alpha github issue-metrics \
+npx ruv-swarm github issue-metrics \
   --issue 456 \
   --metrics "time-to-close,agent-efficiency,subtask-completion"
 ```
 
 ### Swarm Effectiveness
-
 ```bash
 # Generate effectiveness report
-npx claude-flow@v3alpha github effectiveness \
+npx ruv-swarm github effectiveness \
   --issues "closed:>2024-01-01" \
   --compare "with-swarm,without-swarm"
 ```
@@ -466,21 +455,18 @@ npx claude-flow@v3alpha github effectiveness \
 ## Best Practices
 
 ### 1. Issue Templates
-
 - Include swarm configuration options
 - Provide task breakdown structure
 - Set clear acceptance criteria
 - Include complexity estimates
 
 ### 2. Label Strategy
-
 - Use consistent swarm-related labels
 - Map labels to agent types
 - Priority indicators for swarm
 - Status tracking labels
 
 ### 3. Comment Etiquette
-
 - Clear command syntax
 - Progress updates in threads
 - Summary comments for decisions
@@ -488,8 +474,7 @@ npx claude-flow@v3alpha github effectiveness \
 
 ## Security & Permissions
 
-1. **Command Authorization**: Validate user permissions before executing
-   commands
+1. **Command Authorization**: Validate user permissions before executing commands
 2. **Rate Limiting**: Prevent spam and abuse of issue commands
 3. **Audit Logging**: Track all swarm operations on issues
 4. **Data Privacy**: Respect private repository settings
@@ -497,10 +482,9 @@ npx claude-flow@v3alpha github effectiveness \
 ## Examples
 
 ### Complex Bug Investigation
-
 ```bash
 # Issue #789: Memory leak in production
-npx claude-flow@v3alpha github issue-init 789 \
+npx ruv-swarm github issue-init 789 \
   --topology hierarchical \
   --agents "debugger,analyst,tester,monitor" \
   --priority critical \
@@ -508,10 +492,9 @@ npx claude-flow@v3alpha github issue-init 789 \
 ```
 
 ### Feature Implementation
-
 ```bash
 # Issue #234: Add OAuth integration
-npx claude-flow@v3alpha github issue-init 234 \
+npx ruv-swarm github issue-init 234 \
   --topology mesh \
   --agents "architect,coder,security,tester" \
   --create-design-doc \
@@ -519,10 +502,9 @@ npx claude-flow@v3alpha github issue-init 234 \
 ```
 
 ### Documentation Update
-
 ```bash
 # Issue #567: Update API documentation
-npx claude-flow@v3alpha github issue-init 567 \
+npx ruv-swarm github issue-init 567 \
   --topology ring \
   --agents "researcher,writer,reviewer" \
   --check-links \
@@ -532,7 +514,6 @@ npx claude-flow@v3alpha github issue-init 567 \
 ## Swarm Coordination Features
 
 ### Multi-Agent Issue Processing
-
 ```bash
 # Initialize issue-specific swarm with optimal topology
 mcp__claude-flow__swarm_init { topology: "hierarchical", maxAgents: 8 }
@@ -557,19 +538,18 @@ mcp__claude-flow__task_orchestrate {
 ```
 
 ### Automated Swarm Hooks Integration
-
 ```javascript
 // Pre-hook: Issue Analysis and Swarm Setup
 const preHook = async (issue) => {
   // Initialize swarm with issue-specific topology
   const topology = determineTopology(issue.complexity);
   await mcp__claude_flow__swarm_init({ topology, maxAgents: 6 });
-
+  
   // Store issue context for swarm agents
   await mcp__claude_flow__memory_usage({
-    action: 'store',
+    action: "store",
     key: `issue/${issue.number}/metadata`,
-    value: { issue, analysis: await analyzeIssue(issue) },
+    value: { issue, analysis: await analyzeIssue(issue) }
   });
 };
 
@@ -577,19 +557,17 @@ const preHook = async (issue) => {
 const postHook = async (results) => {
   // Update issue with swarm progress
   await updateIssueProgress(results);
-
+  
   // Generate follow-up tasks
   await createFollowupTasks(results.remainingWork);
-
+  
   // Store completion metrics
   await mcp__claude_flow__memory_usage({
-    action: 'store',
+    action: "store", 
     key: `issue/${issue.number}/completion`,
-    value: { metrics: results.metrics, timestamp: Date.now() },
+    value: { metrics: results.metrics, timestamp: Date.now() }
   });
 };
 ```
 
-See also: [swarm-pr.md](./swarm-pr.md),
-[sync-coordinator.md](./sync-coordinator.md),
-[workflow-automation.md](./workflow-automation.md)
+See also: [swarm-pr.md](./swarm-pr.md), [sync-coordinator.md](./sync-coordinator.md), [workflow-automation.md](./workflow-automation.md)
