@@ -1,0 +1,314 @@
+{
+  "entries": {
+    "component-extraction-analysis": {
+      "key": "component-extraction-analysis",
+      "value": {
+        "timestamp": "2026-01-14",
+        "analysis_type": "component_extraction",
+        "summary": "Comprehensive analysis of duplicate patterns and component extraction opportunities",
+        "existing_components": {
+          "well_structured": [
+            "HeroSection.astro - Reusable with variants (default, centered, job)",
+            "CTABanner.astro - Full-width CTA with variants (primary, dark, light)",
+            "SidebarCTA.astro - Sidebar promotion cards with multiple variants",
+            "Breadcrumb.astro - Navigation breadcrumbs with home icon",
+            "Pagination.astro - List pagination with variants",
+            "PartnerGrid.astro - Logo grid display",
+            "SectionHeader.astro - Section titles with alignment options",
+            "TestimonialCard.astro - Customer quotes with avatar",
+            "BenefitCard.astro - Feature cards with icons",
+            "JobCard.astro - Job listing card with metadata"
+          ],
+          "needs_improvement": [
+            "Button.astro - Basic, could use more variants",
+            "forms/* - Basic form components, need more variants"
+          ]
+        },
+        "duplicate_patterns_found": 16,
+        "priority_extractions": [
+          {
+            "name": "JobSearchBar",
+            "priority": 1,
+            "frequency": 7,
+            "files": [
+              "index.astro",
+              "jng/jobs.astro",
+              "jng/jobs-brs-only.astro",
+              "jng/jobs-with-vista-sponsors.astro",
+              "jng/job-search.astro",
+              "br-only.astro"
+            ],
+            "complexity": "high",
+            "lines_duplicated": "~60 lines per occurrence",
+            "impact": "Major reduction in code duplication"
+          },
+          {
+            "name": "DashboardHeader",
+            "priority": 2,
+            "frequency": 11,
+            "files": [
+              "jng/jobs.astro",
+              "jng/community.astro",
+              "jng/course.astro",
+              "jng/partners.astro",
+              "jng/companies-hiring.astro",
+              "jng/interview-q-a.astro",
+              "jng/resume-generator.astro",
+              "jng/my-account.astro",
+              "jng/job-search.astro",
+              "jng/jobs-brs-only.astro",
+              "jng/jobs-with-vista-sponsors.astro"
+            ],
+            "complexity": "medium",
+            "impact": "Consistent dashboard page headers"
+          },
+          {
+            "name": "CategorySidebar",
+            "priority": 3,
+            "frequency": 3,
+            "files": [
+              "jng/jobs.astro",
+              "jng/jobs-brs-only.astro",
+              "jng/jobs-with-vista-sponsors.astro"
+            ],
+            "complexity": "high",
+            "lines_duplicated": "~80 lines per occurrence",
+            "impact": "Filter sidebar consistency"
+          },
+          {
+            "name": "EmptyState",
+            "priority": 4,
+            "frequency": 13,
+            "files": [
+              "Multiple pages with w-dyn-empty patterns"
+            ],
+            "complexity": "low",
+            "impact": "Consistent empty state messaging"
+          },
+          {
+            "name": "AlertCard",
+            "priority": 5,
+            "frequency": 4,
+            "files": [
+              "jng/jobs.astro",
+              "jng/jobs-brs-only.astro",
+              "jng/jobs-with-vista-sponsors.astro",
+              "br-only.astro"
+            ],
+            "complexity": "low",
+            "impact": "Consistent warning/info cards"
+          },
+          {
+            "name": "NewsletterSignup",
+            "priority": 6,
+            "frequency": 1,
+            "files": [
+              "blog.astro"
+            ],
+            "complexity": "medium",
+            "impact": "Reusable for other pages"
+          },
+          {
+            "name": "SocialShareButtons",
+            "priority": 7,
+            "frequency": 1,
+            "files": [
+              "people/[slug].astro"
+            ],
+            "complexity": "low",
+            "impact": "Reusable social sharing"
+          },
+          {
+            "name": "VisuallyHidden",
+            "priority": 8,
+            "frequency": 3,
+            "files": [
+              "blog.astro",
+              "index.astro",
+              "Head.astro"
+            ],
+            "complexity": "very_low",
+            "impact": "Accessibility utility class consolidation"
+          }
+        ]
+      },
+      "metadata": {
+        "type": "analysis",
+        "domain": "component-extraction",
+        "beads_issue": "legacy-a10.1"
+      },
+      "storedAt": "2026-01-14T18:09:33.038Z",
+      "accessCount": 0,
+      "lastAccessed": "2026-01-14T18:09:33.038Z"
+    },
+    "extraction-plan-job-search-bar": {
+      "key": "extraction-plan-job-search-bar",
+      "value": {
+        "component": "JobSearchBar",
+        "priority": 1,
+        "estimated_effort": "4 hours",
+        "props": {
+          "placeholder": "string - input placeholder text",
+          "filterFields": "string - fs-cmsfilter-field value",
+          "showBrazilianFilter": "boolean - show BR flag checkbox",
+          "showLevelSelect": "boolean - show level dropdown",
+          "brazilianFilterHref": "string - link for BR filter",
+          "variant": "home | dashboard | minimal",
+          "onSearchChange": "callback function"
+        },
+        "files_to_modify": [
+          "src/pages/index.astro",
+          "src/pages/jng/jobs.astro",
+          "src/pages/jng/jobs-brs-only.astro",
+          "src/pages/jng/jobs-with-vista-sponsors.astro",
+          "src/pages/br-only.astro",
+          "src/pages/jng/job-search.astro"
+        ],
+        "implementation_notes": "Extract the job-search_filters-wrapper pattern. Include search icon SVG, input field, Brazilian-only checkbox, and level select. Support Finsweet CMS filter attributes.",
+        "dependencies": [
+          "forms/Input.astro",
+          "forms/Select.astro",
+          "forms/Checkbox.astro"
+        ]
+      },
+      "metadata": {
+        "type": "extraction_plan",
+        "component": "JobSearchBar"
+      },
+      "storedAt": "2026-01-14T18:09:56.030Z",
+      "accessCount": 0,
+      "lastAccessed": "2026-01-14T18:09:56.030Z"
+    },
+    "extraction-plan-dashboard-header": {
+      "key": "extraction-plan-dashboard-header",
+      "value": {
+        "component": "DashboardHeader",
+        "priority": 2,
+        "estimated_effort": "2 hours",
+        "props": {
+          "title": "string - main heading",
+          "description": "string - subtitle text",
+          "breadcrumbItems": "array - Breadcrumb items",
+          "showBreadcrumb": "boolean - toggle breadcrumb",
+          "headingLevel": "1 | 2 - semantic heading level"
+        },
+        "files_to_modify": [
+          "src/pages/jng/jobs.astro",
+          "src/pages/jng/community.astro",
+          "src/pages/jng/course.astro",
+          "src/pages/jng/partners.astro",
+          "src/pages/jng/companies-hiring.astro",
+          "src/pages/jng/interview-q-a.astro",
+          "src/pages/jng/resume-generator.astro",
+          "src/pages/jng/my-account.astro",
+          "src/pages/jng/job-search.astro",
+          "src/pages/jng/jobs-brs-only.astro",
+          "src/pages/jng/jobs-with-vista-sponsors.astro"
+        ],
+        "implementation_notes": "Combine Breadcrumb component with dashboard-header_wrapper pattern. Standardize the course_header-copy structure.",
+        "dependencies": [
+          "Breadcrumb.astro"
+        ]
+      },
+      "metadata": {
+        "type": "extraction_plan",
+        "component": "DashboardHeader"
+      },
+      "storedAt": "2026-01-14T18:09:56.048Z",
+      "accessCount": 0,
+      "lastAccessed": "2026-01-14T18:09:56.048Z"
+    },
+    "extraction-plan-category-sidebar": {
+      "key": "extraction-plan-category-sidebar",
+      "value": {
+        "component": "CategorySidebar",
+        "priority": 3,
+        "estimated_effort": "3 hours",
+        "props": {
+          "filters": "array - filter checkbox options with href/label/active",
+          "categories": "array - category list items",
+          "searchPlaceholder": "string - category search placeholder",
+          "showFilters": "boolean - show filter section",
+          "showCategories": "boolean - show category section",
+          "filterTitle": "string - filters section title",
+          "categoryTitle": "string - categories section title"
+        },
+        "files_to_modify": [
+          "src/pages/jng/jobs.astro",
+          "src/pages/jng/jobs-brs-only.astro",
+          "src/pages/jng/jobs-with-vista-sponsors.astro"
+        ],
+        "implementation_notes": "Extract category-sidebar_wrapper pattern. Include filter checkboxes (BR Only, Visa Sponsor), category search input, and category list. Support Finsweet attributes.",
+        "dependencies": [
+          "forms/Input.astro",
+          "forms/Checkbox.astro"
+        ]
+      },
+      "metadata": {
+        "type": "extraction_plan",
+        "component": "CategorySidebar"
+      },
+      "storedAt": "2026-01-14T18:09:56.079Z",
+      "accessCount": 0,
+      "lastAccessed": "2026-01-14T18:09:56.079Z"
+    },
+    "extraction-plan-empty-state": {
+      "key": "extraction-plan-empty-state",
+      "value": {
+        "component": "EmptyState",
+        "priority": 4,
+        "estimated_effort": "1 hour",
+        "props": {
+          "title": "string - main empty message",
+          "description": "string - secondary helper text",
+          "variant": "search | list | error | loading",
+          "icon": "string - optional icon name",
+          "actionText": "string - optional CTA button text",
+          "actionHref": "string - optional CTA link"
+        },
+        "files_to_modify": [
+          "Multiple pages using w-dyn-empty and job-search_empty patterns"
+        ],
+        "implementation_notes": "Create a unified empty state component for CMS empty states, search no-results, and loading states. Support both Webflow CMS empty (w-dyn-empty) and Finsweet filter empty (fs-cmsfilter-element=empty) patterns.",
+        "dependencies": []
+      },
+      "metadata": {
+        "type": "extraction_plan",
+        "component": "EmptyState"
+      },
+      "storedAt": "2026-01-14T18:09:56.097Z",
+      "accessCount": 0,
+      "lastAccessed": "2026-01-14T18:09:56.097Z"
+    },
+    "extraction-plan-alert-card": {
+      "key": "extraction-plan-alert-card",
+      "value": {
+        "component": "AlertCard",
+        "priority": 5,
+        "estimated_effort": "1 hour",
+        "props": {
+          "message": "string - alert message",
+          "variant": "info | warning | error | success",
+          "dismissible": "boolean - can be closed",
+          "icon": "string - optional icon"
+        },
+        "files_to_modify": [
+          "src/pages/jng/jobs.astro",
+          "src/pages/jng/jobs-brs-only.astro",
+          "src/pages/jng/jobs-with-vista-sponsors.astro",
+          "src/pages/br-only.astro"
+        ],
+        "implementation_notes": "Extract card-alert pattern. Currently used for loading warnings on job pages. Add variants for different alert types.",
+        "dependencies": []
+      },
+      "metadata": {
+        "type": "extraction_plan",
+        "component": "AlertCard"
+      },
+      "storedAt": "2026-01-14T18:09:56.117Z",
+      "accessCount": 0,
+      "lastAccessed": "2026-01-14T18:09:56.117Z"
+    }
+  },
+  "version": "3.0.0"
+}

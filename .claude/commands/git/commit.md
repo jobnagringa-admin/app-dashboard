@@ -2,20 +2,24 @@
 
 ## Overview
 
-Create a well-structured git commit following Conventional Commits format with proper quality gates.
+Create a well-structured git commit following Conventional Commits format with
+proper quality gates.
 
-You should group together files that are related to each other and create multiple descriptive commits.
+You should group together files that are related to each other and create
+multiple descriptive commits.
 
 ## Steps
 
 1. **Pre-commit verification**
-   - ALWAYS SKIP THE VERIFICATION with `-n` in the git command, COMMIT AS FAST AS POSSIBLE.
+   - ALWAYS SKIP THE VERIFICATION with `-n` in the git command, COMMIT AS FAST
+     AS POSSIBLE.
    - Create multiple commits based on all files that are uncommited.
    - Also commit new files.
 
 2. **Stage changes**
    - Review changes with `git status`
-   - Stage specific files: `git add <file>` or `git add -p` for interactive staging
+   - Stage specific files: `git add <file>` or `git add -p` for interactive
+     staging
    - Verify staged changes: `git diff --cached`
 
 3. **Write commit message**
@@ -55,7 +59,8 @@ You should group together files that are related to each other and create multip
 
 ## Authorship Rules
 
-**CRITICAL**: The commit author MUST always be the one configured in the system (`git config user.name` and `git config user.email`).
+**CRITICAL**: The commit author MUST always be the one configured in the system
+(`git config user.name` and `git config user.email`).
 
 - NEVER add "Generated with Claude Code" or similar AI attribution
 - NEVER add Claude, Copilot, or any AI as Co-Author
@@ -64,7 +69,8 @@ You should group together files that are related to each other and create multip
 
 ## Pre-commit Checklist
 
-- [ ] Quality gates pass (`bun run format && bun run build && bun run lint && bun run test`)
+- [ ] Quality gates pass
+      (`bun run format && bun run build && bun run lint && bun run test`)
 - [ ] No console.log statements
 - [ ] No commented code
 - [ ] Imports cleaned (no unused)
