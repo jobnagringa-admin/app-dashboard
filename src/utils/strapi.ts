@@ -7,7 +7,7 @@
 
 import { strapi } from '@strapi/client';
 import type { StrapiClient, Config } from '@strapi/client';
-import type { StrapiImage } from '../types/strapi';
+import type { StrapiImage } from '@/types/strapi';
 
 /**
  * Get Strapi API URL from environment variables
