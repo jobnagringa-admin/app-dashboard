@@ -5,7 +5,8 @@
   "description": "Job na Gringa - Remote international jobs for Brazilians",
   "scripts": {
     "dev": "astro dev",
-    "build": "NODE_OPTIONS=--max-old-space-size=18192 astro check && NODE_OPTIONS=--max-old-space-size=18192 astro build",
+    "build": "NODE_OPTIONS=--max-old-space-size=18192 astro build",
+    "build:full": "npm run check && npm run build",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
