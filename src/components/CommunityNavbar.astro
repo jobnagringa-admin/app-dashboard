@@ -9,7 +9,11 @@
         <div class="container-medium">
           <div class="nav_container">
             <div class="nav_left-col">
-              <a href="https://www.jobnagringa.com.br/" class="w-inline-block" aria-label="Job na Gringa - Página inicial">
+              <a
+                href="https://www.jobnagringa.com.br/"
+                class="w-inline-block"
+                aria-label="Job na Gringa - Página inicial"
+              >
                 <img
                   src="/cdn-assets/images/logos/logo-vectors-wrapper.svg"
                   loading="lazy"
@@ -38,7 +42,12 @@
               <a href="/jobs" class="navbar_link">Vagas</a>
               <a href="/index#" id="logout" class="navbar_link is-white w-button">Sair</a>
             </div>
-            <button type="button" class="nav_menu-button" aria-label="Abrir menu de navegação" aria-expanded="false">
+            <button
+              type="button"
+              class="nav_menu-button"
+              aria-label="Abrir menu de navegação"
+              aria-expanded="false"
+            >
               <div class="icon-1x1-medium w-embed">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -47,10 +56,7 @@
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path
-                    fill="currentColor"
-                    d="M4 11h12v2H4zm0-5h16v2H4zm0 12h7.235v-2H4z"
-                  />
+                  <path fill="currentColor" d="M4 11h12v2H4zm0-5h16v2H4zm0 12h7.235v-2H4z"></path>
                 </svg>
               </div>
             </button>
@@ -76,10 +82,10 @@
     </div>
     <div class="logout-code w-embed w-script">
       <script is:inline>
-        document.addEventListener("DOMContentLoaded", async () => {
-          const logoutBtn = document.getElementById("logout");
+        document.addEventListener('DOMContentLoaded', async () => {
+          const logoutBtn = document.getElementById('logout');
           if (logoutBtn) {
-            logoutBtn.addEventListener("click", async (e) => {
+            logoutBtn.addEventListener('click', async (e) => {
               e.preventDefault();
               // Logout functionality
               async function clearCacheStorage() {
@@ -104,7 +110,11 @@
                   const eqPos = cookie.indexOf('=');
                   const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
                   document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
-                  document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;domain=' + window.location.hostname + ';path=/';
+                  document.cookie =
+                    name +
+                    '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;domain=' +
+                    window.location.hostname +
+                    ';path=/';
                 }
               }
               async function clearIndexedDB() {
@@ -121,7 +131,7 @@
                   clearCacheStorage(),
                   unregisterServiceWorkers(),
                   clearLocalAndSession(),
-                  clearIndexedDB()
+                  clearIndexedDB(),
                 ]);
                 clearCookies();
               } catch (e) {
@@ -137,9 +147,6 @@
         });
       </script>
     </div>
-    <div
-      data-w-id="7ed6ea69-8ce5-677c-3dcb-160f5da98a7d"
-      class="nav_close-overlay"
-    ></div>
+    <div data-w-id="7ed6ea69-8ce5-677c-3dcb-160f5da98a7d" class="nav_close-overlay"></div>
   </nav>
 </div>
