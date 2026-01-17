@@ -1,7 +1,7 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PublicNavbar from '../../components/PublicNavbar.astro';
-import CommunityNavbar from '../../components/CommunityNavbar.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PublicNavbar from '@components/PublicNavbar.astro';
+import CommunityNavbar from '@components/CommunityNavbar.astro';
 ---
 
 <BaseLayout
@@ -18,9 +18,9 @@ import CommunityNavbar from '../../components/CommunityNavbar.astro';
 
   <div class="content-wrapper"></div><div class="nav_right-col">
     <a href="/" class="navbar_link">Dashboard</a><a
-      href="../jobs"
+      href="/jobs"
       class="navbar_link">Vagas</a
-    ><a href="linkedin#" class="navbar_link is-white w-button">Sair</a>
+    ><a href="/modulo/linkedin#" class="navbar_link is-white w-button">Sair</a>
   </div><div class="nav_menu-button">
     <div class="icon-1x1-medium w-embed">
       <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"
@@ -76,7 +76,7 @@ import CommunityNavbar from '../../components/CommunityNavbar.astro';
               </div>
             </div><div id="cms-content">
               <div class="margin-bottom margin-small">
-                <a href="../course" class="link-return w-inline-block"
+                <a href="/course" class="link-return w-inline-block"
                   ><div class="button is-icon-only is-small">
                     <div class="icon-1x1-small w-embed">
                       <svg
@@ -95,7 +95,7 @@ import CommunityNavbar from '../../components/CommunityNavbar.astro';
               </div><div class="margin-bottom margin-small">
                 <div class="lesson_breadcrumbs is-wrapped">
                   <div class="text-size-small">Você está em:</div><a
-                    href="../course"
+                    href="/course"
                     class="breadcrumb_link w-inline-block"
                     ><div class="icon-1x1-small w-embed">
                       <svg
