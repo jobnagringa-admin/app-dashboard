@@ -79,9 +79,7 @@
             "name": "EmptyState",
             "priority": 4,
             "frequency": 13,
-            "files": [
-              "Multiple pages with w-dyn-empty patterns"
-            ],
+            "files": ["Multiple pages with w-dyn-empty patterns"],
             "complexity": "low",
             "impact": "Consistent empty state messaging"
           },
@@ -102,9 +100,7 @@
             "name": "NewsletterSignup",
             "priority": 6,
             "frequency": 1,
-            "files": [
-              "blog.astro"
-            ],
+            "files": ["blog.astro"],
             "complexity": "medium",
             "impact": "Reusable for other pages"
           },
@@ -112,9 +108,7 @@
             "name": "SocialShareButtons",
             "priority": 7,
             "frequency": 1,
-            "files": [
-              "people/[slug].astro"
-            ],
+            "files": ["people/[slug].astro"],
             "complexity": "low",
             "impact": "Reusable social sharing"
           },
@@ -122,11 +116,7 @@
             "name": "VisuallyHidden",
             "priority": 8,
             "frequency": 3,
-            "files": [
-              "blog.astro",
-              "index.astro",
-              "Head.astro"
-            ],
+            "files": ["blog.astro", "index.astro", "Head.astro"],
             "complexity": "very_low",
             "impact": "Accessibility utility class consolidation"
           }
@@ -165,11 +155,7 @@
           "src/pages/jng/job-search.astro"
         ],
         "implementation_notes": "Extract the job-search_filters-wrapper pattern. Include search icon SVG, input field, Brazilian-only checkbox, and level select. Support Finsweet CMS filter attributes.",
-        "dependencies": [
-          "forms/Input.astro",
-          "forms/Select.astro",
-          "forms/Checkbox.astro"
-        ]
+        "dependencies": ["forms/Input.astro", "forms/Select.astro", "forms/Checkbox.astro"]
       },
       "metadata": {
         "type": "extraction_plan",
@@ -206,9 +192,7 @@
           "src/pages/jng/jobs-with-vista-sponsors.astro"
         ],
         "implementation_notes": "Combine Breadcrumb component with dashboard-header_wrapper pattern. Standardize the course_header-copy structure.",
-        "dependencies": [
-          "Breadcrumb.astro"
-        ]
+        "dependencies": ["Breadcrumb.astro"]
       },
       "metadata": {
         "type": "extraction_plan",
@@ -239,10 +223,7 @@
           "src/pages/jng/jobs-with-vista-sponsors.astro"
         ],
         "implementation_notes": "Extract category-sidebar_wrapper pattern. Include filter checkboxes (BR Only, Visa Sponsor), category search input, and category list. Support Finsweet attributes.",
-        "dependencies": [
-          "forms/Input.astro",
-          "forms/Checkbox.astro"
-        ]
+        "dependencies": ["forms/Input.astro", "forms/Checkbox.astro"]
       },
       "metadata": {
         "type": "extraction_plan",
@@ -266,9 +247,7 @@
           "actionText": "string - optional CTA button text",
           "actionHref": "string - optional CTA link"
         },
-        "files_to_modify": [
-          "Multiple pages using w-dyn-empty and job-search_empty patterns"
-        ],
+        "files_to_modify": ["Multiple pages using w-dyn-empty and job-search_empty patterns"],
         "implementation_notes": "Create a unified empty state component for CMS empty states, search no-results, and loading states. Support both Webflow CMS empty (w-dyn-empty) and Finsweet filter empty (fs-cmsfilter-element=empty) patterns.",
         "dependencies": []
       },

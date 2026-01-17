@@ -3,11 +3,7 @@
     "name": "minScore",
     "expected": 1,
     "actual": 0.88,
-    "values": [
-      0.88,
-      0.88,
-      0.88
-    ],
+    "values": [0.88, 0.88, 0.88],
     "operator": ">=",
     "passed": false,
     "auditProperty": "accessibility",
@@ -19,11 +15,7 @@
     "name": "minScore",
     "expected": 1,
     "actual": 0.56,
-    "values": [
-      0.56,
-      0.56,
-      0.56
-    ],
+    "values": [0.56, 0.56, 0.56],
     "operator": ">=",
     "passed": false,
     "auditProperty": "best-practices",
@@ -35,11 +27,7 @@
     "name": "maxNumericValue",
     "expected": 102400,
     "actual": 154030,
-    "values": [
-      154034,
-      154572,
-      154030
-    ],
+    "values": [154034, 154572, 154030],
     "operator": "<=",
     "passed": false,
     "auditProperty": "script.size",
@@ -52,11 +40,7 @@
     "name": "maxNumericValue",
     "expected": 51200,
     "actual": 55928,
-    "values": [
-      55928,
-      55928,
-      55928
-    ],
+    "values": [55928, 55928, 55928],
     "operator": "<=",
     "passed": false,
     "auditProperty": "document.size",
@@ -69,11 +53,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0.5,
-    "values": [
-      0.5,
-      0.5,
-      0.5
-    ],
+    "values": [0.5, 0.5, 0.5],
     "operator": ">=",
     "passed": false,
     "auditId": "uses-responsive-images",
@@ -86,11 +66,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "uses-text-compression",
@@ -103,11 +79,7 @@
     "name": "auditRan",
     "expected": 1,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "message": "\"uses-rel-preload\" is not a known audit.",
@@ -119,11 +91,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "aria-required-children",
@@ -136,11 +104,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "target-size",
@@ -153,11 +117,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "errors-in-console",
@@ -170,11 +130,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "inspector-issues",
@@ -186,11 +142,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "third-party-cookies",
@@ -203,11 +155,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0.5,
-    "values": [
-      0.5,
-      0.5,
-      0.5
-    ],
+    "values": [0.5, 0.5, 0.5],
     "operator": ">=",
     "passed": false,
     "auditId": "unminified-javascript",
@@ -220,11 +168,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0.5,
-    "values": [
-      0.5,
-      0.5,
-      0.5
-    ],
+    "values": [0.5, 0.5, 0.5],
     "operator": ">=",
     "passed": false,
     "auditId": "unused-javascript",
@@ -237,11 +181,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0.5,
-    "values": [
-      0.5,
-      0.5,
-      0.5
-    ],
+    "values": [0.5, 0.5, 0.5],
     "operator": ">=",
     "passed": false,
     "auditId": "document-latency-insight",
@@ -253,11 +193,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "network-dependency-tree-insight",
@@ -270,11 +206,7 @@
     "name": "minScore",
     "expected": 1,
     "actual": 0.93,
-    "values": [
-      0.93,
-      0.93,
-      0.93
-    ],
+    "values": [0.93, 0.93, 0.93],
     "operator": ">=",
     "passed": false,
     "auditProperty": "accessibility",
@@ -286,11 +218,7 @@
     "name": "minScore",
     "expected": 1,
     "actual": 0.56,
-    "values": [
-      0.56,
-      0.56,
-      0.56
-    ],
+    "values": [0.56, 0.56, 0.56],
     "operator": ">=",
     "passed": false,
     "auditProperty": "best-practices",
@@ -302,11 +230,7 @@
     "name": "maxNumericValue",
     "expected": 102400,
     "actual": 154057,
-    "values": [
-      154111,
-      154057,
-      154567
-    ],
+    "values": [154111, 154057, 154567],
     "operator": "<=",
     "passed": false,
     "auditProperty": "script.size",
@@ -319,11 +243,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "uses-text-compression",
@@ -336,11 +256,7 @@
     "name": "auditRan",
     "expected": 1,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "message": "\"uses-rel-preload\" is not a known audit.",
@@ -352,11 +268,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "target-size",
@@ -369,11 +281,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "errors-in-console",
@@ -386,11 +294,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "inspector-issues",
@@ -402,11 +306,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "third-party-cookies",
@@ -419,11 +319,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0.5,
-    "values": [
-      0.5,
-      0.5,
-      0.5
-    ],
+    "values": [0.5, 0.5, 0.5],
     "operator": ">=",
     "passed": false,
     "auditId": "unminified-javascript",
@@ -436,11 +332,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0.5,
-    "values": [
-      0.5,
-      0.5,
-      0.5
-    ],
+    "values": [0.5, 0.5, 0.5],
     "operator": ">=",
     "passed": false,
     "auditId": "unused-javascript",
@@ -453,11 +345,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0.5,
-    "values": [
-      0.5,
-      0.5,
-      0.5
-    ],
+    "values": [0.5, 0.5, 0.5],
     "operator": ">=",
     "passed": false,
     "auditId": "document-latency-insight",
@@ -469,11 +357,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "network-dependency-tree-insight",
@@ -486,11 +370,7 @@
     "name": "minScore",
     "expected": 1,
     "actual": 0.93,
-    "values": [
-      0.93,
-      0.93,
-      0.93
-    ],
+    "values": [0.93, 0.93, 0.93],
     "operator": ">=",
     "passed": false,
     "auditProperty": "accessibility",
@@ -502,11 +382,7 @@
     "name": "minScore",
     "expected": 1,
     "actual": 0.56,
-    "values": [
-      0.56,
-      0.56,
-      0.56
-    ],
+    "values": [0.56, 0.56, 0.56],
     "operator": ">=",
     "passed": false,
     "auditProperty": "best-practices",
@@ -518,11 +394,7 @@
     "name": "maxNumericValue",
     "expected": 102400,
     "actual": 154029,
-    "values": [
-      154029,
-      154033,
-      154030
-    ],
+    "values": [154029, 154033, 154030],
     "operator": "<=",
     "passed": false,
     "auditProperty": "script.size",
@@ -535,11 +407,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "uses-text-compression",
@@ -552,11 +420,7 @@
     "name": "auditRan",
     "expected": 1,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "message": "\"uses-rel-preload\" is not a known audit.",
@@ -568,11 +432,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "target-size",
@@ -585,11 +445,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "errors-in-console",
@@ -602,11 +458,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "inspector-issues",
@@ -618,11 +470,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "third-party-cookies",
@@ -635,11 +483,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0.5,
-    "values": [
-      0.5,
-      0.5,
-      0.5
-    ],
+    "values": [0.5, 0.5, 0.5],
     "operator": ">=",
     "passed": false,
     "auditId": "unminified-javascript",
@@ -652,11 +496,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0.5,
-    "values": [
-      0.5,
-      0.5,
-      0.5
-    ],
+    "values": [0.5, 0.5, 0.5],
     "operator": ">=",
     "passed": false,
     "auditId": "unused-javascript",
@@ -669,11 +509,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0.5,
-    "values": [
-      0.5,
-      0.5,
-      0.5
-    ],
+    "values": [0.5, 0.5, 0.5],
     "operator": ">=",
     "passed": false,
     "auditId": "document-latency-insight",
@@ -685,11 +521,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "network-dependency-tree-insight",
@@ -702,11 +534,7 @@
     "name": "minScore",
     "expected": 1,
     "actual": 0.93,
-    "values": [
-      0.93,
-      0.93,
-      0.93
-    ],
+    "values": [0.93, 0.93, 0.93],
     "operator": ">=",
     "passed": false,
     "auditProperty": "accessibility",
@@ -718,11 +546,7 @@
     "name": "minScore",
     "expected": 1,
     "actual": 0.56,
-    "values": [
-      0.56,
-      0.56,
-      0.56
-    ],
+    "values": [0.56, 0.56, 0.56],
     "operator": ">=",
     "passed": false,
     "auditProperty": "best-practices",
@@ -734,11 +558,7 @@
     "name": "maxNumericValue",
     "expected": 102400,
     "actual": 154030,
-    "values": [
-      154040,
-      154550,
-      154030
-    ],
+    "values": [154040, 154550, 154030],
     "operator": "<=",
     "passed": false,
     "auditProperty": "script.size",
@@ -751,11 +571,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0.5,
-    "values": [
-      0.5,
-      0.5,
-      0.5
-    ],
+    "values": [0.5, 0.5, 0.5],
     "operator": ">=",
     "passed": false,
     "auditId": "uses-responsive-images",
@@ -768,11 +584,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "uses-text-compression",
@@ -785,11 +597,7 @@
     "name": "auditRan",
     "expected": 1,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "message": "\"uses-rel-preload\" is not a known audit.",
@@ -801,11 +609,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "target-size",
@@ -818,11 +622,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "errors-in-console",
@@ -835,11 +635,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "inspector-issues",
@@ -851,11 +647,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "third-party-cookies",
@@ -868,11 +660,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0.5,
-    "values": [
-      0.5,
-      0.5,
-      0.5
-    ],
+    "values": [0.5, 0.5, 0.5],
     "operator": ">=",
     "passed": false,
     "auditId": "unminified-javascript",
@@ -885,11 +673,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0.5,
-    "values": [
-      0,
-      0.5,
-      0.5
-    ],
+    "values": [0, 0.5, 0.5],
     "operator": ">=",
     "passed": false,
     "auditId": "unused-javascript",
@@ -902,11 +686,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0.5,
-    "values": [
-      0.5,
-      0.5,
-      0.5
-    ],
+    "values": [0.5, 0.5, 0.5],
     "operator": ">=",
     "passed": false,
     "auditId": "document-latency-insight",
@@ -918,11 +698,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "network-dependency-tree-insight",
@@ -935,11 +711,7 @@
     "name": "minScore",
     "expected": 1,
     "actual": 0.91,
-    "values": [
-      0.91,
-      0.91,
-      0.91
-    ],
+    "values": [0.91, 0.91, 0.91],
     "operator": ">=",
     "passed": false,
     "auditProperty": "accessibility",
@@ -951,11 +723,7 @@
     "name": "minScore",
     "expected": 1,
     "actual": 0.56,
-    "values": [
-      0.56,
-      0.56,
-      0.56
-    ],
+    "values": [0.56, 0.56, 0.56],
     "operator": ">=",
     "passed": false,
     "auditProperty": "best-practices",
@@ -967,11 +735,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "uses-text-compression",
@@ -984,11 +748,7 @@
     "name": "auditRan",
     "expected": 1,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "message": "\"uses-rel-preload\" is not a known audit.",
@@ -1000,11 +760,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "target-size",
@@ -1017,11 +773,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "errors-in-console",
@@ -1034,11 +786,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "inspector-issues",
@@ -1050,11 +798,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "third-party-cookies",
@@ -1067,11 +811,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0.5,
-    "values": [
-      0,
-      0.5,
-      0
-    ],
+    "values": [0, 0.5, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "unused-javascript",
@@ -1084,11 +824,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0.5,
-    "values": [
-      0.5,
-      0.5,
-      0.5
-    ],
+    "values": [0.5, 0.5, 0.5],
     "operator": ">=",
     "passed": false,
     "auditId": "document-latency-insight",
@@ -1100,11 +836,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "network-dependency-tree-insight",
@@ -1117,11 +849,7 @@
     "name": "minScore",
     "expected": 1,
     "actual": 0.93,
-    "values": [
-      0.93,
-      0.93,
-      0.93
-    ],
+    "values": [0.93, 0.93, 0.93],
     "operator": ">=",
     "passed": false,
     "auditProperty": "accessibility",
@@ -1133,11 +861,7 @@
     "name": "minScore",
     "expected": 1,
     "actual": 0.56,
-    "values": [
-      0.56,
-      0.56,
-      0.56
-    ],
+    "values": [0.56, 0.56, 0.56],
     "operator": ">=",
     "passed": false,
     "auditProperty": "best-practices",
@@ -1149,11 +873,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "uses-text-compression",
@@ -1166,11 +886,7 @@
     "name": "auditRan",
     "expected": 1,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "message": "\"uses-rel-preload\" is not a known audit.",
@@ -1182,11 +898,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "target-size",
@@ -1199,11 +911,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "errors-in-console",
@@ -1216,11 +924,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "inspector-issues",
@@ -1232,11 +936,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "third-party-cookies",
@@ -1249,11 +949,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0.5,
-    "values": [
-      0,
-      0.5,
-      0.5
-    ],
+    "values": [0, 0.5, 0.5],
     "operator": ">=",
     "passed": false,
     "auditId": "unused-javascript",
@@ -1266,11 +962,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0.5,
-    "values": [
-      0.5,
-      0.5,
-      0.5
-    ],
+    "values": [0.5, 0.5, 0.5],
     "operator": ">=",
     "passed": false,
     "auditId": "document-latency-insight",
@@ -1282,11 +974,7 @@
     "name": "minScore",
     "expected": 0.9,
     "actual": 0,
-    "values": [
-      0,
-      0,
-      0
-    ],
+    "values": [0, 0, 0],
     "operator": ">=",
     "passed": false,
     "auditId": "network-dependency-tree-insight",
