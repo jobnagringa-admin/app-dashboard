@@ -1,0 +1,400 @@
+{
+  "timestamp": "2026-01-14T18:08:23.733Z",
+  "pages": {
+    "/": {
+      "categories": {
+        "performance": {
+          "average": 100,
+          "min": 100,
+          "max": 100,
+          "runs": 3
+        },
+        "accessibility": {
+          "average": 88,
+          "min": 88,
+          "max": 88,
+          "runs": 3
+        },
+        "best-practices": {
+          "average": 56,
+          "min": 56,
+          "max": 56,
+          "runs": 3
+        },
+        "seo": {
+          "average": 100,
+          "min": 100,
+          "max": 100,
+          "runs": 3
+        }
+      },
+      "vitals": {
+        "fcp": {
+          "average": 407.59625000000005,
+          "min": 326.67539999999997,
+          "max": 569.2787500000001,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "lcp": {
+          "average": 596.5812833333333,
+          "min": 568.0120500000002,
+          "max": 614.9047499999999,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "cls": {
+          "average": 0.0004362558321939793,
+          "min": 0.000058793350291576125,
+          "max": 0.0011911807959987858,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "tbt": {
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "si": {
+          "average": 422.76973052786815,
+          "min": 347.99848508345286,
+          "max": 569.2787500000001,
+          "runs": 3,
+          "rating": "GOOD"
+        }
+      }
+    },
+    "/blog": {
+      "categories": {
+        "performance": {
+          "average": 100,
+          "min": 100,
+          "max": 100,
+          "runs": 3
+        },
+        "accessibility": {
+          "average": 93,
+          "min": 93,
+          "max": 93,
+          "runs": 3
+        },
+        "best-practices": {
+          "average": 56,
+          "min": 56,
+          "max": 56,
+          "runs": 3
+        },
+        "seo": {
+          "average": 100,
+          "min": 100,
+          "max": 100,
+          "runs": 3
+        }
+      },
+      "vitals": {
+        "fcp": {
+          "average": 286.04794999999996,
+          "min": 285.81444999999997,
+          "max": 286.46509999999995,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "lcp": {
+          "average": 526.0582583333334,
+          "min": 524.5834,
+          "max": 526.8212499999998,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "cls": {
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "tbt": {
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "si": {
+          "average": 345.4557904386299,
+          "min": 323.5467435833634,
+          "max": 369.24412933347173,
+          "runs": 3,
+          "rating": "GOOD"
+        }
+      }
+    },
+    "/assine": {
+      "categories": {
+        "performance": {
+          "average": 100,
+          "min": 100,
+          "max": 100,
+          "runs": 3
+        },
+        "accessibility": {
+          "average": 93,
+          "min": 93,
+          "max": 93,
+          "runs": 3
+        },
+        "best-practices": {
+          "average": 56,
+          "min": 56,
+          "max": 56,
+          "runs": 3
+        },
+        "seo": {
+          "average": 100,
+          "min": 100,
+          "max": 100,
+          "runs": 3
+        }
+      },
+      "vitals": {
+        "fcp": {
+          "average": 286.4405166666667,
+          "min": 285.98145000000005,
+          "max": 286.84839999999997,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "lcp": {
+          "average": 526.5785666666666,
+          "min": 525.6357999999999,
+          "max": 527.4305999999999,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "cls": {
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "tbt": {
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "si": {
+          "average": 325.39479519436077,
+          "min": 317.89678166657177,
+          "max": 331.103631749977,
+          "runs": 3,
+          "rating": "GOOD"
+        }
+      }
+    },
+    "/parcerias": {
+      "categories": {
+        "performance": {
+          "average": 100,
+          "min": 100,
+          "max": 100,
+          "runs": 3
+        },
+        "accessibility": {
+          "average": 93,
+          "min": 93,
+          "max": 93,
+          "runs": 3
+        },
+        "best-practices": {
+          "average": 56,
+          "min": 56,
+          "max": 56,
+          "runs": 3
+        },
+        "seo": {
+          "average": 100,
+          "min": 100,
+          "max": 100,
+          "runs": 3
+        }
+      },
+      "vitals": {
+        "fcp": {
+          "average": 326.64113333333336,
+          "min": 326.07380000000006,
+          "max": 327.02580000000006,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "lcp": {
+          "average": 566.105225,
+          "min": 556.0933500000001,
+          "max": 574.8978499999998,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "cls": {
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "tbt": {
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "si": {
+          "average": 342.1963988887446,
+          "min": 340.6126099997665,
+          "max": 343.2830683332562,
+          "runs": 3,
+          "rating": "GOOD"
+        }
+      }
+    },
+    "/ebook": {
+      "categories": {
+        "performance": {
+          "average": 100,
+          "min": 100,
+          "max": 100,
+          "runs": 3
+        },
+        "accessibility": {
+          "average": 91,
+          "min": 91,
+          "max": 91,
+          "runs": 3
+        },
+        "best-practices": {
+          "average": 56,
+          "min": 56,
+          "max": 56,
+          "runs": 3
+        },
+        "seo": {
+          "average": 100,
+          "min": 100,
+          "max": 100,
+          "runs": 3
+        }
+      },
+      "vitals": {
+        "fcp": {
+          "average": 287.0071833333334,
+          "min": 286.85814999999997,
+          "max": 287.27070000000003,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "lcp": {
+          "average": 517.0324,
+          "min": 515.2463000000001,
+          "max": 519.7620999999999,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "cls": {
+          "average": 0.00004918741007162037,
+          "min": 0.00004918741007162037,
+          "max": 0.00004918741007162037,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "tbt": {
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "si": {
+          "average": 327.1900838055354,
+          "min": 322.83909050000125,
+          "max": 332.27444799995493,
+          "runs": 3,
+          "rating": "GOOD"
+        }
+      }
+    },
+    "/politicas": {
+      "categories": {
+        "performance": {
+          "average": 100,
+          "min": 100,
+          "max": 100,
+          "runs": 3
+        },
+        "accessibility": {
+          "average": 93,
+          "min": 93,
+          "max": 93,
+          "runs": 3
+        },
+        "best-practices": {
+          "average": 56,
+          "min": 56,
+          "max": 56,
+          "runs": 3
+        },
+        "seo": {
+          "average": 100,
+          "min": 100,
+          "max": 100,
+          "runs": 3
+        }
+      },
+      "vitals": {
+        "fcp": {
+          "average": 285.73803333333336,
+          "min": 285.39709999999997,
+          "max": 286.41350000000006,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "lcp": {
+          "average": 513.9141333333333,
+          "min": 508.7323999999999,
+          "max": 518.4490000000001,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "cls": {
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "tbt": {
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "runs": 3,
+          "rating": "GOOD"
+        },
+        "si": {
+          "average": 305.7175663887939,
+          "min": 303.5250624999486,
+          "max": 309.26507083325197,
+          "runs": 3,
+          "rating": "GOOD"
+        }
+      }
+    }
+  },
+  "assertions": {
+    "passed": 0,
+    "warnings": 78,
+    "errors": 0
+  }
+}

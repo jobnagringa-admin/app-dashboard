@@ -15,9 +15,11 @@ For this set of activities, create a new, separate epic.
 Finally, show a report of all the tasks that were created.
 
 <TASK>
+    Crie uma task para verificar o site original e comparar o design atual de cada uma das paginas, e se tiver alguma coisa para corrigir que ele corrija para deixar 100% identico ao original.
 
-    Corrija todos os erros de lint e erros gerais dos processos de lint e build da aplicação.
+    Para isso, suba o site original da pasta src-legacy com algum servidor de arquiovos estaticos, abra com playwright tanto essa pagina quanto a pagina do sistema novo, compare as duas telas, aplique as correções.
 
+    Faça isso para cada uma das telas do sistema, deixe absolutamente perfeito e identico ao original, mas aplicando todas as boas praticas ja estabelecidas no codigo do astro.
 <TASK/>
 
 <CONTEXT/>
