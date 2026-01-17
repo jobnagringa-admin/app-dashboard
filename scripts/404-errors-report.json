@@ -1,0 +1,240 @@
+{
+  "/jng/aulas/algoritmos-para-entrevistas": [
+    {
+      "type": "route",
+      "path": "/jng/modulo/dev-interviews",
+      "line": 58
+    },
+    {
+      "type": "route",
+      "path": "/jng/guia-definitivo-de-entrevista",
+      "line": 74
+    },
+    {
+      "type": "route",
+      "path": "/jng/prepare-se-para-a-entrevista",
+      "line": 93
+    },
+    {
+      "type": "route",
+      "path": "/jng/algoritmos-para-entrevistas",
+      "line": 112
+    },
+    {
+      "type": "route",
+      "path": "/jng/modulo/dev-interviews",
+      "line": 237
+    },
+    {
+      "type": "route",
+      "path": "/jng/algoritmos-para-entrevistas",
+      "line": 240
+    }
+  ],
+  "/jng/aulas/como-e-a-audiencia-do-linkedin-em-2024": [
+    {
+      "type": "route",
+      "path": "/jng/modulo/conteudo",
+      "line": 60
+    },
+    {
+      "type": "route",
+      "path": "/jng/definindo-o-tema-do-seu-conteudo",
+      "line": 75
+    },
+    {
+      "type": "route",
+      "path": "/jng/por-que-o-linkedin-e-a-melhor-ferramenta",
+      "line": 94
+    },
+    {
+      "type": "route",
+      "path": "/jng/o-modo-creator",
+      "line": 113
+    },
+    {
+      "type": "route",
+      "path": "/jng/como-funciona-o-feed-do-linkedin",
+      "line": 132
+    },
+    {
+      "type": "route",
+      "path": "/jng/como-e-a-audiencia-do-linkedin-em-2024",
+      "line": 151
+    },
+    {
+      "type": "route",
+      "path": "/jng/como-funcionam-os-engajamentos-no-linkedin",
+      "line": 171
+    },
+    {
+      "type": "route",
+      "path": "/jng/formatos-de-postagem-no-linkedin",
+      "line": 190
+    },
+    {
+      "type": "route",
+      "path": "/jng/estrategias-de-conteudo",
+      "line": 209
+    },
+    {
+      "type": "route",
+      "path": "/jng/modulo/conteudo",
+      "line": 333
+    },
+    {
+      "type": "route",
+      "path": "/jng/como-e-a-audiencia-do-linkedin-em-2024",
+      "line": 336
+    }
+  ],
+  "/jng/aulas/recruiters-vs-headhunters": [
+    {
+      "type": "route",
+      "path": "/jng/modulo/networking",
+      "line": 58
+    },
+    {
+      "type": "route",
+      "path": "/jng/voce-so-e-bom-quando-outra-pessoa-diz",
+      "line": 73
+    },
+    {
+      "type": "route",
+      "path": "/jng/big-techs-vs-small-techs-startups",
+      "line": 92
+    },
+    {
+      "type": "route",
+      "path": "/jng/recruiters-vs-headhunters",
+      "line": 111
+    },
+    {
+      "type": "route",
+      "path": "/jng/recruiters-seu-contato-com-empresas-pequenas",
+      "line": 131
+    },
+    {
+      "type": "route",
+      "path": "/jng/estrategias-para-lidar-com-headhunters",
+      "line": 150
+    },
+    {
+      "type": "route",
+      "path": "/jng/junte-se-a-essas-mentorias-e-comunidades",
+      "line": 169
+    },
+    {
+      "type": "route",
+      "path": "/jng/estrategia-venture-capital-investidores",
+      "line": 188
+    },
+    {
+      "type": "route",
+      "path": "/jng/crie-contato-com-as-empresas-que-contratam-brasileiros",
+      "line": 207
+    },
+    {
+      "type": "route",
+      "path": "/jng/capitulo-para-introvertidos",
+      "line": 227
+    },
+    {
+      "type": "route",
+      "path": "/jng/notas-finais-e-puxoes-de-orelha",
+      "line": 246
+    },
+    {
+      "type": "route",
+      "path": "/jng/o-pais-do-desemprego",
+      "line": 265
+    },
+    {
+      "type": "route",
+      "path": "/jng/modulo/networking",
+      "line": 389
+    },
+    {
+      "type": "route",
+      "path": "/jng/recruiters-vs-headhunters",
+      "line": 392
+    }
+  ],
+  "/jng/aulas/hack-4-busca-ats": [
+    {
+      "type": "route",
+      "path": "/jng/modulo/empresas",
+      "line": 58
+    },
+    {
+      "type": "route",
+      "path": "/jng/introducao-a-busca-como-comecar-a-procurar",
+      "line": 73
+    },
+    {
+      "type": "route",
+      "path": "/jng/palavras-chave-dos-donts",
+      "line": 92
+    },
+    {
+      "type": "route",
+      "path": "/jng/hack-1-busca-exata-intro-tecnicas-de-busca",
+      "line": 111
+    },
+    {
+      "type": "route",
+      "path": "/jng/hack-2-busca-de-termo-exato-em-outras-plataformas",
+      "line": 130
+    },
+    {
+      "type": "route",
+      "path": "/jng/hack-3-busca-boleana-avancada",
+      "line": 149
+    },
+    {
+      "type": "route",
+      "path": "/jng/hack-4-busca-ats",
+      "line": 168
+    },
+    {
+      "type": "route",
+      "path": "/jng/hack-5-busque-vagas-gringas-para-brasileiros",
+      "line": 189
+    },
+    {
+      "type": "route",
+      "path": "/jng/hack-6-use-o-chatgpt",
+      "line": 208
+    },
+    {
+      "type": "route",
+      "path": "/jng/hack-7-empresas-que-buscam-latam",
+      "line": 227
+    },
+    {
+      "type": "route",
+      "path": "/jng/hack-8-fundos-de-investimentos-vc-venture-capital",
+      "line": 246
+    },
+    {
+      "type": "route",
+      "path": "/jng/conclusao-de-modulo-viu-vaga-nao-falta-o-que-falta-e-voce",
+      "line": 266
+    },
+    {
+      "type": "route",
+      "path": "/jng/leapfrog-encontre-empresas-que-contratam-brasileiros",
+      "line": 286
+    },
+    {
+      "type": "route",
+      "path": "/jng/modulo/empresas",
+      "line": 411
+    },
+    {
+      "type": "route",
+      "path": "/jng/hack-4-busca-ats",
+      "line": 414
+    }
+  ]
+}
