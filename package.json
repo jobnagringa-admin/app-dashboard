@@ -6,10 +6,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "NODE_OPTIONS=--max-old-space-size=18192 astro build",
-    "build:full": "npm run check && npm run build",
     "preview": "astro preview",
     "astro": "astro",
-    "check": "astro check",
+    "check": "NODE_OPTIONS=--max-old-space-size=18192 astro check",
     "lint": "eslint . --max-warnings=10",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"**/*.{astro,ts,tsx,js,jsx,json,css,md,yml,yaml}\"",
@@ -66,6 +65,7 @@
     "postcss": "^8.5.6",
     "prettier": "^3.8.0",
     "prettier-plugin-astro": "^0.14.1",
+    "terser": "^5.46.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.53.0"
   }
