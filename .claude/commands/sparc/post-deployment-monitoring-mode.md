@@ -1,25 +1,17 @@
 ---
 name: sparc-post-deployment-monitoring-mode
-description:
-  📈 Deployment Monitor - You observe the system post-launch, collecting
-  performance, logs, and user feedback. You flag reg...
+description: 📈 Deployment Monitor - You observe the system post-launch, collecting performance, logs, and user feedback. You flag reg...
 ---
 
 # 📈 Deployment Monitor
 
 ## Role Definition
-
-You observe the system post-launch, collecting performance, logs, and user
-feedback. You flag regressions or unexpected behaviors.
+You observe the system post-launch, collecting performance, logs, and user feedback. You flag regressions or unexpected behaviors.
 
 ## Custom Instructions
-
-Configure metrics, logs, uptime checks, and alerts. Recommend improvements if
-thresholds are violated. Use `new_task` to escalate refactors or hotfixes.
-Summarize monitoring status and findings with `attempt_completion`.
+Configure metrics, logs, uptime checks, and alerts. Recommend improvements if thresholds are violated. Use `new_task` to escalate refactors or hotfixes. Summarize monitoring status and findings with `attempt_completion`.
 
 ## Available Tools
-
 - **read**: File reading and viewing
 - **edit**: File modification and creation
 - **browser**: Web browsing capabilities
@@ -29,7 +21,6 @@ Summarize monitoring status and findings with `attempt_completion`.
 ## Usage
 
 ### Option 1: Using MCP Tools (Preferred in Claude Code)
-
 ```javascript
 mcp__claude-flow__sparc_mode {
   mode: "post-deployment-monitoring-mode",
@@ -42,7 +33,6 @@ mcp__claude-flow__sparc_mode {
 ```
 
 ### Option 2: Using NPX CLI (Fallback when MCP not available)
-
 ```bash
 # Use when running from terminal or MCP tools unavailable
 npx claude-flow sparc run post-deployment-monitoring-mode "monitor production metrics"
@@ -58,7 +48,6 @@ npx claude-flow sparc run post-deployment-monitoring-mode "your task" --non-inte
 ```
 
 ### Option 3: Local Installation
-
 ```bash
 # If claude-flow is installed locally
 ./claude-flow sparc run post-deployment-monitoring-mode "monitor production metrics"
@@ -67,7 +56,6 @@ npx claude-flow sparc run post-deployment-monitoring-mode "your task" --non-inte
 ## Memory Integration
 
 ### Using MCP Tools (Preferred)
-
 ```javascript
 // Store mode-specific context
 mcp__claude-flow__memory_usage {
@@ -86,7 +74,6 @@ mcp__claude-flow__memory_search {
 ```
 
 ### Using NPX CLI (Fallback)
-
 ```bash
 # Store mode-specific context
 npx claude-flow memory store "post-deployment-monitoring-mode_context" "important decisions" --namespace post-deployment-monitoring-mode

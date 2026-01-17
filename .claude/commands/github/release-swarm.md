@@ -1,14 +1,11 @@
 # Release Swarm - Intelligent Release Automation
 
 ## Overview
-
-Orchestrate complex software releases using AI swarms that handle everything
-from changelog generation to multi-platform deployment.
+Orchestrate complex software releases using AI swarms that handle everything from changelog generation to multi-platform deployment.
 
 ## Core Features
 
 ### 1. Release Planning
-
 ```bash
 # Plan next release using gh CLI
 # Get commit history since last release
@@ -17,7 +14,7 @@ COMMITS=$(gh api repos/:owner/:repo/compare/${LAST_TAG}...HEAD --jq '.commits')
 
 # Get merged PRs
 MERGED_PRS=$(gh pr list --state merged --base main --json number,title,labels,mergedAt \
-  --jq ".[] | select(.mergedAt > \"$(gh release view $LAST_TAG --json publishedAt -q .publishedAt)\")")
+  --jq ".[] | select(.mergedAt > \"$(gh release view $LAST_TAG --json publishedAt -q .publishedAt)\")")  
 
 # Plan release with commit analysis
 npx ruv-swarm github release-plan \
@@ -30,7 +27,6 @@ npx ruv-swarm github release-plan \
 ```
 
 ### 2. Automated Versioning
-
 ```bash
 # Smart version bumping
 npx ruv-swarm github release-version \
@@ -41,7 +37,6 @@ npx ruv-swarm github release-version \
 ```
 
 ### 3. Release Orchestration
-
 ```bash
 # Full release automation with gh CLI
 # Generate changelog from PRs and commits
@@ -76,47 +71,46 @@ gh issue create \
 ## Release Configuration
 
 ### Release Config File
-
 ```yaml
 # .github/release-swarm.yml
 version: 1
 release:
   versioning:
     strategy: semantic
-    breaking-keywords: ['BREAKING', '!']
-
+    breaking-keywords: ["BREAKING", "!"]
+    
   changelog:
     sections:
-      - title: '🚀 Features'
-        labels: ['feature', 'enhancement']
-      - title: '🐛 Bug Fixes'
-        labels: ['bug', 'fix']
-      - title: '📚 Documentation'
-        labels: ['docs', 'documentation']
-
+      - title: "🚀 Features"
+        labels: ["feature", "enhancement"]
+      - title: "🐛 Bug Fixes"
+        labels: ["bug", "fix"]
+      - title: "📚 Documentation"
+        labels: ["docs", "documentation"]
+        
   artifacts:
     - name: npm-package
       build: npm run build
       publish: npm publish
-
+      
     - name: docker-image
       build: docker build -t app:$VERSION .
       publish: docker push app:$VERSION
-
+      
     - name: binaries
       build: ./scripts/build-binaries.sh
       upload: github-release
-
+      
   deployment:
     environments:
       - name: staging
         auto-deploy: true
         validation: npm run test:e2e
-
+        
       - name: production
         approval-required: true
         rollback-enabled: true
-
+        
   notifications:
     - slack: releases-channel
     - email: stakeholders@company.com
@@ -126,12 +120,11 @@ release:
 ## Release Agents
 
 ### Changelog Agent
-
 ```bash
 # Generate intelligent changelog with gh CLI
 # Get all merged PRs between versions
 PRS=$(gh pr list --state merged --base main --json number,title,labels,author,mergedAt \
-  --jq ".[] | select(.mergedAt > \"$(gh release view v1.0.0 --json publishedAt -q .publishedAt)\")")
+  --jq ".[] | select(.mergedAt > \"$(gh release view v1.0.0 --json publishedAt -q .publishedAt)\")")  
 
 # Get contributors
 CONTRIBUTORS=$(echo "$PRS" | jq -r '[.author.login] | unique | join(", ")')
@@ -161,7 +154,6 @@ gh pr create \
 ```
 
 **Capabilities:**
-
 - Semantic commit analysis
 - Breaking change detection
 - Contributor attribution
@@ -169,7 +161,6 @@ gh pr create \
 - Multi-language support
 
 ### Version Agent
-
 ```bash
 # Determine next version
 npx ruv-swarm github version-suggest \
@@ -180,7 +171,6 @@ npx ruv-swarm github version-suggest \
 ```
 
 **Logic:**
-
 - Analyzes commit messages
 - Detects breaking changes
 - Suggests appropriate bump
@@ -188,7 +178,6 @@ npx ruv-swarm github version-suggest \
 - Validates version constraints
 
 ### Build Agent
-
 ```bash
 # Coordinate multi-platform builds
 npx ruv-swarm github release-build \
@@ -199,7 +188,6 @@ npx ruv-swarm github release-build \
 ```
 
 **Features:**
-
 - Cross-platform compilation
 - Parallel build execution
 - Artifact optimization
@@ -207,7 +195,6 @@ npx ruv-swarm github release-build \
 - Build caching
 
 ### Test Agent
-
 ```bash
 # Pre-release testing
 npx ruv-swarm github release-test \
@@ -218,7 +205,6 @@ npx ruv-swarm github release-test \
 ```
 
 ### Deploy Agent
-
 ```bash
 # Multi-target deployment
 npx ruv-swarm github release-deploy \
@@ -231,7 +217,6 @@ npx ruv-swarm github release-deploy \
 ## Advanced Features
 
 ### 1. Progressive Deployment
-
 ```yaml
 # Staged rollout configuration
 deployment:
@@ -243,19 +228,18 @@ deployment:
       metrics:
         - error-rate < 0.1%
         - latency-p99 < 200ms
-
+        
     - name: partial
       percentage: 25
       duration: 4h
       validation: automated-tests
-
+      
     - name: full
       percentage: 100
       approval: required
 ```
 
 ### 2. Multi-Repo Releases
-
 ```bash
 # Coordinate releases across repos
 npx ruv-swarm github multi-release \
@@ -266,7 +250,6 @@ npx ruv-swarm github multi-release \
 ```
 
 ### 3. Hotfix Automation
-
 ```bash
 # Emergency hotfix process
 npx ruv-swarm github hotfix \
@@ -279,7 +262,6 @@ npx ruv-swarm github hotfix \
 ## Release Workflows
 
 ### Standard Release Flow
-
 ```yaml
 # .github/workflows/release.yml
 name: Release Workflow
@@ -294,55 +276,55 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
+          
       - name: Setup GitHub CLI
         run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
-
+          
       - name: Initialize Release Swarm
         run: |
           # Get release tag and previous tag
           RELEASE_TAG=${{ github.ref_name }}
           PREV_TAG=$(gh release list --limit 2 --json tagName -q '.[1].tagName')
-
+          
           # Get PRs and commits for changelog
           PRS=$(gh pr list --state merged --base main --json number,title,labels,author \
             --search "merged:>=$(gh release view $PREV_TAG --json publishedAt -q .publishedAt)")
-
+          
           npx ruv-swarm github release-init \
             --tag $RELEASE_TAG \
             --previous-tag $PREV_TAG \
             --prs "$PRS" \
             --spawn-agents "changelog,version,build,test,deploy"
-
+            
       - name: Generate Release Assets
         run: |
           # Generate changelog from PR data
           CHANGELOG=$(npx ruv-swarm github release-changelog \
             --format markdown)
-
+          
           # Update release notes
           gh release edit ${{ github.ref_name }} \
             --notes "$CHANGELOG"
-
+          
           # Generate and upload assets
           npx ruv-swarm github release-assets \
             --changelog \
             --binaries \
             --documentation
-
+            
       - name: Upload Release Assets
         run: |
           # Upload generated assets to GitHub release
           for file in dist/*; do
             gh release upload ${{ github.ref_name }} "$file"
           done
-
+          
       - name: Publish Release
         run: |
           # Publish to package registries
           npx ruv-swarm github release-publish \
             --platforms all
-
+          
           # Create announcement issue
           gh issue create \
             --title "🚀 Released ${{ github.ref_name }}" \
@@ -351,7 +333,6 @@ jobs:
 ```
 
 ### Continuous Deployment
-
 ```bash
 # Automated deployment pipeline
 npx ruv-swarm github cd-pipeline \
@@ -364,7 +345,6 @@ npx ruv-swarm github cd-pipeline \
 ## Release Validation
 
 ### Pre-Release Checks
-
 ```bash
 # Comprehensive validation
 npx ruv-swarm github release-validate \
@@ -380,7 +360,6 @@ npx ruv-swarm github release-validate \
 ```
 
 ### Compatibility Testing
-
 ```bash
 # Test backward compatibility
 npx ruv-swarm github compat-test \
@@ -391,7 +370,6 @@ npx ruv-swarm github compat-test \
 ```
 
 ### Security Scanning
-
 ```bash
 # Security validation
 npx ruv-swarm github release-security \
@@ -404,7 +382,6 @@ npx ruv-swarm github release-security \
 ## Monitoring & Rollback
 
 ### Release Monitoring
-
 ```bash
 # Monitor release health
 npx ruv-swarm github release-monitor \
@@ -415,7 +392,6 @@ npx ruv-swarm github release-monitor \
 ```
 
 ### Automated Rollback
-
 ```bash
 # Configure auto-rollback
 npx ruv-swarm github rollback-config \
@@ -429,7 +405,6 @@ npx ruv-swarm github rollback-config \
 ```
 
 ### Release Analytics
-
 ```bash
 # Analyze release performance
 npx ruv-swarm github release-analytics \
@@ -442,7 +417,6 @@ npx ruv-swarm github release-analytics \
 ## Documentation
 
 ### Auto-Generated Docs
-
 ```bash
 # Update documentation
 npx ruv-swarm github release-docs \
@@ -453,77 +427,61 @@ npx ruv-swarm github release-docs \
 ```
 
 ### Release Notes
-
 ```markdown
 <!-- Auto-generated release notes template -->
-
 # Release v2.0.0
 
 ## 🎉 Highlights
-
 - Major feature X with 50% performance improvement
 - New API endpoints for feature Y
 - Enhanced security with feature Z
 
 ## 🚀 Features
-
 ### Feature Name (#PR)
-
 Detailed description of the feature...
 
 ## 🐛 Bug Fixes
-
 ### Fixed issue with... (#PR)
-
 Description of the fix...
 
 ## 💥 Breaking Changes
-
 ### API endpoint renamed
-
 - Before: `/api/old-endpoint`
 - After: `/api/new-endpoint`
 - Migration: Update all client calls...
 
 ## 📈 Performance Improvements
-
 - Reduced memory usage by 30%
 - API response time improved by 200ms
 
 ## 🔒 Security Updates
-
 - Updated dependencies to patch CVE-XXXX
 - Enhanced authentication mechanism
 
 ## 📚 Documentation
-
 - Added examples for new features
 - Updated API reference
 - New troubleshooting guide
 
 ## 🙏 Contributors
-
 Thanks to all contributors who made this release possible!
 ```
 
 ## Best Practices
 
 ### 1. Release Planning
-
 - Regular release cycles
 - Feature freeze periods
 - Beta testing phases
 - Clear communication
 
 ### 2. Automation
-
 - Comprehensive CI/CD
 - Automated testing
 - Progressive rollouts
 - Monitoring and alerts
 
 ### 3. Documentation
-
 - Up-to-date changelogs
 - Migration guides
 - API documentation
@@ -532,7 +490,6 @@ Thanks to all contributors who made this release possible!
 ## Integration Examples
 
 ### NPM Package Release
-
 ```bash
 # NPM package release
 npx ruv-swarm github npm-release \
@@ -543,7 +500,6 @@ npx ruv-swarm github npm-release \
 ```
 
 ### Docker Image Release
-
 ```bash
 # Docker multi-arch release
 npx ruv-swarm github docker-release \
@@ -554,7 +510,6 @@ npx ruv-swarm github docker-release \
 ```
 
 ### Mobile App Release
-
 ```bash
 # Mobile app store release
 npx ruv-swarm github mobile-release \
@@ -567,7 +522,6 @@ npx ruv-swarm github mobile-release \
 ## Emergency Procedures
 
 ### Hotfix Process
-
 ```bash
 # Emergency hotfix
 npx ruv-swarm github emergency-release \
@@ -578,7 +532,6 @@ npx ruv-swarm github emergency-release \
 ```
 
 ### Rollback Procedure
-
 ```bash
 # Immediate rollback
 npx ruv-swarm github rollback \
@@ -588,5 +541,4 @@ npx ruv-swarm github rollback \
   --notify-users
 ```
 
-See also: [workflow-automation.md](./workflow-automation.md),
-[multi-repo-swarm.md](./multi-repo-swarm.md)
+See also: [workflow-automation.md](./workflow-automation.md), [multi-repo-swarm.md](./multi-repo-swarm.md)

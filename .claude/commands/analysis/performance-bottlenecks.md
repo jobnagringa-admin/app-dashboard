@@ -1,15 +1,12 @@
 # Performance Bottleneck Analysis
 
 ## Purpose
-
 Identify and resolve performance bottlenecks in your development workflow.
 
 ## Automated Analysis
 
 ### 1. Real-time Detection
-
 The post-task hook automatically analyzes:
-
 - Execution time vs. complexity
 - Agent utilization rates
 - Resource constraints
@@ -18,19 +15,16 @@ The post-task hook automatically analyzes:
 ### 2. Common Bottlenecks
 
 **Time Bottlenecks:**
-
 - Tasks taking > 5 minutes
 - Sequential operations that could parallelize
 - Redundant file operations
 
 **Coordination Bottlenecks:**
-
 - Single agent for complex tasks
 - Unbalanced agent workloads
 - Poor topology selection
 
 **Resource Bottlenecks:**
-
 - High operation count (> 100)
 - Memory constraints
 - I/O limitations
@@ -62,5 +56,4 @@ Result includes:
 ```
 
 ## Continuous Optimization
-
 The system learns from each task to prevent future bottlenecks!

@@ -1,14 +1,11 @@
 # Multi-Repo Swarm - Cross-Repository Swarm Orchestration
 
 ## Overview
-
-Coordinate AI swarms across multiple repositories, enabling organization-wide
-automation and intelligent cross-project collaboration.
+Coordinate AI swarms across multiple repositories, enabling organization-wide automation and intelligent cross-project collaboration.
 
 ## Core Features
 
 ### 1. Cross-Repo Initialization
-
 ```bash
 # Initialize multi-repo swarm with gh CLI
 # List organization repositories
@@ -30,7 +27,6 @@ npx ruv-swarm github multi-repo-init \
 ```
 
 ### 2. Repository Discovery
-
 ```bash
 # Auto-discover related repositories with gh CLI
 # Search organization repositories
@@ -56,7 +52,6 @@ npx ruv-swarm github discover-repos \
 ```
 
 ### 3. Synchronized Operations
-
 ```bash
 # Execute synchronized changes across repos with gh CLI
 # Get matching repositories
@@ -67,26 +62,26 @@ MATCHING_REPOS=$(gh repo list org --limit 100 --json name \
 echo "$MATCHING_REPOS" | while read -r repo; do
   # Clone repo
   gh repo clone org/$repo /tmp/$repo -- --depth=1
-
+  
   # Execute task
   cd /tmp/$repo
   npx ruv-swarm github task-execute \
     --task "update-dependencies" \
     --repo "org/$repo"
-
+  
   # Create PR if changes exist
   if [[ -n $(git status --porcelain) ]]; then
     git checkout -b update-dependencies-$(date +%Y%m%d)
     git add -A
     git commit -m "chore: Update dependencies"
-
+    
     # Push and create PR
     git push origin HEAD
     PR_URL=$(gh pr create \
       --title "Update dependencies" \
       --body "Automated dependency update across services" \
       --label "dependencies,automated")
-
+    
     echo "$PR_URL" >> /tmp/created-prs.txt
   fi
   cd -
@@ -100,7 +95,6 @@ npx ruv-swarm github link-prs --urls "$PR_URLS"
 ## Configuration
 
 ### Multi-Repo Config File
-
 ```yaml
 # .swarm/multi-repo.yml
 version: 1
@@ -110,12 +104,12 @@ repositories:
     url: github.com/my-org/frontend
     role: ui
     agents: [coder, designer, tester]
-
+    
   - name: backend
     url: github.com/my-org/backend
     role: api
     agents: [architect, coder, tester]
-
+    
   - name: shared
     url: github.com/my-org/shared
     role: library
@@ -125,7 +119,7 @@ coordination:
   topology: hierarchical
   communication: webhook
   memory: redis://shared-memory
-
+  
 dependencies:
   - from: frontend
     to: [backend, shared]
@@ -134,7 +128,6 @@ dependencies:
 ```
 
 ### Repository Roles
-
 ```javascript
 // Define repository roles and responsibilities
 {
@@ -158,7 +151,6 @@ dependencies:
 ## Orchestration Commands
 
 ### Dependency Management
-
 ```bash
 # Update dependencies across all repos with gh CLI
 # Create tracking issue first
@@ -182,10 +174,10 @@ echo "$TS_REPOS" | while read -r repo; do
   # Clone and update
   gh repo clone org/$repo /tmp/$repo -- --depth=1
   cd /tmp/$repo
-
+  
   # Update dependency
   npm install --save-dev typescript@5.0.0
-
+  
   # Test changes
   if npm test; then
     # Create PR
@@ -194,7 +186,7 @@ echo "$TS_REPOS" | while read -r repo; do
     git commit -m "chore: Update TypeScript to 5.0.0
 
 Part of #$TRACKING_ISSUE"
-
+    
     git push origin HEAD
     gh pr create \
       --title "Update TypeScript to 5.0.0" \
@@ -210,7 +202,6 @@ done
 ```
 
 ### Refactoring Operations
-
 ```bash
 # Coordinate large-scale refactoring
 npx ruv-swarm github multi-repo-refactor \
@@ -221,7 +212,6 @@ npx ruv-swarm github multi-repo-refactor \
 ```
 
 ### Security Updates
-
 ```bash
 # Coordinate security patches
 npx ruv-swarm github multi-repo-security \
@@ -234,7 +224,6 @@ npx ruv-swarm github multi-repo-security \
 ## Communication Strategies
 
 ### 1. Webhook-Based Coordination
-
 ```javascript
 // webhook-coordinator.js
 const { MultiRepoSwarm } = require('ruv-swarm');
@@ -242,21 +231,20 @@ const { MultiRepoSwarm } = require('ruv-swarm');
 const swarm = new MultiRepoSwarm({
   webhook: {
     url: 'https://swarm-coordinator.example.com',
-    secret: process.env.WEBHOOK_SECRET,
-  },
+    secret: process.env.WEBHOOK_SECRET
+  }
 });
 
 // Handle cross-repo events
 swarm.on('repo:update', async (event) => {
   await swarm.propagate(event, {
     to: event.dependencies,
-    strategy: 'eventual-consistency',
+    strategy: 'eventual-consistency'
   });
 });
 ```
 
 ### 2. GraphQL Federation
-
 ```graphql
 # Federated schema for multi-repo queries
 type Repository @key(fields: "id") {
@@ -276,13 +264,12 @@ type SwarmStatus {
 ```
 
 ### 3. Event Streaming
-
 ```yaml
 # Kafka configuration for real-time coordination
 kafka:
   brokers: ['kafka1:9092', 'kafka2:9092']
   topics:
-    swarm-events:
+    swarm-events: 
       partitions: 10
       replication: 3
     swarm-memory:
@@ -293,7 +280,6 @@ kafka:
 ## Advanced Features
 
 ### 1. Distributed Task Queue
-
 ```bash
 # Create distributed task queue
 npx ruv-swarm github multi-repo-queue \
@@ -304,7 +290,6 @@ npx ruv-swarm github multi-repo-queue \
 ```
 
 ### 2. Cross-Repo Testing
-
 ```bash
 # Run integration tests across repos
 npx ruv-swarm github multi-repo-test \
@@ -315,7 +300,6 @@ npx ruv-swarm github multi-repo-test \
 ```
 
 ### 3. Monorepo Migration
-
 ```bash
 # Assist in monorepo migration
 npx ruv-swarm github to-monorepo \
@@ -328,7 +312,6 @@ npx ruv-swarm github to-monorepo \
 ## Monitoring & Visualization
 
 ### Multi-Repo Dashboard
-
 ```bash
 # Launch monitoring dashboard
 npx ruv-swarm github multi-repo-dashboard \
@@ -338,7 +321,6 @@ npx ruv-swarm github multi-repo-dashboard \
 ```
 
 ### Dependency Graph
-
 ```bash
 # Visualize repo dependencies
 npx ruv-swarm github dep-graph \
@@ -348,7 +330,6 @@ npx ruv-swarm github dep-graph \
 ```
 
 ### Health Monitoring
-
 ```bash
 # Monitor swarm health across repos
 npx ruv-swarm github health-check \
@@ -360,7 +341,6 @@ npx ruv-swarm github health-check \
 ## Synchronization Patterns
 
 ### 1. Eventually Consistent
-
 ```javascript
 // Eventual consistency for non-critical updates
 {
@@ -376,7 +356,6 @@ npx ruv-swarm github health-check \
 ```
 
 ### 2. Strong Consistency
-
 ```javascript
 // Strong consistency for critical operations
 {
@@ -390,7 +369,6 @@ npx ruv-swarm github health-check \
 ```
 
 ### 3. Hybrid Approach
-
 ```javascript
 // Mix of consistency levels
 {
@@ -408,7 +386,6 @@ npx ruv-swarm github health-check \
 ## Use Cases
 
 ### 1. Microservices Coordination
-
 ```bash
 # Coordinate microservices development
 npx ruv-swarm github microservices \
@@ -419,7 +396,6 @@ npx ruv-swarm github microservices \
 ```
 
 ### 2. Library Updates
-
 ```bash
 # Update shared library across consumers
 npx ruv-swarm github lib-update \
@@ -431,7 +407,6 @@ npx ruv-swarm github lib-update \
 ```
 
 ### 3. Organization-Wide Changes
-
 ```bash
 # Apply org-wide policy changes
 npx ruv-swarm github org-policy \
@@ -444,21 +419,18 @@ npx ruv-swarm github org-policy \
 ## Best Practices
 
 ### 1. Repository Organization
-
 - Clear repository roles and boundaries
 - Consistent naming conventions
 - Documented dependencies
 - Shared configuration standards
 
 ### 2. Communication
-
 - Use appropriate sync strategies
 - Implement circuit breakers
 - Monitor latency and failures
 - Clear error propagation
 
 ### 3. Security
-
 - Secure cross-repo authentication
 - Encrypted communication channels
 - Audit trail for all operations
@@ -467,7 +439,6 @@ npx ruv-swarm github org-policy \
 ## Performance Optimization
 
 ### Caching Strategy
-
 ```bash
 # Implement cross-repo caching
 npx ruv-swarm github cache-strategy \
@@ -477,7 +448,6 @@ npx ruv-swarm github cache-strategy \
 ```
 
 ### Parallel Execution
-
 ```bash
 # Optimize parallel operations
 npx ruv-swarm github parallel-optimize \
@@ -487,7 +457,6 @@ npx ruv-swarm github parallel-optimize \
 ```
 
 ### Resource Pooling
-
 ```bash
 # Pool resources across repos
 npx ruv-swarm github resource-pool \
@@ -499,7 +468,6 @@ npx ruv-swarm github resource-pool \
 ## Troubleshooting
 
 ### Connectivity Issues
-
 ```bash
 # Diagnose connectivity problems
 npx ruv-swarm github diagnose-connectivity \
@@ -509,7 +477,6 @@ npx ruv-swarm github diagnose-connectivity \
 ```
 
 ### Memory Synchronization
-
 ```bash
 # Debug memory sync issues
 npx ruv-swarm github debug-memory \
@@ -519,7 +486,6 @@ npx ruv-swarm github debug-memory \
 ```
 
 ### Performance Bottlenecks
-
 ```bash
 # Identify performance issues
 npx ruv-swarm github perf-analysis \
@@ -531,7 +497,6 @@ npx ruv-swarm github perf-analysis \
 ## Examples
 
 ### Full-Stack Application Update
-
 ```bash
 # Update full-stack application
 npx ruv-swarm github fullstack-update \
@@ -542,7 +507,6 @@ npx ruv-swarm github fullstack-update \
 ```
 
 ### Cross-Team Collaboration
-
 ```bash
 # Facilitate cross-team work
 npx ruv-swarm github cross-team \
@@ -552,5 +516,4 @@ npx ruv-swarm github cross-team \
   --track-progress
 ```
 
-See also: [swarm-pr.md](./swarm-pr.md),
-[project-board-sync.md](./project-board-sync.md)
+See also: [swarm-pr.md](./swarm-pr.md), [project-board-sync.md](./project-board-sync.md)

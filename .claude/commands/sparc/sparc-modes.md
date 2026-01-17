@@ -1,33 +1,27 @@
 # SPARC Modes Overview
 
-SPARC (Specification, Planning, Architecture, Review, Code) is a comprehensive
-development methodology with 17 specialized modes, all integrated with MCP tools
-for enhanced coordination and execution.
+SPARC (Specification, Planning, Architecture, Review, Code) is a comprehensive development methodology with 17 specialized modes, all integrated with MCP tools for enhanced coordination and execution.
 
 ## Available Modes
 
 ### Core Orchestration Modes
-
 - **orchestrator**: Multi-agent task orchestration
 - **swarm-coordinator**: Specialized swarm management
 - **workflow-manager**: Process automation
 - **batch-executor**: Parallel task execution
 
-### Development Modes
-
+### Development Modes  
 - **coder**: Autonomous code generation
 - **architect**: System design
 - **reviewer**: Code review
 - **tdd**: Test-driven development
 
 ### Analysis and Research Modes
-
 - **researcher**: Deep research capabilities
 - **analyzer**: Code and data analysis
 - **optimizer**: Performance optimization
 
 ### Creative and Support Modes
-
 - **designer**: UI/UX design
 - **innovator**: Creative problem solving
 - **documenter**: Documentation generation
@@ -38,7 +32,6 @@ for enhanced coordination and execution.
 ## Usage
 
 ### Option 1: Using MCP Tools (Preferred in Claude Code)
-
 ```javascript
 // Execute SPARC mode directly
 mcp__claude-flow__sparc_mode {
@@ -70,7 +63,6 @@ mcp__claude-flow__swarm_monitor {
 ```
 
 ### Option 2: Using NPX CLI (Fallback when MCP not available)
-
 ```bash
 # Use when running from terminal or MCP tools unavailable
 npx claude-flow sparc run <mode> "task description"
@@ -89,7 +81,6 @@ npx claude-flow sparc run <mode> "task" --parallel --monitor
 ```
 
 ### Option 3: Local Installation
-
 ```bash
 # If claude-flow is installed locally
 ./claude-flow sparc run <mode> "task description"
@@ -100,7 +91,6 @@ npx claude-flow sparc run <mode> "task" --parallel --monitor
 ### Full Development Cycle
 
 #### Using MCP Tools (Preferred)
-
 ```javascript
 // 1. Initialize development swarm
 mcp__claude-flow__swarm_init {
@@ -134,7 +124,6 @@ mcp__claude-flow__sparc_mode {
 ```
 
 #### Using NPX CLI (Fallback)
-
 ```bash
 # 1. Architecture design
 npx claude-flow sparc run architect "design microservices"
@@ -152,7 +141,6 @@ npx claude-flow sparc run reviewer "review implementation"
 ### Research and Innovation
 
 #### Using MCP Tools (Preferred)
-
 ```javascript
 // 1. Research phase
 mcp__claude-flow__sparc_mode {
@@ -174,7 +162,6 @@ mcp__claude-flow__sparc_mode {
 ```
 
 #### Using NPX CLI (Fallback)
-
 ```bash
 # 1. Research phase
 npx claude-flow sparc run researcher "research best practices"
