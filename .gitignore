@@ -36,3 +36,9 @@ lighthouse.*/
 .lighthouseci/lhr-*.html
 .lighthouseci/lhr-*.json
 .lighthouseci/flags-*.json
+
+# Playwright test outputs (keep snapshots for comparison)
+tests/__results__/
+tests/__reports__/
+test-results/
+playwright-report/

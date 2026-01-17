@@ -2,19 +2,21 @@
 import { defineConfig } from "astro/config";
 import node from "@astrojs/node";
 import partytown from "@astrojs/partytown";
+import sitemap from "@astrojs/sitemap";
+import compressor from "astro-compressor";
 
 // Content Security Policy - allows necessary third-party resources
 const cspDirectives = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://clerk.jobnagringa.com.br https://www.googletagmanager.com https://d3e54v103j8qbb.cloudfront.net https://cdn.jsdelivr.net https://mautic.jobnagringa.com.br https://analytics.ahrefs.com",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://d3e54v103j8qbb.cloudfront.net https://cdn.jsdelivr.net https://mautic.jobnagringa.com.br https://analytics.ahrefs.com",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
   "img-src 'self' data: blob: https: http:",
-  "connect-src 'self' https://clerk.jobnagringa.com.br https://www.googletagmanager.com https://mautic.jobnagringa.com.br https://analytics.ahrefs.com https://*.google-analytics.com",
+  "connect-src 'self' https://www.googletagmanager.com https://mautic.jobnagringa.com.br https://analytics.ahrefs.com https://*.google-analytics.com",
   "frame-src 'self' https://www.googletagmanager.com https://accounts.jobnagringa.com.br",
   "object-src 'none'",
   "base-uri 'self'",
-  "form-action 'self' https://clerk.jobnagringa.com.br https://accounts.jobnagringa.com.br",
+  "form-action 'self' https://accounts.jobnagringa.com.br",
   "frame-ancestors 'self'",
   "upgrade-insecure-requests"
 ].join('; ');
@@ -62,6 +64,29 @@ export default defineConfig({
         debug: process.env.NODE_ENV === "development",
       },
     }),
+    // Sitemap generation - excludes member-only and utility pages
+    sitemap({
+      filter: (page) => {
+        // Exclude member-only pages
+        if (page.includes('/jng/')) return false;
+        // Exclude checkout/payment pages
+        if (page.includes('/checkout')) return false;
+        if (page.includes('/paypal-checkout')) return false;
+        if (page.includes('/init-checkout')) return false;
+        if (page.includes('/order-confirmation')) return false;
+        // Exclude utility pages
+        if (page.includes('/401')) return false;
+        if (page.includes('/access-denied')) return false;
+        if (page.includes('/user-account')) return false;
+        if (page.includes('/search')) return false;
+        return true;
+      },
+    }),
+    // Gzip/Brotli compression - MUST be last in integrations array
+    compressor({
+      gzip: true,
+      brotli: true,
+    }),
   ],
 
   site: "https://jobnagringa.com.br",
@@ -105,8 +130,10 @@ export default defineConfig({
   build: {
     // Assets folder name
     assets: "_assets",
-    // Inline small assets
+    // Inline small assets (smaller than 4KB) - reduces requests for critical CSS
     inlineStylesheets: "auto",
+    // Split client-side scripts for better caching
+    format: "file",
   },
 
   // Development server configuration
@@ -129,10 +156,18 @@ export default defineConfig({
       chunkSizeWarningLimit: 1000,
       // CSS code splitting - each page gets its own CSS bundle
       cssCodeSplit: true,
+      // Minify output for production
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true, // Remove console.log in production
+          drop_debugger: true,
+        },
+      },
       // Rollup options for better code splitting
       rollupOptions: {
         output: {
-          // Manual chunks for CSS optimization
+          // Manual chunks for better caching
           manualChunks: (id) => {
             // Split Webflow CSS into its own chunk
             if (id.includes("webflow")) {
@@ -142,6 +177,10 @@ export default defineConfig({
             if (id.includes("/components/")) {
               return "components";
             }
+            // Vendor chunks for third-party code
+            if (id.includes("node_modules")) {
+              return "vendor";
+            }
           },
           // Asset file naming for cache busting
           assetFileNames: (assetInfo) => {
@@ -149,14 +188,29 @@ export default defineConfig({
             if (assetInfo.name?.endsWith(".css")) {
               return "_assets/css/[name]-[hash][extname]";
             }
+            // Fonts get their own folder with immutable cache
+            if (/\.(woff2?|ttf|eot|otf)$/.test(assetInfo.name || "")) {
+              return "_assets/fonts/[name]-[hash][extname]";
+            }
+            // Images get their own folder
+            if (/\.(png|jpe?g|gif|svg|webp|avif|ico)$/i.test(assetInfo.name || "")) {
+              return "_assets/images/[name]-[hash][extname]";
+            }
             return "_assets/[name]-[hash][extname]";
           },
+          // JS file naming for better caching
+          chunkFileNames: "_assets/js/[name]-[hash].js",
+          entryFileNames: "_assets/js/[name]-[hash].js",
         },
       },
     },
     server: {
       // Security headers for Vite dev server
       headers: securityHeaders,
+    },
+    // Optimize dependencies pre-bundling
+    optimizeDeps: {
+      include: ['jquery'], // Pre-bundle jQuery for faster HMR
     },
   },
 
