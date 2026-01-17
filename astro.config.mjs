@@ -107,7 +107,7 @@ export default defineConfig({
       entrypoint: 'astro/assets/services/sharp',
       config: {
         // Limit image size for performance
-        limitInputPixels: false,
+        limitInputPixels: 268402689, // ~268MP limit, prevents images > ~16k x 16k
       },
     },
     // Remote image domains (for external images)
@@ -186,8 +186,8 @@ export default defineConfig({
           // Asset file naming for cache busting
           assetFileNames: (assetInfo) => {
             const assetName =
-              assetInfo.name ||
-              assetInfo.originalFileName ||
+              assetInfo.names?.[0] ||
+              assetInfo.originalFileNames?.[0] ||
               "";
             // CSS files get content hash for cache busting
             if (assetName.endsWith(".css")) {
