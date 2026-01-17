@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import PublicNavbar from '@components/PublicNavbar.astro';
 import CommunityNavbar from '@components/CommunityNavbar.astro';
 ---
 
@@ -13,7 +12,6 @@ import CommunityNavbar from '@components/CommunityNavbar.astro';
 >
   <div class="nav_wrapper">
     <CommunityNavbar />
-    <PublicNavbar />
   </div>
 </BaseLayout>
 <div class="main-tab_section">
@@ -146,35 +144,7 @@ import CommunityNavbar from '@components/CommunityNavbar.astro';
       </div>
     </div><div class="main-tab_content">
       <div class="main-tab_pane">
-        <div class="course_header-copy">
-          <div class="lesson_breadcrumbs is-wrapped-no-margin">
-            <div class="text-size-small text-style-muted">Você está em:</div><a
-              href="/course#"
-              class="breadcrumb_link w-inline-block"
-              ><div class="icon-1x1-small w-embed">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="1rem"
-                  height="1rem"
-                  viewBox="0 0 24 24"
-                  ><path
-                    fill="currentColor"
-                    d="M12.74 2.32a1 1 0 0 0-1.48 0l-9 10A1 1 0 0 0 3 14h2v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7h2a1 1 0 0 0 1-1a1 1 0 0 0-.26-.68z"
-                  ></path></svg
-                >
-              </div><div>#JNG Community</div></a
-            ><div class="text-color-light-gray">/</div><a
-              href="/course#"
-              class="breadcrumb_link w-inline-block"><div>Curso #MétodoJNG</div></a
-            >
-          </div><div class="dashboard-header_wrapper">
-            <div class="dashboard-header_content">
-              <h1 class="heading-style-h2">Workshops #JNG</h1><div class="text-style-muted">
-                Encontre vagas, faça networking, entenda o mercado e monte sua marca pessoal.<br />
-              </div>
-            </div>
-          </div>
-        </div><div class="main-tab_container-content">
+        <div class="main-tab_container-content">
           <div>
             <div class="w-dyn-list">
               <div role="list" class="collection-list-3 w-dyn-items">
@@ -203,8 +173,8 @@ import CommunityNavbar from '@components/CommunityNavbar.astro';
                             colocá-los como prioridade a partir de agora na sua carreira, como
                             funciona o recrutamento e também teremos exercícios práticos para o
                             início do planejamento da sua carreira.
-                          </div><div class="spacer-tiny"></div><a
-                            href="#intro"
+                          </div>                          <div class="spacer-tiny"></div><a
+                            href="/modulo/intro"
                             class="link_group text-color-primary w-inline-block"
                           >
                             <div class="text-weight-medium w-embed">Acesse os 3 Capítulos</div><div
@@ -252,8 +222,8 @@ import CommunityNavbar from '@components/CommunityNavbar.astro';
                             casos é você quem não consegue encontrar as vagas disponíveis. Neste
                             capítulo, ensinaremos você a driblar todos os algoritmos que te impedem
                             de encontrar a vaga perfeita. Você não vai sair desse capítulo sem ela.
-                          </div><div class="spacer-tiny"></div><a
-                            href="#empresas"
+                          </div>                          <div class="spacer-tiny"></div><a
+                            href="/modulo/empresas"
                             class="link_group text-color-primary w-inline-block"
                           >
                             <div class="text-weight-medium w-embed">Acesse os 12 Capítulos</div><div
@@ -303,8 +273,8 @@ import CommunityNavbar from '@components/CommunityNavbar.astro';
                             dos recrutadores. Mas do jeito certo. Atrair a atenção deles e de demais
                             funcionários-chave aumenta muito a sua chance de conseguir um emprego
                             ou, ao menos, ser incluído nos processos seletivos sem ser ignorado.
-                          </div><div class="spacer-tiny"></div><a
-                            href="#networking"
+                          </div>                          <div class="spacer-tiny"></div><a
+                            href="/modulo/networking"
                             class="link_group text-color-primary w-inline-block"
                           >
                             <div class="text-weight-medium w-embed">Acesse os 11 Capítulos</div><div
@@ -354,8 +324,8 @@ import CommunityNavbar from '@components/CommunityNavbar.astro';
                             PESSOA CERTA. Mas como você sabe, existe uma diferença entre ser bom e
                             parecer bom. O que é melhor? Nenhum. Ambos são igualmente importantes e
                             a gente diz por quê.
-                          </div><div class="spacer-tiny"></div><a
-                            href="#linkedin"
+                          </div>                          <div class="spacer-tiny"></div><a
+                            href="/modulo/linkedin"
                             class="link_group text-color-primary w-inline-block"
                           >
                             <div class="text-weight-medium w-embed">Acesse os 9 Capítulos</div><div
@@ -405,8 +375,8 @@ import CommunityNavbar from '@components/CommunityNavbar.astro';
                             domina pra vender seu peixe com confiança e objetividade. Ensinaremos
                             você a criar conteúdos chamativos e nichados, projetos relevantes e
                             portfólios que ajudam a mostrar o que você realmente sabe fazer.
-                          </div><div class="spacer-tiny"></div><a
-                            href="#conteudo"
+                          </div>                          <div class="spacer-tiny"></div><a
+                            href="/modulo/conteudo"
                             class="link_group text-color-primary w-inline-block"
                           >
                             <div class="text-weight-medium w-embed">Acesse os 8 Capítulos</div><div
@@ -457,8 +427,8 @@ import CommunityNavbar from '@components/CommunityNavbar.astro';
                             concorrência, até quando você não é o melhor candidato técnico.
                             Transparência, clareza e fluidez podem fazer você virar o jogo a seu
                             favor. Disso que se trata este módulo.
-                          </div><div class="spacer-tiny"></div><a
-                            href="#entrevista"
+                          </div>                          <div class="spacer-tiny"></div><a
+                            href="/modulo/entrevista"
                             class="link_group text-color-primary w-inline-block"
                           >
                             <div class="text-weight-medium w-embed">Acesse os 10 Capítulos</div><div
@@ -509,8 +479,8 @@ import CommunityNavbar from '@components/CommunityNavbar.astro';
                             exigente. Dedique-se ao máximo, pois isso pode te aproximar de
                             oportunidades com salários mais disputados do mercado. É um investimento
                             no seu futuro profissional.
-                          </div><div class="spacer-tiny"></div><a
-                            href="#dev-interviews"
+                          </div>                          <div class="spacer-tiny"></div><a
+                            href="/modulo/dev-interviews"
                             class="link_group text-color-primary w-inline-block"
                           >
                             <div class="text-weight-medium w-embed">Acesse os 3 Capítulos</div><div
@@ -561,8 +531,8 @@ import CommunityNavbar from '@components/CommunityNavbar.astro';
                             com empresas estrageiras, como abrir um CNPJ para o seu contexto, como
                             encontrar um contador para sua empresa, como receber do exterior e, o
                             melhor, como pagar menos imposto.
-                          </div><div class="spacer-tiny"></div><a
-                            href="#contabilidade"
+                          </div>                          <div class="spacer-tiny"></div><a
+                            href="/modulo/contabilidade"
                             class="link_group text-color-primary w-inline-block"
                           >
                             <div class="text-weight-medium w-embed">Acesse os 8 Capítulos</div><div
@@ -616,8 +586,8 @@ import CommunityNavbar from '@components/CommunityNavbar.astro';
                             poderá ter uma oferta de bônus de desempenho e patrimônio/ações. Explicaremos em
                             detalhes o que são cada um, e logo depois, iremos dar diversas dicas de negociação
                             salarial.
-                          </div><div class="spacer-tiny"></div><a
-                            href="#negociacao"
+                          </div>                          <div class="spacer-tiny"></div><a
+                            href="/modulo/negociacao"
                             class="link_group text-color-primary w-inline-block"
                           >
                             <div class="text-weight-medium w-embed">Acesse os 3 Capítulos</div><div

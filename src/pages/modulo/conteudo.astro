@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import PublicNavbar from '@components/PublicNavbar.astro';
 import CommunityNavbar from '@components/CommunityNavbar.astro';
 ---
 
@@ -12,21 +11,8 @@ import CommunityNavbar from '@components/CommunityNavbar.astro';
   wfPage={'6573972eef8fb154fd845f3c'}
 >
   <div class="nav_wrapper">
-    <CommunityNavbar />
-    <PublicNavbar />
-  </div>
+    <CommunityNavbar /></div>
 
-  <div class="content-wrapper"></div><div class="nav_right-col">
-    <a href="/" class="navbar_link">Dashboard</a><a
-      href="/jobs"
-      class="navbar_link">Vagas</a
-    ><a href="/modulo/conteudo#" class="navbar_link is-white w-button">Sair</a>
-  </div><div class="nav_menu-button">
-    <div class="icon-1x1-medium w-embed">
-      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"
-        ><path fill="currentColor" d="M4 11h12v2H4zm0-5h16v2H4zm0 12h7.235v-2H4z"></path></svg
-      >
-    </div>
   </div></BaseLayout
 >
 <div class="section-module">
@@ -468,6 +454,37 @@ import CommunityNavbar from '@components/CommunityNavbar.astro';
       />
     </div>
   </div>
+
+<script>
+// Sort lessons in ascending order (A1, A2, A3...) for module pages
+document.addEventListener('DOMContentLoaded', () => {
+    const lessonList = document.querySelector('.w-dyn-list .w-dyn-items');
+    if (!lessonList) return;
+    
+    const lessons = Array.from(lessonList.querySelectorAll('[module-child]'));
+    
+    lessons.sort((a, b) => {
+        const textA = a.textContent.trim();
+        const textB = b.textContent.trim();
+        
+        // Extract lesson number (A1, A2, A3, etc.)
+        const numA = parseInt(textA.match(/A(\d+)/)?.[1], 10);
+        const numB = parseInt(textB.match(/A(\d+)/)?.[1], 10);
+        
+        // If both have lesson numbers, sort by number (ascending)
+        if (!isNaN(numA) && !isNaN(numB)) {
+            return numA - numB;
+        }
+        
+        // Fallback: alphabetical sort
+        return textA.localeCompare(textB, undefined, { numeric: true, sensitivity: 'base' });
+    });
+    
+    // Re-append sorted lessons
+    lessons.forEach(lesson => lessonList.appendChild(lesson));
+});
+</script>
+
 </footer><!-- Google Tag Manager (noscript) -->
 
 <!-- End Google Tag Manager (noscript) -->
