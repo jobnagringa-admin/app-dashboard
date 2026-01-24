@@ -273,7 +273,7 @@ div table th:last-child {
   div table {
     font-size: 0.875rem !important;
   }
-  
+
   table td,
   table th,
   body table td,
@@ -282,7 +282,7 @@ div table th:last-child {
   div table th {
     padding: 0.75rem 0.875rem !important;
   }
-  
+
   table th,
   body table th,
   div table th {
@@ -5184,7 +5184,7 @@ div.lesson_rich-text table th:last-child {
   div.lesson_rich-text table {
     font-size: 0.875rem !important;
   }
-  
+
   .w-embed table td,
   .w-embed table th,
   .w-richtext table td,
@@ -5199,7 +5199,7 @@ div.lesson_rich-text table th:last-child {
   div.lesson_rich-text table th {
     padding: 0.75rem 0.875rem !important;
   }
-  
+
   .w-embed table th,
   .w-richtext table th,
   .lesson_rich-text table th,
