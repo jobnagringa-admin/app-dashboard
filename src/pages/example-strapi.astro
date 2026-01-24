@@ -1,10 +1,10 @@
 ---
 /**
  * Example Strapi Integration Page
- * 
+ *
  * This page demonstrates how to fetch and display Strapi content
  * in an Astro page. This is a reference implementation.
- * 
+ *
  * To use this page:
  * 1. Ensure your Strapi instance is running
  * 2. Create a content type (e.g., 'posts', 'pages')
@@ -58,97 +58,94 @@ try {
     <div class="container">
       <h1>Strapi CMS Integration Example</h1>
 
-      {error ? (
-        <div class="error-message">
-          <h2>Error</h2>
-          <p>{error}</p>
-          <p>
-            Make sure your Strapi instance is running and the content type
-            '{contentType}' exists.
-          </p>
-        </div>
-      ) : (
-        <>
-          {/* Collection Example */}
-          <section>
-            <h2>Collection Example</h2>
-            {collectionData && collectionData.data.length > 0 ? (
-              <>
-                <p>
-                  Found {collectionData.data.length} items (Total:{' '}
-                  {collectionData.meta?.pagination?.total || 0})
-                </p>
-                <div class="collection-grid">
-                  {collectionData.data.map((item) => (
-                    <article class="item-card">
-                      <h3>{item.title || item.name || `Item ${item.id}`}</h3>
-                      {item.image && (
-                        <img
-                          src={getStrapiImageURL(item.image)}
-                          alt={item.image.alternativeText || ''}
-                          loading="lazy"
-                        />
-                      )}
-                      {item.excerpt && <p>{item.excerpt}</p>}
-                      {item.createdAt && (
-                        <time datetime={item.createdAt}>
-                          {new Date(item.createdAt).toLocaleDateString()}
-                        </time>
-                      )}
-                    </article>
-                  ))}
-                </div>
-              </>
-            ) : (
-              <p>No items found in '{contentType}' content type.</p>
-            )}
-          </section>
-
-          {/* Single Entry Example */}
-          {singleData && (
+      {
+        error ? (
+          <div class="error-message">
+            <h2>Error</h2>
+            <p>{error}</p>
+            <p>
+              Make sure your Strapi instance is running and the content type '{contentType}' exists.
+            </p>
+          </div>
+        ) : (
+          <>
+            {/* Collection Example */}
             <section>
-              <h2>Single Entry Example</h2>
-              <article class="single-item">
-                <h3>{singleData.title || singleData.name || `Item ${singleData.id}`}</h3>
-                {singleData.image && (
-                  <img
-                    src={getStrapiImageURL(singleData.image)}
-                    alt={singleData.image.alternativeText || ''}
-                  />
-                )}
-                {singleData.content && (
-                  <div set:html={singleData.content} />
-                )}
-                {singleData.createdAt && (
+              <h2>Collection Example</h2>
+              {collectionData && collectionData.data.length > 0 ? (
+                <>
                   <p>
-                    <strong>Created:</strong>{' '}
-                    {new Date(singleData.createdAt).toLocaleString()}
+                    Found {collectionData.data.length} items (Total:{' '}
+                    {collectionData.meta?.pagination?.total || 0})
                   </p>
-                )}
-                {singleData.updatedAt && (
-                  <p>
-                    <strong>Updated:</strong>{' '}
-                    {new Date(singleData.updatedAt).toLocaleString()}
-                  </p>
-                )}
-              </article>
+                  <div class="collection-grid">
+                    {collectionData.data.map((item) => (
+                      <article class="item-card">
+                        <h3>{item.title || item.name || `Item ${item.id}`}</h3>
+                        {item.image && (
+                          <img
+                            src={getStrapiImageURL(item.image)}
+                            alt={item.image.alternativeText || ''}
+                            loading="lazy"
+                          />
+                        )}
+                        {item.excerpt && <p>{item.excerpt}</p>}
+                        {item.createdAt && (
+                          <time datetime={item.createdAt}>
+                            {new Date(item.createdAt).toLocaleDateString()}
+                          </time>
+                        )}
+                      </article>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <p>No items found in '{contentType}' content type.</p>
+              )}
             </section>
-          )}
 
-          {/* API Info */}
-          <section>
-            <h2>API Information</h2>
-            <dl>
-              <dt>Content Type</dt>
-              <dd>{contentType}</dd>
-              <dt>Strapi URL</dt>
-              <dd>{import.meta.env.STRAPI_URL || 'Not configured'}</dd>
-              <dt>API Prefix</dt>
-              <dd>{import.meta.env.STRAPI_API_PREFIX || '/api'}</dd>
-            </dl>
-          </section>
-        </>
-      )}
+            {/* Single Entry Example */}
+            {singleData && (
+              <section>
+                <h2>Single Entry Example</h2>
+                <article class="single-item">
+                  <h3>{singleData.title || singleData.name || `Item ${singleData.id}`}</h3>
+                  {singleData.image && (
+                    <img
+                      src={getStrapiImageURL(singleData.image)}
+                      alt={singleData.image.alternativeText || ''}
+                    />
+                  )}
+                  {singleData.content && <div set:html={singleData.content} />}
+                  {singleData.createdAt && (
+                    <p>
+                      <strong>Created:</strong> {new Date(singleData.createdAt).toLocaleString()}
+                    </p>
+                  )}
+                  {singleData.updatedAt && (
+                    <p>
+                      <strong>Updated:</strong> {new Date(singleData.updatedAt).toLocaleString()}
+                    </p>
+                  )}
+                </article>
+              </section>
+            )}
+
+            {/* API Info */}
+            <section>
+              <h2>API Information</h2>
+              <dl>
+                <dt>Content Type</dt>
+                <dd>{contentType}</dd>
+                <dt>Strapi URL</dt>
+                <dd>{import.meta.env.STRAPI_URL || 'Not configured'}</dd>
+                <dt>API Prefix</dt>
+                <dd>{import.meta.env.STRAPI_API_PREFIX || '/api'}</dd>
+              </dl>
+            </section>
+          </>
+        )
+      }
     </div>
   </div>
 </BaseLayout>
