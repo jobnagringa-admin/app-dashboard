@@ -64,7 +64,7 @@ export const videos: VideoData[] = [
     slug: 'live-com-convidados---gustavo-caetano-papinho-tech',
     title: 'Live com Convidados - Gustavo Caetano (Papinho Tech)',
     description:
-      "Quem trazemos hoje é especialista em desenvolvimento Android no Banco Inter, Mestre em Ciência da Computação, professor universitário e coordenador do Google Developer Group's de Curitiba. Possui também um canal no YouTube com mais de 3 milhões de views e é Host do podcast \"Papinho Tech\", um dos maiores podcasts de tecnologia do Brasil. Com vocês: Gustavo Caetano!!",
+      'Quem trazemos hoje é especialista em desenvolvimento Android no Banco Inter, Mestre em Ciência da Computação, professor universitário e coordenador do Google Developer Group\'s de Curitiba. Possui também um canal no YouTube com mais de 3 milhões de views e é Host do podcast "Papinho Tech", um dos maiores podcasts de tecnologia do Brasil. Com vocês: Gustavo Caetano!!',
     youtubeId: 'zyYyWwClnK0',
     episodeNumber: '#RECAPCOM43',
   },
