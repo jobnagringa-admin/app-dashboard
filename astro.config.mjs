@@ -14,7 +14,7 @@ const cspDirectives = [
   "font-src 'self' https://fonts.gstatic.com",
   "img-src 'self' data: blob: https: http:",
   "connect-src 'self' https://www.googletagmanager.com https://mautic.jobnagringa.com.br https://analytics.ahrefs.com https://*.google-analytics.com http://localhost:1337",
-  "frame-src 'self' https://www.googletagmanager.com https://accounts.jobnagringa.com.br",
+  "frame-src 'self' https://www.googletagmanager.com https://accounts.jobnagringa.com.br https://www.youtube.com https://www.youtube-nocookie.com",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self' https://accounts.jobnagringa.com.br",
@@ -132,6 +132,11 @@ export default defineConfig({
 
   // Vite configuration
   vite: {
+    resolve: {
+      alias: {
+        '@data': '/src/data',
+      },
+    },
     css: {
       // PostCSS is auto-configured via postcss.config.cjs
       // PurgeCSS removes unused CSS in production (~69% reduction)
