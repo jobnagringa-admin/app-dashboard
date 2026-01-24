@@ -42,3 +42,6 @@ tests/__results__/
 tests/__reports__/
 test-results/
 playwright-report/
+
+# Build and execution logs
+logs/

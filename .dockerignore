@@ -1,0 +1,67 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs (will be created during build)
+dist/
+.astro/
+
+# Testing
+tests/
+*.test.ts
+*.spec.ts
+playwright.config.ts
+playwright-report/
+test-results/
+
+# Lighthouse & Reports
+.lighthouseci/
+reports/
+logs/
+
+# Development
+.env
+.env.*
+!.env.example
+*.log
+
+# IDE & Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation (not needed in container)
+docs/
+*.md
+!README.md
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+
+# Misc
+*.tgz
+*.tar.gz
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Claude/AI tools
+.claude/
+.claude-flow/
+.beads/
+.swarm/
+
+# Scripts (development only)
+scripts/
+
+# Legacy source (if not needed at runtime)
+# src-legacy/

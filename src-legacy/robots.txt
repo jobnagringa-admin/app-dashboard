@@ -1,7 +1,0 @@
-# Block ALL robots and crawlers - Private Project
-# This site should not be indexed or crawled by any search engine or bot
-
-User-agent: *
-Disallow: /
-
-# No sitemap - private project
