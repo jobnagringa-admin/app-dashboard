@@ -11,10 +11,9 @@ import CommunityNavbar from '@components/CommunityNavbar.astro';
   wfPage={'6573972eef8fb154fd845f3c'}
 >
   <div class="nav_wrapper">
-    <CommunityNavbar /></div>
-
-  </div></BaseLayout
->
+    <CommunityNavbar />
+  </div>
+</BaseLayout>
 <div class="section-module">
   <div class="padding-section-small">
     <div class="padding-global">
@@ -418,36 +417,35 @@ import CommunityNavbar from '@components/CommunityNavbar.astro';
     </div>
   </div>
 
-<script>
-// Sort lessons in ascending order (A1, A2, A3...) for module pages
-document.addEventListener('DOMContentLoaded', () => {
-    const lessonList = document.querySelector('.w-dyn-list .w-dyn-items');
-    if (!lessonList) return;
-    
-    const lessons = Array.from(lessonList.querySelectorAll('[module-child]'));
-    
-    lessons.sort((a, b) => {
+  <script>
+    // Sort lessons in ascending order (A1, A2, A3...) for module pages
+    document.addEventListener('DOMContentLoaded', () => {
+      const lessonList = document.querySelector('.w-dyn-list .w-dyn-items');
+      if (!lessonList) return;
+
+      const lessons = Array.from(lessonList.querySelectorAll('[module-child]'));
+
+      lessons.sort((a, b) => {
         const textA = a.textContent.trim();
         const textB = b.textContent.trim();
-        
+
         // Extract lesson number (A1, A2, A3, etc.)
         const numA = parseInt(textA.match(/A(\d+)/)?.[1], 10);
         const numB = parseInt(textB.match(/A(\d+)/)?.[1], 10);
-        
+
         // If both have lesson numbers, sort by number (ascending)
         if (!isNaN(numA) && !isNaN(numB)) {
-            return numA - numB;
+          return numA - numB;
         }
-        
+
         // Fallback: alphabetical sort
         return textA.localeCompare(textB, undefined, { numeric: true, sensitivity: 'base' });
-    });
-    
-    // Re-append sorted lessons
-    lessons.forEach(lesson => lessonList.appendChild(lesson));
-});
-</script>
+      });
 
+      // Re-append sorted lessons
+      lessons.forEach((lesson) => lessonList.appendChild(lesson));
+    });
+  </script>
 </footer><!-- Google Tag Manager (noscript) -->
 
 <!-- End Google Tag Manager (noscript) -->
