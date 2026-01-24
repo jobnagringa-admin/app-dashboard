@@ -1,13 +1,19 @@
 ---
-name: "ReasoningBank Intelligence"
-description: "Implement adaptive learning with ReasoningBank for pattern recognition, strategy optimization, and continuous improvement. Use when building self-learning agents, optimizing workflows, or implementing meta-cognitive systems."
+name: 'ReasoningBank Intelligence'
+description:
+  'Implement adaptive learning with ReasoningBank for pattern recognition,
+  strategy optimization, and continuous improvement. Use when building
+  self-learning agents, optimizing workflows, or implementing meta-cognitive
+  systems.'
 ---
 
 # ReasoningBank Intelligence
 
 ## What This Skill Does
 
-Implements ReasoningBank's adaptive learning system for AI agents to learn from experience, recognize patterns, and optimize strategies over time. Enables meta-cognitive capabilities and continuous improvement.
+Implements ReasoningBank's adaptive learning system for AI agents to learn from
+experience, recognize patterns, and optimize strategies over time. Enables
+meta-cognitive capabilities and continuous improvement.
 
 ## Prerequisites
 
@@ -24,7 +30,7 @@ import { ReasoningBank } from 'agentic-flow/reasoningbank';
 const rb = new ReasoningBank({
   persist: true,
   learningRate: 0.1,
-  adapter: 'agentdb' // Use AgentDB for storage
+  adapter: 'agentdb', // Use AgentDB for storage
 });
 
 // Record task outcome
@@ -36,32 +42,33 @@ await rb.recordExperience({
     metrics: {
       bugs_found: 5,
       time_taken: 120,
-      false_positives: 1
-    }
+      false_positives: 1,
+    },
   },
   context: {
     language: 'typescript',
-    complexity: 'medium'
-  }
+    complexity: 'medium',
+  },
 });
 
 // Get optimal strategy
 const strategy = await rb.recommendStrategy('code_review', {
   language: 'typescript',
-  complexity: 'high'
+  complexity: 'high',
 });
 ```
 
 ## Core Features
 
 ### 1. Pattern Recognition
+
 ```typescript
 // Learn patterns from data
 await rb.learnPattern({
   pattern: 'api_errors_increase_after_deploy',
   triggers: ['deployment', 'traffic_spike'],
   actions: ['rollback', 'scale_up'],
-  confidence: 0.85
+  confidence: 0.85,
 });
 
 // Match patterns
@@ -69,12 +76,13 @@ const matches = await rb.matchPatterns(currentSituation);
 ```
 
 ### 2. Strategy Optimization
+
 ```typescript
 // Compare strategies
 const comparison = await rb.compareStrategies('bug_fixing', [
   'tdd_approach',
   'debug_first',
-  'reproduce_then_fix'
+  'reproduce_then_fix',
 ]);
 
 // Get best strategy
@@ -83,17 +91,19 @@ console.log(`Best: ${best.name} (score: ${best.score})`);
 ```
 
 ### 3. Continuous Learning
+
 ```typescript
 // Enable auto-learning from all tasks
 await rb.enableAutoLearning({
-  threshold: 0.7,        // Only learn from high-confidence outcomes
-  updateFrequency: 100   // Update models every 100 experiences
+  threshold: 0.7, // Only learn from high-confidence outcomes
+  updateFrequency: 100, // Update models every 100 experiences
 });
 ```
 
 ## Advanced Usage
 
 ### Meta-Learning
+
 ```typescript
 // Learn about learning
 await rb.metaLearn({
@@ -101,22 +111,24 @@ await rb.metaLearn({
   confidence: 0.95,
   applicability: {
     task_types: ['batch_processing', 'data_transformation'],
-    conditions: ['tasks_independent', 'io_bound']
-  }
+    conditions: ['tasks_independent', 'io_bound'],
+  },
 });
 ```
 
 ### Transfer Learning
+
 ```typescript
 // Apply knowledge from one domain to another
 await rb.transferKnowledge({
   from: 'code_review_javascript',
   to: 'code_review_typescript',
-  similarity: 0.8
+  similarity: 0.8,
 });
 ```
 
 ### Adaptive Agents
+
 ```typescript
 // Create self-improving agent
 class AdaptiveAgent {
@@ -132,7 +144,7 @@ class AdaptiveAgent {
       task: task.type,
       approach: strategy.name,
       outcome: result,
-      context: task.context
+      context: task.context,
     });
 
     return result;
@@ -149,16 +161,16 @@ await rb.configure({
     type: 'agentdb',
     options: {
       database: './reasoning-bank.db',
-      enableVectorSearch: true
-    }
-  }
+      enableVectorSearch: true,
+    },
+  },
 });
 
 // Query learned patterns
 const patterns = await rb.query({
   category: 'optimization',
   minConfidence: 0.8,
-  timeRange: { last: '30d' }
+  timeRange: { last: '30d' },
 });
 ```
 
@@ -186,12 +198,15 @@ console.log(`
 ## Troubleshooting
 
 ### Issue: Poor recommendations
+
 **Solution**: Ensure sufficient training data (100+ experiences per task type)
 
 ### Issue: Slow pattern matching
+
 **Solution**: Enable vector indexing in AgentDB
 
 ### Issue: Memory growing large
+
 **Solution**: Set TTL for old experiences or enable pruning
 
 ## Learn More

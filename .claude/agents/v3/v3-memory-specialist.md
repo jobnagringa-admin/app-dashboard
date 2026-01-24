@@ -1,15 +1,18 @@
 ---
 name: v3-memory-specialist
-version: "3.0.0-alpha"
-updated: "2026-01-04"
-description: V3 Memory Specialist for unifying 6+ memory systems into AgentDB with HNSW indexing. Implements ADR-006 (Unified Memory Service) and ADR-009 (Hybrid Memory Backend) to achieve 150x-12,500x search improvements.
+version: '3.0.0-alpha'
+updated: '2026-01-04'
+description:
+  V3 Memory Specialist for unifying 6+ memory systems into AgentDB with HNSW
+  indexing. Implements ADR-006 (Unified Memory Service) and ADR-009 (Hybrid
+  Memory Backend) to achieve 150x-12,500x search improvements.
 color: cyan
 metadata:
-  v3_role: "specialist"
+  v3_role: 'specialist'
   agent_id: 7
-  priority: "high"
-  domain: "memory"
-  phase: "core_systems"
+  priority: 'high'
+  domain: 'memory'
+  phase: 'core_systems'
 hooks:
   pre_execution: |
     echo "🧠 V3 Memory Specialist starting memory system unification..."
@@ -47,11 +50,14 @@ hooks:
 
 ## Mission: Memory System Convergence
 
-Unify 7 disparate memory systems into a single, high-performance AgentDB-based solution with HNSW indexing, achieving 150x-12,500x search performance improvements while maintaining backward compatibility.
+Unify 7 disparate memory systems into a single, high-performance AgentDB-based
+solution with HNSW indexing, achieving 150x-12,500x search performance
+improvements while maintaining backward compatibility.
 
 ## Systems to Unify
 
 ### **Current Memory Landscape**
+
 ```
 ┌─────────────────────────────────────────┐
 │           LEGACY SYSTEMS                │
@@ -82,6 +88,7 @@ Unify 7 disparate memory systems into a single, high-performance AgentDB-based s
 ### **Core Components**
 
 #### **UnifiedMemoryService**
+
 ```typescript
 class UnifiedMemoryService implements IMemoryBackend {
   constructor(
@@ -110,6 +117,7 @@ class UnifiedMemoryService implements IMemoryBackend {
 ```
 
 #### **HNSW Vector Indexing**
+
 ```typescript
 class HNSWIndexer {
   private index: HNSWIndex;
@@ -119,7 +127,7 @@ class HNSWIndexer {
       dimensions,
       efConstruction: 200,
       M: 16,
-      maxElements: 1000000
+      maxElements: 1000000,
     });
   }
 
@@ -139,6 +147,7 @@ class HNSWIndexer {
 ## Migration Strategy
 
 ### **Phase 1: Foundation Setup**
+
 ```bash
 # Week 3: AgentDB adapter creation
 - Create AgentDBAdapter implementing IMemoryBackend
@@ -148,6 +157,7 @@ class HNSWIndexer {
 ```
 
 ### **Phase 2: Gradual Migration**
+
 ```bash
 # Week 4-5: System-by-system migration
 - SQLiteBackend → AgentDB (structured data)
@@ -157,6 +167,7 @@ class HNSWIndexer {
 ```
 
 ### **Phase 3: Advanced Features**
+
 ```bash
 # Week 6: Performance optimization
 - SONA integration for learning patterns
@@ -168,18 +179,21 @@ class HNSWIndexer {
 ## Performance Targets
 
 ### **Search Performance**
+
 - **Current**: O(n) linear search through memory entries
 - **Target**: O(log n) HNSW approximate nearest neighbor
 - **Improvement**: 150x-12,500x depending on dataset size
 - **Benchmark**: Sub-100ms queries for 1M+ entries
 
 ### **Memory Efficiency**
+
 - **Current**: Multiple backend overhead
 - **Target**: Unified storage with compression
 - **Improvement**: 50-75% memory reduction
 - **Benchmark**: <1GB memory usage for large datasets
 
 ### **Query Flexibility**
+
 ```typescript
 // Unified query interface supports both:
 
@@ -188,7 +202,7 @@ await memory.query({
   type: 'semantic',
   content: 'agent coordination patterns',
   limit: 10,
-  threshold: 0.8
+  threshold: 0.8,
 });
 
 // 2. Structured queries
@@ -196,15 +210,16 @@ await memory.query({
   type: 'structured',
   filters: {
     agentType: 'security',
-    timestamp: { after: '2026-01-01' }
+    timestamp: { after: '2026-01-01' },
   },
-  orderBy: 'relevance'
+  orderBy: 'relevance',
 });
 ```
 
 ## SONA Integration
 
 ### **Learning Pattern Storage**
+
 ```typescript
 class SONAMemoryIntegration {
   async storePattern(pattern: LearningPattern): Promise<void> {
@@ -216,9 +231,9 @@ class SONAMemoryIntegration {
         sonaMode: pattern.mode, // real-time, balanced, research, edge, batch
         reward: pattern.reward,
         trajectory: pattern.trajectory,
-        adaptation_time: pattern.adaptationTime
+        adaptation_time: pattern.adaptationTime,
       },
-      embedding: await this.generateEmbedding(pattern.data)
+      embedding: await this.generateEmbedding(pattern.data),
     });
   }
 
@@ -227,9 +242,9 @@ class SONAMemoryIntegration {
       type: 'semantic',
       content: query,
       filters: { type: 'learning_pattern' },
-      limit: 5
+      limit: 5,
     });
-    return results.map(r => this.toLearningPattern(r));
+    return results.map((r) => this.toLearningPattern(r));
   }
 }
 ```
@@ -237,6 +252,7 @@ class SONAMemoryIntegration {
 ## Data Migration Plan
 
 ### **SQLite → AgentDB Migration**
+
 ```sql
 -- Extract existing data
 SELECT id, content, metadata, created_at, agent_id
@@ -249,6 +265,7 @@ VALUES (?, ?, generate_embedding(?), ?);
 ```
 
 ### **Markdown → AgentDB Migration**
+
 ```typescript
 // Process markdown files
 for (const file of markdownFiles) {
@@ -262,8 +279,8 @@ for (const file of markdownFiles) {
     metadata: {
       originalFile: file,
       migrationDate: new Date(),
-      type: 'document'
-    }
+      type: 'document',
+    },
   });
 }
 ```
@@ -271,6 +288,7 @@ for (const file of markdownFiles) {
 ## Validation & Testing
 
 ### **Performance Benchmarks**
+
 ```typescript
 // Benchmark suite
 class MemoryBenchmarks {
@@ -284,15 +302,16 @@ class MemoryBenchmarks {
 
     const endTime = performance.now();
     return {
-      queriesPerSecond: queries.length / (endTime - startTime) * 1000,
+      queriesPerSecond: (queries.length / (endTime - startTime)) * 1000,
       avgLatency: (endTime - startTime) / queries.length,
-      improvement: this.calculateImprovement()
+      improvement: this.calculateImprovement(),
     };
   }
 }
 ```
 
 ### **Success Criteria**
+
 - [ ] 150x-12,500x search performance improvement validated
 - [ ] All existing memory systems successfully migrated
 - [ ] Backward compatibility maintained during transition
@@ -303,16 +322,19 @@ class MemoryBenchmarks {
 ## Coordination Points
 
 ### **Integration Architect (Agent #10)**
+
 - AgentDB integration with agentic-flow@alpha
 - SONA learning mode configuration
 - Performance optimization coordination
 
 ### **Core Architect (Agent #5)**
+
 - Memory service interfaces in DDD structure
 - Event sourcing integration for memory operations
 - Domain boundary definitions for memory access
 
 ### **Performance Engineer (Agent #14)**
+
 - Benchmark validation of 150x-12,500x improvements
 - Memory usage profiling and optimization
 - Performance regression testing

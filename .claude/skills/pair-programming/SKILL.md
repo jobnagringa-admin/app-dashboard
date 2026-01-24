@@ -1,31 +1,47 @@
 ---
 name: Pair Programming
-description: AI-assisted pair programming with multiple modes (driver/navigator/switch), real-time verification, quality monitoring, and comprehensive testing. Supports TDD, debugging, refactoring, and learning sessions. Features automatic role switching, continuous code review, security scanning, and performance optimization with truth-score verification.
+description:
+  AI-assisted pair programming with multiple modes (driver/navigator/switch),
+  real-time verification, quality monitoring, and comprehensive testing.
+  Supports TDD, debugging, refactoring, and learning sessions. Features
+  automatic role switching, continuous code review, security scanning, and
+  performance optimization with truth-score verification.
 ---
 
 # Pair Programming
 
-Collaborative AI pair programming with intelligent role management, real-time quality monitoring, and comprehensive development workflows.
+Collaborative AI pair programming with intelligent role management, real-time
+quality monitoring, and comprehensive development workflows.
 
 ## What This Skill Does
 
-This skill provides professional pair programming capabilities with AI assistance, supporting multiple collaboration modes, continuous verification, and integrated testing. It manages driver/navigator roles, performs real-time code review, tracks quality metrics, and ensures high standards through truth-score verification.
+This skill provides professional pair programming capabilities with AI
+assistance, supporting multiple collaboration modes, continuous verification,
+and integrated testing. It manages driver/navigator roles, performs real-time
+code review, tracks quality metrics, and ensures high standards through
+truth-score verification.
 
 **Key Capabilities:**
+
 - **Multiple Modes**: Driver, Navigator, Switch, TDD, Review, Mentor, Debug
-- **Real-Time Verification**: Automatic quality scoring with rollback on failures
+- **Real-Time Verification**: Automatic quality scoring with rollback on
+  failures
 - **Role Management**: Seamless switching between driver/navigator roles
-- **Testing Integration**: Auto-generate tests, track coverage, continuous testing
-- **Code Review**: Security scanning, performance analysis, best practice enforcement
+- **Testing Integration**: Auto-generate tests, track coverage, continuous
+  testing
+- **Code Review**: Security scanning, performance analysis, best practice
+  enforcement
 - **Session Persistence**: Auto-save, recovery, export, and sharing
 
 ## Prerequisites
 
 **Required:**
+
 - Claude Flow CLI installed (`npm install -g claude-flow@alpha`)
 - Git repository (optional but recommended)
 
 **Recommended:**
+
 - Testing framework (Jest, pytest, etc.)
 - Linter configured (ESLint, pylint, etc.)
 - Code formatter (Prettier, Black, etc.)
@@ -33,12 +49,14 @@ This skill provides professional pair programming capabilities with AI assistanc
 ## Quick Start
 
 ### Basic Session
+
 ```bash
 # Start simple pair programming
 claude-flow pair --start
 ```
 
 ### TDD Session
+
 ```bash
 # Test-driven development
 claude-flow pair --start \
@@ -54,6 +72,7 @@ claude-flow pair --start \
 ### Session Control Commands
 
 #### Starting Sessions
+
 ```bash
 # Basic start
 claude-flow pair --start
@@ -79,6 +98,7 @@ claude-flow pair --start \
 ```
 
 #### Session Management
+
 ```bash
 # Check status
 claude-flow pair --status
@@ -99,6 +119,7 @@ claude-flow pair --end [--save] [--report]
 ### Available Modes
 
 #### Driver Mode
+
 You write code while AI provides guidance.
 
 ```bash
@@ -106,12 +127,14 @@ claude-flow pair --start --mode driver
 ```
 
 **Your Responsibilities:**
+
 - Write actual code
 - Implement solutions
 - Make immediate decisions
 - Handle syntax and structure
 
 **AI Navigator:**
+
 - Strategic guidance
 - Spot potential issues
 - Suggest improvements
@@ -119,12 +142,14 @@ claude-flow pair --start --mode driver
 - Track overall direction
 
 **Best For:**
+
 - Learning new patterns
 - Implementing familiar features
 - Quick iterations
 - Hands-on debugging
 
 **Commands:**
+
 ```
 /suggest     - Get implementation suggestions
 /review      - Request code review
@@ -134,6 +159,7 @@ claude-flow pair --start --mode driver
 ```
 
 #### Navigator Mode
+
 AI writes code while you provide direction.
 
 ```bash
@@ -141,12 +167,14 @@ claude-flow pair --start --mode navigator
 ```
 
 **Your Responsibilities:**
+
 - Provide high-level direction
 - Review generated code
 - Make architectural decisions
 - Ensure business requirements
 
 **AI Driver:**
+
 - Write implementation code
 - Handle syntax details
 - Implement your guidance
@@ -154,12 +182,14 @@ claude-flow pair --start --mode navigator
 - Execute refactoring
 
 **Best For:**
+
 - Rapid prototyping
 - Boilerplate generation
 - Learning from AI patterns
 - Exploring solutions
 
 **Commands:**
+
 ```
 /implement   - Direct implementation
 /refactor    - Request refactoring
@@ -169,6 +199,7 @@ claude-flow pair --start --mode navigator
 ```
 
 #### Switch Mode
+
 Automatically alternates roles at intervals.
 
 ```bash
@@ -183,6 +214,7 @@ claude-flow pair --start --mode switch --interval 15m
 ```
 
 **Handoff Process:**
+
 1. 30-second warning before switch
 2. Current driver completes thought
 3. Context summary generated
@@ -190,6 +222,7 @@ claude-flow pair --start --mode switch --interval 15m
 5. New driver continues
 
 **Best For:**
+
 - Balanced collaboration
 - Knowledge sharing
 - Complex features
@@ -198,44 +231,53 @@ claude-flow pair --start --mode switch --interval 15m
 #### Specialized Modes
 
 **TDD Mode** - Test-Driven Development:
+
 ```bash
 claude-flow pair --start \
   --mode tdd \
   --test-first \
   --coverage 100
 ```
+
 Workflow: Write failing test → Implement → Refactor → Repeat
 
 **Review Mode** - Continuous code review:
+
 ```bash
 claude-flow pair --start \
   --mode review \
   --strict \
   --security
 ```
+
 Features: Real-time feedback, security scanning, performance analysis
 
 **Mentor Mode** - Learning-focused:
+
 ```bash
 claude-flow pair --start \
   --mode mentor \
   --explain-all \
   --pace slow
 ```
+
 Features: Detailed explanations, step-by-step guidance, pattern teaching
 
 **Debug Mode** - Problem-solving:
+
 ```bash
 claude-flow pair --start \
   --mode debug \
   --verbose \
   --trace
 ```
+
 Features: Issue identification, root cause analysis, fix suggestions
 
 ### In-Session Commands
 
 #### Code Commands
+
 ```
 /explain [--level basic|detailed|expert]
   Explain the current code or selection
@@ -263,6 +305,7 @@ Features: Issue identification, root cause analysis, fix suggestions
 ```
 
 #### Testing Commands
+
 ```
 /test [--watch] [--coverage] [--only <pattern>]
   Run test suite
@@ -284,6 +327,7 @@ Features: Issue identification, root cause analysis, fix suggestions
 ```
 
 #### Review Commands
+
 ```
 /review [--scope current|file|changes] [--strict]
   Perform code review
@@ -305,6 +349,7 @@ Features: Issue identification, root cause analysis, fix suggestions
 ```
 
 #### Navigation Commands
+
 ```
 /goto <file>[:line[:column]]
   Navigate to file or location
@@ -326,6 +371,7 @@ Features: Issue identification, root cause analysis, fix suggestions
 ```
 
 #### Git Commands
+
 ```
 /diff [--staged] [--file <file>]
   Show git diff
@@ -347,6 +393,7 @@ Features: Issue identification, root cause analysis, fix suggestions
 ```
 
 #### AI Partner Commands
+
 ```
 /agent [switch|info|config] [<agent-name>]
   Manage AI agent
@@ -365,6 +412,7 @@ Features: Issue identification, root cause analysis, fix suggestions
 ```
 
 #### Metrics Commands
+
 ```
 /metrics [--period today|session|week|all]
   Show session metrics
@@ -380,6 +428,7 @@ Features: Issue identification, root cause analysis, fix suggestions
 ```
 
 #### Role & Mode Commands
+
 ```
 /switch [--immediate]
   Switch driver/navigator roles
@@ -397,21 +446,22 @@ Features: Issue identification, root cause analysis, fix suggestions
 ### Command Shortcuts
 
 | Alias | Full Command |
-|-------|-------------|
-| `/s` | `/suggest` |
-| `/e` | `/explain` |
-| `/t` | `/test` |
-| `/r` | `/review` |
-| `/c` | `/commit` |
-| `/g` | `/goto` |
-| `/f` | `/find` |
-| `/h` | `/help` |
-| `/sw` | `/switch` |
-| `/st` | `/status` |
+| ----- | ------------ |
+| `/s`  | `/suggest`   |
+| `/e`  | `/explain`   |
+| `/t`  | `/test`      |
+| `/r`  | `/review`    |
+| `/c`  | `/commit`    |
+| `/g`  | `/goto`      |
+| `/f`  | `/find`      |
+| `/h`  | `/help`      |
+| `/sw` | `/switch`    |
+| `/st` | `/status`    |
 
 ### Configuration
 
 #### Basic Configuration
+
 Create `.claude-flow/pair-config.json`:
 
 ```json
@@ -557,6 +607,7 @@ Create `.claude-flow/pair-config.json`:
 ```
 
 #### CLI Configuration
+
 ```bash
 # Set configuration
 claude-flow pair config set defaultMode switch
@@ -594,6 +645,7 @@ claude-flow pair profile list
 ```
 
 Profile configuration:
+
 ```json
 {
   "profiles": {
@@ -638,6 +690,7 @@ claude-flow pair --start \
 ```
 
 **Session Flow:**
+
 ```
 👥 Starting pair programming for authentication feature...
 
@@ -684,6 +737,7 @@ claude-flow pair --start \
 ```
 
 **Session Flow:**
+
 ```
 👥 Starting debugging session...
 
@@ -724,6 +778,7 @@ claude-flow pair --start \
 ```
 
 **Session Flow:**
+
 ```
 👥 TDD Session: Shopping Cart Feature
 
@@ -767,6 +822,7 @@ claude-flow pair --start \
 ```
 
 **Session Flow:**
+
 ```
 👥 Refactoring Session: Modernizing UserService
 
@@ -815,6 +871,7 @@ claude-flow pair --start \
 ```
 
 **Session Flow:**
+
 ```
 👥 Performance Optimization Session
 
@@ -860,6 +917,7 @@ claude-flow pair --start \
 ```
 
 **Session Flow:**
+
 ```
 👥 API Development Session
 
@@ -934,6 +992,7 @@ claude-flow pair --status
 ```
 
 **Output:**
+
 ```
 👥 Pair Programming Session
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -966,6 +1025,7 @@ claude-flow pair --history
 ```
 
 **Output:**
+
 ```
 📚 Session History
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -1038,6 +1098,7 @@ Define in configuration:
 ```
 
 Use custom commands:
+
 ```
 /custom tdd
 /custom full-review
@@ -1066,16 +1127,19 @@ claude-flow pair --analytics <session-id>
 #### Integration Options
 
 **With Git:**
+
 ```bash
 claude-flow pair --start --git --auto-commit
 ```
 
 **With CI/CD:**
+
 ```bash
 claude-flow pair --start --ci --non-interactive
 ```
 
 **With IDE:**
+
 ```bash
 claude-flow pair --start --ide vscode
 ```
@@ -1083,6 +1147,7 @@ claude-flow pair --start --ide vscode
 ### Best Practices
 
 #### Session Practices
+
 1. **Clear Goals** - Define session objectives upfront
 2. **Appropriate Mode** - Choose based on task type
 3. **Enable Verification** - For critical code paths
@@ -1091,6 +1156,7 @@ claude-flow pair --start --ide vscode
 6. **Regular Breaks** - Take breaks every 45-60 minutes
 
 #### Code Practices
+
 1. **Test Early** - Run tests after each change
 2. **Verify Before Commit** - Check truth scores
 3. **Review Security** - Always for sensitive code
@@ -1099,6 +1165,7 @@ claude-flow pair --start --ide vscode
 6. **Learn from AI** - Ask questions frequently
 
 #### Mode Selection
+
 - **Driver Mode**: When learning, controlling implementation
 - **Navigator Mode**: For rapid prototyping, generation
 - **Switch Mode**: Long sessions, balanced collaboration
@@ -1110,24 +1177,28 @@ claude-flow pair --start --ide vscode
 ### Troubleshooting
 
 #### Session Won't Start
+
 - Check agent availability
 - Verify configuration file syntax
 - Ensure clean workspace
 - Review log files
 
 #### Session Disconnected
+
 - Use `--recover` to restore
 - Check network connection
 - Verify background processes
 - Review auto-save files
 
 #### Poor Performance
+
 - Reduce verification threshold
 - Disable continuous testing
 - Check system resources
 - Use lighter AI model
 
 #### Configuration Issues
+
 - Validate JSON syntax
 - Check file permissions
 - Review priority order (CLI > env > project > user > global)
@@ -1136,6 +1207,7 @@ claude-flow pair --start --ide vscode
 ### Quality Metrics
 
 #### Truth Score Thresholds
+
 ```
 Error:   < 0.90 ❌
 Warning: 0.90 - 0.95 ⚠️
@@ -1144,6 +1216,7 @@ Excellent: > 0.98 🌟
 ```
 
 #### Coverage Thresholds
+
 ```
 Error:   < 70% ❌
 Warning: 70% - 80% ⚠️
@@ -1152,6 +1225,7 @@ Excellent: > 90% 🌟
 ```
 
 #### Complexity Thresholds
+
 ```
 Error:   > 15 ❌
 Warning: 10 - 15 ⚠️
@@ -1174,6 +1248,7 @@ export CLAUDE_PAIR_AUTO_TEST=true
 ### Command History
 
 Navigate history:
+
 - `↑/↓` - Navigate through command history
 - `Ctrl+R` - Search command history
 - `!!` - Repeat last command
@@ -1182,6 +1257,7 @@ Navigate history:
 ### Keyboard Shortcuts (Configurable)
 
 Default shortcuts:
+
 ```json
 {
   "shortcuts": {
