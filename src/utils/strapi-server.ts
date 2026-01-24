@@ -1,6 +1,6 @@
 /**
  * Strapi CMS Server-Side Utilities
- * 
+ *
  * This file contains server-side specific functions for fetching
  * Strapi content in Astro pages and components.
  */
@@ -22,7 +22,7 @@ import type {
 
 /**
  * Generic server-side fetch function for Strapi content
- * 
+ *
  * @deprecated Use fetchStrapiCollection or fetchStrapiSingle instead
  * @param contentType - Content type name (e.g., 'posts', 'pages')
  * @param queryParams - Query parameters
@@ -42,7 +42,7 @@ export async function fetchStrapiContent<T = Record<string, unknown>>(
 
 /**
  * Fetch a collection of Strapi entries
- * 
+ *
  * @param contentType - Content type name
  * @param queryParams - Query parameters
  * @returns Collection response with flattened data
@@ -92,7 +92,7 @@ export async function fetchStrapiCollection<T = Record<string, unknown>>(
 
 /**
  * Fetch a single Strapi entry by ID
- * 
+ *
  * @param contentType - Content type name
  * @param id - Entry ID
  * @param queryParams - Additional query parameters
@@ -117,17 +117,14 @@ export async function fetchStrapiSingle<T = Record<string, unknown>>(
 
     return transformed as FlattenedStrapiEntity<T>;
   } catch (error) {
-    console.error(
-      `Error fetching Strapi single entry (${contentType}/${id}):`,
-      error
-    );
+    console.error(`Error fetching Strapi single entry (${contentType}/${id}):`, error);
     return null;
   }
 }
 
 /**
  * Fetch a single Strapi entry by slug
- * 
+ *
  * @param contentType - Content type name
  * @param slug - Entry slug
  * @param queryParams - Additional query parameters
@@ -162,19 +159,16 @@ export async function fetchStrapiBySlug<T = Record<string, unknown>>(
     // If it's a single entity
     return flattenStrapiResponse(data);
   } catch (error) {
-    console.error(
-      `Error fetching Strapi entry by slug (${contentType}/${slug}):`,
-      error
-    );
+    console.error(`Error fetching Strapi entry by slug (${contentType}/${slug}):`, error);
     return null;
   }
 }
 
 /**
  * Fetch all entries with pagination handling
- * 
+ *
  * Automatically handles pagination to fetch all entries across multiple pages
- * 
+ *
  * @param contentType - Content type name
  * @param queryParams - Query parameters
  * @param maxPages - Maximum number of pages to fetch (default: 100)
@@ -214,10 +208,7 @@ export async function fetchAllStrapiEntries<T = Record<string, unknown>>(
 
     return allEntries;
   } catch (error) {
-    console.error(
-      `Error fetching all Strapi entries (${contentType}):`,
-      error
-    );
+    console.error(`Error fetching all Strapi entries (${contentType}):`, error);
     return [];
   }
 }

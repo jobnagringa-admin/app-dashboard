@@ -1,6 +1,6 @@
 /**
  * Strapi CMS Helper Functions
- * 
+ *
  * This file contains helper functions for building queries,
  * transforming data, and common Strapi operations.
  */
@@ -16,7 +16,7 @@ import { getStrapiImageURL } from './strapi';
 
 /**
  * Build Strapi query parameters object
- * 
+ *
  * @param options - Query options
  * @returns Strapi query parameters object
  */
@@ -71,7 +71,7 @@ export function buildStrapiQuery(
 
 /**
  * Build populate query for relations
- * 
+ *
  * @param relations - Array of relation names or nested populate object
  * @returns Populate query parameter
  */
@@ -86,14 +86,12 @@ export function buildPopulateQuery(
 
 /**
  * Transform Strapi date string to Date object or formatted string
- * 
+ *
  * @param dateString - Strapi date string (ISO format)
  * @param format - Optional format string (not implemented, returns Date)
  * @returns Date object
  */
-export function transformStrapiDate(
-  dateString: string | null | undefined
-): Date | null {
+export function transformStrapiDate(dateString: string | null | undefined): Date | null {
   if (!dateString) {
     return null;
   }
@@ -102,10 +100,10 @@ export function transformStrapiDate(
 
 /**
  * Flatten Strapi response structure
- * 
+ *
  * Transforms StrapiEntity structure to a flat object with
  * attributes merged at the top level
- * 
+ *
  * @param entity - Strapi entity
  * @returns Flattened entity
  */
@@ -123,7 +121,7 @@ export function flattenStrapiResponse<T = Record<string, unknown>>(
 
 /**
  * Flatten a collection of Strapi entities
- * 
+ *
  * @param entities - Array of Strapi entities
  * @returns Array of flattened entities
  */
@@ -135,15 +133,13 @@ export function flattenStrapiCollection<T = Record<string, unknown>>(
 
 /**
  * Transform Strapi image objects in an entity to URLs
- * 
+ *
  * Recursively processes an entity and converts StrapiImage objects to URLs
- * 
+ *
  * @param data - Entity data (can be nested)
  * @returns Transformed data with image URLs
  */
-export function transformStrapiImages(
-  data: unknown
-): unknown {
+export function transformStrapiImages(data: unknown): unknown {
   if (!data || typeof data !== 'object') {
     return data;
   }
@@ -173,7 +169,7 @@ export function transformStrapiImages(
 
 /**
  * Extract data from Strapi response (handles both single and collection)
- * 
+ *
  * @param response - Strapi response
  * @returns Extracted data (single entity or array)
  */
@@ -185,7 +181,7 @@ export function extractStrapiData<T = Record<string, unknown>>(
 
 /**
  * Get pagination info from Strapi collection response
- * 
+ *
  * @param response - Strapi collection response
  * @returns Pagination metadata or null
  */

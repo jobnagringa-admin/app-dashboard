@@ -1,6 +1,6 @@
 /**
  * Strapi CMS Client Utilities
- * 
+ *
  * This file provides centralized Strapi client instances for both
  * server-side and client-side usage.
  */
@@ -32,7 +32,7 @@ export function getStrapiToken(): string | undefined {
 
 /**
  * Get configured Strapi client instance for server-side use
- * 
+ *
  * @returns Configured Strapi client instance
  */
 export function getStrapiClient(): StrapiClient {
@@ -56,10 +56,10 @@ export function getStrapiClient(): StrapiClient {
 
 /**
  * Get configured Strapi client instance for browser/client-side use
- * 
+ *
  * Note: For client-side usage, consider whether you want to expose
  * the API token. If not, use public endpoints or implement a proxy.
- * 
+ *
  * @returns Configured Strapi client instance
  */
 export function getStrapiClientBrowser(): StrapiClient {
@@ -70,15 +70,13 @@ export function getStrapiClientBrowser(): StrapiClient {
 
 /**
  * Transform Strapi image object to full URL
- * 
+ *
  * Handles both relative and absolute URLs from Strapi
- * 
+ *
  * @param image - Strapi image object or string URL
  * @returns Full image URL
  */
-export function getStrapiImageURL(
-  image: StrapiImage | string | null | undefined
-): string {
+export function getStrapiImageURL(image: StrapiImage | string | null | undefined): string {
   if (!image) {
     return '';
   }
@@ -110,7 +108,7 @@ export function getStrapiImageURL(
 
 /**
  * Get Strapi image URL with format/size specification
- * 
+ *
  * @param image - Strapi image object
  * @param format - Image format (thumbnail, small, medium, large)
  * @returns Image URL for specified format or original
@@ -127,10 +125,7 @@ export function getStrapiImageURLWithFormat(
   if (format && image.formats?.[format]) {
     const formatImage = image.formats[format];
     if (formatImage?.url) {
-      if (
-        formatImage.url.startsWith('http://') ||
-        formatImage.url.startsWith('https://')
-      ) {
+      if (formatImage.url.startsWith('http://') || formatImage.url.startsWith('https://')) {
         return formatImage.url;
       }
       const baseUrl = getStrapiURL();

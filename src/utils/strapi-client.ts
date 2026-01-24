@@ -1,9 +1,9 @@
 /**
  * Strapi CMS Client-Side Utilities
- * 
+ *
  * This file contains client-side specific functions for fetching
  * Strapi content in browser components.
- * 
+ *
  * Note: For client-side usage, ensure your Strapi API allows
  * public access or implement proper authentication.
  */
@@ -72,7 +72,7 @@ function getCacheKey(contentType: string, queryParams: StrapiQueryParams): strin
 
 /**
  * Generic client-side fetch function for Strapi content
- * 
+ *
  * @param contentType - Content type name (e.g., 'posts', 'pages')
  * @param queryParams - Query parameters
  * @param useCache - Whether to use cache (default: true)
@@ -84,11 +84,7 @@ export async function fetchStrapiContentClient<T = Record<string, unknown>>(
   useCache = true
 ): Promise<StrapiSingleResponse<T> | StrapiCollectionResponse<T>> {
   // Delegate to fetchStrapiCollectionClient for consistency
-  const collection = await fetchStrapiCollectionClient<T>(
-    contentType,
-    queryParams,
-    useCache
-  );
+  const collection = await fetchStrapiCollectionClient<T>(contentType, queryParams, useCache);
   return {
     data: collection.data as any,
     meta: collection.meta,
@@ -97,7 +93,7 @@ export async function fetchStrapiContentClient<T = Record<string, unknown>>(
 
 /**
  * Fetch a collection of Strapi entries (client-side)
- * 
+ *
  * @param contentType - Content type name
  * @param queryParams - Query parameters
  * @param useCache - Whether to use cache (default: true)
@@ -169,7 +165,7 @@ export async function fetchStrapiCollectionClient<T = Record<string, unknown>>(
 
 /**
  * Fetch a single Strapi entry by ID (client-side)
- * 
+ *
  * @param contentType - Content type name
  * @param id - Entry ID
  * @param queryParams - Additional query parameters
@@ -211,17 +207,14 @@ export async function fetchStrapiSingleClient<T = Record<string, unknown>>(
 
     return transformed;
   } catch (error) {
-    console.error(
-      `Error fetching Strapi single entry (${contentType}/${id}):`,
-      error
-    );
+    console.error(`Error fetching Strapi single entry (${contentType}/${id}):`, error);
     return null;
   }
 }
 
 /**
  * Fetch a single Strapi entry by slug (client-side)
- * 
+ *
  * @param contentType - Content type name
  * @param slug - Entry slug
  * @param queryParams - Additional query parameters
@@ -244,11 +237,7 @@ export async function fetchStrapiBySlugClient<T = Record<string, unknown>>(
       },
     });
 
-    const response = await fetchStrapiContentClient<T>(
-      contentType,
-      query,
-      useCache
-    );
+    const response = await fetchStrapiContentClient<T>(contentType, query, useCache);
     const data = extractStrapiData(response);
 
     // If it's a collection, get the first item
@@ -262,19 +251,16 @@ export async function fetchStrapiBySlugClient<T = Record<string, unknown>>(
     // If it's a single entity
     return flattenStrapiResponse(data);
   } catch (error) {
-    console.error(
-      `Error fetching Strapi entry by slug (${contentType}/${slug}):`,
-      error
-    );
+    console.error(`Error fetching Strapi entry by slug (${contentType}/${slug}):`, error);
     return null;
   }
 }
 
 /**
  * Fetch Strapi content using native fetch API (for environments without Strapi client)
- * 
+ *
  * This is useful for edge functions or when you want more control over the request
- * 
+ *
  * @param endpoint - API endpoint (e.g., '/api/posts')
  * @param options - Fetch options
  * @returns Response data
