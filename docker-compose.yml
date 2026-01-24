@@ -29,23 +29,6 @@ services:
           cpus: '0.5'
           memory: 512M
 
-  # Optional: Nginx reverse proxy for production
-  nginx:
-    image: nginx:1.27-alpine
-    container_name: jobnagringa-nginx
-    restart: unless-stopped
-    ports:
-      - '80:80'
-      - '443:443'
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      # - ./certs:/etc/nginx/certs:ro  # SSL certificates
-    depends_on:
-      app:
-        condition: service_healthy
-    profiles:
-      - production
-
 # Networks
 networks:
   default:
