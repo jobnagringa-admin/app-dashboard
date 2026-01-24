@@ -8,7 +8,6 @@ export interface Props {
   twitterTitle?: string;
   twitterDescription?: string;
   twitterImage?: string;
-  robots?: string;
   wfPage?: string;
   wfSite?: string;
   wfDomain?: string;
@@ -24,19 +23,22 @@ const {
   twitterTitle,
   twitterDescription,
   twitterImage,
-  robots,
   wfPage = '67fa3010efbb81d725f2360e',
   wfSite = '642953c962519376c853ab81',
   wfDomain = 'www.jobnagringa.com.br',
   lang = 'pt-BR',
 } = Astro.props;
 
-const finalOgImage = ogImage || '/cdn-assets/images/graphics/social/og-image.avif';
-const finalOgTitle = ogTitle || title;
-const finalOgDescription = ogDescription || description || '';
-const finalTwitterTitle = twitterTitle || title;
-const finalTwitterDescription = twitterDescription || description || '';
-const finalTwitterImage = twitterImage || finalOgImage;
+// PRIVATE PROJECT: Block all indexing and crawling
+const robotsDirective = 'noindex, nofollow, noarchive, nosnippet, noimageindex, nocache';
+
+// PRIVATE PROJECT: Social media metadata disabled to prevent metadata discovery
+// const finalOgImage = ogImage || '/cdn-assets/images/graphics/social/og-image.avif';
+// const finalOgTitle = ogTitle || title;
+// const finalOgDescription = ogDescription || description || '';
+// const finalTwitterTitle = twitterTitle || title;
+// const finalTwitterDescription = twitterDescription || description || '';
+// const finalTwitterImage = twitterImage || finalOgImage;
 
 // Import global styles
 import '../styles/webflow.css';
@@ -48,21 +50,15 @@ import '../styles/global.css';
   <head>
     <meta charset="utf-8" />
     <title>{title}</title>
-    {description && <meta name="description" content={description} />}
-    <meta property="og:title" content={finalOgTitle} />
-    {finalOgDescription && <meta property="og:description" content={finalOgDescription} />}
-    <meta property="og:image" content={finalOgImage} />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:title" content={finalTwitterTitle} />
-    {
-      finalTwitterDescription && (
-        <meta name="twitter:description" content={finalTwitterDescription} />
-      )
-    }
-    <meta name="twitter:image" content={finalTwitterImage} />
-    <meta name="twitter:card" content="summary_large_image" />
+    <!-- PRIVATE PROJECT: Description and social meta tags removed to prevent metadata discovery -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {robots && <meta name="robots" content={robots} />}
+    
+    <!-- PRIVATE PROJECT: Block all indexing, crawling, and caching -->
+    <meta name="robots" content={robotsDirective} />
+    <meta name="googlebot" content={robotsDirective} />
+    <meta name="bingbot" content={robotsDirective} />
+    <meta name="google" content="nositelinkssearchbox" />
+    <meta name="google" content="notranslate" />
 
     <!-- Webflow CSS -->
     <link

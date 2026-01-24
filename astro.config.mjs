@@ -2,7 +2,8 @@
 import { defineConfig } from "astro/config";
 import node from "@astrojs/node";
 import partytown from "@astrojs/partytown";
-import sitemap from "@astrojs/sitemap";
+// Sitemap disabled - private project, no indexing allowed
+// import sitemap from "@astrojs/sitemap";
 import compressor from "astro-compressor";
 
 // Content Security Policy - allows necessary third-party resources
@@ -22,14 +23,16 @@ const cspDirectives = [
 ].join('; ');
 
 // Security headers for all responses
+// PRIVATE PROJECT: Includes X-Robots-Tag to block all indexing at HTTP level
 const securityHeaders = {
   "Content-Security-Policy": cspDirectives,
   "X-Content-Type-Options": "nosniff",
   "X-Frame-Options": "SAMEORIGIN",
   "X-XSS-Protection": "1; mode=block",
-  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "Referrer-Policy": "no-referrer",
   "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
-  "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+  "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+  "X-Robots-Tag": "noindex, nofollow, noarchive, nosnippet, noimageindex, nocache"
 };
 
 // Cache control headers for static assets
@@ -65,24 +68,7 @@ export default defineConfig({
         debug: process.env.NODE_ENV === "development",
       },
     }),
-    // Sitemap generation - excludes member-only and utility pages
-    sitemap({
-      filter: (page) => {
-        // Exclude member-only pages
-        // Note: Pages previously under /jng/ are now at root level
-        // Exclude checkout/payment pages
-        if (page.includes('/checkout')) return false;
-        if (page.includes('/paypal-checkout')) return false;
-        if (page.includes('/init-checkout')) return false;
-        if (page.includes('/order-confirmation')) return false;
-        // Exclude utility pages
-        if (page.includes('/401')) return false;
-        if (page.includes('/access-denied')) return false;
-        if (page.includes('/user-account')) return false;
-        if (page.includes('/search')) return false;
-        return true;
-      },
-    }),
+    // PRIVATE PROJECT: Sitemap generation disabled - no indexing allowed
     // Gzip/Brotli compression - MUST be last in integrations array
     compressor({
       gzip: true,
