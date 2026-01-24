@@ -1,6 +1,8 @@
 ## Critical Rules
 
-**Language**: ALWAYS work, think and answer in ENGLISH. NO MATTER WHAT WAS THE INPUT LANGUAGE, translate non-English inputs before acting, NEVER ANSWER IN PORTUGUESE.
+**Language**: ALWAYS work, think and answer in ENGLISH. NO MATTER WHAT WAS THE
+INPUT LANGUAGE, translate non-English inputs before acting, NEVER ANSWER IN
+PORTUGUESE.
 
 **File & Code Naming**: ALL names MUST be in ENGLISH. This applies to:
 
@@ -23,7 +25,8 @@ Examples:
 **NEVER, UNDER ANY CIRCUMSTANCES:**
 
 - Delete, remove, or rollback modified files present in the repository
-- Run `git checkout -- <file>`, `git restore <file>`, or `git reset --hard` on modified files
+- Run `git checkout -- <file>`, `git restore <file>`, or `git reset --hard` on
+  modified files
 - Discard uncommitted changes in any way
 - Overwrite or revert local modifications
 
@@ -41,7 +44,8 @@ Examples:
 - NEVER save working files to root folder
 - ALL documentation goes in `apps/docs` only
 
-**Commit Workflow**: Run `/fix:fix` then `/git:commit` after every task completion.
+**Commit Workflow**: Run `/fix:fix` then `/git:commit` after every task
+completion.
 
 **AI Attribution**: NEVER add AI-generated mentions to commits. This includes:
 

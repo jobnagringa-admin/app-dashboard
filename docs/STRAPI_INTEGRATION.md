@@ -1,6 +1,7 @@
 # Strapi CMS Integration Guide
 
-This document provides comprehensive documentation for using Strapi CMS in the Astro application.
+This document provides comprehensive documentation for using Strapi CMS in the
+Astro application.
 
 ## Table of Contents
 
@@ -16,7 +17,8 @@ This document provides comprehensive documentation for using Strapi CMS in the A
 
 ### Installation
 
-The Strapi client is already installed via `@strapi/client`. No additional setup is required.
+The Strapi client is already installed via `@strapi/client`. No additional setup
+is required.
 
 ### Environment Variables
 
@@ -28,14 +30,17 @@ STRAPI_TOKEN=your_strapi_api_token_here
 STRAPI_API_PREFIX=/api
 ```
 
-**Important**: Never commit the `.env` file to version control. The `.env.example` file serves as a template.
+**Important**: Never commit the `.env` file to version control. The
+`.env.example` file serves as a template.
 
 ## Environment Variables
 
 ### Required Variables
 
-- `STRAPI_URL` - The base URL of your Strapi instance (default: `http://localhost:1337`)
-- `STRAPI_TOKEN` - API token for authenticated requests (required for protected endpoints)
+- `STRAPI_URL` - The base URL of your Strapi instance (default:
+  `http://localhost:1337`)
+- `STRAPI_TOKEN` - API token for authenticated requests (required for protected
+  endpoints)
 - `STRAPI_API_PREFIX` - API prefix path (default: `/api`)
 
 ### Accessing Environment Variables
@@ -64,8 +69,10 @@ src/
 
 ### Server-Side vs Client-Side
 
-- **Server-Side** (`strapi-server.ts`): Used in Astro page frontmatter and server components. Fetches data at build/request time.
-- **Client-Side** (`strapi-client.ts`): Used in browser components. Includes caching and request deduplication.
+- **Server-Side** (`strapi-server.ts`): Used in Astro page frontmatter and
+  server components. Fetches data at build/request time.
+- **Client-Side** (`strapi-client.ts`): Used in browser components. Includes
+  caching and request deduplication.
 
 ## Usage Examples
 
@@ -333,6 +340,7 @@ const posts = await fetchStrapiCollection<Post>('posts', {
 ### 1. Use Server-Side Fetching When Possible
 
 Server-side fetching is faster and more secure. Use it for:
+
 - Initial page loads
 - SEO-critical content
 - Protected content
@@ -355,16 +363,17 @@ Only populate what you need:
 
 ```typescript
 // ❌ Bad: Populates everything
-populate: '*'
+populate: '*';
 
 // ✅ Good: Populate only needed relations
-populate: ['author', 'image']
+populate: ['author', 'image'];
 ```
 
 ### 4. Use Caching Strategically
 
 - Server-side: Rely on Astro's built-in caching
-- Client-side: Use the built-in cache (5 minutes TTL) or implement custom caching
+- Client-side: Use the built-in cache (5 minutes TTL) or implement custom
+  caching
 
 ### 5. Transform Images Properly
 
@@ -381,6 +390,7 @@ Always use the image helper functions to handle relative URLs:
 ### 6. Never Expose API Tokens Client-Side
 
 If you need client-side access, either:
+
 - Use public endpoints
 - Implement a proxy API route
 - Use server-side rendering
@@ -411,7 +421,8 @@ const { page, pageCount, total } = meta.pagination;
 
 #### 2. "Network request failed" or CORS errors
 
-**Solution**: 
+**Solution**:
+
 - Check that `STRAPI_URL` is correct
 - Ensure Strapi CORS settings allow your domain
 - Update CSP in `astro.config.mjs` to include Strapi URL
@@ -419,6 +430,7 @@ const { page, pageCount, total } = meta.pagination;
 #### 3. "Unauthorized" errors
 
 **Solution**:
+
 - Verify `STRAPI_TOKEN` is set correctly
 - Check token permissions in Strapi admin
 - Ensure the content type has proper permissions
@@ -426,6 +438,7 @@ const { page, pageCount, total } = meta.pagination;
 #### 4. Images not loading
 
 **Solution**:
+
 - Use `getStrapiImageURL()` helper function
 - Check that image URLs are absolute or properly prefixed
 - Verify Strapi media library permissions
@@ -433,6 +446,7 @@ const { page, pageCount, total } = meta.pagination;
 #### 5. Type errors with content types
 
 **Solution**:
+
 - Define TypeScript interfaces for your content types
 - Use generics: `fetchStrapiCollection<YourType>('content-type')`
 - Ensure Strapi response structure matches your types
@@ -453,6 +467,7 @@ console.log('Response:', response);
 Test your Strapi integration:
 
 1. **Test server-side fetching**:
+
    ```bash
    npm run dev
    # Visit a page that uses Strapi
