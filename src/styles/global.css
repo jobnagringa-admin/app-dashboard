@@ -100,14 +100,23 @@ select:-webkit-autofill:focus {
 }
 
 /* Touch target sizes - ensure minimum 48x48px for accessibility */
-/* Mobile menu buttons - ensure sufficient touch target */
-.navbar_mobile-menu,
-.nav_menu-button {
+/* Mobile menu buttons - ensure sufficient touch target (only visible on mobile) */
+.navbar_mobile-menu {
   min-width: 48px;
   min-height: 48px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+/* nav_menu-button is hidden on desktop via webflow.css, only apply touch target on mobile */
+@media screen and (max-width: 767px) {
+  .nav_menu-button {
+    min-width: 48px;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 /* Ensure interactive elements have sufficient touch targets */
