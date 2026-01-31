@@ -13,6 +13,22 @@ export interface VideoData {
 
 export const videos: VideoData[] = [
   {
+    slug: 'palestra-com-convidados---priscila-benavides',
+    title: 'Palestra com Convidados - Priscila Benavides',
+    description:
+      'Priscila Benavides é uma profissional de tecnologia com mais de duas décadas de experiência em desenvolvimento de software e especialização no ecossistema Microsoft, sobretudo em Dynamics 365 Finance & Operations. Ao longo da carreira, atuou em projetos no Brasil e no exterior, sempre unindo profundidade técnica, sensibilidade humana e foco em entregas de valor. Além da trajetória na área de TI, Priscila também expressa seu lado criativo por meio da escrita, fotografia e projetos pessoais que compartilha em suas redes. Casada e morando em Curitiba desde 2019, ela divide a vida com seus quatro gatos. Multidisciplinar, empática e apaixonada por tecnologia, Priscila transita com naturalidade entre códigos, palavras e afetos, construindo uma presença autêntica e inspiradora, ela acredita que "podemos programar máquinas, mas precisamos conquistar as pessoas", essa filosofia guia seu estilo de vida, trabalho e relacionamentos pessoais e profissionais.',
+    youtubeId: 'lzh5Uw-OBq4',
+    episodeNumber: '#RECAPCOM51',
+  },
+  {
+    slug: 'live-com-convidados---mari-freitas-adaflow',
+    title: 'Live com Convidados - Mari Freitas (ADAFLOW)',
+    description:
+      '@Mari da Adaflow é contadora há 10 anos, pós-graduada em Negócios pela USP e atua como gerente de Contabilidade na Adaflow. Especialista em PJs que prestam serviços para o exterior, Mari traduz o "contabilês" e descomplica a burocracia da rotina de PJ. A acompanhe em: https://www.linkedin.com/in/marianyfreitas/',
+    youtubeId: 'sSqKVa-kBOs',
+    episodeNumber: '#RECAPCOM50',
+  },
+  {
     slug: 'live-com-convidados---willian-matiola-designer',
     title: 'Live com Convidados - Willian Matiola (Designer)',
     description:
