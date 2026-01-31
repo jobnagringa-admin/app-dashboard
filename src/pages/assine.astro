@@ -1,0 +1,154 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PublicNavbar from "../components/PublicNavbar.astro";
+---
+
+<BaseLayout title="Assine - Job na Gringa">
+  <PublicNavbar />
+  <main class="subscription-container">
+    <div class="subscription-wrapper">
+      <div class="subscription-content">
+        <div class="subscription-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+            <path d="m9 12 2 2 4-4"></path>
+          </svg>
+        </div>
+        <h1 class="subscription-title">Acesso Exclusivo para Assinantes</h1>
+        <p class="subscription-description">
+          Para acessar todo o conteudo do Job na Gringa, voce precisa ser um assinante ativo.
+        </p>
+        <div class="subscription-features">
+          <div class="feature-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Acesso a todos os modulos e aulas</span>
+          </div>
+          <div class="feature-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Comunidade exclusiva no Discord</span>
+          </div>
+          <div class="feature-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Lives semanais com especialistas</span>
+          </div>
+          <div class="feature-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Descontos exclusivos com parceiros</span>
+          </div>
+        </div>
+        <a href="https://www.jobnagringa.com.br" class="subscription-button">
+          Conhecer os Planos
+        </a>
+        <p class="subscription-help">
+          Ja e assinante? <a href="/sign-in">Faca login</a> com a mesma conta.
+        </p>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .subscription-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 2rem;
+  }
+
+  .subscription-wrapper {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .subscription-content {
+    background: white;
+    border-radius: 16px;
+    padding: 3rem;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  .subscription-icon {
+    color: #3b82f6;
+    margin-bottom: 1.5rem;
+  }
+
+  .subscription-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  .subscription-description {
+    color: #6b7280;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .subscription-features {
+    text-align: left;
+    margin-bottom: 2rem;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    color: #374151;
+    font-size: 0.95rem;
+  }
+
+  .feature-item svg {
+    color: #10b981;
+    flex-shrink: 0;
+  }
+
+  .subscription-button {
+    display: inline-block;
+    width: 100%;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    margin-bottom: 1.5rem;
+  }
+
+  .subscription-button:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -10px rgba(59, 130, 246, 0.5);
+  }
+
+  .subscription-help {
+    color: #9ca3af;
+    font-size: 0.875rem;
+  }
+
+  .subscription-help a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .subscription-help a:hover {
+    text-decoration: underline;
+  }
+</style>

@@ -1,0 +1,7 @@
+---
+// Redirect to Clerk Account Portal for sign-up
+const signUpUrl = import.meta.env.PUBLIC_CLERK_SIGN_UP_URL || "https://accounts.jobnagringa.com.br/sign-up";
+const redirectUrl = Astro.url.searchParams.get("redirect_url") || "/";
+
+return Astro.redirect(`${signUpUrl}?redirect_url=${encodeURIComponent(redirectUrl)}`);
+---
