@@ -11,7 +11,6 @@ const mainPages = [
   { name: 'jobs', path: '/jng/jobs' },
   { name: 'jobs-brs-only', path: '/jng/jobs-brs-only' },
   { name: 'jobs-with-vista-sponsors', path: '/jng/jobs-with-vista-sponsors' },
-  { name: 'job-search', path: '/jng/job-search' },
   { name: 'member-dashboard', path: '/jng/member-dashboard' },
   { name: 'community', path: '/jng/community' },
   { name: 'partners', path: '/jng/partners' },
