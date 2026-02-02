@@ -1,4 +1,5 @@
-import { clerkMiddleware, createRouteMatcher } from '@clerk/astro/server';
+import { clerkMiddleware, createRouteMatcher, clerkClient } from '@clerk/astro/server';
+import type { APIContext } from 'astro';
 
 // Public routes that don't require authentication
 const isPublicRoute = createRouteMatcher([
@@ -24,44 +25,39 @@ const isLocalhost = (request: Request): boolean => {
   return hostname === 'localhost' || hostname === '127.0.0.1' || hostname.startsWith('192.168.');
 };
 
-// Check if user has valid paid subscription from public metadata
-const checkIsPaidCustomer = (
-  sessionClaims: Record<string, unknown> | null | undefined,
-  userId: string | null
-): boolean => {
-  console.log('[Middleware] Checking paid status for user:', userId);
-  console.log('[Middleware] Session claims:', JSON.stringify(sessionClaims, null, 2));
+// Check if user has valid paid subscription by fetching user data from Clerk API
+const checkIsPaidCustomer = async (
+  context: APIContext,
+  userId: string
+): Promise<boolean> => {
+  try {
+    console.log('[Middleware] Fetching user data for:', userId);
 
-  if (!sessionClaims) {
-    console.log('[Middleware] No session claims found');
+    const user = await clerkClient(context).users.getUser(userId);
+    const publicMetadata = user.publicMetadata as Record<string, unknown> | undefined;
+
+    console.log('[Middleware] User publicMetadata:', JSON.stringify(publicMetadata, null, 2));
+
+    if (!publicMetadata) {
+      console.log('[Middleware] No public metadata found');
+      return false;
+    }
+
+    const isPaidValue = publicMetadata.isPaidCustomer ?? publicMetadata.is_paid_customer;
+    console.log('[Middleware] isPaidCustomer value:', isPaidValue, '| type:', typeof isPaidValue);
+
+    // Handle different value types: boolean true, string "true", or number 1
+    let result = false;
+    if (typeof isPaidValue === 'boolean') result = isPaidValue;
+    else if (typeof isPaidValue === 'string') result = isPaidValue.toLowerCase() === 'true';
+    else if (typeof isPaidValue === 'number') result = isPaidValue === 1;
+
+    console.log('[Middleware] Final isPaidCustomer result:', result);
+    return result;
+  } catch (error) {
+    console.error('[Middleware] Error fetching user data:', error);
     return false;
   }
-
-  // Clerk can store public metadata in different locations depending on version/config
-  // Try multiple possible paths to find isPaidCustomer
-  const metadata = sessionClaims.metadata as Record<string, unknown> | undefined;
-  const publicMetadata = (sessionClaims.publicMetadata ||
-    sessionClaims.public_metadata ||
-    metadata?.public) as Record<string, unknown> | undefined;
-
-  console.log('[Middleware] Public metadata:', JSON.stringify(publicMetadata, null, 2));
-
-  if (!publicMetadata) {
-    console.log('[Middleware] No public metadata found');
-    return false;
-  }
-
-  const isPaidValue = publicMetadata.isPaidCustomer ?? publicMetadata.is_paid_customer;
-  console.log('[Middleware] isPaidCustomer value:', isPaidValue, '| type:', typeof isPaidValue);
-
-  // Handle different value types: boolean true, string "true", or number 1
-  let result = false;
-  if (typeof isPaidValue === 'boolean') result = isPaidValue;
-  else if (typeof isPaidValue === 'string') result = isPaidValue.toLowerCase() === 'true';
-  else if (typeof isPaidValue === 'number') result = isPaidValue === 1;
-
-  console.log('[Middleware] Final isPaidCustomer result:', result);
-  return result;
 };
 
 // Check if the request is coming from the dashboard subdomain
@@ -70,7 +66,7 @@ const isDashboardSubdomain = (request: Request): boolean => {
   return url.hostname === 'dash.jobnagringa.com.br';
 };
 
-export const onRequest = clerkMiddleware((auth, context) => {
+export const onRequest = clerkMiddleware(async (auth, context) => {
   // Allow all access on localhost without authentication
   if (isLocalhost(context.request)) {
     return;
@@ -82,15 +78,15 @@ export const onRequest = clerkMiddleware((auth, context) => {
   }
 
   const authData = auth();
-  const { userId, sessionClaims } = authData;
+  const { userId } = authData;
 
   // If not logged in, redirect to accounts sign-in with redirect back to dashboard
   if (!userId) {
     return context.redirect(SIGN_IN_URL);
   }
 
-  // Check if user has valid paid subscription
-  const isPaidCustomer = checkIsPaidCustomer(sessionClaims as Record<string, unknown>, userId);
+  // Check if user has valid paid subscription by fetching from Clerk API
+  const isPaidCustomer = await checkIsPaidCustomer(context as unknown as APIContext, userId);
 
   if (isPaidCustomer) {
     // Paid customer - if not on dashboard subdomain, redirect to dashboard
