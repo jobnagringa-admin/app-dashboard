@@ -11,6 +11,9 @@ const isPublicRoute = createRouteMatcher([
 // Dashboard URL for paid customers
 const DASHBOARD_URL = 'https://dash.jobnagringa.com.br';
 
+// Sign-in URL with redirect back to dashboard
+const SIGN_IN_URL = `https://accounts.jobnagringa.com.br/sign-in?redirect_url=${encodeURIComponent(DASHBOARD_URL)}`;
+
 // Subscription redirect URL for non-paid users
 const SUBSCRIPTION_URL = 'https://jobnagringa.com.br/assine';
 
@@ -81,9 +84,9 @@ export const onRequest = clerkMiddleware((auth, context) => {
   const authData = auth();
   const { userId, sessionClaims } = authData;
 
-  // If not logged in, redirect to sign-in
+  // If not logged in, redirect to accounts sign-in with redirect back to dashboard
   if (!userId) {
-    return authData.redirectToSignIn();
+    return context.redirect(SIGN_IN_URL);
   }
 
   // Check if user has valid paid subscription
