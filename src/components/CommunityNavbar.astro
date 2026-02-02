@@ -35,7 +35,23 @@
             </div>
             <div class="nav_right-col">
               <a href="/" class="navbar_link">Dashboard</a>
-              <a href="/#" id="logout" class="navbar_link is-white w-button">Sair</a>
+              <a href="/profile" class="navbar_link navbar_link-profile" aria-label="Meu Perfil">
+                <div class="navbar_profile-icon w-embed">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1.25em"
+                    height="1.25em"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6m0 14c-2.03 0-4.43-.82-6.14-2.88a9.95 9.95 0 0 1 12.28 0C16.43 19.18 14.03 20 12 20"
+                    ></path>
+                  </svg>
+                </div>
+                <span class="hide-mobile">Meu Perfil</span>
+              </a>
             </div>
             <button
               type="button"
@@ -75,73 +91,7 @@
         }
       </style>
     </div>
-    <div class="logout-code w-embed w-script">
-      <script is:inline>
-        document.addEventListener('DOMContentLoaded', async () => {
-          const logoutBtn = document.getElementById('logout');
-          if (logoutBtn) {
-            logoutBtn.addEventListener('click', async (e) => {
-              e.preventDefault();
-              // Logout functionality
-              async function clearCacheStorage() {
-                if (!('caches' in window)) return;
-                const keys = await caches.keys();
-                for (const key of keys) await caches.delete(key);
-              }
-              async function unregisterServiceWorkers() {
-                if (!('serviceWorker' in navigator)) return;
-                const regs = await navigator.serviceWorker.getRegistrations();
-                for (const reg of regs) await reg.unregister();
-              }
-              async function clearLocalAndSession() {
-                try {
-                  localStorage.clear();
-                  sessionStorage.clear();
-                } catch (e) {}
-              }
-              function clearCookies() {
-                const cookies = document.cookie.split('; ');
-                for (const cookie of cookies) {
-                  const eqPos = cookie.indexOf('=');
-                  const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-                  document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
-                  document.cookie =
-                    name +
-                    '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;domain=' +
-                    window.location.hostname +
-                    ';path=/';
-                }
-              }
-              async function clearIndexedDB() {
-                if (!('indexedDB' in window)) return;
-                if (indexedDB.databases) {
-                  const dbs = await indexedDB.databases();
-                  for (const db of dbs) {
-                    if (db.name) indexedDB.deleteDatabase(db.name);
-                  }
-                }
-              }
-              try {
-                await Promise.all([
-                  clearCacheStorage(),
-                  unregisterServiceWorkers(),
-                  clearLocalAndSession(),
-                  clearIndexedDB(),
-                ]);
-                clearCookies();
-              } catch (e) {
-                // Silently handle errors during logout cleanup
-                if (process.env.NODE_ENV === 'development') {
-                  console.warn('Error clearing site data:', e);
-                }
-              } finally {
-                window.location.href = '/';
-              }
-            });
-          }
-        });
-      </script>
-    </div>
+
     <div data-w-id="7ed6ea69-8ce5-677c-3dcb-160f5da98a7d" class="nav_close-overlay"></div>
   </nav>
 </div>
