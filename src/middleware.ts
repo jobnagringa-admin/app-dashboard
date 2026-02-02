@@ -8,7 +8,10 @@ const isPublicRoute = createRouteMatcher([
   '/api/webhooks(.*)',
 ]);
 
-// Subscription redirect URL
+// Dashboard URL for paid customers
+const DASHBOARD_URL = 'https://dash.jobnagringa.com.br';
+
+// Subscription redirect URL for non-paid users
 const SUBSCRIPTION_URL = 'https://jobnagringa.com.br/assine';
 
 // Check if running on localhost
@@ -16,6 +19,52 @@ const isLocalhost = (request: Request): boolean => {
   const url = new URL(request.url);
   const hostname = url.hostname;
   return hostname === 'localhost' || hostname === '127.0.0.1' || hostname.startsWith('192.168.');
+};
+
+// Check if user has valid paid subscription from public metadata
+const checkIsPaidCustomer = (
+  sessionClaims: Record<string, unknown> | null | undefined,
+  userId: string | null
+): boolean => {
+  console.log('[Middleware] Checking paid status for user:', userId);
+  console.log('[Middleware] Session claims:', JSON.stringify(sessionClaims, null, 2));
+
+  if (!sessionClaims) {
+    console.log('[Middleware] No session claims found');
+    return false;
+  }
+
+  // Clerk can store public metadata in different locations depending on version/config
+  // Try multiple possible paths to find isPaidCustomer
+  const metadata = sessionClaims.metadata as Record<string, unknown> | undefined;
+  const publicMetadata = (sessionClaims.publicMetadata ||
+    sessionClaims.public_metadata ||
+    metadata?.public) as Record<string, unknown> | undefined;
+
+  console.log('[Middleware] Public metadata:', JSON.stringify(publicMetadata, null, 2));
+
+  if (!publicMetadata) {
+    console.log('[Middleware] No public metadata found');
+    return false;
+  }
+
+  const isPaidValue = publicMetadata.isPaidCustomer ?? publicMetadata.is_paid_customer;
+  console.log('[Middleware] isPaidCustomer value:', isPaidValue, '| type:', typeof isPaidValue);
+
+  // Handle different value types: boolean true, string "true", or number 1
+  let result = false;
+  if (typeof isPaidValue === 'boolean') result = isPaidValue;
+  else if (typeof isPaidValue === 'string') result = isPaidValue.toLowerCase() === 'true';
+  else if (typeof isPaidValue === 'number') result = isPaidValue === 1;
+
+  console.log('[Middleware] Final isPaidCustomer result:', result);
+  return result;
+};
+
+// Check if the request is coming from the dashboard subdomain
+const isDashboardSubdomain = (request: Request): boolean => {
+  const url = new URL(request.url);
+  return url.hostname === 'dash.jobnagringa.com.br';
 };
 
 export const onRequest = clerkMiddleware((auth, context) => {
@@ -37,15 +86,18 @@ export const onRequest = clerkMiddleware((auth, context) => {
     return authData.redirectToSignIn();
   }
 
-  // Check if user has isPaidCustomer in their public metadata
-  // Clerk stores public_metadata in sessionClaims under publicMetadata key
-  const publicMetadata = sessionClaims?.publicMetadata as { isPaidCustomer?: boolean } | undefined;
-  const isPaidCustomer = publicMetadata?.isPaidCustomer === true;
+  // Check if user has valid paid subscription
+  const isPaidCustomer = checkIsPaidCustomer(sessionClaims as Record<string, unknown>, userId);
 
-  // If user is not a paid customer, redirect to subscription page
-  if (!isPaidCustomer) {
-    return context.redirect(SUBSCRIPTION_URL);
+  if (isPaidCustomer) {
+    // Paid customer - if not on dashboard subdomain, redirect to dashboard
+    if (!isDashboardSubdomain(context.request)) {
+      return context.redirect(DASHBOARD_URL);
+    }
+    // Already on dashboard - allow access
+    return;
   }
 
-  // User is authenticated and is a paid customer - allow access
+  // User is not a paid customer - redirect to subscription page
+  return context.redirect(SUBSCRIPTION_URL);
 });
