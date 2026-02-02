@@ -11,7 +11,19 @@ const isPublicRoute = createRouteMatcher([
 // Subscription redirect URL
 const SUBSCRIPTION_URL = 'https://jobnagringa.com.br/assine';
 
+// Check if running on localhost
+const isLocalhost = (request: Request): boolean => {
+  const url = new URL(request.url);
+  const hostname = url.hostname;
+  return hostname === 'localhost' || hostname === '127.0.0.1' || hostname.startsWith('192.168.');
+};
+
 export const onRequest = clerkMiddleware((auth, context) => {
+  // Allow all access on localhost without authentication
+  if (isLocalhost(context.request)) {
+    return;
+  }
+
   // Allow public routes without authentication
   if (isPublicRoute(context.request)) {
     return;
