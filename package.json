@@ -43,24 +43,24 @@
     "visual:baseline": "playwright test tests/visual --update-snapshots --reporter=list"
   },
   "dependencies": {
-    "@astrojs/node": "^9.5.2",
+    "@astrojs/node": "^9.5.3",
     "@astrojs/partytown": "^2.1.4",
     "@astrojs/sitemap": "^3.7.0",
-    "@clerk/astro": "^2.16.17",
-    "@strapi/client": "^1.6.0",
-    "astro": "^5.17.1",
+    "@clerk/astro": "^2.17.2",
+    "@strapi/client": "^1.6.1",
+    "astro": "^5.17.2",
     "astro-compressor": "^1.2.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
-    "@eslint/js": "^9.39.2",
+    "@eslint/js": "^10.0.1",
     "@fullhuman/postcss-purgecss": "^8.0.0",
     "@lhci/cli": "^0.15.1",
-    "@playwright/test": "^1.58.1",
-    "@typescript-eslint/eslint-plugin": "^8.54.0",
-    "@typescript-eslint/parser": "^8.54.0",
+    "@playwright/test": "^1.58.2",
+    "@typescript-eslint/eslint-plugin": "^8.55.0",
+    "@typescript-eslint/parser": "^8.55.0",
     "cssnano": "^7.1.2",
-    "eslint": "^9.39.2",
+    "eslint": "^10.0.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^1.5.0",
     "postcss": "^8.5.6",
@@ -68,6 +68,6 @@
     "prettier-plugin-astro": "^0.14.1",
     "terser": "^5.46.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.54.0"
+    "typescript-eslint": "^8.55.0"
   }
 }

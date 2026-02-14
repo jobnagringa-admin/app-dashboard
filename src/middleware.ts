@@ -26,10 +26,7 @@ const isLocalhost = (request: Request): boolean => {
 };
 
 // Check if user has valid paid subscription by fetching user data from Clerk API
-const checkIsPaidCustomer = async (
-  context: APIContext,
-  userId: string
-): Promise<boolean> => {
+const checkIsPaidCustomer = async (context: APIContext, userId: string): Promise<boolean> => {
   try {
     console.log('[Middleware] Fetching user data for:', userId);
 
