@@ -30,8 +30,10 @@ const checkIsPaidCustomer = async (context: APIContext, userId: string): Promise
   }
 };
 
+const isDev = import.meta.env.DEV;
+
 export const onRequest = clerkMiddleware(async (auth, context, next) => {
-  if (isPublicRoute(context.request)) {
+  if (isDev || isPublicRoute(context.request)) {
     return next();
   }
 
