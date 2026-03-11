@@ -107,7 +107,7 @@ improvement through neural pattern training.
 1. **Vulnerability Scanning**: Comprehensive static and dynamic code analysis
 2. **CVE Detection**: HNSW-indexed search of vulnerability databases
 3. **Secret Detection**: Identify exposed credentials and API keys
-4. **Dependency Audit**: Scan npm, pip, and other package dependencies
+4. **Dependency Audit**: Scan bun, pip, and other package dependencies
 5. **Compliance Auditing**: SOC2, GDPR, HIPAA pattern matching
 6. **Threat Modeling**: Identify attack vectors and security risks
 7. **Security Reporting**: Generate actionable security reports

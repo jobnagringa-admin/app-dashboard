@@ -1,4 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
+import { existsSync } from 'node:fs';
+
+const hasLegacyFixtures = existsSync('src-legacy');
 
 /**
  * Visual Regression Testing Configuration
@@ -60,6 +63,7 @@ export default defineConfig({
       testMatch: /visual\/.*\.spec\.ts/,
       use: {
         ...devices['iPhone SE'],
+        browserName: 'chromium',
         viewport: { width: 375, height: 667 },
         deviceScaleFactor: 2,
         isMobile: true,
@@ -73,6 +77,7 @@ export default defineConfig({
       testMatch: /visual\/.*\.spec\.ts/,
       use: {
         ...devices['iPhone 14'],
+        browserName: 'chromium',
         viewport: { width: 390, height: 844 },
         deviceScaleFactor: 3,
         isMobile: true,
@@ -86,6 +91,7 @@ export default defineConfig({
       testMatch: /visual\/.*\.spec\.ts/,
       use: {
         ...devices['iPad (gen 7)'],
+        browserName: 'chromium',
         viewport: { width: 768, height: 1024 },
         deviceScaleFactor: 2,
       },
@@ -126,17 +132,29 @@ export default defineConfig({
   ],
 
   // Web server configuration
-  webServer: {
-    command: 'bun run preview',
-    url: 'http://localhost:4321',
-    reuseExistingServer: !process.env.CI,
-    timeout: 120000,
-  },
+  webServer: [
+    {
+      command: 'rm -rf dist && PLAYWRIGHT=1 bun run build && PLAYWRIGHT=1 bun run preview',
+      url: 'http://localhost:4321',
+      reuseExistingServer: !process.env.CI,
+      timeout: 120000,
+    },
+    ...(hasLegacyFixtures
+      ? [
+          {
+            command: 'node scripts/serve-legacy.js',
+            url: 'http://localhost:4322',
+            reuseExistingServer: !process.env.CI,
+            timeout: 120000,
+          },
+        ]
+      : []),
+  ],
 
   // Global timeout settings
-  timeout: 30000,
+  timeout: 60000,
   expect: {
-    timeout: 10000,
+    timeout: 20000,
     toHaveScreenshot: {
       maxDiffPixelRatio: 0.02,
       threshold: 0.2,

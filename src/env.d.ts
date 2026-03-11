@@ -1,4 +1,4 @@
-/// <reference path="../.astro/types.d.ts" />
+import '../.astro/types.d.ts';
 /// <reference types="astro/client" />
 
 interface ImportMetaEnv {
@@ -33,6 +33,9 @@ interface ImportMetaEnv {
   // Site Configuration
   readonly PUBLIC_SITE_URL: string;
   readonly PUBLIC_COOKIE_DOMAIN: string;
+  readonly STRAPI_URL?: string;
+  readonly STRAPI_API_PREFIX?: string;
+  readonly STRAPI_TOKEN?: string;
 
   // Feature Flags
   readonly PUBLIC_ENABLE_CHATWOOT: string;

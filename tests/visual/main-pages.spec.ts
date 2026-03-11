@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
 /**
  * Visual regression tests for main pages
@@ -6,39 +7,35 @@ import { test, expect } from '@playwright/test';
  */
 
 const mainPages = [
-  { name: 'index', path: '/jng/index' },
-  { name: 'course', path: '/jng/course' },
-  { name: 'jobs', path: '/jng/jobs' },
-  { name: 'jobs-brs-only', path: '/jng/jobs-brs-only' },
-  { name: 'jobs-with-vista-sponsors', path: '/jng/jobs-with-vista-sponsors' },
-  { name: 'member-dashboard', path: '/jng/member-dashboard' },
-  { name: 'community', path: '/jng/community' },
-  { name: 'partners', path: '/jng/partners' },
-  { name: 'companies-hiring', path: '/jng/companies-hiring' },
-  { name: 'resume-generator', path: '/jng/resume-generator' },
+  { name: 'index', path: '/' },
+  { name: 'course', path: '/course' },
+  { name: 'partners', path: '/partners' },
+  { name: 'onboarding', path: '/onboarding' },
+  { name: 'profile', path: '/profile' },
+  { name: 'sign-in', path: '/sign-in' },
+  { name: 'sign-up', path: '/sign-up' },
 ];
+
+async function openPageForScreenshot(testPage: Page, path: string) {
+  await testPage.goto(path, { waitUntil: 'domcontentloaded' });
+  await testPage.waitForTimeout(1000);
+}
 
 test.describe('Main Pages Visual Regression', () => {
   for (const page of mainPages) {
     test(`${page.name} - desktop`, async ({ page: testPage }) => {
-      // Navigate to Astro version
-      await testPage.goto(`http://localhost:4321${page.path}`);
-      await testPage.waitForLoadState('networkidle');
+      await openPageForScreenshot(testPage, page.path);
 
-      // Take screenshot
-      await expect(testPage).toHaveScreenshot(`${page.name}-desktop.png`, {
-        fullPage: true,
-      });
+      const screenshot = await testPage.screenshot({ fullPage: true });
+      expect(screenshot).toMatchSnapshot(`${page.name}-desktop.png`);
     });
 
     test(`${page.name} - mobile`, async ({ page: testPage }) => {
-      testPage.setViewportSize({ width: 375, height: 667 });
-      await testPage.goto(`http://localhost:4321${page.path}`);
-      await testPage.waitForLoadState('networkidle');
+      await testPage.setViewportSize({ width: 375, height: 667 });
+      await openPageForScreenshot(testPage, page.path);
 
-      await expect(testPage).toHaveScreenshot(`${page.name}-mobile.png`, {
-        fullPage: true,
-      });
+      const screenshot = await testPage.screenshot({ fullPage: true });
+      expect(screenshot).toMatchSnapshot(`${page.name}-mobile.png`);
     });
   }
 });

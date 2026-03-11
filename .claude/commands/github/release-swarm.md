@@ -61,7 +61,7 @@ bunx ruv-swarm github release-create \
   --version "2.0.0" \
   --changelog "$CHANGELOG" \
   --build-artifacts \
-  --deploy-targets "npm,docker,github"
+  --deploy-targets "bun,docker,github"
 
 # Publish release after validation
 gh release edit v2.0.0 --draft=false
@@ -95,7 +95,7 @@ release:
         labels: ['docs', 'documentation']
 
   artifacts:
-    - name: npm-package
+    - name: bun-package
       build: bun run build
       publish: bun publish
 
@@ -222,7 +222,7 @@ bunx ruv-swarm github release-test \
 ```bash
 # Multi-target deployment
 bunx ruv-swarm github release-deploy \
-  --targets "npm,docker,github,s3" \
+  --targets "bun,docker,github,s3" \
   --staged-rollout \
   --monitor-metrics \
   --auto-rollback
@@ -531,11 +531,11 @@ Thanks to all contributors who made this release possible!
 
 ## Integration Examples
 
-### NPM Package Release
+### BUN Package Release
 
 ```bash
-# NPM package release
-bunx ruv-swarm github npm-release \
+# BUN package release
+bunx ruv-swarm github bun-release \
   --version patch \
   --test-all \
   --publish-beta \

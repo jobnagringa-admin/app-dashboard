@@ -61,7 +61,7 @@ export interface StrapiImageFormat {
 /**
  * Strapi component type
  */
-export interface StrapiComponent<T = Record<string, unknown>> {
+export interface StrapiComponent {
   id: number;
   documentId?: string;
   __component: string;
@@ -140,7 +140,7 @@ export interface StrapiQueryParams {
 /**
  * Flattened Strapi entity (after transformation)
  */
-export interface FlattenedStrapiEntity<T = Record<string, unknown>> {
+export type FlattenedStrapiEntity<T = Record<string, unknown>> = {
   id: number;
   documentId?: string;
   createdAt: string;

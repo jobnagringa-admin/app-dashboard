@@ -360,7 +360,7 @@ Migrate all third-party scripts and integrations to Astro-compatible format.
 7. **jQuery Migration**
    - Current: jQuery 3.5.1 from CloudFront
    - Consider removing jQuery if not heavily used
-   - If needed, migrate to npm package or CDN
+   - If needed, migrate to bun package or CDN
    - File: `src/components/Scripts.astro` or remove
 
 8. **Webflow.js**

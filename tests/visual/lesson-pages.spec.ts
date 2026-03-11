@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { readdir } from 'fs/promises';
-import { join } from 'path';
+import type { Page } from '@playwright/test';
 
 /**
  * Visual regression tests for lesson pages
@@ -16,25 +15,26 @@ const sampleLessons = [
   'negociando-um-bom-salario',
 ];
 
+async function openPageForScreenshot(testPage: Page, path: string) {
+  await testPage.goto(path, { waitUntil: 'domcontentloaded' });
+  await testPage.waitForTimeout(1000);
+}
+
 test.describe('Lesson Pages Visual Regression', () => {
   for (const lesson of sampleLessons) {
     test(`${lesson} - desktop`, async ({ page: testPage }) => {
-      await testPage.goto(`http://localhost:4321/jng/aulas/${lesson}`);
-      await testPage.waitForLoadState('networkidle');
+      await openPageForScreenshot(testPage, `/aulas/${lesson}`);
 
-      await expect(testPage).toHaveScreenshot(`lesson-${lesson}-desktop.png`, {
-        fullPage: true,
-      });
+      const screenshot = await testPage.screenshot({ fullPage: true });
+      expect(screenshot).toMatchSnapshot(`lesson-${lesson}-desktop.png`);
     });
 
     test(`${lesson} - mobile`, async ({ page: testPage }) => {
-      testPage.setViewportSize({ width: 375, height: 667 });
-      await testPage.goto(`http://localhost:4321/jng/aulas/${lesson}`);
-      await testPage.waitForLoadState('networkidle');
+      await testPage.setViewportSize({ width: 375, height: 667 });
+      await openPageForScreenshot(testPage, `/aulas/${lesson}`);
 
-      await expect(testPage).toHaveScreenshot(`lesson-${lesson}-mobile.png`, {
-        fullPage: true,
-      });
+      const screenshot = await testPage.screenshot({ fullPage: true });
+      expect(screenshot).toMatchSnapshot(`lesson-${lesson}-mobile.png`);
     });
   }
 });

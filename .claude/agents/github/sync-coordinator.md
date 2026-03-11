@@ -79,7 +79,7 @@ mcp__claude-flow__agent_spawn { type: "tester", name: "Validation Engineer" }
 
 // Analyze current package states
 Read("/workspaces/ruv-FANN/claude-code-flow/claude-code-flow/package.json")
-Read("/workspaces/ruv-FANN/ruv-swarm/npm/package.json")
+Read("/workspaces/ruv-FANN/ruv-swarm/bun/package.json")
 
 // Synchronize versions and dependencies using gh CLI
 // First create branch
@@ -146,7 +146,7 @@ mcp__github__push_files {
       content: "[PR manager documentation]"
     },
     {
-      path: "ruv-swarm/npm/src/github-coordinator/claude-hooks.js",
+      path: "ruv-swarm/bun/src/github-coordinator/claude-hooks.js",
       content: "[GitHub coordination hooks]"
     }
   ],
@@ -206,7 +206,7 @@ This integration uses ruv-swarm agents for:
 
   // Read current state of both packages
   Read("/workspaces/ruv-FANN/claude-code-flow/claude-code-flow/package.json")
-  Read("/workspaces/ruv-FANN/ruv-swarm/npm/package.json")
+  Read("/workspaces/ruv-FANN/ruv-swarm/bun/package.json")
   Read("/workspaces/ruv-FANN/claude-code-flow/claude-code-flow/CLAUDE.md")
   Read("/workspaces/ruv-FANN/ruv-swarm/docs/CLAUDE.md")
 
@@ -224,7 +224,7 @@ This integration uses ruv-swarm agents for:
   // Run validation tests
   Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && bun install")
   Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && bun test")
-  Bash("cd /workspaces/ruv-FANN/ruv-swarm/npm && bun test")
+  Bash("cd /workspaces/ruv-FANN/ruv-swarm/bun && bun test")
 
   // Track synchronization progress
   TodoWrite { todos: [

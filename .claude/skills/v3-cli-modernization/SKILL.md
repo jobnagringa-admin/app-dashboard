@@ -870,9 +870,9 @@ export class IntelligentCompletion {
       }
     }
 
-    // If package.json exists, suggest npm commands
+    // If package.json exists, suggest bun commands
     if (context.hasPackageJson) {
-      if (partial.startsWith('npm') || partial.startsWith('swarm')) {
+      if (partial.startsWith('bun') || partial.startsWith('swarm')) {
         suggestions.push({
           value: 'swarm init',
           description: 'Initialize swarm for this project',

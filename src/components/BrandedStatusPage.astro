@@ -11,15 +11,8 @@ export interface Props {
   secondaryLabel?: string;
 }
 
-const {
-  statusCode,
-  title,
-  description,
-  primaryHref,
-  primaryLabel,
-  secondaryHref,
-  secondaryLabel,
-} = Astro.props;
+const { statusCode, title, description, primaryHref, primaryLabel, secondaryHref, secondaryLabel } =
+  Astro.props;
 ---
 
 <BaseLayout title={`${statusCode} | Job na Gringa`}>
@@ -44,7 +37,9 @@ const {
         <a href={primaryHref} class="status-button status-button-primary">{primaryLabel}</a>
         {
           secondaryHref && secondaryLabel ? (
-            <a href={secondaryHref} class="status-button status-button-secondary">{secondaryLabel}</a>
+            <a href={secondaryHref} class="status-button status-button-secondary">
+              {secondaryLabel}
+            </a>
           ) : null
         }
       </div>

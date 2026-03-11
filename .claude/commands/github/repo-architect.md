@@ -37,7 +37,7 @@ mcp__claude-flow__agent_spawn { type: "coordinator", name: "Multi-Repo Coordinat
 
 // Analyze current repository structure
 LS("/workspaces/ruv-FANN/claude-code-flow/claude-code-flow")
-LS("/workspaces/ruv-FANN/ruv-swarm/npm")
+LS("/workspaces/ruv-FANN/ruv-swarm/bun")
 
 // Search for related repositories
 mcp__github__search_repositories {
@@ -182,9 +182,9 @@ jobs:
 
   // Analyze current repository structures
   LS("/workspaces/ruv-FANN/claude-code-flow/claude-code-flow")
-  LS("/workspaces/ruv-FANN/ruv-swarm/npm")
+  LS("/workspaces/ruv-FANN/ruv-swarm/bun")
   Read("/workspaces/ruv-FANN/claude-code-flow/claude-code-flow/package.json")
-  Read("/workspaces/ruv-FANN/ruv-swarm/npm/package.json")
+  Read("/workspaces/ruv-FANN/ruv-swarm/bun/package.json")
 
   // Search for architectural patterns using gh CLI
   ARCH_PATTERNS=$(Bash(`gh search repos "language:javascript template architecture" \
@@ -210,7 +210,7 @@ jobs:
         content: "[Architecture documentation]"
       },
       {
-        path: "ruv-swarm/npm/.github/workflows/cross-package-test.yml",
+        path: "ruv-swarm/bun/.github/workflows/cross-package-test.yml",
         content: "[Cross-package testing workflow]"
       }
     ],

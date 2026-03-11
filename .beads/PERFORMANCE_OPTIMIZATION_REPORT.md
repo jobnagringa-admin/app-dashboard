@@ -223,7 +223,7 @@ CRITICAL for maintaining visual perfection.
 
 **Implementation:**
 
-- Install Playwright: `npm install -D @playwright/test`
+- Install Playwright: `bun install -D @playwright/test`
 - Create `tests/visual/` directory
 - Write test scripts for each page
 - Configure CI/CD integration

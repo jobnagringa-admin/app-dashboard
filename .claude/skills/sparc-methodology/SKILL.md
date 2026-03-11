@@ -1131,7 +1131,7 @@ mcp__claude-flow__token_usage {
 
 - **Documentation**: https://github.com/ruvnet/claude-flow
 - **Issues**: https://github.com/ruvnet/claude-flow/issues
-- **NPM Package**: https://www.npmjs.com/package/claude-flow
+- **BUN Package**: https://www.npmjs.com/package/claude-flow
 - **Community**: Discord server (link in repository)
 
 ---

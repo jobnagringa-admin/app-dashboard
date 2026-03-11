@@ -267,7 +267,7 @@ mcp__flow -
 
 ### Sandbox Templates
 
-- **node**: Node.js environment with npm
+- **node**: Node.js environment with bun
 - **python**: Python 3.x with pip
 - **react**: React development setup
 - **nextjs**: Next.js full-stack framework
@@ -1161,7 +1161,7 @@ mcp__flow -
 - **Sandbox Won't Start**: Check template compatibility, verify credits
 - **Execution Timeout**: Increase timeout parameter or optimize code
 - **Out of Memory**: Use larger template or optimize memory usage
-- **Package Install Failed**: Check package name, verify npm/pip availability
+- **Package Install Failed**: Check package name, verify bun/pip availability
 
 ### Payment Issues
 

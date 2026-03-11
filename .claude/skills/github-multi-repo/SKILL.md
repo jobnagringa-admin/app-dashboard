@@ -171,7 +171,7 @@ mcp__claude -
 
   // Read package states
   Read("/workspaces/ruv-FANN/claude-code-flow/claude-code-flow/package.json")
-  Read("/workspaces/ruv-FANN/ruv-swarm/npm/package.json")
+  Read("/workspaces/ruv-FANN/ruv-swarm/bun/package.json")
 
   // Align versions using gh CLI
   Bash(`gh api repos/:owner/:repo/git/refs \
@@ -276,7 +276,7 @@ mcp__claude -
 
   // Analyze current structures
   LS("/workspaces/ruv-FANN/claude-code-flow/claude-code-flow")
-  LS("/workspaces/ruv-FANN/ruv-swarm/npm")
+  LS("/workspaces/ruv-FANN/ruv-swarm/bun")
 
   // Search for best practices
   Bash(`gh search repos "language:javascript template architecture" \

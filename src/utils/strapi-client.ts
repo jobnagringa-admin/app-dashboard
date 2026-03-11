@@ -12,13 +12,11 @@ import { getStrapiClientBrowser, getStrapiURL } from './strapi';
 import {
   buildStrapiQuery,
   flattenStrapiResponse,
-  flattenStrapiCollection,
   extractStrapiData,
 } from './strapi-helpers';
 import type {
   StrapiQueryParams,
   StrapiCollectionResponse,
-  StrapiSingleResponse,
   FlattenedStrapiEntity,
 } from '../types/strapi';
 
@@ -27,6 +25,13 @@ import type {
  */
 const requestCache = new Map<string, { data: unknown; timestamp: number }>();
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+type StrapiDocument = Record<string, unknown> & {
+  id?: number;
+  documentId?: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt?: string | null;
+};
 
 /**
  * Clear the request cache
@@ -82,13 +87,13 @@ export async function fetchStrapiContentClient<T = Record<string, unknown>>(
   contentType: string,
   queryParams: StrapiQueryParams = {},
   useCache = true
-): Promise<StrapiSingleResponse<T> | StrapiCollectionResponse<T>> {
-  // Delegate to fetchStrapiCollectionClient for consistency
+): Promise<StrapiCollectionResponse<T>> {
   const collection = await fetchStrapiCollectionClient<T>(contentType, queryParams, useCache);
+
   return {
-    data: collection.data as any,
+    data: collection.data as unknown as StrapiCollectionResponse<T>['data'],
     meta: collection.meta,
-  } as StrapiCollectionResponse<T>;
+  };
 }
 
 /**
@@ -123,10 +128,11 @@ export async function fetchStrapiCollectionClient<T = Record<string, unknown>>(
   try {
     const strapi = getStrapiClientBrowser();
     const collection = strapi.collection(contentType);
-    const response = await collection.find(queryParams as any);
+    const response = await collection.find(queryParams as Record<string, unknown>);
+    const documents = response.data as StrapiDocument[];
 
     // Strapi client returns flat documents, transform to our format
-    const flattened = response.data.map((doc: any) => ({
+    const flattened = documents.map((doc) => ({
       id: doc.id || parseInt(doc.documentId) || 0,
       documentId: doc.documentId,
       createdAt: doc.createdAt,
@@ -137,7 +143,7 @@ export async function fetchStrapiCollectionClient<T = Record<string, unknown>>(
 
     const result = {
       data: flattened,
-      meta: response.meta as any,
+      meta: response.meta as StrapiCollectionResponse<T>['meta'],
     };
 
     // Cache the response
@@ -191,13 +197,17 @@ export async function fetchStrapiSingleClient<T = Record<string, unknown>>(
     }
 
     const collection = strapi.collection(contentType);
-    const response = await collection.findOne(String(id), queryParams as any);
+    const response = await collection.findOne(
+      String(id),
+      queryParams as Record<string, unknown>
+    );
+    const document = response.data as StrapiDocument;
 
     // Transform response to our format
     const transformed = {
-      id: response.data.id || parseInt(response.data.documentId) || 0,
-      documentId: response.data.documentId,
-      ...response.data,
+      id: document.id || parseInt(document.documentId) || 0,
+      documentId: document.documentId,
+      ...document,
     } as FlattenedStrapiEntity<T>;
 
     // Cache the response

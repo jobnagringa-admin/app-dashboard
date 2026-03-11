@@ -44,7 +44,7 @@ gh release create v2.0.0 \
 bunx claude-flow github release-create \
   --version "2.0.0" \
   --build-artifacts \
-  --deploy-targets "npm,docker,github"
+  --deploy-targets "bun,docker,github"
 ```
 
 ### Full Automated Release
@@ -117,7 +117,7 @@ gh release create v2.0.0 \
 
 ```bash
 # Update package.json version
-bunx npm version patch  # or minor, major
+bunx bun version patch  # or minor, major
 
 # Push version tag
 git push --follow-tags
@@ -126,12 +126,12 @@ git push --follow-tags
 #### Simple Deployment
 
 ```bash
-# Build and publish npm package
+# Build and publish bun package
 bun run build
 bun publish
 
 # Create GitHub release
-gh release create $(bunx npm pkg get version) \
+gh release create $(bunx bun pkg get version) \
   --generate-notes
 ```
 
@@ -317,7 +317,7 @@ bunx claude-flow github release-test \
 ```bash
 # Multi-target deployment orchestration
 bunx claude-flow github release-deploy \
-  --targets "npm,docker,github,s3" \
+  --targets "bun,docker,github,s3" \
   --staged-rollout \
   --monitor-metrics \
   --auto-rollback
@@ -523,7 +523,7 @@ release:
         priority: critical
 
   artifacts:
-    - name: npm-package
+    - name: bun-package
       build: bun run build
       test: bun run test:all
       publish: bun publish
@@ -832,7 +832,7 @@ jobs:
 
       - name: Deploy to Package Registries
         run: |
-          # Publish to npm
+          # Publish to bun
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           bun publish
 

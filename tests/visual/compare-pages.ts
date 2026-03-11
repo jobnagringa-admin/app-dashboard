@@ -1,4 +1,4 @@
-import { chromium, Browser, Page } from 'playwright';
+import { chromium, Page } from 'playwright';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -44,8 +44,6 @@ async function comparePages() {
 
     const legacyFile = path.join(outputDir, `${pageInfo.name}-legacy.png`);
     const astroFile = path.join(outputDir, `${pageInfo.name}-astro.png`);
-    const diffFile = path.join(outputDir, `${pageInfo.name}-diff.png`);
-
     // Take screenshots
     await takeScreenshot(page, `http://localhost:${LEGACY_PORT}${pageInfo.legacyPath}`, legacyFile);
     await takeScreenshot(page, `http://localhost:${ASTRO_PORT}${pageInfo.astroPath}`, astroFile);

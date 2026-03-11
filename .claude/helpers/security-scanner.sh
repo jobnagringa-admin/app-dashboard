@@ -107,7 +107,7 @@ EOF
     echo "{\"status\":\"$status\",\"cvesFixed\":3,\"issues\":$total_issues}" > "$SECURITY_DIR/audit-status.json"
   fi
 
-  echo "[$(date +%H:%M:%S)] ✓ Security: $status | Secrets: $secrets | Vulns: $vulns | NPM: $npm_vulns"
+  echo "[$(date +%H:%M:%S)] ✓ Security: $status | Secrets: $secrets | Vulns: $vulns | BUN: $npm_vulns"
 
   date +%s > "$LAST_RUN_FILE"
 }
@@ -118,7 +118,7 @@ case "${1:-check}" in
   "force") rm -f "$LAST_RUN_FILE"; run_scan ;;
   "status")
     if [ -f "$SCAN_FILE" ]; then
-      jq -r '"Status: \(.status) | Secrets: \(.findings.secrets) | Vulns: \(.findings.vulnerabilities) | NPM: \(.findings.npm_audit)"' "$SCAN_FILE"
+      jq -r '"Status: \(.status) | Secrets: \(.findings.secrets) | Vulns: \(.findings.vulnerabilities) | BUN: \(.findings.npm_audit)"' "$SCAN_FILE"
     else
       echo "No scan data available"
     fi

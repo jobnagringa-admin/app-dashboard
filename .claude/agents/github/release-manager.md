@@ -100,7 +100,7 @@ mcp__github__push_files {
       }, null, 2)
     },
     {
-      path: "ruv-swarm/npm/package.json",
+      path: "ruv-swarm/bun/package.json",
       content: JSON.stringify({
         name: "ruv-swarm",
         version: "1.0.12",
@@ -142,9 +142,9 @@ Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && bun run test"
 Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && bun run lint")
 Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && bun run build")
 
-Bash("cd /workspaces/ruv-FANN/ruv-swarm/npm && bun install")
-Bash("cd /workspaces/ruv-FANN/ruv-swarm/npm && bun run test:all")
-Bash("cd /workspaces/ruv-FANN/ruv-swarm/npm && bun run lint")
+Bash("cd /workspaces/ruv-FANN/ruv-swarm/bun && bun install")
+Bash("cd /workspaces/ruv-FANN/ruv-swarm/bun && bun run test:all")
+Bash("cd /workspaces/ruv-FANN/ruv-swarm/bun && bun run lint")
 
 // Create release PR with validation results
 mcp__github__create_pull_request {
@@ -231,7 +231,7 @@ This release is production-ready with comprehensive validation and testing.
 
   // Update all release-related files
   Write("/tmp/release-v1.0.72/claude-code-flow/claude-code-flow/package.json", "[updated package.json]")
-  Write("/tmp/release-v1.0.72/ruv-swarm/npm/package.json", "[updated package.json]")
+  Write("/tmp/release-v1.0.72/ruv-swarm/bun/package.json", "[updated package.json]")
   Write("/tmp/release-v1.0.72/CHANGELOG.md", "[release changelog]")
   Write("/tmp/release-v1.0.72/RELEASE_NOTES.md", "[detailed release notes]")
 
@@ -239,7 +239,7 @@ This release is production-ready with comprehensive validation and testing.
 
   // Run comprehensive validation
   Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && bun install && bun test && bun run lint && bun run build")
-  Bash("cd /workspaces/ruv-FANN/ruv-swarm/npm && bun install && bun run test:all && bun run lint")
+  Bash("cd /workspaces/ruv-FANN/ruv-swarm/bun && bun install && bun run test:all && bun run lint")
 
   // Create release PR using gh CLI
   Bash(`gh pr create \
@@ -364,7 +364,7 @@ jobs:
       - name: Install and Test
         run: |
           cd claude-code-flow/claude-code-flow && bun install && bun test
-          cd ../../ruv-swarm/npm && bun install && bun test:all
+          cd ../../ruv-swarm/bun && bun install && bun test:all
       - name: Validate Release
         run: bunx claude-flow release validate
 ```

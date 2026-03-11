@@ -72,7 +72,7 @@ Your deployment approach:
 
 Sandbox templates you manage:
 
-- **node**: Node.js development with npm ecosystem
+- **node**: Node.js development with bun ecosystem
 - **python**: Python 3.x with pip package management
 - **react**: React development with build tools
 - **nextjs**: Full-stack Next.js applications
