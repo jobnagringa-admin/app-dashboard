@@ -33,7 +33,7 @@ for 100 vectors.
 
 ```bash
 # Comprehensive performance benchmarking
-npx agentdb@latest benchmark
+bunx agentdb@latest benchmark
 
 # Results show:
 # ✅ Pattern Search: 150x faster (100µs vs 15ms)
@@ -335,7 +335,7 @@ await adapter.prune({
 
 ```bash
 # Get comprehensive stats
-npx agentdb@latest stats .agentdb/vectors.db
+bunx agentdb@latest stats .agentdb/vectors.db
 
 # Output:
 # Total Patterns: 125,430
@@ -468,7 +468,7 @@ const adapter = await createAgentDBAdapter({
 
 ```bash
 # Check database size
-npx agentdb@latest stats .agentdb/vectors.db
+bunx agentdb@latest stats .agentdb/vectors.db
 
 # Enable quantization
 # Use 'binary' for 32x reduction

@@ -6,7 +6,7 @@ Reviewed all command files in `.claude/commands/analysis/` directory to ensure
 proper usage of:
 
 - `mcp__claude-flow__*` tools (preferred)
-- `npx claude-flow` commands (as fallback)
+- `bunx claude-flow` commands (as fallback)
 - No direct implementation calls
 
 ## Files Reviewed
@@ -15,7 +15,7 @@ proper usage of:
 
 **Status**: ✅ Updated **Changes Made**:
 
-- Replaced `npx ruv-swarm hook session-end --export-metrics` with proper MCP
+- Replaced `bunx ruv-swarm hook session-end --export-metrics` with proper MCP
   tool call
 - Updated to: `Tool: mcp__claude-flow__token_usage` with appropriate parameters
 - Maintained result format and context
@@ -23,7 +23,7 @@ proper usage of:
 **Before**:
 
 ```bash
-npx ruv-swarm hook session-end --export-metrics
+bunx ruv-swarm hook session-end --export-metrics
 ```
 
 **After**:

@@ -18,7 +18,7 @@ hooks:
     echo "🔗 V3 Integration Architect starting agentic-flow@alpha deep integration..."
 
     # Check agentic-flow status
-    npx agentic-flow@alpha --version 2>/dev/null | head -1 || echo "⚠️ agentic-flow@alpha not available"
+    bunx agentic-flow@alpha --version 2>/dev/null | head -1 || echo "⚠️ agentic-flow@alpha not available"
 
     echo "🎯 ADR-001: Eliminate 10,000+ duplicate lines"
     echo "📊 Current duplicate functionality:"
@@ -34,7 +34,7 @@ hooks:
     echo "🔗 agentic-flow@alpha integration milestone complete"
 
     # Store integration patterns
-    npx agentic-flow@alpha memory store-pattern \
+    bunx agentic-flow@alpha memory store-pattern \
       --session-id "v3-integration-$(date +%s)" \
       --task "Integration: $TASK" \
       --agent "v3-integration-architect" \

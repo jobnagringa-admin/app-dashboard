@@ -23,10 +23,10 @@ mcp__claude-flow__sparc_mode {
 
 ```bash
 # Use when running from terminal or MCP tools unavailable
-npx claude-flow sparc run researcher "research AI trends 2024"
+bunx claude-flow sparc run researcher "research AI trends 2024"
 
 # For alpha features
-npx claude-flow@alpha sparc run researcher "research AI trends 2024"
+bunx claude-flow@alpha sparc run researcher "research AI trends 2024"
 ```
 
 ### Option 3: Local Installation

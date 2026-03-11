@@ -37,7 +37,7 @@ truth-score verification.
 
 **Required:**
 
-- Claude Flow CLI installed (`npm install -g claude-flow@alpha`)
+- Claude Flow CLI installed (`bun install -g claude-flow@alpha`)
 - Git repository (optional but recommended)
 
 **Recommended:**

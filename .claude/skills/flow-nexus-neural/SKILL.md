@@ -25,11 +25,11 @@ LSTM, GAN, transformer) or use pre-built templates from the marketplace.
 
 ```bash
 # Add Flow Nexus MCP server
-claude mcp add flow-nexus npx flow-nexus@latest mcp start
+claude mcp add flow-nexus bunx flow-nexus@latest mcp start
 
 # Register and login
-npx flow-nexus@latest register
-npx flow-nexus@latest login
+bunx flow-nexus@latest register
+bunx flow-nexus@latest login
 ```
 
 ## Core Capabilities
@@ -804,4 +804,4 @@ const status =
 ---
 
 **Note**: Distributed training requires authentication. Register at
-https://flow-nexus.ruv.io or use `npx flow-nexus@latest register`.
+https://flow-nexus.ruv.io or use `bunx flow-nexus@latest register`.

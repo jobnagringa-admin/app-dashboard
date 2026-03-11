@@ -22,10 +22,10 @@ using both MCP tools and CLI commands.
 
 ```bash
 # Ensure Claude Flow is installed
-npm install -g claude-flow@alpha
+bun install -g claude-flow@alpha
 
 # Add MCP server (if using MCP tools)
-claude mcp add claude-flow npx claude-flow@alpha mcp start
+claude mcp add claude-flow bunx claude-flow@alpha mcp start
 ```
 
 ### Basic Pattern
@@ -282,7 +282,7 @@ mcp__claude -
 
 ```bash
 # Quick research swarm
-npx claude-flow swarm "research AI trends in 2025" \
+bunx claude-flow swarm "research AI trends in 2025" \
   --strategy research \
   --mode distributed \
   --max-agents 6 \
@@ -471,7 +471,7 @@ mcp__claude -
 
 ```bash
 # Quick development swarm
-npx claude-flow swarm "build REST API with authentication" \
+bunx claude-flow swarm "build REST API with authentication" \
   --strategy development \
   --mode hierarchical \
   --monitor \
@@ -593,27 +593,27 @@ mcp__claude -
     tasks: [
       {
         id: 'unit-tests',
-        command: 'npm run test:unit',
+        command: 'bun run test:unit',
         assignTo: 'Unit Test Coordinator',
       },
       {
         id: 'integration-tests',
-        command: 'npm run test:integration',
+        command: 'bun run test:integration',
         assignTo: 'Integration Tester',
       },
       {
         id: 'e2e-tests',
-        command: 'npm run test:e2e',
+        command: 'bun run test:e2e',
         assignTo: 'E2E Tester',
       },
       {
         id: 'performance-tests',
-        command: 'npm run test:performance',
+        command: 'bun run test:performance',
         assignTo: 'Performance Tester',
       },
       {
         id: 'security-tests',
-        command: 'npm run test:security',
+        command: 'bun run test:security',
         assignTo: 'Security Tester',
       },
     ],
@@ -692,7 +692,7 @@ mcp__claude -
 
 ```bash
 # Quick testing swarm
-npx claude-flow swarm "test application comprehensively" \
+bunx claude-flow swarm "test application comprehensively" \
   --strategy testing \
   --mode star \
   --parallel \

@@ -79,7 +79,7 @@ mcp__claude -
 If MCP tools are unavailable:
 
 ```bash
-npx claude-flow hook pre-task --auto-spawn-agents
+bunx claude-flow hook pre-task --auto-spawn-agents
 ```
 
 ## Benefits

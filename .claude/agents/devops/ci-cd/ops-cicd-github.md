@@ -161,9 +161,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm test
+          cache: 'bun'
+      - run: bun install --frozen-lockfile
+      - run: bun test
 ```
 
 ## Security considerations:

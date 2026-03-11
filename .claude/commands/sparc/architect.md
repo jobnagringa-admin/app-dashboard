@@ -23,10 +23,10 @@ mcp__claude-flow__sparc_mode {
 
 ```bash
 # Use when running from terminal or MCP tools unavailable
-npx claude-flow sparc run architect "design microservices architecture"
+bunx claude-flow sparc run architect "design microservices architecture"
 
 # For alpha features
-npx claude-flow@alpha sparc run architect "design microservices architecture"
+bunx claude-flow@alpha sparc run architect "design microservices architecture"
 ```
 
 ### Option 3: Local Installation

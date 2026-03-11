@@ -401,13 +401,13 @@ class PerformanceGates {
 
 ```bash
 # Full performance suite
-npm run benchmark:v3
+bun run benchmark:v3
 
 # Specific target validation
-npm run benchmark:flash-attention
-npm run benchmark:agentdb-search
-npm run benchmark:memory-optimization
+bun run benchmark:flash-attention
+bun run benchmark:agentdb-search
+bun run benchmark:memory-optimization
 
 # Continuous monitoring
-npm run monitor:performance
+bun run monitor:performance
 ```

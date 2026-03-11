@@ -180,9 +180,9 @@ This integration uses ruv-swarm agents for:
   }
 
   // Run validation tests
-  Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && npm install")
-  Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && npm test")
-  Bash("cd /workspaces/ruv-FANN/ruv-swarm/npm && npm test")
+  Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && bun install")
+  Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && bun test")
+  Bash("cd /workspaces/ruv-FANN/ruv-swarm/npm && bun test")
 
   // Track synchronization progress
   TodoWrite { todos: [

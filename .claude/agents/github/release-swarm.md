@@ -27,16 +27,16 @@ tools:
 hooks:
   pre_task: |
     echo "🐝 Initializing release swarm coordination..."
-    npx ruv-swarm hook pre-task --mode release-swarm --init-swarm
+    bunx ruv-swarm hook pre-task --mode release-swarm --init-swarm
   post_edit: |
     echo "🔄 Synchronizing release swarm state and validating changes..."
-    npx ruv-swarm hook post-edit --mode release-swarm --sync-swarm
+    bunx ruv-swarm hook post-edit --mode release-swarm --sync-swarm
   post_task: |
     echo "🎯 Release swarm task completed. Coordinating final deployment..."
-    npx ruv-swarm hook post-task --mode release-swarm --finalize-release
+    bunx ruv-swarm hook post-task --mode release-swarm --finalize-release
   notification: |
     echo "📡 Broadcasting release completion across all swarm agents..."
-    npx ruv-swarm hook notification --mode release-swarm --broadcast
+    bunx ruv-swarm hook notification --mode release-swarm --broadcast
 ---
 
 # Release Swarm - Intelligent Release Automation
@@ -61,7 +61,7 @@ MERGED_PRS=$(gh pr list --state merged --base main --json number,title,labels,me
   --jq ".[] | select(.mergedAt > \"$(gh release view $LAST_TAG --json publishedAt -q .publishedAt)\")")
 
 # Plan release with commit analysis
-npx ruv-swarm github release-plan \
+bunx ruv-swarm github release-plan \
   --commits "$COMMITS" \
   --merged-prs "$MERGED_PRS" \
   --analyze-commits \
@@ -74,7 +74,7 @@ npx ruv-swarm github release-plan \
 
 ```bash
 # Smart version bumping
-npx ruv-swarm github release-version \
+bunx ruv-swarm github release-version \
   --strategy "semantic" \
   --analyze-changes \
   --check-breaking \
@@ -88,7 +88,7 @@ npx ruv-swarm github release-version \
 # Generate changelog from PRs and commits
 CHANGELOG=$(gh api repos/:owner/:repo/compare/${LAST_TAG}...HEAD \
   --jq '.commits[].commit.message' | \
-  npx ruv-swarm github generate-changelog)
+  bunx ruv-swarm github generate-changelog)
 
 # Create release draft
 gh release create v2.0.0 \
@@ -98,7 +98,7 @@ gh release create v2.0.0 \
   --target main
 
 # Run release orchestration
-npx ruv-swarm github release-create \
+bunx ruv-swarm github release-create \
   --version "2.0.0" \
   --changelog "$CHANGELOG" \
   --build-artifacts \
@@ -137,8 +137,8 @@ release:
 
   artifacts:
     - name: npm-package
-      build: npm run build
-      publish: npm publish
+      build: bun run build
+      publish: bun publish
 
     - name: docker-image
       build: docker build -t app:$VERSION .
@@ -152,7 +152,7 @@ release:
     environments:
       - name: staging
         auto-deploy: true
-        validation: npm run test:e2e
+        validation: bun run test:e2e
 
       - name: production
         approval-required: true
@@ -182,7 +182,7 @@ COMMITS=$(gh api repos/:owner/:repo/compare/v1.0.0...HEAD \
   --jq '.commits[].commit.message')
 
 # Generate categorized changelog
-CHANGELOG=$(npx ruv-swarm github changelog \
+CHANGELOG=$(bunx ruv-swarm github changelog \
   --prs "$PRS" \
   --commits "$COMMITS" \
   --contributors "$CONTRIBUTORS" \
@@ -213,7 +213,7 @@ gh pr create \
 
 ```bash
 # Determine next version
-npx ruv-swarm github version-suggest \
+bunx ruv-swarm github version-suggest \
   --current v1.2.3 \
   --analyze-commits \
   --check-compatibility \
@@ -232,7 +232,7 @@ npx ruv-swarm github version-suggest \
 
 ```bash
 # Coordinate multi-platform builds
-npx ruv-swarm github release-build \
+bunx ruv-swarm github release-build \
   --platforms "linux,macos,windows" \
   --architectures "x64,arm64" \
   --parallel \
@@ -251,7 +251,7 @@ npx ruv-swarm github release-build \
 
 ```bash
 # Pre-release testing
-npx ruv-swarm github release-test \
+bunx ruv-swarm github release-test \
   --suites "unit,integration,e2e,performance" \
   --environments "node:16,node:18,node:20" \
   --fail-fast false \
@@ -262,7 +262,7 @@ npx ruv-swarm github release-test \
 
 ```bash
 # Multi-target deployment
-npx ruv-swarm github release-deploy \
+bunx ruv-swarm github release-deploy \
   --targets "npm,docker,github,s3" \
   --staged-rollout \
   --monitor-metrics \
@@ -299,7 +299,7 @@ deployment:
 
 ```bash
 # Coordinate releases across repos
-npx ruv-swarm github multi-release \
+bunx ruv-swarm github multi-release \
   --repos "frontend:v2.0.0,backend:v2.1.0,cli:v1.5.0" \
   --ensure-compatibility \
   --atomic-release \
@@ -310,7 +310,7 @@ npx ruv-swarm github multi-release \
 
 ```bash
 # Emergency hotfix process
-npx ruv-swarm github hotfix \
+bunx ruv-swarm github hotfix \
   --issue 789 \
   --target-version v1.2.4 \
   --cherry-pick-commits \
@@ -349,7 +349,7 @@ jobs:
           PRS=$(gh pr list --state merged --base main --json number,title,labels,author \
             --search "merged:>=$(gh release view $PREV_TAG --json publishedAt -q .publishedAt)")
 
-          npx ruv-swarm github release-init \
+          bunx ruv-swarm github release-init \
             --tag $RELEASE_TAG \
             --previous-tag $PREV_TAG \
             --prs "$PRS" \
@@ -358,7 +358,7 @@ jobs:
       - name: Generate Release Assets
         run: |
           # Generate changelog from PR data
-          CHANGELOG=$(npx ruv-swarm github release-changelog \
+          CHANGELOG=$(bunx ruv-swarm github release-changelog \
             --format markdown)
 
           # Update release notes
@@ -366,7 +366,7 @@ jobs:
             --notes "$CHANGELOG"
 
           # Generate and upload assets
-          npx ruv-swarm github release-assets \
+          bunx ruv-swarm github release-assets \
             --changelog \
             --binaries \
             --documentation
@@ -381,7 +381,7 @@ jobs:
       - name: Publish Release
         run: |
           # Publish to package registries
-          npx ruv-swarm github release-publish \
+          bunx ruv-swarm github release-publish \
             --platforms all
 
           # Create announcement issue
@@ -395,7 +395,7 @@ jobs:
 
 ```bash
 # Automated deployment pipeline
-npx ruv-swarm github cd-pipeline \
+bunx ruv-swarm github cd-pipeline \
   --trigger "merge-to-main" \
   --auto-version \
   --deploy-on-success \
@@ -408,7 +408,7 @@ npx ruv-swarm github cd-pipeline \
 
 ```bash
 # Comprehensive validation
-npx ruv-swarm github release-validate \
+bunx ruv-swarm github release-validate \
   --checks "
     version-conflicts,
     dependency-compatibility,
@@ -424,7 +424,7 @@ npx ruv-swarm github release-validate \
 
 ```bash
 # Test backward compatibility
-npx ruv-swarm github compat-test \
+bunx ruv-swarm github compat-test \
   --previous-versions "v1.0,v1.1,v1.2" \
   --api-contracts \
   --data-migrations \
@@ -435,7 +435,7 @@ npx ruv-swarm github compat-test \
 
 ```bash
 # Security validation
-npx ruv-swarm github release-security \
+bunx ruv-swarm github release-security \
   --scan-dependencies \
   --check-secrets \
   --audit-permissions \
@@ -448,7 +448,7 @@ npx ruv-swarm github release-security \
 
 ```bash
 # Monitor release health
-npx ruv-swarm github release-monitor \
+bunx ruv-swarm github release-monitor \
   --version v2.0.0 \
   --metrics "error-rate,latency,throughput" \
   --alert-thresholds \
@@ -459,7 +459,7 @@ npx ruv-swarm github release-monitor \
 
 ```bash
 # Configure auto-rollback
-npx ruv-swarm github rollback-config \
+bunx ruv-swarm github rollback-config \
   --triggers '{
     "error-rate": ">5%",
     "latency-p99": ">1000ms",
@@ -473,7 +473,7 @@ npx ruv-swarm github rollback-config \
 
 ```bash
 # Analyze release performance
-npx ruv-swarm github release-analytics \
+bunx ruv-swarm github release-analytics \
   --version v2.0.0 \
   --compare-with v1.9.0 \
   --metrics "adoption,performance,stability" \
@@ -486,7 +486,7 @@ npx ruv-swarm github release-analytics \
 
 ```bash
 # Update documentation
-npx ruv-swarm github release-docs \
+bunx ruv-swarm github release-docs \
   --api-changes \
   --migration-guide \
   --example-updates \
@@ -576,7 +576,7 @@ Thanks to all contributors who made this release possible!
 
 ```bash
 # NPM package release
-npx ruv-swarm github npm-release \
+bunx ruv-swarm github npm-release \
   --version patch \
   --test-all \
   --publish-beta \
@@ -587,7 +587,7 @@ npx ruv-swarm github npm-release \
 
 ```bash
 # Docker multi-arch release
-npx ruv-swarm github docker-release \
+bunx ruv-swarm github docker-release \
   --platforms "linux/amd64,linux/arm64" \
   --tags "latest,v2.0.0,stable" \
   --scan-vulnerabilities \
@@ -598,7 +598,7 @@ npx ruv-swarm github docker-release \
 
 ```bash
 # Mobile app store release
-npx ruv-swarm github mobile-release \
+bunx ruv-swarm github mobile-release \
   --platforms "ios,android" \
   --build-release \
   --submit-review \
@@ -611,7 +611,7 @@ npx ruv-swarm github mobile-release \
 
 ```bash
 # Emergency hotfix
-npx ruv-swarm github emergency-release \
+bunx ruv-swarm github emergency-release \
   --severity critical \
   --bypass-checks security-only \
   --fast-track \
@@ -622,7 +622,7 @@ npx ruv-swarm github emergency-release \
 
 ```bash
 # Immediate rollback
-npx ruv-swarm github rollback \
+bunx ruv-swarm github rollback \
   --to-version v1.9.9 \
   --reason "Critical bug in v2.0.0" \
   --preserve-data \

@@ -120,9 +120,9 @@ mcp__claude-flow__memory_usage {
 
 
   // Execute tests and validation
-  Bash("npm test")
-  Bash("npm run lint")
-  Bash("npm run build")
+  Bash("bun test")
+  Bash("bun run lint")
+  Bash("bun run build")
 
   // Track progress
   TodoWrite { todos: [

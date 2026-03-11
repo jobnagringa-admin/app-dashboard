@@ -543,28 +543,28 @@ mcp__claude-flow__swarm_monitor {
 
 ```bash
 # Execute specific mode
-npx claude-flow sparc run <mode> "task description"
+bunx claude-flow sparc run <mode> "task description"
 
 # Use alpha features
-npx claude-flow@alpha sparc run <mode> "task description"
+bunx claude-flow@alpha sparc run <mode> "task description"
 
 # List all available modes
-npx claude-flow sparc modes
+bunx claude-flow sparc modes
 
 # Get help for specific mode
-npx claude-flow sparc help <mode>
+bunx claude-flow sparc help <mode>
 
 # Run with options
-npx claude-flow sparc run <mode> "task" --parallel --monitor
+bunx claude-flow sparc run <mode> "task" --parallel --monitor
 
 # Execute TDD workflow
-npx claude-flow sparc tdd "feature description"
+bunx claude-flow sparc tdd "feature description"
 
 # Batch execution
-npx claude-flow sparc batch <mode1,mode2,mode3> "task"
+bunx claude-flow sparc batch <mode1,mode2,mode3> "task"
 
 # Pipeline execution
-npx claude-flow sparc pipeline "task description"
+bunx claude-flow sparc pipeline "task description"
 ```
 
 ### Method 3: Local Installation
@@ -791,13 +791,13 @@ Message 3: TodoWrite { todos: [...] }
 
 ```bash
 # Before work
-npx claude-flow@alpha hooks pre-task --description "implement auth"
+bunx claude-flow@alpha hooks pre-task --description "implement auth"
 
 # During work
-npx claude-flow@alpha hooks post-edit --file "auth.js"
+bunx claude-flow@alpha hooks post-edit --file "auth.js"
 
 # After work
-npx claude-flow@alpha hooks post-task --task-id "task-123"
+bunx claude-flow@alpha hooks post-task --task-id "task-123"
 ```
 
 ### 4. Test Coverage
@@ -982,58 +982,58 @@ mcp__claude-flow__sparc_mode {
 
 ```bash
 # Step 1: Research and planning
-npx claude-flow sparc run researcher "authentication patterns"
+bunx claude-flow sparc run researcher "authentication patterns"
 
 # Step 2: Architecture design
-npx claude-flow sparc run architect "design auth system"
+bunx claude-flow sparc run architect "design auth system"
 
 # Step 3: TDD implementation
-npx claude-flow sparc tdd "user authentication feature"
+bunx claude-flow sparc tdd "user authentication feature"
 
 # Step 4: Code review
-npx claude-flow sparc run reviewer "review auth implementation"
+bunx claude-flow sparc run reviewer "review auth implementation"
 
 # Step 5: Documentation
-npx claude-flow sparc run documenter "document auth API"
+bunx claude-flow sparc run documenter "document auth API"
 ```
 
 ### Workflow 2: Bug Investigation
 
 ```bash
 # Step 1: Analyze issue
-npx claude-flow sparc run analyzer "investigate bug #456"
+bunx claude-flow sparc run analyzer "investigate bug #456"
 
 # Step 2: Debug systematically
-npx claude-flow sparc run debugger "fix memory leak in service X"
+bunx claude-flow sparc run debugger "fix memory leak in service X"
 
 # Step 3: Create tests
-npx claude-flow sparc run tester "regression tests for bug #456"
+bunx claude-flow sparc run tester "regression tests for bug #456"
 
 # Step 4: Review fix
-npx claude-flow sparc run reviewer "validate bug fix"
+bunx claude-flow sparc run reviewer "validate bug fix"
 ```
 
 ### Workflow 3: Performance Optimization
 
 ```bash
 # Step 1: Profile performance
-npx claude-flow sparc run analyzer "profile API response times"
+bunx claude-flow sparc run analyzer "profile API response times"
 
 # Step 2: Identify bottlenecks
-npx claude-flow sparc run optimizer "optimize database queries"
+bunx claude-flow sparc run optimizer "optimize database queries"
 
 # Step 3: Implement improvements
-npx claude-flow sparc run coder "implement caching layer"
+bunx claude-flow sparc run coder "implement caching layer"
 
 # Step 4: Benchmark results
-npx claude-flow sparc run tester "performance benchmarks"
+bunx claude-flow sparc run tester "performance benchmarks"
 ```
 
 ### Workflow 4: Complete Pipeline
 
 ```bash
 # Execute full development pipeline
-npx claude-flow sparc pipeline "e-commerce checkout feature"
+bunx claude-flow sparc pipeline "e-commerce checkout feature"
 
 # This automatically runs:
 # 1. researcher - Gather requirements
@@ -1142,19 +1142,19 @@ mcp__claude-flow__token_usage {
 
 ```bash
 # List modes
-npx claude-flow sparc modes
+bunx claude-flow sparc modes
 
 # Run specific mode
-npx claude-flow sparc run <mode> "task"
+bunx claude-flow sparc run <mode> "task"
 
 # TDD workflow
-npx claude-flow sparc tdd "feature"
+bunx claude-flow sparc tdd "feature"
 
 # Full pipeline
-npx claude-flow sparc pipeline "task"
+bunx claude-flow sparc pipeline "task"
 
 # Batch execution
-npx claude-flow sparc batch <modes> "task"
+bunx claude-flow sparc batch <modes> "task"
 ```
 
 ### Most Common MCP Calls

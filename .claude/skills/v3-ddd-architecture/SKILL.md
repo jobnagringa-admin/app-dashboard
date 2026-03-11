@@ -453,5 +453,5 @@ Task("DDD architecture implementation",
 
 ```bash
 # Create domain plugin
-npm run create:plugin -- --name swarm-coordination --template domain
+bun run create:plugin -- --name swarm-coordination --template domain
 ```

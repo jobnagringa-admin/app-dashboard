@@ -16,14 +16,14 @@ hooks:
   pre: |
     echo "🧪 TDD London School agent starting: $TASK"
     # Initialize swarm test coordination
-    if command -v npx >/dev/null 2>&1; then
+    if command -v bunx >/dev/null 2>&1; then
       echo "🔄 Coordinating with swarm test agents..."
     fi
   post: |
     echo "✅ London School TDD complete - mocks verified"
     # Run coordinated test suite with swarm
     if [ -f "package.json" ]; then
-      npm test --if-present
+      bun test --if-present
     fi
 ---
 

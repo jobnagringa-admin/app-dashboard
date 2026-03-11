@@ -23,10 +23,10 @@ mcp__claude-flow__sparc_mode {
 
 ```bash
 # Use when running from terminal or MCP tools unavailable
-npx claude-flow sparc run analyzer "analyze codebase performance"
+bunx claude-flow sparc run analyzer "analyze codebase performance"
 
 # For alpha features
-npx claude-flow@alpha sparc run analyzer "analyze codebase performance"
+bunx claude-flow@alpha sparc run analyzer "analyze codebase performance"
 ```
 
 ### Option 3: Local Installation

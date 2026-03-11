@@ -23,10 +23,10 @@ mcp__claude-flow__sparc_mode {
 
 ```bash
 # Use when running from terminal or MCP tools unavailable
-npx claude-flow sparc run debugger "fix authentication issues"
+bunx claude-flow sparc run debugger "fix authentication issues"
 
 # For alpha features
-npx claude-flow@alpha sparc run debugger "fix authentication issues"
+bunx claude-flow@alpha sparc run debugger "fix authentication issues"
 ```
 
 ### Option 3: Local Installation

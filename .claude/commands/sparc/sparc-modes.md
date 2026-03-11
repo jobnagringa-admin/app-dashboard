@@ -73,19 +73,19 @@ mcp__claude-flow__swarm_monitor {
 
 ```bash
 # Use when running from terminal or MCP tools unavailable
-npx claude-flow sparc run <mode> "task description"
+bunx claude-flow sparc run <mode> "task description"
 
 # For alpha features
-npx claude-flow@alpha sparc run <mode> "task description"
+bunx claude-flow@alpha sparc run <mode> "task description"
 
 # List all modes
-npx claude-flow sparc modes
+bunx claude-flow sparc modes
 
 # Get help for a mode
-npx claude-flow sparc help <mode>
+bunx claude-flow sparc help <mode>
 
 # Run with options
-npx claude-flow sparc run <mode> "task" --parallel --monitor
+bunx claude-flow sparc run <mode> "task" --parallel --monitor
 ```
 
 ### Option 3: Local Installation
@@ -137,16 +137,16 @@ mcp__claude-flow__sparc_mode {
 
 ```bash
 # 1. Architecture design
-npx claude-flow sparc run architect "design microservices"
+bunx claude-flow sparc run architect "design microservices"
 
 # 2. Implementation
-npx claude-flow sparc run coder "implement services"
+bunx claude-flow sparc run coder "implement services"
 
 # 3. Testing
-npx claude-flow sparc run tdd "test all services"
+bunx claude-flow sparc run tdd "test all services"
 
 # 4. Review
-npx claude-flow sparc run reviewer "review implementation"
+bunx claude-flow sparc run reviewer "review implementation"
 ```
 
 ### Research and Innovation
@@ -177,11 +177,11 @@ mcp__claude-flow__sparc_mode {
 
 ```bash
 # 1. Research phase
-npx claude-flow sparc run researcher "research best practices"
+bunx claude-flow sparc run researcher "research best practices"
 
 # 2. Innovation
-npx claude-flow sparc run innovator "propose novel solutions"
+bunx claude-flow sparc run innovator "propose novel solutions"
 
 # 3. Documentation
-npx claude-flow sparc run documenter "document findings"
+bunx claude-flow sparc run documenter "document findings"
 ```

@@ -14,7 +14,7 @@ requires:
   - mcp-github (optional for MCP integration)
 dependencies:
   - git
-  - npm or yarn
+  - bun
   - node >= 20.0.0
 related_skills:
   - github-pr-management
@@ -41,7 +41,7 @@ gh release create v2.0.0 \
   --title "Release v2.0.0"
 
 # Orchestrate with swarm
-npx claude-flow github release-create \
+bunx claude-flow github release-create \
   --version "2.0.0" \
   --build-artifacts \
   --deploy-targets "npm,docker,github"
@@ -51,10 +51,10 @@ npx claude-flow github release-create \
 
 ```bash
 # Initialize release swarm
-npx claude-flow swarm init --topology hierarchical
+bunx claude-flow swarm init --topology hierarchical
 
 # Execute complete release pipeline
-npx claude-flow sparc pipeline "Release v2.0.0 with full validation"
+bunx claude-flow sparc pipeline "Release v2.0.0 with full validation"
 ```
 
 ---
@@ -117,7 +117,7 @@ gh release create v2.0.0 \
 
 ```bash
 # Update package.json version
-npm version patch  # or minor, major
+bunx npm version patch  # or minor, major
 
 # Push version tag
 git push --follow-tags
@@ -127,11 +127,11 @@ git push --follow-tags
 
 ```bash
 # Build and publish npm package
-npm run build
-npm publish
+bun run build
+bun publish
 
 # Create GitHub release
-gh release create $(npm pkg get version) \
+gh release create $(bunx npm pkg get version) \
   --generate-notes
 ```
 
@@ -201,7 +201,7 @@ gh release create $(npm pkg get version) \
   Write("RELEASE_NOTES.md", "[detailed notes]")
 
   // Run comprehensive validation
-  Bash("npm install && npm test && npm run lint && npm run build")
+  Bash("bun install && bun test && bun run lint && bun run build")
 
   // Create release PR
   Bash(`gh pr create \
@@ -246,7 +246,7 @@ COMMITS=$(gh api repos/:owner/:repo/compare/v1.0.0...HEAD \
   --jq '.commits[].commit.message')
 
 # Generate categorized changelog
-npx claude-flow github changelog \
+bunx claude-flow github changelog \
   --prs "$PRS" \
   --commits "$COMMITS" \
   --from v1.0.0 \
@@ -267,7 +267,7 @@ npx claude-flow github changelog \
 
 ```bash
 # Intelligent version suggestion
-npx claude-flow github version-suggest \
+bunx claude-flow github version-suggest \
   --current v1.2.3 \
   --analyze-commits \
   --check-compatibility \
@@ -286,7 +286,7 @@ npx claude-flow github version-suggest \
 
 ```bash
 # Multi-platform build coordination
-npx claude-flow github release-build \
+bunx claude-flow github release-build \
   --platforms "linux,macos,windows" \
   --architectures "x64,arm64" \
   --parallel \
@@ -305,7 +305,7 @@ npx claude-flow github release-build \
 
 ```bash
 # Comprehensive pre-release testing
-npx claude-flow github release-test \
+bunx claude-flow github release-test \
   --suites "unit,integration,e2e,performance" \
   --environments "node:16,node:18,node:20" \
   --fail-fast false \
@@ -316,7 +316,7 @@ npx claude-flow github release-test \
 
 ```bash
 # Multi-target deployment orchestration
-npx claude-flow github release-deploy \
+bunx claude-flow github release-deploy \
   --targets "npm,docker,github,s3" \
   --staged-rollout \
   --monitor-metrics \
@@ -348,9 +348,9 @@ npx claude-flow github release-deploy \
   Write("CHANGELOG.md", "[consolidated changelog]")
 
   // Run cross-package validation
-  Bash("cd packages/claude-flow && npm install && npm test")
-  Bash("cd packages/ruv-swarm && npm install && npm test")
-  Bash("npm run test:integration")
+  Bash("cd packages/claude-flow && bun install && bun test")
+  Bash("cd packages/ruv-swarm && bun install && bun test")
+  Bash("bun run test:integration")
 
   // Create unified release PR
   Bash(`gh pr create \
@@ -396,7 +396,7 @@ deployment:
 
 ```bash
 # Deploy with progressive rollout
-npx claude-flow github release-deploy \
+bunx claude-flow github release-deploy \
   --version v2.0.0 \
   --strategy progressive \
   --config .github/release-deployment.yml \
@@ -410,7 +410,7 @@ npx claude-flow github release-deploy \
 
 ```bash
 # Synchronize releases across repositories
-npx claude-flow github multi-release \
+bunx claude-flow github multi-release \
   --repos "frontend:v2.0.0,backend:v2.1.0,cli:v1.5.0" \
   --ensure-compatibility \
   --atomic-release \
@@ -446,7 +446,7 @@ npx claude-flow github multi-release \
 
 ```bash
 # Fast-track critical bug fix
-npx claude-flow github emergency-release \
+bunx claude-flow github emergency-release \
   --issue 789 \
   --severity critical \
   --target-version v1.2.4 \
@@ -467,7 +467,7 @@ npx claude-flow github emergency-release \
   Bash("git cherry-pick abc123def")
 
   // Fast validation
-  Bash("npm run test:critical && npm run build")
+  Bash("bun run test:critical && bun run build")
 
   // Create emergency release
   Bash(`gh release create v1.2.4 \
@@ -476,7 +476,7 @@ npx claude-flow github emergency-release \
     --prerelease=false`)
 
   // Immediate deployment
-  Bash("npm publish --tag hotfix")
+  Bash("bun publish --tag hotfix")
 
   // Notify stakeholders
   Bash(`gh issue create \
@@ -524,14 +524,14 @@ release:
 
   artifacts:
     - name: npm-package
-      build: npm run build
-      test: npm run test:all
-      publish: npm publish
+      build: bun run build
+      test: bun run test:all
+      publish: bun publish
       registry: https://registry.npmjs.org
 
     - name: docker-image
       build: docker build -t app:$VERSION .
-      test: docker run app:$VERSION npm test
+      test: docker run app:$VERSION bun test
       publish: docker push app:$VERSION
       platforms: [linux/amd64, linux/arm64]
 
@@ -544,23 +544,23 @@ release:
 
   validation:
     pre-release:
-      - lint: npm run lint
-      - typecheck: npm run typecheck
-      - unit-tests: npm run test:unit
-      - integration-tests: npm run test:integration
-      - security-scan: npm audit
-      - license-check: npm run license-check
+      - lint: bun run lint
+      - typecheck: bun run typecheck
+      - unit-tests: bun run test:unit
+      - integration-tests: bun run test:integration
+      - security-scan: bun audit
+      - license-check: bun run license-check
 
     post-release:
-      - smoke-tests: npm run test:smoke
+      - smoke-tests: bun run test:smoke
       - deployment-validation: ./scripts/validate-deployment.sh
-      - performance-baseline: npm run benchmark
+      - performance-baseline: bun run benchmark
 
   deployment:
     environments:
       - name: staging
         auto-deploy: true
-        validation: npm run test:e2e
+        validation: bun run test:e2e
         approval: false
 
       - name: production
@@ -611,7 +611,7 @@ release:
 
 ```bash
 # Pre-release validation with all checks
-npx claude-flow github release-validate \
+bunx claude-flow github release-validate \
   --checks "
     version-conflicts,
     dependency-compatibility,
@@ -631,7 +631,7 @@ npx claude-flow github release-validate \
 
 ```bash
 # Test against previous versions
-npx claude-flow github compat-test \
+bunx claude-flow github compat-test \
   --previous-versions "v1.0,v1.1,v1.2" \
   --api-contracts \
   --data-migrations \
@@ -643,7 +643,7 @@ npx claude-flow github compat-test \
 
 ```bash
 # Benchmark against baseline
-npx claude-flow github performance-test \
+bunx claude-flow github performance-test \
   --baseline v1.9.0 \
   --candidate v2.0.0 \
   --metrics "throughput,latency,memory,cpu" \
@@ -657,7 +657,7 @@ npx claude-flow github performance-test \
 
 ```bash
 # Monitor release health post-deployment
-npx claude-flow github release-monitor \
+bunx claude-flow github release-monitor \
   --version v2.0.0 \
   --metrics "error-rate,latency,throughput,adoption" \
   --alert-thresholds \
@@ -669,7 +669,7 @@ npx claude-flow github release-monitor \
 
 ```bash
 # Analyze release performance and adoption
-npx claude-flow github release-analytics \
+bunx claude-flow github release-analytics \
   --version v2.0.0 \
   --compare-with v1.9.0 \
   --metrics "adoption,performance,stability,feedback" \
@@ -681,7 +681,7 @@ npx claude-flow github release-analytics \
 
 ```bash
 # Configure intelligent auto-rollback
-npx claude-flow github rollback-config \
+bunx claude-flow github rollback-config \
   --triggers '{
     "error-rate": ">5%",
     "latency-p99": ">1000ms",
@@ -699,7 +699,7 @@ npx claude-flow github rollback-config \
 
 ```bash
 # Comprehensive security validation
-npx claude-flow github release-security \
+bunx claude-flow github release-security \
   --scan-dependencies \
   --check-secrets \
   --audit-permissions \
@@ -712,7 +712,7 @@ npx claude-flow github release-security \
 
 ```bash
 # Ensure regulatory compliance
-npx claude-flow github release-compliance \
+bunx claude-flow github release-compliance \
   --standards "SOC2,GDPR,HIPAA" \
   --license-audit \
   --data-governance \
@@ -751,7 +751,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-          cache: 'npm'
+          cache: 'bun'
 
       - name: Authenticate GitHub CLI
         run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
@@ -771,7 +771,7 @@ jobs:
             --jq '.commits[].commit.message')
 
           # Initialize swarm coordination
-          npx claude-flow@alpha swarm init --topology hierarchical
+          bunx claude-flow@alpha swarm init --topology hierarchical
 
           # Store release context
           echo "$PRS" > /tmp/release-prs.json
@@ -780,7 +780,7 @@ jobs:
       - name: Generate Release Changelog
         run: |
           # Generate intelligent changelog
-          CHANGELOG=$(npx claude-flow@alpha github changelog \
+          CHANGELOG=$(bunx claude-flow@alpha github changelog \
             --prs "$(cat /tmp/release-prs.json)" \
             --commits "$(cat /tmp/release-commits.txt)" \
             --from $PREV_TAG \
@@ -794,16 +794,16 @@ jobs:
       - name: Build Release Artifacts
         run: |
           # Install dependencies
-          npm ci
+          bun install --frozen-lockfile
 
           # Run comprehensive validation
-          npm run lint
-          npm run typecheck
-          npm run test:all
-          npm run build
+          bun run lint
+          bun run typecheck
+          bun run test:all
+          bun run build
 
           # Build platform-specific binaries
-          npx claude-flow@alpha github release-build \
+          bunx claude-flow@alpha github release-build \
             --platforms "linux,macos,windows" \
             --architectures "x64,arm64" \
             --parallel
@@ -811,9 +811,9 @@ jobs:
       - name: Security Scan
         run: |
           # Run security validation
-          npm audit --audit-level=moderate
+          bun audit --audit-level=moderate
 
-          npx claude-flow@alpha github release-security \
+          bunx claude-flow@alpha github release-security \
             --scan-dependencies \
             --check-secrets \
             --sign-artifacts
@@ -834,7 +834,7 @@ jobs:
         run: |
           # Publish to npm
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-          npm publish
+          bun publish
 
           # Build and push Docker images
           docker build -t ${{ github.repository }}:${{ github.ref_name }} .
@@ -843,10 +843,10 @@ jobs:
       - name: Post-Release Validation
         run: |
           # Run smoke tests
-          npm run test:smoke
+          bun run test:smoke
 
           # Validate deployment
-          npx claude-flow@alpha github release-validate \
+          bunx claude-flow@alpha github release-validate \
             --version ${{ github.ref_name }} \
             --smoke-tests \
             --health-checks
@@ -869,7 +869,7 @@ jobs:
       - name: Monitor Release
         run: |
           # Start release monitoring
-          npx claude-flow@alpha github release-monitor \
+          bunx claude-flow@alpha github release-monitor \
             --version ${{ github.ref_name }} \
             --duration 1h \
             --alert-on-errors &
@@ -899,13 +899,13 @@ jobs:
 
       - name: Fast-Track Testing
         run: |
-          npm ci
-          npm run test:critical
-          npm run build
+          bun install --frozen-lockfile
+          bun run test:critical
+          bun run build
 
       - name: Emergency Release
         run: |
-          npx claude-flow@alpha github emergency-release \
+          bunx claude-flow@alpha github emergency-release \
             --issue ${{ github.event.issue.number }} \
             --severity critical \
             --fast-track \
@@ -993,26 +993,26 @@ jobs:
 
 ```bash
 # Debug build failures
-npx claude-flow@alpha diagnostic-run \
+bunx claude-flow@alpha diagnostic-run \
   --component build \
   --verbose
 
 # Retry with isolated environment
 docker run --rm -v $(pwd):/app node:20 \
-  bash -c "cd /app && npm ci && npm run build"
+  bash -c "cd /app && bun install --frozen-lockfile && bun run build"
 ```
 
 ### Issue: Test Failures in CI
 
 ```bash
 # Run tests with detailed output
-npm run test -- --verbose --coverage
+bun run test -- --verbose --coverage
 
 # Check for environment-specific issues
-npm run test:ci
+bun run test:ci
 
 # Compare local vs CI environment
-npx claude-flow@alpha github compat-test \
+bunx claude-flow@alpha github compat-test \
   --environments "local,ci" \
   --compare
 ```
@@ -1021,14 +1021,14 @@ npx claude-flow@alpha github compat-test \
 
 ```bash
 # Immediate rollback to previous version
-npx claude-flow@alpha github rollback \
+bunx claude-flow@alpha github rollback \
   --to-version v1.9.9 \
   --reason "Critical bug in v2.0.0" \
   --preserve-data \
   --notify-users
 
 # Investigate rollback cause
-npx claude-flow@alpha github release-analytics \
+bunx claude-flow@alpha github release-analytics \
   --version v2.0.0 \
   --identify-issues
 ```
@@ -1037,12 +1037,12 @@ npx claude-flow@alpha github release-analytics \
 
 ```bash
 # Check and resolve version conflicts
-npx claude-flow@alpha github release-validate \
+bunx claude-flow@alpha github release-validate \
   --checks version-conflicts \
   --auto-resolve
 
 # Align multi-package versions
-npx claude-flow@alpha github version-sync \
+bunx claude-flow@alpha github version-sync \
   --packages "package-a,package-b" \
   --strategy semantic
 ```

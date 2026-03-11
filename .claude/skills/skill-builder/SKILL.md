@@ -879,7 +879,7 @@ See [CI/CD Guide](docs/CICD.md)
 
 ```bash
 # Install prerequisites
-npm install -g required-package
+bun install -g required-package
 ./scripts/install.sh --force
 ```
 

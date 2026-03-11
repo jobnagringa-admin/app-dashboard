@@ -28,8 +28,8 @@ Task("Security testing", "Implement TDD London School security framework", "test
 ### CVE-1: Vulnerable Dependencies
 
 ```bash
-npm update @anthropic-ai/claude-code@^2.0.31
-npm audit --audit-level high
+bun update @anthropic-ai/claude-code@^2.0.31
+bun audit --audit-level high
 ```
 
 ### CVE-2: Weak Password Hashing
@@ -90,7 +90,7 @@ const { stdout } = await execFile('git', [userInput], { shell: false });
 
 ## Success Metrics
 
-- **Security Score**: 90/100 (npm audit + custom scans)
+- **Security Score**: 90/100 (bun audit + custom scans)
 - **CVE Resolution**: 100% of critical vulnerabilities fixed
 - **Test Coverage**: >95% security-critical code
 - **Implementation**: All secure patterns documented and tested

@@ -26,7 +26,7 @@ hooks:
     echo "  HIGH-2: Path traversal vulnerabilities"
 
     # Check existing security tools
-    command -v npm &>/dev/null && echo "📦 npm audit available"
+    command -v bun &>/dev/null && echo "📦 bun audit available"
 
     echo "🎯 Target: 90/100 security score, secure-by-default patterns"
 
@@ -34,7 +34,7 @@ hooks:
     echo "🛡️ Security architecture review complete"
 
     # Store security patterns
-    npx agentic-flow@alpha memory store-pattern \
+    bunx agentic-flow@alpha memory store-pattern \
       --session-id "v3-security-$(date +%s)" \
       --task "Security Architecture: $TASK" \
       --agent "v3-security-architect" \
@@ -165,7 +165,7 @@ execFile('git', [userInput], { shell: false });
 ### **Validation Criteria**
 
 - [ ] All CVEs addressed with tested fixes
-- [ ] npm audit shows 0 high/critical vulnerabilities
+- [ ] bun audit shows 0 high/critical vulnerabilities
 - [ ] Security patterns documented and implemented
 - [ ] Threat model covers all v3 domains
 - [ ] Security testing framework established
@@ -186,7 +186,7 @@ execFile('git', [userInput], { shell: false });
 
 ## Success Metrics
 
-- **Security Score**: 90/100 (npm audit + custom scans)
+- **Security Score**: 90/100 (bun audit + custom scans)
 - **CVE Resolution**: 100% of identified CVEs fixed
 - **Test Coverage**: >95% for security-critical code
 - **Documentation**: Complete security architecture docs

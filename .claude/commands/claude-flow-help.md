@@ -76,7 +76,7 @@ revolutionizes how you work with Claude Code.
 ### Initialize with SPARC:
 
 ```bash
-npx -y claude-flow@latest init --sparc
+bunx -y claude-flow@latest init --sparc
 ```
 
 ### Start a development swarm:
@@ -106,7 +106,7 @@ npx -y claude-flow@latest init --sparc
 
 ## 🎯 Best Practices
 
-- Use `./claude-flow` instead of `npx claude-flow` after initialization
+- Use `./claude-flow` instead of `bunx claude-flow` after initialization
 - Store important context in memory for cross-session persistence
 - Use swarm mode for complex tasks requiring multiple agents
 - Enable monitoring for real-time progress tracking

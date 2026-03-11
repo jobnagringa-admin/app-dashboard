@@ -425,14 +425,14 @@ Task("V3 swarm initialization",
 
 ```bash
 # Phase 1: Security-first foundation
-npm run v3:phase1:security
+bun run v3:phase1:security
 
 # Phase 2: Core systems parallel
-npm run v3:phase2:core-systems
+bun run v3:phase2:core-systems
 
 # Phase 3: Integration and optimization
-npm run v3:phase3:integration
+bun run v3:phase3:integration
 
 # Phase 4: Release preparation
-npm run v3:phase4:release
+bun run v3:phase4:release
 ```

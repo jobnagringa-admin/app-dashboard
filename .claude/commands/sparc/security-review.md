@@ -43,16 +43,16 @@ mcp__claude-flow__sparc_mode {
 
 ```bash
 # Use when running from terminal or MCP tools unavailable
-npx claude-flow sparc run security-review "audit API security"
+bunx claude-flow sparc run security-review "audit API security"
 
 # For alpha features
-npx claude-flow@alpha sparc run security-review "audit API security"
+bunx claude-flow@alpha sparc run security-review "audit API security"
 
 # With namespace
-npx claude-flow sparc run security-review "your task" --namespace security-review
+bunx claude-flow sparc run security-review "your task" --namespace security-review
 
 # Non-interactive mode
-npx claude-flow sparc run security-review "your task" --non-interactive
+bunx claude-flow sparc run security-review "your task" --non-interactive
 ```
 
 ### Option 3: Local Installation
@@ -87,8 +87,8 @@ mcp__claude-flow__memory_search {
 
 ```bash
 # Store mode-specific context
-npx claude-flow memory store "security-review_context" "important decisions" --namespace security-review
+bunx claude-flow memory store "security-review_context" "important decisions" --namespace security-review
 
 # Query previous work
-npx claude-flow memory query "security-review" --limit 5
+bunx claude-flow memory query "security-review" --limit 5
 ```

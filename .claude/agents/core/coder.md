@@ -21,7 +21,7 @@ hooks:
     echo "✨ Implementation complete"
     # Run basic validation
     if [ -f "package.json" ]; then
-      npm run lint --if-present
+      bun run lint --if-present
     fi
 ---
 

@@ -45,7 +45,7 @@ Hooks are configured in `.claude/settings.json`:
         "hooks": [
           {
             "type": "command",
-            "command": "npx claude-flow hook pre-edit --file '${tool.params.file_path}'"
+            "command": "bunx claude-flow hook pre-edit --file '${tool.params.file_path}'"
           }
         ]
       }

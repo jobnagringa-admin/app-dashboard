@@ -23,10 +23,10 @@ mcp__claude-flow__sparc_mode {
 
 ```bash
 # Use when running from terminal or MCP tools unavailable
-npx claude-flow sparc run tdd "shopping cart feature"
+bunx claude-flow sparc run tdd "shopping cart feature"
 
 # For alpha features
-npx claude-flow@alpha sparc run tdd "shopping cart feature"
+bunx claude-flow@alpha sparc run tdd "shopping cart feature"
 ```
 
 ### Option 3: Local Installation

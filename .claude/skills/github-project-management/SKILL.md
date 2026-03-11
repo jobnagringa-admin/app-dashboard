@@ -54,7 +54,7 @@ gh issue create \
   --label "enhancement,swarm-ready"
 
 # Initialize swarm for issue
-npx claude-flow@alpha hooks pre-task --description "Feature implementation"
+bunx claude-flow@alpha hooks pre-task --description "Feature implementation"
 ```
 
 ### Project Board Quick Setup
@@ -65,7 +65,7 @@ PROJECT_ID=$(gh project list --owner @me --format json | \
   jq -r '.projects[0].id')
 
 # Initialize board sync
-npx ruv-swarm github board-init \
+bunx ruv-swarm github board-init \
   --project-id "$PROJECT_ID" \
   --sync-mode "bidirectional"
 ```
@@ -150,14 +150,14 @@ gh issue create \
 ISSUE_DATA=$(gh issue view 456 --json title,body,labels,assignees,comments)
 
 # Create swarm from issue
-npx ruv-swarm github issue-to-swarm 456 \
+bunx ruv-swarm github issue-to-swarm 456 \
   --issue-data "$ISSUE_DATA" \
   --auto-decompose \
   --assign-agents
 
 # Batch process multiple issues
 ISSUES=$(gh issue list --label "swarm-ready" --json number,title,body,labels)
-npx ruv-swarm github issues-batch \
+bunx ruv-swarm github issues-batch \
   --issues "$ISSUES" \
   --parallel
 
@@ -212,14 +212,14 @@ Execute swarm operations via issue comments:
 
 ```bash
 # Analyze and triage unlabeled issues
-npx ruv-swarm github triage \
+bunx ruv-swarm github triage \
   --unlabeled \
   --analyze-content \
   --suggest-labels \
   --assign-priority
 
 # Find and link duplicate issues
-npx ruv-swarm github find-duplicates \
+bunx ruv-swarm github find-duplicates \
   --threshold 0.8 \
   --link-related \
   --close-duplicates
@@ -237,7 +237,7 @@ npx ruv-swarm github find-duplicates \
 ISSUE_BODY=$(gh issue view 456 --json body --jq '.body')
 
 # Decompose into subtasks
-SUBTASKS=$(npx ruv-swarm github issue-decompose 456 \
+SUBTASKS=$(bunx ruv-swarm github issue-decompose 456 \
   --body "$ISSUE_BODY" \
   --max-subtasks 10 \
   --assign-priorities)
@@ -272,11 +272,11 @@ done
 CURRENT=$(gh issue view 456 --json body,labels)
 
 # Get swarm progress
-PROGRESS=$(npx ruv-swarm github issue-progress 456)
+PROGRESS=$(bunx ruv-swarm github issue-progress 456)
 
 # Update checklist in issue body
 UPDATED_BODY=$(echo "$CURRENT" | jq -r '.body' | \
-  npx ruv-swarm github update-checklist --progress "$PROGRESS")
+  bunx ruv-swarm github update-checklist --progress "$PROGRESS")
 
 # Edit issue with updated body
 gh issue edit 456 --body "$UPDATED_BODY"
@@ -327,7 +327,7 @@ echo "$STALE_ISSUES" | jq -r '.number' | while read -r num; do
   ISSUE=$(gh issue view $num --json title,body,comments,labels)
 
   # Analyze with swarm
-  ACTION=$(npx ruv-swarm github analyze-stale \
+  ACTION=$(bunx ruv-swarm github analyze-stale \
     --issue "$ISSUE" \
     --suggest-action)
 
@@ -369,7 +369,7 @@ PROJECT_ID=$(gh project list --owner @me --format json | \
   jq -r '.projects[] | select(.title == "Development Board") | .id')
 
 # Initialize swarm with project
-npx ruv-swarm github board-init \
+bunx ruv-swarm github board-init \
   --project-id "$PROJECT_ID" \
   --sync-mode "bidirectional" \
   --create-views "swarm-status,agent-workload,priority"
@@ -437,7 +437,7 @@ mapping:
 
 ```bash
 # Sync swarm tasks with project cards
-npx ruv-swarm github board-sync \
+bunx ruv-swarm github board-sync \
   --map-status '{
     "todo": "To Do",
     "in_progress": "In Progress",
@@ -448,7 +448,7 @@ npx ruv-swarm github board-sync \
   --update-metadata
 
 # Enable real-time board updates
-npx ruv-swarm github board-realtime \
+bunx ruv-swarm github board-realtime \
   --webhook-endpoint "https://api.example.com/github-sync" \
   --update-frequency "immediate" \
   --batch-updates false
@@ -466,7 +466,7 @@ echo "$ISSUES" | jq -r '.[].number' | while read -r issue; do
 done
 
 # Process with swarm
-npx ruv-swarm github board-import-issues \
+bunx ruv-swarm github board-import-issues \
   --issues "$ISSUES" \
   --add-to-column "Backlog" \
   --parse-checklist \
@@ -482,7 +482,7 @@ npx ruv-swarm github board-import-issues \
 
 ```bash
 # Automatically assign cards to agents
-npx ruv-swarm github board-auto-assign \
+bunx ruv-swarm github board-auto-assign \
   --strategy "load-balanced" \
   --consider "expertise,workload,availability" \
   --update-cards
@@ -492,7 +492,7 @@ npx ruv-swarm github board-auto-assign \
 
 ```bash
 # Smart card movement based on rules
-npx ruv-swarm github board-smart-move \
+bunx ruv-swarm github board-smart-move \
   --rules '{
     "auto-progress": "when:all-subtasks-done",
     "auto-review": "when:tests-pass",
@@ -504,7 +504,7 @@ npx ruv-swarm github board-smart-move \
 
 ```bash
 # Bulk card operations
-npx ruv-swarm github board-bulk \
+bunx ruv-swarm github board-bulk \
   --filter "status:blocked" \
   --action "add-label:needs-attention" \
   --notify-assignees
@@ -585,14 +585,14 @@ npx ruv-swarm github board-bulk \
 
 ```bash
 # Manage sprints with swarms
-npx ruv-swarm github sprint-manage \
+bunx ruv-swarm github sprint-manage \
   --sprint "Sprint 23" \
   --auto-populate \
   --capacity-planning \
   --track-velocity
 
 # Track milestone progress
-npx ruv-swarm github milestone-track \
+bunx ruv-swarm github milestone-track \
   --milestone "v2.0 Release" \
   --update-board \
   --show-dependencies \
@@ -603,7 +603,7 @@ npx ruv-swarm github milestone-track \
 
 ```bash
 # Setup agile board
-npx ruv-swarm github agile-board \
+bunx ruv-swarm github agile-board \
   --methodology "scrum" \
   --sprint-length "2w" \
   --ceremonies "planning,review,retro" \
@@ -614,7 +614,7 @@ npx ruv-swarm github agile-board \
 
 ```bash
 # Setup kanban board
-npx ruv-swarm github kanban-board \
+bunx ruv-swarm github kanban-board \
   --wip-limits '{
     "In Progress": 5,
     "Review": 3
@@ -642,7 +642,7 @@ ISSUE_METRICS=$(echo "$PROJECT_DATA" | jq -r '.items[] | select(.content.type ==
   done)
 
 # Generate analytics with swarm
-npx ruv-swarm github board-analytics \
+bunx ruv-swarm github board-analytics \
   --project-data "$PROJECT_DATA" \
   --issue-metrics "$ISSUE_METRICS" \
   --metrics "throughput,cycle-time,wip" \
@@ -655,13 +655,13 @@ npx ruv-swarm github board-analytics \
 
 ```bash
 # Track and visualize progress
-npx ruv-swarm github board-progress \
+bunx ruv-swarm github board-progress \
   --show "burndown,velocity,cycle-time" \
   --time-period "sprint" \
   --export-metrics
 
 # Generate reports
-npx ruv-swarm github board-report \
+bunx ruv-swarm github board-report \
   --type "sprint-summary" \
   --format "markdown" \
   --include "velocity,burndown,blockers" \
@@ -672,7 +672,7 @@ npx ruv-swarm github board-report \
 
 ```bash
 # Track board performance
-npx ruv-swarm github board-kpis \
+bunx ruv-swarm github board-kpis \
   --metrics '[
     "average-cycle-time",
     "throughput-per-sprint",
@@ -682,7 +682,7 @@ npx ruv-swarm github board-kpis \
   --dashboard-url
 
 # Track team performance
-npx ruv-swarm github team-metrics \
+bunx ruv-swarm github team-metrics \
   --board "Development" \
   --per-member \
   --include "velocity,quality,collaboration" \
@@ -698,7 +698,7 @@ npx ruv-swarm github team-metrics \
 
 ```bash
 # Plan releases using board data
-npx ruv-swarm github release-plan-board \
+bunx ruv-swarm github release-plan-board \
   --analyze-velocity \
   --estimate-completion \
   --identify-risks \
@@ -716,7 +716,7 @@ npx ruv-swarm github release-plan-board \
 
 ```bash
 # Sync across multiple boards
-npx ruv-swarm github multi-board-sync \
+bunx ruv-swarm github multi-board-sync \
   --boards "Development,QA,Release" \
   --sync-rules '{
     "Development->QA": "when:ready-for-test",
@@ -724,7 +724,7 @@ npx ruv-swarm github multi-board-sync \
   }'
 
 # Cross-organization sync
-npx ruv-swarm github cross-org-sync \
+bunx ruv-swarm github cross-org-sync \
   --source "org1/Project-A" \
   --target "org2/Project-B" \
   --field-mapping "custom" \
@@ -740,7 +740,7 @@ npx ruv-swarm github cross-org-sync \
 
 ```bash
 # Handle issue dependencies
-npx ruv-swarm github issue-deps 456 \
+bunx ruv-swarm github issue-deps 456 \
   --resolve-order \
   --parallel-safe \
   --update-blocking
@@ -750,7 +750,7 @@ npx ruv-swarm github issue-deps 456 \
 
 ```bash
 # Coordinate epic-level swarms
-npx ruv-swarm github epic-swarm \
+bunx ruv-swarm github epic-swarm \
   --epic 123 \
   --child-issues "456,457,458" \
   --orchestrate
@@ -765,7 +765,7 @@ npx ruv-swarm github epic-swarm \
 
 ```bash
 # Handle issues across repositories
-npx ruv-swarm github cross-repo \
+bunx ruv-swarm github cross-repo \
   --issue "org/repo#456" \
   --related "org/other-repo#123" \
   --coordinate
@@ -780,7 +780,7 @@ npx ruv-swarm github cross-repo \
 
 ```bash
 # Distribute work among team
-npx ruv-swarm github board-distribute \
+bunx ruv-swarm github board-distribute \
   --strategy "skills-based" \
   --balance-workload \
   --respect-preferences \
@@ -791,7 +791,7 @@ npx ruv-swarm github board-distribute \
 
 ```bash
 # Generate standup reports
-npx ruv-swarm github standup-report \
+bunx ruv-swarm github standup-report \
   --team "frontend" \
   --include "yesterday,today,blockers" \
   --format "slack" \
@@ -802,7 +802,7 @@ npx ruv-swarm github standup-report \
 
 ```bash
 # Coordinate reviews via board
-npx ruv-swarm github review-coordinate \
+bunx ruv-swarm github review-coordinate \
   --board "Code Review" \
   --assign-reviewers \
   --track-feedback \
@@ -1004,7 +1004,7 @@ jobs:
         with:
           command: |
             if [[ "${{ github.event.label.name }}" == "swarm-ready" ]]; then
-              npx ruv-swarm github issue-init ${{ github.event.issue.number }}
+              bunx ruv-swarm github issue-init ${{ github.event.issue.number }}
             fi
 ```
 
@@ -1012,7 +1012,7 @@ jobs:
 
 ```bash
 # Sync with project board
-npx ruv-swarm github issue-board-sync \
+bunx ruv-swarm github issue-board-sync \
   --project "Development" \
   --column-mapping '{
     "To Do": "pending",
@@ -1029,7 +1029,7 @@ npx ruv-swarm github issue-board-sync \
 
 ```bash
 # Specialized bug handling
-npx ruv-swarm github bug-swarm 456 \
+bunx ruv-swarm github bug-swarm 456 \
   --reproduce \
   --isolate \
   --fix \
@@ -1040,7 +1040,7 @@ npx ruv-swarm github bug-swarm 456 \
 
 ```bash
 # Feature implementation swarm
-npx ruv-swarm github feature-swarm 456 \
+bunx ruv-swarm github feature-swarm 456 \
   --design \
   --implement \
   --document \
@@ -1051,7 +1051,7 @@ npx ruv-swarm github feature-swarm 456 \
 
 ```bash
 # Refactoring swarm
-npx ruv-swarm github debt-swarm 456 \
+bunx ruv-swarm github debt-swarm 456 \
   --analyze-impact \
   --plan-migration \
   --execute \
@@ -1112,7 +1112,7 @@ npx ruv-swarm github debt-swarm 456 \
 
 ```bash
 # Diagnose sync problems
-npx ruv-swarm github board-diagnose \
+bunx ruv-swarm github board-diagnose \
   --check "permissions,webhooks,rate-limits" \
   --test-sync \
   --show-conflicts
@@ -1122,7 +1122,7 @@ npx ruv-swarm github board-diagnose \
 
 ```bash
 # Optimize board performance
-npx ruv-swarm github board-optimize \
+bunx ruv-swarm github board-optimize \
   --analyze-size \
   --archive-completed \
   --index-fields \
@@ -1133,7 +1133,7 @@ npx ruv-swarm github board-optimize \
 
 ```bash
 # Recover board data
-npx ruv-swarm github board-recover \
+bunx ruv-swarm github board-recover \
   --backup-id "2024-01-15" \
   --restore-cards \
   --preserve-current \
@@ -1169,7 +1169,7 @@ Automatic tracking of:
 
 ```bash
 # Analyze swarm performance
-npx ruv-swarm github issue-metrics \
+bunx ruv-swarm github issue-metrics \
   --issue 456 \
   --metrics "time-to-close,agent-efficiency,subtask-completion"
 ```
@@ -1178,7 +1178,7 @@ npx ruv-swarm github issue-metrics \
 
 ```bash
 # Generate effectiveness report
-npx ruv-swarm github effectiveness \
+bunx ruv-swarm github effectiveness \
   --issues "closed:>2024-01-01" \
   --compare "with-swarm,without-swarm"
 ```
@@ -1237,7 +1237,7 @@ EOF
 
 # 2. Initialize swarm and decompose tasks
 ISSUE_NUM=$(gh issue list --label "swarm-ready" --limit 1 --json number --jq '.[0].number')
-npx ruv-swarm github issue-init $ISSUE_NUM \
+bunx ruv-swarm github issue-init $ISSUE_NUM \
   --topology mesh \
   --auto-decompose \
   --assign-agents "architect,coder,tester"
@@ -1248,12 +1248,12 @@ gh project item-add $PROJECT_ID --owner @me \
   --url "https://github.com/$GITHUB_REPOSITORY/issues/$ISSUE_NUM"
 
 # 4. Set up automated tracking
-npx ruv-swarm github board-sync \
+bunx ruv-swarm github board-sync \
   --auto-move-cards \
   --update-metadata
 
 # 5. Monitor progress
-npx ruv-swarm github issue-progress $ISSUE_NUM \
+bunx ruv-swarm github issue-progress $ISSUE_NUM \
   --auto-update-comments \
   --notify-on-completion
 ```
@@ -1265,22 +1265,22 @@ npx ruv-swarm github issue-progress $ISSUE_NUM \
 ```bash
 # Issue Management
 gh issue create --title "..." --body "..." --label "..."
-npx ruv-swarm github issue-init <number>
-npx ruv-swarm github issue-decompose <number>
-npx ruv-swarm github triage --unlabeled
+bunx ruv-swarm github issue-init <number>
+bunx ruv-swarm github issue-decompose <number>
+bunx ruv-swarm github triage --unlabeled
 
 # Project Boards
-npx ruv-swarm github board-init --project-id <id>
-npx ruv-swarm github board-sync
-npx ruv-swarm github board-analytics
+bunx ruv-swarm github board-init --project-id <id>
+bunx ruv-swarm github board-sync
+bunx ruv-swarm github board-analytics
 
 # Sprint Management
-npx ruv-swarm github sprint-manage --sprint "Sprint X"
-npx ruv-swarm github milestone-track --milestone "vX.X"
+bunx ruv-swarm github sprint-manage --sprint "Sprint X"
+bunx ruv-swarm github milestone-track --milestone "vX.X"
 
 # Analytics
-npx ruv-swarm github issue-metrics --issue <number>
-npx ruv-swarm github board-kpis
+bunx ruv-swarm github issue-metrics --issue <number>
+bunx ruv-swarm github board-kpis
 ```
 
 ---

@@ -23,10 +23,10 @@ mcp__claude-flow__sparc_mode {
 
 ```bash
 # Use when running from terminal or MCP tools unavailable
-npx claude-flow sparc run swarm-coordinator "manage development swarm"
+bunx claude-flow sparc run swarm-coordinator "manage development swarm"
 
 # For alpha features
-npx claude-flow@alpha sparc run swarm-coordinator "manage development swarm"
+bunx claude-flow@alpha sparc run swarm-coordinator "manage development swarm"
 ```
 
 ### Option 3: Local Installation

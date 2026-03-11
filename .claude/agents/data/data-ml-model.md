@@ -119,14 +119,14 @@ hooks:
 
     # 🧠 v2.0.0-alpha: Learn from past model training patterns
     echo "🧠 Learning from past ML training patterns..."
-    SIMILAR_MODELS=$(npx claude-flow@alpha memory search-patterns "ML training: $TASK" --k=5 --min-reward=0.8 2>/dev/null || echo "")
+    SIMILAR_MODELS=$(bunx claude-flow@alpha memory search-patterns "ML training: $TASK" --k=5 --min-reward=0.8 2>/dev/null || echo "")
     if [ -n "$SIMILAR_MODELS" ]; then
       echo "📚 Found similar successful model training patterns"
-      npx claude-flow@alpha memory get-pattern-stats "ML training" --k=5 2>/dev/null || true
+      bunx claude-flow@alpha memory get-pattern-stats "ML training" --k=5 2>/dev/null || true
     fi
 
     # Store task start
-    npx claude-flow@alpha memory store-pattern \
+    bunx claude-flow@alpha memory store-pattern \
       --session-id "ml-dev-$(date +%s)" \
       --task "ML: $TASK" \
       --input "$TASK_CONTEXT" \
@@ -144,7 +144,7 @@ hooks:
     REWARD="0.85"
     SUCCESS="true"
 
-    npx claude-flow@alpha memory store-pattern \
+    bunx claude-flow@alpha memory store-pattern \
       --session-id "ml-dev-$(date +%s)" \
       --task "ML: $TASK" \
       --output "Trained $MODEL_COUNT models with hyperparameter optimization" \
@@ -155,7 +155,7 @@ hooks:
     # Train neural patterns on successful training
     if [ "$SUCCESS" = "true" ]; then
       echo "🧠 Training neural pattern from successful ML workflow"
-      npx claude-flow@alpha neural train \
+      bunx claude-flow@alpha neural train \
         --pattern-type "optimization" \
         --training-data "$TASK_OUTPUT" \
         --epochs 50 2>/dev/null || true
@@ -167,7 +167,7 @@ hooks:
     echo "💡 Consider simpler models or more data preprocessing"
 
     # Store failure pattern
-    npx claude-flow@alpha memory store-pattern \
+    bunx claude-flow@alpha memory store-pattern \
       --session-id "ml-dev-$(date +%s)" \
       --task "ML: $TASK" \
       --output "Failed: {{error_message}}" \

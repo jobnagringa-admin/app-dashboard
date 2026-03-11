@@ -74,16 +74,16 @@ mcp__claude-flow__sparc_mode {
 
 ```bash
 # Use when running from terminal or MCP tools unavailable
-npx claude-flow sparc run devops "deploy to AWS Lambda"
+bunx claude-flow sparc run devops "deploy to AWS Lambda"
 
 # For alpha features
-npx claude-flow@alpha sparc run devops "deploy to AWS Lambda"
+bunx claude-flow@alpha sparc run devops "deploy to AWS Lambda"
 
 # With namespace
-npx claude-flow sparc run devops "your task" --namespace devops
+bunx claude-flow sparc run devops "your task" --namespace devops
 
 # Non-interactive mode
-npx claude-flow sparc run devops "your task" --non-interactive
+bunx claude-flow sparc run devops "your task" --non-interactive
 ```
 
 ### Option 3: Local Installation
@@ -118,8 +118,8 @@ mcp__claude-flow__memory_search {
 
 ```bash
 # Store mode-specific context
-npx claude-flow memory store "devops_context" "important decisions" --namespace devops
+bunx claude-flow memory store "devops_context" "important decisions" --namespace devops
 
 # Query previous work
-npx claude-flow memory query "devops" --limit 5
+bunx claude-flow memory query "devops" --limit 5
 ```

@@ -124,45 +124,45 @@ designed to maximize swarm efficiency, scalability, and reliability.
 
 ```bash
 # 1. Start performance monitoring
-npx claude-flow swarm-monitor --swarm-id production --interval 30
+bunx claude-flow swarm-monitor --swarm-id production --interval 30
 
 # 2. Analyze current performance
-npx claude-flow performance-report --format detailed --timeframe 24h
+bunx claude-flow performance-report --format detailed --timeframe 24h
 
 # 3. Optimize topology if needed
-npx claude-flow topology-optimize --swarm-id production --strategy adaptive
+bunx claude-flow topology-optimize --swarm-id production --strategy adaptive
 
 # 4. Load balance based on current metrics
-npx claude-flow load-balance --swarm-id production --strategy work-stealing
+bunx claude-flow load-balance --swarm-id production --strategy work-stealing
 
 # 5. Scale resources predictively
-npx claude-flow swarm-scale --swarm-id production --target-size auto
+bunx claude-flow swarm-scale --swarm-id production --target-size auto
 ```
 
 ### Comprehensive Benchmarking
 
 ```bash
 # Run full benchmark suite
-npx claude-flow benchmark-run --suite comprehensive --duration 300
+bunx claude-flow benchmark-run --suite comprehensive --duration 300
 
 # Validate against SLA requirements
-npx claude-flow quality-assess --target swarm-performance --criteria throughput,latency,reliability
+bunx claude-flow quality-assess --target swarm-performance --criteria throughput,latency,reliability
 
 # Detect performance regressions
-npx claude-flow detect-regression --current latest-results.json --historical baseline.json
+bunx claude-flow detect-regression --current latest-results.json --historical baseline.json
 ```
 
 ### Advanced Resource Management
 
 ```bash
 # Analyze resource patterns
-npx claude-flow metrics-collect --components ["cpu", "memory", "network", "agents"]
+bunx claude-flow metrics-collect --components ["cpu", "memory", "network", "agents"]
 
 # Optimize resource allocation
-npx claude-flow daa-resource-alloc --resources optimal-config.json
+bunx claude-flow daa-resource-alloc --resources optimal-config.json
 
 # Profile system performance
-npx claude-flow profile-performance --duration 60000 --components all
+bunx claude-flow profile-performance --duration 60000 --components all
 ```
 
 ## Performance Optimization Strategies

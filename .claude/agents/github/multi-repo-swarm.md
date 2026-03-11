@@ -57,7 +57,7 @@ REPO_DETAILS=$(echo "$REPOS" | jq -r '.name' | while read -r repo; do
 done | jq -s '.')
 
 # Initialize swarm with repository context
-npx ruv-swarm github multi-repo-init \
+bunx ruv-swarm github multi-repo-init \
   --repo-details "$REPO_DETAILS" \
   --repos "org/frontend,org/backend,org/shared" \
   --topology hierarchical \
@@ -84,7 +84,7 @@ DEPS=$(echo "$REPOS" | jq -r '.name' | while read -r repo; do
 done | jq -s '.')
 
 # Discover and analyze
-npx ruv-swarm github discover-repos \
+bunx ruv-swarm github discover-repos \
   --repos "$REPOS" \
   --dependencies "$DEPS" \
   --analyze-dependencies \
@@ -106,7 +106,7 @@ echo "$MATCHING_REPOS" | while read -r repo; do
 
   # Execute task
   cd /tmp/$repo
-  npx ruv-swarm github task-execute \
+  bunx ruv-swarm github task-execute \
     --task "update-dependencies" \
     --repo "org/$repo"
 
@@ -130,7 +130,7 @@ done
 
 # Link related PRs
 PR_URLS=$(cat /tmp/created-prs.txt)
-npx ruv-swarm github link-prs --urls "$PR_URLS"
+bunx ruv-swarm github link-prs --urls "$PR_URLS"
 ```
 
 ## Configuration
@@ -220,10 +220,10 @@ echo "$TS_REPOS" | while read -r repo; do
   cd /tmp/$repo
 
   # Update dependency
-  npm install --save-dev typescript@5.0.0
+  bun install --save-dev typescript@5.0.0
 
   # Test changes
-  if npm test; then
+  if bun test; then
     # Create PR
     git checkout -b update-typescript-5
     git add package.json package-lock.json
@@ -249,7 +249,7 @@ done
 
 ```bash
 # Coordinate large-scale refactoring
-npx ruv-swarm github multi-repo-refactor \
+bunx ruv-swarm github multi-repo-refactor \
   --pattern "rename:OldAPI->NewAPI" \
   --analyze-impact \
   --create-migration-guide \
@@ -260,7 +260,7 @@ npx ruv-swarm github multi-repo-refactor \
 
 ```bash
 # Coordinate security patches
-npx ruv-swarm github multi-repo-security \
+bunx ruv-swarm github multi-repo-security \
   --scan-all \
   --patch-vulnerabilities \
   --verify-fixes \
@@ -332,7 +332,7 @@ kafka:
 
 ```bash
 # Create distributed task queue
-npx ruv-swarm github multi-repo-queue \
+bunx ruv-swarm github multi-repo-queue \
   --backend redis \
   --workers 10 \
   --priority-routing \
@@ -343,7 +343,7 @@ npx ruv-swarm github multi-repo-queue \
 
 ```bash
 # Run integration tests across repos
-npx ruv-swarm github multi-repo-test \
+bunx ruv-swarm github multi-repo-test \
   --setup-test-env \
   --link-services \
   --run-e2e \
@@ -354,7 +354,7 @@ npx ruv-swarm github multi-repo-test \
 
 ```bash
 # Assist in monorepo migration
-npx ruv-swarm github to-monorepo \
+bunx ruv-swarm github to-monorepo \
   --analyze-repos \
   --suggest-structure \
   --preserve-history \
@@ -367,7 +367,7 @@ npx ruv-swarm github to-monorepo \
 
 ```bash
 # Launch monitoring dashboard
-npx ruv-swarm github multi-repo-dashboard \
+bunx ruv-swarm github multi-repo-dashboard \
   --port 3000 \
   --metrics "agent-activity,task-progress,memory-usage" \
   --real-time
@@ -377,7 +377,7 @@ npx ruv-swarm github multi-repo-dashboard \
 
 ```bash
 # Visualize repo dependencies
-npx ruv-swarm github dep-graph \
+bunx ruv-swarm github dep-graph \
   --format mermaid \
   --include-agents \
   --show-data-flow
@@ -387,7 +387,7 @@ npx ruv-swarm github dep-graph \
 
 ```bash
 # Monitor swarm health across repos
-npx ruv-swarm github health-check \
+bunx ruv-swarm github health-check \
   --repos "org/*" \
   --check "connectivity,memory,agents" \
   --alert-on-issues
@@ -447,7 +447,7 @@ npx ruv-swarm github health-check \
 
 ```bash
 # Coordinate microservices development
-npx ruv-swarm github microservices \
+bunx ruv-swarm github microservices \
   --services "auth,users,orders,payments" \
   --ensure-compatibility \
   --sync-contracts \
@@ -458,7 +458,7 @@ npx ruv-swarm github microservices \
 
 ```bash
 # Update shared library across consumers
-npx ruv-swarm github lib-update \
+bunx ruv-swarm github lib-update \
   --library "org/shared-lib" \
   --version "2.0.0" \
   --find-consumers \
@@ -470,7 +470,7 @@ npx ruv-swarm github lib-update \
 
 ```bash
 # Apply org-wide policy changes
-npx ruv-swarm github org-policy \
+bunx ruv-swarm github org-policy \
   --policy "add-security-headers" \
   --repos "org/*" \
   --validate-compliance \
@@ -506,7 +506,7 @@ npx ruv-swarm github org-policy \
 
 ```bash
 # Implement cross-repo caching
-npx ruv-swarm github cache-strategy \
+bunx ruv-swarm github cache-strategy \
   --analyze-patterns \
   --suggest-cache-layers \
   --implement-invalidation
@@ -516,7 +516,7 @@ npx ruv-swarm github cache-strategy \
 
 ```bash
 # Optimize parallel operations
-npx ruv-swarm github parallel-optimize \
+bunx ruv-swarm github parallel-optimize \
   --analyze-dependencies \
   --identify-parallelizable \
   --execute-optimal
@@ -526,7 +526,7 @@ npx ruv-swarm github parallel-optimize \
 
 ```bash
 # Pool resources across repos
-npx ruv-swarm github resource-pool \
+bunx ruv-swarm github resource-pool \
   --share-agents \
   --distribute-load \
   --monitor-usage
@@ -538,7 +538,7 @@ npx ruv-swarm github resource-pool \
 
 ```bash
 # Diagnose connectivity problems
-npx ruv-swarm github diagnose-connectivity \
+bunx ruv-swarm github diagnose-connectivity \
   --test-all-repos \
   --check-permissions \
   --verify-webhooks
@@ -548,7 +548,7 @@ npx ruv-swarm github diagnose-connectivity \
 
 ```bash
 # Debug memory sync issues
-npx ruv-swarm github debug-memory \
+bunx ruv-swarm github debug-memory \
   --check-consistency \
   --identify-conflicts \
   --repair-state
@@ -558,7 +558,7 @@ npx ruv-swarm github debug-memory \
 
 ```bash
 # Identify performance issues
-npx ruv-swarm github perf-analysis \
+bunx ruv-swarm github perf-analysis \
   --profile-operations \
   --identify-bottlenecks \
   --suggest-optimizations
@@ -570,7 +570,7 @@ npx ruv-swarm github perf-analysis \
 
 ```bash
 # Update full-stack application
-npx ruv-swarm github fullstack-update \
+bunx ruv-swarm github fullstack-update \
   --frontend "org/web-app" \
   --backend "org/api-server" \
   --database "org/db-migrations" \
@@ -581,7 +581,7 @@ npx ruv-swarm github fullstack-update \
 
 ```bash
 # Facilitate cross-team work
-npx ruv-swarm github cross-team \
+bunx ruv-swarm github cross-team \
   --teams "frontend,backend,devops" \
   --task "implement-feature-x" \
   --assign-by-expertise \

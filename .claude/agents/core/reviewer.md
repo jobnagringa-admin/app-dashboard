@@ -264,10 +264,10 @@ function processOrder(date: Date, config: Config) {
 
 ```bash
 # Run automated tools before manual review
-npm run lint
-npm run test
-npm run security-scan
-npm run complexity-check
+bun run lint
+bun run test
+bun run security-scan
+bun run complexity-check
 ```
 
 ## Best Practices

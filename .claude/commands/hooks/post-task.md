@@ -5,7 +5,7 @@ Execute post-task cleanup, performance analysis, and memory storage.
 ## Usage
 
 ```bash
-npx claude-flow hook post-task [options]
+bunx claude-flow hook post-task [options]
 ```
 
 ## Options
@@ -21,25 +21,25 @@ npx claude-flow hook post-task [options]
 ### Basic post-task hook
 
 ```bash
-npx claude-flow hook post-task --task-id "auth-implementation"
+bunx claude-flow hook post-task --task-id "auth-implementation"
 ```
 
 ### With full analysis
 
 ```bash
-npx claude-flow hook post-task -t "api-refactor" --analyze-performance --generate-report
+bunx claude-flow hook post-task -t "api-refactor" --analyze-performance --generate-report
 ```
 
 ### Memory storage
 
 ```bash
-npx claude-flow hook post-task -t "bug-fix-123" --store-decisions --export-learnings
+bunx claude-flow hook post-task -t "bug-fix-123" --store-decisions --export-learnings
 ```
 
 ### Quick cleanup
 
 ```bash
-npx claude-flow hook post-task -t "minor-update" --analyze-performance false
+bunx claude-flow hook post-task -t "minor-update" --analyze-performance false
 ```
 
 ## Features
@@ -85,7 +85,7 @@ Manual usage in agents:
 
 ```bash
 # In agent coordination
-npx claude-flow hook post-task --task-id "your-task-id" --analyze-performance true
+bunx claude-flow hook post-task --task-id "your-task-id" --analyze-performance true
 ```
 
 ## Output

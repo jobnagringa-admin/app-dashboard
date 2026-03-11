@@ -56,16 +56,16 @@ mcp__claude-flow__sparc_mode {
 
 ```bash
 # Use when running from terminal or MCP tools unavailable
-npx claude-flow sparc run code "implement REST API endpoints"
+bunx claude-flow sparc run code "implement REST API endpoints"
 
 # For alpha features
-npx claude-flow@alpha sparc run code "implement REST API endpoints"
+bunx claude-flow@alpha sparc run code "implement REST API endpoints"
 
 # With namespace
-npx claude-flow sparc run code "your task" --namespace code
+bunx claude-flow sparc run code "your task" --namespace code
 
 # Non-interactive mode
-npx claude-flow sparc run code "your task" --non-interactive
+bunx claude-flow sparc run code "your task" --non-interactive
 ```
 
 ### Option 3: Local Installation
@@ -100,8 +100,8 @@ mcp__claude-flow__memory_search {
 
 ```bash
 # Store mode-specific context
-npx claude-flow memory store "code_context" "important decisions" --namespace code
+bunx claude-flow memory store "code_context" "important decisions" --namespace code
 
 # Query previous work
-npx claude-flow memory query "code" --limit 5
+bunx claude-flow memory query "code" --limit 5
 ```

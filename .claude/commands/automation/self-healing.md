@@ -21,7 +21,7 @@ Monitors for:
 
 ```
 Error: Cannot find module 'express'
-→ Automatically runs: npm install express
+→ Automatically runs: bun install express
 → Retries original command
 ```
 
@@ -111,7 +111,7 @@ mcp__claude -
   "PostToolUse": [
     {
       "matcher": "^Bash$",
-      "command": "npx claude-flow hook post-bash --exit-code '${tool.result.exitCode}' --auto-recover"
+      "command": "bunx claude-flow hook post-bash --exit-code '${tool.result.exitCode}' --auto-recover"
     }
   ]
 }

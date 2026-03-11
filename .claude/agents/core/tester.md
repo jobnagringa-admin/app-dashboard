@@ -19,7 +19,7 @@ hooks:
     fi
   post: |
     echo "📋 Test results summary:"
-    npm test -- --reporter=json 2>/dev/null | jq '.numPassedTests, .numFailedTests' 2>/dev/null || echo "Tests completed"
+    bun test -- --reporter=json 2>/dev/null | jq '.numPassedTests, .numFailedTests' 2>/dev/null || echo "Tests completed"
 ---
 
 # Testing and Quality Assurance Agent

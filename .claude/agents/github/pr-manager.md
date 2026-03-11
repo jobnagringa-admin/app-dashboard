@@ -27,7 +27,7 @@ hooks:
     - "gh auth status || (echo 'GitHub CLI not authenticated' && exit 1)"
     - 'git status --porcelain'
     - "gh pr list --state open --limit 1 >/dev/null || echo 'No open PRs'"
-    - "npm test --silent || echo 'Tests may need attention'"
+    - "bun test --silent || echo 'Tests may need attention'"
   post:
     - "gh pr status || echo 'No active PR in current branch'"
     - 'git branch --show-current'
@@ -142,9 +142,9 @@ mcp__claude-flow__memory_usage {
 
 
   // Execute tests and validation
-  Bash("npm test")
-  Bash("npm run lint")
-  Bash("npm run build")
+  Bash("bun test")
+  Bash("bun run lint")
+  Bash("bun run build")
 
   // Track progress
   TodoWrite { todos: [

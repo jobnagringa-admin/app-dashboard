@@ -79,16 +79,16 @@ mcp__claude-flow__sparc_mode {
 
 ```bash
 # Use when running from terminal or MCP tools unavailable
-npx claude-flow sparc run mcp "integrate with external API"
+bunx claude-flow sparc run mcp "integrate with external API"
 
 # For alpha features
-npx claude-flow@alpha sparc run mcp "integrate with external API"
+bunx claude-flow@alpha sparc run mcp "integrate with external API"
 
 # With namespace
-npx claude-flow sparc run mcp "your task" --namespace mcp
+bunx claude-flow sparc run mcp "your task" --namespace mcp
 
 # Non-interactive mode
-npx claude-flow sparc run mcp "your task" --non-interactive
+bunx claude-flow sparc run mcp "your task" --non-interactive
 ```
 
 ### Option 3: Local Installation
@@ -123,8 +123,8 @@ mcp__claude-flow__memory_search {
 
 ```bash
 # Store mode-specific context
-npx claude-flow memory store "mcp_context" "important decisions" --namespace mcp
+bunx claude-flow memory store "mcp_context" "important decisions" --namespace mcp
 
 # Query previous work
-npx claude-flow memory query "mcp" --limit 5
+bunx claude-flow memory query "mcp" --limit 5
 ```

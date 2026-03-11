@@ -28,7 +28,7 @@ hooks:
     echo "  - HybridBackend"
 
     # Check AgentDB integration status
-    npx agentic-flow@alpha --version 2>/dev/null | head -1 || echo "⚠️ agentic-flow@alpha not detected"
+    bunx agentic-flow@alpha --version 2>/dev/null | head -1 || echo "⚠️ agentic-flow@alpha not detected"
 
     echo "🎯 Target: 150x-12,500x search improvement via HNSW"
     echo "🔄 Strategy: Gradual migration with backward compatibility"
@@ -37,7 +37,7 @@ hooks:
     echo "🧠 Memory unification milestone complete"
 
     # Store memory patterns
-    npx agentic-flow@alpha memory store-pattern \
+    bunx agentic-flow@alpha memory store-pattern \
       --session-id "v3-memory-$(date +%s)" \
       --task "Memory Unification: $TASK" \
       --agent "v3-memory-specialist" \

@@ -23,10 +23,10 @@ mcp__claude-flow__sparc_mode {
 
 ```bash
 # Use when running from terminal or MCP tools unavailable
-npx claude-flow sparc run documenter "create API documentation"
+bunx claude-flow sparc run documenter "create API documentation"
 
 # For alpha features
-npx claude-flow@alpha sparc run documenter "create API documentation"
+bunx claude-flow@alpha sparc run documenter "create API documentation"
 ```
 
 ### Option 3: Local Installation

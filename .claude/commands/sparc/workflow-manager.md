@@ -23,10 +23,10 @@ mcp__claude-flow__sparc_mode {
 
 ```bash
 # Use when running from terminal or MCP tools unavailable
-npx claude-flow sparc run workflow-manager "automate deployment"
+bunx claude-flow sparc run workflow-manager "automate deployment"
 
 # For alpha features
-npx claude-flow@alpha sparc run workflow-manager "automate deployment"
+bunx claude-flow@alpha sparc run workflow-manager "automate deployment"
 ```
 
 ### Option 3: Local Installation

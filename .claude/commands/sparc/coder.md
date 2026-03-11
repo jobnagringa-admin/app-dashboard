@@ -23,10 +23,10 @@ mcp__claude-flow__sparc_mode {
 
 ```bash
 # Use when running from terminal or MCP tools unavailable
-npx claude-flow sparc run coder "implement user authentication"
+bunx claude-flow sparc run coder "implement user authentication"
 
 # For alpha features
-npx claude-flow@alpha sparc run coder "implement user authentication"
+bunx claude-flow@alpha sparc run coder "implement user authentication"
 ```
 
 ### Option 3: Local Installation

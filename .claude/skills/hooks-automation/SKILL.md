@@ -35,7 +35,7 @@ code formatting, performance tracking, and cross-session memory persistence.
 
 **Required:**
 
-- Claude Flow CLI installed (`npm install -g claude-flow@alpha`)
+- Claude Flow CLI installed (`bun install -g claude-flow@alpha`)
 - Claude Code with hooks enabled
 - `.claude/settings.json` with hook configurations
 
@@ -51,7 +51,7 @@ code formatting, performance tracking, and cross-session memory persistence.
 
 ```bash
 # Initialize with default hooks configuration
-npx claude-flow init --hooks
+bunx claude-flow init --hooks
 ```
 
 This creates:
@@ -64,13 +64,13 @@ This creates:
 
 ```bash
 # Pre-task hook (auto-spawns agents)
-npx claude-flow hook pre-task --description "Implement authentication"
+bunx claude-flow hook pre-task --description "Implement authentication"
 
 # Post-edit hook (auto-formats and stores in memory)
-npx claude-flow hook post-edit --file "src/auth.js" --memory-key "auth/login"
+bunx claude-flow hook post-edit --file "src/auth.js" --memory-key "auth/login"
 
 # Session end hook (saves state and metrics)
-npx claude-flow hook session-end --session-id "dev-session" --export-metrics
+bunx claude-flow hook session-end --session-id "dev-session" --export-metrics
 ```
 
 ---
@@ -86,7 +86,7 @@ Hooks that execute BEFORE operations to prepare and validate:
 **pre-edit** - Validate and assign agents before file modifications
 
 ```bash
-npx claude-flow hook pre-edit [options]
+bunx claude-flow hook pre-edit [options]
 
 Options:
   --file, -f <path>         File path to be edited
@@ -96,9 +96,9 @@ Options:
   --backup-file             Create backup before editing
 
 Examples:
-  npx claude-flow hook pre-edit --file "src/auth/login.js"
-  npx claude-flow hook pre-edit -f "config/db.js" --validate-syntax
-  npx claude-flow hook pre-edit -f "production.env" --backup-file --check-conflicts
+  bunx claude-flow hook pre-edit --file "src/auth/login.js"
+  bunx claude-flow hook pre-edit -f "config/db.js" --validate-syntax
+  bunx claude-flow hook pre-edit -f "production.env" --backup-file --check-conflicts
 ```
 
 **Features:**
@@ -111,7 +111,7 @@ Examples:
 **pre-bash** - Check command safety and resource requirements
 
 ```bash
-npx claude-flow hook pre-bash --command <cmd>
+bunx claude-flow hook pre-bash --command <cmd>
 
 Options:
   --command, -c <cmd>       Command to validate
@@ -120,8 +120,8 @@ Options:
   --require-confirmation    Request user confirmation for risky commands
 
 Examples:
-  npx claude-flow hook pre-bash -c "rm -rf /tmp/cache"
-  npx claude-flow hook pre-bash --command "docker build ." --estimate-resources
+  bunx claude-flow hook pre-bash -c "rm -rf /tmp/cache"
+  bunx claude-flow hook pre-bash --command "docker build ." --estimate-resources
 ```
 
 **Features:**
@@ -134,7 +134,7 @@ Examples:
 **pre-task** - Auto-spawn agents and prepare for complex tasks
 
 ```bash
-npx claude-flow hook pre-task [options]
+bunx claude-flow hook pre-task [options]
 
 Options:
   --description, -d <text>  Task description for context
@@ -144,9 +144,9 @@ Options:
   --estimate-complexity     Analyze task complexity
 
 Examples:
-  npx claude-flow hook pre-task --description "Implement user authentication"
-  npx claude-flow hook pre-task -d "Continue API dev" --load-memory
-  npx claude-flow hook pre-task -d "Refactor codebase" --optimize-topology
+  bunx claude-flow hook pre-task --description "Implement user authentication"
+  bunx claude-flow hook pre-task -d "Continue API dev" --load-memory
+  bunx claude-flow hook pre-task -d "Refactor codebase" --optimize-topology
 ```
 
 **Features:**
@@ -159,7 +159,7 @@ Examples:
 **pre-search** - Prepare and optimize search operations
 
 ```bash
-npx claude-flow hook pre-search --query <query>
+bunx claude-flow hook pre-search --query <query>
 
 Options:
   --query, -q <text>        Search query
@@ -167,7 +167,7 @@ Options:
   --optimize-query          Optimize search pattern
 
 Examples:
-  npx claude-flow hook pre-search -q "authentication middleware"
+  bunx claude-flow hook pre-search -q "authentication middleware"
 ```
 
 **Features:**
@@ -183,7 +183,7 @@ Hooks that execute AFTER operations to process and learn:
 **post-edit** - Auto-format, validate, and update memory
 
 ```bash
-npx claude-flow hook post-edit [options]
+bunx claude-flow hook post-edit [options]
 
 Options:
   --file, -f <path>         File path that was edited
@@ -193,9 +193,9 @@ Options:
   --validate-output         Validate edited file
 
 Examples:
-  npx claude-flow hook post-edit --file "src/components/Button.jsx"
-  npx claude-flow hook post-edit -f "api/auth.js" --memory-key "auth/login"
-  npx claude-flow hook post-edit -f "utils/helpers.ts" --train-patterns
+  bunx claude-flow hook post-edit --file "src/components/Button.jsx"
+  bunx claude-flow hook post-edit -f "api/auth.js" --memory-key "auth/login"
+  bunx claude-flow hook post-edit -f "utils/helpers.ts" --train-patterns
 ```
 
 **Features:**
@@ -208,7 +208,7 @@ Examples:
 **post-bash** - Log execution and update metrics
 
 ```bash
-npx claude-flow hook post-bash --command <cmd>
+bunx claude-flow hook post-bash --command <cmd>
 
 Options:
   --command, -c <cmd>       Command that was executed
@@ -217,7 +217,7 @@ Options:
   --store-result            Store result in memory
 
 Examples:
-  npx claude-flow hook post-bash -c "npm test" --update-metrics
+  bunx claude-flow hook post-bash -c "bun test" --update-metrics
 ```
 
 **Features:**
@@ -230,7 +230,7 @@ Examples:
 **post-task** - Performance analysis and decision storage
 
 ```bash
-npx claude-flow hook post-task [options]
+bunx claude-flow hook post-task [options]
 
 Options:
   --task-id, -t <id>        Task identifier for tracking
@@ -240,9 +240,9 @@ Options:
   --generate-report         Create task completion report
 
 Examples:
-  npx claude-flow hook post-task --task-id "auth-implementation"
-  npx claude-flow hook post-task -t "api-refactor" --analyze-performance
-  npx claude-flow hook post-task -t "bug-fix-123" --store-decisions
+  bunx claude-flow hook post-task --task-id "auth-implementation"
+  bunx claude-flow hook post-task -t "api-refactor" --analyze-performance
+  bunx claude-flow hook post-task -t "bug-fix-123" --store-decisions
 ```
 
 **Features:**
@@ -255,7 +255,7 @@ Examples:
 **post-search** - Cache results and improve patterns
 
 ```bash
-npx claude-flow hook post-search --query <query> --results <path>
+bunx claude-flow hook post-search --query <query> --results <path>
 
 Options:
   --query, -q <text>        Original search query
@@ -264,7 +264,7 @@ Options:
   --train-patterns          Improve search patterns
 
 Examples:
-  npx claude-flow hook post-search -q "auth" -r "results.json" --train-patterns
+  bunx claude-flow hook post-search -q "auth" -r "results.json" --train-patterns
 ```
 
 **Features:**
@@ -280,7 +280,7 @@ Hooks that coordinate with MCP swarm tools:
 **mcp-initialized** - Persist swarm configuration
 
 ```bash
-npx claude-flow hook mcp-initialized --swarm-id <id>
+bunx claude-flow hook mcp-initialized --swarm-id <id>
 
 Features:
 - Save swarm topology and configuration
@@ -291,7 +291,7 @@ Features:
 **agent-spawned** - Update agent roster and memory
 
 ```bash
-npx claude-flow hook agent-spawned --agent-id <id> --type <type>
+bunx claude-flow hook agent-spawned --agent-id <id> --type <type>
 
 Features:
 - Register agent in coordination memory
@@ -302,7 +302,7 @@ Features:
 **task-orchestrated** - Monitor task progress
 
 ```bash
-npx claude-flow hook task-orchestrated --task-id <id>
+bunx claude-flow hook task-orchestrated --task-id <id>
 
 Features:
 - Track task progress through memory
@@ -313,7 +313,7 @@ Features:
 **neural-trained** - Save pattern improvements
 
 ```bash
-npx claude-flow hook neural-trained --pattern <name>
+bunx claude-flow hook neural-trained --pattern <name>
 
 Features:
 - Export trained neural patterns
@@ -346,7 +346,7 @@ Features:
 **memory-sync** - Synchronize memory across swarm agents
 
 ```bash
-npx claude-flow hook memory-sync --namespace <ns>
+bunx claude-flow hook memory-sync --namespace <ns>
 
 Features:
 - Sync memory state across agents
@@ -360,7 +360,7 @@ Features:
 **session-start** - Initialize new session
 
 ```bash
-npx claude-flow hook session-start --session-id <id>
+bunx claude-flow hook session-start --session-id <id>
 
 Options:
   --session-id, -s <id>     Session identifier
@@ -377,7 +377,7 @@ Features:
 **session-restore** - Load previous session state
 
 ```bash
-npx claude-flow hook session-restore --session-id <id>
+bunx claude-flow hook session-restore --session-id <id>
 
 Options:
   --session-id, -s <id>     Session to restore
@@ -385,8 +385,8 @@ Options:
   --restore-agents          Restore agent configurations
 
 Examples:
-  npx claude-flow hook session-restore --session-id "swarm-20241019"
-  npx claude-flow hook session-restore -s "feature-auth" --restore-memory
+  bunx claude-flow hook session-restore --session-id "swarm-20241019"
+  bunx claude-flow hook session-restore -s "feature-auth" --restore-memory
 ```
 
 **Features:**
@@ -399,7 +399,7 @@ Examples:
 **session-end** - Cleanup and persist session state
 
 ```bash
-npx claude-flow hook session-end [options]
+bunx claude-flow hook session-end [options]
 
 Options:
   --session-id, -s <id>     Session identifier to end
@@ -409,9 +409,9 @@ Options:
   --cleanup-temp            Remove temporary files
 
 Examples:
-  npx claude-flow hook session-end --session-id "dev-session-2024"
-  npx claude-flow hook session-end -s "feature-auth" --export-metrics --generate-summary
-  npx claude-flow hook session-end -s "quick-fix" --cleanup-temp
+  bunx claude-flow hook session-end --session-id "dev-session-2024"
+  bunx claude-flow hook session-end -s "feature-auth" --export-metrics --generate-summary
+  bunx claude-flow hook session-end -s "quick-fix" --cleanup-temp
 ```
 
 **Features:**
@@ -424,7 +424,7 @@ Examples:
 **notify** - Custom notifications with swarm status
 
 ```bash
-npx claude-flow hook notify --message <msg>
+bunx claude-flow hook notify --message <msg>
 
 Options:
   --message, -m <text>      Notification message
@@ -433,8 +433,8 @@ Options:
   --broadcast               Send to all agents
 
 Examples:
-  npx claude-flow hook notify -m "Task completed" --level info
-  npx claude-flow hook notify -m "Critical error" --level error --broadcast
+  bunx claude-flow hook notify -m "Task completed" --level info
+  bunx claude-flow hook notify -m "Critical error" --level error --broadcast
 ```
 
 **Features:**
@@ -459,7 +459,7 @@ Edit `.claude/settings.json` to configure hooks:
         "hooks": [
           {
             "type": "command",
-            "command": "npx claude-flow hook pre-edit --file '${tool.params.file_path}' --memory-key 'swarm/editor/current'"
+            "command": "bunx claude-flow hook pre-edit --file '${tool.params.file_path}' --memory-key 'swarm/editor/current'"
           }
         ]
       },
@@ -468,7 +468,7 @@ Edit `.claude/settings.json` to configure hooks:
         "hooks": [
           {
             "type": "command",
-            "command": "npx claude-flow hook pre-bash --command '${tool.params.command}'"
+            "command": "bunx claude-flow hook pre-bash --command '${tool.params.command}'"
           }
         ]
       }
@@ -479,7 +479,7 @@ Edit `.claude/settings.json` to configure hooks:
         "hooks": [
           {
             "type": "command",
-            "command": "npx claude-flow hook post-edit --file '${tool.params.file_path}' --memory-key 'swarm/editor/complete' --auto-format --train-patterns"
+            "command": "bunx claude-flow hook post-edit --file '${tool.params.file_path}' --memory-key 'swarm/editor/complete' --auto-format --train-patterns"
           }
         ]
       },
@@ -488,7 +488,7 @@ Edit `.claude/settings.json` to configure hooks:
         "hooks": [
           {
             "type": "command",
-            "command": "npx claude-flow hook post-bash --command '${tool.params.command}' --update-metrics"
+            "command": "bunx claude-flow hook post-bash --command '${tool.params.command}' --update-metrics"
           }
         ]
       }
@@ -514,7 +514,7 @@ Complete hook configuration with all features:
         "hooks": [
           {
             "type": "command",
-            "command": "npx claude-flow hook pre-edit --file '${tool.params.file_path}' --auto-assign-agent --validate-syntax",
+            "command": "bunx claude-flow hook pre-edit --file '${tool.params.file_path}' --auto-assign-agent --validate-syntax",
             "timeout": 3000,
             "continueOnError": true
           }
@@ -525,7 +525,7 @@ Complete hook configuration with all features:
         "hooks": [
           {
             "type": "command",
-            "command": "npx claude-flow hook pre-task --description '${tool.params.task}' --auto-spawn-agents --load-memory",
+            "command": "bunx claude-flow hook pre-task --description '${tool.params.task}' --auto-spawn-agents --load-memory",
             "async": true
           }
         ]
@@ -535,7 +535,7 @@ Complete hook configuration with all features:
         "hooks": [
           {
             "type": "command",
-            "command": "npx claude-flow hook pre-search --query '${tool.params.pattern}' --check-cache"
+            "command": "bunx claude-flow hook pre-search --query '${tool.params.pattern}' --check-cache"
           }
         ]
       }
@@ -547,7 +547,7 @@ Complete hook configuration with all features:
         "hooks": [
           {
             "type": "command",
-            "command": "npx claude-flow hook post-edit --file '${tool.params.file_path}' --memory-key 'edits/${tool.params.file_path}' --auto-format --train-patterns",
+            "command": "bunx claude-flow hook post-edit --file '${tool.params.file_path}' --memory-key 'edits/${tool.params.file_path}' --auto-format --train-patterns",
             "async": true
           }
         ]
@@ -557,7 +557,7 @@ Complete hook configuration with all features:
         "hooks": [
           {
             "type": "command",
-            "command": "npx claude-flow hook post-task --task-id '${result.task_id}' --analyze-performance --store-decisions --export-learnings",
+            "command": "bunx claude-flow hook post-task --task-id '${result.task_id}' --analyze-performance --store-decisions --export-learnings",
             "async": true
           }
         ]
@@ -567,7 +567,7 @@ Complete hook configuration with all features:
         "hooks": [
           {
             "type": "command",
-            "command": "npx claude-flow hook post-search --query '${tool.params.pattern}' --cache-results --train-patterns"
+            "command": "bunx claude-flow hook post-search --query '${tool.params.pattern}' --cache-results --train-patterns"
           }
         ]
       }
@@ -578,7 +578,7 @@ Complete hook configuration with all features:
         "hooks": [
           {
             "type": "command",
-            "command": "npx claude-flow hook session-start --session-id '${session.id}' --load-context"
+            "command": "bunx claude-flow hook session-start --session-id '${session.id}' --load-context"
           }
         ]
       }
@@ -589,7 +589,7 @@ Complete hook configuration with all features:
         "hooks": [
           {
             "type": "command",
-            "command": "npx claude-flow hook session-end --session-id '${session.id}' --export-metrics --generate-summary --cleanup-temp"
+            "command": "bunx claude-flow hook session-end --session-id '${session.id}' --export-metrics --generate-summary --cleanup-temp"
           }
         ]
       }
@@ -611,7 +611,7 @@ Add protection for sensitive files:
         "hooks": [
           {
             "type": "command",
-            "command": "npx claude-flow hook check-protected --file '${tool.params.file_path}'"
+            "command": "bunx claude-flow hook check-protected --file '${tool.params.file_path}'"
           }
         ]
       }
@@ -633,7 +633,7 @@ Run tests after file modifications:
         "hooks": [
           {
             "type": "command",
-            "command": "test -f '${tool.params.file_path%.js}.test.js' && npm test '${tool.params.file_path%.js}.test.js'",
+            "command": "test -f '${tool.params.file_path%.js}.test.js' && bun test '${tool.params.file_path%.js}.test.js'",
             "continueOnError": true
           }
         ]
@@ -651,7 +651,7 @@ Hooks automatically integrate with MCP tools for coordination:
 
 ```javascript
 // Hook command
-npx claude-flow hook pre-task --description "Build REST API"
+bunx claude-flow hook pre-task --description "Build REST API"
 
 // Internally calls MCP tools:
 mcp__claude-flow__agent_spawn {
@@ -675,7 +675,7 @@ mcp__claude-flow__memory_usage {
 
 ```javascript
 // Hook command
-npx claude-flow hook post-edit --file "api/auth.js"
+bunx claude-flow hook post-edit --file "api/auth.js"
 
 // Internally calls MCP tools:
 mcp__claude-flow__memory_usage {
@@ -701,7 +701,7 @@ mcp__claude-flow__neural_train {
 
 ```javascript
 // Hook command
-npx claude-flow hook session-end --session-id "dev-2024"
+bunx claude-flow hook session-end --session-id "dev-2024"
 
 // Internally calls MCP tools:
 mcp__claude-flow__memory_persist {
@@ -835,7 +835,7 @@ FILES=$(git diff --cached --name-only --diff-filter=ACM)
 
 for FILE in $FILES; do
   # Run pre-edit hook for validation
-  npx claude-flow hook pre-edit --file "$FILE" --validate-syntax
+  bunx claude-flow hook pre-edit --file "$FILE" --validate-syntax
 
   if [ $? -ne 0 ]; then
     echo "Validation failed for $FILE"
@@ -843,11 +843,11 @@ for FILE in $FILES; do
   fi
 
   # Run post-edit hook for formatting
-  npx claude-flow hook post-edit --file "$FILE" --auto-format
+  bunx claude-flow hook post-edit --file "$FILE" --auto-format
 done
 
 # Run tests
-npm test
+bun test
 
 exit $?
 ```
@@ -863,7 +863,7 @@ exit $?
 COMMIT_HASH=$(git rev-parse HEAD)
 COMMIT_MSG=$(git log -1 --pretty=%B)
 
-npx claude-flow hook notify \
+bunx claude-flow hook notify \
   --message "Commit completed: $COMMIT_MSG" \
   --level info \
   --swarm-status
@@ -878,15 +878,15 @@ npx claude-flow hook notify \
 # Quality gate before push
 
 # Run full test suite
-npm run test:all
+bun run test:all
 
 # Run quality checks
-npx claude-flow hook session-end \
+bunx claude-flow hook session-end \
   --generate-report \
   --export-metrics
 
 # Verify quality thresholds
-TRUTH_SCORE=$(npx claude-flow metrics score --format json | jq -r '.truth_score')
+TRUTH_SCORE=$(bunx claude-flow metrics score --format json | jq -r '.truth_score')
 
 if (( $(echo "$TRUTH_SCORE < 0.95" | bc -l) )); then
   echo "Truth score below threshold: $TRUTH_SCORE < 0.95"
@@ -905,13 +905,13 @@ How agents use hooks for coordination:
 ```bash
 # Agent 1: Backend Developer
 # STEP 1: Pre-task preparation
-npx claude-flow hook pre-task \
+bunx claude-flow hook pre-task \
   --description "Implement user authentication API" \
   --auto-spawn-agents \
   --load-memory
 
 # STEP 2: Work begins - pre-edit validation
-npx claude-flow hook pre-edit \
+bunx claude-flow hook pre-edit \
   --file "api/auth.js" \
   --auto-assign-agent \
   --validate-syntax
@@ -920,20 +920,20 @@ npx claude-flow hook pre-edit \
 # ... code changes ...
 
 # STEP 4: Post-edit processing
-npx claude-flow hook post-edit \
+bunx claude-flow hook post-edit \
   --file "api/auth.js" \
   --memory-key "swarm/backend/auth-api" \
   --auto-format \
   --train-patterns
 
 # STEP 5: Notify coordination system
-npx claude-flow hook notify \
+bunx claude-flow hook notify \
   --message "Auth API implementation complete" \
   --swarm-status \
   --broadcast
 
 # STEP 6: Task completion
-npx claude-flow hook post-task \
+bunx claude-flow hook post-task \
   --task-id "auth-api" \
   --analyze-performance \
   --store-decisions \
@@ -943,25 +943,25 @@ npx claude-flow hook post-task \
 ```bash
 # Agent 2: Test Engineer (receives notification)
 # STEP 1: Check memory for API details
-npx claude-flow hook session-restore \
+bunx claude-flow hook session-restore \
   --session-id "swarm-current" \
   --restore-memory
 
 # Memory contains: swarm/backend/auth-api with implementation details
 
 # STEP 2: Generate tests
-npx claude-flow hook pre-task \
+bunx claude-flow hook pre-task \
   --description "Write tests for auth API" \
   --load-memory
 
 # STEP 3: Create test file
-npx claude-flow hook post-edit \
+bunx claude-flow hook post-edit \
   --file "api/auth.test.js" \
   --memory-key "swarm/testing/auth-api-tests" \
   --train-patterns
 
 # STEP 4: Share test results
-npx claude-flow hook notify \
+bunx claude-flow hook notify \
   --message "Auth API tests complete - 100% coverage" \
   --broadcast
 ```
@@ -1040,37 +1040,37 @@ module.exports = {
 
 ```bash
 # Session start - initialize coordination
-npx claude-flow hook session-start --session-id "fullstack-feature"
+bunx claude-flow hook session-start --session-id "fullstack-feature"
 
 # Pre-task planning
-npx claude-flow hook pre-task \
+bunx claude-flow hook pre-task \
   --description "Build user profile feature - frontend + backend + tests" \
   --auto-spawn-agents \
   --optimize-topology
 
 # Backend work
-npx claude-flow hook pre-edit --file "api/profile.js"
+bunx claude-flow hook pre-edit --file "api/profile.js"
 # ... implement backend ...
-npx claude-flow hook post-edit \
+bunx claude-flow hook post-edit \
   --file "api/profile.js" \
   --memory-key "profile/backend" \
   --train-patterns
 
 # Frontend work (reads backend details from memory)
-npx claude-flow hook pre-edit --file "components/Profile.jsx"
+bunx claude-flow hook pre-edit --file "components/Profile.jsx"
 # ... implement frontend ...
-npx claude-flow hook post-edit \
+bunx claude-flow hook post-edit \
   --file "components/Profile.jsx" \
   --memory-key "profile/frontend" \
   --train-patterns
 
 # Testing (reads both backend and frontend from memory)
-npx claude-flow hook pre-task \
+bunx claude-flow hook pre-task \
   --description "Test profile feature" \
   --load-memory
 
 # Session end - export everything
-npx claude-flow hook session-end \
+bunx claude-flow hook session-end \
   --session-id "fullstack-feature" \
   --export-metrics \
   --generate-summary
@@ -1080,39 +1080,39 @@ npx claude-flow hook session-end \
 
 ```bash
 # Start debugging session
-npx claude-flow hook session-start --session-id "debug-memory-leak"
+bunx claude-flow hook session-start --session-id "debug-memory-leak"
 
 # Pre-task: analyze issue
-npx claude-flow hook pre-task \
+bunx claude-flow hook pre-task \
   --description "Debug memory leak in event handlers" \
   --load-memory \
   --estimate-complexity
 
 # Search for event emitters
-npx claude-flow hook pre-search --query "EventEmitter"
+bunx claude-flow hook pre-search --query "EventEmitter"
 # ... search executes ...
-npx claude-flow hook post-search \
+bunx claude-flow hook post-search \
   --query "EventEmitter" \
   --cache-results
 
 # Fix the issue
-npx claude-flow hook pre-edit \
+bunx claude-flow hook pre-edit \
   --file "services/events.js" \
   --backup-file
 # ... fix code ...
-npx claude-flow hook post-edit \
+bunx claude-flow hook post-edit \
   --file "services/events.js" \
   --memory-key "debug/memory-leak-fix" \
   --validate-output
 
 # Verify fix
-npx claude-flow hook post-task \
+bunx claude-flow hook post-task \
   --task-id "memory-leak-fix" \
   --analyze-performance \
   --generate-report
 
 # End session
-npx claude-flow hook session-end \
+bunx claude-flow hook session-end \
   --session-id "debug-memory-leak" \
   --export-metrics
 ```
@@ -1121,27 +1121,27 @@ npx claude-flow hook session-end \
 
 ```bash
 # Initialize swarm for refactoring
-npx claude-flow hook pre-task \
+bunx claude-flow hook pre-task \
   --description "Refactor legacy codebase to modern patterns" \
   --auto-spawn-agents \
   --optimize-topology
 
 # Agent 1: Code Analyzer
-npx claude-flow hook pre-task --description "Analyze code complexity"
+bunx claude-flow hook pre-task --description "Analyze code complexity"
 # ... analysis ...
-npx claude-flow hook post-task \
+bunx claude-flow hook post-task \
   --task-id "analysis" \
   --store-decisions
 
 # Agent 2: Refactoring (reads analysis from memory)
-npx claude-flow hook session-restore \
+bunx claude-flow hook session-restore \
   --session-id "swarm-refactor" \
   --restore-memory
 
 for file in src/**/*.js; do
-  npx claude-flow hook pre-edit --file "$file" --backup-file
+  bunx claude-flow hook pre-edit --file "$file" --backup-file
   # ... refactor ...
-  npx claude-flow hook post-edit \
+  bunx claude-flow hook post-edit \
     --file "$file" \
     --memory-key "refactor/$file" \
     --auto-format \
@@ -1149,12 +1149,12 @@ for file in src/**/*.js; do
 done
 
 # Agent 3: Testing (reads refactored code from memory)
-npx claude-flow hook pre-task \
+bunx claude-flow hook pre-task \
   --description "Generate tests for refactored code" \
   --load-memory
 
 # Broadcast completion
-npx claude-flow hook notify \
+bunx claude-flow hook notify \
   --message "Refactoring complete - all tests passing" \
   --broadcast
 ```
@@ -1178,13 +1178,13 @@ Enable debug mode for troubleshooting:
 export CLAUDE_FLOW_DEBUG=true
 
 # Test specific hook with verbose output
-npx claude-flow hook pre-edit --file "test.js" --debug
+bunx claude-flow hook pre-edit --file "test.js" --debug
 
 # Check hook execution logs
 cat .claude-flow/logs/hooks-$(date +%Y-%m-%d).log
 
 # Validate configuration
-npx claude-flow hook validate-config
+bunx claude-flow hook validate-config
 ```
 
 ### Benefits
@@ -1248,12 +1248,12 @@ npx claude-flow hook validate-config
 
 ### Related Commands
 
-- `npx claude-flow init --hooks` - Initialize hooks system
-- `npx claude-flow hook --list` - List available hooks
-- `npx claude-flow hook --test <hook>` - Test specific hook
-- `npx claude-flow memory usage` - Manage memory
-- `npx claude-flow agent spawn` - Spawn agents
-- `npx claude-flow swarm init` - Initialize swarm
+- `bunx claude-flow init --hooks` - Initialize hooks system
+- `bunx claude-flow hook --list` - List available hooks
+- `bunx claude-flow hook --test <hook>` - Test specific hook
+- `bunx claude-flow memory usage` - Manage memory
+- `bunx claude-flow agent spawn` - Spawn agents
+- `bunx claude-flow swarm init` - Initialize swarm
 
 ### Integration with Other Skills
 

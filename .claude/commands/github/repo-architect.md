@@ -85,15 +85,15 @@ mcp__github__push_files {
         version: "1.0",
         mcp_servers: {
           "ruv-swarm": {
-            command: "npx",
+            command: "bunx",
             args: ["ruv-swarm", "mcp", "start"],
             stdio: true
           }
         },
         hooks: {
-          pre_task: "npx ruv-swarm hook pre-task",
-          post_edit: "npx ruv-swarm hook post-edit",
-          notification: "npx ruv-swarm hook notification"
+          pre_task: "bunx ruv-swarm hook pre-task",
+          post_edit: "bunx ruv-swarm hook post-edit",
+          notification: "bunx ruv-swarm hook notification"
         }
       }, null, 2)
     },
@@ -119,9 +119,9 @@ mcp__github__push_files {
 
 ## Quick Start
 \`\`\`bash
-npx claude-flow init --sparc
-npm install
-npx claude-flow start --ui
+bunx claude-flow init --sparc
+bun install
+bunx claude-flow start --ui
 \`\`\`
 
 ## Features
@@ -159,7 +159,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with: { node-version: '20' }
-      - run: npm install && npm test`,
+      - run: bun install && bun test`,
     message: 'ci: Standardize integration workflow across repositories',
     branch: 'structure/standardization',
   });

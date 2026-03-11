@@ -947,26 +947,26 @@ mcp__claude-flow__memory_sync --target="peer-agent-1"
 
 ```bash
 # Initialize memory system
-npx claude-flow@v3alpha memory init --backend=hybrid --hnsw-enabled
+bunx claude-flow@v3alpha memory init --backend=hybrid --hnsw-enabled
 
 # Memory health check
-npx claude-flow@v3alpha memory health
+bunx claude-flow@v3alpha memory health
 
 # Search memories
-npx claude-flow@v3alpha memory search -q "authentication patterns" --namespace="patterns"
+bunx claude-flow@v3alpha memory search -q "authentication patterns" --namespace="patterns"
 
 # Consolidate memories
-npx claude-flow@v3alpha memory consolidate --strategy=hybrid --retention=0.7
+bunx claude-flow@v3alpha memory consolidate --strategy=hybrid --retention=0.7
 
 # Export/import namespaces
-npx claude-flow@v3alpha memory export --namespace="project:myapp" --format=json
-npx claude-flow@v3alpha memory import --file="backup.json" --namespace="project:myapp"
+bunx claude-flow@v3alpha memory export --namespace="project:myapp" --format=json
+bunx claude-flow@v3alpha memory import --file="backup.json" --namespace="project:myapp"
 
 # Memory statistics
-npx claude-flow@v3alpha memory stats --namespace="default"
+bunx claude-flow@v3alpha memory stats --namespace="default"
 
 # Quantization
-npx claude-flow@v3alpha memory quantize --namespace="embeddings" --method=int8
+bunx claude-flow@v3alpha memory quantize --namespace="embeddings" --method=int8
 ```
 
 ## Performance Targets

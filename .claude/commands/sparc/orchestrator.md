@@ -20,10 +20,10 @@ mcp__claude-flow__sparc_mode {
 
 ```bash
 # Use when running from terminal or MCP tools unavailable
-npx claude-flow sparc run orchestrator "coordinate feature development"
+bunx claude-flow sparc run orchestrator "coordinate feature development"
 
 # For alpha features
-npx claude-flow@alpha sparc run orchestrator "coordinate feature development"
+bunx claude-flow@alpha sparc run orchestrator "coordinate feature development"
 ```
 
 ### Option 3: Local Installation
@@ -71,13 +71,13 @@ mcp__claude-flow__task_orchestrate {
 
 ```bash
 # Initialize orchestration swarm
-npx claude-flow swarm init --topology hierarchical --strategy auto --max-agents 8
+bunx claude-flow swarm init --topology hierarchical --strategy auto --max-agents 8
 
 # Spawn coordinator agent
-npx claude-flow agent spawn --type coordinator --capabilities "task-planning,resource-management"
+bunx claude-flow agent spawn --type coordinator --capabilities "task-planning,resource-management"
 
 # Orchestrate tasks
-npx claude-flow task orchestrate --task "feature development" --strategy parallel --deps "auth,ui,api"
+bunx claude-flow task orchestrate --task "feature development" --strategy parallel --deps "auth,ui,api"
 ```
 
 ## Orchestration Patterns
@@ -131,14 +131,14 @@ mcp__claude-flow__swarm_monitor {
 
 ```bash
 # 1. Initialize orchestration swarm
-npx claude-flow swarm init --topology hierarchical --max-agents 10
+bunx claude-flow swarm init --topology hierarchical --max-agents 10
 
 # 2. Create workflow
-npx claude-flow workflow create --name "feature-development" --steps "design,implement,test,deploy"
+bunx claude-flow workflow create --name "feature-development" --steps "design,implement,test,deploy"
 
 # 3. Execute orchestration
-npx claude-flow sparc run orchestrator "develop user management system" --parallel --monitor
+bunx claude-flow sparc run orchestrator "develop user management system" --parallel --monitor
 
 # 4. Monitor progress
-npx claude-flow swarm monitor --interval 5000
+bunx claude-flow swarm monitor --interval 5000
 ```

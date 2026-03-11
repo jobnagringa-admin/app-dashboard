@@ -695,10 +695,10 @@ Flow Nexus swarms integrate seamlessly with Claude Flow hooks:
 
 ```bash
 # Pre-task coordination setup
-npx claude-flow@alpha hooks pre-task --description "Initialize swarm"
+bunx claude-flow@alpha hooks pre-task --description "Initialize swarm"
 
 # Post-task metrics export
-npx claude-flow@alpha hooks post-task --task-id "swarm-execution"
+bunx claude-flow@alpha hooks post-task --task-id "swarm-execution"
 ```
 
 ## Common Use Cases
@@ -737,16 +737,16 @@ npx claude-flow@alpha hooks post-task --task-id "swarm-execution"
 
 ```bash
 # Install Flow Nexus
-npm install -g flow-nexus@latest
+bun install -g flow-nexus@latest
 
 # Register account
-npx flow-nexus@latest register
+bunx flow-nexus@latest register
 
 # Login
-npx flow-nexus@latest login
+bunx flow-nexus@latest login
 
 # Add MCP server to Claude Code
-claude mcp add flow-nexus npx flow-nexus@latest mcp start
+claude mcp add flow-nexus bunx flow-nexus@latest mcp start
 ```
 
 ## Support & Resources

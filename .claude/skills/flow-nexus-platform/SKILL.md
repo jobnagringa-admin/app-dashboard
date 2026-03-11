@@ -158,7 +158,7 @@ mcp__flow -
       DATABASE_URL: 'postgres://...',
     },
     install_packages: ['express', 'cors', 'dotenv'],
-    startup_script: 'npm run dev',
+    startup_script: 'bun run dev',
     timeout: 3600, // seconds
     metadata: {
       project: 'my-project',
@@ -177,7 +177,7 @@ mcp__flow -
       NEW_VAR: 'value',
     },
     install_packages: ['axios', 'lodash'],
-    run_commands: ['npm run migrate', 'npm run seed'],
+    run_commands: ['bun run migrate', 'bun run seed'],
     anthropic_key: 'sk-ant-...', // For Claude Code integration
   });
 ```
@@ -296,7 +296,7 @@ mcp__flow -
       PORT: '3000',
       NODE_ENV: 'development',
     },
-    startup_script: 'npm run dev',
+    startup_script: 'bun run dev',
   });
 ```
 
@@ -1205,7 +1205,7 @@ mcp__flow -
     apt-get update
     apt-get install -y custom-package
     git clone https://github.com/user/repo
-    cd repo && npm install
+    cd repo && bun install
   `,
   });
 ```
@@ -1217,14 +1217,14 @@ mcp__flow -
 mcp__flow -
   nexus__sandbox_execute({
     sandbox_id: 'id',
-    code: 'npm install && npm run build',
+    code: 'bun install && bun run build',
   });
 
 // Stage 2: Run
 mcp__flow -
   nexus__sandbox_execute({
     sandbox_id: 'id',
-    code: 'npm start',
+    code: 'bun start',
     working_dir: '/app/dist',
   });
 ```

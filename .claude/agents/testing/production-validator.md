@@ -22,8 +22,8 @@ hooks:
     echo "✅ Production validation complete"
     # Run full test suite against real implementations
     if [ -f "package.json" ]; then
-      npm run test:production --if-present
-      npm run test:e2e --if-present
+      bun run test:production --if-present
+      bun run test:e2e --if-present
     fi
 ---
 

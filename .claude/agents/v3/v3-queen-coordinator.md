@@ -18,7 +18,7 @@ hooks:
     echo "👑 V3 Queen Coordinator starting 15-agent swarm orchestration..."
 
     # Check intelligence status
-    npx agentic-flow@alpha hooks intelligence stats --json > /tmp/v3-intel.json 2>/dev/null || echo '{"initialized":false}' > /tmp/v3-intel.json
+    bunx agentic-flow@alpha hooks intelligence stats --json > /tmp/v3-intel.json 2>/dev/null || echo '{"initialized":false}' > /tmp/v3-intel.json
     echo "🧠 RuVector: $(cat /tmp/v3-intel.json | jq -r '.initialized // false')"
 
     # GitHub integration check
@@ -35,7 +35,7 @@ hooks:
     echo "👑 V3 Queen coordination complete"
 
     # Store coordination patterns
-    npx agentic-flow@alpha memory store-pattern \
+    bunx agentic-flow@alpha memory store-pattern \
       --session-id "v3-queen-$(date +%s)" \
       --task "V3 Orchestration: $TASK" \
       --agent "v3-queen-coordinator" \

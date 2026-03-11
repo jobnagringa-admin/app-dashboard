@@ -6,7 +6,7 @@ updates.
 ## Usage
 
 ```bash
-npx claude-flow hook post-edit [options]
+bunx claude-flow hook post-edit [options]
 ```
 
 ## Options
@@ -22,25 +22,25 @@ npx claude-flow hook post-edit [options]
 ### Basic post-edit hook
 
 ```bash
-npx claude-flow hook post-edit --file "src/components/Button.jsx"
+bunx claude-flow hook post-edit --file "src/components/Button.jsx"
 ```
 
 ### With memory storage
 
 ```bash
-npx claude-flow hook post-edit -f "api/auth.js" --memory-key "auth/login-implementation"
+bunx claude-flow hook post-edit -f "api/auth.js" --memory-key "auth/login-implementation"
 ```
 
 ### Format and validate
 
 ```bash
-npx claude-flow hook post-edit -f "config/webpack.js" --auto-format --validate-output
+bunx claude-flow hook post-edit -f "config/webpack.js" --auto-format --validate-output
 ```
 
 ### Neural training
 
 ```bash
-npx claude-flow hook post-edit -f "utils/helpers.ts" --train-patterns --memory-key "utils/refactor"
+bunx claude-flow hook post-edit -f "utils/helpers.ts" --train-patterns --memory-key "utils/refactor"
 ```
 
 ## Features
@@ -87,7 +87,7 @@ Manual usage in agents:
 
 ```bash
 # After editing files
-npx claude-flow hook post-edit --file "path/to/edited.js" --memory-key "feature/step1"
+bunx claude-flow hook post-edit --file "path/to/edited.js" --memory-key "feature/step1"
 ```
 
 ## Output

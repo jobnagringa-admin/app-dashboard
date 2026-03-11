@@ -24,15 +24,15 @@ distribution, load balancing, and fault tolerance.
 
 ```bash
 # Initialize swarm
-npx agentic-flow hooks swarm-init --topology mesh --max-agents 5
+bunx agentic-flow hooks swarm-init --topology mesh --max-agents 5
 
 # Spawn agents
-npx agentic-flow hooks agent-spawn --type coder
-npx agentic-flow hooks agent-spawn --type tester
-npx agentic-flow hooks agent-spawn --type reviewer
+bunx agentic-flow hooks agent-spawn --type coder
+bunx agentic-flow hooks agent-spawn --type tester
+bunx agentic-flow hooks agent-spawn --type reviewer
 
 # Orchestrate task
-npx agentic-flow hooks task-orchestrate \
+bunx agentic-flow hooks task-orchestrate \
   --task "Build REST API with tests" \
   --mode parallel
 ```
@@ -161,13 +161,13 @@ const metrics = await swarm.getMetrics();
 
 ```bash
 # Pre-task coordination
-npx agentic-flow hooks pre-task --description "Build API"
+bunx agentic-flow hooks pre-task --description "Build API"
 
 # Post-task synchronization
-npx agentic-flow hooks post-task --task-id "task-123"
+bunx agentic-flow hooks post-task --task-id "task-123"
 
 # Session restore
-npx agentic-flow hooks session-restore --session-id "swarm-001"
+bunx agentic-flow hooks session-restore --session-id "swarm-001"
 ```
 
 ## Best Practices

@@ -107,7 +107,7 @@ hooks:
   post_execution: |
     echo "✅ API development completed"
     echo "📊 Running API tests..."
-    npm run test:api 2>/dev/null || echo "No API tests configured"
+    bun run test:api 2>/dev/null || echo "No API tests configured"
   on_error: |
     echo "❌ Error in API development: {{error_message}}"
     echo "🔄 Rolling back changes if needed..."

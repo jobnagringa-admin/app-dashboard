@@ -46,16 +46,16 @@ mcp__claude-flow__sparc_mode {
 
 ```bash
 # Use when running from terminal or MCP tools unavailable
-npx claude-flow sparc run debug "fix memory leak in service"
+bunx claude-flow sparc run debug "fix memory leak in service"
 
 # For alpha features
-npx claude-flow@alpha sparc run debug "fix memory leak in service"
+bunx claude-flow@alpha sparc run debug "fix memory leak in service"
 
 # With namespace
-npx claude-flow sparc run debug "your task" --namespace debug
+bunx claude-flow sparc run debug "your task" --namespace debug
 
 # Non-interactive mode
-npx claude-flow sparc run debug "your task" --non-interactive
+bunx claude-flow sparc run debug "your task" --non-interactive
 ```
 
 ### Option 3: Local Installation
@@ -90,8 +90,8 @@ mcp__claude-flow__memory_search {
 
 ```bash
 # Store mode-specific context
-npx claude-flow memory store "debug_context" "important decisions" --namespace debug
+bunx claude-flow memory store "debug_context" "important decisions" --namespace debug
 
 # Query previous work
-npx claude-flow memory query "debug" --limit 5
+bunx claude-flow memory query "debug" --limit 5
 ```

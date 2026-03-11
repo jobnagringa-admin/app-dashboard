@@ -107,14 +107,14 @@ mcp__github__push_files {
 
 ```javascript
 // Comprehensive release testing
-Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && npm install")
-Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && npm run test")
-Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && npm run lint")
-Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && npm run build")
+Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && bun install")
+Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && bun run test")
+Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && bun run lint")
+Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && bun run build")
 
-Bash("cd /workspaces/ruv-FANN/ruv-swarm/npm && npm install")
-Bash("cd /workspaces/ruv-FANN/ruv-swarm/npm && npm run test:all")
-Bash("cd /workspaces/ruv-FANN/ruv-swarm/npm && npm run lint")
+Bash("cd /workspaces/ruv-FANN/ruv-swarm/npm && bun install")
+Bash("cd /workspaces/ruv-FANN/ruv-swarm/npm && bun run test:all")
+Bash("cd /workspaces/ruv-FANN/ruv-swarm/npm && bun run lint")
 
 // Create release PR with validation results
 mcp__github__create_pull_request {
@@ -208,8 +208,8 @@ This release is production-ready with comprehensive validation and testing.
   Bash("cd /tmp/release-v1.0.72 && git add -A && git commit -m 'release: Prepare v1.0.72 with comprehensive updates' && git push")
 
   // Run comprehensive validation
-  Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && npm install && npm test && npm run lint && npm run build")
-  Bash("cd /workspaces/ruv-FANN/ruv-swarm/npm && npm install && npm run test:all && npm run lint")
+  Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && bun install && bun test && bun run lint && bun run build")
+  Bash("cd /workspaces/ruv-FANN/ruv-swarm/npm && bun install && bun run test:all && bun run lint")
 
   // Create release PR using gh CLI
   Bash(`gh pr create \
@@ -333,10 +333,10 @@ jobs:
           node-version: '20'
       - name: Install and Test
         run: |
-          cd claude-code-flow/claude-code-flow && npm install && npm test
-          cd ../../ruv-swarm/npm && npm install && npm test:all
+          cd claude-code-flow/claude-code-flow && bun install && bun test
+          cd ../../ruv-swarm/npm && bun install && bun test:all
       - name: Validate Release
-        run: npx claude-flow release validate
+        run: bunx claude-flow release validate
 ```
 
 ## Monitoring and Metrics

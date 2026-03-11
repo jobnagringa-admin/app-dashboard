@@ -24,7 +24,7 @@ hooks:
     echo "🧪 Running test suite to verify implementation"
     # Run tests if available
     if [ -f "package.json" ]; then
-      npm test --if-present
+      bun test --if-present
     elif [ -f "pytest.ini" ] || [ -f "setup.py" ]; then
       python -m pytest --version > /dev/null 2>&1 && python -m pytest -v || echo "pytest not available"
     fi
@@ -72,7 +72,7 @@ code.
   - Write("tests/unit/auth.test.js", authTestSuite)
   - Write("tests/unit/user.test.js", userTestSuite)
   - Write("tests/integration/api.test.js", apiTestSuite)
-  - Bash("npm test")  // Verify all fail
+  - Bash("bun test")  // Verify all fail
 ```
 
 ### Phase 2: Implementation (Green)
@@ -82,7 +82,7 @@ code.
   - Write("src/auth/service.js", authImplementation)
   - Write("src/user/model.js", userModel)
   - Write("src/api/routes.js", apiRoutes)
-  - Bash("npm test")  // Verify all pass
+  - Bash("bun test")  // Verify all pass
 ```
 
 ### Phase 3: Refinement (Refactor)
@@ -92,7 +92,7 @@ code.
   - MultiEdit("src/auth/service.js", optimizations)
   - MultiEdit("src/user/model.js", improvements)
   - Edit("src/api/routes.js", cleanup)
-  - Bash("npm test && npm run lint")
+  - Bash("bun test && bun run lint")
 ```
 
 ## Code Patterns

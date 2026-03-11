@@ -5,7 +5,7 @@
 ### 1. Initialize with Hooks
 
 ```bash
-npx claude-flow init --hooks
+bunx claude-flow init --hooks
 ```
 
 This automatically creates:
@@ -18,10 +18,10 @@ This automatically creates:
 
 ```bash
 # Test pre-edit hook
-npx claude-flow hook pre-edit --file test.js
+bunx claude-flow hook pre-edit --file test.js
 
 # Test session summary
-npx claude-flow hook session-end --summary
+bunx claude-flow hook session-end --summary
 ```
 
 ### 3. Customize Hooks
@@ -37,7 +37,7 @@ Edit `.claude/settings.json` to customize:
         "hooks": [
           {
             "type": "command",
-            "command": "npx claude-flow hook pre-write --file '${tool.params.file_path}'"
+            "command": "bunx claude-flow hook pre-write --file '${tool.params.file_path}'"
           }
         ]
       }
@@ -81,7 +81,7 @@ Example blocking response:
 export CLAUDE_FLOW_DEBUG=true
 
 # Test specific hook
-npx claude-flow hook pre-edit --file app.js --debug
+bunx claude-flow hook pre-edit --file app.js --debug
 ```
 
 ## Common Patterns
@@ -98,7 +98,7 @@ Already configured by default for common file types.
   "hooks": [
     {
       "type": "command",
-      "command": "npx claude-flow hook check-protected --file '${tool.params.file_path}'"
+      "command": "bunx claude-flow hook check-protected --file '${tool.params.file_path}'"
     }
   ]
 }
@@ -112,7 +112,7 @@ Already configured by default for common file types.
   "hooks": [
     {
       "type": "command",
-      "command": "test -f '${tool.params.file_path%.js}.test.js' && npm test '${tool.params.file_path%.js}.test.js'"
+      "command": "test -f '${tool.params.file_path%.js}.test.js' && bun test '${tool.params.file_path%.js}.test.js'"
     }
   ]
 }

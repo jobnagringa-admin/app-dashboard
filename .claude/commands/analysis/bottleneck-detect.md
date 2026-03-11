@@ -5,7 +5,7 @@ Analyze performance bottlenecks in swarm operations and suggest optimizations.
 ## Usage
 
 ```bash
-npx claude-flow bottleneck detect [options]
+bunx claude-flow bottleneck detect [options]
 ```
 
 ## Options
@@ -21,25 +21,25 @@ npx claude-flow bottleneck detect [options]
 ### Basic bottleneck detection
 
 ```bash
-npx claude-flow bottleneck detect
+bunx claude-flow bottleneck detect
 ```
 
 ### Analyze specific swarm
 
 ```bash
-npx claude-flow bottleneck detect --swarm-id swarm-123
+bunx claude-flow bottleneck detect --swarm-id swarm-123
 ```
 
 ### Last 24 hours with export
 
 ```bash
-npx claude-flow bottleneck detect -t 24h -e bottlenecks.json
+bunx claude-flow bottleneck detect -t 24h -e bottlenecks.json
 ```
 
 ### Auto-fix detected issues
 
 ```bash
-npx claude-flow bottleneck detect --fix --threshold 15
+bunx claude-flow bottleneck detect --fix --threshold 15
 ```
 
 ## Metrics Analyzed

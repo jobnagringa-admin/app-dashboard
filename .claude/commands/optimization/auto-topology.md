@@ -56,7 +56,7 @@ The pre-task hook automatically handles topology selection:
 
 ```json
 {
-  "command": "npx claude-flow hook pre-task --optimize-topology"
+  "command": "bunx claude-flow hook pre-task --optimize-topology"
 }
 ```
 
@@ -71,5 +71,5 @@ Parameters: {"swarmId": "current"}
 
 ```bash
 # Auto-optimize topology via CLI
-npx claude-flow optimize topology
+bunx claude-flow optimize topology
 ```

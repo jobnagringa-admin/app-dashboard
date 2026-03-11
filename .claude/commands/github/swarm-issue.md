@@ -15,14 +15,14 @@ decomposition and agent coordination.
 ISSUE_DATA=$(gh issue view 456 --json title,body,labels,assignees,comments)
 
 # Create swarm from issue
-npx ruv-swarm github issue-to-swarm 456 \
+bunx ruv-swarm github issue-to-swarm 456 \
   --issue-data "$ISSUE_DATA" \
   --auto-decompose \
   --assign-agents
 
 # Batch process multiple issues
 ISSUES=$(gh issue list --label "swarm-ready" --json number,title,body,labels)
-npx ruv-swarm github issues-batch \
+bunx ruv-swarm github issues-batch \
   --issues "$ISSUES" \
   --parallel
 
@@ -89,7 +89,7 @@ name: Swarm Task description: Create a task for AI swarm processing body:
 
 ```bash
 # Assign agents based on issue content
-npx ruv-swarm github issue-analyze 456 \
+bunx ruv-swarm github issue-analyze 456 \
   --suggest-agents \
   --estimate-complexity \
   --create-subtasks
@@ -113,7 +113,7 @@ REFERENCES=$(gh issue view 456 --json body --jq '.body' | \
   done | jq -s '.')
 
 # Initialize swarm
-npx ruv-swarm github issue-init 456 \
+bunx ruv-swarm github issue-init 456 \
   --issue-data "$ISSUE" \
   --references "$REFERENCES" \
   --load-comments \
@@ -132,7 +132,7 @@ gh issue comment 456 --body "🐝 Swarm initialized for this issue"
 ISSUE_BODY=$(gh issue view 456 --json body --jq '.body')
 
 # Decompose into subtasks
-SUBTASKS=$(npx ruv-swarm github issue-decompose 456 \
+SUBTASKS=$(bunx ruv-swarm github issue-decompose 456 \
   --body "$ISSUE_BODY" \
   --max-subtasks 10 \
   --assign-priorities)
@@ -168,11 +168,11 @@ done
 CURRENT=$(gh issue view 456 --json body,labels)
 
 # Get swarm progress
-PROGRESS=$(npx ruv-swarm github issue-progress 456)
+PROGRESS=$(bunx ruv-swarm github issue-progress 456)
 
 # Update checklist in issue body
 UPDATED_BODY=$(echo "$CURRENT" | jq -r '.body' | \
-  npx ruv-swarm github update-checklist --progress "$PROGRESS")
+  bunx ruv-swarm github update-checklist --progress "$PROGRESS")
 
 # Edit issue with updated body
 gh issue edit 456 --body "$UPDATED_BODY"
@@ -210,7 +210,7 @@ fi
 
 ```bash
 # Handle issue dependencies
-npx ruv-swarm github issue-deps 456 \
+bunx ruv-swarm github issue-deps 456 \
   --resolve-order \
   --parallel-safe \
   --update-blocking
@@ -220,7 +220,7 @@ npx ruv-swarm github issue-deps 456 \
 
 ```bash
 # Coordinate epic-level swarms
-npx ruv-swarm github epic-swarm \
+bunx ruv-swarm github epic-swarm \
   --epic 123 \
   --child-issues "456,457,458" \
   --orchestrate
@@ -230,7 +230,7 @@ npx ruv-swarm github epic-swarm \
 
 ```bash
 # Generate issue from swarm analysis
-npx ruv-swarm github create-issues \
+bunx ruv-swarm github create-issues \
   --from-analysis \
   --template "bug-report" \
   --auto-assign
@@ -256,7 +256,7 @@ jobs:
         with:
           command: |
             if [[ "${{ github.event.label.name }}" == "swarm-ready" ]]; then
-              npx ruv-swarm github issue-init ${{ github.event.issue.number }}
+              bunx ruv-swarm github issue-init ${{ github.event.issue.number }}
             fi
 ```
 
@@ -264,7 +264,7 @@ jobs:
 
 ```bash
 # Sync with project board
-npx ruv-swarm github issue-board-sync \
+bunx ruv-swarm github issue-board-sync \
   --project "Development" \
   --column-mapping '{
     "To Do": "pending",
@@ -279,7 +279,7 @@ npx ruv-swarm github issue-board-sync \
 
 ```bash
 # Specialized bug handling
-npx ruv-swarm github bug-swarm 456 \
+bunx ruv-swarm github bug-swarm 456 \
   --reproduce \
   --isolate \
   --fix \
@@ -290,7 +290,7 @@ npx ruv-swarm github bug-swarm 456 \
 
 ```bash
 # Feature implementation swarm
-npx ruv-swarm github feature-swarm 456 \
+bunx ruv-swarm github feature-swarm 456 \
   --design \
   --implement \
   --document \
@@ -301,7 +301,7 @@ npx ruv-swarm github feature-swarm 456 \
 
 ```bash
 # Refactoring swarm
-npx ruv-swarm github debt-swarm 456 \
+bunx ruv-swarm github debt-swarm 456 \
   --analyze-impact \
   --plan-migration \
   --execute \
@@ -325,7 +325,7 @@ echo "$STALE_ISSUES" | jq -r '.number' | while read -r num; do
   ISSUE=$(gh issue view $num --json title,body,comments,labels)
 
   # Analyze with swarm
-  ACTION=$(npx ruv-swarm github analyze-stale \
+  ACTION=$(bunx ruv-swarm github analyze-stale \
     --issue "$ISSUE" \
     --suggest-action)
 
@@ -359,7 +359,7 @@ gh issue list --label stale --state open --json number,updatedAt \
 
 ```bash
 # Automated triage system
-npx ruv-swarm github triage \
+bunx ruv-swarm github triage \
   --unlabeled \
   --analyze-content \
   --suggest-labels \
@@ -370,7 +370,7 @@ npx ruv-swarm github triage \
 
 ```bash
 # Find duplicate issues
-npx ruv-swarm github find-duplicates \
+bunx ruv-swarm github find-duplicates \
   --threshold 0.8 \
   --link-related \
   --close-duplicates
@@ -382,7 +382,7 @@ npx ruv-swarm github find-duplicates \
 
 ```bash
 # Link issues to PRs automatically
-npx ruv-swarm github link-pr \
+bunx ruv-swarm github link-pr \
   --issue 456 \
   --pr 789 \
   --update-both
@@ -392,7 +392,7 @@ npx ruv-swarm github link-pr \
 
 ```bash
 # Coordinate milestone swarms
-npx ruv-swarm github milestone-swarm \
+bunx ruv-swarm github milestone-swarm \
   --milestone "v2.0" \
   --parallel-issues \
   --track-progress
@@ -402,7 +402,7 @@ npx ruv-swarm github milestone-swarm \
 
 ```bash
 # Handle issues across repositories
-npx ruv-swarm github cross-repo \
+bunx ruv-swarm github cross-repo \
   --issue "org/repo#456" \
   --related "org/other-repo#123" \
   --coordinate
@@ -414,7 +414,7 @@ npx ruv-swarm github cross-repo \
 
 ```bash
 # Analyze swarm performance
-npx ruv-swarm github issue-metrics \
+bunx ruv-swarm github issue-metrics \
   --issue 456 \
   --metrics "time-to-close,agent-efficiency,subtask-completion"
 ```
@@ -423,7 +423,7 @@ npx ruv-swarm github issue-metrics \
 
 ```bash
 # Generate effectiveness report
-npx ruv-swarm github effectiveness \
+bunx ruv-swarm github effectiveness \
   --issues "closed:>2024-01-01" \
   --compare "with-swarm,without-swarm"
 ```
@@ -465,7 +465,7 @@ npx ruv-swarm github effectiveness \
 
 ```bash
 # Issue #789: Memory leak in production
-npx ruv-swarm github issue-init 789 \
+bunx ruv-swarm github issue-init 789 \
   --topology hierarchical \
   --agents "debugger,analyst,tester,monitor" \
   --priority critical \
@@ -476,7 +476,7 @@ npx ruv-swarm github issue-init 789 \
 
 ```bash
 # Issue #234: Add OAuth integration
-npx ruv-swarm github issue-init 234 \
+bunx ruv-swarm github issue-init 234 \
   --topology mesh \
   --agents "architect,coder,security,tester" \
   --create-design-doc \
@@ -487,7 +487,7 @@ npx ruv-swarm github issue-init 234 \
 
 ```bash
 # Issue #567: Update API documentation
-npx ruv-swarm github issue-init 567 \
+bunx ruv-swarm github issue-init 567 \
   --topology ring \
   --agents "researcher,writer,reviewer" \
   --check-links \

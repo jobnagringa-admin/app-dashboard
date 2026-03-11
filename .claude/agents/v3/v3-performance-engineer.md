@@ -25,7 +25,7 @@ hooks:
     echo "  • SONA Learning: <0.05ms adaptation"
 
     # Check performance tools
-    command -v npm &>/dev/null && echo "📦 npm available for benchmarking"
+    command -v bun &>/dev/null && echo "📦 bun available for benchmarking"
     command -v node &>/dev/null && node --version | xargs echo "🚀 Node.js:"
 
     echo "🔬 Ready to validate aggressive performance targets"
@@ -34,7 +34,7 @@ hooks:
     echo "⚡ Performance optimization milestone complete"
 
     # Store performance patterns
-    npx agentic-flow@alpha memory store-pattern \
+    bunx agentic-flow@alpha memory store-pattern \
       --session-id "v3-perf-$(date +%s)" \
       --task "Performance: $TASK" \
       --agent "v3-performance-engineer" \

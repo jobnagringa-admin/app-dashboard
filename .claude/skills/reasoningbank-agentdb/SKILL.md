@@ -33,21 +33,21 @@ time with 100% backward compatibility.
 
 ```bash
 # Initialize AgentDB for ReasoningBank
-npx agentdb@latest init ./.agentdb/reasoningbank.db --dimension 1536
+bunx agentdb@latest init ./.agentdb/reasoningbank.db --dimension 1536
 
 # Start MCP server for Claude Code integration
-npx agentdb@latest mcp
-claude mcp add agentdb npx agentdb@latest mcp
+bunx agentdb@latest mcp
+claude mcp add agentdb bunx agentdb@latest mcp
 ```
 
 ### Migrate from Legacy ReasoningBank
 
 ```bash
 # Automatic migration with validation
-npx agentdb@latest migrate --source .swarm/memory.db
+bunx agentdb@latest migrate --source .swarm/memory.db
 
 # Verify migration
-npx agentdb@latest stats ./.agentdb/reasoningbank.db
+bunx agentdb@latest stats ./.agentdb/reasoningbank.db
 ```
 
 ---
@@ -386,13 +386,13 @@ const transferredKnowledge = backendExperience.memories.map((mem) => ({
 
 ```bash
 # Export trajectories and patterns
-npx agentdb@latest export ./.agentdb/reasoningbank.db ./backup.json
+bunx agentdb@latest export ./.agentdb/reasoningbank.db ./backup.json
 
 # Import experiences
-npx agentdb@latest import ./experiences.json
+bunx agentdb@latest import ./experiences.json
 
 # Get statistics
-npx agentdb@latest stats ./.agentdb/reasoningbank.db
+bunx agentdb@latest stats ./.agentdb/reasoningbank.db
 # Shows: total patterns, domains, confidence distribution
 ```
 
@@ -400,10 +400,10 @@ npx agentdb@latest stats ./.agentdb/reasoningbank.db
 
 ```bash
 # Migrate from legacy ReasoningBank
-npx agentdb@latest migrate --source .swarm/memory.db --target .agentdb/reasoningbank.db
+bunx agentdb@latest migrate --source .swarm/memory.db --target .agentdb/reasoningbank.db
 
 # Validate migration
-npx agentdb@latest stats .agentdb/reasoningbank.db
+bunx agentdb@latest stats .agentdb/reasoningbank.db
 ```
 
 ---
@@ -417,7 +417,7 @@ npx agentdb@latest stats .agentdb/reasoningbank.db
 ls -la .swarm/memory.db
 
 # Run with verbose logging
-DEBUG=agentdb:* npx agentdb@latest migrate --source .swarm/memory.db
+DEBUG=agentdb:* bunx agentdb@latest migrate --source .swarm/memory.db
 ```
 
 ### Issue: Low confidence scores
@@ -449,7 +449,7 @@ await rb.optimize();
 
 - **AgentDB Integration**: node_modules/agentic-flow/docs/AGENTDB_INTEGRATION.md
 - **GitHub**: https://github.com/ruvnet/agentic-flow/tree/main/packages/agentdb
-- **MCP Integration**: `npx agentdb@latest mcp`
+- **MCP Integration**: `bunx agentdb@latest mcp`
 - **Website**: https://agentdb.ruv.io
 
 ---

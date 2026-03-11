@@ -23,26 +23,26 @@ hooks:
     echo "Security Auditor initiating scan: $TASK"
 
     # 1. Learn from past security audits (ReasoningBank)
-    SIMILAR_VULNS=$(npx claude-flow@v3alpha memory search-patterns "$TASK" --k=10 --min-reward=0.8 --namespace=security)
+    SIMILAR_VULNS=$(bunx claude-flow@v3alpha memory search-patterns "$TASK" --k=10 --min-reward=0.8 --namespace=security)
     if [ -n "$SIMILAR_VULNS" ]; then
       echo "Found similar vulnerability patterns from past audits"
-      npx claude-flow@v3alpha memory get-pattern-stats "$TASK" --k=10 --namespace=security
+      bunx claude-flow@v3alpha memory get-pattern-stats "$TASK" --k=10 --namespace=security
     fi
 
     # 2. Search for known CVEs using HNSW-indexed database
-    CVE_MATCHES=$(npx claude-flow@v3alpha security cve --search "$TASK" --hnsw-enabled)
+    CVE_MATCHES=$(bunx claude-flow@v3alpha security cve --search "$TASK" --hnsw-enabled)
     if [ -n "$CVE_MATCHES" ]; then
       echo "Found potentially related CVEs in database"
     fi
 
     # 3. Load OWASP Top 10 patterns
-    npx claude-flow@v3alpha memory retrieve --key "owasp_top_10_2024" --namespace=security-patterns
+    bunx claude-flow@v3alpha memory retrieve --key "owasp_top_10_2024" --namespace=security-patterns
 
     # 4. Initialize audit session
-    npx claude-flow@v3alpha hooks session-start --session-id "audit-$(date +%s)"
+    bunx claude-flow@v3alpha hooks session-start --session-id "audit-$(date +%s)"
 
     # 5. Store audit start in memory
-    npx claude-flow@v3alpha memory store-pattern \
+    bunx claude-flow@v3alpha memory store-pattern \
       --session-id "audit-$(date +%s)" \
       --task "$TASK" \
       --status "started" \
@@ -65,7 +65,7 @@ hooks:
     fi
 
     # 2. Store learning pattern for future improvement
-    npx claude-flow@v3alpha memory store-pattern \
+    bunx claude-flow@v3alpha memory store-pattern \
       --session-id "audit-$(date +%s)" \
       --task "$TASK" \
       --output "Vulnerabilities found: $VULNS_FOUND, Critical: $CRITICAL_VULNS" \
@@ -77,17 +77,17 @@ hooks:
     # 3. Train neural patterns on successful high-accuracy audits
     if [ "$SUCCESS" = "true" ] && [ "$VULNS_FOUND" -gt 0 ]; then
       echo "Training neural pattern from successful audit"
-      npx claude-flow@v3alpha neural train \
+      bunx claude-flow@v3alpha neural train \
         --pattern-type "prediction" \
         --training-data "security-audit" \
         --epochs 50
     fi
 
     # 4. Generate security report
-    npx claude-flow@v3alpha security report --format detailed --output /tmp/security_report_$(date +%s).json
+    bunx claude-flow@v3alpha security report --format detailed --output /tmp/security_report_$(date +%s).json
 
     # 5. End audit session with metrics
-    npx claude-flow@v3alpha hooks session-end --export-metrics true
+    bunx claude-flow@v3alpha hooks session-end --export-metrics true
 ---
 
 # Security Auditor Agent (V3)
@@ -313,7 +313,7 @@ const vulnerableComponentsCheck = {
   name: 'Vulnerable Components',
   severity: 'HIGH',
   checks: [
-    'npm audit --json',
+    'bun audit --json',
     'snyk test --json',
     'retire --outputformat json',
   ],
@@ -449,8 +449,8 @@ class DependencyAuditor {
   async auditNpmDependencies(packageJson: string): Promise<AuditResult[]> {
     const results: AuditResult[] = [];
 
-    // Run npm audit
-    const npmAudit = await this.runCommand('npm audit --json');
+    // Run bun audit
+    const npmAudit = await this.runCommand('bun audit --json');
     const auditData = JSON.parse(npmAudit);
 
     for (const [name, advisory] of Object.entries(auditData.vulnerabilities)) {

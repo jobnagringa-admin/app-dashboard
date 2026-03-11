@@ -35,10 +35,10 @@ mcp__claude -
   });
 ```
 
-**Fallback with npx:**
+**Fallback with bunx:**
 
 ```bash
-npx claude-flow hook session-restore --session-id "sess-123"
+bunx claude-flow hook session-restore --session-id "sess-123"
 ```
 
 ### 3. Memory Types

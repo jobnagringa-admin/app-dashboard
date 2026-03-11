@@ -5,7 +5,7 @@ Automatically spawn and manage agents based on task requirements.
 ## Usage
 
 ```bash
-npx claude-flow auto agent [options]
+bunx claude-flow auto agent [options]
 ```
 
 ## Options
@@ -21,25 +21,25 @@ npx claude-flow auto agent [options]
 ### Basic auto-spawning
 
 ```bash
-npx claude-flow auto agent --task "Build a REST API with authentication"
+bunx claude-flow auto agent --task "Build a REST API with authentication"
 ```
 
 ### Constrained spawning
 
 ```bash
-npx claude-flow auto agent -t "Debug performance issue" --max-agents 3
+bunx claude-flow auto agent -t "Debug performance issue" --max-agents 3
 ```
 
 ### Analysis only
 
 ```bash
-npx claude-flow auto agent -t "Refactor codebase" --no-spawn
+bunx claude-flow auto agent -t "Refactor codebase" --no-spawn
 ```
 
 ### Minimal strategy
 
 ```bash
-npx claude-flow auto agent -t "Fix bug in login" -s minimal
+bunx claude-flow auto agent -t "Fix bug in login" -s minimal
 ```
 
 ## How It Works

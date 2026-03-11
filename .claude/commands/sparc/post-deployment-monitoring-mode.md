@@ -45,16 +45,16 @@ mcp__claude-flow__sparc_mode {
 
 ```bash
 # Use when running from terminal or MCP tools unavailable
-npx claude-flow sparc run post-deployment-monitoring-mode "monitor production metrics"
+bunx claude-flow sparc run post-deployment-monitoring-mode "monitor production metrics"
 
 # For alpha features
-npx claude-flow@alpha sparc run post-deployment-monitoring-mode "monitor production metrics"
+bunx claude-flow@alpha sparc run post-deployment-monitoring-mode "monitor production metrics"
 
 # With namespace
-npx claude-flow sparc run post-deployment-monitoring-mode "your task" --namespace post-deployment-monitoring-mode
+bunx claude-flow sparc run post-deployment-monitoring-mode "your task" --namespace post-deployment-monitoring-mode
 
 # Non-interactive mode
-npx claude-flow sparc run post-deployment-monitoring-mode "your task" --non-interactive
+bunx claude-flow sparc run post-deployment-monitoring-mode "your task" --non-interactive
 ```
 
 ### Option 3: Local Installation
@@ -89,8 +89,8 @@ mcp__claude-flow__memory_search {
 
 ```bash
 # Store mode-specific context
-npx claude-flow memory store "post-deployment-monitoring-mode_context" "important decisions" --namespace post-deployment-monitoring-mode
+bunx claude-flow memory store "post-deployment-monitoring-mode_context" "important decisions" --namespace post-deployment-monitoring-mode
 
 # Query previous work
-npx claude-flow memory query "post-deployment-monitoring-mode" --limit 5
+bunx claude-flow memory query "post-deployment-monitoring-mode" --limit 5
 ```
