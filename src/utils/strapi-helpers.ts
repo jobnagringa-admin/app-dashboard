@@ -155,7 +155,7 @@ export function transformStrapiImages(data: unknown): unknown {
     typeof obj.url === 'string' &&
     (obj.formats || obj.provider === 'local' || obj.provider === 'cloudinary')
   ) {
-    return getStrapiImageURL(obj as { url: string });
+    return getStrapiImageURL(obj.url as string);
   }
 
   // Recursively transform nested objects

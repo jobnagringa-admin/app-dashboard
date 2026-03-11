@@ -129,12 +129,10 @@ export async function fetchStrapiCollectionClient<T = Record<string, unknown>>(
 
     // Strapi client returns flat documents, transform to our format
     const flattened = documents.map((doc) => ({
-      id: doc.id || parseInt(doc.documentId) || 0,
-      documentId: doc.documentId,
-      createdAt: doc.createdAt,
-      updatedAt: doc.updatedAt,
-      publishedAt: doc.publishedAt || null,
       ...doc,
+      id: doc.id || parseInt(doc.documentId ?? '0') || 0,
+      documentId: doc.documentId,
+      publishedAt: doc.publishedAt || null,
     })) as FlattenedStrapiEntity<T>[];
 
     const result = {
@@ -198,9 +196,9 @@ export async function fetchStrapiSingleClient<T = Record<string, unknown>>(
 
     // Transform response to our format
     const transformed = {
-      id: document.id || parseInt(document.documentId) || 0,
-      documentId: document.documentId,
       ...document,
+      id: document.id || parseInt(document.documentId ?? '0') || 0,
+      documentId: document.documentId,
     } as FlattenedStrapiEntity<T>;
 
     // Cache the response
@@ -277,9 +275,9 @@ export async function fetchStrapiAPI<T = unknown>(
 
   const token = import.meta.env.STRAPI_TOKEN;
 
-  const headers: HeadersInit = {
+  const headers: Record<string, string> = {
     'Content-Type': 'application/json',
-    ...options.headers,
+    ...(options.headers as Record<string, string>),
   };
 
   if (token) {

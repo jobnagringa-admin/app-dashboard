@@ -22,6 +22,7 @@ export default [
       'src-legacy/**',
       'public/**',
       'scripts/**',
+      'tests/__reports__/**',
       'docs/**',
       '*.config.mjs',
       '*.config.js',

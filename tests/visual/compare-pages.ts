@@ -1,4 +1,4 @@
-import { chromium, Page } from 'playwright';
+import { chromium, type Page } from 'playwright';
 import * as fs from 'fs';
 import * as path from 'path';
 
