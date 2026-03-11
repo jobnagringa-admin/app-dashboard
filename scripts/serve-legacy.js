@@ -9,8 +9,9 @@ const fs = require('fs');
 const path = require('path');
 const { fileURLToPath } = require('url');
 
-const PORT = 4322;
+const PORT = Number(process.env.PORT || '4322');
 const LEGACY_DIR = path.join(process.cwd(), 'src-legacy');
+const portlessHost = process.env.PORTLESS_LEGACY_URL || 'http://jng-legacy-fixtures.localhost:1355';
 
 const mimeTypes = {
   '.html': 'text/html',
@@ -82,6 +83,7 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`Legacy server running on http://localhost:${PORT}`);
+  console.log(`Legacy server running on http://127.0.0.1:${PORT}`);
+  console.log(`Legacy Portless URL: ${portlessHost}`);
   console.log(`Serving files from: ${LEGACY_DIR}`);
 });

@@ -7,8 +7,8 @@ import * as path from 'path';
  * Generates comparison reports
  */
 
-const LEGACY_PORT = 4322;
-const ASTRO_PORT = 4321;
+const LEGACY_BASE_URL = process.env.LEGACY_BASE_URL || 'http://jng-legacy-fixtures.localhost:1355';
+const ASTRO_BASE_URL = process.env.APP_BASE_URL || 'http://jng-legacy.localhost:1355';
 
 const pages = [
   { name: 'index', legacyPath: '/jng/index.html', astroPath: '/jng/index' },
@@ -45,8 +45,8 @@ async function comparePages() {
     const legacyFile = path.join(outputDir, `${pageInfo.name}-legacy.png`);
     const astroFile = path.join(outputDir, `${pageInfo.name}-astro.png`);
     // Take screenshots
-    await takeScreenshot(page, `http://localhost:${LEGACY_PORT}${pageInfo.legacyPath}`, legacyFile);
-    await takeScreenshot(page, `http://localhost:${ASTRO_PORT}${pageInfo.astroPath}`, astroFile);
+    await takeScreenshot(page, `${LEGACY_BASE_URL}${pageInfo.legacyPath}`, legacyFile);
+    await takeScreenshot(page, `${ASTRO_BASE_URL}${pageInfo.astroPath}`, astroFile);
 
     console.log(`  ✓ Legacy: ${legacyFile}`);
     console.log(`  ✓ Astro: ${astroFile}`);

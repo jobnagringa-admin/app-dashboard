@@ -7,8 +7,8 @@
 const { spawn } = require('child_process');
 const http = require('http');
 
-const LEGACY_PORT = 4322;
-const ASTRO_PORT = 4321;
+const LEGACY_BASE_URL = process.env.LEGACY_BASE_URL || 'http://jng-legacy-fixtures.localhost:1355';
+const ASTRO_BASE_URL = process.env.APP_BASE_URL || 'http://jng-legacy.localhost:1355';
 
 // Start legacy server
 const legacyServer = require('./serve-legacy.js');
@@ -18,14 +18,14 @@ setTimeout(() => {
   const pages = ['/jng/index', '/jng/course', '/jng/jobs'];
 
   console.log('\n=== Page Comparison URLs ===');
-  console.log('\nLegacy (port 4322):');
+  console.log('\nLegacy:');
   pages.forEach((page) => {
-    console.log(`  http://localhost:${LEGACY_PORT}${page}.html`);
+    console.log(`  ${LEGACY_BASE_URL}${page}.html`);
   });
 
-  console.log('\nAstro (port 4321):');
+  console.log('\nAstro:');
   pages.forEach((page) => {
-    console.log(`  http://localhost:${ASTRO_PORT}${page}`);
+    console.log(`  ${ASTRO_BASE_URL}${page}`);
   });
 
   console.log('\nOpen these URLs side-by-side in your browser to compare.');

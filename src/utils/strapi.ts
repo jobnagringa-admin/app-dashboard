@@ -13,7 +13,7 @@ import type { StrapiImage } from '@/types/strapi';
  * Get Strapi API URL from environment variables
  */
 export function getStrapiURL(): string {
-  return import.meta.env.STRAPI_URL || 'http://localhost:1337';
+  return import.meta.env.STRAPI_URL || 'https://cms.jobnagringa.com.br';
 }
 
 /**

@@ -1,11 +1,11 @@
 version: '3.9'
 
 services:
-  app:
+  jng-legacy:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: jobnagringa-web
+    container_name: jng-legacy-web
     restart: unless-stopped
     ports:
       - '4321:4321'
@@ -14,7 +14,7 @@ services:
       - HOST=0.0.0.0
       - PORT=4321
     healthcheck:
-      test: ['CMD', 'wget', '--no-verbose', '--tries=1', '--spider', 'http://localhost:4321/']
+      test: ['CMD', 'wget', '--no-verbose', '--tries=1', '--spider', 'http://127.0.0.1:4321/']
       interval: 30s
       timeout: 10s
       retries: 3
@@ -32,4 +32,4 @@ services:
 # Networks
 networks:
   default:
-    name: jobnagringa-network
+    name: jng-legacy-network

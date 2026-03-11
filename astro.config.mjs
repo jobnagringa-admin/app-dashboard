@@ -7,6 +7,11 @@ import clerk from '@clerk/astro';
 // import sitemap from "@astrojs/sitemap";
 import compressor from 'astro-compressor';
 
+const appSiteUrl = process.env.PUBLIC_SITE_URL || 'https://jobnagringa.com.br';
+const clerkAccountsUrl =
+  process.env.PUBLIC_CLERK_ACCOUNTS_URL || 'https://accounts.jobnagringa.com.br';
+const strapiOrigin = new URL(process.env.STRAPI_URL || 'https://cms.jobnagringa.com.br').origin;
+
 // Content Security Policy - allows necessary third-party resources
 const cspDirectives = [
   "default-src 'self'",
@@ -14,7 +19,7 @@ const cspDirectives = [
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
   "img-src 'self' data: blob: https: http:",
-  "connect-src 'self' https://www.googletagmanager.com https://mautic.jobnagringa.com.br https://analytics.ahrefs.com https://*.google-analytics.com http://localhost:1337 https://*.clerk.accounts.dev https://clerk.jobnagringa.com.br https://accounts.jobnagringa.com.br",
+  `connect-src 'self' https://www.googletagmanager.com https://mautic.jobnagringa.com.br https://analytics.ahrefs.com https://*.google-analytics.com ${strapiOrigin} https://*.clerk.accounts.dev https://clerk.jobnagringa.com.br https://accounts.jobnagringa.com.br`,
   "frame-src 'self' https://www.googletagmanager.com https://accounts.jobnagringa.com.br https://www.youtube.com https://www.youtube-nocookie.com",
   "object-src 'none'",
   "base-uri 'self'",
@@ -56,8 +61,8 @@ export default defineConfig({
   // Integrations
   integrations: [
     clerk({
-      signInUrl: 'https://accounts.jobnagringa.com.br/sign-in',
-      signUpUrl: 'https://accounts.jobnagringa.com.br/sign-up',
+      signInUrl: `${clerkAccountsUrl}/sign-in`,
+      signUpUrl: `${clerkAccountsUrl}/sign-up`,
     }),
     partytown({
       // Configuration for Partytown - runs third-party scripts in web worker
@@ -81,7 +86,7 @@ export default defineConfig({
     }),
   ],
 
-  site: 'https://jobnagringa.com.br',
+  site: appSiteUrl,
 
   // Output mode - server with adapter for SSR pages
   output: 'server',

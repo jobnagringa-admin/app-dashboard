@@ -8,7 +8,8 @@ const isPublicRoute = createRouteMatcher([
   '/api/webhooks(.*)',
 ]);
 
-const SUBSCRIPTION_URL = 'https://jobnagringa.com.br/assine';
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://jobnagringa.com.br';
+const SUBSCRIPTION_URL = new URL('/assine', siteUrl).toString();
 const isTesting = process.env.PLAYWRIGHT === '1';
 
 const checkIsPaidCustomer = async (context: APIContext, userId: string): Promise<boolean> => {

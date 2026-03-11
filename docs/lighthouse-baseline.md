@@ -58,7 +58,7 @@ Initial Lighthouse CI audit conducted on 2026-01-14.
 // lighthouserc.cjs
 {
   collect: {
-    url: ["http://localhost:4321/"],
+    url: ["http://127.0.0.1:4321/"],
     numberOfRuns: 3,
     settings: {
       preset: "desktop"

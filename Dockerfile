@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # ============================================
-# Job na Gringa - Astro SSR with Bun
+# JNG Legacy - Astro SSR with Bun
 # Multi-stage build for optimized production
 # ============================================
 

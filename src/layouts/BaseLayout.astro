@@ -28,6 +28,7 @@ const {
   wfDomain = 'www.jobnagringa.com.br',
   lang = 'pt-BR',
 } = Astro.props;
+const finalTitle = title.startsWith('JNG') ? title : `JNG | ${title}`;
 
 // PRIVATE PROJECT: Block all indexing and crawling
 const robotsDirective = 'noindex, nofollow, noarchive, nosnippet, noimageindex, nocache';
@@ -49,7 +50,7 @@ import '../styles/global.css';
 <html data-wf-domain={wfDomain} data-wf-page={wfPage} data-wf-site={wfSite} lang={lang}>
   <head>
     <meta charset="utf-8" />
-    <title>{title}</title>
+    <title>{finalTitle}</title>
     <!-- PRIVATE PROJECT: Description and social meta tags removed to prevent metadata discovery -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 

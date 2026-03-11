@@ -22,12 +22,12 @@ ${description}
 
 ## Task Objectives
 1. **Setup Static Server**: Start a static file server for the legacy site from \`src-legacy/\` directory
-   - Recommended: Use \`python3 -m http.server 8000\` or \`bunx serve src-legacy\`
-   - Ensure legacy site is accessible at \`http://localhost:8000\`
+   - Recommended: Use \`bun run legacy:serve\`
+   - Ensure legacy site is accessible at \`http://jng-legacy-fixtures.localhost:1355\`
 
 2. **Setup New Site**: Ensure Astro dev server is running
-   - Run \`bun run dev\` or \`astro dev\`
-   - New site should be accessible at \`http://localhost:4321\` (or configured port)
+   - Run \`bun run dev\`
+   - New site should be accessible at \`http://jng-legacy.localhost:1355\`
 
 3. **Visual Comparison Setup**: Configure Playwright for side-by-side comparison
    - Create test file in \`tests/visual/comparison/\` directory
@@ -35,8 +35,8 @@ ${description}
    - Compare at multiple viewport sizes: mobile (375px), tablet (768px), desktop (1280px), desktop-wide (1920px)
 
 4. **Visual Comparison Process**:
-   - Navigate to legacy page: \`http://localhost:8000/${legacy_path#src-legacy/}\`
-   - Navigate to new page: \`http://localhost:4321/${new_path#src/pages/}\` (adjust route as needed)
+   - Navigate to legacy page: \`http://jng-legacy-fixtures.localhost:1355/${legacy_path#src-legacy/}\`
+   - Navigate to new page: \`http://jng-legacy.localhost:1355/${new_path#src/pages/}\` (adjust route as needed)
    - Capture screenshots of both pages at each viewport size
    - Use visual diff tools or manual inspection to identify discrepancies
    - Document all visual differences found

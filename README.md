@@ -1,12 +1,12 @@
-# Job na Gringa - Astro Migration
+# JNG Legacy - Astro Migration
 
-**Job na Gringa** is a platform connecting Brazilian professionals with remote
+**JNG Legacy** is a platform connecting Brazilian professionals with remote
 international job opportunities. This project is currently being migrated from a
 static HTML/CSS/JavaScript stack to a modern Astro framework implementation.
 
 ## 🎯 Project Overview
 
-Job na Gringa helps Brazilian professionals find remote work opportunities with
+JNG Legacy helps Brazilian professionals find remote work opportunities with
 international companies. The platform provides job listings, career resources,
 community features, and member dashboards.
 
@@ -129,7 +129,7 @@ community features, and member dashboards.
    bun run dev
    ```
 
-   The site will be available at `http://localhost:4321`
+   The site will be available at `http://jng-legacy.localhost:1355`
 
 ## 📝 Environment Variables
 
@@ -172,17 +172,21 @@ PUBLIC_GTM_ID=GTM-XXXXXXX
 
 ## 🧞 Available Commands
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun run dev`             | Starts local dev server at `localhost:4321`      |
-| `bun run build`           | Build your production site to `./dist/`          |
-| `bun run preview`         | Preview your build locally, before deploying     |
-| `bun run check`           | Run Astro type checking                          |
-| `bun run lint`            | Run ESLint on source files                       |
-| `bun run format`          | Format code with Prettier                        |
-| `bun run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun run astro -- --help` | Get help using the Astro CLI                     |
+| Command                   | Action                                                        |
+| :------------------------ | :------------------------------------------------------------ |
+| `bun install`             | Installs dependencies                                         |
+| `bun run dev`             | Starts d3k + Portless at `jng-legacy.localhost:1355`          |
+| `bun run dev:raw`         | Starts the Astro dev server through Portless                  |
+| `bun run d3k`             | Starts the monitored JNG dev session                          |
+| `bun run build`           | Build your production site to `./dist/`                       |
+| `bun run preview`         | Preview your build through Portless                           |
+| `bun run preview:raw`     | Preview your build directly on port `4321`                    |
+| `bun run legacy:serve`    | Serve legacy fixtures at `jng-legacy-fixtures.localhost:1355` |
+| `bun run check`           | Run Astro type checking                                       |
+| `bun run lint`            | Run ESLint on source files                                    |
+| `bun run format`          | Format code with Prettier                                     |
+| `bun run astro ...`       | Run CLI commands like `astro add`, `astro check`              |
+| `bun run astro -- --help` | Get help using the Astro CLI                                  |
 
 ## 🔄 Migration Status
 

@@ -9,8 +9,8 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 
-const LEGACY_PORT = 4322;
-const ASTRO_PORT = 4321;
+const legacyBaseUrl = process.env.LEGACY_BASE_URL || 'http://jng-legacy-fixtures.localhost:1355';
+const astroBaseUrl = process.env.APP_BASE_URL || 'http://jng-legacy.localhost:1355';
 
 const pages = [
   { name: 'index', legacyPath: '/jng/index.html', astroPath: '/jng/index' },
@@ -32,8 +32,8 @@ async function comparePage(pageInfo, viewport = { width: 1280, height: 800 }) {
 
   try {
     // Legacy page
-    console.log(`  Loading legacy: http://localhost:${LEGACY_PORT}${pageInfo.legacyPath}`);
-    await page.goto(`http://localhost:${LEGACY_PORT}${pageInfo.legacyPath}`, {
+    console.log(`  Loading legacy: ${legacyBaseUrl}${pageInfo.legacyPath}`);
+    await page.goto(`${legacyBaseUrl}${pageInfo.legacyPath}`, {
       waitUntil: 'networkidle',
       timeout: 30000,
     });
@@ -44,8 +44,8 @@ async function comparePage(pageInfo, viewport = { width: 1280, height: 800 }) {
     console.log(`  ✓ Legacy screenshot: ${legacyFile}`);
 
     // Astro page
-    console.log(`  Loading Astro: http://localhost:${ASTRO_PORT}${pageInfo.astroPath}`);
-    await page.goto(`http://localhost:${ASTRO_PORT}${pageInfo.astroPath}`, {
+    console.log(`  Loading Astro: ${astroBaseUrl}${pageInfo.astroPath}`);
+    await page.goto(`${astroBaseUrl}${pageInfo.astroPath}`, {
       waitUntil: 'networkidle',
       timeout: 30000,
     });
@@ -83,8 +83,8 @@ async function main() {
   }
 
   console.log('Starting visual comparison...');
-  console.log(`Legacy server: http://localhost:${LEGACY_PORT}`);
-  console.log(`Astro server: http://localhost:${ASTRO_PORT}`);
+  console.log(`Legacy server: ${legacyBaseUrl}`);
+  console.log(`Astro server: ${astroBaseUrl}`);
 
   // Desktop comparison
   for (const pageInfo of pagesToCompare) {

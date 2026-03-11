@@ -25,7 +25,7 @@ is required.
 Create a `.env` file in the project root with the following variables:
 
 ```env
-STRAPI_URL=http://localhost:1337
+STRAPI_URL=https://cms.jobnagringa.com.br
 STRAPI_TOKEN=your_strapi_api_token_here
 STRAPI_API_PREFIX=/api
 ```
@@ -38,7 +38,7 @@ STRAPI_API_PREFIX=/api
 ### Required Variables
 
 - `STRAPI_URL` - The base URL of your Strapi instance (default:
-  `http://localhost:1337`)
+  `https://cms.jobnagringa.com.br`)
 - `STRAPI_TOKEN` - API token for authenticated requests (required for protected
   endpoints)
 - `STRAPI_API_PREFIX` - API prefix path (default: `/api`)

@@ -12,8 +12,8 @@ const mainPages = [
   { name: 'jobs', legacyPath: '/jng/jobs.html', astroPath: '/jng/jobs' },
 ];
 
-const LEGACY_PORT = 4322;
-const ASTRO_PORT = 4321;
+const LEGACY_BASE_URL = process.env.LEGACY_BASE_URL || 'http://jng-legacy-fixtures.localhost:1355';
+const ASTRO_BASE_URL = process.env.APP_BASE_URL || 'http://jng-legacy-preview.localhost:1355';
 const hasLegacyFixtures = existsSync('src-legacy');
 
 test.describe('Legacy vs Astro Visual Comparison', () => {
@@ -22,14 +22,14 @@ test.describe('Legacy vs Astro Visual Comparison', () => {
   for (const page of mainPages) {
     test(`${page.name} - desktop comparison`, async ({ page: testPage }) => {
       // Navigate to legacy version
-      await testPage.goto(`http://localhost:${LEGACY_PORT}${page.legacyPath}`);
+      await testPage.goto(`${LEGACY_BASE_URL}${page.legacyPath}`);
       await testPage.waitForLoadState('networkidle');
       await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for any animations
 
       const legacyScreenshot = await testPage.screenshot({ fullPage: true });
 
       // Navigate to Astro version
-      await testPage.goto(`http://localhost:${ASTRO_PORT}${page.astroPath.replace('/jng', '')}`);
+      await testPage.goto(`${ASTRO_BASE_URL}${page.astroPath.replace('/jng', '')}`);
       await testPage.waitForLoadState('networkidle');
       await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for any animations
 
@@ -44,14 +44,14 @@ test.describe('Legacy vs Astro Visual Comparison', () => {
       await testPage.setViewportSize({ width: 375, height: 667 });
 
       // Navigate to legacy version
-      await testPage.goto(`http://localhost:${LEGACY_PORT}${page.legacyPath}`);
+      await testPage.goto(`${LEGACY_BASE_URL}${page.legacyPath}`);
       await testPage.waitForLoadState('networkidle');
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       const legacyScreenshot = await testPage.screenshot({ fullPage: true });
 
       // Navigate to Astro version
-      await testPage.goto(`http://localhost:${ASTRO_PORT}${page.astroPath.replace('/jng', '')}`);
+      await testPage.goto(`${ASTRO_BASE_URL}${page.astroPath.replace('/jng', '')}`);
       await testPage.waitForLoadState('networkidle');
       await new Promise((resolve) => setTimeout(resolve, 1000));
 

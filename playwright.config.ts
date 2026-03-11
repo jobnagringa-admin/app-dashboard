@@ -2,6 +2,13 @@ import { defineConfig, devices } from '@playwright/test';
 import { existsSync } from 'node:fs';
 
 const hasLegacyFixtures = existsSync('src-legacy');
+const portlessProxyPort = process.env.PORTLESS_PROXY_PORT || '1355';
+const previewAppName = process.env.PORTLESS_PREVIEW_APP_NAME || 'jng-legacy-preview';
+const legacyAppName = process.env.PORTLESS_LEGACY_APP_NAME || 'jng-legacy-fixtures';
+const previewBaseUrl =
+  process.env.PLAYWRIGHT_BASE_URL || `http://${previewAppName}.localhost:${portlessProxyPort}`;
+const legacyBaseUrl =
+  process.env.LEGACY_BASE_URL || `http://${legacyAppName}.localhost:${portlessProxyPort}`;
 
 /**
  * Visual Regression Testing Configuration
@@ -48,7 +55,7 @@ export default defineConfig({
 
   // Global settings
   use: {
-    baseURL: 'http://localhost:4321',
+    baseURL: previewBaseUrl,
     trace: 'on-first-retry',
 
     // Screenshot settings for visual comparison
@@ -135,15 +142,15 @@ export default defineConfig({
   webServer: [
     {
       command: 'rm -rf dist && PLAYWRIGHT=1 bun run build && PLAYWRIGHT=1 bun run preview',
-      url: 'http://localhost:4321',
+      url: previewBaseUrl,
       reuseExistingServer: !process.env.CI,
       timeout: 120000,
     },
     ...(hasLegacyFixtures
       ? [
           {
-            command: 'node scripts/serve-legacy.js',
-            url: 'http://localhost:4322',
+            command: 'bun run legacy:serve',
+            url: legacyBaseUrl,
             reuseExistingServer: !process.env.CI,
             timeout: 120000,
           },
