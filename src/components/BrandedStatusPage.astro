@@ -1,0 +1,185 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+export interface Props {
+  statusCode: string;
+  title: string;
+  description: string;
+  primaryHref: string;
+  primaryLabel: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+}
+
+const {
+  statusCode,
+  title,
+  description,
+  primaryHref,
+  primaryLabel,
+  secondaryHref,
+  secondaryLabel,
+} = Astro.props;
+---
+
+<BaseLayout title={`${statusCode} | Job na Gringa`}>
+  <main class="status-shell">
+    <section class="status-panel">
+      <a href="/" class="status-brand" aria-label="Job na Gringa home">
+        <img
+          src="/cdn-assets/images/logos/companies/logo-vectors-wrapper.svg"
+          alt="Job na Gringa"
+          width="138"
+          height="20"
+        />
+      </a>
+
+      <div class="status-copy">
+        <p class="status-code">{statusCode}</p>
+        <h1>{title}</h1>
+        <p class="status-description">{description}</p>
+      </div>
+
+      <div class="status-actions">
+        <a href={primaryHref} class="status-button status-button-primary">{primaryLabel}</a>
+        {
+          secondaryHref && secondaryLabel ? (
+            <a href={secondaryHref} class="status-button status-button-secondary">{secondaryLabel}</a>
+          ) : null
+        }
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  :global(body) {
+    min-height: 100vh;
+    margin: 0;
+    background:
+      radial-gradient(circle at top left, rgba(0, 113, 255, 0.22), transparent 35%),
+      radial-gradient(circle at bottom right, rgba(0, 113, 255, 0.18), transparent 30%),
+      linear-gradient(180deg, #081224 0%, #0d1f3a 52%, #f6f8fc 52%, #f6f8fc 100%);
+  }
+
+  .status-shell {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+  }
+
+  .status-panel {
+    width: min(100%, 720px);
+    padding: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 28px;
+    background:
+      linear-gradient(180deg, rgba(8, 18, 36, 0.94), rgba(13, 31, 58, 0.96)),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+    box-shadow: 0 32px 80px rgba(3, 12, 28, 0.28);
+    color: #f6f8fc;
+  }
+
+  .status-brand {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .status-copy {
+    display: grid;
+    gap: 16px;
+  }
+
+  .status-code {
+    margin: 0;
+    color: #7cb7ff;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: #ffffff;
+  }
+
+  .status-description {
+    max-width: 42rem;
+    margin: 0;
+    color: rgba(246, 248, 252, 0.84);
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  .status-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .status-button {
+    min-height: 48px;
+    padding: 12px 18px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition:
+      transform 160ms ease,
+      background-color 160ms ease,
+      color 160ms ease,
+      border-color 160ms ease;
+  }
+
+  .status-button:hover {
+    transform: translateY(-1px);
+  }
+
+  .status-button-primary {
+    background: #0071ff;
+    color: #ffffff;
+  }
+
+  .status-button-primary:hover {
+    background: #2b8cff;
+  }
+
+  .status-button-secondary {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.04);
+    color: #f6f8fc;
+  }
+
+  .status-button-secondary:hover {
+    border-color: rgba(124, 183, 255, 0.55);
+    background: rgba(124, 183, 255, 0.12);
+  }
+
+  @media (max-width: 767px) {
+    .status-panel {
+      padding: 24px;
+      border-radius: 22px;
+    }
+
+    .status-brand {
+      margin-bottom: 28px;
+    }
+
+    .status-actions {
+      flex-direction: column;
+    }
+
+    .status-button {
+      justify-content: center;
+      text-align: center;
+    }
+  }
+</style>
