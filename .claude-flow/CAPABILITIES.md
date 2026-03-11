@@ -63,13 +63,13 @@ coordination with:
 
 ```bash
 # Initialize swarm
-npx @claude-flow/cli@latest swarm init --topology hierarchical --max-agents 8 --strategy specialized
+bunx @claude-flow/cli@latest swarm init --topology hierarchical --max-agents 8 --strategy specialized
 
 # Check status
-npx @claude-flow/cli@latest swarm status
+bunx @claude-flow/cli@latest swarm status
 
 # Monitor activity
-npx @claude-flow/cli@latest swarm monitor
+bunx @claude-flow/cli@latest swarm monitor
 ```
 
 ---
@@ -174,17 +174,17 @@ npx @claude-flow/cli@latest swarm monitor
 
 ```bash
 # Initialize
-npx @claude-flow/cli@latest init --wizard
+bunx @claude-flow/cli@latest init --wizard
 
 # Spawn agent
-npx @claude-flow/cli@latest agent spawn -t coder --name my-coder
+bunx @claude-flow/cli@latest agent spawn -t coder --name my-coder
 
 # Memory operations
-npx @claude-flow/cli@latest memory store --key "pattern" --value "data" --namespace patterns
-npx @claude-flow/cli@latest memory search --query "authentication"
+bunx @claude-flow/cli@latest memory store --key "pattern" --value "data" --namespace patterns
+bunx @claude-flow/cli@latest memory search --query "authentication"
 
 # Diagnostics
-npx @claude-flow/cli@latest doctor --fix
+bunx @claude-flow/cli@latest doctor --fix
 ```
 
 ---
@@ -272,16 +272,16 @@ npx @claude-flow/cli@latest doctor --fix
 
 ```bash
 # Store pattern
-npx @claude-flow/cli@latest memory store --key "name" --value "data" --namespace patterns
+bunx @claude-flow/cli@latest memory store --key "name" --value "data" --namespace patterns
 
 # Semantic search
-npx @claude-flow/cli@latest memory search --query "authentication"
+bunx @claude-flow/cli@latest memory search --query "authentication"
 
 # List entries
-npx @claude-flow/cli@latest memory list --namespace patterns
+bunx @claude-flow/cli@latest memory list --namespace patterns
 
 # Initialize database
-npx @claude-flow/cli@latest memory init --force
+bunx @claude-flow/cli@latest memory init --force
 ```
 
 ---
@@ -315,16 +315,16 @@ npx @claude-flow/cli@latest memory init --force
 
 ```bash
 # Initialize
-npx @claude-flow/cli@latest hive-mind init --queen-type strategic
+bunx @claude-flow/cli@latest hive-mind init --queen-type strategic
 
 # Status
-npx @claude-flow/cli@latest hive-mind status
+bunx @claude-flow/cli@latest hive-mind status
 
 # Spawn workers
-npx @claude-flow/cli@latest hive-mind spawn --count 5 --type worker
+bunx @claude-flow/cli@latest hive-mind spawn --count 5 --type worker
 
 # Consensus
-npx @claude-flow/cli@latest hive-mind consensus --propose "task"
+bunx @claude-flow/cli@latest hive-mind consensus --propose "task"
 ```
 
 ---
@@ -358,19 +358,19 @@ npx @claude-flow/cli@latest hive-mind consensus --propose "task"
 
 | Package         | Command                           |
 | --------------- | --------------------------------- |
-| ruv-swarm       | `npx ruv-swarm mcp start`         |
-| flow-nexus      | `npx flow-nexus@latest mcp start` |
-| agentic-jujutsu | `npx agentic-jujutsu@latest`      |
+| ruv-swarm       | `bunx ruv-swarm mcp start`         |
+| flow-nexus      | `bunx flow-nexus@latest mcp start` |
+| agentic-jujutsu | `bunx agentic-jujutsu@latest`      |
 
 ### MCP Server Setup
 
 ```bash
 # Add Claude Flow MCP
-claude mcp add claude-flow -- npx -y @claude-flow/cli@latest
+claude mcp add claude-flow -- bunx -y @claude-flow/cli@latest
 
 # Optional servers
-claude mcp add ruv-swarm -- npx -y ruv-swarm mcp start
-claude mcp add flow-nexus -- npx -y flow-nexus@latest mcp start
+claude mcp add ruv-swarm -- bunx -y ruv-swarm mcp start
+claude mcp add flow-nexus -- bunx -y flow-nexus@latest mcp start
 ```
 
 ---
@@ -381,24 +381,24 @@ claude mcp add flow-nexus -- npx -y flow-nexus@latest mcp start
 
 ```bash
 # Setup
-npx @claude-flow/cli@latest init --wizard
-npx @claude-flow/cli@latest daemon start
-npx @claude-flow/cli@latest doctor --fix
+bunx @claude-flow/cli@latest init --wizard
+bunx @claude-flow/cli@latest daemon start
+bunx @claude-flow/cli@latest doctor --fix
 
 # Swarm
-npx @claude-flow/cli@latest swarm init --topology hierarchical --max-agents 8
-npx @claude-flow/cli@latest swarm status
+bunx @claude-flow/cli@latest swarm init --topology hierarchical --max-agents 8
+bunx @claude-flow/cli@latest swarm status
 
 # Agents
-npx @claude-flow/cli@latest agent spawn -t coder
-npx @claude-flow/cli@latest agent list
+bunx @claude-flow/cli@latest agent spawn -t coder
+bunx @claude-flow/cli@latest agent list
 
 # Memory
-npx @claude-flow/cli@latest memory search --query "patterns"
+bunx @claude-flow/cli@latest memory search --query "patterns"
 
 # Hooks
-npx @claude-flow/cli@latest hooks pre-task --description "task"
-npx @claude-flow/cli@latest hooks worker dispatch --trigger optimize
+bunx @claude-flow/cli@latest hooks pre-task --description "task"
+bunx @claude-flow/cli@latest hooks worker dispatch --trigger optimize
 ```
 
 ### File Structure
