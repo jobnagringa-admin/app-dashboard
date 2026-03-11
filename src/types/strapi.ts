@@ -1,6 +1,6 @@
 /**
  * Strapi CMS TypeScript Type Definitions
- * 
+ *
  * This file contains TypeScript interfaces for Strapi API responses,
  * including collections, single entities, pagination, and common fields.
  */

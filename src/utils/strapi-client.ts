@@ -9,11 +9,7 @@
  */
 
 import { getStrapiClientBrowser, getStrapiURL } from './strapi';
-import {
-  buildStrapiQuery,
-  flattenStrapiResponse,
-  extractStrapiData,
-} from './strapi-helpers';
+import { buildStrapiQuery, flattenStrapiResponse, extractStrapiData } from './strapi-helpers';
 import type {
   StrapiQueryParams,
   StrapiCollectionResponse,
@@ -197,10 +193,7 @@ export async function fetchStrapiSingleClient<T = Record<string, unknown>>(
     }
 
     const collection = strapi.collection(contentType);
-    const response = await collection.findOne(
-      String(id),
-      queryParams as Record<string, unknown>
-    );
+    const response = await collection.findOne(String(id), queryParams as Record<string, unknown>);
     const document = response.data as StrapiDocument;
 
     // Transform response to our format

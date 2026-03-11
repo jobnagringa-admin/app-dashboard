@@ -356,8 +356,8 @@ bunx @claude-flow/cli@latest hive-mind consensus --propose "task"
 
 ### Optional Integrations
 
-| Package         | Command                           |
-| --------------- | --------------------------------- |
+| Package         | Command                            |
+| --------------- | ---------------------------------- |
 | ruv-swarm       | `bunx ruv-swarm mcp start`         |
 | flow-nexus      | `bunx flow-nexus@latest mcp start` |
 | agentic-jujutsu | `bunx agentic-jujutsu@latest`      |
