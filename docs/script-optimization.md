@@ -183,7 +183,7 @@ Run Lighthouse audit to verify improvements:
 4. Run audit on mobile
 
 # Using CLI
-npx lighthouse https://jobnagringa.com.br --only-categories=performance
+bunx lighthouse https://jobnagringa.com.br --only-categories=performance
 ```
 
 ## Troubleshooting

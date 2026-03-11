@@ -59,7 +59,7 @@ scan_vulnerabilities() {
 
 check_npm_audit() {
   if [ -f "$PROJECT_ROOT/package-lock.json" ]; then
-    # Skip npm audit for speed - it's slow
+    # Skip bun audit for speed - it's slow
     echo "0"
   else
     echo "0"

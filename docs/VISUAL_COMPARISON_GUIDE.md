@@ -6,7 +6,7 @@
 
    ```bash
    # Terminal 1: Astro dev server
-   npm run dev
+   bun run dev
 
    # Terminal 2: Legacy server
    node scripts/serve-legacy.js

@@ -417,7 +417,7 @@ const { page, pageCount, total } = meta.pagination;
 
 #### 1. "Cannot find module '@strapi/client'"
 
-**Solution**: Run `npm install @strapi/client`
+**Solution**: Run `bun install @strapi/client`
 
 #### 2. "Network request failed" or CORS errors
 
@@ -469,7 +469,7 @@ Test your Strapi integration:
 1. **Test server-side fetching**:
 
    ```bash
-   npm run dev
+   bun run dev
    # Visit a page that uses Strapi
    ```
 

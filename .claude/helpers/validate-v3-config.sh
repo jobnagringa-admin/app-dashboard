@@ -137,7 +137,7 @@ else
   log_error "Not in a Git repository"
 fi
 
-# Check 5: Node.js and npm
+# Check 5: Node.js and bun
 echo ""
 echo "📦 Checking Node.js Environment..."
 if command -v node >/dev/null 2>&1; then
@@ -155,11 +155,11 @@ else
   log_error "Node.js not installed"
 fi
 
-if command -v npm >/dev/null 2>&1; then
-  npm_version=$(npm --version)
-  log_success "npm installed: $npm_version"
+if command -v bun >/dev/null 2>&1; then
+  bun_version=$(bun --version)
+  log_success "bun installed: $bun_version"
 else
-  log_error "npm not installed"
+  log_error "bun not installed"
 fi
 
 # Check 6: Development tools

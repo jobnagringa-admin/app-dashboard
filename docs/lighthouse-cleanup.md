@@ -22,17 +22,17 @@ completes. This script removes:
 
 ### For Developers
 
-The cleanup runs automatically when using npm scripts:
+The cleanup runs automatically when using bun scripts:
 
 ```bash
-npm run lighthouse          # Runs Lighthouse and cleans up automatically
-npm run lighthouse:collect  # Collects data and cleans up automatically
+bun run lighthouse          # Runs Lighthouse and cleans up automatically
+bun run lighthouse:collect  # Collects data and cleans up automatically
 ```
 
 To manually run cleanup:
 
 ```bash
-npm run lighthouse:cleanup
+bun run lighthouse:cleanup
 ```
 
 ### For AI Agents
@@ -40,16 +40,16 @@ npm run lighthouse:cleanup
 **IMPORTANT**: When running Lighthouse commands, always ensure cleanup runs
 afterward:
 
-1. **Preferred**: Use the npm scripts which include automatic cleanup:
+1. **Preferred**: Use the bun scripts which include automatic cleanup:
 
    ```bash
-   npm run lighthouse
+   bun run lighthouse
    ```
 
 2. **If running Lighthouse directly**: Always run cleanup afterward:
 
    ```bash
-   lhci autorun && npm run lighthouse:cleanup
+   lhci autorun && bun run lighthouse:cleanup
    ```
 
 3. **After any Lighthouse execution**: Check for and remove temporary
@@ -74,7 +74,7 @@ This can be customized via environment variable:
 
 ```bash
 export LIGHTHOUSE_USER_DATA_DIR="/tmp/my-custom-lighthouse-dir"
-npm run lighthouse
+bun run lighthouse
 ```
 
 ### Git Ignore

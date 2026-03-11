@@ -59,9 +59,9 @@
 
 ## Next Steps
 
-1. **Start Astro dev server**: `npm run dev`
+1. **Start Astro dev server**: `bun run dev`
 2. **Start legacy server**: `node scripts/serve-legacy.js` (runs on port 4322)
-3. **Run visual tests**: `npm run visual:test`
+3. **Run visual tests**: `bun run visual:test`
 4. **Compare pages**: Use browser to compare legacy (port 4322) vs Astro
    (port 4321)
 5. **Fix visual differences**: Adjust CSS/structure to match pixel-perfect
@@ -71,16 +71,16 @@
 
 ```bash
 # Start Astro dev server
-npm run dev
+bun run dev
 
 # In another terminal, start legacy server
 node scripts/serve-legacy.js
 
 # Run visual regression tests
-npm run visual:test
+bun run visual:test
 
 # Update baseline screenshots (after fixing issues)
-npm run visual:update
+bun run visual:update
 ```
 
 ## File Structure

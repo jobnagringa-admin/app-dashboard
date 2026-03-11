@@ -18,7 +18,7 @@ and project structure that mirrors the current HTML structure.
 ### Detailed Steps
 
 1. **Install Astro CLI and create new project**
-   - Run `npm create astro@latest` in project root
+   - Run `bun create astro@latest` in project root
    - Choose TypeScript template
    - Configure with recommended settings
    - Location: Root directory

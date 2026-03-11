@@ -18,7 +18,7 @@
 
    ```bash
    # Terminal 1
-   npm run dev
+   bun run dev
 
    # Terminal 2
    node scripts/serve-legacy.js

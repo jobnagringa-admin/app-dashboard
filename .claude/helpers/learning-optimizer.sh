@@ -106,7 +106,7 @@ run_sona_training() {
   echo "[$(date +%H:%M:%S)] Spawning SONA learning agent..."
 
   # Use agentic-flow for deep learning optimization
-  npx agentic-flow@alpha hooks intelligence 2>/dev/null || true
+  bunx agentic-flow@alpha hooks intelligence 2>/dev/null || true
 
   echo "[$(date +%H:%M:%S)] ✓ SONA training triggered"
 }

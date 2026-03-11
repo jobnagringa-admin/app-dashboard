@@ -22,11 +22,11 @@ ${description}
 
 ## Task Objectives
 1. **Setup Static Server**: Start a static file server for the legacy site from \`src-legacy/\` directory
-   - Recommended: Use \`python3 -m http.server 8000\` or \`npx serve src-legacy\`
+   - Recommended: Use \`python3 -m http.server 8000\` or \`bunx serve src-legacy\`
    - Ensure legacy site is accessible at \`http://localhost:8000\`
 
 2. **Setup New Site**: Ensure Astro dev server is running
-   - Run \`npm run dev\` or \`astro dev\`
+   - Run \`bun run dev\` or \`astro dev\`
    - New site should be accessible at \`http://localhost:4321\` (or configured port)
 
 3. **Visual Comparison Setup**: Configure Playwright for side-by-side comparison
@@ -55,7 +55,7 @@ ${description}
    - Verify functionality remains intact
 
 6. **Verification**:
-   - Run visual regression tests: \`npm run test:visual\`
+   - Run visual regression tests: \`bun run test:visual\`
    - Ensure no regressions in other pages
    - Verify accessibility: Run Lighthouse accessibility audit
    - Check responsive behavior across all breakpoints
