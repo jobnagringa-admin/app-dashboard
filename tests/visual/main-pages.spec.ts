@@ -12,8 +12,6 @@ const mainPages = [
   { name: 'partners', path: '/partners' },
   { name: 'onboarding', path: '/onboarding' },
   { name: 'profile', path: '/profile' },
-  { name: 'sign-in', path: '/sign-in' },
-  { name: 'sign-up', path: '/sign-up' },
 ];
 
 async function openPageForScreenshot(testPage: Page, path: string) {
